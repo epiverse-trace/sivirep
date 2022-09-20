@@ -1,2 +1,2 @@
 
-R package for creating authomated epidemiological reports for a given pathogen from National Epidemiology Surveillance System, SIVIGILA. 
+R package for creating automated reports for a given pathogen from the National Epidemiology Surveillance System, SIVIGILA. 
