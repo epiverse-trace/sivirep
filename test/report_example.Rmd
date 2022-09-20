@@ -1,15 +1,25 @@
 ---
-title: "Reporte de Malaria, 2019"
-output: html_document
+title: "Reporte de Malaria, Colombia, 2019"
+output:
+  pdf_document: default
+  html_document: default
 date: "2022-09-19"
 ---
 
-```{r setup, include=FALSE}
+```{r setup, echo=FALSE, error=FALSE, fig.height=5, fig.width=5, warning=FALSE, include = FALSE, message= FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
 library(dplyr)
 library(tidyverse)
 library(aweek)
+library(ggspatial)
+library(rgdal)
+library(broom)
+library(maptools)
+
+if (!require(gpclib)) install.packages("gpclib", type="source")
+gpclibPermit()
+
 rm(list=ls())
 source("../R/funs.R")
 ```
@@ -17,21 +27,25 @@ source("../R/funs.R")
 
 
 
-```{r leer_seleccionar}
+```{r leer_seleccionar, echo=FALSE, error=FALSE, fig.height=5, fig.width=5, warning=FALSE, include = FALSE, message= FALSE}
 dat0 <- import_sivigila_data()
 dat <- select_disease("MALAR", dat0)
+rm(dat0)
 
 
 ```
 
-## Distribución de casos por semana epdiemiológica
+## Distribución de casos por semana epidemiológica
 
 
-```{r inciencia, echo=TRUE}
+```{r inciencia, echo=FALSE, error=FALSE, fig.height=5, fig.width=10, warning=FALSE, include = TRUE, message= FALSE}
 
-plot_epiweek(dat, var_week = "SEMANA", var_cases = "conteo_casos", type = "week")
+# plot_epiweek(dat, var_week = "SEMANA", var_cases = "conteo_casos", type = "week")
 plot_epiweek(dat, var_week = "SEMANA", var_cases = "conteo_casos", type = "date")
 
 ```
+```{r map, echo=FALSE, error=FALSE, fig.height=8, fig.width=8, warning=FALSE, include = TRUE, message= FALSE}
+map <- get_dept_map_sivigila (dat)
+map
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```
