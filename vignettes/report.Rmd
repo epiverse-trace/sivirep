@@ -1,0 +1,36 @@
+---
+title: "report"
+output: html_document
+date: "2022-09-19"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(dplyr)
+library(tidyverse)
+rm(list=ls())
+source("../R/funs.R")
+```
+
+## Reporte de Tuberculosis Colombia 2019
+
+
+
+```{r leer_seleccionar}
+dat0 <- import_sivigila_data()
+dat <- select_disease("MALAR", dat0)
+
+
+```
+
+## Distribución de casos por semana epdiemiológica
+
+
+```{r inciencia, echo=TRUE}
+
+
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
