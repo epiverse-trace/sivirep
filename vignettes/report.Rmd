@@ -4,33 +4,64 @@ output: html_document
 date: "2022-09-19"
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-
+```{r setup, echo=FALSE, error=FALSE, fig.height=5, fig.width=5, warning=FALSE, include=FALSE, message=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE
+)
 library(dplyr)
 library(tidyverse)
-rm(list=ls())
+library(ggspatial)
+library(rgdal)
+library(broom)
+library(maptools)
+library(data.table)
+library(zoo)
+
+if (!require(gpclib)) 
+    install.packages("gpclib", type = "source")
+gpclibPermit()
+
+rm(list = ls())
 source("../R/funs.R")
+source("../R/read_data/import_data.R")
+source("../R/debug_data/cleaning_data.R")
+source("../R/debug_data/checking_data.R")
+source("../R/reports/build_reports.R")
+source("../R/reports/build_endemic_channel.R")
 ```
 
-## Reporte de Tuberculosis Colombia 2019
-
-
+## Reporte de Malaria en Colombia 2019
 
 ```{r leer_seleccionar}
-dat0 <- import_sivigila_data()
-dat <- select_disease("MALAR", dat0)
-
+sivigila_data <- import_sivigila_data("https://www.datos.gov.co/api/views/qvnt-2igj/rows.csv?accessType=DOWNLOAD")
+filtered_data <- select_disease("MALAR", sivigila_data)
 
 ```
 
 ## Distribución de casos por semana epdiemiológica
 
 
-```{r inciencia, echo=TRUE}
+```{r inciencia, echo=TRUE, message=TRUE, warning=TRUE, paged.print=TRUE}
 
-
+plot_epiweek(filtered_data, var_week = "SEMANA", var_cases = "conteo_casos", year = 2019, type = "date", xlabel = "Fecha de semana epidemiológica")
 
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r map, echo=FALSE, error=FALSE, fig.height=5, fig.width=10, warning=FALSE, include=TRUE, message=FALSE}
+deptos_data    <- import_sivigila_data("https://www.datos.gov.co/api/views/gdxc-w37w/rows.csv?accessType=DOWNLOAD")
+deptos_data    <- get_depto_codes(deptos_data)
+data_map_disease_deptos <- clean_depto_disease_codes(deptos_data, filtered_data)
+map <- generate_dept_map_sivigila(data_map_disease_deptos, var_lj = "id")
+map
+
+```
+## Canal endemico
+
+```{r map, echo=FALSE, error=FALSE, fig.height=5, fig.width=10, warning=FALSE, include=TRUE, message=FALSE}
+
+#disease_data_by_years <- import_data_endemic_channel("MALARI", 2020)
+#df_quartiles <- get_disease_quartiles(disease_data_by_years)
+#plot_endemic_channel(df_quartiles)
+
+```
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot. 
