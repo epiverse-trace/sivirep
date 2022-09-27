@@ -59,9 +59,6 @@ map
 
 ```{r map, echo=FALSE, error=FALSE, fig.height=5, fig.width=10, warning=FALSE, include=TRUE, message=FALSE}
 
-#disease_data_by_years <- import_data_endemic_channel("MALARI", 2020)
-#df_quartiles <- get_disease_quartiles(disease_data_by_years)
-#plot_endemic_channel(df_quartiles)
 
 ```
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot. 
