@@ -1,12 +1,14 @@
 ---
 title: "report"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 date: "2022-09-19"
 ---
 
 ```{r setup, echo=FALSE, error=FALSE, fig.height=5, fig.width=5, warning=FALSE, include=FALSE, message=FALSE}
 knitr::opts_chunk$set(
-	echo = TRUE
+	echo = FALSE
 )
 library(dplyr)
 library(tidyverse)
@@ -57,7 +59,7 @@ map
 ```
 ## Canal endemico
 
-```{r map, echo=FALSE, error=FALSE, fig.height=5, fig.width=10, warning=FALSE, include=TRUE, message=FALSE}
+```{r map2, echo=FALSE, error=FALSE, fig.height=5, fig.width=10, warning=FALSE, include=TRUE, message=FALSE}
 
 
 ```
