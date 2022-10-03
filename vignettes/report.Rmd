@@ -16,6 +16,8 @@ library(broom)
 library(maptools)
 library(data.table)
 library(zoo)
+library(xml2)
+library(XML)
 
 if (!require(gpclib)) 
     install.packages("gpclib", type = "source")
