@@ -1,15 +1,16 @@
 ---
-title: "report"
+title: "Reporte de Malaria, Colombia, 2019"
+subtitle: (fuente SIVIGILA, Datos libres)
+author: Zulma M. Cucunubá
 output:
   pdf_document: default
   html_document: default
 date: "2022-09-19"
 ---
 
-```{r setup, echo=FALSE, error=FALSE, fig.height=5, fig.width=5, warning=FALSE, include=FALSE, message=FALSE}
-knitr::opts_chunk$set(
-	echo = FALSE
-)
+```{r setup, echo=FALSE, error=FALSE, fig.height=5, fig.width=5, warning=FALSE, include = FALSE, message= FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
 library(dplyr)
 library(tidyverse)
 library(ggspatial)
@@ -30,29 +31,32 @@ source("../R/funs.R")
 source("../R/read_data/import_data.R")
 source("../R/debug_data/cleaning_data.R")
 source("../R/debug_data/checking_data.R")
-source("../R/reports/build_reports.R")
-source("../R/reports/build_endemic_channel.R")
+source("../R/analyticis-plotting/plotting.R")
+source("../R/analyticis-plotting/build_endemic_channel.R")
 ```
 
 ## Reporte de Malaria en Colombia 2019
 
-```{r leer_seleccionar}
-sivigila_data <- import_sivigila_data("https://www.datos.gov.co/api/views/qvnt-2igj/rows.csv?accessType=DOWNLOAD")
+```{r leer_seleccionar, echo=FALSE, error=FALSE, fig.height=5, fig.width=5, warning=FALSE, include = FALSE, message= FALSE}
+link_data <- "https://www.datos.gov.co/api/views/qvnt-2igj/rows.csv?accessType=DOWNLOAD"
+sivigila_data <- import_data(link_data)
 filtered_data <- select_disease("MALAR", sivigila_data)
 
 ```
 
-## Distribución de casos por semana epdiemiológica
+## Distribución de casos por semana epidemiológica
 
 
-```{r inciencia, echo=TRUE, message=TRUE, warning=TRUE, paged.print=TRUE}
+```{r inciencia, echo=FALSE, error=FALSE, fig.height=5, fig.width=10, warning=FALSE, include = TRUE, message= FALSE}
 
 plot_epiweek(filtered_data, var_week = "SEMANA", var_cases = "conteo_casos", year = 2019, type = "date", xlabel = "Fecha de semana epidemiológica")
 
 ```
 
-```{r map, echo=FALSE, error=FALSE, fig.height=5, fig.width=10, warning=FALSE, include=TRUE, message=FALSE}
-deptos_data    <- import_sivigila_data("https://www.datos.gov.co/api/views/gdxc-w37w/rows.csv?accessType=DOWNLOAD")
+Distribución espacial de casos de malaria en Colombia
+
+```{r map, echo=FALSE, error=FALSE, fig.height=8, fig.width=8, warning=FALSE, include = TRUE, message= FALSE}
+deptos_data    <- import_data("https://www.datos.gov.co/api/views/gdxc-w37w/rows.csv?accessType=DOWNLOAD")
 deptos_data    <- get_depto_codes(deptos_data)
 data_map_disease_deptos <- clean_depto_disease_codes(deptos_data, filtered_data)
 map <- generate_dept_map_sivigila(data_map_disease_deptos, var_lj = "id")
@@ -65,4 +69,4 @@ map
 
 
 ```
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot. 
+ 
