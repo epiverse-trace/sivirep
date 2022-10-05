@@ -17,21 +17,21 @@ library(rgdal)
 library(broom)
 library(maptools)
 library(data.table)
-library(zoo)
 library(xml2)
-library(XML)
+library(httr)
+
 
 if (!require(gpclib)) 
     install.packages("gpclib", type = "source")
 gpclibPermit()
 
 rm(list = ls())
-source("../R/funs.R")
 source("../R/read_data/import_data.R")
+source("../R/read_data/scraping_data.R")
 source("../R/debug_data/cleaning_data.R")
 source("../R/debug_data/checking_data.R")
-source("../R/reports/build_reports.R")
-source("../R/reports/build_endemic_channel.R")
+source("../R/analyticis_plotting/plotting.R")
+source("../R/analyticis_plotting/build_endemic_channel.R")
 ```
 
 ## Reporte de Malaria en Colombia 2019
@@ -63,6 +63,10 @@ map
 
 ```{r map2, echo=FALSE, error=FALSE, fig.height=5, fig.width=10, warning=FALSE, include=TRUE, message=FALSE}
 
+avaliable_diseases_and_years <- import_avaliable_diseases_and_years()
+View(avaliable_diseases_and_years)
+
+import_data_disease_by_year(2018, "DENGUE")
 
 ```
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot. 
