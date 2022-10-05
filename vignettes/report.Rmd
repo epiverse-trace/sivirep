@@ -39,7 +39,7 @@ source("../R/analyticis_plotting/build_endemic_channel.R")
 
 ```{r leer_seleccionar, echo=FALSE, error=FALSE, fig.height=5, fig.width=5, warning=FALSE, include = FALSE, message= FALSE}
 link_data <- "https://www.datos.gov.co/api/views/qvnt-2igj/rows.csv?accessType=DOWNLOAD"
-sivigila_data <- import_data(link_data)
+sivigila_data <- import_sivigila_data(link_data)
 filtered_data <- select_disease("MALAR", sivigila_data)
 
 ```
@@ -56,7 +56,7 @@ plot_epiweek(filtered_data, var_week = "SEMANA", var_cases = "conteo_casos", yea
 Distribución espacial de casos de malaria en Colombia
 
 ```{r map, echo=FALSE, error=FALSE, fig.height=8, fig.width=8, warning=FALSE, include = TRUE, message= FALSE}
-deptos_data    <- import_data("https://www.datos.gov.co/api/views/gdxc-w37w/rows.csv?accessType=DOWNLOAD")
+deptos_data    <- import_sivigila_data("https://www.datos.gov.co/api/views/gdxc-w37w/rows.csv?accessType=DOWNLOAD")
 deptos_data    <- get_depto_codes(deptos_data)
 data_map_disease_deptos <- clean_depto_disease_codes(deptos_data, filtered_data)
 map <- generate_dept_map_sivigila(data_map_disease_deptos, var_lj = "id")
