@@ -23,3 +23,7 @@ plot_endemic_channel <- function (df_quartiles) {
   
   ggplot(df_reshaped, aes(x, y, col = group)) +  geom_line()
 }
+
+get_disease_years <- function(max) {
+  
+}

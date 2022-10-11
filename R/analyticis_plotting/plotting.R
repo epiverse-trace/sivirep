@@ -54,8 +54,31 @@ generate_dept_map_sivigila <- function(data_map_depto, var_lj = "id") {
   map <- ggplot() + 
     geom_polygon(data = shp.df, aes(x = long, y = lat, group = group, fill = casos), 
                  colour = "black") +
-    scale_fill_gradient(low = "white", high="darkred")+
+    scale_fill_gradient(low = "white", high = "darkred") +
     theme_void()
   
   return(map)
+}
+
+plot_by_parameter <- function(data, var_x, var_y, var_per = NULL, var_fill, wt_per = TRUE, label_x, label_y, scale_name, scale_labels, diagram_title, legend_pos,
+                              bar_wd, text_sz) {
+  ggplot(data, aes_string(x = var_x, y = var_y, fill = var_fill) ) +                       
+    geom_bar(width = bar_wd, stat = "identity", position = position_dodge()) +             
+    labs(x = label_x, y = label_y) +  
+    labs(fill = "") +                                                         
+    geom_text(
+              if (!is.null(var_per)) eval(parse(text = paste("aes(label = paste0(", var_y,", '\n (' ,", var_per, ", '%', ')'","))")))
+              else eval(parse(text = paste("aes(label = ",var_y,")"))),  
+              vjust = 1.3,                         
+              color = "black",                     
+              hjust = 0.5,                         
+              position = position_dodge(0.9),    
+              angle = 0,                           
+              size = text_sz
+    ) + 
+    scale_fill_discrete(name = scale_name, labels = scale_labels) +  
+    theme(axis.text.x = element_text(angle = -45, vjust = 1, hjust = -0.3)) +  
+    theme_linedraw() +                                                       
+    theme(legend.position = legend_pos) +                                        
+    facet_grid(~as.character(diagram_title))              
 }

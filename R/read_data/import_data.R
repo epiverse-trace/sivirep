@@ -1,3 +1,7 @@
+library(dplyr)
+library(tidyverse)
+library(config)
+
 #' Función que importa la informacion de SIVIGILA a través de una URL
 #' Function that imports SIVIGILA data through a URL
 #' @param url_data URL of SIVIGILA data
@@ -99,9 +103,28 @@ import_avaliable_diseases_and_years <- function()  {
 #' @return The disease data by year
 #' @examples
 #' get_data_disease_by_year(2018, "DENGUE")
-import_data_disease_by_year <- function(year, disease_name) {
+import_data_disease_by_year <- function(year, disease_name, cache = FALSE, use_cache_file = FALSE) {
   
   data_url <- get_path_data_disease_by_year(year, disease_name)
-  data_disease_by_year <- import_data_delim(data_url)
+  data_disease_by_year <- data.frame()
+  data_file_name <- find_name_file_path(data_url)
+  
+  if (!use_cache_file) {
+      data_disease_by_year <- import_data_delim(data_url)
+      if (cache) {
+          write.csv(data_disease_by_year, file = paste0("../data/", data_file_name)) 
+      }
+  }
+  else {
+    data_disease_by_year <- read.csv(file = paste0("../data/", data_file_name))
+  }
+  
   return(data_disease_by_year)
+}
+
+
+find_name_file_path <- function(path) {
+  name_file <- strsplit(path, "/Microdatos/")
+  name_file <- strsplit(name_file[[1]][2], "')")[[1]][1] %>% as.character()
+  return(name_file)
 }

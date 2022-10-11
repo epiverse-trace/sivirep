@@ -1,11 +1,13 @@
-# Cache opcional 
+library(config)
+
+config <- config::get()
+
 get_path_data_disease_by_year <- function(year, disease_name) {
+  base_path <- config::get("base_path_microdata")
+  file_path_parameters <- config::get("file_path_parameters_microdata")
   
-  base_path <- "https://portalsivigila.ins.gov.co/_api/"
-  file_path_parameters <- "/$value?binaryStringResponseBody=true"
-  
-  microdata_path <- "web/lists/GetByTitle('Microdatos')/"
-  query_path <- "items?$select=*,FileRef&$filter=(A_x00f1_o%20eq%20%27_year_%27)and(NombreEvento%20eq%20%27_disease_%27)"
+  microdata_path <- config::get("path_microdata")
+  query_path <- config::get("query_path_microdata")
   
   year <- as.character(year)
   

@@ -38,3 +38,33 @@ group_by_week <- function(disease_data) {
   disease_data_grouped  <- disease_data_grouped[1:52,]
   return(disease_data_grouped)
 }
+
+group_by_param <- function(disease_data, param, week = NULL, wt_percentage = FALSE) {
+  if (!is.null(week)) {
+     disease_data_grouped  <- disease_data %>% group_by_(week, param) %>% dplyr::summarise(Casos = n(), .groups = "drop")
+  }
+  else {
+    disease_data_grouped  <- disease_data %>% group_by_(param) %>% dplyr::summarise(Casos = n(), .groups = "drop")
+  }
+  
+  if (wt_percentage) {
+      disease_data_grouped  <-  disease_data_grouped %>% dplyr::mutate(Porcentaje = round(Casos/sum(Casos)*100, 1))
+  }
+  
+  if (param == "SEMANA") {
+      disease_data_grouped  <- disease_data_grouped[1:52,] %>% as.data.frame()
+  }
+  #names(disease_data_grouped )[names(disease_data_grouped) == "param" ] <- param
+  return(disease_data_grouped)
+}
+
+group_by_range <- function(disease_data, param, min_val, max_val, step) {
+  data_values_range <-  disease_data %>%                    
+    mutate(ranges = cut(disease_data$EDAD,
+                        seq(min_val, max_val, step))) %>% 
+    group_by(ranges) %>% 
+    dplyr::summarize(Casos = sum(Casos)) %>% as.data.frame()
+  names(data_values_range)[names(data_values_range) == "ranges" ] <- param
+  
+  return(data_values_range)
+}
