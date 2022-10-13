@@ -103,7 +103,7 @@ import_avaliable_diseases_and_years <- function()  {
 #' @return The disease data by year
 #' @examples
 #' get_data_disease_by_year(2018, "DENGUE")
-import_data_disease_by_year <- function(year, disease_name, cache = FALSE, use_cache_file = FALSE) {
+import_data_disease_by_year <- function(year, disease_name, cache = TRUE, use_cache_file = TRUE) {
   
   data_url <- get_path_data_disease_by_year(year, disease_name)
   data_disease_by_year <- data.frame()

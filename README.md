@@ -50,12 +50,12 @@ package is not ready for use outside of the development team.
 ### Contributions
 
 Contributions are welcome via [pull
-requests](https://github.com/epiverse-trace/readepi/pulls).
+requests](https://github.com/TRACE-LAC/sivirep/pulls).
 
 Contributors to the project include:
 
   - Zulma M. Cucunubá (author)
-  - Geraldine Gómez Millán (contributor)
+  - Geraldine Gómez Millán (author)
 
 ### Code of Conduct
 
