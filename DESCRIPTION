@@ -6,7 +6,7 @@ Author: Zulma M. Cucunubá and Geraldine Gómez Millán
 Maintainer: The package maintainer <geralidine.gomez@javeriana.edu.co>
 Description: Provides functions for data wrangling and automated reports 
     from SIVIGILA source
-License: MIT
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.2.1
