@@ -33,3 +33,7 @@
 
 # R Environment Variables
 .Renviron
+
+# Mac File
+.DS_Store
+docs
