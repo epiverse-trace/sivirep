@@ -50,7 +50,7 @@ package is not ready for use outside of the development team.
 ### Contributions
 
 Contributions are welcome via [pull
-requests](https://github.com/TRACE-LAC/sivirep/pulls).
+requests](https://github.com/epiverse-trace/sivirep/pulls).
 
 Contributors to the project include:
 
