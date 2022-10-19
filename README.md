@@ -22,7 +22,7 @@ You can install the development version of *sivirep* from
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("TRACE-LAC/sivirep")
+remotes::install_github("epiverse-trace/sivirep")
 ```
 
 ## Example
@@ -50,7 +50,7 @@ package is not ready for use outside of the development team.
 ### Contributions
 
 Contributions are welcome via [pull
-requests](https://github.com/TRACE-LAC/sivirep/pulls).
+requests](https://github.com/epiverse-trace/sivirep/pulls).
 
 Contributors to the project include:
 
