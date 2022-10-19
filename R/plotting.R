@@ -1,7 +1,3 @@
-if (!require(gpclib)) 
-  install.packages("gpclib", type = "source")
-maptools::gpclibPermit()
-
 #' Plot epiweek
 #' 
 #' Función que genera el reporte de la Semana epidemiológica

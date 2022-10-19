@@ -1,5 +1,3 @@
-config <- config::get()
-
 #' Get Path Data Disease by Year
 #' 
 #' Función que obtiene la ruta o URL del servicio para descargar la informacion de una enfermedad por año desde SIVIGILA
