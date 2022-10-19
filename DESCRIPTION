@@ -1,5 +1,6 @@
 Package: sivirep
 Type: Package
+Title: Data Wrangling and Automated Reports from 'SIVIGILA' source
 Version: 0.0.1.0
 Author: Zulma M. Cucunubá and Geraldine Gómez Millán
 Maintainer: The package maintainer <geralidine.gomez@javeriana.edu.co>
