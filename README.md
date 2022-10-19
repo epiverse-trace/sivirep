@@ -22,7 +22,7 @@ You can install the development version of *sivirep* from
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("TRACE-LAC/sivirep")
+remotes::install_github("epiverse-trace/sivirep")
 ```
 
 ## Example
