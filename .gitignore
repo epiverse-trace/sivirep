@@ -37,3 +37,4 @@
 # Mac File
 .DS_Store
 docs
+inst/doc
