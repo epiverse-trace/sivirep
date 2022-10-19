@@ -1,3 +1,4 @@
+library(dplyr)
 config   <- config::get()
 temp_dir <- tempdir()
 
@@ -34,7 +35,7 @@ import_data_delim <- function(path_data) {
         }
   }
   
-  if (empty(data)) {
+  if (plyr::empty(data)) {
        data <- data.table::fread(path_data)
   }
   
@@ -81,11 +82,11 @@ import_data_endemic_channel <- function(disease_name, year) {
 import_avaliable_diseases_and_years <- function()  {
   
   query_diseases_by_year_path <- config::get("query_diseases_by_year_path")
-  get_query_diseases_by_year  <- httr::GET(query_diseases_by_year_path, xml2::add_headers("Accept" = "*/*"))
+  get_query_diseases_by_year  <- httr::GET(query_diseases_by_year_path, httr::add_headers("Accept" = "*/*"))
   
-  content_type_response <- xml2::str_split_fixed(xml2::headers(get_query_diseases_by_year)$`content-type`, pattern = ";", 3)
-  content_type_response <- xml2::str_replace(xml2::content_type_response[[1]], "atom\\+", "")
-  query_diseases_by_year_content <- xml2::content(get_query_diseases_by_year, type = content_type_response, encoding = "UTF-8")
+  content_type_response <- stringr::str_split_fixed(httr::headers(get_query_diseases_by_year)$`content-type`, pattern = ";", 3)
+  content_type_response <- stringr::str_replace(content_type_response[[1]], "atom\\+", "")
+  query_diseases_by_year_content <- httr::content(get_query_diseases_by_year, type = content_type_response, encoding = "UTF-8")
   
   
   children      <- xml2::xml_children(query_diseases_by_year_content)

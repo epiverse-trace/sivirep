@@ -59,7 +59,7 @@ group_by_week <- function(disease_data) {
 #' group_by_variable(disease_data, week = "SEMANA", wt_percentage = TRUE)
 #' @export
 group_by_variable <- function(disease_data, var, week = NULL, wt_percentage = FALSE) {
-  if (!is.null(week)) {
+  if (!is.null(week) & length(week) > 0 ) {
      disease_data_grouped  <- disease_data %>% dplyr::group_by_(week, var) %>% dplyr::summarise(Casos = dplyr::n(), .groups = "drop")
   }
   else {
@@ -90,13 +90,23 @@ group_by_variable <- function(disease_data, var, week = NULL, wt_percentage = FA
 #' @examples
 #' group_by_range(disease_data, min_val = 2020-10-10, max_val = 2022-12-10, step = 5) 
 #' @export
-group_by_range <- function(disease_data, var, var_a, min_val, max_val, step) {
-  data_values_range <-  disease_data %>%                    
-    dplyr::mutate(ranges = cut(disease_data$EDAD,
-                        seq(min_val, max_val, step))) %>% 
-    dplyr::group_by_("ranges", var_a) %>% 
-    dplyr::summarize(Casos = sum(Casos), .groups = "drop") %>% as.data.frame()
-  names(data_values_range)[names(data_values_range) == "ranges" ] <- var
-  
+group_by_range <- function(disease_data, var, var_a = NULL, min_val, max_val, step) {
+  data_values_range <- data.frame()
+  if (!is.null(var_a) & length(var_a) > 0 ) {
+      data_values_range <-  disease_data %>%                    
+        dplyr::mutate(ranges = cut(disease_data$EDAD,
+                                   seq(min_val, max_val, step))) %>% 
+        dplyr::group_by_("ranges", var_a) %>% 
+        dplyr::summarize(Casos = sum(Casos), .groups = "drop") %>% as.data.frame()
+      names(data_values_range)[names(data_values_range) == "ranges" ] <- var
+  }
+  else {
+      data_values_range <-  disease_data %>%                    
+        dplyr::mutate(ranges = cut(disease_data$EDAD,
+                                   seq(min_val, max_val, step))) %>% 
+        dplyr::group_by_("ranges") %>% 
+        dplyr::summarize(Casos = sum(Casos), .groups = "drop") %>% as.data.frame()
+      names(data_values_range)[names(data_values_range) == "ranges" ] <- var
+  }
   return(data_values_range)
 }

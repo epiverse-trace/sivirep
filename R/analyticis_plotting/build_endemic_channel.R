@@ -8,7 +8,7 @@ get_disease_quartiles <- function(disease_data_by_years) {
    
 }
 
-plot_endemic_channel <- function (df_quartiles) {
+plot_endemic_channel <- function(df_quartiles) {
   df_reshaped <- data.frame(df_quartiles,                           
                             y = df_quartiles
                             )

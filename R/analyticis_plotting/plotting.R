@@ -1,3 +1,7 @@
+if (!require(gpclib)) 
+  install.packages("gpclib", type = "source")
+maptools::gpclibPermit()
+
 #' Plot epiweek
 #' 
 #' Función que genera el reporte de la Semana epidemiológica
@@ -16,7 +20,7 @@
 plot_epiweek <- function(dat, var_week, var_cases, year, type = "week", xlabel = "Semana epidemiológica", ylabel = "Número de casos por semana") {
   dat$epiweek <- dat[,var_week]
   dat$cases_count <- dat[,var_cases]
-  dat_plot <- dat %>% dplyr::group_by(epiweek, Nombre) %>% dplyr::summarise(casos = sum(cases_count))
+  dat_plot <- dat %>% dplyr::group_by(epiweek, Nombre) %>% dplyr::summarise(casos = sum(cases_count), .groups = "drop")
   
   if (type == "week") {
       plot <- ggplot2::ggplot(dat_plot) +
@@ -53,7 +57,7 @@ plot_epiweek <- function(dat, var_week, var_cases, year, type = "week", xlabel =
 plot_dept_map <- function(data_map_depto, var_lj = "id") {
   
   shp <- rgdal::readOGR(dsn = file.path("../data/depto_adm_shp/depto.shp"), stringsAsFactors = FALSE)
-  shp.df <- broom::fortify(shp, region = "DPTO")
+  shp.df <- ggplot2::fortify(shp, region = "DPTO")
   shp.df <- shp.df %>% 
     dplyr::left_join(data_map_depto, by = var_lj)
   
@@ -96,8 +100,8 @@ plot_by_variable <- function(data, var_x, var_y, var_per = NULL, var_fill, wt_pe
     ggplot2::theme_classic() +
     {if (show_val) 
          ggplot2::geom_text(
-                {if (!is.null(var_per)) eval(parse(text = paste0("aes(label = paste0(", var_y,", '\n (' ,", var_per, ", '%', ')'","))")))
-                 else eval(parse(text = paste0("aes(label = ",var_y,")")))},
+                {if (!is.null(var_per)) eval(parse(text = paste0("ggplot2::aes(label = paste0(", var_y,", '\n (' ,", var_per, ", '%', ')'","))")))
+                 else eval(parse(text = paste0("ggplot2::aes(label = ",var_y,")")))},
                 vjust = 1.3,
                 color = "black",
                 hjust = 0.5,
