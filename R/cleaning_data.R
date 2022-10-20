@@ -7,6 +7,7 @@
 #' @return The filtered data with the disease selected information
 #' @examples
 #' clean_depto_disease_codes(deptos_data, disease_data)
+#' @export
 clean_depto_disease_codes <- function(deptos_data, disease_data, make_group = TRUE) {
   deptos_data$id      <- as.character(deptos_data$cod_dep)
   disease_data$id     <- as.character(disease_data$COD_DPTO_O)
@@ -60,6 +61,7 @@ parse_age_to_years <- function(disease_data, col_age = "EDAD", col_uni_med = "UN
 #' @return The clean data
 #' @examples
 #' remove_nin_values(disease_data, name_col = "EDAD")
+#' @export
 remove_nin_values <- function(disease_data, name_col) {
   ref_col  <- paste0("disease_data$", name_col) 
   disease_data_del <- disease_data
@@ -80,6 +82,7 @@ remove_nin_values <- function(disease_data, name_col) {
 #' @return The clean data
 #' @examples
 #' remove_dates_init(disease_data, col_init = "INI_SI", col_cmp = "FEC_HOS")
+#' @export
 remove_dates_init <- function(disease_data, col_init = "INI_SI", col_cmp = "FEC_HOS") {
   ref_col_init  <- paste0("disease_data$", col_init) 
   ref_col_cmp  <- paste0("disease_data$", col_cmp) 
