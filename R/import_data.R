@@ -19,7 +19,7 @@ import_path_data <- function(url_data, cache = TRUE) {
 #' @param path_data Path of SIVIGILA data
 #' @return Data tabulated
 #' @examples
-#' import_data_delim(https://www.datos.gov.co/api/views/qvnt-2igj/rows.csv?accessType=DOWNLOAD)
+#' import_data_delim("https://www.datos.gov.co/api/views/qvnt-2igj/rows.csv?accessType=DOWNLOAD")
 #' @export
 import_data_delim <- function(path_data) {
   delims <- config::get("data_delim")
