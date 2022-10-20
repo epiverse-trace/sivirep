@@ -2,14 +2,14 @@
 #' 
 #' Función que limpia la información de la enfermedad respecto a los codigos de los departamentos
 #' Function that cleans the disease data with respect to the codes of the departments
-#' @param deptos_data Departments data
-#' @param disease_data Disease data
-#' @return The filtered data with the disease selected information
+#' @param depto_codes The departments data
+#' @param disease_data The disease data
+#' @return Clean codes of disease data departments
 #' @examples
-#' clean_depto_disease_codes(deptos_data, disease_data)
+#' clean_depto_disease_codes(depto_codes, disease_data)
 #' @export
-clean_depto_disease_codes <- function(deptos_data, disease_data, make_group = TRUE) {
-  deptos_data$id      <- as.character(deptos_data$cod_dep)
+clean_depto_disease_codes <- function(depto_codes, disease_data, make_group = TRUE) {
+  depto_codes$id      <- as.character(depto_codes$cod_dep)
   disease_data$id     <- as.character(disease_data$COD_DPTO_O)
   disease_data_clean  <- disease_data
   
@@ -18,12 +18,12 @@ clean_depto_disease_codes <- function(deptos_data, disease_data, make_group = TR
   
   disease_data_clean$id[
     nchar(disease_data_clean$id) < 2 & disease_data_clean$id != "1" & disease_data_clean$id != "0" 
-    &  paste("0", disease_data_clean$id, sep = "") %in% deptos_data$id
+    &  paste("0", disease_data_clean$id, sep = "") %in% depto_codes$id
   ] <-  paste("0", disease_data_clean$id[
     nchar(disease_data_clean$id) < 2 & disease_data_clean$id != "1" & disease_data_clean$id != "0" 
-    &  paste("0", disease_data_clean$id, sep = "") %in% deptos_data$id
+    &  paste("0", disease_data_clean$id, sep = "") %in% depto_codes$id
   ], sep = "")
-  disease_data_clean$id[disease_data_clean$id == "1" &  paste("1", disease_data_clean$id, sep = "") %in% deptos_data$id] <- "11"
+  disease_data_clean$id[disease_data_clean$id == "1" &  paste("1", disease_data_clean$id, sep = "") %in% depto_codes$id] <- "11"
   
   return(disease_data_clean)
 }
@@ -55,11 +55,11 @@ parse_age_to_years <- function(disease_data, col_age = "EDAD", col_uni_med = "UN
 
 #' Remove NIN (NA, Infinitive, NaN) Values
 #' 
-#' Función que elimina los valores (NA, Infinitive, NaN) pertenecientes a una columna
-#' Function that eliminates the values (NA, Infinitive, NaN) belonging to a column
+#' Función que elimina los valores (NA, Infinitive, NaN) de una columna
+#' Function that eliminates the values (NA, Infinitive, NaN) of a column
 #' @param disease_data Disease data
 #' @param name_col Column name  
-#' @return The clean data
+#' @return The clean data without NA, Infinitive or NaN values of the column
 #' @examples
 #' remove_nin_values(disease_data, name_col = "EDAD")
 #' @export
@@ -73,18 +73,18 @@ remove_nin_values <- function(disease_data, name_col) {
   return(disease_data_del)
 }
 
-#' Remove Dates Init
+#' Remove Error Dates
 #' 
-#' Función que elimina los valores que son superiores al valor de comparación
-#' Function that removes values that are greater than the comparison value
+#' Función que elimina las fechas que son superiores al valor de comparación
+#' Function that removes greater dates than the comparison value
 #' @param disease_data Disease data
-#' @param col_init Column name of initial value
+#' @param col_init Column name of the date
 #' @param col_cmp Column name of comparison value
-#' @return The clean data
+#' @return The data without the erronous dates
 #' @examples
-#' remove_dates_init(disease_data, col_init = "INI_SI", col_cmp = "FEC_HOS")
+#' remove_error_dates(disease_data, col_init = "INI_SI", col_cmp = "FEC_HOS")
 #' @export
-remove_dates_init <- function(disease_data, col_init = "INI_SI", col_cmp = "FEC_HOS") {
+remove_error_dates <- function(disease_data, col_init = "INI_SI", col_cmp = "FEC_HOS") {
   ref_col_init  <- paste0("disease_data$", col_init) 
   ref_col_cmp  <- paste0("disease_data$", col_cmp) 
   del_rows <- which(ref_col_cmp <= ref_col_init)

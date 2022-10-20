@@ -3,30 +3,28 @@
 #' @import ggspatial
 #' @import rgdal
 #' @import maptools
+#' @import gpclib
 
-if (!require(gpclib))
-  install.packages("gpclib", type = "source")
-maptools::gpclibPermit()
-
-
-#' Plot epiweek
+#' Plot Epiweek
 #'
-#' Función que genera el reporte de la Semana epidemiológica
-#' Function that generates the report of the Epidemiological Week
+#' Función que genera la gráfica de la Semana epidemiológica
+#' Function that generates the graphic of the Epidemiological Week
 #' @param data Disease data
-#' @param var_week  Name of variable that indicates the week in the data
-#' @param var_cases Name of variable that indicates the cases number in the data
-#' @param year The year of the data
-#' @param type The type (week, date)
-#' @param xlabel The label of x axis
-#' @param ylabel The label of y axis
-#' @return The chart of Epidemiological Week
+#' @param col_week  Column Name that indicates the week in the data
+#' @param col_cases Column Name hat indicates the cases number in the data
+#' @param year Year of the data
+#' @param type Type for axis x (week, date)
+#' @param xlabel Label of axis x
+#' @param ylabel Label of axis y
+#' @return The graphic of Epidemiological Week
 #' @examples
-#' plot_epiweek(data, var_week = "SEMANA", var_cases = "conteo_casos", year = 2019, type = "date", xlabel = "Fecha de semana epidemiológica")
+#' plot_epiweek(data, col_week = "SEMANA", col_cases = "conteo_casos", year = 2019, type = "date", xlabel = "Fecha de semana epidemiológica")
+#' plot_epiweek(data, col_week = "SEMANA", col_cases = "conteo_casos", year = 2019, type = "week", xlabel = "Fecha de semana epidemiológica")
+#' plot_epiweek(data, col_week = "SEMANA", col_cases = "conteo_casos", year = 2019, xlabel = "Fecha de semana epidemiológica")
 #' @export
-plot_epiweek <- function(dat, var_week, var_cases, year, type = "week", xlabel = "Semana epidemiológica", ylabel = "Número de casos por semana") {
-  dat$epiweek <- dat[,var_week]
-  dat$cases_count <- dat[,var_cases]
+plot_epiweek <- function(dat, col_week, col_cases, year, type = "week", xlabel = "Semana epidemiológica", ylabel = "Número de casos por semana") {
+  dat$epiweek <- dat[,col_week]
+  dat$cases_count <- dat[,col_cases]
   dat_plot <- dat %>% dplyr::group_by(epiweek, Nombre) %>% dplyr::summarise(casos = sum(cases_count), .groups = "drop")
 
   if (type == "week") {
@@ -39,7 +37,6 @@ plot_epiweek <- function(dat, var_week, var_cases, year, type = "week", xlabel =
   }
 
   if (type == "date") {
-
     dat_plot$date_week <- as.Date(paste(year, dat_plot$epiweek, 1, sep = "-"), "%Y-%U-%u")
     plot <- ggplot2::ggplot(dat_plot) +
       ggplot2::geom_col(ggplot2::aes(x = date_week, y = casos, fill = Nombre), alpha = 0.9) +
@@ -52,21 +49,22 @@ plot_epiweek <- function(dat, var_week, var_cases, year, type = "week", xlabel =
   return(plot)
 }
 
-#' Plot Department Map by Selected Disease
+#' Plot Department Map
 #'
-#' Función que genera el mapa por departamento de la información de la enfermedad seleccionada
-#' Function that generates the map by information department of the selected disease
+#' Función que genera el mapa por departamento con los datos de una enfermedad especifica
+#' Function that generates the map by department with the data of a specific disease
 #' @param data_map_depto Data for department
-#' @return The map for department
+#' @param col_name_lj Column name to join with the shape file
+#' @return The map for department with the data of a specific disease
 #' @examples
-#' plot_dept_map(data_map_disease_deptos, var_lj = "id")
+#' plot_dept_map(data_map_disease_deptos, col_name_lj = "id")
 #' @export
-plot_dept_map <- function(data_map_depto, var_lj = "id") {
+plot_dept_map <- function(data_map_depto, col_name_lj = "id") {
 
   shp <- rgdal::readOGR(dsn = file.path("../data/depto_adm_shp/depto.shp"), stringsAsFactors = FALSE)
   shp.df <- ggplot2::fortify(shp, region = "DPTO")
   shp.df <- shp.df %>%
-    dplyr::left_join(data_map_depto, by = var_lj)
+    dplyr::left_join(data_map_depto, by = col_name_lj)
 
   map <- ggplot2::ggplot() +
     ggplot2::geom_polygon(data = shp.df, ggplot2::aes(x = long, y = lat, group = group, fill = casos),
