@@ -18,12 +18,12 @@ group_by_range(disease_data, var, var_a = NULL, min_val, max_val, step)
 \item{step}{The step for the range}
 }
 \value{
-The disease data grouped by week
+The disease data grouped by the range
 }
 \description{
 Función que agrupa los datos por un rango
 Function that groups the data by a range
 }
 \examples{
-group_by_range(disease_data, min_val = 2020-10-10, max_val = 2022-12-10, step = 5) 
+group_by_range(disease_data, min_val = 2020-10-10, max_val = 2022-12-10, step = 5)
 }
