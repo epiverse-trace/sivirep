@@ -6,3 +6,7 @@
 ^pkgdown$
 ^doc$
 ^Meta$
+^README\.Rmd$
+^codecov\.yml$
+^LICENSE\.md$
+^config\.yml$

@@ -131,11 +131,11 @@ import_data_disease_by_year <- function(year, disease_name, cache = TRUE) {
 
   if (cache) {
       if (file.exists(data_file_name)) {
-           data_disease_by_year <- read.csv(file = data_file_name)
+           data_disease_by_year <- utils::read.csv(file = data_file_name) 
       }
       else{
            data_disease_by_year <- import_data_delim(data_url)
-           write.csv(data_disease_by_year, file = data_file_name)
+           utils::write.csv(data_disease_by_year, file = data_file_name) 
       }
   }
   else {
