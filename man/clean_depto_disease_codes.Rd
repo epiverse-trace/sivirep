@@ -4,20 +4,20 @@
 \alias{clean_depto_disease_codes}
 \title{Clean Depto Disease Codes}
 \usage{
-clean_depto_disease_codes(deptos_data, disease_data, make_group = TRUE)
+clean_depto_disease_codes(depto_codes, disease_data, make_group = TRUE)
 }
 \arguments{
-\item{deptos_data}{Departments data}
+\item{depto_codes}{The departments data}
 
-\item{disease_data}{Disease data}
+\item{disease_data}{The disease data}
 }
 \value{
-The filtered data with the disease selected information
+Clean codes of disease data departments
 }
 \description{
 Función que limpia la información de la enfermedad respecto a los codigos de los departamentos
 Function that cleans the disease data with respect to the codes of the departments
 }
 \examples{
-clean_depto_disease_codes(deptos_data, disease_data)
+clean_depto_disease_codes(depto_codes, disease_data)
 }

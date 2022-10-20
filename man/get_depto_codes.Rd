@@ -4,7 +4,7 @@
 \alias{get_depto_codes}
 \title{Get Department Codes}
 \usage{
-get_depto_codes(deptos_data)
+get_depto_codes(geo_codes)
 }
 \arguments{
 \item{deptos_data}{Departments data}
@@ -13,9 +13,9 @@ get_depto_codes(deptos_data)
 The Departments data with code and name
 }
 \description{
-Función que obtiene el listado de departamentos con su nombre y código
-Function that obtains the list of departments with their name and code
+Función que obtiene el listado de departamentos de Colombia con su nombre y código
+Function that gets the list of departments of Colombia with their name and code
 }
 \examples{
-get_depto_codes(deptos_data)
+get_depto_codes(geo_codes)
 }

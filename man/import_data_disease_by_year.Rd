@@ -7,16 +7,18 @@
 import_data_disease_by_year(year, disease_name, cache = TRUE)
 }
 \arguments{
-\item{year}{The year}
+\item{year}{The selected year}
 
 \item{disease_name}{The disease name}
+
+\item{cache}{Indicates if the downloaded data to be cached}
 }
 \value{
 The disease data by year
 }
 \description{
-Función que obtiene los datos de la enfermedad por año
-Function that obtains the disease data by year
+Función que obtiene los datos de una enfermedad por año
+Function that obtains the data of a disease by year
 }
 \examples{
 import_data_disease_by_year(2018, "DENGUE")

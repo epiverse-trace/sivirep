@@ -7,14 +7,14 @@
 import_data_endemic_channel(disease_name, year)
 }
 \arguments{
-\item{disease_name}{Disease name}
+\item{disease_name}{The disease name}
 
 \item{year}{Last year}
 
-\item{path_data}{Path of SIVIGILA data}
+\item{path_data}{Path or URL of SIVIGILA data}
 }
 \value{
-The 5 years data of a disease
+The last five years data of a disease
 }
 \description{
 Función que importa la informacion del SIVIGILA para la construcción del canal endémico

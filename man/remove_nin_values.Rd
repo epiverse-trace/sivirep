@@ -12,11 +12,11 @@ remove_nin_values(disease_data, name_col)
 \item{name_col}{Column name}
 }
 \value{
-The clean data
+The clean data without NA, Infinitive or NaN values of the column
 }
 \description{
-Función que elimina los valores (NA, Infinitive, NaN) pertenecientes a una columna
-Function that eliminates the values (NA, Infinitive, NaN) belonging to a column
+Función que elimina los valores (NA, Infinitive, NaN) de una columna
+Function that eliminates the values (NA, Infinitive, NaN) of a column
 }
 \examples{
 remove_nin_values(disease_data, name_col = "EDAD")

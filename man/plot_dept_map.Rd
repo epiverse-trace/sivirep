@@ -2,20 +2,22 @@
 % Please edit documentation in R/plotting.R
 \name{plot_dept_map}
 \alias{plot_dept_map}
-\title{Plot Department Map by Selected Disease}
+\title{Plot Department Map}
 \usage{
-plot_dept_map(data_map_depto, var_lj = "id")
+plot_dept_map(data_map_depto, col_name_lj = "id")
 }
 \arguments{
 \item{data_map_depto}{Data for department}
+
+\item{col_name_lj}{Column name to join with the shape file}
 }
 \value{
-The map for department
+The map for department with the data of a specific disease
 }
 \description{
-Función que genera el mapa por departamento de la información de la enfermedad seleccionada
-Function that generates the map by information department of the selected disease
+Función que genera el mapa por departamento con los datos de una enfermedad especifica
+Function that generates the map by department with the data of a specific disease
 }
 \examples{
-plot_dept_map(data_map_disease_deptos, var_lj = "id")
+plot_dept_map(data_map_disease_deptos, col_name_lj = "id")
 }

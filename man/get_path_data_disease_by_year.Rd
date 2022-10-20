@@ -7,17 +7,17 @@
 get_path_data_disease_by_year(year, disease_name)
 }
 \arguments{
-\item{year}{The year}
+\item{year}{Specific year}
 
-\item{disease_name}{The disease name}
+\item{disease_name}{Disease name}
 }
 \value{
-Path or URL for download the disease data by selected year
+Path or URL for download the disease data by a specific year
 }
 \description{
-Función que obtiene la ruta o URL del servicio para descargar la informacion de una enfermedad por año desde SIVIGILA
-Function that obtains the path or URL of the service to download the information of a disease per year from SIVIGILA
+Función que obtiene la ruta o URL del servicio de SIVIGILA para descargar los datos de una enfermedad por un año especifico
+Function that gets the path or URL of the SIVIGILA service to download the data of a disease for a specific year
 }
 \examples{
-get_path_data_disease_by_year(2010, "DENGUE")
+get_path_data_disease_by_year(year = 2010, disease_name = "DENGUE")
 }

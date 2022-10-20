@@ -7,14 +7,14 @@
 import_data_delim(path_data)
 }
 \arguments{
-\item{path_data}{Path of SIVIGILA data}
+\item{path_data}{Path or URL of SIVIGILA data}
 }
 \value{
-Data tabulated
+A data frame
 }
 \description{
-Función que importa la informacion del SIVIGILA y la tabula a traves de un delimitador
-Function that imports the SIVIGILA information and tabulates it through a delimiter
+Función que identifica el separador con el que viene la informacion desde SIVIGILA para poderla tabular
+Function that identifies the separator with which the information comes to be able to tabulate it
 }
 \examples{
 import_data_delim("https://www.datos.gov.co/api/views/qvnt-2igj/rows.csv?accessType=DOWNLOAD")
