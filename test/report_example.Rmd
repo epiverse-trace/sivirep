@@ -17,8 +17,7 @@ library(sivirep)
 ## Malaria Report in Colombia 2019
 
 ```{r read, echo=FALSE, error=FALSE, fig.height=5, fig.width=5, warning=FALSE, include = FALSE, message= FALSE}
-link_data <- "https://www.datos.gov.co/api/views/qvnt-2igj/rows.csv?accessType=DOWNLOAD"
-sivigila_data <- sivirep::import_path_data(link_data)
+sivigila_data <- import_sivigila_open_data()
 filtered_data <- select_disease("MALAR", sivigila_data)
 
 ```
@@ -35,7 +34,7 @@ plot_epiweek(filtered_data, var_week = "SEMANA", var_cases = "conteo_casos", yea
 ## Spatial distribution of malaria cases in Colombia
 
 ```{r inciencia, echo=FALSE, error=FALSE, fig.height=8, fig.width=8, warning=FALSE, include = TRUE, message= FALSE}
-deptos_data    <- import_path_data("https://www.datos.gov.co/api/views/gdxc-w37w/rows.csv?accessType=DOWNLOAD")
+deptos_data    <- import_deptos_data()
 deptos_data    <- get_depto_codes(deptos_data)
 data_map_disease_deptos <- clean_depto_disease_codes(deptos_data, filtered_data)
 map <- plot_dept_map(data_map_disease_deptos, var_lj = "id")

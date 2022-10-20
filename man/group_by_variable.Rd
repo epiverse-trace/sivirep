@@ -9,15 +9,19 @@ group_by_variable(disease_data, var, week = NULL, wt_percentage = FALSE)
 \arguments{
 \item{disease_data}{Disease data}
 
-\item{param}{}
+\item{var}{The variable name}
+
+\item{week}{The name of the week}
+
+\item{wt_percentage}{Indicates if a percentage is required to the group}
 }
 \value{
-The disease data grouped by week
+The disease data grouped by variable and/or week
 }
 \description{
 Función que agrupa los datos por una variable(s) y/o por semana
 Function that groups the data by a specific variable and/or week
 }
 \examples{
-group_by_variable(disease_data, week = "SEMANA", wt_percentage = TRUE)
+group_by_variable(disease_data, week = "SEMANA",  = TRUE)
 }
