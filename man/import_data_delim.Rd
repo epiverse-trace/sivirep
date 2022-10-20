@@ -17,5 +17,5 @@ Función que importa la informacion del SIVIGILA y la tabula a traves de un deli
 Function that imports the SIVIGILA information and tabulates it through a delimiter
 }
 \examples{
-import_data_delim(https://www.datos.gov.co/api/views/qvnt-2igj/rows.csv?accessType=DOWNLOAD)
+import_data_delim("https://www.datos.gov.co/api/views/qvnt-2igj/rows.csv?accessType=DOWNLOAD")
 }

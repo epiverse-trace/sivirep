@@ -1,17 +1,36 @@
-library(dplyr)
+#' @import dplyr
+#' @import config
+#' @import xml2
+#' @import stringr
+#' @import httr
+
 config   <- config::get()
 temp_dir <- tempdir()
 
-#' Import Path Data
+#' Import SIVIGILA Open Data
 #'
 #' Función que importa la informacion de SIVIGILA a través de una URL
 #' Function that imports SIVIGILA data through a URL
 #' @param url_data URL of SIVIGILA data
 #' @return The data downloaded in csv format
 #' @examples
-#' import_path_data("https://www.datos.gov.co/api/views/qvnt-2igj/rows.csv?accessType=DOWNLOAD")
+#' import_sivigila_open_data("https://www.datos.gov.co/api/views/qvnt-2igj/rows.csv?accessType=DOWNLOAD")
 #' @export
-import_path_data <- function(url_data = "https://www.datos.gov.co/api/views/qvnt-2igj/rows.csv?accessType=DOWNLOAD") {
+import_sivigila_open_data <- function(url_data = config::get("sivigila_open_data_path")) {
+  data <- read.csv(url_data)
+  return(data)
+}
+
+#' Import Departments Data
+#'
+#' Función que importa la informacion de los departamentos de Colombia a través de una URL
+#' Function that imports the information of the departments of Colombia through a URL
+#' @param url_data URL of departments data
+#' @return The data downloaded in csv format
+#' @examples
+#' import_deptos_data(""https://www.datos.gov.co/api/views/gdxc-w37w/rows.csv?accessType=DOWNLOAD"")
+#' @export
+import_deptos_data <- function(url_data = config::get("deptos_data_path")) {
   data <- read.csv(url_data)
   return(data)
 }
@@ -23,7 +42,7 @@ import_path_data <- function(url_data = "https://www.datos.gov.co/api/views/qvnt
 #' @param path_data Path of SIVIGILA data
 #' @return Data tabulated
 #' @examples
-#' import_data_delim(https://www.datos.gov.co/api/views/qvnt-2igj/rows.csv?accessType=DOWNLOAD)
+#' import_data_delim("https://www.datos.gov.co/api/views/qvnt-2igj/rows.csv?accessType=DOWNLOAD")
 #' @export
 import_data_delim <- function(path_data) {
   delims <- config::get("data_delim")
