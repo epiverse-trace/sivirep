@@ -11,7 +11,7 @@ temp_dir <- tempdir()
 #' @examples
 #' import_path_data("https://www.datos.gov.co/api/views/qvnt-2igj/rows.csv?accessType=DOWNLOAD")
 #' @export
-import_path_data <- function(url_data, cache = TRUE) {
+import_path_data <- function(url_data = "https://www.datos.gov.co/api/views/qvnt-2igj/rows.csv?accessType=DOWNLOAD") {
   data <- read.csv(url_data)
   return(data)
 }
