@@ -90,14 +90,7 @@ disease_data_by_age <- group_by_age_range_and_cases(disease_data_by_age_and_week
 
 
 # Generate and plot reports
-El paquete tiene funciones que permiten generar graficos o reportes que son bastante utiles, como:
-
-This function generates the report of the Epidemiological Week:
-```{r}
-sivigila_data_2019 <- import_sivigila_summary_data()
-filtered_data_2019 <- filter_disease("MALAR", sivigila_data_2019)
-plot_epiweek(filtered_data_2019, col_week = "SEMANA", col_cases = "conteo_casos", year = 2019, type = "date", xlabel = "Fecha de semana epidemiologica")
-```
+The package has functions that allow generating graphs that are quite useful, such as:
 
 If you need to generate a map by information department of the selected disease, you can use this function
 
@@ -114,3 +107,11 @@ disease_dt_by_gender <- group_by_columns_and_cases(disease_data, "SEXO", wt_perc
 
 plot_by_variable(disease_dt_by_gender, var_x = "SEXO", var_y = "Casos", var_fill = "SEXO", var_per = "Porcentaje", label_x = "Género", label_y = "Casos \n (Porcentajes)", scale_name = "Género", scale_labels = c("Femenino", "Masculino"), diagram_title = "Diagrama para la variable Sexo", legend_pos = "right", bar_wd = 0.6, text_sz = 4, show_val = TRUE)
 ``` 
+
+This function generates the report of the Epidemiological Week of the year 2019:
+
+```{r}
+sivigila_data_2019 <- import_sivigila_summary_data()
+filtered_data_2019 <- filter_disease("MALAR", sivigila_data_2019)
+plot_epiweek(filtered_data_2019, col_week = "SEMANA", col_cases = "conteo_casos", year = 2019, type = "date", xlabel = "Fecha de semana epidemiologica")
+```
