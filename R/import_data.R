@@ -39,7 +39,7 @@ import_data_delim <- function(path_data) {
   delims <- config::get("data_delim")
   data <- data.frame()
   for (delim in delims) {
-       if (delim %in% data.table::strsplit(readLines(path_data, n = 1)[1], split = "")[[1]] ) {
+       if (delim %in% strsplit(readLines(path_data, n = 1)[1], split = "")[[1]] ) {
             data <- data.table::fread(path_data, sep = delim)
             break;
         }
