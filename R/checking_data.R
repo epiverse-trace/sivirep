@@ -100,7 +100,7 @@ group_by_columns_and_cases <- function(disease_data, col_names, wt_percentage = 
 #' @examples
 #' group_by_age_range_and_cases(disease_data, min_val = 0, max_val = 100, step = 5)
 #' @export
-group_by_age_range_and_cases <- function(disease_data, var, var_a = NULL, min_val, max_val, step) {
+group_by_age_range_and_cases <- function(disease_data, col_name, var_a = NULL, min_val, max_val, step) {
   data_values_range <- data.frame()
   if (!is.null(var_a) & length(var_a) > 0 ) {
       data_values_range <-  disease_data %>%
@@ -108,7 +108,7 @@ group_by_age_range_and_cases <- function(disease_data, var, var_a = NULL, min_va
                                    seq(min_val, max_val, step))) %>%
         dplyr::group_by_("ranges", var_a) %>%
         dplyr::summarize(Casos = sum(.data$Casos), .groups = "drop") %>% as.data.frame()
-      names(data_values_range)[names(data_values_range) == "ranges" ] <- var
+      names(data_values_range)[names(data_values_range) == "ranges" ] <- col_name
   }
   else {
       data_values_range <-  disease_data %>%
@@ -116,7 +116,7 @@ group_by_age_range_and_cases <- function(disease_data, var, var_a = NULL, min_va
                                    seq(min_val, max_val, step))) %>%
         dplyr::group_by_("ranges") %>%
         dplyr::summarize(Casos = sum(.data$Casos), .groups = "drop") %>% as.data.frame()
-      names(data_values_range)[names(data_values_range) == "ranges" ] <- var
+      names(data_values_range)[names(data_values_range) == "ranges" ] <- col_name
   }
   return(data_values_range)
 }

@@ -54,7 +54,8 @@ This function cleans the disease data with respect to the codes of the departmen
 
 ```{r}
 depto_codes <- get_depto_codes(geo_codes)
-depto_codes <- clean_depto_disease_codes(depto_codes, disease_data, make_group = TRUE)
+deptos_code_disease_data <- group_by_columns_and_cases(disease_data, "COD_DPTO_O")
+depto_codes <- clean_depto_disease_codes(depto_codes, deptos_code_disease_data, make_group = TRUE)
 ```
 
 This function removes values that are greater than the comparison value, for example the symptom onset date and hospitalization date:
@@ -84,7 +85,7 @@ disease_data_by_age_and_week <- group_by_columns_and_cases(disease_data, col_nam
 
 This function group the data by a range for example the ages:
 ```{r}
-disease_data_by_age <- group_by_age_range_and_cases(disease_data_by_age_and_week, min_val = 5, max_val = 82, step = 5)
+disease_data_by_age <- group_by_age_range_and_cases(disease_data_by_age_and_week, col_name = "EDAD", min_val = 5, max_val = 82, step = 5)
 ```
 
 

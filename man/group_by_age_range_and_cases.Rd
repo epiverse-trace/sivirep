@@ -6,7 +6,7 @@
 \usage{
 group_by_age_range_and_cases(
   disease_data,
-  var,
+  col_name,
   var_a = NULL,
   min_val,
   max_val,
@@ -16,13 +16,13 @@ group_by_age_range_and_cases(
 \arguments{
 \item{disease_data}{Disease data}
 
+\item{col_name}{Colunm name}
+
 \item{min_val}{Min value to group}
 
 \item{max_val}{Max value to group}
 
 \item{step}{Step for the range}
-
-\item{col_name}{Colunm name}
 }
 \value{
 The disease data grouped by the age range and cases
