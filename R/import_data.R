@@ -81,7 +81,7 @@ import_data_endemic_channel <- function(disease_name, year) {
 #' @examples
 #' import_avaliable_diseases_and_years()
 #' @export
-import_avaliable_diseases_and_years <- function()  {
+list_avaliable_diseases_and_years <- function()  {
 
   query_diseases_by_year_path <- config::get(file = system.file("extdata", "config.yml", package = "sivirep"), "query_diseases_by_year_path")
   get_query_diseases_by_year  <- httr::GET(query_diseases_by_year_path, httr::add_headers("Accept" = "*/*"))
