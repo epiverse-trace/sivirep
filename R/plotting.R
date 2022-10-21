@@ -18,11 +18,11 @@
 plot_epiweek <- function(dat, col_week, col_cases, year, type = "week", xlabel = "Semana epidemiológica", ylabel = "Número de casos por semana") {
   dat$epiweek <- dat[,col_week]
   dat$cases_count <- dat[,col_cases]
-  dat_plot <- dat %>% dplyr::group_by(.data$epiweek, .data$Nombre) %>% dplyr::summarise(casos = sum(.data$cases_count), .groups = "drop")
+  dat_plot <- dat %>% dplyr::group_by(dat$epiweek, dat$Nombre) %>% dplyr::summarise(casos = sum(dat$cases_count), .groups = "drop")
 
   if (type == "week") {
       plot <- ggplot2::ggplot(dat_plot) +
-        ggplot2::geom_col(ggplot2::aes(x = epiweek, y = .data$casos, fill = .data$Nombre), alpha = 0.9) +
+        ggplot2::geom_col(ggplot2::aes(x = dat_plot$epiweek, y = dat_plot$casos, fill = dat_plot$Nombre), alpha = 0.9) +
         ggplot2::theme_classic() +
         ggplot2::xlab(xlabel) + ggplot2::ylab(ylabel) +
         ggplot2::scale_fill_discrete(name = "") +
@@ -32,7 +32,7 @@ plot_epiweek <- function(dat, col_week, col_cases, year, type = "week", xlabel =
   if (type == "date") {
     dat_plot$date_week <- as.Date(paste(year, dat_plot$epiweek, 1, sep = "-"), "%Y-%U-%u")
     plot <- ggplot2::ggplot(dat_plot) +
-      ggplot2::geom_col(ggplot2::aes(x = date_week, y = .data$casos, fill = .data$Nombre), alpha = 0.9) +
+      ggplot2::geom_col(ggplot2::aes(x = dat_plot$date_week, y = dat_plot$casos, fill = dat_plot$Nombre), alpha = 0.9) +
       ggplot2::theme_classic() +
       ggplot2::xlab(xlabel) + ggplot2::ylab(ylabel) +
       ggplot2::scale_fill_discrete(name = "") +

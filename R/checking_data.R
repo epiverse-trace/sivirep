@@ -11,7 +11,7 @@
 filter_disease  <- function(name_disease, sivigila_summary_data) {
   list_diseases <- unique(sivigila_summary_data$Nombre)
   list_specific <- list_diseases[stringr::str_detect(list_diseases, name_disease) == TRUE]
-  filtered_data <- sivigila_summary_data %>% dplyr::filter(.data$Nombre %in% list_specific)
+  filtered_data <- sivigila_summary_data %>% dplyr::filter(sivigila_summary_data$Nombre %in% list_specific)
   return(filtered_data)
 }
 
@@ -25,7 +25,7 @@ filter_disease  <- function(name_disease, sivigila_summary_data) {
 #' get_depto_codes(geo_codes)
 #' @export
 get_depto_codes <- function(geo_codes) {
-  deptos_data   <- geo_codes %>% dplyr::group_by(cod_dep = .data$Código.Departamento, name_dep = .data$Nombre.Departamento) %>%
+  deptos_data   <- geo_codes %>% dplyr::group_by(cod_dep = geo_codes$Código.Departamento, name_dep = geo_codes$Nombre.Departamento) %>%
     dplyr::select(cod_dep, name_dep) %>% dplyr::distinct()
   deptos_data   <- deptos_data[1:33,]
   return(deptos_data)
@@ -41,7 +41,7 @@ get_depto_codes <- function(geo_codes) {
 #' group_by_week_and_cases(disease_data)
 #' @export
 group_by_week_and_cases <- function(disease_data) {
-  disease_data_grouped  <- disease_data %>% dplyr::group_by(SEMANA) %>% dplyr::summarise(cases_count = sum(UNI_MED))
+  disease_data_grouped  <- disease_data %>% dplyr::group_by(disease_data$SEMANA) %>% dplyr::summarise(cases_count = sum(disease_data$UNI_MED))
   disease_data_grouped  <- disease_data_grouped[1:52,]
   return(disease_data_grouped)
 }
@@ -59,9 +59,9 @@ group_by_week_and_cases <- function(disease_data) {
 #' group_by_columns_and_cases(disease_data, col_names = c("SEXO","SEMANA"))
 #' @export
 group_by_columns_and_cases <- function(disease_data, col_names, wt_percentage = FALSE) {
-  disease_data_grouped  <- disease_data %>% dplyr::group_by(across(all_of(col_names))) %>% dplyr::summarise(Casos = dplyr::n(), .groups = "drop")
+  disease_data_grouped  <- disease_data %>% dplyr::group_by(dplyr::across(dplyr::all_of(col_names))) %>% dplyr::summarise(Casos = dplyr::n(), .groups = "drop")
   if (wt_percentage) {
-      disease_data_grouped  <-  disease_data_grouped %>% dplyr::mutate(Porcentaje = round(Casos/sum(Casos)*100, 1))
+      disease_data_grouped  <-  disease_data_grouped %>% dplyr::mutate(Porcentaje = round(disease_data_grouped$Casos/sum(disease_data_grouped$Casos)*100, 1))
   }
   return(disease_data_grouped)
 }
@@ -86,7 +86,7 @@ group_by_age_range_and_cases <- function(disease_data, var, var_a = NULL, min_va
         dplyr::mutate(ranges = cut(disease_data$EDAD,
                                    seq(min_val, max_val, step))) %>%
         dplyr::group_by_("ranges", var_a) %>%
-        dplyr::summarize(Casos = sum(Casos), .groups = "drop") %>% as.data.frame()
+        dplyr::summarize(Casos = sum(disease_data$Casos), .groups = "drop") %>% as.data.frame()
       names(data_values_range)[names(data_values_range) == "ranges" ] <- var
   }
   else {
@@ -94,7 +94,7 @@ group_by_age_range_and_cases <- function(disease_data, var, var_a = NULL, min_va
         dplyr::mutate(ranges = cut(disease_data$EDAD,
                                    seq(min_val, max_val, step))) %>%
         dplyr::group_by_("ranges") %>%
-        dplyr::summarize(Casos = sum(Casos), .groups = "drop") %>% as.data.frame()
+        dplyr::summarize(Casos = sum(disease_data$Casos), .groups = "drop") %>% as.data.frame()
       names(data_values_range)[names(data_values_range) == "ranges" ] <- var
   }
   return(data_values_range)
