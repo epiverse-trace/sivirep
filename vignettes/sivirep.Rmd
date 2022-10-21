@@ -28,24 +28,19 @@ The main challenge is to obtain the data of the diseases from SIVIGILA source, s
 
 For this reason, a module was considered that will carry out the scraping of this information source, which contains the following functions:
 
-If you need to import SIVIGILA data through a URL, you can use:
-```{r} 
-sivigila_data <- import_sivigila_summary_data()
-```
-
 The SIVIGILA data source doesn't have information on all diseases per year, for this reason it is necessary to know which ones are available:
 
 ```{r} 
-avaliable_diseases_and_years_data <- import_avaliable_diseases_and_years()
+avaliable_diseases_and_years_data <- list_avaliable_diseases_and_years()
 ```
 
-To download the information of a disease per year from the SIVIGILA microdata you can use this function:
+To download the information of a disease per year from the SIVIGILA microdata you can use this function, :
 
 ```{r} 
 disease_data <- import_data_disease_by_year(year = 2018, disease_name = "DENGUE")
 ```
 
-For the reports it is necessary to have the information of the departments or municipalities of Colombia that you want to analyze, for example the names or codes, this function allows you to import this data:
+For the reports it is necessary to have the information of the departments or municipalities of Colombia, for example the names or codes, this function allows you to import this data:
 
 ```{r} 
 geo_data_codes <- import_geo_codes()
@@ -57,8 +52,9 @@ To carry out any type of report, it is necessary to clean the data that is impor
 
 This function cleans the disease data with respect to the codes of the departments:
 
-```{r} 
-depto_disease_codes_data <- clean_depto_disease_codes(geo_data_codes, disease_data, make_group = TRUE)
+```{r}
+depto_disease_codes_data <- get_depto_codes(geo_data_codes)
+depto_disease_codes_data <- clean_depto_disease_codes(depto_disease_codes_data, disease_data, make_group = TRUE)
 ```
 
 This function removes values that are greater than the comparison value, for example the symptom onset date and hospitalization date:
