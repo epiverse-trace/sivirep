@@ -25,7 +25,7 @@ surveillance systems in Latin America.
 
 ## Installation
 
-You can install the **development version** of \`sivirep\`\` from
+You can install the **development version** of `sivirep` from
 [GitHub](https://github.com/) with:
 
 ``` r
@@ -147,8 +147,9 @@ requests](https://github.com/epiverse-trace/sivirep/pulls).
 
 Contributors to the project include:
 
--   Geraldine Gómez-Millán (author)
--   Zulma M. Cucunubá (author)
+-   [Geraldine Gómez-Millán](https://github.com/GeraldineGomez) (author)
+
+-   [Zulma M. Cucunubá](https://github.com/zmcucunuba) (author)
 
 ### Code of Conduct
 

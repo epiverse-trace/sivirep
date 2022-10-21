@@ -31,7 +31,7 @@ Future versions of this package may include other epidemiological surveillance s
 
 
 ## Installation
-You can install the **development version** of `sivirep`` from
+You can install the **development version** of `sivirep` from
 [GitHub](https://github.com/) with:
 
 ``` r
@@ -61,8 +61,9 @@ Contributions are welcome via [pull requests](https://github.com/epiverse-trace/
 
 Contributors to the project include:
 
-* Geraldine Gómez-Millán (author)
-* Zulma M. Cucunubá (author)
+- [Geraldine Gómez-Millán](https://github.com/GeraldineGomez) (author)
+
+- [Zulma M. Cucunubá](https://github.com/zmcucunuba) (author)
 
 
 ### Code of Conduct
