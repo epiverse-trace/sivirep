@@ -54,7 +54,7 @@ plot_epiweek <- function(dat, col_week, col_cases, year, type = "week", xlabel =
 #' @export
 plot_dept_map <- function(data_map_depto, col_name_lj = "id") {
 
-  shp <- rgdal::readOGR(dsn = file.path("../inst/extdata/depto_adm_shp/depto.shp"), stringsAsFactors = FALSE)
+  shp <- rgdal::readOGR(dsn = system.file("extdata/depto_adm_shp", "depto.shp", package = "sivirep"), stringsAsFactors = FALSE)
   shp.df <- ggplot2::fortify(shp, region = "DPTO")
   shp.df <- shp.df %>%
     dplyr::left_join(data_map_depto, by = col_name_lj)
