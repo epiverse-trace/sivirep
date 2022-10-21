@@ -13,7 +13,7 @@ get_special_population_and_cases(disease_data)
 The cases by special population type of a disease
 }
 \description{
-Función que obtiene los casos por tipo de población especial de una enfermedad\n
+Función que obtiene los casos por tipo de población especial de una enfermedad
 Function that gets the cases by special population type of a disease
 }
 \examples{

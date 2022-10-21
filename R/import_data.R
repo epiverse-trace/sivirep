@@ -1,6 +1,6 @@
 #' Import SIVIGILA Summary Data
 #'
-#' Función que importa la informacion de SIVIGILA a través de una URL\n
+#' Función que importa la informacion de SIVIGILA a través de una URL
 #' Function that imports SIVIGILA data through a URL
 #' @param url_data URL of SIVIGILA data
 #' @return The data downloaded in csv format
@@ -17,7 +17,7 @@ import_sivigila_summary_data <- function(url_data =
 
 #' Import Geographical Data
 #'
-#' Función que importa los nombres y códigos de los departamentos de Colombia a través de una URL\n
+#' Función que importa los nombres y códigos de los departamentos de Colombia a través de una URL
 #' Function that imports the names and codes of the departments and municipalities of Colombia through a URL
 #' @param url_data URL of geographical data
 #' @return A data frame with the names and codes of the departments and municipalities of Colombia in csv format
@@ -33,7 +33,7 @@ import_geo_codes <- function(url_data = config::get(file =
 
 #' Import Data Delim
 #'
-#' Función que identifica el separador con el que viene la informacion desde SIVIGILA para poderla tabular\n
+#' Función que identifica el separador con el que viene la informacion desde SIVIGILA para poderla tabular
 #' Function that identifies the separator with which the information comes to be able to tabulate it
 #' @param path_data Path or URL of SIVIGILA data
 #' @return A data frame
@@ -59,7 +59,7 @@ import_data_delim <- function(path_data) {
 
 #' Import Data Endemic Channel
 #'
-#' Función que importa la informacion del SIVIGILA para la construcción del canal endémico\n
+#' Función que importa la informacion del SIVIGILA para la construcción del canal endémico
 #' Function that imports SIVIGILA for building the endemic channel
 #' @param path_data Path or URL of SIVIGILA data
 #' @param disease_name The disease name
@@ -75,7 +75,7 @@ import_data_endemic_channel <- function(disease_name, year) {
 
 #' Import Avaliable Diseases and Years
 #'
-#' Función que obtiene las enfermedades y los años disponibles de los microdatos de SIVIGILA\n
+#' Función que obtiene las enfermedades y los años disponibles de los microdatos de SIVIGILA
 #' Function that obtains the diseases and the years available from the SIVIGILA microdata
 #' @return The diseases and the years available
 #' @examples
@@ -114,7 +114,7 @@ import_avaliable_diseases_and_years <- function()  {
 
 #' Import Data of a Disease By Year
 #'
-#' Función que obtiene los datos de una enfermedad por año\n
+#' Función que obtiene los datos de una enfermedad por año
 #' Function that obtains the data of a disease by year
 #' @param year The selected year
 #' @param disease_name The disease name
@@ -145,7 +145,7 @@ import_data_disease_by_year <- function(year, disease_name, cache = TRUE) {
 
 #' Get Name File Path or URL
 #'
-#' Función que obtiene el nombre del archivo a descargar desde una URL o ruta\n
+#' Función que obtiene el nombre del archivo a descargar desde una URL o ruta
 #' Function that gets the file name for download from a URL or path
 #' @param path The path or URL
 #' @return The name file

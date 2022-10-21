@@ -16,7 +16,7 @@ import_sivigila_summary_data(
 The data downloaded in csv format
 }
 \description{
-Función que importa la informacion de SIVIGILA a través de una URL\n
+Función que importa la informacion de SIVIGILA a través de una URL
 Function that imports SIVIGILA data through a URL
 }
 \examples{

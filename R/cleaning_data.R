@@ -1,6 +1,6 @@
 #' Clean Depto Disease Codes
 #' 
-#' Función que limpia la información de la enfermedad respecto a los codigos de los departamentos\n
+#' Función que limpia la información de la enfermedad respecto a los codigos de los departamentos
 #' Function that cleans the disease data with respect to the codes of the departments
 #' @param depto_codes The departments data
 #' @param disease_data The disease data
@@ -30,7 +30,7 @@ clean_depto_disease_codes <- function(depto_codes, disease_data, make_group = TR
 
 #' Parse Age to Years
 #' 
-#' Función que convierte las edades en años según las unidades de medida de SIVIGILA\n
+#' Función que convierte las edades en años según las unidades de medida de SIVIGILA
 #' Function that converts ages into years according to SIVIGILA measurement units
 #' @param disease_data Disease data
 #' @param col_age Age column name  
@@ -54,7 +54,7 @@ parse_age_to_years <- function(disease_data, col_age = "EDAD", col_uni_med = "UN
 
 #' Remove NIN (NA, Infinitive, NaN) Values
 #' 
-#' Función que elimina los valores (NA, Infinitive, NaN) de una columna\n
+#' Función que elimina los valores (NA, Infinitive, NaN) de una columna
 #' Function that eliminates the values (NA, Infinitive, NaN) of a column
 #' @param disease_data Disease data
 #' @param name_col Column name  
@@ -74,7 +74,7 @@ remove_nin_values <- function(disease_data, name_col) {
 
 #' Remove Error Dates
 #' 
-#' Función que elimina las fechas que son superiores al valor de comparación\n
+#' Función que elimina las fechas que son superiores al valor de comparación
 #' Function that removes greater dates than the comparison value
 #' @param disease_data Disease data
 #' @param col_init Column name of the date

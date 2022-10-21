@@ -15,7 +15,7 @@ filter_disease(name_disease, sivigila_summary_data)
 The filtered data with the disease selected
 }
 \description{
-Función que filtra en un conjunto de datos por el nombre de la enfermedad\n
+Función que filtra en un conjunto de datos por el nombre de la enfermedad
 Function that filters in a dataset by the disease name
 }
 \examples{

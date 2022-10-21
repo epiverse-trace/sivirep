@@ -17,7 +17,7 @@ remove_error_dates(disease_data, col_init = "INI_SI", col_cmp = "FEC_HOS")
 The data without the erronous dates
 }
 \description{
-Función que elimina las fechas que son superiores al valor de comparación\n
+Función que elimina las fechas que son superiores al valor de comparación
 Function that removes greater dates than the comparison value
 }
 \examples{

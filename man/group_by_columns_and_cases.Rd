@@ -17,7 +17,7 @@ group_by_columns_and_cases(disease_data, col_names, wt_percentage = FALSE)
 The disease data grouped by a specific column name(s) and cases
 }
 \description{
-Función que agrupa los datos por el nombre de las columna(s) y los casos\n
+Función que agrupa los datos por el nombre de las columna(s) y los casos
 Function that groups the data by a specific column name and cases
 }
 \examples{

@@ -53,7 +53,7 @@ plot_by_variable(
 The map for department
 }
 \description{
-Función que genera gráficas por cualquier tipo de variable\n
+Función que genera gráficas por cualquier tipo de variable
 Function that generates graphs by any type of variable
 }
 \examples{

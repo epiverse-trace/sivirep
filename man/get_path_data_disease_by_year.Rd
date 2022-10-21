@@ -15,7 +15,7 @@ get_path_data_disease_by_year(year, disease_name)
 Path or URL for download the disease data by a specific year
 }
 \description{
-Función que obtiene la ruta o URL del servicio de SIVIGILA para descargar los datos de una enfermedad por un año especifico\n
+Función que obtiene la ruta o URL del servicio de SIVIGILA para descargar los datos de una enfermedad por un año especifico
 Function that gets the path or URL of the SIVIGILA service to download the data of a disease for a specific year
 }
 \examples{

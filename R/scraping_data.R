@@ -1,6 +1,6 @@
 #' Get Path Data Disease by Year
 #' 
-#' Función que obtiene la ruta o URL del servicio de SIVIGILA para descargar los datos de una enfermedad por un año especifico\n
+#' Función que obtiene la ruta o URL del servicio de SIVIGILA para descargar los datos de una enfermedad por un año especifico
 #' Function that gets the path or URL of the SIVIGILA service to download the data of a disease for a specific year
 #' @param year Specific year
 #' @param disease_name Disease name

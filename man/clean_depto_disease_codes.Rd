@@ -15,7 +15,7 @@ clean_depto_disease_codes(depto_codes, disease_data, make_group = TRUE)
 Clean codes of disease data departments
 }
 \description{
-Función que limpia la información de la enfermedad respecto a los codigos de los departamentos\n
+Función que limpia la información de la enfermedad respecto a los codigos de los departamentos
 Function that cleans the disease data with respect to the codes of the departments
 }
 \examples{

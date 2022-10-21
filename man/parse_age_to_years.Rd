@@ -17,7 +17,7 @@ parse_age_to_years(disease_data, col_age = "EDAD", col_uni_med = "UNI_MED")
 The ages in years
 }
 \description{
-Función que convierte las edades en años según las unidades de medida de SIVIGILA\n
+Función que convierte las edades en años según las unidades de medida de SIVIGILA
 Function that converts ages into years according to SIVIGILA measurement units
 }
 \examples{

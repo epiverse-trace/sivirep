@@ -17,7 +17,7 @@ import_data_endemic_channel(disease_name, year)
 The last five years data of a disease
 }
 \description{
-Función que importa la informacion del SIVIGILA para la construcción del canal endémico\n
+Función que importa la informacion del SIVIGILA para la construcción del canal endémico
 Function that imports SIVIGILA for building the endemic channel
 }
 \examples{
