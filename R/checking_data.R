@@ -62,7 +62,7 @@ get_special_population_and_cases <- function(disease_data) {
 #' group_by_week_and_cases(disease_data)
 #' @export
 group_by_week_and_cases <- function(disease_data) {
-  disease_data_grouped  <- disease_data %>% dplyr::group_by(.data$SEMANA) %>% dplyr::summarise(cases_count = sum(.data$UNI_MED))
+  disease_data_grouped  <- disease_data %>% dplyr::group_by(.data$SEMANA) %>% dplyr::summarise(Casos = sum(.data$UNI_MED))
   disease_data_grouped  <- disease_data_grouped[1:52,]
   return(disease_data_grouped)
 }

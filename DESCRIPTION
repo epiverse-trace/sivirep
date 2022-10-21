@@ -22,7 +22,8 @@ Imports:
     xml2,
     maptools,
     gpclib,
-    bit64
+    bit64,
+    epitrix
 Suggests: 
     knitr,
     rmarkdown

@@ -28,6 +28,7 @@ import_geo_codes <- function(url_data = config::get(file =
                                                       system.file("extdata", "config.yml", 
                                                                    package = "sivirep"), "geo_data_path")) {
   data <- utils::read.csv(url_data)
+  data <- epitrix::clean_labels(data)
   return(data)
 }
 

@@ -47,7 +47,7 @@ geo_codes <- import_geo_codes()
 ```
 
 
-# Data cleanig
+# Data cleaning
 To carry out any type of report, it is necessary to clean the data that is imported from SIVIGILA, since some of these may have incorrect formats, erroneous values or lack conceptual meaning, for example, the death date should not be greater than the birth date of the infected person.
 
 This function cleans the disease data with respect to the codes of the departments:
@@ -94,7 +94,9 @@ El paquete tiene funciones que permiten generar graficos o reportes que son bast
 
 This function generates the report of the Epidemiological Week:
 ```{r}
-plot_epiweek(disease_data_by_week, col_week = "SEMANA", col_cases = "Casos", year = 2019, type = "date", xlabel = "Fecha de semana epidemiologica")
+sivigila_data_2019 <- import_sivigila_summary_data()
+filtered_data_2019 <- filter_disease("MALAR", sivigila_data_2019)
+plot_epiweek(filtered_data_2019, col_week = "SEMANA", col_cases = "conteo_casos", year = 2019, type = "date", xlabel = "Fecha de semana epidemiologica")
 ```
 
 If you need to generate a map by information department of the selected disease, you can use this function
