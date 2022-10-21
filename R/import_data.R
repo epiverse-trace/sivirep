@@ -126,20 +126,9 @@ import_avaliable_diseases_and_years <- function()  {
 import_data_disease_by_year <- function(year, disease_name, cache = TRUE) {
   data_url <- get_path_data_disease_by_year(year, disease_name)
   data_disease_by_year <- data.frame()
-  data_file_name <- paste0(system.file("extdata/disease_files", package = "sivirep"), "/", get_name_file_path(data_url))
 
-  if (cache) {
-      if (file.exists(data_file_name)) {
-           data_disease_by_year <- utils::read.csv(file = data_file_name) 
-      }
-      else{
-           data_disease_by_year <- import_data_delim(data_url)
-           utils::write.csv(data_disease_by_year, file = data_file_name) 
-      }
-  }
-  else {
-      data_disease_by_year <- import_data_delim(data_url)
-  }
+  data_disease_by_year <- import_data_delim(data_url)
+  
   return(data_disease_by_year)
 }
 
