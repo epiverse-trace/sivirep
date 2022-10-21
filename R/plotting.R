@@ -53,7 +53,8 @@ plot_epiweek <- function(dat, col_week, col_cases, year, type = "week", xlabel =
 #' plot_dept_map(data_map_disease_deptos, col_name_lj = "id")
 #' @export
 plot_dept_map <- function(data_map_depto, col_name_lj = "id") {
-
+  maptools::gpclibPermit()
+  
   shp <- rgdal::readOGR(dsn = system.file("extdata/depto_adm_shp", "depto.shp", package = "sivirep"), stringsAsFactors = FALSE)
   shp.df <- ggplot2::fortify(shp, region = "DPTO")
   shp.df <- shp.df %>%

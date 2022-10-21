@@ -19,7 +19,8 @@ Imports:
     plyr,
     rgdal,
     stringr,
-    xml2
+    xml2,
+    maptools
 Suggests: 
     knitr,
     rmarkdown
