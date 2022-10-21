@@ -1,9 +1,3 @@
-#' @import dplyr
-#' @import config
-#' @import xml2
-#' @import stringr
-#' @import httr
-
 #' Import SIVIGILA Summary Data
 #'
 #' Función que importa la informacion de SIVIGILA a través de una URL

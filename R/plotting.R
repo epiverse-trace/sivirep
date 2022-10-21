@@ -1,10 +1,3 @@
-#' @import tidyverse
-#' @import aweek
-#' @import ggspatial
-#' @import rgdal
-#' @import maptools
-#' @import gpclib
-
 #' Plot Epiweek
 #'
 #' Función que genera la gráfica de la Semana epidemiológica
