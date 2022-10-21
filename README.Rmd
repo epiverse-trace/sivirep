@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# sivirep
+# *sivirep*: Authomated reporting for epidemiological surveillance data <img src="man/figures/logo.png" align="right" width="120" />
 
 *sivirep* provides functions for data wrangling and automated reports from _SIVIGILA_ source.
 
@@ -35,31 +35,20 @@ You can install the development version of _sivirep_ from
 remotes::install_github("epiverse-trace/sivirep")
 ```
 
-## Example
+## Quick start
 
-These examples illustrate some of the current functionalities:
+To view the list of diseases available to make a report with `sivirep`:
 
 ```{r example}
 library(sivirep)
 
-# example of read_path_data():
-# (Function that imports data through an URL or path)
-data_url <- "some_path_here"
-read_path_data(data_url)
+list_of_diseases <- list_avaliable_diseases_and_years()
+list_of_diseases
 ```
 
 
 
 
-
-## Development
-
-### Lifecycle
-
-This package is currently a *concept*, as defined by the [RECON software
-lifecycle](https://www.reconverse.org/lifecycle.html). This means that essential
-features and mechanisms are still being developed, and the package is not ready
-for use outside of the development team.
 
 
 ### Contributions
@@ -68,8 +57,9 @@ Contributions are welcome via [pull requests](https://github.com/epiverse-trace/
 
 Contributors to the project include:
 
+* Geraldine Gómez-Millán (author)
 * Zulma M. Cucunubá (author)
-* Geraldine Gómez Millán (author)
+
 
 ### Code of Conduct
 Please note that the linelist project is released with a 
