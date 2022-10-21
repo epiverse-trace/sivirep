@@ -83,18 +83,18 @@ group_by_age_range_and_cases <- function(disease_data, var, var_a = NULL, min_va
   data_values_range <- data.frame()
   if (!is.null(var_a) & length(var_a) > 0 ) {
       data_values_range <-  disease_data %>%
-        dplyr::mutate(ranges = cut(disease_data$EDAD,
+        dplyr::mutate(ranges = cut(EDAD,
                                    seq(min_val, max_val, step))) %>%
         dplyr::group_by_("ranges", var_a) %>%
-        dplyr::summarize(Casos = sum(disease_data$Casos), .groups = "drop") %>% as.data.frame()
+        dplyr::summarize(Casos = sum(Casos), .groups = "drop") %>% as.data.frame()
       names(data_values_range)[names(data_values_range) == "ranges" ] <- var
   }
   else {
       data_values_range <-  disease_data %>%
-        dplyr::mutate(ranges = cut(disease_data$EDAD,
+        dplyr::mutate(ranges = cut(EDAD,
                                    seq(min_val, max_val, step))) %>%
         dplyr::group_by_("ranges") %>%
-        dplyr::summarize(Casos = sum(disease_data$Casos), .groups = "drop") %>% as.data.frame()
+        dplyr::summarize(Casos = sum(Casos), .groups = "drop") %>% as.data.frame()
       names(data_values_range)[names(data_values_range) == "ranges" ] <- var
   }
   return(data_values_range)
