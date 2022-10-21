@@ -3,8 +3,6 @@
 
 # *sivirep*: Authomated reporting for epidemiological surveillance data <img src="man/figures/logo.png" align="right" width="120" />
 
-# sivirep
-
 *sivirep* provides functions for data wrangling and automated reports
 from *SIVIGILA* source.
 
