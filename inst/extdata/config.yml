@@ -1,0 +1,11 @@
+default:
+  base_path_microdata: "https://portalsivigila.ins.gov.co/_api/"
+  file_path_parameters_microdata: "/$value?binaryStringResponseBody=true"
+  path_microdata: "web/lists/GetByTitle('Microdatos')/"
+  query_path_microdata: "items?$select=*,FileRef&$filter=(A_x00f1_o%20eq%20%27_year_%27)and(NombreEvento%20eq%20%27_disease_%27)"
+  query_diseases_by_year_path: "https://portalsivigila.ins.gov.co/_api/web/lists/GetByTitle('Microdatos')/items?$select=Evento,A_x00f1_o,NombreEvento&$orderby=NombreEvento%20asc&$top=1000"
+  name_file_split: "/Microdatos/"
+  data_delim: ["|", "," , ";", ":", "-"]
+  special_populations_cols: ["GP_DISCAPA","GP_DESPLAZ","GP_MIGRANT","GP_CARCELA","GP_GESTAN","GP_INDIGEN","GP_POBICFB","GP_MAD_COM","GP_DESMOVI","GP_PSIQUIA","GP_VIC_VIO","GP_OTROS"]
+  sivigila_open_data_path: "https://www.datos.gov.co/api/views/qvnt-2igj/rows.csv?accessType=DOWNLOAD"
+  geo_data_path: "https://www.datos.gov.co/api/views/gdxc-w37w/rows.csv?accessType=DOWNLOAD"

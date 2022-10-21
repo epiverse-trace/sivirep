@@ -1,5 +1,0 @@
-default:
-  base_path_microdata: "https://portalsivigila.ins.gov.co/_api/"
-  file_path_parameters_microdata: "/$value?binaryStringResponseBody=true"
-  path_microdata: "web/lists/GetByTitle('Microdatos')/"
-  query_path_microdata: "items?$select=*,FileRef&$filter=(A_x00f1_o%20eq%20%27_year_%27)and(NombreEvento%20eq%20%27_disease_%27)"

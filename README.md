@@ -13,6 +13,7 @@ MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.or
 [![Codecov test
 coverage](https://codecov.io/gh/epiverse-trace/readepi/branch/main/graph/badge.svg)](https://app.codecov.io/gh/epiverse-trace/readepi?branch=main)
 [![lifecycle-concept](https://raw.githubusercontent.com/reconverse/reconverse.github.io/master/images/badge-concept.svg)](https://www.reconverse.org/lifecycle.html#concept)
+[![R-CMD-check](https://github.com/epiverse-trace/sivirep/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/epiverse-trace/sivirep/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 ## Installation
@@ -22,7 +23,7 @@ You can install the development version of *sivirep* from
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("TRACE-LAC/sivirep")
+remotes::install_github("epiverse-trace/sivirep")
 ```
 
 ## Example
@@ -50,12 +51,12 @@ package is not ready for use outside of the development team.
 ### Contributions
 
 Contributions are welcome via [pull
-requests](https://github.com/epiverse-trace/readepi/pulls).
+requests](https://github.com/epiverse-trace/sivirep/pulls).
 
 Contributors to the project include:
 
   - Zulma M. Cucunubá (author)
-  - Geraldine Gómez Millán (contributor)
+  - Geraldine Gómez Millán (author)
 
 ### Code of Conduct
 
