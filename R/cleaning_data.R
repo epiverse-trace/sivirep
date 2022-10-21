@@ -14,7 +14,7 @@ clean_depto_disease_codes <- function(depto_codes, disease_data, make_group = TR
   disease_data_clean  <- disease_data
   
   if (make_group)
-      disease_data_clean  <- disease_data %>% dplyr::group_by(.data$id) %>% dplyr::summarise(casos = sum(.data$conteo_casos))
+      disease_data_clean  <- disease_data %>% dplyr::group_by(.data$id) %>% dplyr::summarise(casos = sum(.data$Casos))
   
   disease_data_clean$id[
     nchar(disease_data_clean$id) < 2 & disease_data_clean$id != "1" & disease_data_clean$id != "0" 
