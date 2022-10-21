@@ -20,7 +20,9 @@ Imports:
     rgdal,
     stringr,
     xml2,
-    maptools
+    maptools,
+    gpclib,
+    bit64
 Suggests: 
     knitr,
     rmarkdown
