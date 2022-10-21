@@ -25,7 +25,7 @@ filter_disease  <- function(name_disease, sivigila_summary_data) {
 #' get_depto_codes(geo_codes)
 #' @export
 get_depto_codes <- function(geo_codes) {
-  deptos_data   <- geo_codes %>% dplyr::group_by(cod_dep = .data$Departamento, name_dep = .data$Departamento) %>%
+  deptos_data   <- geo_codes %>% dplyr::group_by(cod_dep = .data$codigo_departamento, name_dep = .data$nombre_departamento) %>%
     dplyr::select(.data$cod_dep, .data$name_dep) %>% dplyr::distinct()
   deptos_data   <- deptos_data[1:33,]
   return(deptos_data)
