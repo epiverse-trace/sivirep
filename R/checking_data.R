@@ -11,7 +11,7 @@
 filter_disease  <- function(name_disease, sivigila_summary_data) {
   list_diseases <- unique(sivigila_summary_data$Nombre)
   list_specific <- list_diseases[stringr::str_detect(list_diseases, name_disease) == TRUE]
-  filtered_data <- sivigila_summary_data %>% filter(Nombre %in% list_specific)
+  filtered_data <- sivigila_summary_data %>% dplyr::filter(.data$Nombre %in% list_specific)
   return(filtered_data)
 }
 
@@ -25,7 +25,7 @@ filter_disease  <- function(name_disease, sivigila_summary_data) {
 #' get_depto_codes(geo_codes)
 #' @export
 get_depto_codes <- function(geo_codes) {
-  deptos_data   <- geo_codes %>% dplyr::group_by(cod_dep = Código.Departamento, name_dep = Nombre.Departamento) %>%
+  deptos_data   <- geo_codes %>% dplyr::group_by(cod_dep = .data$Código.Departamento, name_dep = .data$Nombre.Departamento) %>%
     dplyr::select(cod_dep, name_dep) %>% dplyr::distinct()
   deptos_data   <- deptos_data[1:33,]
   return(deptos_data)
