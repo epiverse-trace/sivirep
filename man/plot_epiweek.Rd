@@ -33,7 +33,7 @@ plot_epiweek(
 The graphic of Epidemiological Week
 }
 \description{
-Función que genera la gráfica de la Semana epidemiológica
+Función que genera la gráfica de la Semana epidemiológica\n
 Function that generates the graphic of the Epidemiological Week
 }
 \examples{

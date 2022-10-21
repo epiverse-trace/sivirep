@@ -13,7 +13,7 @@ import_data_delim(path_data)
 A data frame
 }
 \description{
-Función que identifica el separador con el que viene la informacion desde SIVIGILA para poderla tabular
+Función que identifica el separador con el que viene la informacion desde SIVIGILA para poderla tabular\n
 Function that identifies the separator with which the information comes to be able to tabulate it
 }
 \examples{

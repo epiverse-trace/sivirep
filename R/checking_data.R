@@ -1,6 +1,6 @@
 #' Filter Disease
 #'
-#' Función que filtra en un conjunto de datos por el nombre de la enfermedad
+#' Función que filtra en un conjunto de datos por el nombre de la enfermedad\n
 #' Function that filters in a dataset by the disease name
 #' @param name_disease Name of the disease
 #' @param data Data set
@@ -17,7 +17,7 @@ filter_disease  <- function(name_disease, sivigila_summary_data) {
 
 #' Get Department Codes
 #'
-#' Función que obtiene el listado de departamentos de Colombia con su nombre y código
+#' Función que obtiene el listado de departamentos de Colombia con su nombre y código\n
 #' Function that gets the list of departments of Colombia with their name and code
 #' @param deptos_data Departments data
 #' @return The Departments data with code and name
@@ -31,9 +31,30 @@ get_depto_codes <- function(geo_codes) {
   return(deptos_data)
 }
 
+#' Get Special Population and Cases
+#'
+#' Función que obtiene los casos por tipo de población especial de una enfermedad\n
+#' Function that gets the cases by special population type of a disease
+#' @param disease_data Disease data
+#' @return The cases by special population type of a disease
+#' @examples
+#' get_special_population_and_cases(disease_data)
+#' @export
+get_special_population_and_cases <- function(disease_data) {
+  special_populations <- config::get(file = system.file("extdata", "config.yml", package = "sivirep"), "special_populations_cols")
+  special_cases <- c()
+  for (sp in special_populations) {
+    special_cases <- append(special_cases, sum(eval(parse(text = paste0("disease_data$", sp)))  == 1))
+  }
+  
+  disease_data_special_population <- data.frame(Poblacion = special_populations, Casos = special_cases)
+  
+  return(disease_data_special_population)
+}
+
 #' Group By Week and Cases
 #'
-#' Función que agrupa los datos por semana epidemiológica y número de casos
+#' Función que agrupa los datos por semana epidemiológica y número de casos\n
 #' Function that groups the data by epidemiological week and number of cases
 #' @param disease_data Disease data
 #' @return The disease data grouped by week
@@ -48,7 +69,7 @@ group_by_week_and_cases <- function(disease_data) {
 
 #' Group By Columns and Cases
 #'
-#' Función que agrupa los datos por el nombre de las columna(s) y los casos
+#' Función que agrupa los datos por el nombre de las columna(s) y los casos\n
 #' Function that groups the data by a specific column name and cases
 #' @param disease_data Disease data
 #' @param col_names The column name(s)
@@ -68,7 +89,7 @@ group_by_columns_and_cases <- function(disease_data, col_names, wt_percentage = 
 
 #' Group By Age Range and Cases
 #'
-#' Función que agrupa los datos por un rango de edades y por el número de casos
+#' Función que agrupa los datos por un rango de edades y por el número de casos\n
 #' Function that groups the data by an age range and cases number
 #' @param disease_data Disease data
 #' @param col_name Colunm name

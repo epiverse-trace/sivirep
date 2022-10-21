@@ -13,7 +13,7 @@ get_name_file_path(path)
 The name file
 }
 \description{
-Función que obtiene el nombre del archivo a descargar desde una URL o ruta
+Función que obtiene el nombre del archivo a descargar desde una URL o ruta\n
 Function that gets the file name for download from a URL or path
 }
 \examples{

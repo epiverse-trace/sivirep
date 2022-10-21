@@ -13,7 +13,7 @@ group_by_week_and_cases(disease_data)
 The disease data grouped by week
 }
 \description{
-Función que agrupa los datos por semana epidemiológica y número de casos
+Función que agrupa los datos por semana epidemiológica y número de casos\n
 Function that groups the data by epidemiological week and number of cases
 }
 \examples{

@@ -13,7 +13,7 @@ get_depto_codes(geo_codes)
 The Departments data with code and name
 }
 \description{
-Función que obtiene el listado de departamentos de Colombia con su nombre y código
+Función que obtiene el listado de departamentos de Colombia con su nombre y código\n
 Function that gets the list of departments of Colombia with their name and code
 }
 \examples{

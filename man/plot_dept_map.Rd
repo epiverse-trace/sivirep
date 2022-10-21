@@ -15,7 +15,7 @@ plot_dept_map(data_map_depto, col_name_lj = "id")
 The map for department with the data of a specific disease
 }
 \description{
-Función que genera el mapa por departamento con los datos de una enfermedad especifica
+Función que genera el mapa por departamento con los datos de una enfermedad especifica\n
 Function that generates the map by department with the data of a specific disease
 }
 \examples{

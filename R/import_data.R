@@ -1,6 +1,6 @@
 #' Import SIVIGILA Summary Data
 #'
-#' Función que importa la informacion de SIVIGILA a través de una URL
+#' Función que importa la informacion de SIVIGILA a través de una URL\n
 #' Function that imports SIVIGILA data through a URL
 #' @param url_data URL of SIVIGILA data
 #' @return The data downloaded in csv format
@@ -17,21 +17,23 @@ import_sivigila_summary_data <- function(url_data =
 
 #' Import Geographical Data
 #'
-#' Función que importa los nombres y códigos de los departamentos de Colombia a través de una URL
+#' Función que importa los nombres y códigos de los departamentos de Colombia a través de una URL\n
 #' Function that imports the names and codes of the departments and municipalities of Colombia through a URL
 #' @param url_data URL of geographical data
 #' @return A data frame with the names and codes of the departments and municipalities of Colombia in csv format
 #' @examples
 #' import_geo_codes("https://www.datos.gov.co/api/views/gdxc-w37w/rows.csv?accessType=DOWNLOAD")
 #' @export
-import_geo_codes <- function(url_data = config::get("geo_data_path")) {
+import_geo_codes <- function(url_data = config::get(file = 
+                                                      system.file("extdata", "config.yml", 
+                                                                   package = "sivirep"), "geo_data_path")) {
   data <- utils::read.csv(url_data)
   return(data)
 }
 
 #' Import Data Delim
 #'
-#' Función que identifica el separador con el que viene la informacion desde SIVIGILA para poderla tabular
+#' Función que identifica el separador con el que viene la informacion desde SIVIGILA para poderla tabular\n
 #' Function that identifies the separator with which the information comes to be able to tabulate it
 #' @param path_data Path or URL of SIVIGILA data
 #' @return A data frame
@@ -39,7 +41,7 @@ import_geo_codes <- function(url_data = config::get("geo_data_path")) {
 #' import_data_delim("https://www.datos.gov.co/api/views/qvnt-2igj/rows.csv?accessType=DOWNLOAD")
 #' @export
 import_data_delim <- function(path_data) {
-  delims <- config::get("data_delim")
+  delims <- config::get(file = system.file("extdata", "config.yml", package = "sivirep"), "data_delim")
   data <- data.frame()
   for (delim in delims) {
        if (delim %in% strsplit(readLines(path_data, n = 1)[1], split = "")[[1]] ) {
@@ -57,7 +59,7 @@ import_data_delim <- function(path_data) {
 
 #' Import Data Endemic Channel
 #'
-#' Función que importa la informacion del SIVIGILA para la construcción del canal endémico
+#' Función que importa la informacion del SIVIGILA para la construcción del canal endémico\n
 #' Function that imports SIVIGILA for building the endemic channel
 #' @param path_data Path or URL of SIVIGILA data
 #' @param disease_name The disease name
@@ -73,7 +75,7 @@ import_data_endemic_channel <- function(disease_name, year) {
 
 #' Import Avaliable Diseases and Years
 #'
-#' Función que obtiene las enfermedades y los años disponibles de los microdatos de SIVIGILA
+#' Función que obtiene las enfermedades y los años disponibles de los microdatos de SIVIGILA\n
 #' Function that obtains the diseases and the years available from the SIVIGILA microdata
 #' @return The diseases and the years available
 #' @examples
@@ -81,7 +83,7 @@ import_data_endemic_channel <- function(disease_name, year) {
 #' @export
 import_avaliable_diseases_and_years <- function()  {
 
-  query_diseases_by_year_path <- config::get("query_diseases_by_year_path")
+  query_diseases_by_year_path <- config::get(file = system.file("extdata", "config.yml", package = "sivirep"), "query_diseases_by_year_path")
   get_query_diseases_by_year  <- httr::GET(query_diseases_by_year_path, httr::add_headers("Accept" = "*/*"))
 
   content_type_response <- stringr::str_split_fixed(httr::headers(get_query_diseases_by_year)$`content-type`, pattern = ";", 3)
@@ -112,7 +114,7 @@ import_avaliable_diseases_and_years <- function()  {
 
 #' Import Data of a Disease By Year
 #'
-#' Función que obtiene los datos de una enfermedad por año
+#' Función que obtiene los datos de una enfermedad por año\n
 #' Function that obtains the data of a disease by year
 #' @param year The selected year
 #' @param disease_name The disease name
@@ -143,7 +145,7 @@ import_data_disease_by_year <- function(year, disease_name, cache = TRUE) {
 
 #' Get Name File Path or URL
 #'
-#' Función que obtiene el nombre del archivo a descargar desde una URL o ruta
+#' Función que obtiene el nombre del archivo a descargar desde una URL o ruta\n
 #' Function that gets the file name for download from a URL or path
 #' @param path The path or URL
 #' @return The name file
@@ -151,7 +153,7 @@ import_data_disease_by_year <- function(year, disease_name, cache = TRUE) {
 #' find_name_file_path("DENGUE")
 #' @export
 get_name_file_path <- function(path) {
-  name_file <- strsplit(path, config::get("name_file_split"))
+  name_file <- strsplit(path, config::get(file = system.file("extdata", "config.yml", package = "sivirep"), "name_file_split"))
   name_file <- strsplit(name_file[[1]][2], "')")[[1]][1] %>% as.character()
   return(name_file)
 }

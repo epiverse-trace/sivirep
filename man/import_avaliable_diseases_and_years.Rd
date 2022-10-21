@@ -10,7 +10,7 @@ import_avaliable_diseases_and_years()
 The diseases and the years available
 }
 \description{
-Función que obtiene las enfermedades y los años disponibles de los microdatos de SIVIGILA
+Función que obtiene las enfermedades y los años disponibles de los microdatos de SIVIGILA\n
 Function that obtains the diseases and the years available from the SIVIGILA microdata
 }
 \examples{

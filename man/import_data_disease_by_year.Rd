@@ -17,7 +17,7 @@ import_data_disease_by_year(year, disease_name, cache = TRUE)
 The disease data by year
 }
 \description{
-Función que obtiene los datos de una enfermedad por año
+Función que obtiene los datos de una enfermedad por año\n
 Function that obtains the data of a disease by year
 }
 \examples{

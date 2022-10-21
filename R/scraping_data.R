@@ -1,6 +1,6 @@
 #' Get Path Data Disease by Year
 #' 
-#' Función que obtiene la ruta o URL del servicio de SIVIGILA para descargar los datos de una enfermedad por un año especifico
+#' Función que obtiene la ruta o URL del servicio de SIVIGILA para descargar los datos de una enfermedad por un año especifico\n
 #' Function that gets the path or URL of the SIVIGILA service to download the data of a disease for a specific year
 #' @param year Specific year
 #' @param disease_name Disease name
@@ -9,11 +9,12 @@
 #' get_path_data_disease_by_year(year = 2010, disease_name = "DENGUE")
 #' @export
 get_path_data_disease_by_year <- function(year, disease_name) {
-  base_path <- config::get("base_path_microdata")
-  file_path_parameters <- config::get("file_path_parameters_microdata")
   
-  microdata_path <- config::get("path_microdata")
-  query_path <- config::get("query_path_microdata")
+  base_path <- config::get(file = system.file("extdata", "config.yml", package = "sivirep"), "base_path_microdata")
+  file_path_parameters <- config::get(file = system.file("extdata", "config.yml", package = "sivirep"), "file_path_parameters_microdata")
+  
+  microdata_path <- config::get(file = system.file("extdata", "config.yml", package = "sivirep"), "path_microdata")
+  query_path <- config::get(file = system.file("extdata", "config.yml", package = "sivirep"), "query_path_microdata")
   
   year <- as.character(year)
   

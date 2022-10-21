@@ -28,7 +28,7 @@ group_by_age_range_and_cases(
 The disease data grouped by the age range and cases
 }
 \description{
-Función que agrupa los datos por un rango de edades y por el número de casos
+Función que agrupa los datos por un rango de edades y por el número de casos\n
 Function that groups the data by an age range and cases number
 }
 \examples{

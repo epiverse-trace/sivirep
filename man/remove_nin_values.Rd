@@ -15,7 +15,7 @@ remove_nin_values(disease_data, name_col)
 The clean data without NA, Infinitive or NaN values of the column
 }
 \description{
-Función que elimina los valores (NA, Infinitive, NaN) de una columna
+Función que elimina los valores (NA, Infinitive, NaN) de una columna\n
 Function that eliminates the values (NA, Infinitive, NaN) of a column
 }
 \examples{

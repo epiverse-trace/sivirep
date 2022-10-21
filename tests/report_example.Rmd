@@ -82,13 +82,7 @@ plot_by_variable(disease_data_not, var_x = "FEC_NOT", var_y = "Casos", var_fill 
 
 ## Distribution of cases by special populations
 ```{r distribution_sp, echo=FALSE, error=FALSE, fig.height=5, fig.width=10, warning=FALSE, include=TRUE, message=FALSE}
-special_populations <- config::get("special_populations_cols")
-special_cases <- c()
-for (sp in special_populations) {
-       special_cases <- append(special_cases, sum(eval(parse(text = paste0("disease_data$", sp)))  == 1))
-}
-  
-disease_dt_special <- data.frame(Poblacion = special_populations, Casos = special_cases)
+disease_dt_special <- get_special_population_and_cases()
 
 plot_by_variable(disease_dt_special, var_x = "Poblacion", var_y = "Casos", var_fill = "Poblacion", label_x = "Poblacion", label_y = "Casos", scale_name = "Poblacion", diagram_title = "Diagrama para las poblaciones especiales", legend_pos = "right", bar_wd = 0.5, text_sz = 3, show_val = TRUE)
 

@@ -1,6 +1,6 @@
 #' Plot Epiweek
 #'
-#' Función que genera la gráfica de la Semana epidemiológica
+#' Función que genera la gráfica de la Semana epidemiológica\n
 #' Function that generates the graphic of the Epidemiological Week
 #' @param data Disease data
 #' @param col_week  Column Name that indicates the week in the data
@@ -44,7 +44,7 @@ plot_epiweek <- function(dat, col_week, col_cases, year, type = "week", xlabel =
 
 #' Plot Department Map
 #'
-#' Función que genera el mapa por departamento con los datos de una enfermedad especifica
+#' Función que genera el mapa por departamento con los datos de una enfermedad especifica\n
 #' Function that generates the map by department with the data of a specific disease
 #' @param data_map_depto Data for department
 #' @param col_name_lj Column name to join with the shape file
@@ -71,7 +71,7 @@ plot_dept_map <- function(data_map_depto, col_name_lj = "id") {
 
 #' Plot by Variable
 #'
-#' Función que genera gráficas por cualquier tipo de variable
+#' Función que genera gráficas por cualquier tipo de variable\n
 #' Function that generates graphs by any type of variable
 #' @param data The data to plot
 #' @param var_x The variable name for axis x
