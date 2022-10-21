@@ -14,7 +14,7 @@ clean_depto_disease_codes <- function(depto_codes, disease_data, make_group = TR
   disease_data_clean  <- disease_data
   
   if (make_group)
-      disease_data_clean  <- disease_data %>% dplyr::group_by(eval(parse(text = "id"))) %>% dplyr::summarise(casos = sum(.data$conteo_casos))
+      disease_data_clean  <- disease_data %>% dplyr::group_by(.data$id) %>% dplyr::summarise(casos = sum(.data$conteo_casos))
   
   disease_data_clean$id[
     nchar(disease_data_clean$id) < 2 & disease_data_clean$id != "1" & disease_data_clean$id != "0" 
@@ -40,9 +40,8 @@ clean_depto_disease_codes <- function(depto_codes, disease_data, make_group = TR
 #' parse_age_to_years(disease_data, col_age = "EDAD", col_uni_med = "UNI_MED")
 #' @export
 parse_age_to_years <- function(disease_data, col_age = "EDAD", col_uni_med = "UNI_MED") {
-  disease_dt_to_years <- disease_data %>%
-                          dplyr::mutate(
-                             .data$EDAD = dplyr::case_when(
+  disease_dt_to_years <- dplyr::mutate(disease_data,
+                                   EDAD = dplyr::case_when(
                                     eval(parse(text = col_uni_med)) == 1 ~ round(eval(parse(text = col_age)), 3),
                                     eval(parse(text = col_uni_med)) == 2 ~ round((eval(parse(text = col_age))/12), 3),
                                     eval(parse(text = col_uni_med)) == 3 ~ round((eval(parse(text = col_age))/876), 3),
