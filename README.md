@@ -1,10 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# *sivirep*: Authomated reporting for epidemiological surveillance data <img src="man/figures/logo.png" align="right" width="120" />
-
-*sivirep* provides functions for data wrangling and automated reports
-from *SIVIGILA* source.
+## *sivirep*: Authomated reporting from epidemiological surveillance databases <img src="man/figures/logo.png" align="right" width="120" />
 
 <!-- badges: start -->
 
@@ -17,9 +14,18 @@ coverage](https://codecov.io/gh/epiverse-trace/readepi/branch/main/graph/badge.s
 [![R-CMD-check](https://github.com/epiverse-trace/sivirep/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/epiverse-trace/sivirep/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
+Current version of *sivirep* provides functions for data wrangling and
+automated reports from
+[SIVIGILA](https://www.ins.gov.co/Direcciones/Vigilancia/Paginas/SIVIGILA.aspx),
+which is the official epidemiological surveillance system for Colombia,
+South America.
+
+Future versions of this package may include other epidemiological
+surveillance systems in Latin America.
+
 ## Installation
 
-You can install the development version of *sivirep* from
+You can install the **development version** of `sivirep` from
 [GitHub](https://github.com/) with:
 
 ``` r
@@ -141,8 +147,9 @@ requests](https://github.com/epiverse-trace/sivirep/pulls).
 
 Contributors to the project include:
 
--   Geraldine Gómez-Millán (author)
--   Zulma M. Cucunubá (author)
+-   [Geraldine Gómez-Millán](https://github.com/GeraldineGomez) (author)
+
+-   [Zulma M. Cucunubá](https://github.com/zmcucunuba) (author)
 
 ### Code of Conduct
 
