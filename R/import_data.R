@@ -51,7 +51,7 @@ import_data_delim <- function(path_data) {
         }
   }
 
-  if (plyr::empty(data)) {
+  if (nrow(data) == 0) {
        data <- data.table::fread(path_data)
   }
 
