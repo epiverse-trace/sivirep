@@ -80,10 +80,9 @@ import_data_endemic_channel <- function(disease_name, year) {
 #' Function that obtains the diseases and the years available from the SIVIGILA microdata
 #' @return The diseases and the years available
 #' @examples
-#' import_avaliable_diseases_and_years()
+#' list_avaliable_diseases_and_years()
 #' @export
 list_avaliable_diseases_and_years <- function()  {
-
   query_diseases_by_year_path <- config::get(file = system.file("extdata", "config.yml", package = "sivirep"), "query_diseases_by_year_path")
   get_query_diseases_by_year  <- httr::GET(query_diseases_by_year_path, httr::add_headers("Accept" = "*/*"))
 
@@ -91,26 +90,37 @@ list_avaliable_diseases_and_years <- function()  {
   content_type_response <- stringr::str_replace(content_type_response[[1]], "atom\\+", "")
   query_diseases_by_year_content <- httr::content(get_query_diseases_by_year, type = content_type_response, encoding = "UTF-8")
 
-
-  children      <- xml2::xml_children(query_diseases_by_year_content)
+  children      <- xml2::xml_children(query_diseases_by_year_content) 
   children      <- xml2::xml_children(children)
   children      <- xml2::xml_children(children)
   children      <- xml2::xml_children(children)
   children_text <- xml2::xml_text(children)
+  
+  i <- 2; 
+  name_diseases <- c(); 
+  years_diseases <- c(); 
+  children <- children[-base::seq(3, length(children), 3)];
+  children_text <- children_text[-base::seq(3, length(children_text), 3)];
+  while (i < base::length(children)) { 
+    disease <- xml2::xml_text(children[i]);
+    
+    name_diseases <- base::append(name_diseases, disease); 
+    tmp_diseases  <- base::which(children_text == disease);
+    
+    tmp_years <- tmp_diseases - 1; 
+    years_diseases <- base::append(years_diseases, base::toString(base::sort(children_text[tmp_years], decreasing = FALSE))); 
+    
+    children <- children[-tmp_years]; 
+    children_text <- children_text[-(tmp_diseases - 1)]; 
+    
+    children <- children[-base::which(children_text == disease)]; 
+    children_text <- children_text[-base::which(children_text == disease)]; 
+    
+    i <- i + 2; 
+  }
 
-  data_avaliable <- data.frame(
-    disease = unique(children_text),
-    year = unique(children_text),
-    stringsAsFactors = FALSE
-  )
-
-  years <- c(data_avaliable$year[1:20])
-  years <- years[-2:-3]
-  diseases <- data_avaliable$disease[21:95]
-
-  data_avaliable_diseases_and_years <- list(disease = diseases, year = years)
-
-  return(data_avaliable_diseases_and_years)
+  list_avaliable_diseases_and_years <- data.frame(ENFERMEDAD = name_diseases, AA = years_diseases);
+  return(list_avaliable_diseases_and_years)
 }
 
 #' Import Data of a Disease By Year

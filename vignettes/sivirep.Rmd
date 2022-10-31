@@ -34,7 +34,7 @@ The SIVIGILA data source doesn't have information on all diseases per year, for 
 avaliable_diseases_and_years_data <- list_avaliable_diseases_and_years()
 ```
 
-To download the information of a disease per year from the SIVIGILA microdata you can use this function, :
+To download the information of a disease per year from the SIVIGILA microdata, you can use this function :
 
 ```{r} 
 disease_data <- import_data_disease_by_year(year = 2018, disease_name = "DENGUE")
@@ -47,6 +47,10 @@ geo_codes <- import_geo_codes()
 ```
 
 
+```{r} 
+disease_dt_special <- get_special_population_and_cases(disease_data)
+```
+
 # Data cleaning
 To carry out any type of report, it is necessary to clean the data that is imported from SIVIGILA, since some of these may have incorrect formats, erroneous values or lack conceptual meaning, for example, the death date should not be greater than the birth date of the infected person.
 
@@ -55,7 +59,7 @@ This function cleans the disease data with respect to the codes of the departmen
 ```{r}
 depto_codes <- get_depto_codes(geo_codes)
 deptos_code_disease_data <- group_by_columns_and_cases(disease_data, "COD_DPTO_O")
-depto_codes <- clean_depto_disease_codes(depto_codes, deptos_code_disease_data, make_group = TRUE)
+deptos_code_disease_data <- clean_depto_disease_codes(depto_codes, deptos_code_disease_data, make_group = TRUE)
 ```
 
 This function removes values that are greater than the comparison value, for example the symptom onset date and hospitalization date:
@@ -95,7 +99,7 @@ The package has functions that allow generating graphs that are quite useful, su
 If you need to generate a map by information department of the selected disease, you can use this function
 
 ```{r}
-map <- plot_dept_map(depto_codes, col_name_lj = "id")
+map <- plot_dept_map(deptos_code_disease_data, col_name_lj = "id")
 map
 ```
 
