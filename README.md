@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-## *sivirep*: Authomated reporting from epidemiological surveillance databases <img src="man/figures/logo.png" align="right" width="120" />
+## *sivirep*: Automated reporting from epidemiological surveillance databases <img src="man/figures/logo.png" align="right" width="120" />
 
 <!-- badges: start -->
 
