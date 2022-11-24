@@ -16,7 +16,6 @@ Imports:
     dplyr,
     ggplot2,
     httr,
-    plyr,
     rgdal,
     stringr,
     xml2,

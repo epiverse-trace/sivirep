@@ -41,104 +41,78 @@ To view the list of diseases available to make a report with `sivirep`:
 library(sivirep)
 
 list_of_diseases <- list_avaliable_diseases_and_years()
-list_of_diseases
-#> $disease
-#>  [1] "CÁNCER DE LA MAMA Y CUELLO UTERINO"                               
-#>  [2] "CANCER INFANTIL"                                                  
-#>  [3] "CANCER_EN MENORES DE 18 AÑOS"                                     
-#>  [4] "CHAGAS"                                                           
-#>  [5] "CHIKUNGUNYA"                                                      
-#>  [6] "DENGUE"                                                           
-#>  [7] "Dengue"                                                           
-#>  [8] "DENGUE GRAVE"                                                     
-#>  [9] "DESNUTRICION AGUDA EN MENORES DE 5 AÑOS"                          
-#> [10] "DIFTERIA"                                                         
-#> [11] "ENCEFALITIS DEL NILO OCCIDENTAL EN HUMANOS"                       
-#> [12] "ENCEFALITIS EQUINA DEL OESTE EN HUMANOS"                          
-#> [13] "ENCEFALITIS EQUINA VENEZOLANA EN HUMANOS"                         
-#> [14] "ENDOMETRITIS PUERPERAL"                                           
-#> [15] "ENFERMEDADES HUERFANAS - RARAS"                                   
-#> [16] "ESI - IRAG (VIGILANCIA CENTINELA)"                                
-#> [17] "EVENTO ADVERSO SEGUIDO A LA VACUNACION"                           
-#> [18] "EXPOSICIÓN A FLUOR"                                               
-#> [19] "FIEBRE AMARILLA"                                                  
-#> [20] "FIEBRE TIFOIDEA Y PARATIFOIDEA"                                   
-#> [21] "HEPATITIS A"                                                      
-#> [22] "HEPATITIS B"                                                      
-#> [23] "HEPATITIS C"                                                      
-#> [24] "HIPOTIROIDISMO CONGENITO"                                         
-#> [25] "INFECCION ASOCIADA A DISPOSITIVOS"                                
-#> [26] "INFECCION RESPIRATORIA AGUDA GRAVE IRAG INUSITADA"                
-#> [27] "INTENTO DE SUICIDIO"                                              
-#> [28] "INTOXICACION POR FARMACOS"                                        
-#> [29] "INTOXICACION POR METALES PESADOS"                                 
-#> [30] "INTOXICACION POR METANOL"                                         
-#> [31] "INTOXICACION POR MONOXIDO DE CARBONO Y OTROS GASES"               
-#> [32] "INTOXICACION POR OTRAS SUSTANCIAS QUIMICAS"                       
-#> [33] "INTOXICACION POR PLAGUICIDAS"                                     
-#> [34] "INTOXICACION POR SOLVENTES"                                       
-#> [35] "INTOXICACION POR SUSTANCIAS PSICOACTIVAS"                         
-#> [36] "ISO"                                                              
-#> [37] "LEISHMANIASIS CUTANEA"                                            
-#> [38] "LEISHMANIASIS MUCOSA"                                             
-#> [39] "LEISHMANIASIS VISCERAL"                                           
-#> [40] "LEPRA"                                                            
-#> [41] "LEPTOSPIROSIS"                                                    
-#> [42] "LESIONES POR ARTEFACTOS EXPLOSIVOS (PÓLVORA Y MINAS ANTIPERSONAL)"
-#> [43] "LEUCEMIA AGUDA PEDIATRICA LINFOIDE"                               
-#> [44] "LEUCEMIA AGUDA PEDIATRICA MIELOIDE"                               
-#> [45] "MALARIA ASOCIADA (FORMAS MIXTAS)"                                 
-#> [46] "MALARIA COMPLICADA"                                               
-#> [47] "MALARIA FALCIPARUM"                                               
-#> [48] "MALARIA VIVAX"                                                    
-#> [49] "MENINGITIS  OTROS"                                                
-#> [50] "MENINGITIS MENINGOCÓCICA"                                         
-#> [51] "MENINGITIS POR HAEMOPHILUS INFLUENZAE"                            
-#> [52] "MENINGITIS POR NEUMOCOCO"                                         
-#> [53] "MENINGITIS TUBERCULOSA"                                           
-#> [54] "MORBILIDAD MATERNA EXTREMA"                                       
-#> [55] "MORTALIDAD MATERNA"                                               
-#> [56] "MORTALIDAD PERINATAL Y NEONATAL TARDIA"                           
-#> [57] "MORTALIDAD POR DENGUE"                                            
-#> [58] "MORTALIDAD POR DESNUTRICION"                                      
-#> [59] "MORTALIDAD POR EDA 0-4 AÑOS"                                      
-#> [60] "MORTALIDAD POR IRA"                                               
-#> [61] "MORTALIDAD POR MALARIA"                                           
-#> [62] "PARALISIS FLACIDA AGUDA (MENORES DE 15 AÑOS)"                     
-#> [63] "PAROTIDITIS"                                                      
-#> [64] "RABIA HUMANA"                                                     
-#> [65] "RUBEOLA"                                                          
-#> [66] "SARAMPION"                                                        
-#> [67] "SINDROME DE RUBEOLA CONGENITA"                                    
-#> [68] "TETANOS ACCIDENTAL"                                               
-#> [69] "TETANOS NEONATAL"                                                 
-#> [70] "TOS FERINA"                                                       
-#> [71] "TRACOMA"                                                          
-#> [72] "TUBERCULOSIS EXTRA PULMONAR"                                      
-#> [73] NA                                                                 
-#> [74] NA                                                                 
-#> [75] NA                                                                 
-#> 
-#> $year
-#>  [1] "2007"                                                        
-#>  [2] "2008"                                                        
-#>  [3] "2009"                                                        
-#>  [4] "2010"                                                        
-#>  [5] "2011"                                                        
-#>  [6] "2012"                                                        
-#>  [7] "2013"                                                        
-#>  [8] "2014"                                                        
-#>  [9] "2015"                                                        
-#> [10] "2017"                                                        
-#> [11] "2016"                                                        
-#> [12] "2018"                                                        
-#> [13] "2019"                                                        
-#> [14] "2020"                                                        
-#> [15] "2021"                                                        
-#> [16] "AGRESIONES POR ANIMALES POTENCIALMENTE TRANSMISORES DE RABIA"
-#> [17] "ANOMALIAS CONGENITAS"                                        
-#> [18] "BAJO PESO AL NACER"
+knitr::kable(list_of_diseases)
 ```
+
+| ENFERMEDAD                                                   | AA                                                                                             |
+|:-------------------------------------------------------------|:-----------------------------------------------------------------------------------------------|
+| ACCIDENTE OFIDICO                                            | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| AGRESIONES POR ANIMALES POTENCIALMENTE TRANSMISORES DE RABIA | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| ANOMALIAS CONGENITAS                                         | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| BAJO PESO AL NACER                                           | 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021                                     |
+| CÁNCER DE LA MAMA Y CUELLO UTERINO                           | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2019, 2020, 2021 |
+| CANCER INFANTIL                                              | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| CHAGAS                                                       | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| CHIKUNGUNYA                                                  | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| DENGUE                                                       | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| DENGUE GRAVE                                                 | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| DIFTERIA                                                     | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2021             |
+| ENCEFALITIS DEL NILO OCCIDENTAL EN HUMANOS                   | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017                               |
+| ENCEFALITIS EQUINA DEL OESTE EN HUMANOS                      | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017                               |
+| ENCEFALITIS EQUINA VENEZOLANA EN HUMANOS                     | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017                               |
+| ENDOMETRITIS PUERPERAL                                       | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017                               |
+| ENFERMEDADES HUERFANAS - RARAS                               | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017                               |
+| ESI - IRAG (VIGILANCIA CENTINELA)                            | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| EVENTO ADVERSO SEGUIDO A LA VACUNACION                       | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| FIEBRE AMARILLA                                              | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018                         |
+| FIEBRE TIFOIDEA Y PARATIFOIDEA                               | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| HEPATITIS A                                                  | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| HEPATITIS C                                                  | 2018, 2019, 2020, 2021                                                                         |
+| HIPOTIROIDISMO CONGENITO                                     | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| INFECCION ASOCIADA A DISPOSITIVOS                            | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017                               |
+| INFECCION RESPIRATORIA AGUDA GRAVE IRAG INUSITADA            | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| INTOXICACION POR FARMACOS                                    | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| INTOXICACION POR METALES PESADOS                             | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| INTOXICACION POR METANOL                                     | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| INTOXICACION POR MONOXIDO DE CARBONO Y OTROS GASES           | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| INTOXICACION POR OTRAS SUSTANCIAS QUIMICAS                   | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| INTOXICACION POR PLAGUICIDAS                                 | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| INTOXICACION POR SOLVENTES                                   | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| INTOXICACION POR SUSTANCIAS PSICOACTIVAS                     | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| ISO                                                          | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017                               |
+| LEISHMANIASIS CUTANEA                                        | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| LEISHMANIASIS MUCOSA                                         | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| LEISHMANIASIS VISCERAL                                       | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| LEPRA                                                        | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| LEPTOSPIROSIS                                                | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| LEUCEMIA AGUDA PEDIATRICA LINFOIDE                           | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| LEUCEMIA AGUDA PEDIATRICA MIELOIDE                           | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| MALARIA ASOCIADA (FORMAS MIXTAS)                             | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| MALARIA COMPLICADA                                           | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| MALARIA FALCIPARUM                                           | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| MALARIA VIVAX                                                | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| MENINGITIS OTROS                                             | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017                               |
+| MENINGITIS MENINGOCÓCICA                                     | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2019, 2020, 2021 |
+| MENINGITIS POR HAEMOPHILUS INFLUENZAE                        | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2019, 2020, 2021 |
+| MENINGITIS POR NEUMOCOCO                                     | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2019, 2020, 2021 |
+| MENINGITIS TUBERCULOSA                                       | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| MORBILIDAD MATERNA EXTREMA                                   | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| MORTALIDAD MATERNA                                           | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| MORTALIDAD PERINATAL Y NEONATAL TARDIA                       | 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021             |
+| MORTALIDAD POR DENGUE                                        | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| MORTALIDAD POR EDA 0-4 AÑOS                                  | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2019, 2020, 2021 |
+| MORTALIDAD POR IRA                                           | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| MORTALIDAD POR MALARIA                                       | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| PARALISIS FLACIDA AGUDA (MENORES DE 15 AÑOS)                 | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020             |
+| PAROTIDITIS                                                  | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| RABIA HUMANA                                                 | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2020                         |
+| SARAMPION                                                    | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020             |
+| SINDROME DE RUBEOLA CONGENITA                                | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017                               |
+| TETANOS ACCIDENTAL                                           | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| TETANOS NEONATAL                                             | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| TOS FERINA                                                   | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| TRACOMA                                                      | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2019             |
+| TUBERCULOSIS EXTRA PULMONAR                                  | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015                                           |
 
 ### Contributions
 
@@ -150,6 +124,8 @@ Contributors to the project include:
 -   [Geraldine Gómez-Millán](https://github.com/GeraldineGomez) (author)
 
 -   [Zulma M. Cucunubá](https://github.com/zmcucunuba) (author)
+
+-   [Hugo Gruson](https://github.com/Bisaloo) (Contributor)
 
 ### Code of Conduct
 

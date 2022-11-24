@@ -6,6 +6,10 @@
 #' @param disease_data The disease data
 #' @return Clean codes of disease data departments
 #' @examples
+#' geo_codes <- import_geo_codes()
+#' depto_codes <- get_depto_codes(geo_codes)
+#' disease_data <-  import_data_disease_by_year(2019, "DENGUE")
+#' disease_data <- group_by_columns_and_cases(disease_data, "COD_DPTO_O", wt_percentage = TRUE)
 #' clean_depto_disease_codes(depto_codes, disease_data)
 #' @export
 clean_depto_disease_codes <- function(depto_codes, disease_data, make_group = TRUE) {
@@ -37,6 +41,7 @@ clean_depto_disease_codes <- function(depto_codes, disease_data, make_group = TR
 #' @param col_uni_med Unit of measure column name 
 #' @return The ages in years
 #' @examples
+#' disease_data <- import_data_disease_by_year(2019, "DENGUE")
 #' parse_age_to_years(disease_data, col_age = "EDAD", col_uni_med = "UNI_MED")
 #' @export
 parse_age_to_years <- function(disease_data, col_age = "EDAD", col_uni_med = "UNI_MED") {
@@ -60,6 +65,7 @@ parse_age_to_years <- function(disease_data, col_age = "EDAD", col_uni_med = "UN
 #' @param name_col Column name  
 #' @return The clean data without NA, Infinitive or NaN values of the column
 #' @examples
+#' disease_data <- import_data_disease_by_year(2019, "DENGUE")
 #' remove_nin_values(disease_data, name_col = "EDAD")
 #' @export
 remove_nin_values <- function(disease_data, name_col) {
@@ -81,6 +87,7 @@ remove_nin_values <- function(disease_data, name_col) {
 #' @param col_cmp Column name of comparison value
 #' @return The data without the erronous dates
 #' @examples
+#' disease_data <- import_data_disease_by_year(2019, "DENGUE")
 #' remove_error_dates(disease_data, col_init = "INI_SI", col_cmp = "FEC_HOS")
 #' @export
 remove_error_dates <- function(disease_data, col_init = "INI_SI", col_cmp = "FEC_HOS") {

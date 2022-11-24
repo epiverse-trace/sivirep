@@ -51,7 +51,7 @@ import_data_delim <- function(path_data) {
         }
   }
 
-  if (plyr::empty(data)) {
+  if (nrow(data) == 0) {
        data <- data.table::fread(path_data)
   }
 
@@ -150,7 +150,7 @@ import_data_disease_by_year <- function(year, disease_name, cache = TRUE) {
 #' @param path The path or URL
 #' @return The name file
 #' @examples
-#' find_name_file_path("DENGUE")
+#' get_name_file_path("DENGUE")
 #' @export
 get_name_file_path <- function(path) {
   name_file <- strsplit(path, config::get(file = system.file("extdata", "config.yml", package = "sivirep"), "name_file_split"))

@@ -17,5 +17,6 @@ Función que obtiene el listado de departamentos de Colombia con su nombre y có
 Function that gets the list of departments of Colombia with their name and code
 }
 \examples{
+geo_codes <- import_geo_codes()
 get_depto_codes(geo_codes)
 }

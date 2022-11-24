@@ -32,5 +32,7 @@ Función que agrupa los datos por un rango de edades y por el número de casos
 Function that groups the data by an age range and cases number
 }
 \examples{
-group_by_age_range_and_cases(disease_data, min_val = 0, max_val = 100, step = 5)
+disease_data <- import_data_disease_by_year(2019, "DENGUE")
+disease_dt_by_age <- group_by_columns_and_cases(disease_dt_by_age, c("EDAD", "SEMANA"), wt_percentage = TRUE)
+group_by_age_range_and_cases(disease_dt_by_age, "EDAD", min_val = 0, max_val = max(disease_dt_by_age$EDAD), step = 10)
 }

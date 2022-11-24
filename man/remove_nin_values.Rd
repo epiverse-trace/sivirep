@@ -19,5 +19,6 @@ Función que elimina los valores (NA, Infinitive, NaN) de una columna
 Function that eliminates the values (NA, Infinitive, NaN) of a column
 }
 \examples{
+disease_data <- import_data_disease_by_year(2019, "DENGUE")
 remove_nin_values(disease_data, name_col = "EDAD")
 }

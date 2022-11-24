@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-## *sivirep*: Authomated reporting from epidemiological surveillance databases  <img src="man/figures/logo.png" align="right" width="120" />
+## *sivirep*: Automated reporting from epidemiological surveillance databases  <img src="man/figures/logo.png" align="right" width="120" />
 
 
 <!-- badges: start -->
@@ -47,7 +47,7 @@ To view the list of diseases available to make a report with `sivirep`:
 library(sivirep)
 
 list_of_diseases <- list_avaliable_diseases_and_years()
-list_of_diseases
+knitr::kable(list_of_diseases)
 ```
 
 
@@ -65,6 +65,7 @@ Contributors to the project include:
 
 - [Zulma M. Cucunubá](https://github.com/zmcucunuba) (author)
 
+- [Hugo Gruson](https://github.com/Bisaloo) (Contributor)
 
 ### Code of Conduct
 Please note that the linelist project is released with a 

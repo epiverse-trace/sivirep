@@ -19,5 +19,10 @@ Función que genera el mapa por departamento con los datos de una enfermedad esp
 Function that generates the map by department with the data of a specific disease
 }
 \examples{
+geo_codes <- import_geo_codes()
+deptos_data <- get_depto_codes(geo_codes)
+sivigila_summary_data <- import_sivigila_summary_data()
+filtered_data <- filter_disease("MALAR", sivigila_summary_data)
+data_map_disease_deptos <- clean_depto_disease_codes(deptos_data, filtered_data)
 plot_dept_map(data_map_disease_deptos, col_name_lj = "id")
 }

@@ -37,7 +37,9 @@ Función que genera la gráfica de la Semana epidemiológica
 Function that generates the graphic of the Epidemiological Week
 }
 \examples{
-plot_epiweek(data, col_week = "SEMANA", col_cases = "conteo_casos", year = 2019, type = "date", xlabel = "Fecha de semana epidemiológica")
-plot_epiweek(data, col_week = "SEMANA", col_cases = "conteo_casos", year = 2019, type = "week", xlabel = "Fecha de semana epidemiológica")
-plot_epiweek(data, col_week = "SEMANA", col_cases = "conteo_casos", year = 2019, xlabel = "Fecha de semana epidemiológica")
+sivigila_summary_data <- import_sivigila_summary_data()
+data <- filter_disease("MALAR", sivigila_summary_data)
+plot_epiweek(data, col_week = "SEMANA", col_cases = "conteo_casos", year = 2019, type = "date", xlabel = "Epidemiological week date")
+plot_epiweek(data, col_week = "SEMANA", col_cases = "conteo_casos", year = 2019, type = "week", xlabel = "Epidemiological week date")
+plot_epiweek(data, col_week = "SEMANA", col_cases = "conteo_casos", year = 2019, xlabel = "Epidemiological week date")
 }

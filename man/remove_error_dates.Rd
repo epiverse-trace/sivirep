@@ -21,5 +21,6 @@ Función que elimina las fechas que son superiores al valor de comparación
 Function that removes greater dates than the comparison value
 }
 \examples{
+disease_data <- import_data_disease_by_year(2019, "DENGUE")
 remove_error_dates(disease_data, col_init = "INI_SI", col_cmp = "FEC_HOS")
 }

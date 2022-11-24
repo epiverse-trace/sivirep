@@ -21,5 +21,6 @@ Función que convierte las edades en años según las unidades de medida de SIVI
 Function that converts ages into years according to SIVIGILA measurement units
 }
 \examples{
+disease_data <- import_data_disease_by_year(2019, "DENGUE")
 parse_age_to_years(disease_data, col_age = "EDAD", col_uni_med = "UNI_MED")
 }

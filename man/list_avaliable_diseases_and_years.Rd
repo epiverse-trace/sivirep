@@ -14,5 +14,5 @@ Función que obtiene las enfermedades y los años disponibles de los microdatos 
 Function that obtains the diseases and the years available from the SIVIGILA microdata
 }
 \examples{
-import_avaliable_diseases_and_years()
+list_avaliable_diseases_and_years()
 }

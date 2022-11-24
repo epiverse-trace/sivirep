@@ -6,9 +6,13 @@
 #' @param data Data set
 #' @return The filtered data with the disease selected
 #' @examples
-#' filter_disease(name_disease = "MALARIA", sivigila_summary_data)
+#' sivigila_summary_data <- import_sivigila_summary_data()
+#' filter_disease("MALAR", sivigila_summary_data)
 #' @export
 filter_disease  <- function(name_disease, sivigila_summary_data) {
+  if ("conteo_casos" %in% names(sivigila_summary_data)) {
+      names(sivigila_summary_data)[names(sivigila_summary_data) == "conteo_casos"] = "Casos"
+  }
   list_diseases <- unique(sivigila_summary_data$Nombre)
   list_specific <- list_diseases[stringr::str_detect(list_diseases, name_disease) == TRUE]
   filtered_data <- sivigila_summary_data %>% dplyr::filter(.data$Nombre %in% list_specific)
@@ -22,6 +26,7 @@ filter_disease  <- function(name_disease, sivigila_summary_data) {
 #' @param deptos_data Departments data
 #' @return The Departments data with code and name
 #' @examples
+#' geo_codes <- import_geo_codes()
 #' get_depto_codes(geo_codes)
 #' @export
 get_depto_codes <- function(geo_codes) {
@@ -38,6 +43,7 @@ get_depto_codes <- function(geo_codes) {
 #' @param disease_data Disease data
 #' @return The cases by special population type of a disease
 #' @examples
+#' disease_data <- import_data_disease_by_year(2019, "DENGUE")
 #' get_special_population_and_cases(disease_data)
 #' @export
 get_special_population_and_cases <- function(disease_data) {
@@ -59,6 +65,7 @@ get_special_population_and_cases <- function(disease_data) {
 #' @param disease_data Disease data
 #' @return The disease data grouped by week
 #' @examples
+#' disease_data <- import_data_disease_by_year(2019, "DENGUE")
 #' group_by_week_and_cases(disease_data)
 #' @export
 group_by_week_and_cases <- function(disease_data) {
@@ -76,6 +83,7 @@ group_by_week_and_cases <- function(disease_data) {
 #' @param wt_percentage Indicates if it is required to add a percentage of cases as a column
 #' @return The disease data grouped by a specific column name(s) and cases
 #' @examples
+#' disease_data <- import_data_disease_by_year(2019, "DENGUE")
 #' group_by_columns_and_cases(disease_data, col_names = "SEXO", wt_percentage = TRUE)
 #' group_by_columns_and_cases(disease_data, col_names = c("SEXO","SEMANA"))
 #' @export
@@ -98,7 +106,9 @@ group_by_columns_and_cases <- function(disease_data, col_names, wt_percentage = 
 #' @param step Step for the range
 #' @return The disease data grouped by the age range and cases
 #' @examples
-#' group_by_age_range_and_cases(disease_data, min_val = 0, max_val = 100, step = 5)
+#' disease_data <- import_data_disease_by_year(2019, "DENGUE")
+#' disease_dt_by_age <- group_by_columns_and_cases(disease_dt_by_age, c("EDAD", "SEMANA"), wt_percentage = TRUE)
+#' group_by_age_range_and_cases(disease_dt_by_age, "EDAD", min_val = 0, max_val = max(disease_dt_by_age$EDAD), step = 10)
 #' @export
 group_by_age_range_and_cases <- function(disease_data, col_name, var_a = NULL, min_val, max_val, step) {
   data_values_range <- data.frame()

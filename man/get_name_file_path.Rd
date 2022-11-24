@@ -17,5 +17,5 @@ Función que obtiene el nombre del archivo a descargar desde una URL o ruta
 Function that gets the file name for download from a URL or path
 }
 \examples{
-find_name_file_path("DENGUE")
+get_name_file_path("DENGUE")
 }

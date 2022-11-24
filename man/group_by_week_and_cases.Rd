@@ -17,5 +17,6 @@ Función que agrupa los datos por semana epidemiológica y número de casos
 Function that groups the data by epidemiological week and number of cases
 }
 \examples{
+disease_data <- import_data_disease_by_year(2019, "DENGUE")
 group_by_week_and_cases(disease_data)
 }

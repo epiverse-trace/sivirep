@@ -19,5 +19,6 @@ Función que filtra en un conjunto de datos por el nombre de la enfermedad
 Function that filters in a dataset by the disease name
 }
 \examples{
-filter_disease(name_disease = "MALARIA", sivigila_summary_data)
+sivigila_summary_data <- import_sivigila_summary_data()
+filter_disease("MALAR", sivigila_summary_data)
 }

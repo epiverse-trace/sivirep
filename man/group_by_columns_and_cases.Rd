@@ -21,6 +21,7 @@ Función que agrupa los datos por el nombre de las columna(s) y los casos
 Function that groups the data by a specific column name and cases
 }
 \examples{
+disease_data <- import_data_disease_by_year(2019, "DENGUE")
 group_by_columns_and_cases(disease_data, col_names = "SEXO", wt_percentage = TRUE)
 group_by_columns_and_cases(disease_data, col_names = c("SEXO","SEMANA"))
 }
