@@ -58,8 +58,8 @@ This function cleans the disease data with respect to the codes of the departmen
 
 ```{r}
 depto_codes <- get_depto_codes(geo_codes)
-deptos_code_disease_data <- group_by_columns_and_cases(disease_data, "COD_DPTO_O")
-deptos_code_disease_data <- clean_depto_disease_codes(depto_codes, deptos_code_disease_data, make_group = TRUE)
+disease_data_by_deptos <- group_by_columns_and_cases(disease_data, "COD_DPTO_O", wt_percentage = TRUE)
+clean_depto_disease_codes(depto_codes, disease_data_by_deptos)
 ```
 
 This function removes values that are greater than the comparison value, for example the symptom onset date and hospitalization date:
@@ -98,24 +98,18 @@ The package has functions that allow generating graphs that are quite useful, su
 
 If you need to generate a map by information department of the selected disease, you can use this function
 
-```{r}
-map <- plot_dept_map(deptos_code_disease_data, col_name_lj = "id")
-map
+```{r, echo=FALSE, error=FALSE, fig.height=6, fig.width=6, warning=FALSE, include=TRUE, message=FALSE}
+sivigila_data_2019 <- import_sivigila_summary_data()
+filtered_data_2019 <- filter_disease("MALAR", sivigila_data_2019)
+data_map_disease_deptos <- clean_depto_disease_codes(depto_codes, filtered_data_2019)
+plot_dept_map(data_map_disease_deptos, col_name_lj = "id")
 ```
 
 
 This is a generic function that uses other reports to graph for any type of variable:
 
-```{r}
+```{r, echo=FALSE, error=FALSE, fig.height=3, fig.width=6, warning=FALSE, include=TRUE, message=FALSE}
 disease_dt_by_gender <- group_by_columns_and_cases(disease_data, "SEXO", wt_percentage = TRUE)
 
-plot_by_variable(disease_dt_by_gender, var_x = "SEXO", var_y = "Casos", var_fill = "SEXO", var_per = "Porcentaje", label_x = "Género", label_y = "Casos \n (Porcentajes)", scale_name = "Género", scale_labels = c("Femenino", "Masculino"), diagram_title = "Diagrama para la variable Sexo", legend_pos = "right", bar_wd = 0.6, text_sz = 4, show_val = TRUE)
+plot_by_variable(disease_dt_by_gender, var_x = "SEXO", var_y = "Casos", var_fill = "SEXO", var_per = "Porcentaje", label_x = "Gender", label_y = "Cases \n (Percentages)", scale_name = "Gender", scale_labels = c("Femenino", "Masculino"), diagram_title = "Cases by gender", legend_pos = "right", bar_wd = 0.6, text_sz = 4, show_val = TRUE)
 ``` 
-
-This function generates the report of the Epidemiological Week of the year 2019:
-
-```{r}
-sivigila_data_2019 <- import_sivigila_summary_data()
-filtered_data_2019 <- filter_disease("MALAR", sivigila_data_2019)
-plot_epiweek(filtered_data_2019, col_week = "SEMANA", col_cases = "conteo_casos", year = 2019, type = "date", xlabel = "Fecha de semana epidemiologica")
-```
