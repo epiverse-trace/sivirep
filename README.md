@@ -125,7 +125,7 @@ Contributors to the project include:
 
 -   [Zulma M. Cucunubá](https://github.com/zmcucunuba) (author)
 
--   [Hugo Gruson](https://github.com/Bisaloo) (Contributor)
+-   [Hugo Gruson](https://github.com/Bisaloo) (contributor)
 
 ### Code of Conduct
 
