@@ -7,9 +7,11 @@
 clean_depto_disease_codes(depto_codes, disease_data, make_group = TRUE)
 }
 \arguments{
-\item{depto_codes}{The departments data}
+\item{depto_codes}{The department codes}
 
 \item{disease_data}{The disease data}
+
+\item{make_group}{Indicates if it is necessary to group by department IDs and case numbers}
 }
 \value{
 Clean codes of disease data departments

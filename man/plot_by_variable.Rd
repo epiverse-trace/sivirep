@@ -29,6 +29,8 @@ plot_by_variable(
 
 \item{var_y}{The variable name for axis y}
 
+\item{var_per}{The variable name if the data have percentages}
+
 \item{var_fill}{The variable fill}
 
 \item{wt_per}{Indicates if the data have percentages}
@@ -48,6 +50,8 @@ plot_by_variable(
 \item{bar_wd}{The bar width}
 
 \item{text_sz}{The text size}
+
+\item{show_val}{Indicates if the bars should show the values}
 }
 \value{
 The map for department
@@ -59,5 +63,8 @@ Function that generates graphs by any type of variable
 \examples{
 disease_data <- import_data_disease_by_year(2019, "DENGUE")
 disease_dt_by_gender_wk <- group_by_columns_and_cases(disease_data, "SEXO", wt_percentage = TRUE)
-plot_by_variable(disease_dt_by_gender_wk, var_x = "SEXO", var_y = "Casos", var_fill = "SEXO", var_per = "Porcentaje", label_x = "Gender", label_y = "Cases \n (Percentage)", scale_name = "Gender", scale_labels = c("Female", "Male"), diagram_title = "Cases by Gender", legend_pos = "right", bar_wd = 0.6, text_sz = 4)
+plot_by_variable(disease_dt_by_gender_wk, var_x = "SEXO", var_y = "Casos", var_fill = "SEXO", 
+var_per = "Porcentaje", label_x = "Gender", label_y = "Cases \n (Percentage)", 
+scale_name = "Gender", scale_labels = c("Female", "Male"), diagram_title = "Cases by Gender", 
+legend_pos = "right", bar_wd = 0.6, text_sz = 4)
 }

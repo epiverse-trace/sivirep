@@ -9,7 +9,7 @@ filter_disease(name_disease, sivigila_summary_data)
 \arguments{
 \item{name_disease}{Name of the disease}
 
-\item{data}{Data set}
+\item{sivigila_summary_data}{Data set}
 }
 \value{
 The filtered data with the disease selected

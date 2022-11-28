@@ -10,4 +10,13 @@
 
 Provides functions for data wrangling and automated reports from SIVIGILA source.
 }
+\author{
+\strong{Maintainer}: Geraldine Gómez Millán \email{geralidine.gomez@javeriana.edu.co}
+
+Authors:
+\itemize{
+  \item Zulma M. Cucunubá
+}
+
+}
 \keyword{internal}

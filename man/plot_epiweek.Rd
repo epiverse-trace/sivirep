@@ -15,6 +15,8 @@ plot_epiweek(
 )
 }
 \arguments{
+\item{dat}{Disease data}
+
 \item{col_week}{Column Name that indicates the week in the data}
 
 \item{col_cases}{Column Name hat indicates the cases number in the data}
@@ -26,8 +28,6 @@ plot_epiweek(
 \item{xlabel}{Label of axis x}
 
 \item{ylabel}{Label of axis y}
-
-\item{data}{Disease data}
 }
 \value{
 The graphic of Epidemiological Week
@@ -39,7 +39,10 @@ Function that generates the graphic of the Epidemiological Week
 \examples{
 sivigila_summary_data <- import_sivigila_summary_data()
 data <- filter_disease("MALAR", sivigila_summary_data)
-plot_epiweek(data, col_week = "SEMANA", col_cases = "conteo_casos", year = 2019, type = "date", xlabel = "Epidemiological week date")
-plot_epiweek(data, col_week = "SEMANA", col_cases = "conteo_casos", year = 2019, type = "week", xlabel = "Epidemiological week date")
-plot_epiweek(data, col_week = "SEMANA", col_cases = "conteo_casos", year = 2019, xlabel = "Epidemiological week date")
+plot_epiweek(data, col_week = "SEMANA", col_cases = "conteo_casos", 
+year = 2019, type = "date", xlabel = "Epidemiological week date")
+plot_epiweek(data, col_week = "SEMANA", col_cases = "conteo_casos", 
+year = 2019, type = "week", xlabel = "Epidemiological week date")
+plot_epiweek(data, col_week = "SEMANA", col_cases = "conteo_casos", 
+year = 2019, xlabel = "Epidemiological week date")
 }

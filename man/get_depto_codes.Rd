@@ -7,7 +7,7 @@
 get_depto_codes(geo_codes)
 }
 \arguments{
-\item{deptos_data}{Departments data}
+\item{geo_codes}{Geographical codes (Colombia departments and municipalities)}
 }
 \value{
 The Departments data with code and name

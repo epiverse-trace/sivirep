@@ -18,6 +18,8 @@ group_by_age_range_and_cases(
 
 \item{col_name}{Colunm name}
 
+\item{var_a}{Additional variables}
+
 \item{min_val}{Min value to group}
 
 \item{max_val}{Max value to group}
@@ -33,6 +35,6 @@ Function that groups the data by an age range and cases number
 }
 \examples{
 disease_data <- import_data_disease_by_year(2019, "DENGUE")
-disease_dt_by_age <- group_by_columns_and_cases(disease_dt_by_age, c("EDAD", "SEMANA"), wt_percentage = TRUE)
+disease_dt_by_age <- group_by_columns_and_cases(disease_data, c("EDAD", "SEMANA"), wt_percentage = TRUE)
 group_by_age_range_and_cases(disease_dt_by_age, "EDAD", min_val = 0, max_val = max(disease_dt_by_age$EDAD), step = 10)
 }

@@ -10,8 +10,6 @@ import_data_endemic_channel(disease_name, year)
 \item{disease_name}{The disease name}
 
 \item{year}{Last year}
-
-\item{path_data}{Path or URL of SIVIGILA data}
 }
 \value{
 The last five years data of a disease
