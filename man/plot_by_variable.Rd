@@ -62,9 +62,4 @@ Function that generates graphs by any type of variable
 }
 \examples{
 disease_data <- import_data_disease_by_year(2019, "DENGUE")
-disease_dt_by_gender_wk <- group_by_columns_and_cases(disease_data, "SEXO", wt_percentage = TRUE)
-plot_by_variable(disease_dt_by_gender_wk, var_x = "SEXO", var_y = "Casos", var_fill = "SEXO", 
-var_per = "Porcentaje", label_x = "Gender", label_y = "Cases \n (Percentage)", 
-scale_name = "Gender", scale_labels = c("Female", "Male"), diagram_title = "Cases by Gender", 
-legend_pos = "right", bar_wd = 0.6, text_sz = 4)
 }
