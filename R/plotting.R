@@ -13,9 +13,12 @@
 #' @examples
 #' sivigila_summary_data <- import_sivigila_summary_data()
 #' data <- filter_disease("MALAR", sivigila_summary_data)
-#' plot_epiweek(data, col_week = "SEMANA", col_cases = "conteo_casos", year = 2019, type = "date", xlabel = "Epidemiological week date")
-#' plot_epiweek(data, col_week = "SEMANA", col_cases = "conteo_casos", year = 2019, type = "week", xlabel = "Epidemiological week date")
-#' plot_epiweek(data, col_week = "SEMANA", col_cases = "conteo_casos", year = 2019, xlabel = "Epidemiological week date")
+#' plot_epiweek(data, col_week = "SEMANA", col_cases = "conteo_casos", 
+#' year = 2019, type = "date", xlabel = "Epidemiological week date")
+#' plot_epiweek(data, col_week = "SEMANA", col_cases = "conteo_casos", 
+#' year = 2019, type = "week", xlabel = "Epidemiological week date")
+#' plot_epiweek(data, col_week = "SEMANA", col_cases = "conteo_casos", 
+#' year = 2019, xlabel = "Epidemiological week date")
 #' @export
 plot_epiweek <- function(dat, col_week, col_cases, year, type = "week", xlabel = "Semana epidemiológica", ylabel = "Número de casos por semana") {
   dat$epiweek <- dat[,col_week]
@@ -68,7 +71,7 @@ plot_dept_map <- function(data_map_depto, col_name_lj = "id") {
     dplyr::left_join(data_map_depto, by = col_name_lj)
 
   map <- ggplot2::ggplot() +
-    ggplot2::geom_polygon(data = shp.df, ggplot2::aes(x = long, y = lat, group = group, fill = casos),
+    ggplot2::geom_polygon(data = shp.df, ggplot2::aes(x = .data$long, y = .data$lat, group = .data$group, fill = .data$casos),
                  colour = "black") +
     ggplot2::scale_fill_gradient(low = "white", high = "darkred") +
     ggplot2::theme_void()
@@ -99,7 +102,10 @@ plot_dept_map <- function(data_map_depto, col_name_lj = "id") {
 #' @examples 
 #' disease_data <- import_data_disease_by_year(2019, "DENGUE")
 #' disease_dt_by_gender_wk <- group_by_columns_and_cases(disease_data, "SEXO", wt_percentage = TRUE)
-#' plot_by_variable(disease_dt_by_gender_wk, var_x = "SEXO", var_y = "Casos", var_fill = "SEXO", var_per = "Porcentaje", label_x = "Gender", label_y = "Cases \n (Percentage)", scale_name = "Gender", scale_labels = c("Female", "Male"), diagram_title = "Cases by Gender", legend_pos = "right", bar_wd = 0.6, text_sz = 4)
+#' plot_by_variable(disease_dt_by_gender_wk, var_x = "SEXO", var_y = "Casos", var_fill = "SEXO", 
+#' var_per = "Porcentaje", label_x = "Gender", label_y = "Cases \n (Percentage)", 
+#' scale_name = "Gender", scale_labels = c("Female", "Male"), diagram_title = "Cases by Gender", 
+#' legend_pos = "right", bar_wd = 0.6, text_sz = 4)
 #' @export
 plot_by_variable <- function(data, var_x, var_y, var_per = NULL, var_fill, wt_per = TRUE, label_x, label_y,
                              scale_name = NULL, scale_labels = NULL, diagram_title, legend_pos, bar_wd = 1, text_sz, show_val = TRUE) {
