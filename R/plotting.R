@@ -13,12 +13,12 @@
 #' @examples
 #' sivigila_summary_data <- import_sivigila_summary_data()
 #' data <- filter_disease("MALAR", sivigila_summary_data)
-#' plot_epiweek(data, col_week = "SEMANA", col_cases = "conteo_casos", 
-#' year = 2019, type = "date", xlabel = "Epidemiological week date")
-#' plot_epiweek(data, col_week = "SEMANA", col_cases = "conteo_casos", 
-#' year = 2019, type = "week", xlabel = "Epidemiological week date")
-#' plot_epiweek(data, col_week = "SEMANA", col_cases = "conteo_casos", 
-#' year = 2019, xlabel = "Epidemiological week date")
+#' plot_epiweek(
+#' data, col_week = "SEMANA", col_cases = "conteo_casos", year = 2019, type = "date", xlabel = "Epidemiological week date")
+#' plot_epiweek(
+#' data, col_week = "SEMANA", col_cases = "conteo_casos", year = 2019, type = "week", xlabel = "Epidemiological week date")
+#' plot_epiweek(
+#' data, col_week = "SEMANA", col_cases = "conteo_casos", year = 2019, xlabel = "Epidemiological week date")
 #' @export
 plot_epiweek <- function(dat, col_week, col_cases, year, type = "week", xlabel = "Semana epidemiológica", ylabel = "Número de casos por semana") {
   dat$epiweek <- dat[,col_week]
