@@ -62,7 +62,6 @@ import_data_delim <- function(path_data) {
 #'
 #' Función que importa la informacion del SIVIGILA para la construcción del canal endémico
 #' Function that imports SIVIGILA for building the endemic channel
-#' @param path_data Path or URL of SIVIGILA data
 #' @param disease_name The disease name
 #' @param year Last year
 #' @return The last five years data of a disease

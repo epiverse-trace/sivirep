@@ -2,7 +2,7 @@
 #'
 #' Función que genera la gráfica de la Semana epidemiológica
 #' Function that generates the graphic of the Epidemiological Week
-#' @param data Disease data
+#' @param dat Disease data
 #' @param col_week  Column Name that indicates the week in the data
 #' @param col_cases Column Name hat indicates the cases number in the data
 #' @param year Year of the data
@@ -24,7 +24,7 @@ plot_epiweek <- function(dat, col_week, col_cases, year, type = "week", xlabel =
 
   if (type == "week") {
       plot <- ggplot2::ggplot(dat_plot) +
-        ggplot2::geom_col(ggplot2::aes(x = epiweek, y = casos, fill = Nombre), alpha = 0.9) +
+        ggplot2::geom_col(ggplot2::aes(x = .data$epiweek, y = .data$casos, fill = .data$Nombre), alpha = 0.9) +
         ggplot2::theme_classic() +
         ggplot2::xlab(xlabel) + ggplot2::ylab(ylabel) +
         ggplot2::scale_fill_discrete(name = "") +
@@ -34,7 +34,7 @@ plot_epiweek <- function(dat, col_week, col_cases, year, type = "week", xlabel =
   if (type == "date") {
     dat_plot$date_week <- as.Date(paste(year, dat_plot$epiweek, 1, sep = "-"), "%Y-%U-%u")
     plot <- ggplot2::ggplot(dat_plot) +
-      ggplot2::geom_col(ggplot2::aes(x = date_week, y = casos, fill = Nombre), alpha = 0.9) +
+      ggplot2::geom_col(ggplot2::aes(x = .data$date_week, y = .data$casos, fill = .data$Nombre), alpha = 0.9) +
       ggplot2::theme_classic() +
       ggplot2::xlab(xlabel) + ggplot2::ylab(ylabel) +
       ggplot2::scale_fill_discrete(name = "") +
@@ -83,6 +83,7 @@ plot_dept_map <- function(data_map_depto, col_name_lj = "id") {
 #' @param data The data to plot
 #' @param var_x The variable name for axis x
 #' @param var_y The variable name for axis y
+#' @param var_per The variable name if the data have percentages
 #' @param var_fill The variable fill
 #' @param wt_per Indicates if the data have percentages
 #' @param label_x The label for axis x
@@ -93,8 +94,9 @@ plot_dept_map <- function(data_map_depto, col_name_lj = "id") {
 #' @param legend_pos The legend position
 #' @param bar_wd The bar width
 #' @param text_sz The text size
+#' @param show_val Indicates if the bars should show the values
 #' @return The map for department
-#' @examples
+#' @examples 
 #' disease_data <- import_data_disease_by_year(2019, "DENGUE")
 #' disease_dt_by_gender_wk <- group_by_columns_and_cases(disease_data, "SEXO", wt_percentage = TRUE)
 #' plot_by_variable(disease_dt_by_gender_wk, var_x = "SEXO", var_y = "Casos", var_fill = "SEXO", var_per = "Porcentaje", label_x = "Gender", label_y = "Cases \n (Percentage)", scale_name = "Gender", scale_labels = c("Female", "Male"), diagram_title = "Cases by Gender", legend_pos = "right", bar_wd = 0.6, text_sz = 4)

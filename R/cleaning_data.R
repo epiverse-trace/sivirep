@@ -2,8 +2,9 @@
 #' 
 #' Función que limpia la información de la enfermedad respecto a los codigos de los departamentos
 #' Function that cleans the disease data with respect to the codes of the departments
-#' @param depto_codes The departments data
+#' @param depto_codes The department codes
 #' @param disease_data The disease data
+#' @param make_group Indicates if it is necessary to group by department IDs and case numbers
 #' @return Clean codes of disease data departments
 #' @examples
 #' geo_codes <- import_geo_codes()

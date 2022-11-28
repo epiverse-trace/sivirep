@@ -3,7 +3,7 @@
 #' Función que filtra en un conjunto de datos por el nombre de la enfermedad
 #' Function that filters in a dataset by the disease name
 #' @param name_disease Name of the disease
-#' @param data Data set
+#' @param sivigila_summary_data Data set
 #' @return The filtered data with the disease selected
 #' @examples
 #' sivigila_summary_data <- import_sivigila_summary_data()
@@ -23,7 +23,7 @@ filter_disease  <- function(name_disease, sivigila_summary_data) {
 #'
 #' Función que obtiene el listado de departamentos de Colombia con su nombre y código
 #' Function that gets the list of departments of Colombia with their name and code
-#' @param deptos_data Departments data
+#' @param geo_codes Geographical codes (Colombia departments and municipalities)
 #' @return The Departments data with code and name
 #' @examples
 #' geo_codes <- import_geo_codes()
@@ -101,13 +101,14 @@ group_by_columns_and_cases <- function(disease_data, col_names, wt_percentage = 
 #' Function that groups the data by an age range and cases number
 #' @param disease_data Disease data
 #' @param col_name Colunm name
+#' @param var_a Additional variables
 #' @param min_val  Min value to group
 #' @param max_val  Max value to group
 #' @param step Step for the range
 #' @return The disease data grouped by the age range and cases
 #' @examples
 #' disease_data <- import_data_disease_by_year(2019, "DENGUE")
-#' disease_dt_by_age <- group_by_columns_and_cases(disease_dt_by_age, c("EDAD", "SEMANA"), wt_percentage = TRUE)
+#' disease_dt_by_age <- group_by_columns_and_cases(disease_data, c("EDAD", "SEMANA"), wt_percentage = TRUE)
 #' group_by_age_range_and_cases(disease_dt_by_age, "EDAD", min_val = 0, max_val = max(disease_dt_by_age$EDAD), step = 10)
 #' @export
 group_by_age_range_and_cases <- function(disease_data, col_name, var_a = NULL, min_val, max_val, step) {
