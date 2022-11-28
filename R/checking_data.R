@@ -108,8 +108,10 @@ group_by_columns_and_cases <- function(disease_data, col_names, wt_percentage = 
 #' @return The disease data grouped by the age range and cases
 #' @examples
 #' disease_data <- import_data_disease_by_year(2019, "DENGUE")
-#' disease_dt_by_age <- group_by_columns_and_cases(disease_data, c("EDAD", "SEMANA"), wt_percentage = TRUE)
-#' group_by_age_range_and_cases(disease_dt_by_age, "EDAD", min_val = 0, max_val = max(disease_dt_by_age$EDAD), step = 10)
+#' disease_dt_by_age <- group_by_columns_and_cases(disease_data, c("EDAD", "SEMANA"), 
+#' wt_percentage = TRUE)
+#' group_by_age_range_and_cases(disease_dt_by_age, "EDAD", min_val = 0, 
+#' max_val = max(disease_dt_by_age$EDAD), step = 10)
 #' @export
 group_by_age_range_and_cases <- function(disease_data, col_name, var_a = NULL, min_val, max_val, step) {
   data_values_range <- data.frame()

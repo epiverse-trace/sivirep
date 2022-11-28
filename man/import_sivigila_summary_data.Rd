@@ -20,6 +20,6 @@ Función que importa la informacion de SIVIGILA a través de una URL
 Function that imports SIVIGILA data through a URL
 }
 \examples{
-import_sivigila_summary_data("https://www.datos.gov.co/api/views/
-qvnt-2igj/rows.csv?accessType=DOWNLOAD")
+import_sivigila_summary_data(
+"https://www.datos.gov.co/api/views/qvnt-2igj/rows.csv?accessType=DOWNLOAD")
 }
