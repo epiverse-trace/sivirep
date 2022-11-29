@@ -99,10 +99,10 @@ The package has functions that allow generating graphs that are quite useful, su
 If you need to generate a map by information department of the selected disease, you can use this function
 
 ```{r, echo=FALSE, error=FALSE, fig.height=6, fig.width=6, warning=FALSE, include=TRUE, message=FALSE}
-sivigila_data_2019 <- import_sivigila_summary_data()
-filtered_data_2019 <- filter_disease("MALAR", sivigila_data_2019)
-data_map_disease_deptos <- clean_depto_disease_codes(depto_codes, filtered_data_2019)
-plot_dept_map(data_map_disease_deptos, col_name_lj = "id")
+#sivigila_data_2019 <- import_sivigila_summary_data()
+#filtered_data_2019 <- filter_disease("MALAR", sivigila_data_2019)
+#data_map_disease_deptos <- clean_depto_disease_codes(depto_codes, filtered_data_2019)
+#plot_dept_map(data_map_disease_deptos, col_name_lj = "id")
 ```
 
 
