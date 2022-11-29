@@ -14,7 +14,7 @@
 #' sivigila_summary_data <- import_sivigila_summary_data()
 #' data <- filter_disease("MALAR", sivigila_summary_data)
 #' @export
-plot_epiweek <- function(dat, col_week, col_cases, year, type = "week", xlabel = "Semana epidemiológica", ylabel = "Número de casos por semana") {
+plot_epiweek <- function(dat, col_week, col_cases, year, type = "week", xlabel = "Semana epidemiologica", ylabel = "Numero de casos por semana") {
   dat$epiweek <- dat[,col_week]
   dat$cases_count <- dat[,col_cases]
   dat_plot <- dat %>% dplyr::group_by(.data$epiweek, .data$Nombre) %>% dplyr::summarise(casos = sum(.data$cases_count), .groups = "drop")

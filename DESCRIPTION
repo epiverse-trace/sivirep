@@ -24,8 +24,6 @@ Imports:
     stringr,
     xml2,
     maptools,
-    gpclib,
-    bit64,
     epitrix
 Suggests: 
     knitr,
