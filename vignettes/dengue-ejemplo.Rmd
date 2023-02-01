@@ -51,7 +51,6 @@ disease_data       <-  import_data_disease_by_year(2020, "DENGUE")
 
 ## Distribución de casos por fecha de inicio de síntomas
 ```{r disease_data, echo=FALSE, error=FALSE, fig.height=5, fig.width=8, warning=FALSE, include=TRUE, message=FALSE}
-
 # Todo esto hay que ponerlo en una serie de dunciones sin hacer uso de base R
 disease_dt_by_onset_sym <- disease_data
 disease_dt_by_onset_sym$INI_SIN <- as.Date(disease_data$FEC_HOS, format = "%AAAA-%MM-%DD")
@@ -61,13 +60,15 @@ disease_dt_by_onset_sym <- remove_error_dates(disease_dt_by_onset_sym)
 disease_dt_by_onset_sym <- group_by_columns_and_cases(disease_dt_by_onset_sym, "INI_SIN")
 disease_dt_by_onset_sym <- disease_dt_by_onset_sym %>% filter(!row_number() %in% c(1, 2, 3, 4, 5, 6))
 #disease_dt_by_onset_sym[order(disease_dt_by_onset_sym$INI_SIN, decreasing = TRUE), ] # Esta línea sólo cumple el propósito de imprimir, pero no cambia nada de los datos. COmo está no tiene ninguna utilidad
-
-ggplot(disease_dt_by_onset_sym, aes(x = INI_SIN, y = Casos)) + 
-  geom_bar(stat="identity", fill="royalblue4") + 
-  labs(x = "Fecha de inicio de síntomas", y = "Número de casos") + 
-  theme_classic(20) + 
-  scale_x_date(date_breaks = "1 month", date_labels = "%b %d")
-
+plot_by_variable(disease_dt_by_onset_sym, 
+                 var_x = "INI_SIN", 
+                 var_y = "Casos", 
+                 var_fill = "INI_SIN", 
+                 label_x = "Fecha de inicio de sIntomas", 
+                 label_y = "Numero de casos", 
+                 legend_pos = "right", 
+                 text_sz = 4, 
+                 show_val = FALSE)
 ```
 **Figura 1.** Distribución de casos por fecha de inicio de síntomas.
 
@@ -75,60 +76,52 @@ ggplot(disease_dt_by_onset_sym, aes(x = INI_SIN, y = Casos)) +
 disease_data_not <- disease_data
 disease_data_not$FEC_NOT <- as.Date(disease_data$FEC_NOT, format = "%AAAA-%MM-%DD")
 disease_data_not <- group_by_columns_and_cases(disease_data, "FEC_NOT")
-#disease_data_not[order(disease_data_not$FEC_NOT, decreasing = TRUE), ]  # Esta línea sólo cumple el propósito de imprimir, pero no cambia nada de los datos. COmo está no tiene ninguna utilidad
 
 plot_by_variable(disease_data_not, var_x = "FEC_NOT", 
                  var_y = "Casos", 
-                 var_fill = NA, 
                  label_x = "Fecha de notificacion", 
-                 label_y = "Casos", 
-                 diagram_title = "", # Por favor remover
+                 label_y = "Número de casos",
                  legend_pos = "right", 
-                 show_val = FALSE) 
-
-#+
-  # scale_x_date(date_breaks = "1 month", date_labels = "%b %d")  # Esta debería poderse agregar
-
-# error: Error: Must request at least one colour from a hue palette.
-
+                 show_val = FALSE) + 
+                 scale_x_date(date_breaks = "1 month", 
+                 date_labels = "%b %d")
 
 ```
-**Figura 4.** Fecha de notificación de los casos de dengue.
+**Figura 2.** Fecha de notificación de los casos de dengue.
 
 
-## Distribución de casos por poblaciones especiales
+
 ```{r distribution_sp, echo=FALSE, error=FALSE, fig.height=7, fig.width=15, warning=FALSE, include=TRUE, message=FALSE}
-disease_dt_special <- get_special_population_and_cases(disease_data)
-disease_dt_special[disease_dt_special == "GP_DISCAPA"] <- "Discapacitados"
-disease_dt_special[disease_dt_special == "GP_DESPLAZ"] <- "Desplazados"
-disease_dt_special[disease_dt_special == "GP_MIGRANT"] <- "Migrantes"
-disease_dt_special[disease_dt_special == "GP_CARCELA"] <- "Carcelaria"
-disease_dt_special[disease_dt_special == "GP_GESTAN"] <- "Gestante"
-disease_dt_special[disease_dt_special == "GP_INDIGEN"] <- "Indigente"
-disease_dt_special[disease_dt_special == "GP_POBICFB"] <- "Pob. infantil del ICBF"
-disease_dt_special[disease_dt_special == "GP_MAD_COM"] <- "Madres comunitarias"
-disease_dt_special[disease_dt_special == "GP_DESMOVI"] <- "Desmovilizados"
-disease_dt_special[disease_dt_special == "GP_PSIQUIA"] <- "Psiquiatrica"
-disease_dt_special[disease_dt_special == "GP_VIC_VIO"] <- "Victimas de violencia"
-disease_dt_special[disease_dt_special == "GP_OTROS"] <- "Otros"
+#disease_dt_special <- get_special_population_and_cases(disease_data)
+#disease_dt_special[disease_dt_special == "GP_DISCAPA"] <- "Discapacitados"
+#disease_dt_special[disease_dt_special == "GP_DESPLAZ"] <- "Desplazados"
+#disease_dt_special[disease_dt_special == "GP_MIGRANT"] <- "Migrantes"
+#disease_dt_special[disease_dt_special == "GP_CARCELA"] <- "Carcelaria"
+#disease_dt_special[disease_dt_special == "GP_GESTAN"] <- "Gestante"
+#disease_dt_special[disease_dt_special == "GP_INDIGEN"] <- "Indigente"
+#disease_dt_special[disease_dt_special == "GP_POBICFB"] <- "Pob. infantil del ICBF"
+#disease_dt_special[disease_dt_special == "GP_MAD_COM"] <- "Madres comunitarias"
+#disease_dt_special[disease_dt_special == "GP_DESMOVI"] <- "Desmovilizados"
+#disease_dt_special[disease_dt_special == "GP_PSIQUIA"] <- "Psiquiatrica"
+#disease_dt_special[disease_dt_special == "GP_VIC_VIO"] <- "Victimas de violencia"
+#disease_dt_special[disease_dt_special == "GP_OTROS"] <- "Otros"
 
-plot_by_variable(disease_dt_special, 
-                 var_x = "Poblacion", 
-                 var_y = "Casos", 
-                 var_fill = "Poblacion", 
-                 label_x = "Poblacion", 
-                 label_y = "Casos", 
-                 scale_name = "Poblacion", 
-                 # diagram_title = "", 
-                 legend_pos = "right", 
-                 bar_wd = 1, 
-                 text_sz = 10, 
-                 show_val = TRUE) + 
-  coord_flip()
+#plot_by_variable(disease_dt_special, 
+                 #var_x = "Poblacion", 
+                 #var_y = "Casos", 
+                 #var_fill = "Poblacion", 
+                 #label_x = "Poblacion", 
+                 #label_y = "Número de casos", 
+                 #scale_name = "Poblacion", 
+                 #legend_pos = "right", 
+                 #bar_wd = 0.7, 
+                 #text_sz = 10, 
+                 #show_val = TRUE) + 
+  #coord_flip()
   
 
 ```
-**Figura 5.** Distribución de casos por poblaciones especiales para 12 grupos poblacionales.
+
 
 
 ## Distribución de casos por sexo
@@ -144,17 +137,17 @@ plot_by_variable(disease_dt_by_gender,
                  label_y = "Número de casos", 
                  scale_name = "Sexo", 
                  scale_labels = c("Femenino", "Masculino"), 
-                 diagram_title ="", 
+                 diagram_title  = "", 
                  legend_pos = "right", 
                  bar_wd = 0.6, 
-                 text_sz = 10, 
+                 text_sz = 8, 
                  show_val = TRUE) +
-  scale_fill_manual(values=c("#56B4E9", "#E69F00"))
+  scale_fill_manual(values = c("#56B4E9", "#E69F00"))
   
 
 # Verificar que el tamaño aumente en todo el texto de la gráfica
 ```
-**Figura 6.** Distribución de casos por la variable sexo.
+**Figura 3.** Distribución de casos por la variable sexo.
 
 
 ## Distribución de casos por género y semana epidemiológica
@@ -163,10 +156,20 @@ disease_dt_by_gender_wk <- group_by_columns_and_cases(disease_data, c("SEMANA","
 
 plot_by_variable(disease_dt_by_gender_wk, 
                  var_x = "SEMANA", 
-                 var_y = "Casos", var_fill = "SEXO", var_per = "Porcentaje", label_x = "Semana epidemiológica", label_y = "Casos", scale_name = "Sexo", scale_labels = c("Femenino", "Masculino"), diagram_title = "", legend_pos = "right", bar_wd = 1, text_sz = 0.5, show_val = FALSE) +
+                 var_y = "Casos", 
+                 var_fill = "SEXO", 
+                 var_per = "Porcentaje", 
+                 label_x = "Semana epidemiológica", 
+                 label_y = "Número de casos", 
+                 scale_name = "Sexo",
+                 scale_labels = c("Femenino", "Masculino"), 
+                 diagram_title = "", legend_pos = "right", 
+                 bar_wd = 0.7, 
+                 text_sz = 0.5, 
+                 show_val = FALSE) +
     scale_fill_manual(values=c("#56B4E9", "#E69F00"))
 ```
-**Figura 7.** Distribución de casos por sexo y semana epidemiológica.
+**Figura 4.** Distribución de casos por sexo y semana epidemiológica.
 
 
 ## Distribución de casos por edad
@@ -176,10 +179,19 @@ disease_dt_by_age <- remove_nin_values(disease_dt_by_age, "EDAD")
 disease_dt_by_age <- group_by_columns_and_cases(disease_dt_by_age, c("EDAD", "SEMANA"), wt_percentage = TRUE)
 disease_dt_by_age_range <- group_by_age_range_and_cases(disease_dt_by_age, "EDAD", min_val = 0, max_val = max(disease_dt_by_age$EDAD), step = 10)
 
-#plot_by_variable(disease_dt_by_age_range, var_x = "EDAD", var_y = "Casos", var_fill = "EDAD",label_x = "Edad", label_y = "Casos", scale_name = "Edad", diagram_title = "", legend_pos = "right", bar_wd = 0.7, text_sz = 3)
-ggplot(disease_dt_by_age_range, aes(x = EDAD, y = Casos)) + geom_bar(stat="identity", fill="royalblue4") + ggplot2::labs(x = "Edad", y = "Casos") + theme_classic() + ggplot2::geom_text( ggplot2::aes(label = Casos ), vjust = 1.3, color = "white", hjust = 0.5, position = ggplot2::position_dodge(0.9), angle = 0, size = 3)
+plot_by_variable(disease_dt_by_age_range,
+                 var_x = "EDAD", 
+                 var_y = "Casos", 
+                 var_fill = "EDAD",
+                 label_x = "Edad", 
+                 label_y = "Número de casos", 
+                 scale_name = "Edad", 
+                 legend_pos = "right", 
+                 bar_wd = 0.7, 
+                 text_sz = 3)
+#ggplot(disease_dt_by_age_range, aes(x = EDAD, y = Casos)) + geom_bar(stat="identity", fill="royalblue4") + ggplot2::labs(x = "Edad", y = "Casos") + theme_classic() + ggplot2::geom_text( ggplot2::aes(label = Casos ), vjust = 1.3, color = "black", hjust = 0.5, position = ggplot2::position_dodge(0.9), angle = 0, size = 3)
 ```
-**Figura 8.** Distribución de casos por edad.
+**Figura 5.** Distribución de casos por edad.
 
 
 ## Distribución de casos por edad y sexo
@@ -189,6 +201,16 @@ disease_dt_by_age_gen <- remove_nin_values(disease_dt_by_age_gen, "EDAD")
 disease_dt_by_age_gen <- group_by_columns_and_cases(disease_dt_by_age_gen, c("EDAD", "SEXO"), wt_percentage = TRUE)
 disease_dt_by_age_gen_range <- group_by_age_range_and_cases(disease_dt_by_age_gen, "EDAD", "SEXO", min_val = 0, max_val = max(disease_dt_by_age_gen$EDAD), 10)
 
-plot_by_variable(disease_dt_by_age_gen_range, var_x = "EDAD", var_y = "Casos", var_fill = "SEXO",label_x = "Edad", label_y = "Casos", scale_name = "Edad", diagram_title = "", legend_pos = "right", bar_wd = 0.7, text_sz = 3, show_val = FALSE)
+plot_by_variable(disease_dt_by_age_gen_range, 
+                 var_x = "EDAD", 
+                 var_y = "Casos", 
+                 var_fill = "SEXO",
+                 label_x = "Edad", 
+                 label_y = "Número de casos", 
+                 scale_name = "Edad", 
+                 legend_pos = "right", 
+                 bar_wd = 0.7, 
+                 text_sz = 3, 
+                 show_val = FALSE)
 ```
-**Figura 9** Distribucipon de casos por edad y sexo.
+**Figura 6** Distribucipon de casos por edad y sexo.
