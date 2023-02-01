@@ -23,26 +23,6 @@ library(ggplot2)
 
 ## Reporte de dengue en Colombia 2020
 
-<!-- ```{r read, echo=FALSE, error=FALSE, fig.height=5, fig.width=5, warning=FALSE, include = FALSE, message= FALSE} -->
-<!-- sivigila_data <- import_sivigila_summary_data() -->
-<!-- filtered_data <- filter_disease("DENGUE", sivigila_data) -->
-
-<!-- # Esto hay que sacarlo, a menos que sea para mostrar las enfermedades con las que se pueda trabajar. Pero para un reporte de enfermedad NOOOOO sirve -->
-
-<!-- ``` -->
-<!-- A continuación se presentan 8 figuras que muestran la distribución de casos por semana epidemiológica, la distribución de casos por fecha de inicio de síntomas, casos por fecha de notificación, la distribución de casos por poblaciones especiales, casos por sexo, casos por sexo y semana epidemiológica, casos por edad y distribución de casos por edad y sexo. -->
-
-<!-- ## Distribución de casos por semana epidemiológica -->
-
-
-<!-- ```{r epiweek, echo=FALSE, error=FALSE, fig.height=5, fig.width=10, warning=FALSE, include = TRUE, message= FALSE} -->
-
-<!-- plot_epiweek(filtered_data, col_week = "SEMANA", col_cases = "Casos", year = 2019, type = "date", xlabel = "Fecha de semana epidemiologica") -->
-
-<!-- ``` -->
-<!-- **Figura 1.** Distribución de casos de dengue por semana  epidemiológica entre enero de 2019 y enero de 2020. -->
-
-
 
 ```{r import_data, echo=FALSE, error=FALSE, fig.height=8, fig.width=8, warning=FALSE, include = FALSE, message= FALSE}
 disease_data       <-  import_data_disease_by_year(2020, "DENGUE")
@@ -51,7 +31,7 @@ disease_data       <-  import_data_disease_by_year(2020, "DENGUE")
 
 ## Distribución de casos por fecha de inicio de síntomas
 ```{r disease_data, echo=FALSE, error=FALSE, fig.height=5, fig.width=8, warning=FALSE, include=TRUE, message=FALSE}
-# Todo esto hay que ponerlo en una serie de dunciones sin hacer uso de base R
+# Todo esto hay que ponerlo en una serie de funciones sin hacer uso de base R
 disease_dt_by_onset_sym <- disease_data
 disease_dt_by_onset_sym$INI_SIN <- as.Date(disease_data$FEC_HOS, format = "%AAAA-%MM-%DD")
 disease_dt_by_onset_sym$INI_SIN <- as.Date(disease_data$INI_SIN, format = "%AAAA-%MM-%DD")
@@ -63,12 +43,12 @@ disease_dt_by_onset_sym <- disease_dt_by_onset_sym %>% filter(!row_number() %in%
 plot_by_variable(disease_dt_by_onset_sym, 
                  var_x = "INI_SIN", 
                  var_y = "Casos", 
-                 var_fill = "INI_SIN", 
                  label_x = "Fecha de inicio de sIntomas", 
-                 label_y = "Numero de casos", 
+                 label_y = "Número de casos", 
                  legend_pos = "right", 
                  text_sz = 4, 
-                 show_val = FALSE)
+                 show_val = FALSE) + scale_x_date(date_breaks = "1 month", 
+                 date_labels = "%b %d")
 ```
 **Figura 1.** Distribución de casos por fecha de inicio de síntomas.
 
@@ -88,40 +68,6 @@ plot_by_variable(disease_data_not, var_x = "FEC_NOT",
 
 ```
 **Figura 2.** Fecha de notificación de los casos de dengue.
-
-
-
-```{r distribution_sp, echo=FALSE, error=FALSE, fig.height=7, fig.width=15, warning=FALSE, include=TRUE, message=FALSE}
-#disease_dt_special <- get_special_population_and_cases(disease_data)
-#disease_dt_special[disease_dt_special == "GP_DISCAPA"] <- "Discapacitados"
-#disease_dt_special[disease_dt_special == "GP_DESPLAZ"] <- "Desplazados"
-#disease_dt_special[disease_dt_special == "GP_MIGRANT"] <- "Migrantes"
-#disease_dt_special[disease_dt_special == "GP_CARCELA"] <- "Carcelaria"
-#disease_dt_special[disease_dt_special == "GP_GESTAN"] <- "Gestante"
-#disease_dt_special[disease_dt_special == "GP_INDIGEN"] <- "Indigente"
-#disease_dt_special[disease_dt_special == "GP_POBICFB"] <- "Pob. infantil del ICBF"
-#disease_dt_special[disease_dt_special == "GP_MAD_COM"] <- "Madres comunitarias"
-#disease_dt_special[disease_dt_special == "GP_DESMOVI"] <- "Desmovilizados"
-#disease_dt_special[disease_dt_special == "GP_PSIQUIA"] <- "Psiquiatrica"
-#disease_dt_special[disease_dt_special == "GP_VIC_VIO"] <- "Victimas de violencia"
-#disease_dt_special[disease_dt_special == "GP_OTROS"] <- "Otros"
-
-#plot_by_variable(disease_dt_special, 
-                 #var_x = "Poblacion", 
-                 #var_y = "Casos", 
-                 #var_fill = "Poblacion", 
-                 #label_x = "Poblacion", 
-                 #label_y = "Número de casos", 
-                 #scale_name = "Poblacion", 
-                 #legend_pos = "right", 
-                 #bar_wd = 0.7, 
-                 #text_sz = 10, 
-                 #show_val = TRUE) + 
-  #coord_flip()
-  
-
-```
-
 
 
 ## Distribución de casos por sexo
@@ -189,7 +135,6 @@ plot_by_variable(disease_dt_by_age_range,
                  legend_pos = "right", 
                  bar_wd = 0.7, 
                  text_sz = 3)
-#ggplot(disease_dt_by_age_range, aes(x = EDAD, y = Casos)) + geom_bar(stat="identity", fill="royalblue4") + ggplot2::labs(x = "Edad", y = "Casos") + theme_classic() + ggplot2::geom_text( ggplot2::aes(label = Casos ), vjust = 1.3, color = "black", hjust = 0.5, position = ggplot2::position_dodge(0.9), angle = 0, size = 3)
 ```
 **Figura 5.** Distribución de casos por edad.
 
@@ -206,11 +151,12 @@ plot_by_variable(disease_dt_by_age_gen_range,
                  var_y = "Casos", 
                  var_fill = "SEXO",
                  label_x = "Edad", 
-                 label_y = "Número de casos", 
+                 label_y = "Numero de casos", 
                  scale_name = "Edad", 
                  legend_pos = "right", 
                  bar_wd = 0.7, 
                  text_sz = 3, 
-                 show_val = FALSE)
+                 show_val = FALSE) +
+  scale_fill_manual(values=c("#CC6666", "#9999CC"))
 ```
 **Figura 6** Distribucipon de casos por edad y sexo.
