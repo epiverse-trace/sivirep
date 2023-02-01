@@ -118,6 +118,6 @@ plot_by_variable <- function(data, var_x, var_y, var_per = NULL, var_fill, wt_pe
     # ggplot2::scale_fill_discrete(name = scale_name, {if (!is.null(scale_labels)) labels = scale_labels}) +
     # theme(axis.text.x = element_text(angle = -45, vjust = 1, hjust = -0.3)) +
     # theme_linedraw() +
-    ggplot2::theme(legend.position = legend_pos) +
+    ggplot2::theme(legend.position = legend_pos)
     # ggplot2::facet_grid(~as.character(diagram_title))
 }
