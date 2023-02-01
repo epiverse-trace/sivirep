@@ -119,5 +119,5 @@ plot_by_variable <- function(data, var_x, var_y, var_per = NULL, var_fill, wt_pe
     # theme(axis.text.x = element_text(angle = -45, vjust = 1, hjust = -0.3)) +
     # theme_linedraw() +
     ggplot2::theme(legend.position = legend_pos) +
-    ggplot2::facet_grid(~as.character(diagram_title))
+    # ggplot2::facet_grid(~as.character(diagram_title))
 }
