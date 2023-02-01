@@ -18,16 +18,16 @@ plot_epiweek <- function(dat, col_week, col_cases, year, type = "week", xlabel =
   dat$epiweek <- dat[,col_week]
   dat$cases_count <- dat[,col_cases]
   dat_plot <- dat %>% dplyr::group_by(.data$epiweek, .data$Nombre) %>% dplyr::summarise(casos = sum(.data$cases_count), .groups = "drop")
-
+  
   if (type == "week") {
-      plot <- ggplot2::ggplot(dat_plot) +
-        ggplot2::geom_col(ggplot2::aes(x = .data$epiweek, y = .data$casos, fill = .data$Nombre), alpha = 0.9) +
-        ggplot2::theme_classic() +
-        ggplot2::xlab(xlabel) + ggplot2::ylab(ylabel) +
-        ggplot2::scale_fill_discrete(name = "") +
-        ggplot2::theme(legend.position = "bottom")
+    plot <- ggplot2::ggplot(dat_plot) +
+      ggplot2::geom_col(ggplot2::aes(x = .data$epiweek, y = .data$casos, fill = .data$Nombre), alpha = 0.9) +
+      ggplot2::theme_classic() +
+      ggplot2::xlab(xlabel) + ggplot2::ylab(ylabel) +
+      ggplot2::scale_fill_discrete(name = "") +
+      ggplot2::theme(legend.position = "bottom")
   }
-
+  
   if (type == "date") {
     dat_plot$date_week <- as.Date(paste(year, dat_plot$epiweek, 1, sep = "-"), "%Y-%U-%u")
     plot <- ggplot2::ggplot(dat_plot) +
@@ -37,7 +37,7 @@ plot_epiweek <- function(dat, col_week, col_cases, year, type = "week", xlabel =
       ggplot2::scale_fill_discrete(name = "") +
       ggplot2::theme(legend.position = "bottom")
   }
-
+  
   return(plot)
 }
 
@@ -63,13 +63,13 @@ plot_dept_map <- function(data_map_depto, col_name_lj = "id") {
   shp.df <- ggplot2::fortify(shp, region = "DPTO")
   shp.df <- shp.df %>%
     dplyr::left_join(data_map_depto, by = col_name_lj)
-
+  
   map <- ggplot2::ggplot() +
     ggplot2::geom_polygon(data = shp.df, ggplot2::aes(x = .data$long, y = .data$lat, group = .data$group, fill = .data$casos),
-                 colour = "black") +
+                          colour = "black") +
     ggplot2::scale_fill_gradient(low = "white", high = "darkred") +
     ggplot2::theme_void()
-
+  
   return(map)
 }
 
@@ -104,20 +104,20 @@ plot_by_variable <- function(data, var_x, var_y, var_per = NULL, var_fill, wt_pe
     ggplot2::labs(fill = "") +
     ggplot2::theme_classic() +
     {if (show_val)
-         ggplot2::geom_text(
-                {if (!is.null(var_per)) eval(parse(text = paste0("ggplot2::aes(label = paste0(", var_y,", '\n (' ,", var_per, ", '%', ')'","))")))
-                 else eval(parse(text = paste0("ggplot2::aes(label = ",var_y,")")))},
-                vjust = 1.3,
-                color = "black",
-                hjust = 0.5,
-                position = ggplot2::position_dodge(0.9),
-                angle = 0,
-                size = text_sz,
-        )
+      ggplot2::geom_text(
+        {if (!is.null(var_per)) eval(parse(text = paste0("ggplot2::aes(label = paste0(", var_y,", '\n (' ,", var_per, ", '%', ')'","))")))
+          else eval(parse(text = paste0("ggplot2::aes(label = ",var_y,")")))},
+        vjust = 1.3,
+        color = "black",
+        hjust = 0.5,
+        position = ggplot2::position_dodge(0.9),
+        angle = 0,
+        size = text_sz,
+      )
     } +
     # ggplot2::scale_fill_discrete(name = scale_name, {if (!is.null(scale_labels)) labels = scale_labels}) +
     # theme(axis.text.x = element_text(angle = -45, vjust = 1, hjust = -0.3)) +
     # theme_linedraw() +
     ggplot2::theme(legend.position = legend_pos)
-    # ggplot2::facet_grid(~as.character(diagram_title))
+  # ggplot2::facet_grid(~as.character(diagram_title))
 }
