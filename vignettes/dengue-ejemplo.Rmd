@@ -60,14 +60,9 @@ disease_dt_by_onset_sym <- remove_nin_values(disease_data, "INI_SIN")
 disease_dt_by_onset_sym <- remove_error_dates(disease_dt_by_onset_sym)
 disease_dt_by_onset_sym <- group_by_columns_and_cases(disease_dt_by_onset_sym, "INI_SIN")
 disease_dt_by_onset_sym <- disease_dt_by_onset_sym %>% filter(!row_number() %in% c(1, 2, 3, 4, 5, 6))
-#disease_dt_by_onset_sym[order(disease_dt_by_onset_sym$INI_SIN, decreasing = TRUE), ] # Esta línea sólo cumple el propósito de imprimir, pero no cambia nada de los datos. COmo está no tiene ninguna utilidad
+disease_dt_by_onset_sym[order(disease_dt_by_onset_sym$INI_SIN, decreasing = TRUE), ] # Esta línea sólo cumple el propósito de imprimir, pero no cambia nada de los datos. COmo está no tiene ninguna utilidad
 
-ggplot(disease_dt_by_onset_sym, aes(x = INI_SIN, y = Casos)) + 
-  geom_bar(stat="identity", fill="royalblue4") + 
-  labs(x = "Fecha de inicio de síntomas", y = "Número de casos") + 
-  theme_classic(20) + 
-  scale_x_date(date_breaks = "1 month", date_labels = "%b %d")
-
+plot_by_variable(disease_dt_by_onset_sym, var_x = "INI_SIN", var_y = "Casos", var_fill = "INI_SIN", label_x = "Fecha de inicio de síntomas", label_y = "Casos", diagram_title = "Diagrama para la variable Fecha de inicio de síntomas", legend_pos = "right", text_sz = 4, show_val = FALSE)
 ```
 **Figura 1.** Distribución de casos por fecha de inicio de síntomas.
 
@@ -143,7 +138,7 @@ plot_by_variable(disease_dt_by_gender,
                  label_y = "Número de casos", 
                  scale_name = "Sexo", 
                  scale_labels = c("Femenino", "Masculino"), 
-                 diagram_title ="", 
+                 diagram_title = "", 
                  legend_pos = "right", 
                  bar_wd = 0.6, 
                  text_sz = 10, 
@@ -175,8 +170,7 @@ disease_dt_by_age <- remove_nin_values(disease_dt_by_age, "EDAD")
 disease_dt_by_age <- group_by_columns_and_cases(disease_dt_by_age, c("EDAD", "SEMANA"), wt_percentage = TRUE)
 disease_dt_by_age_range <- group_by_age_range_and_cases(disease_dt_by_age, "EDAD", min_val = 0, max_val = max(disease_dt_by_age$EDAD), step = 10)
 
-#plot_by_variable(disease_dt_by_age_range, var_x = "EDAD", var_y = "Casos", var_fill = "EDAD",label_x = "Edad", label_y = "Casos", scale_name = "Edad", diagram_title = "", legend_pos = "right", bar_wd = 0.7, text_sz = 3)
-ggplot(disease_dt_by_age_range, aes(x = EDAD, y = Casos)) + geom_bar(stat="identity", fill="royalblue4") + ggplot2::labs(x = "Edad", y = "Casos") + theme_classic() + ggplot2::geom_text( ggplot2::aes(label = Casos ), vjust = 1.3, color = "white", hjust = 0.5, position = ggplot2::position_dodge(0.9), angle = 0, size = 3)
+plot_by_variable(disease_dt_by_age_range, var_x = "EDAD", var_y = "Casos", var_fill = "EDAD",label_x = "Edad", label_y = "Casos", scale_name = "Edad", diagram_title = "", legend_pos = "right", bar_wd = 0.7, text_sz = 3)
 ```
 **Figura 8.** Distribución de casos por edad.
 
