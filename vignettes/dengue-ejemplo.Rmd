@@ -78,8 +78,7 @@ disease_data_not <- group_by_columns_and_cases(disease_data, "FEC_NOT")
 #disease_data_not[order(disease_data_not$FEC_NOT, decreasing = TRUE), ]  # Esta línea sólo cumple el propósito de imprimir, pero no cambia nada de los datos. COmo está no tiene ninguna utilidad
 
 plot_by_variable(disease_data_not, var_x = "FEC_NOT", 
-                 var_y = "Casos", 
-                 var_fill = NA, 
+                 var_y = "Casos",
                  label_x = "Fecha de notificacion", 
                  label_y = "Casos", 
                  diagram_title = "", # Por favor remover
