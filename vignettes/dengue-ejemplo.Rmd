@@ -3,8 +3,8 @@ title: "Reporte de Dengue, Colombia 2020"
 author: "TRACE-LAC"
 date: '2023-02-01'
 output:
-  pdf_document: default
   word_document: default
+  pdf_document: default
   html_document: default
 subtitle: (fuente SIVIGILA, Datos libres)
 ---
@@ -52,6 +52,7 @@ plot_by_variable(disease_dt_by_onset_sym,
 ```
 **Figura 1.** Distribución de casos por fecha de inicio de síntomas.
 
+
 ```{r distribution_not, echo=FALSE, error=FALSE, fig.height=5, fig.width=10, warning=FALSE, include=TRUE, message=FALSE}
 disease_data_not <- disease_data
 disease_data_not$FEC_NOT <- as.Date(disease_data$FEC_NOT, format = "%AAAA-%MM-%DD")
@@ -87,9 +88,7 @@ plot_by_variable(disease_dt_by_gender,
                  legend_pos = "right", 
                  bar_wd = 0.6, 
                  text_sz = 8, 
-                 show_val = TRUE) +
-  scale_fill_manual(values = c("#56B4E9", "#E69F00"))
-  
+                 show_val = TRUE)
 
 # Verificar que el tamaño aumente en todo el texto de la gráfica
 ```
@@ -112,8 +111,8 @@ plot_by_variable(disease_dt_by_gender_wk,
                  diagram_title = "", legend_pos = "right", 
                  bar_wd = 0.7, 
                  text_sz = 0.5, 
-                 show_val = FALSE) +
-    scale_fill_manual(values=c("#56B4E9", "#E69F00"))
+                 show_val = FALSE) + scale_x_continuous(breaks = seq(0, 53, by = 5)) 
+
 ```
 **Figura 4.** Distribución de casos por sexo y semana epidemiológica.
 
@@ -156,7 +155,6 @@ plot_by_variable(disease_dt_by_age_gen_range,
                  legend_pos = "right", 
                  bar_wd = 0.7, 
                  text_sz = 3, 
-                 show_val = FALSE) +
-  scale_fill_manual(values=c("#CC6666", "#9999CC"))
+                 show_val = FALSE)
 ```
 **Figura 6** Distribucipon de casos por edad y sexo.
