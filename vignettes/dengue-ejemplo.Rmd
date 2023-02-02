@@ -3,17 +3,13 @@ title: "Reporte Automatizado para Dengue, Colombia 2020"
 author: "TRACE-LAC"
 date: '2023-02-01'
 output:
-  pdf_document: default
+  pdf_document: 
+    number_sections: true
   html_document:
     number_sections: true
   word_document: default
 header-includes:
-- \usepackage{placeins}
-- \usepackage{setspace}
-- \usepackage{chngcntr}
 - \usepackage{fancyhdr}
-- \pagenumbering{gobble}
-- \pagenumbering{arabic}
 subtitle: (fuente SIVIGILA, Datos libres)
 ---
 
@@ -32,7 +28,9 @@ library(ggplot2)
 disease_data       <-  import_data_disease_by_year(2020, "DENGUE")
 
 ```
-\pagenumbering{gobble} 
+
+\pagenumbering{gobble}
+\pagenumbering{arabic}
 
 En este reporte se presenta de forma automatizada el comportamiento del Dengue durante el año 2020 para Colombia con base en la fuente de datos SIVIGILA de acceso libre.
 En total en Colombia durante 2020 se reportaron `r nrow(disease_data)` casos en todo el territorio nacional. 
@@ -62,8 +60,6 @@ plot_by_variable(disease_dt_by_onset_sym,
                  date_labels = "%b %d")
 ```
 **Figura 1.** Distribución de casos por fecha de inicio de síntomas.
-
-\pagenumbering{arabic}
 
 ```{r distribution_not, echo=FALSE, error=FALSE, fig.height=5, fig.width=10, warning=FALSE, include=TRUE, message=FALSE}
 disease_data_not <- disease_data
