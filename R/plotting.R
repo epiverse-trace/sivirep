@@ -100,7 +100,7 @@ plot_by_variable <- function(data, var_x, var_y, var_per = NULL, var_fill = NULL
                              scale_name = NULL, scale_labels = NULL, diagram_title, legend_pos, bar_wd = 1, text_sz = 3, show_val = TRUE) {
   
   ggplot2::ggplot(data, {if (is.null(var_fill)) ggplot2::aes_string(x = var_x, y = var_y) else ggplot2::aes_string(x = var_x, y = var_y, fill = var_fill)}) +
-    {if (is.null(var_fill)) ggplot2::geom_bar(width = bar_wd, stat = "identity", position = ggplot2::position_dodge(), fill = "#56B4E9") 
+    {if (is.null(var_fill)) ggplot2::geom_bar(width = bar_wd, stat = "identity", position = ggplot2::position_dodge(), fill = "#90C73D") 
       else  ggplot2::geom_bar(width = bar_wd, stat = "identity", position = ggplot2::position_dodge())} +
     ggplot2::labs(x = label_x, y = label_y) +
     ggplot2::labs(fill = "") +
