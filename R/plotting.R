@@ -97,29 +97,31 @@ plot_dept_map <- function(data_map_depto, col_name_lj = "id") {
 #' disease_data <- import_data_disease_by_year(2019, "DENGUE")
 #' @export
 plot_by_variable <- function(data, var_x, var_y, var_per = NULL, var_fill = NULL, wt_per = TRUE, label_x, label_y,
-                             scale_name = NULL, scale_labels = NULL, diagram_title, legend_pos, bar_wd = 1, text_sz, show_val = TRUE) {
+                             scale_name = NULL, scale_labels = NULL, diagram_title, legend_pos, bar_wd = 1, text_sz = 3, show_val = TRUE) {
   
-  ggplot2::ggplot(data, {if (!is.null(var_fill)) ggplot2::aes_string(x = var_x, y = var_y) else ggplot2::aes_string(x = var_x, y = var_y, fill = var_fill) }) +
-    ggplot2::geom_bar(width = bar_wd, stat = "identity", position = ggplot2::position_dodge(), fill = {if (!is.null(var_fill)) "royalblue4" else ""}) +
+  ggplot2::ggplot(data, {if (is.null(var_fill)) ggplot2::aes_string(x = var_x, y = var_y) else ggplot2::aes_string(x = var_x, y = var_y, fill = var_fill)}) +
+    {if (is.null(var_fill)) ggplot2::geom_bar(width = bar_wd, stat = "identity", position = ggplot2::position_dodge(), fill = "#56B4E9") 
+      else  ggplot2::geom_bar(width = bar_wd, stat = "identity", position = ggplot2::position_dodge())} +
     ggplot2::labs(x = label_x, y = label_y) +
     ggplot2::labs(fill = "") +
     ggplot2::theme_classic() + {if (text_sz > 3)
-    ggplot2::theme(text = ggplot2::element_text(size = text_sz * 3))} +
+    ggplot2::theme(text = ggplot2::element_text(size = text_sz * 2))} +
     {if (show_val)
-         ggplot2::geom_text(
-                {if (!is.null(var_per)) eval(parse(text = paste0("ggplot2::aes(label = paste0(", var_y,", '\n (' ,", var_per, ", '%', ')'","))")))
-                 else eval(parse(text = paste0("ggplot2::aes(label = ",var_y,")")))},
-                vjust = 1.3,
-                color = {if (!is.null(var_fill)) "white" else "black"},
-                hjust = 0.5,
-                position = ggplot2::position_dodge(0.9),
-                angle = 0,
-                size = text_sz,
-        )
+      ggplot2::geom_text(
+        {if (!is.null(var_per)) eval(parse(text = paste0("ggplot2::aes(label = paste0(", var_y,", '\n (' ,", var_per, ", '%', ')'","))")))
+          else eval(parse(text = paste0("ggplot2::aes(label = ",var_y,")")))},
+        vjust = 1.3,
+        color = "black",
+        hjust = 0.5,
+        position = ggplot2::position_dodge(0.9),
+        angle = 0,
+        size = text_sz,
+      )
     } +
     # ggplot2::scale_fill_discrete(name = scale_name, {if (!is.null(scale_labels)) labels = scale_labels}) +
     # theme(axis.text.x = element_text(angle = -45, vjust = 1, hjust = -0.3)) +
     # theme_linedraw() +
-    ggplot2::theme(legend.position = legend_pos)
+    ggplot2::theme(legend.position = legend_pos) +
+    {if (ncol(data) == 3 || (!is.null(var_fill) && var_fill == "SEXO")) ggplot2::scale_fill_manual(values = c("#56B4E9", "#E69F00")) else ggplot2::theme(legend.position = legend_pos)}
   # ggplot2::facet_grid(~as.character(diagram_title))
 }
