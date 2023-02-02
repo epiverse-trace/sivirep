@@ -3,16 +3,23 @@ title: "Reporte Automatizado para Dengue, Colombia 2020"
 author: "TRACE-LAC"
 date: '2023-02-01'
 output:
-  html_document: default
   pdf_document: default
+  html_document:
+    number_sections: true
   word_document: default
-  number_sections: TRUE
+header-includes:
+- \usepackage{placeins}
+- \usepackage{setspace}
+- \usepackage{chngcntr}
+- \usepackage{fancyhdr}
+- \pagenumbering{gobble}
+- \pagenumbering{arabic}
 subtitle: (fuente SIVIGILA, Datos libres)
 ---
 
 ```{r setup, echo=FALSE, error=FALSE, fig.height=5, fig.width=5, warning=FALSE, include = FALSE, message= FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-remotes::install_github("epiverse-trace/sivirep", ref = "dev")
+#remotes::install_github("epiverse-trace/sivirep", ref = "dev")
 
 rm(list = ls())
 
@@ -21,17 +28,15 @@ library(dplyr)
 library(ggplot2) 
 ```
 
-
-En este reporte se presenta de forma automatizada el comportamiento del Dengue durante el año 2020 para Colombia con base en la fuente de datos SIVIGILA de acceso libre.
-En total en Colombia durante 2020 se reportaron  casos ```{}
-```  en todo el territorio nacional. 
-
-
-
 ```{r import_data, echo=FALSE, error=FALSE, fig.height=8, fig.width=8, warning=FALSE, include = FALSE, message= FALSE}
 disease_data       <-  import_data_disease_by_year(2020, "DENGUE")
 
 ```
+\pagenumbering{gobble} 
+
+En este reporte se presenta de forma automatizada el comportamiento del Dengue durante el año 2020 para Colombia con base en la fuente de datos SIVIGILA de acceso libre.
+En total en Colombia durante 2020 se reportaron `r nrow(disease_data)` casos en todo el territorio nacional. 
+
 
 # Distribución temporal de los casos 
 
@@ -58,6 +63,7 @@ plot_by_variable(disease_dt_by_onset_sym,
 ```
 **Figura 1.** Distribución de casos por fecha de inicio de síntomas.
 
+\pagenumbering{arabic}
 
 ```{r distribution_not, echo=FALSE, error=FALSE, fig.height=5, fig.width=10, warning=FALSE, include=TRUE, message=FALSE}
 disease_data_not <- disease_data
@@ -75,7 +81,7 @@ plot_by_variable(disease_data_not, var_x = "FEC_NOT",
 
 ```
 **Figura 2.** Fecha de notificación de los casos de dengue.
-
+\pagenumbering{arabic}
 
 # Distribución de casos por sexo y semana epidemiológica
 
@@ -128,18 +134,20 @@ plot_by_variable(disease_dt_by_gender_wk,
 
 # Distribución de casos por edad y sexo
 
-La distribución de los casos por grupos etarios muestra una tendencia decreciente a medida que se avanza en la edad. La población menor de 10 años representó el  34.2% de todos los casos de Dengue en el país (Ver figura 5).
-De forma interesante, aunque el sexo masculino predominó en casi todos los grupos etários,  para el grupo de 0-10 años esta predominancia fue mucho menos marcada (Ver Figura 6).
-
-```{r distribution_age, echo=FALSE, error=FALSE, fig.height=5, fig.width=10, warning=FALSE, include=TRUE, message=FALSE}
+```{r distribution_age_d, echo=FALSE, error=FALSE, fig.height=5, fig.width=10, warning=FALSE, include=TRUE, message=FALSE}
 disease_dt_by_age <- parse_age_to_years(disease_data)
 disease_dt_by_age <- remove_nin_values(disease_dt_by_age, "EDAD")
 disease_dt_by_age <- group_by_columns_and_cases(disease_dt_by_age, c("EDAD", "SEMANA"), wt_percentage = TRUE)
 disease_dt_by_age_range <- group_by_age_range_and_cases(disease_dt_by_age, "EDAD", min_val = 0, max_val = max(disease_dt_by_age$EDAD), step = 10)
+```
 
+La distribución de los casos por grupos etarios muestra una tendencia decreciente a medida que se avanza en la edad. La población menor de 10 años representó el   `r nrow(disease_data)` de todos los casos de Dengue en el país (Ver figura 5).
+De forma interesante, aunque el sexo masculino predominó en casi todos los grupos etários,  para el grupo de 0-10 años esta predominancia fue mucho menos marcada (Ver Figura 6).
+
+```{r distribution_age, echo=FALSE, error=FALSE, fig.height=5, fig.width=10, warning=FALSE, include=TRUE, message=FALSE}
 plot_by_variable(disease_dt_by_age_range,
                  var_x = "EDAD", 
-                 var_y = "Casos",
+                 var_y = "Casos", 
                  label_x = "Edad", 
                  label_y = "Número de casos", 
                  scale_name = "Edad", 
@@ -173,7 +181,7 @@ plot_by_variable(disease_dt_by_age_gen_range,
 
 # Conclusiones
 
-a. Los casos totales reportados de Dengue en Colombia en el año 2020 fueron 76419.
+a. Los casos totales reportados de Dengue en Colombia en el año 2020 fueron `r nrow(disease_data)`.
 b. Los meses de enero a marzo tuvieron el mayor reporte. Es posible que haya un impacto en el menor reporte y/o menor transmisión de Dengue como producto de la pandemia COVID-19 y medidas de control que iniciaron en marzo de 2020.
-c. El reporte de casos de Dengue a lo largo de 2020 predominó en la población de 0-10 años
-d. El reporte de casos de dengue predominó a lo largo del año en el sexo masculino
+c. El reporte de casos de Dengue a lo largo de 2020 predominó en la población de 0-10 años.
+d. El reporte de casos de dengue predominó a lo largo del año en el sexo masculino.
