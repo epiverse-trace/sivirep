@@ -96,7 +96,7 @@ plot_dept_map <- function(data_map_depto, col_name_lj = "id") {
 #' @examples 
 #' disease_data <- import_data_disease_by_year(2019, "DENGUE")
 #' @export
-plot_by_variable <- function(data, var_x, var_y, var_per = NULL, var_fill, wt_per = TRUE, label_x, label_y,
+plot_by_variable <- function(data, var_x, var_y, var_per = NULL, var_fill = NULL, wt_per = TRUE, label_x, label_y,
                              scale_name = NULL, scale_labels = NULL, diagram_title, legend_pos, bar_wd = 1, text_sz, show_val = TRUE) {
   
   ggplot2::ggplot(data, {if (!is.null(var_fill)) ggplot2::aes_string(x = var_x, y = var_y) else ggplot2::aes_string(x = var_x, y = var_y, fill = var_fill) }) +
