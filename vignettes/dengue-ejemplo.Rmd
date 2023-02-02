@@ -141,7 +141,7 @@ disease_dt_by_age <- group_by_columns_and_cases(disease_dt_by_age, c("EDAD", "SE
 disease_dt_by_age_range <- group_by_age_range_and_cases(disease_dt_by_age, "EDAD", min_val = 0, max_val = max(disease_dt_by_age$EDAD), step = 10)
 ```
 
-La distribución de los casos por grupos etarios muestra una tendencia decreciente a medida que se avanza en la edad. La población menor de 10 años representó el   `r nrow(disease_data)` de todos los casos de Dengue en el país (Ver figura 5).
+La distribución de los casos por grupos etarios muestra una tendencia decreciente a medida que se avanza en la edad. La población menor de 10 años representó el   `r round((first(disease_dt_by_age_range$Casos)[1]/nrow(disease_data) * 100), 2) ` de todos los casos de Dengue en el país (Ver figura 5).
 De forma interesante, aunque el sexo masculino predominó en casi todos los grupos etários,  para el grupo de 0-10 años esta predominancia fue mucho menos marcada (Ver Figura 6).
 
 ```{r distribution_age, echo=FALSE, error=FALSE, fig.height=5, fig.width=10, warning=FALSE, include=TRUE, message=FALSE}
