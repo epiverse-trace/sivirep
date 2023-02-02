@@ -103,7 +103,8 @@ plot_by_variable <- function(data, var_x, var_y, var_per = NULL, var_fill, wt_pe
     ggplot2::geom_bar(width = bar_wd, stat = "identity", position = ggplot2::position_dodge(), fill = {if (!is.null(var_fill)) "royalblue4" else ""}) +
     ggplot2::labs(x = label_x, y = label_y) +
     ggplot2::labs(fill = "") +
-    ggplot2::theme_classic() +
+    ggplot2::theme_classic() + {if (text_sz > 3)
+    ggplot2::theme(text = ggplot2::element_text(size = text_sz * 3))} +
     {if (show_val)
          ggplot2::geom_text(
                 {if (!is.null(var_per)) eval(parse(text = paste0("ggplot2::aes(label = paste0(", var_y,", '\n (' ,", var_per, ", '%', ')'","))")))
