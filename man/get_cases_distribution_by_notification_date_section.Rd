@@ -8,7 +8,8 @@ get_cases_distribution_by_notification_date_section(
   disease_data,
   year,
   type = "month",
-  col_name = "FEC_NOT"
+  col_name = "FEC_NOT",
+  plot_title
 )
 }
 \arguments{

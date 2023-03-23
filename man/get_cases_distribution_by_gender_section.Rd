@@ -8,7 +8,8 @@ get_cases_distribution_by_gender_section(
   disease_data,
   year,
   col_name = "SEXO",
-  percentage = T
+  percentage = T,
+  plot_title
 )
 }
 \arguments{

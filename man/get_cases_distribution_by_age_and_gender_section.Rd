@@ -8,7 +8,8 @@ get_cases_distribution_by_age_and_gender_section(
   disease_data,
   year,
   col_names = c("EDAD", "SEXO"),
-  percentage = T
+  percentage = T,
+  plot_title
 )
 }
 \arguments{

@@ -9,7 +9,8 @@ get_cases_distribution_by_onset_sym_section(
   year,
   type = "month",
   col_name = "INI_SIN",
-  col_cmp = "FEC_HOS"
+  col_cmp = "FEC_HOS",
+  plot_title
 )
 }
 \arguments{

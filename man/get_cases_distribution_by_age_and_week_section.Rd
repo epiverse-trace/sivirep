@@ -8,7 +8,8 @@ get_cases_distribution_by_age_and_week_section(
   disease_data,
   year,
   col_names = c("EDAD", "SEMANA"),
-  percentage = T
+  percentage = T,
+  plot_title
 )
 }
 \arguments{
