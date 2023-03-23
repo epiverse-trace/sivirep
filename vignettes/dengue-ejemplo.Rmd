@@ -55,7 +55,6 @@ distribution_by_notification_date_section <- get_cases_distribution_by_notificat
 distribution_by_notification_date_section$plot
 ```
 # Distribución de casos por sexo y semana epidemiológica
-
 En el total de casos para `r year` se observa una predominancia del sexo masculino (`r distribution_by_gender_section$male_percentage`%) con respecto al sexo femenino (`r distribution_by_gender_section$female_percentage`%) (Ver Figura 3).
 
 ```{r distribution_cg_epiweek, echo=FALSE, error=FALSE, fig.height=5, fig.width=10, warning=FALSE, include=TRUE, message=FALSE}
