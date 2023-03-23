@@ -1,3 +1,16 @@
+#' get_cases_distribution_by_onset_sym_section
+#'
+#' Función que genera la seccion de distribucion de casos por fecha de inicio de sintomas
+#' Function that generates the section of distribution of cases by onset symptoms date
+#' @param disease_data Disease data
+#' @param year Year
+#' @param type Time unit
+#' @param col_name Data set column name
+#' @param col_cmp Data set column compare
+#' @return A list with the cases by onset symptoms date and the section plot
+#' @examples
+#' disease_data <-  import_data_disease_by_year(2020, "DENGUE")
+#' get_cases_distribution_by_onset_sym_section(disease_data, year = 2020, type = "month", col_name = "INI_SIN", col_cmp = "FEC_HOS")
 #' @export
 get_cases_distribution_by_onset_sym_section <- function(disease_data, year, type = "month", col_name = "INI_SIN", col_cmp = "FEC_HOS") {
   disease_data_by_onset_sym <- clean_disease_dates(disease_data, year = year, col_name = col_name, col_cmp = col_cmp)
@@ -25,6 +38,18 @@ get_cases_distribution_by_onset_sym_section <- function(disease_data, year, type
               plot = plot_cases_by_onset_sym))
 }
 
+#' get_cases_distribution_by_notification_date_section
+#'
+#' Función que genera la seccion de distribucion de casos por fecha de notificacion
+#' Function that generates the section of cases distribution by notification date
+#' @param disease_data Disease data
+#' @param year Year
+#' @param type Time unit
+#' @param col_name Data set column name
+#' @return A list with the cases by notification date and the section plot
+#' @examples
+#' disease_data <-  import_data_disease_by_year(2020, "DENGUE")
+#' distribution_by_notification_date_section <- get_cases_distribution_by_notification_date_section(disease_data, year = 2020, type = "month", col_name = "FEC_NOT")
 #' @export
 get_cases_distribution_by_notification_date_section <- function(disease_data, year, type = "month", col_name = "FEC_NOT") {
   
@@ -58,6 +83,18 @@ get_temporal_cases_distribution_section <- function() {
   
 }
 
+#' get_cases_distribution_by_gender_section
+#'
+#' Función que genera la seccion de distribucion de casos por genero
+#' Function that generates the section of cases distribution by gender
+#' @param disease_data Disease data
+#' @param year Year
+#' @param col_name Data set column name
+#' @param percentage Percentage
+#' @return A list with the cases by gender, the female percentage, the male percentage, the gender major cases and the section plot
+#' @examples
+#' disease_data <-  import_data_disease_by_year(2020, "DENGUE")
+#' distribution_by_gender_section <- get_cases_distribution_by_gender_section(disease_data, year = 2020, col_name = "SEXO", percentage = T)
 #' @export
 get_cases_distribution_by_gender_section <- function(disease_data, year, col_name = "SEXO", percentage = T) {
   
@@ -92,6 +129,18 @@ get_cases_distribution_by_gender_section <- function(disease_data, year, col_nam
               gender_major_cases = gender_major_cases))
 }
 
+#' get_cases_distribution_by_age_and_week_section
+#'
+#' Función que genera la seccion de distribucion de casos por rango de edad
+#' Function that generates the section of cases distribution by age range
+#' @param disease_data Disease data
+#' @param year Year
+#' @param col_name Data set column name
+#' @param percentage Percentage
+#' @return A list with the cases by age range, the age range major cases, the percentage major cases and the section plot
+#' @examples
+#' disease_data <-  import_data_disease_by_year(2020, "DENGUE")
+#' distribution_by_age_and_week_section <- get_cases_distribution_by_age_and_week_section(disease_data, year = 2020, col_names = c("EDAD", "SEMANA"), percentage = T)
 #' @export
 get_cases_distribution_by_age_and_week_section <- function(disease_data, year, col_names = c("EDAD", "SEMANA"), percentage = T) {
   disease_data_by_age_and_week <- clean_disease_ages(disease_data, col_names[1])
@@ -119,6 +168,18 @@ get_cases_distribution_by_age_and_week_section <- function(disease_data, year, c
               percentage_major_cases = percentage_major_cases))
 }
 
+#' get_cases_distribution_by_age_and_gender_section 
+#'
+#' Función que genera la seccion de distribucion de casos por rango de edad y genero
+#' Function that generates the section of cases distribution by age range and gender
+#' @param disease_data Disease data
+#' @param year Year
+#' @param col_names Data set column names
+#' @param percentage Percentage
+#' @return A list with the cases by age range, the age range major cases, the percentage major cases and the section plot
+#' @examples
+#' disease_data <-  import_data_disease_by_year(2020, "DENGUE")
+#' distribution_by_age_and_gender_section <- get_cases_distribution_by_age_and_gender_section(disease_data, year = 2020, col_names = c("EDAD", "SEXO"), percentage = T)
 #' @export
 get_cases_distribution_by_age_and_gender_section <- function(disease_data, year, col_names = c("EDAD", "SEXO"), percentage = T) {
   disease_data_by_age_and_gender <- clean_disease_ages(disease_data, col_names[1])

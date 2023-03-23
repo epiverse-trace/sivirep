@@ -99,6 +99,17 @@ remove_error_dates <- function(disease_data, col_init = "INI_SIN", col_cmp = "FE
   return(disease_data_del)
 }
 
+#' format_dates_values
+#' 
+#' Función que da un formato especifico a una fecha
+#' Function that gives a specific format to a date
+#' @param disease_data Disease data
+#' @param date_format Date format
+#' @param col_names Data set column names
+#' @return The data with formatted dates
+#' @examples
+#' disease_data <- import_data_disease_by_year(2020, "DENGUE")
+#' remove_error_dates(disease_data, date_format = "%AAAA-%MM-%DD", col_names = c("INI_SIN", "FEC_HOS"))
 #' @export
 format_dates_values <- function(disease_data, date_format = "%AAAA-%MM-%DD", col_names = c()) {
   clean_dates_disease_dt <- disease_data
@@ -111,6 +122,18 @@ format_dates_values <- function(disease_data, date_format = "%AAAA-%MM-%DD", col
   return(clean_dates_disease_dt)
 }
 
+#' clean_disease_dates
+#' 
+#' Función que limpia las fechas de un conjunto de datos
+#' Function that cleans dates from a dataset
+#' @param disease_data Disease data
+#' @param date_format Date format
+#' @param col_name Data set column name
+#' @param col_cmp Data set column compare
+#' @return The data with clean dates
+#' @examples
+#' disease_data <- import_data_disease_by_year(2020, "DENGUE")
+#' clean_disease_dates(disease_data, year, date_format = "%AAAA-%MM-%DD", col_name = "INI_SIN", col_cmp = "FEC_HOS")
 #' @export
 clean_disease_dates <- function(disease_data, year, date_format = "%AAAA-%MM-%DD", col_name = "INI_SIN", col_cmp = NULL) {
   disease_dt_by_onset_sym <- format_dates_values(disease_data, date_format, c(col_name, col_cmp))
@@ -126,6 +149,16 @@ clean_disease_dates <- function(disease_data, year, date_format = "%AAAA-%MM-%DD
   return(disease_dt_by_onset_sym)
 }
 
+#' clean_disease_dates
+#' 
+#' Función que limpia las edades de un conjunto de datos
+#' Function that cleans ages from a dataset
+#' @param disease_data Disease data
+#' @param col_name Data set column name
+#' @return The data with clean ages
+#' @examples
+#' disease_data <- import_data_disease_by_year(2020, "DENGUE")
+#' clean_disease_ages(disease_data, col_name = "EDAD")
 #' @export
 clean_disease_ages <- function(disease_data, col_name = "EDAD") {
   disease_data_by_years <- parse_age_to_years(disease_data)

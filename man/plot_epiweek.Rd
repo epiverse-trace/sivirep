@@ -10,8 +10,8 @@ plot_epiweek(
   col_cases,
   year,
   type = "week",
-  xlabel = "Semana epidemiológica",
-  ylabel = "Número de casos por semana"
+  xlabel = "Semana epidemiologica",
+  ylabel = "Numero de casos por semana"
 )
 }
 \arguments{

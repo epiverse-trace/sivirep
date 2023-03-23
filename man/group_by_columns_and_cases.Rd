@@ -5,6 +5,8 @@
 \title{Group By Columns and Cases}
 \usage{
 group_by_columns_and_cases(disease_data, col_names, wt_percentage = FALSE)
+
+group_by_columns_and_cases(disease_data, col_names, wt_percentage = FALSE)
 }
 \arguments{
 \item{disease_data}{Disease data}
@@ -15,12 +17,20 @@ group_by_columns_and_cases(disease_data, col_names, wt_percentage = FALSE)
 }
 \value{
 The disease data grouped by a specific column name(s) and cases
+
+The disease data grouped by a specific column name(s) and cases
 }
 \description{
 Función que agrupa los datos por el nombre de las columna(s) y los casos
 Function that groups the data by a specific column name and cases
+
+Función que agrupa los datos por el nombre de las columna(s) y los casos
+Function that groups the data by a specific column name and cases
 }
 \examples{
+disease_data <- import_data_disease_by_year(2019, "DENGUE")
+group_by_columns_and_cases(disease_data, col_names = "SEXO", wt_percentage = TRUE)
+group_by_columns_and_cases(disease_data, col_names = c("SEXO","SEMANA"))
 disease_data <- import_data_disease_by_year(2019, "DENGUE")
 group_by_columns_and_cases(disease_data, col_names = "SEXO", wt_percentage = TRUE)
 group_by_columns_and_cases(disease_data, col_names = c("SEXO","SEMANA"))

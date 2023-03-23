@@ -1,3 +1,16 @@
+#' get_months_major_cases
+#' 
+#' Función que obtiene los meses con la cantidad mayor de casos
+#' Function that gets the months with the largest number of cases
+#' @param disease_data Disease data
+#' @param col_dates Data set column dates name
+#' @param col_cases Data set column cases name
+#' @param top Top
+#' @param concat_values Concatenate values
+#' @return months major cases
+#' @examples
+#' disease_data <- import_data_disease_by_year(2020, "DENGUE")
+#' clean_disease_ages(disease_data, col_dates, col_cases, top = 3, concat_values = T)
 #' @export
 get_months_major_cases <- function(disease_data, col_dates, col_cases, top = 3, concat_values = T)  {
   data_major_cases <- disease_data[order(eval(parse(text = paste0("disease_data$", col_cases))), decreasing = TRUE), ]
@@ -15,6 +28,17 @@ get_months_major_cases <- function(disease_data, col_dates, col_cases, top = 3, 
   return(data_major_cases)
 }
 
+#' concatenate_values_with_token
+#' 
+#' Función que concantena valores con un separador o token especifico
+#' Function that concatenates values with a specific separator or token
+#' @param values Values
+#' @param length Length
+#' @param main_token Main token
+#' @param final_token Final token
+#' @return Concatenated final value
+#' @examples
+#' concatenate_values_with_token(values = c("enero", "febrero", "marzo"), length = 3, main_token = ", ", final_token = "y ") 
 #' @export
 concatenate_values_with_token <- function(values, length = 3, main_token = ", ", final_token = "y ") {
   final_value <- ""

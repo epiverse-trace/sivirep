@@ -9,7 +9,7 @@ plot_by_variable(
   var_x,
   var_y,
   var_per = NULL,
-  var_fill,
+  var_fill = NULL,
   wt_per = TRUE,
   label_x,
   label_y,
@@ -18,8 +18,9 @@ plot_by_variable(
   diagram_title,
   legend_pos,
   bar_wd = 1,
-  text_sz,
-  show_val = TRUE
+  text_sz = 3,
+  show_val = TRUE,
+  ref_caption = "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
 )
 }
 \arguments{

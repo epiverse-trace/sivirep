@@ -4,7 +4,7 @@
 \alias{remove_error_dates}
 \title{Remove Error Dates}
 \usage{
-remove_error_dates(disease_data, col_init = "INI_SI", col_cmp = "FEC_HOS")
+remove_error_dates(disease_data, col_init = "INI_SIN", col_cmp = "FEC_HOS")
 }
 \arguments{
 \item{disease_data}{Disease data}
