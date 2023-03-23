@@ -150,10 +150,10 @@ get_cases_distribution_by_gender_and_week_section <- function(disease_data, year
   gender_major_cases <- gender_major_cases[1, ]
   gender_major_cases$Porcentaje <-  round((gender_major_cases$Casos[1]/nrow(disease_data)) * 100, 2)
   
-  plot_cases_by_gender <- plot_by_variable(disease_data_by_gender_and_week, 
-                                           var_x = col_names[1], 
+  plot_cases_by_gender_and_week <- plot_by_variable(disease_data_by_gender_and_week, 
+                                           var_x = col_names[2], 
                                            var_y = "Casos", 
-                                           var_fill = col_names[2], 
+                                           var_fill = col_names[1], 
                                            var_per = "Porcentaje", 
                                            label_x = "\nSexo\n", 
                                            label_y = "Numero de casos\n", 
@@ -163,10 +163,11 @@ get_cases_distribution_by_gender_and_week_section <- function(disease_data, year
                                            legend_pos = "right", 
                                            bar_wd = 0.5, 
                                            text_sz = 3, 
-                                           show_val = percentage)
+                                           show_val = percentage) +
+                                              ggplot2::scale_x_continuous(breaks = seq(1, 52, 9))
   
   return(list(disease_cases = disease_data_by_gender_and_week, 
-              plot =  plot_cases_by_gender,
+              plot =  plot_cases_by_gender_and_week,
               gender_major_cases = gender_major_cases))
 }
 
