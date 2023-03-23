@@ -56,7 +56,7 @@ plot_epiweek <- function(dat, col_week, col_cases, year, type = "week", xlabel =
 #' data_map_disease_deptos <- clean_depto_disease_codes(deptos_data, filtered_data)
 #' plot_dept_map(data_map_disease_deptos, col_name_lj = "id")
 #' @export
-plot_dept_map <- function(data_map_depto, col_name_lj = "id") {
+plot_dept_map <- function(data_map_depto, col_name_lj = "id", map_title, caption_label = "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia") {
   maptools::gpclibPermit()
   
   shp <- rgdal::readOGR(dsn = system.file("extdata/depto_adm_shp", "depto.shp", package = "sivirep"), stringsAsFactors = FALSE)
@@ -65,10 +65,13 @@ plot_dept_map <- function(data_map_depto, col_name_lj = "id") {
     dplyr::left_join(data_map_depto, by = col_name_lj)
   
   map <- ggplot2::ggplot() +
-    ggplot2::geom_polygon(data = shp.df, ggplot2::aes(x = .data$long, y = .data$lat, group = .data$group, fill = .data$casos),
+    ggplot2::geom_polygon(data = shp.df, ggplot2::aes(x = .data$long, y = .data$lat, group = .data$group, fill = .data$Casos),
                           colour = "black") +
     ggplot2::scale_fill_gradient(low = "white", high = "darkred") +
-    ggplot2::theme_void()
+    ggplot2::theme_void() + 
+    ggplot2::ggtitle(map_title) + 
+    ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5), plot.caption = ggplot2::element_text(hjust = 0.5)) + 
+    ggplot2::labs(caption = caption_label)
   
   return(map)
 }

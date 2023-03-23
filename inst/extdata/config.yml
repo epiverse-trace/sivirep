@@ -7,6 +7,7 @@ default:
   name_file_split: "/Microdatos/"
   data_delim: ["|", "," , ";", ":", "-"]
   special_populations_cols: ["GP_DISCAPA","GP_DESPLAZ","GP_MIGRANT","GP_CARCELA","GP_GESTAN","GP_INDIGEN","GP_POBICFB","GP_MAD_COM","GP_DESMOVI","GP_PSIQUIA","GP_VIC_VIO","GP_OTROS"]
+  special_populations_names: ["Discapacitados","Desplazados","Migrantes","Carcelarios","Gestantes","Indigenas","ICBF","Madres comunitarias","Desmovilizados","Pob. Centros psiquiatricos","Victimas de violencia armada","Otros"]
   sivigila_open_data_path: "https://www.datos.gov.co/api/views/qvnt-2igj/rows.csv?accessType=DOWNLOAD"
   geo_data_path: "https://www.datos.gov.co/api/views/gdxc-w37w/rows.csv?accessType=DOWNLOAD"
   data_folder: "data/"

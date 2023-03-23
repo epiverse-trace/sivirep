@@ -263,7 +263,7 @@ get_cases_distribution_by_special_population_section <- function(disease_data, y
   plot_cases_by_special_population <- plot_by_variable(disease_data_special, 
                    var_x = col_name, 
                    var_y = "Casos", 
-                   var_fill = col_name, 
+                   var_fill = "Nombre", 
                    label_x = "Poblacion",
                    label_y = "Casos",
                    scale_name = "Poblacion", 
@@ -271,7 +271,34 @@ get_cases_distribution_by_special_population_section <- function(disease_data, y
                    legend_pos = "right", 
                    bar_wd = 0.5, 
                    text_sz = 3, 
-                   show_val = TRUE)
+                   show_val = TRUE) + 
+                   ggplot2::theme(legend.position = "bottom")
   return(list(disease_cases = disease_data_special, 
               plot = plot_cases_by_special_population))
+}
+
+#' get_cases_distribution_spatial_section
+#'
+#' Función que genera la seccion de distribucion espacial de casos
+#' Function that generates the section of cases distribution spatial
+#' @param disease_data Disease data
+#' @param year Year
+#' @param col_name Data set column name
+#' @param percentage Percentage
+#' @param plot_title Plot title
+#' @return A list with the cases by deptos and the section map
+#' @examples
+#' disease_data <-  import_data_disease_by_year(2020, "DENGUE")
+#' distribution_by_special_population_section <- get_cases_distribution_spatial_section(disease_data, year = 2020, col_name = "Poblacion", percentage = F)
+#' @export
+get_cases_distribution_spatial_section <- function(disease_data, year, col_name = "COD_DPTO_R", percentage = F, plot_title) {
+  disease_data_by_depto_codes <- group_by_columns_and_cases(disease_data, col_names = col_name, percentage)
+  disease_data_by_depto_codes <- colnames(disease_data_by_depto_codes)[colnames(disease_data_by_depto_codes) == col_name] = "id"
+  map_by_deptos <- plot_dept_map(disease_data_by_depto_codes, plot_title)
+  
+  
+  disease_data_by_depto_codes <- get_depto_names(disease_data_by_depto_codes)
+  
+  return(list(disease_cases = disease_data_by_depto_codes, 
+              map = map_by_deptos))
 }

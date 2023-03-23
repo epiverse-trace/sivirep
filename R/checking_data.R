@@ -48,12 +48,13 @@ get_depto_codes <- function(geo_codes) {
 #' @export
 get_special_population_and_cases <- function(disease_data) {
   special_populations <- config::get(file = system.file("extdata", "config.yml", package = "sivirep"), "special_populations_cols")
+  special_populations_names <- config::get(file = system.file("extdata", "config.yml", package = "sivirep"), "special_populations_names")
   special_cases <- c()
   for (sp in special_populations) {
     special_cases <- append(special_cases, sum(eval(parse(text = paste0("disease_data$", sp)))))
   }
   
-  disease_data_special_population <- data.frame(Poblacion = special_populations, Casos = special_cases)
+  disease_data_special_population <- data.frame(Poblacion = special_populations, Casos = special_cases, Nombre = special_populations_names)
   return(disease_data_special_population)
 }
 

@@ -28,6 +28,33 @@ get_months_major_cases <- function(disease_data, col_dates, col_cases, top = 3, 
   return(data_major_cases)
 }
 
+#' get_depto_names
+#' 
+#' Función que obtiene los nombres de los departamentos
+#' Function that gets the department names
+#' @param disease_data Disease data
+#' @return dataset with the department names
+#' @examples
+#' disease_data <- import_data_disease_by_year(2020, "DENGUE")
+#' clean_disease_ages(disease_data)
+#' @export
+get_depto_names <- function(disease_data) {
+  disease_data_deptos <- disease_data
+  disease_data_deptos$CODIGO <- disease_data$id
+  geo_country_data <- import_geo_codes()
+  deptos_data <- data.frame(id = as.character(geo_country_data$c_digo_departamento), 
+                            Nombre = geo_country_data$nombre_departamento)
+  i <- 1
+  for (code in deptos_data$id) {
+    disease_data_deptos$id[disease_data_deptos$id == code] <- deptos_data$Nombre[i]
+    i <- i + 1 
+  }
+  colnames(disease_data_deptos)[colnames(disease_data_deptos) == "id"] <- "NOMBRE"
+  disease_data_deptos <- disease_data_deptos[order(disease_data_deptos$NOMBRE, decreasing = F), ]
+  disease_data_deptos <- disease_data_deptos[5:nrow(disease_data_deptos), ]
+  return(disease_data_deptos)
+}
+
 #' concatenate_values_with_token
 #' 
 #' Función que concantena valores con un separador o token especifico
