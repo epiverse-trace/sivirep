@@ -133,3 +133,25 @@ group_by_age_range_and_cases <- function(disease_data, col_name, var_a = NULL, m
   }
   return(data_values_range)
 }
+
+
+#' Group By Columns and Cases
+#'
+#' Función que agrupa los datos por el nombre de las columna(s) y los casos
+#' Function that groups the data by a specific column name and cases
+#' @param disease_data Disease data
+#' @param col_names The column name(s)
+#' @param wt_percentage Indicates if it is required to add a percentage of cases as a column
+#' @return The disease data grouped by a specific column name(s) and cases
+#' @examples
+#' disease_data <- import_data_disease_by_year(2019, "DENGUE")
+#' group_by_columns_and_cases(disease_data, col_names = "SEXO", wt_percentage = TRUE)
+#' group_by_columns_and_cases(disease_data, col_names = c("SEXO","SEMANA"))
+#' @export
+group_by_columns_and_cases <- function(disease_data, col_names, wt_percentage = FALSE) {
+  disease_data_grouped  <- disease_data %>% dplyr::group_by(dplyr::across(dplyr::all_of(col_names))) %>% dplyr::summarise(Casos = dplyr::n(), .groups = "drop")
+  if (wt_percentage) {
+    disease_data_grouped  <-  disease_data_grouped %>% dplyr::mutate(Porcentaje = round(disease_data_grouped$Casos/sum(disease_data_grouped$Casos)*100, 1))
+  }
+  return(disease_data_grouped)
+}

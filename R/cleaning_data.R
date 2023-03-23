@@ -91,10 +91,43 @@ remove_nin_values <- function(disease_data, name_col) {
 #' disease_data <- import_data_disease_by_year(2019, "DENGUE")
 #' remove_error_dates(disease_data, col_init = "INI_SI", col_cmp = "FEC_HOS")
 #' @export
-remove_error_dates <- function(disease_data, col_init = "INI_SI", col_cmp = "FEC_HOS") {
+remove_error_dates <- function(disease_data, col_init = "INI_SIN", col_cmp = "FEC_HOS") {
   ref_col_init  <- paste0("disease_data$", col_init) 
   ref_col_cmp  <- paste0("disease_data$", col_cmp) 
   del_rows <- which(ref_col_cmp <= ref_col_init)
   disease_data_del <- disease_data[-del_rows]
   return(disease_data_del)
+}
+
+#' @export
+format_dates_values <- function(disease_data, date_format = "%AAAA-%MM-%DD", col_names = c()) {
+  clean_dates_disease_dt <- disease_data
+  for (name in col_names) {
+    if (!is.null(name)) {
+        ref_col <- eval(parse(text = paste0("clean_dates_disease_dt$", name)))
+        ref_col <- as.Date(ref_col, format = date_format)
+    }
+  }
+  return(clean_dates_disease_dt)
+}
+
+#' @export
+clean_disease_dates <- function(disease_data, year, date_format = "%AAAA-%MM-%DD", col_name = "INI_SIN", col_cmp = NULL) {
+  disease_dt_by_onset_sym <- format_dates_values(disease_data, date_format, c(col_name, col_cmp))
+  
+  if (!is.null(col_cmp)) {
+      disease_dt_by_onset_sym <- remove_error_dates(disease_dt_by_onset_sym, col_name, col_cmp) 
+  }
+  
+  disease_dt_by_onset_sym <- group_by_columns_and_cases(disease_dt_by_onset_sym, col_name)
+  disease_dt_by_onset_sym[order(eval(parse(text = paste0("disease_dt_by_onset_sym$", col_name))), decreasing = TRUE), ]
+  disease_dt_by_onset_sym <- disease_dt_by_onset_sym[format(eval(
+    parse(text = paste0("disease_dt_by_onset_sym$", col_name))),'%Y') == year, ]
+  return(disease_dt_by_onset_sym)
+}
+
+#' @export
+clean_disease_ages <- function(disease_data, col_name = "EDAD") {
+  disease_data_by_years <- parse_age_to_years(disease_data)
+  disease_data_by_years <- remove_nin_values(disease_data_by_years, col_name)
 }

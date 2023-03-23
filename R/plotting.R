@@ -97,12 +97,12 @@ plot_dept_map <- function(data_map_depto, col_name_lj = "id") {
 #' disease_data <- import_data_disease_by_year(2019, "DENGUE")
 #' @export
 plot_by_variable <- function(data, var_x, var_y, var_per = NULL, var_fill = NULL, wt_per = TRUE, label_x, label_y,
-                             scale_name = NULL, scale_labels = NULL, diagram_title, legend_pos, bar_wd = 1, text_sz = 3, show_val = TRUE) {
+                             scale_name = NULL, scale_labels = NULL, diagram_title, legend_pos, bar_wd = 1, text_sz = 3, show_val = TRUE, ref_caption = "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia") {
   
   ggplot2::ggplot(data, {if (is.null(var_fill)) ggplot2::aes_string(x = var_x, y = var_y) else ggplot2::aes_string(x = var_x, y = var_y, fill = var_fill)}) +
     {if (is.null(var_fill)) ggplot2::geom_bar(width = bar_wd, stat = "identity", position = ggplot2::position_dodge(), fill = "#90C73D") 
       else  ggplot2::geom_bar(width = bar_wd, stat = "identity", position = ggplot2::position_dodge())} +
-    ggplot2::labs(x = label_x, y = label_y) +
+    ggplot2::labs(x = label_x, y = label_y, caption = ref_caption) +
     ggplot2::labs(fill = "") +
     ggplot2::theme_classic() + {if (text_sz > 3)
     ggplot2::theme(text = ggplot2::element_text(size = text_sz * 2))} +

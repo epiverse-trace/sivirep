@@ -30,28 +30,28 @@ For this reason, a module was considered that will carry out the scraping of thi
 
 The SIVIGILA data source doesn't have information on all diseases per year, for this reason it is necessary to know which ones are available:
 
-```{r} 
+```{r}
 avaliable_diseases_and_years_data <- list_avaliable_diseases_and_years()
 ```
 
 To download the information of a disease per year from the SIVIGILA microdata, you can use this function :
 
-```{r} 
+```{r}
 disease_data <- import_data_disease_by_year(year = 2018, disease_name = "DENGUE")
 ```
 
 For the reports it is necessary to have the information of the departments or municipalities of Colombia, for example the names or codes, this function allows you to import this data:
 
-```{r} 
+```{r}
 geo_codes <- import_geo_codes()
 ```
 
-
-```{r} 
+```{r}
 disease_dt_special <- get_special_population_and_cases(disease_data)
 ```
 
 # Data cleaning
+
 To carry out any type of report, it is necessary to clean the data that is imported from SIVIGILA, since some of these may have incorrect formats, erroneous values or lack conceptual meaning, for example, the death date should not be greater than the birth date of the infected person.
 
 This function cleans the disease data with respect to the codes of the departments:
@@ -64,36 +64,40 @@ clean_depto_disease_codes(depto_codes, disease_data_by_deptos)
 
 This function removes values that are greater than the comparison value, for example the symptom onset date and hospitalization date:
 
-```{r} 
+```{r}
 clean_disease_dates_data <- remove_error_dates(disease_data, col_init = "INI_SI", col_cmp = "FEC_HOS")
 ```
 
 This function converts ages into years according to SIVIGILA measurement units (2 = months, 3 = days, 4 = hours, 5 = minutes)
-```{r} 
+
+```{r}
 disease_data_by_age <- parse_age_to_years(disease_data)
 ```
 
-
 ## Group data
+
 In this kind of reports, it is required to group the information by the number of cases or people infected by the disease and some specific categories, for example, gender or age.
 
 If you need to group the data by epidemiological week, you can use this function:
-```{r} 
+
+```{r}
 disease_data_by_week <- group_by_week_and_cases(disease_data)
 ```
 
 This function is useful to group by any variable of data set and get the cases number and percentage:
+
 ```{r}
 disease_data_by_age_and_week <- group_by_columns_and_cases(disease_data, col_names = c("EDAD", "SEMANA"), wt_percentage = TRUE)
 ```
 
 This function group the data by a range for example the ages:
+
 ```{r}
 disease_data_by_age <- group_by_age_range_and_cases(disease_data_by_age_and_week, col_name = "EDAD", min_val = 5, max_val = 82, step = 5)
 ```
 
-
 # Generate and plot reports
+
 The package has functions that allow generating graphs that are quite useful, such as:
 
 If you need to generate a map by information department of the selected disease, you can use this function
@@ -105,11 +109,10 @@ If you need to generate a map by information department of the selected disease,
 #plot_dept_map(data_map_disease_deptos, col_name_lj = "id")
 ```
 
-
 This is a generic function that uses other reports to graph for any type of variable:
 
 ```{r, echo=FALSE, error=FALSE, fig.height=3, fig.width=6, warning=FALSE, include=TRUE, message=FALSE}
 disease_dt_by_gender <- group_by_columns_and_cases(disease_data, "SEXO", wt_percentage = TRUE)
 
 plot_by_variable(disease_dt_by_gender, var_x = "SEXO", var_y = "Casos", var_fill = "SEXO", var_per = "Porcentaje", label_x = "Gender", label_y = "Cases \n (Percentages)", scale_name = "Gender", scale_labels = c("Femenino", "Masculino"), diagram_title = "Cases by gender", legend_pos = "right", bar_wd = 0.6, text_sz = 4, show_val = TRUE)
-``` 
+```

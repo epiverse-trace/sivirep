@@ -9,3 +9,8 @@ default:
   special_populations_cols: ["GP_DISCAPA","GP_DESPLAZ","GP_MIGRANT","GP_CARCELA","GP_GESTAN","GP_INDIGEN","GP_POBICFB","GP_MAD_COM","GP_DESMOVI","GP_PSIQUIA","GP_VIC_VIO","GP_OTROS"]
   sivigila_open_data_path: "https://www.datos.gov.co/api/views/qvnt-2igj/rows.csv?accessType=DOWNLOAD"
   geo_data_path: "https://www.datos.gov.co/api/views/gdxc-w37w/rows.csv?accessType=DOWNLOAD"
+  data_folder: "data/"
+  age_categorie_conditionals: [ "age_num < 2", "age_num >= 2 && age_num <= 4", "age_num >= 5 && age_num <= 14", "age_num >= 15 && age_num <= 39", "age_num >=40 && age_num <= 59", "age_num >= 60"]
+  age_categorie_labels: [ "<2 años", "2 a 4 años", "5 a 14 años", "15 a 39 años", "40 a 59 años", "60 y más"]
+  respiratory_virus_column_names: [ "influenza_a_h1_2009", "influenza_a_h1", "influenza_a_h3", "influenza_b", "metapneumovirus_humano", "rinovirus_enterovirus_humano", "virus_sincitial_respiratorio", "adenovirus"]
+  respiratory_virus_names: [ "H1N1 2009", "H1N1", "H3N1", "Influenza B", "Metapneumovirus", "Rinovirus", "VSR", "Adenovirus"]
