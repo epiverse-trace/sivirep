@@ -12,7 +12,7 @@
 #' disease_data <-  import_data_disease_by_year(2020, "DENGUE")
 #' get_cases_distribution_by_onset_sym_section(disease_data, year = 2020, type = "month", col_name = "INI_SIN", col_cmp = "FEC_HOS")
 #' @export
-get_cases_distribution_by_onset_sym_section <- function(disease_data, year, type = "month", col_name = "INI_SIN", col_cmp = "FEC_HOS") {
+get_cases_distribution_by_onset_sym_section <- function(disease_data, year, type = "month", col_name = "INI_SIN", col_cmp = "FEC_HOS", plot_title) {
   disease_data_by_onset_sym <- clean_disease_dates(disease_data, year = year, col_name = col_name, col_cmp = col_cmp)
   
   disease_data_by_onset_sym <- disease_data_by_onset_sym %>% 
@@ -22,7 +22,7 @@ get_cases_distribution_by_onset_sym_section <- function(disease_data, year, type
   colnames(disease_data_by_onset_sym)[colnames(disease_data_by_onset_sym) == "date" ] <- col_name
   
   plot_cases_by_onset_sym <- plot_by_variable(disease_data_by_onset_sym,
-                   diagram_title = NULL,
+                   diagram_title = plot_title,
                    var_x = col_name, 
                    var_y = "Casos", 
                    label_x = "\nFecha de inicio de sintomas\n", 
@@ -51,7 +51,7 @@ get_cases_distribution_by_onset_sym_section <- function(disease_data, year, type
 #' disease_data <-  import_data_disease_by_year(2020, "DENGUE")
 #' distribution_by_notification_date_section <- get_cases_distribution_by_notification_date_section(disease_data, year = 2020, type = "month", col_name = "FEC_NOT")
 #' @export
-get_cases_distribution_by_notification_date_section <- function(disease_data, year, type = "month", col_name = "FEC_NOT") {
+get_cases_distribution_by_notification_date_section <- function(disease_data, year, type = "month", col_name = "FEC_NOT", plot_title) {
   
   disease_data_by_notification_date <- clean_disease_dates(disease_data, year = year, col_name = col_name)
   
@@ -62,7 +62,7 @@ get_cases_distribution_by_notification_date_section <- function(disease_data, ye
   colnames(disease_data_by_notification_date)[colnames(disease_data_by_notification_date) == "date" ] <- col_name
   
   plot_cases_by_notification_date <- plot_by_variable(disease_data_by_notification_date,
-                           diagram_title = NULL,
+                           diagram_title = plot_title,
                            var_x = col_name, 
                            var_y = "Casos", 
                            label_x = "\nFecha de notificación\n", 
@@ -96,7 +96,7 @@ get_temporal_cases_distribution_section <- function() {
 #' disease_data <-  import_data_disease_by_year(2020, "DENGUE")
 #' distribution_by_gender_section <- get_cases_distribution_by_gender_section(disease_data, year = 2020, col_name = "SEXO", percentage = T)
 #' @export
-get_cases_distribution_by_gender_section <- function(disease_data, year, col_name = "SEXO", percentage = T) {
+get_cases_distribution_by_gender_section <- function(disease_data, year, col_name = "SEXO", percentage = T, plot_title) {
   
   disease_data_by_gender <- group_by_columns_and_cases(disease_data, col_name, percentage)
   
@@ -108,15 +108,15 @@ get_cases_distribution_by_gender_section <- function(disease_data, year, col_nam
   gender_major_cases$Porcentaje <-  round((gender_major_cases$Casos[1]/nrow(disease_data)) * 100, 2)
   
   plot_cases_by_gender <- plot_by_variable(disease_data_by_gender, 
-                   var_x = "SEXO", 
+                   var_x = col_name, 
                    var_y = "Casos", 
-                   var_fill = "SEXO", 
+                   var_fill =  col_name, 
                    var_per = "Porcentaje", 
                    label_x = "\nSexo\n", 
                    label_y = "Numero de casos\n", 
                    scale_name = "Sexo", 
                    scale_labels = c("Femenino", "Masculino"), 
-                   diagram_title = "", 
+                   diagram_title = plot_title, 
                    legend_pos = "right", 
                    bar_wd = 0.5, 
                    text_sz = 3, 
@@ -126,6 +126,47 @@ get_cases_distribution_by_gender_section <- function(disease_data, year, col_nam
               plot =  plot_cases_by_gender, 
               male_percentage = male_percentage, 
               female_percentage = female_percentage,
+              gender_major_cases = gender_major_cases))
+}
+
+#' get_cases_distribution_by_gender_and_week_section
+#'
+#' Función que genera la seccion de distribucion de casos por genero y semana epidemiologica
+#' Function that generates the section of cases distribution by gender and week
+#' @param disease_data Disease data
+#' @param year Year
+#' @param col_names Data set column names
+#' @param percentage Percentage
+#' @return A list with the cases by gender, the female percentage, the male percentage, the gender major cases and the section plot
+#' @examples
+#' disease_data <-  import_data_disease_by_year(2020, "DENGUE")
+#' distribution_by_gender_and_week_section <- get_cases_distribution_by_gender_and_week_section(disease_data, year = 2020, col_name = c("SEXO", "SEMANA"), percentage = F)
+#' @export
+get_cases_distribution_by_gender_and_week_section <- function(disease_data, year, col_names = c("SEXO", "SEMANA"), percentage = F, plot_title) {
+  
+  disease_data_by_gender_and_week <- group_by_columns_and_cases(disease_data, col_names, percentage)
+  
+  gender_major_cases <- disease_data_by_gender_and_week[order(eval(parse(text = paste0("disease_data_by_gender_and_week$", "Casos"))), decreasing = TRUE), ]
+  gender_major_cases <- gender_major_cases[1, ]
+  gender_major_cases$Porcentaje <-  round((gender_major_cases$Casos[1]/nrow(disease_data)) * 100, 2)
+  
+  plot_cases_by_gender <- plot_by_variable(disease_data_by_gender_and_week, 
+                                           var_x = col_names[1], 
+                                           var_y = "Casos", 
+                                           var_fill = col_names[2], 
+                                           var_per = "Porcentaje", 
+                                           label_x = "\nSexo\n", 
+                                           label_y = "Numero de casos\n", 
+                                           scale_name = "Sexo", 
+                                           scale_labels = c("Femenino", "Masculino"), 
+                                           diagram_title = plot_title, 
+                                           legend_pos = "right", 
+                                           bar_wd = 0.5, 
+                                           text_sz = 3, 
+                                           show_val = percentage)
+  
+  return(list(disease_cases = disease_data_by_gender_and_week, 
+              plot =  plot_cases_by_gender,
               gender_major_cases = gender_major_cases))
 }
 
@@ -142,7 +183,7 @@ get_cases_distribution_by_gender_section <- function(disease_data, year, col_nam
 #' disease_data <-  import_data_disease_by_year(2020, "DENGUE")
 #' distribution_by_age_and_week_section <- get_cases_distribution_by_age_and_week_section(disease_data, year = 2020, col_names = c("EDAD", "SEMANA"), percentage = T)
 #' @export
-get_cases_distribution_by_age_and_week_section <- function(disease_data, year, col_names = c("EDAD", "SEMANA"), percentage = T) {
+get_cases_distribution_by_age_and_week_section <- function(disease_data, year, col_names = c("EDAD", "SEMANA"), percentage = T, plot_title) {
   disease_data_by_age_and_week <- clean_disease_ages(disease_data, col_names[1])
   disease_data_by_age_and_week <- group_by_columns_and_cases(disease_data_by_age_and_week, col_names, percentage)
   disease_data_by_age_and_week <- group_by_age_range_and_cases(disease_data_by_age_and_week, col_names[1], min_val = 0, max_val = max(eval(parse(text = paste0("disease_data_by_age_and_week$", col_names[1])))), step = 10)
@@ -152,9 +193,9 @@ get_cases_distribution_by_age_and_week_section <- function(disease_data, year, c
   percentage_major_cases <-  round((age_range_major_cases$Casos[1]/nrow(disease_data)) * 100, 2)
   
   plot_cases_by_age_and_week <- plot_by_variable(disease_data_by_age_and_week,
-                                                   var_x = "EDAD", 
+                                                   var_x = col_names[1], 
                                                    var_y = "Casos",
-                                                   diagram_title = "", 
+                                                   diagram_title = plot_title, 
                                                    label_x = "\nEdad\n", 
                                                    label_y = "Numero de casos\n", 
                                                    scale_name = "Edad", 
@@ -181,16 +222,16 @@ get_cases_distribution_by_age_and_week_section <- function(disease_data, year, c
 #' disease_data <-  import_data_disease_by_year(2020, "DENGUE")
 #' distribution_by_age_and_gender_section <- get_cases_distribution_by_age_and_gender_section(disease_data, year = 2020, col_names = c("EDAD", "SEXO"), percentage = T)
 #' @export
-get_cases_distribution_by_age_and_gender_section <- function(disease_data, year, col_names = c("EDAD", "SEXO"), percentage = T) {
+get_cases_distribution_by_age_and_gender_section <- function(disease_data, year, col_names = c("EDAD", "SEXO"), percentage = T, plot_title) {
   disease_data_by_age_and_gender <- clean_disease_ages(disease_data, col_names[1])
   disease_data_by_age_and_gender <- group_by_columns_and_cases(disease_data_by_age_and_gender, col_names, percentage)
   disease_data_by_age_and_gender <- group_by_age_range_and_cases(disease_data_by_age_and_gender, col_names[1], col_names[2], min_val = 0, max_val = max(eval(parse(text = paste0("disease_data_by_age_and_gender$", col_names[1])))), step = 10)
   
   plot_cases_by_age_and_gender <- plot_by_variable(disease_data_by_age_and_gender, 
-                   var_x = "EDAD", 
+                   var_x = col_names[1], 
                    var_y = "Casos", 
-                   var_fill = "SEXO",
-                   diagram_title = "",
+                   var_fill = col_names[2],
+                   diagram_title = plot_title,
                    label_x = "\nEdad\n", 
                    label_y = "Numero de casos\n", 
                    scale_name = "Edad", 

@@ -121,7 +121,8 @@ plot_by_variable <- function(data, var_x, var_y, var_per = NULL, var_fill = NULL
     # ggplot2::scale_fill_discrete(name = scale_name, {if (!is.null(scale_labels)) labels = scale_labels}) +
     # theme(axis.text.x = element_text(angle = -45, vjust = 1, hjust = -0.3)) +
     # theme_linedraw() +
+    ggplot2::facet_grid(~as.character(diagram_title)) +
+    # ggplot2::ggtitle(diagram_title)
     ggplot2::theme(legend.position = legend_pos) +
-    {if (ncol(data) == 3 || (!is.null(var_fill) && var_fill == "SEXO")) ggplot2::scale_fill_manual(values = c("#56B4E9", "#E69F00")) else ggplot2::theme(legend.position = legend_pos)}
-  # ggplot2::facet_grid(~as.character(diagram_title))
+    {if (ncol(data) == 3 || (!is.null(var_fill) && var_fill == "SEXO")) ggplot2::scale_fill_manual(values = c("#56B4E9", "#E69F00")) else ggplot2::theme(legend.position = legend_pos) }
 }
