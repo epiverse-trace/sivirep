@@ -24,7 +24,15 @@ library(sivirep)
 ```
 
 ```{r import_data, echo=FALSE, error=FALSE, fig.height=8, fig.width=8, warning=FALSE, include = FALSE, message= FALSE}
-.
+year <- 2020
+disease_name <-  "Dengue"
+disease_data <-  import_data_disease_by_year(year, toupper(disease_name))
+```
+
+\pagenumbering{gobble}
+\pagenumbering{arabic}
+
+En este reporte se presenta el comportamiento del `r disease_name` durante el año `r year` para Colombia con base en la fuente de datos SIVIGILA de acceso libre.
 En total en Colombia durante `r year` se reportaron `r nrow(disease_data)` casos en todo el territorio nacional. 
 
 
@@ -92,14 +100,14 @@ distribution_by_age_and_gender_section$plot
 # Distribución de casos por población especial
 ```{r distribution_sp, echo=FALSE, error=FALSE, fig.height=5, fig.width=15, warning=FALSE, include=TRUE, message=FALSE}
 distribution_by_special_population_section <- get_cases_distribution_by_special_population_section(disease_data, year, plot_title = "Figura 6. Distribucion de casos por poblacion especial")
-distribution_by_special_population_section$plot
+distribution_by_special_population_section$map
 ```
 
 # Distribución espacial de casos
 
 ```{r distribution_spatial, echo=FALSE, error=FALSE, fig.height=5, fig.width=15, warning=FALSE, include=TRUE, message=FALSE}
 distribution_spatial_section <- get_cases_distribution_spatial_section(disease_data, year, col_name = "COD_DPTO_R", plot_title = "Figura 7. Distribucion espacial de casos.")
-distribution_spatial_section$map
+distribution_by_special_population_section$map
 ```
 
 # Conclusiones

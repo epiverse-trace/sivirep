@@ -291,14 +291,14 @@ get_cases_distribution_by_special_population_section <- function(disease_data, y
 #' disease_data <-  import_data_disease_by_year(2020, "DENGUE")
 #' distribution_by_special_population_section <- get_cases_distribution_spatial_section(disease_data, year = 2020, col_name = "Poblacion", percentage = F)
 #' @export
-get_cases_distribution_spatial_section <- function(disease_data, year, col_name = "COD_DPTO_R", percentage = F, plot_title) {
-  disease_data_by_depto_codes <- group_by_columns_and_cases(disease_data, col_names = col_name, percentage)
-  disease_data_by_depto_codes <- colnames(disease_data_by_depto_codes)[colnames(disease_data_by_depto_codes) == col_name] = "id"
-  map_by_deptos <- plot_dept_map(disease_data_by_depto_codes, plot_title)
+get_cases_distribution_spatial_section <- function(disease_data, year, col_name = "COD_DPTO_R", percentage = F, plot_title = "") {
+  disease_data_by_depto_codes <- group_by_columns_and_cases(disease_data, col_names = col_name)
+  colnames(disease_data_by_depto_codes)[colnames(disease_data_by_depto_codes) == col_name] <- "id"
   
+  disease_data_by_depto_codes$id <- sapply(disease_data_by_depto_codes$id, as.character)
+  map_by_deptos <- plot_dept_map(disease_data_by_depto_codes, map_title = plot_title)
   
   disease_data_by_depto_codes <- get_depto_names(disease_data_by_depto_codes)
-  
   return(list(disease_cases = disease_data_by_depto_codes, 
               map = map_by_deptos))
 }
