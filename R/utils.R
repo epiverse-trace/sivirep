@@ -42,7 +42,7 @@ get_depto_names <- function(disease_data) {
   disease_data_deptos <- disease_data
   disease_data_deptos$CODIGO <- disease_data$id
   geo_country_data <- import_geo_codes()
-  deptos_data <- data.frame(id = as.character(geo_country_data$c_digo_departamento), 
+  deptos_data <- data.frame(id = geo_country_data$c_digo_departamento, 
                             Nombre = geo_country_data$nombre_departamento)
   i <- 1
   for (code in deptos_data$id) {

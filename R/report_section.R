@@ -260,10 +260,11 @@ get_cases_distribution_by_age_and_gender_section <- function(disease_data, year,
 #' @export
 get_cases_distribution_by_special_population_section <- function(disease_data, year, col_name = "Poblacion", percentage = F, plot_title) {
   disease_data_special <- get_special_population_and_cases(disease_data)
-  plot_cases_by_special_population <- plot_by_variable(disease_data_special, 
+  disease_data_special_plot <- data.frame(Poblacion = disease_data_special$Poblacion, Casos = disease_data_special$Casos)
+  plot_cases_by_special_population <- plot_by_variable(disease_data_special_plot, 
                    var_x = col_name, 
-                   var_y = "Casos", 
-                   var_fill = "Nombre", 
+                   var_y = "Casos",
+                   var_fill =  col_name,
                    label_x = "Poblacion",
                    label_y = "Casos",
                    scale_name = "Poblacion", 
@@ -298,7 +299,7 @@ get_cases_distribution_spatial_section <- function(disease_data, year, col_name 
   disease_data_by_depto_codes$id <- sapply(disease_data_by_depto_codes$id, as.character)
   map_by_deptos <- plot_dept_map(disease_data_by_depto_codes, map_title = plot_title)
   
-  disease_data_by_depto_codes <- get_depto_names(disease_data_by_depto_codes)
+  # disease_data_by_depto_codes <- get_depto_names(disease_data_by_depto_codes)
   return(list(disease_cases = disease_data_by_depto_codes, 
               map = map_by_deptos))
 }
