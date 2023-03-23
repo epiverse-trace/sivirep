@@ -4,7 +4,12 @@
 \alias{plot_dept_map}
 \title{Plot Department Map}
 \usage{
-plot_dept_map(data_map_depto, col_name_lj = "id")
+plot_dept_map(
+  data_map_depto,
+  col_name_lj = "id",
+  map_title,
+  caption_label = "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
+)
 }
 \arguments{
 \item{data_map_depto}{Data for department}
