@@ -244,3 +244,34 @@ get_cases_distribution_by_age_and_gender_section <- function(disease_data, year,
   return(list(disease_cases = disease_data_by_age_and_gender, 
               plot = plot_cases_by_age_and_gender))
 }
+
+#' get_cases_distribution_by_special_population_section
+#'
+#' Función que genera la seccion de distribucion de casos por poblacion especial
+#' Function that generates the section of cases distribution by special population
+#' @param disease_data Disease data
+#' @param year Year
+#' @param col_name Data set column name
+#' @param percentage Percentage
+#' @return A list with the cases by special population and the section plot
+#' @examples
+#' disease_data <-  import_data_disease_by_year(2020, "DENGUE")
+#' distribution_by_special_population_section <- get_cases_distribution_by_special_population_section(disease_data, year = 2020, col_name = "Poblacion", percentage = F)
+#' @export
+get_cases_distribution_by_special_population_section <- function(disease_data, year, col_name = "Poblacion", percentage = F, plot_title) {
+  disease_data_special <- get_special_population_and_cases(disease_data)
+  plot_cases_by_special_population <- plot_by_variable(disease_data_special, 
+                   var_x = col_name, 
+                   var_y = "Casos", 
+                   var_fill = col_name, 
+                   label_x = "Poblacion",
+                   label_y = "Casos",
+                   scale_name = "Poblacion", 
+                   diagram_title = plot_title, 
+                   legend_pos = "right", 
+                   bar_wd = 0.5, 
+                   text_sz = 3, 
+                   show_val = TRUE)
+  return(list(disease_cases = disease_data_special, 
+              plot = plot_cases_by_special_population))
+}

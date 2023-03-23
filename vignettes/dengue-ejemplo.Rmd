@@ -54,8 +54,6 @@ distribution_by_onset_sym_section$plot
 distribution_by_notification_date_section <- get_cases_distribution_by_notification_date_section(disease_data, year, type = "month", col_name = "FEC_NOT", plot_title = paste0("Figura 2. Fecha de notificación de los casos de ", disease_name))
 distribution_by_notification_date_section$plot
 ```
-\pagenumbering{arabic}
-
 # Distribución de casos por sexo y semana epidemiológica
 
 En el total de casos para `r year` se observa una predominancia del sexo masculino (`r distribution_by_gender_section$male_percentage`%) con respecto al sexo femenino (`r distribution_by_gender_section$female_percentage`%) (Ver Figura 3).
@@ -67,7 +65,7 @@ distribution_by_gender_section <- get_cases_distribution_by_gender_section(disea
 
 ```{r distribution_cg, echo=FALSE, error=FALSE, fig.height=5, fig.width=10, warning=FALSE, include=TRUE, message=FALSE}
 distribution_by_gender_and_week_section <- get_cases_distribution_by_gender_and_week_section(disease_data, year, col_names = c("SEXO", "SEMANA"), plot_title = "Figura 4. Distribucion de casos por la variable sexo y semana epidemiologica.")
-distribution_by_gender_and_week_section$plot
+distribution_by_gender_section$plot
 ```
 
 Esta predominancia del reporte de casos en sexo masculino se mantuvo a lo largo de todas las semanas epidemiológicas (Ver figura 4).
@@ -97,9 +95,9 @@ distribution_by_age_and_gender_section$plot
 ```
 
 # Distribución de casos por población especial
-```{r distribution_sp, echo=FALSE, error=FALSE, fig.height=5, fig.width=10, warning=FALSE, include=TRUE, message=FALSE}
-disease_dt_special <- get_special_population_and_cases(disease_data)
-plot_by_variable(disease_dt_special, var_x = "Poblacion", var_y = "Casos", var_fill = "Poblacion", label_x = "Poblacion", label_y = "Casos", scale_name = "Poblacion", diagram_title = "Diagrama para las poblaciones especiales", legend_pos = "right", bar_wd = 0.5, text_sz = 3, show_val = TRUE)
+```{r distribution_sp, echo=FALSE, error=FALSE, fig.height=5, fig.width=15, warning=FALSE, include=TRUE, message=FALSE}
+distribution_by_special_population_section <- get_cases_distribution_by_special_population_section(disease_data, year, plot_title = "Figura 6. Distribucion de casos por poblacion especial")
+distribution_by_special_population_section$plot
 ```
 
 # Conclusiones

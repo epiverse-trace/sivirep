@@ -50,11 +50,10 @@ get_special_population_and_cases <- function(disease_data) {
   special_populations <- config::get(file = system.file("extdata", "config.yml", package = "sivirep"), "special_populations_cols")
   special_cases <- c()
   for (sp in special_populations) {
-    special_cases <- append(special_cases, sum(eval(parse(text = paste0("disease_data$", sp)))  == 1))
+    special_cases <- append(special_cases, sum(eval(parse(text = paste0("disease_data$", sp)))))
   }
   
   disease_data_special_population <- data.frame(Poblacion = special_populations, Casos = special_cases)
-  
   return(disease_data_special_population)
 }
 
