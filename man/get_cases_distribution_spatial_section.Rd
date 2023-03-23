@@ -9,7 +9,7 @@ get_cases_distribution_spatial_section(
   year,
   col_name = "COD_DPTO_R",
   percentage = F,
-  plot_title
+  plot_title = ""
 )
 }
 \arguments{
