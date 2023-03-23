@@ -145,7 +145,7 @@ get_cases_distribution_by_gender_section <- function(disease_data, year, col_nam
 get_cases_distribution_by_age_and_week_section <- function(disease_data, year, col_names = c("EDAD", "SEMANA"), percentage = T) {
   disease_data_by_age_and_week <- clean_disease_ages(disease_data, col_names[1])
   disease_data_by_age_and_week <- group_by_columns_and_cases(disease_data_by_age_and_week, col_names, percentage)
-  disease_data_by_age_and_week <- group_by_age_range_and_cases(disease_data_by_age_and_week, col_names[1], min_val = 0, max_val = max(eval(parse(text = paste0("disease_dt_by_age$", col_names[1])))), step = 10)
+  disease_data_by_age_and_week <- group_by_age_range_and_cases(disease_data_by_age_and_week, col_names[1], min_val = 0, max_val = max(eval(parse(text = paste0("disease_data_by_age_and_week$", col_names[1])))), step = 10)
   
   age_range_major_cases <- disease_data_by_age_and_week[order(eval(parse(text = paste0("disease_data_by_age_and_week$", "Casos"))), decreasing = TRUE), ]
   age_range_major_cases <- age_range_major_cases[1, ]
@@ -184,7 +184,7 @@ get_cases_distribution_by_age_and_week_section <- function(disease_data, year, c
 get_cases_distribution_by_age_and_gender_section <- function(disease_data, year, col_names = c("EDAD", "SEXO"), percentage = T) {
   disease_data_by_age_and_gender <- clean_disease_ages(disease_data, col_names[1])
   disease_data_by_age_and_gender <- group_by_columns_and_cases(disease_data_by_age_and_gender, col_names, percentage)
-  disease_data_by_age_and_gender <- group_by_age_range_and_cases(disease_data_by_age_and_gender, col_names[1], col_names[2], min_val = 0, max_val = max(eval(parse(text = paste0("disease_dt_by_age$", col_names[1])))), step = 10)
+  disease_data_by_age_and_gender <- group_by_age_range_and_cases(disease_data_by_age_and_gender, col_names[1], col_names[2], min_val = 0, max_val = max(eval(parse(text = paste0("disease_data_by_age_and_gender$", col_names[1])))), step = 10)
   
   plot_cases_by_age_and_gender <- plot_by_variable(disease_data_by_age_and_gender, 
                    var_x = "EDAD", 
