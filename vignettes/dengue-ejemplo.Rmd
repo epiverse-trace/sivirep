@@ -103,9 +103,7 @@ age_range_major_cases <- get_major_cases(age_and_week_data)
 
 La distribución de los casos por grupos etarios muestra una tendencia decreciente a medida que se avanza en la edad. La población de `r age_range_major_cases$edad` años representó el `r  age_range_major_cases$porcentaje` % de todos los casos de `r disease_name` en el país (Ver figura 5). De forma interesante, aunque el sexo masculino predominó en casi todos los grupos etários, para el grupo de 0-10 años esta predominancia fue mucho menos marcada (Ver Figura 6).
 
-\newpage
-
-```{r distribution_age, echo = FALSE, error = FALSE,  warning = FALSE, include = TRUE, message = FALSE, fig.height = 4, fig.width = 8, fig.cap =  "Distribucion de casos por edad y semana epidemiologica"}
+```{r distribution_age, echo = FALSE, error = FALSE,  warning = FALSE, include = TRUE, message = FALSE, fig.height = 3, fig.width = 8, fig.cap =  "Distribucion de casos por edad y semana epidemiologica"}
 plot_age_and_week(age_and_week_data)
 ```
 
@@ -120,7 +118,7 @@ plot_age_and_gender(age_and_gender_data)
 
 # Distribución de casos por población especial
 
-```{r distribution_sp, echo = FALSE, error = FALSE,  warning = FALSE, include = TRUE, message = FALSE, fig.height = 5, fig.width = 10, fig.cap =  "Distribucion de casos por poblacion especial"}
+```{r distribution_sp, echo = FALSE, error = FALSE,  warning = FALSE, include = TRUE, message = FALSE, fig.height = 6, fig.width = 11, fig.cap =  "Distribucion de casos por poblacion especial"}
 special_population_data <- group_by_special_population(clean_disease_data)
 plot_special_population(special_population_data)
 ```
@@ -133,10 +131,12 @@ plot_special_population(special_population_data)
 departments_spacial_data <- group_by_deptos(clean_disease_data)
 ```
 
-```{r map_distribution_spatial, echo = FALSE, error = FALSE,  warning = FALSE, include = TRUE, message = FALSE, fig.height = 6, fig.width = 10, fig.cap =  "Distribucion espacial de casos"}
+```{r map_distribution_spatial, echo = FALSE, error = FALSE,  warning = FALSE, include = TRUE, message = FALSE, fig.height = 10, fig.width = 10, fig.cap =  "Distribucion espacial de casos"}
 departments_spacial_data <- group_by_deptos(clean_disease_data)
 plot_dept_map(departments_spacial_data, map_title = "Colombia")
 ```
+
+\newpage
 
 # Conclusiones
 

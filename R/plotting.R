@@ -59,7 +59,7 @@ plot_epiweek <- function(dat, col_week, col_cases, year, type = "week", xlabel =
 plot_dept_map <- function(data_map_depto, col_name_lj = "id", map_title, caption_label = "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia") {
   maptools::gpclibPermit()
   
-  shp <- rgdal::readOGR(dsn = system.file("extdata/depto_adm_shp", "depto.shp", package = "sivirep"), stringsAsFactors = FALSE)
+  shp <- rgdal::readOGR(dsn = system.file("extdata/depto_adm_shp", "depto.shp", package = "sivirep"), stringsAsFactors = FALSE, verbose = FALSE)
   shp.df <- ggplot2::fortify(shp, region = "DPTO")
   shp.df <- shp.df %>%
     dplyr::left_join(data_map_depto, by = col_name_lj)
@@ -277,7 +277,7 @@ plot_age_and_week <- function(disease_data, col_names = c("edad", "semana"), per
                                                scale_name = "Edad", 
                                                legend_pos = "right", 
                                                bar_wd = 0.7, 
-                                               text_sz = 3)
+                                               text_sz = 2.5)
   return(plot_cases_by_age_and_week)
 }
 
