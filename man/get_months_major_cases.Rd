@@ -7,7 +7,7 @@
 get_months_major_cases(
   disease_data,
   col_dates,
-  col_cases,
+  col_cases = "casos",
   top = 3,
   concat_values = T
 )
