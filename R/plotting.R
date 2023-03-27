@@ -70,7 +70,7 @@ plot_dept_map <- function(data_map_depto, col_name_lj = "id", map_title, caption
     ggplot2::scale_fill_gradient(low = "white", high = "darkred") +
     ggplot2::theme_void() + 
     ggplot2::ggtitle(map_title) + 
-    ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5), plot.caption = ggplot2::element_text(hjust = 0.5)) + 
+    ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5)) + 
     ggplot2::labs(caption = caption_label)
   
   return(map)
@@ -109,7 +109,7 @@ plot_by_variable <- function(data, var_x, var_y, var_per = NULL, var_fill = NULL
     ggplot2::labs(fill = "") +
     ggplot2::theme_classic() + {if (text_sz > 3)
     ggplot2::theme(text = ggplot2::element_text(size = text_sz * 2))} +
-    ggplot2::theme(plot.caption = ggplot2::element_text(size = 6)) +
+    ggplot2::theme(plot.caption = ggplot2::element_text(size = 8)) +
     {if (show_val)
       ggplot2::geom_text(
         {if (!is.null(var_per)) eval(parse(text = paste0("ggplot2::aes(label = paste0(", var_y,", '\n (' ,", var_per, ", '%', ')'","))")))
