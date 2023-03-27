@@ -108,7 +108,7 @@ plot_by_variable <- function(data, var_x, var_y, var_per = NULL, var_fill = NULL
     ggplot2::labs(x = label_x, y = label_y, caption = ref_caption) +
     ggplot2::labs(fill = "") +
     ggplot2::theme_classic() + {if (text_sz > 3)
-    ggplot2::theme(text = ggplot2::element_text(size = text_sz * 2))} +
+    ggplot2::theme(text = ggplot2::element_text(size = text_sz * 2), plot.caption = ggplot2::element_text(size = 2))} +
     {if (show_val)
       ggplot2::geom_text(
         {if (!is.null(var_per)) eval(parse(text = paste0("ggplot2::aes(label = paste0(", var_y,", '\n (' ,", var_per, ", '%', ')'","))")))
@@ -252,7 +252,7 @@ plot_gender_and_week <- function(disease_data, col_names = c("sexo", "semana"), 
                                                     bar_wd = 0.5, 
                                                     text_sz = 3, 
                                                     show_val = percentage) +
-    ggplot2::scale_x_continuous(breaks = seq(1, 52, 1))
+    ggplot2::scale_x_continuous(breaks = seq(1, 52, 4))
   
   return(plot_cases_by_gender_and_week)
 }
