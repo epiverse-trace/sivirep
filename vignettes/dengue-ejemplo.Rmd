@@ -94,7 +94,7 @@ Esta predominancia del reporte de casos en sexo masculino se mantuvo a lo largo 
 plot_gender_and_week(gender_and_week_data)
 ```
 
-# Distribución de casos por edad y semana epidemiológica
+# Distribución de casos por edad
 
 ```{r distribution_age_d, echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message=FALSE}
 age_and_week_data <- group_by_age_and_week(clean_disease_data)
