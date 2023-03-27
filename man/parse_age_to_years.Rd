@@ -4,7 +4,7 @@
 \alias{parse_age_to_years}
 \title{Parse Age to Years}
 \usage{
-parse_age_to_years(disease_data, col_age = "EDAD", col_uni_med = "UNI_MED")
+parse_age_to_years(disease_data, col_age = "edad", col_uni_med = "uni_med")
 }
 \arguments{
 \item{disease_data}{Disease data}
@@ -22,5 +22,5 @@ Function that converts ages into years according to SIVIGILA measurement units
 }
 \examples{
 disease_data <- import_data_disease_by_year(2019, "DENGUE")
-parse_age_to_years(disease_data, col_age = "EDAD", col_uni_med = "UNI_MED")
+parse_age_to_years(disease_data, col_age = "edad", col_uni_med = "uni_med")
 }

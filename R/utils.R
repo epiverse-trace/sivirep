@@ -40,17 +40,17 @@ get_months_major_cases <- function(disease_data, col_dates, col_cases, top = 3, 
 #' @export
 get_depto_names <- function(disease_data) {
   disease_data_deptos <- disease_data
-  disease_data_deptos$CODIGO <- disease_data$id
+  disease_data_deptos$codigo <- disease_data$id
   geo_country_data <- import_geo_codes()
   deptos_data <- data.frame(id = geo_country_data$c_digo_departamento, 
-                            Nombre = geo_country_data$nombre_departamento)
+                            nombre = geo_country_data$nombre_departamento)
   i <- 1
   for (code in deptos_data$id) {
-    disease_data_deptos$id[disease_data_deptos$id == code] <- deptos_data$Nombre[i]
+    disease_data_deptos$id[disease_data_deptos$id == code] <- deptos_data$nombre[i]
     i <- i + 1 
   }
-  colnames(disease_data_deptos)[colnames(disease_data_deptos) == "id"] <- "NOMBRE"
-  disease_data_deptos <- disease_data_deptos[order(disease_data_deptos$NOMBRE, decreasing = F), ]
+  colnames(disease_data_deptos)[colnames(disease_data_deptos) == "id"] <- "nombre"
+  disease_data_deptos <- disease_data_deptos[order(disease_data_deptos$nombre, decreasing = F), ]
   disease_data_deptos <- disease_data_deptos[5:nrow(disease_data_deptos), ]
   return(disease_data_deptos)
 }

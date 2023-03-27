@@ -6,7 +6,7 @@ default:
   query_diseases_by_year_path: "https://portalsivigila.ins.gov.co/_api/web/lists/GetByTitle('Microdatos')/items?$select=Evento,A_x00f1_o,NombreEvento&$orderby=NombreEvento%20asc&$top=1000"
   name_file_split: "/Microdatos/"
   data_delim: ["|", "," , ";", ":", "-"]
-  special_populations_cols: ["GP_DISCAPA","GP_DESPLAZ","GP_MIGRANT","GP_CARCELA","GP_GESTAN","GP_INDIGEN","GP_POBICFB","GP_MAD_COM","GP_DESMOVI","GP_PSIQUIA","GP_VIC_VIO","GP_OTROS"]
+  special_populations_cols: ["gp_discapa","gp_desplaz","gp_migrant","gp_carcela","gp_gestan","gp_indigen","gp_pobicfb","gp_mad_com","gp_desmovi","gp_psiquia","gp_vic_vio","gp_otros"]
   special_populations_names: ["Discapacitados","Desplazados","Migrantes","Carcelarios","Gestantes","Indigenas","ICBF","Madres comunitarias","Desmovilizados","Pob. Centros psiquiatricos","Victimas de violencia armada","Otros"]
   sivigila_open_data_path: "https://www.datos.gov.co/api/views/qvnt-2igj/rows.csv?accessType=DOWNLOAD"
   geo_data_path: "https://www.datos.gov.co/api/views/gdxc-w37w/rows.csv?accessType=DOWNLOAD"
@@ -15,3 +15,5 @@ default:
   age_categorie_labels: [ "<2 años", "2 a 4 años", "5 a 14 años", "15 a 39 años", "40 a 59 años", "60 y más"]
   respiratory_virus_column_names: [ "influenza_a_h1_2009", "influenza_a_h1", "influenza_a_h3", "influenza_b", "metapneumovirus_humano", "rinovirus_enterovirus_humano", "virus_sincitial_respiratorio", "adenovirus"]
   respiratory_virus_names: [ "H1N1 2009", "H1N1", "H3N1", "Influenza B", "Metapneumovirus", "Rinovirus", "VSR", "Adenovirus"]
+  dates_column_names: ["fecha_nto", "fec_not", "ini_sin", "fec_hos", "fec_def", "fec_con"]
+  depto_column_names: ["cod_dpto_o"]

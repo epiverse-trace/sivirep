@@ -58,14 +58,14 @@ This function cleans the disease data with respect to the codes of the departmen
 
 ```{r}
 depto_codes <- get_depto_codes(geo_codes)
-disease_data_by_deptos <- group_by_columns_and_cases(disease_data, "COD_DPTO_O", wt_percentage = TRUE)
+disease_data_by_deptos <- group_by_columns_and_cases(disease_data, "cod_dpto_o", wt_percentage = TRUE)
 clean_depto_disease_codes(depto_codes, disease_data_by_deptos)
 ```
 
 This function removes values that are greater than the comparison value, for example the symptom onset date and hospitalization date:
 
 ```{r}
-clean_disease_dates_data <- remove_error_dates(disease_data, col_init = "INI_SI", col_cmp = "FEC_HOS")
+clean_disease_dates_data <- remove_error_dates(disease_data, col_init = "INI_SI", col_cmp = "fec_hos")
 ```
 
 This function converts ages into years according to SIVIGILA measurement units (2 = months, 3 = days, 4 = hours, 5 = minutes)
@@ -87,13 +87,13 @@ disease_data_by_week <- group_by_week_and_cases(disease_data)
 This function is useful to group by any variable of data set and get the cases number and percentage:
 
 ```{r}
-disease_data_by_age_and_week <- group_by_columns_and_cases(disease_data, col_names = c("EDAD", "SEMANA"), wt_percentage = TRUE)
+disease_data_by_age_and_week <- group_by_columns_and_cases(disease_data, col_names = c("edad", "semana"), wt_percentage = TRUE)
 ```
 
 This function group the data by a range for example the ages:
 
 ```{r}
-disease_data_by_age <- group_by_age_range_and_cases(disease_data_by_age_and_week, col_name = "EDAD", min_val = 5, max_val = 82, step = 5)
+disease_data_by_age <- group_by_age_range_and_cases(disease_data_by_age_and_week, col_name = "edad", min_val = 5, max_val = 82, step = 5)
 ```
 
 # Generate and plot reports
@@ -112,7 +112,7 @@ If you need to generate a map by information department of the selected disease,
 This is a generic function that uses other reports to graph for any type of variable:
 
 ```{r, echo=FALSE, error=FALSE, fig.height=3, fig.width=6, warning=FALSE, include=TRUE, message=FALSE}
-disease_dt_by_gender <- group_by_columns_and_cases(disease_data, "SEXO", wt_percentage = TRUE)
+disease_dt_by_gender <- group_by_columns_and_cases(disease_data, "sexo", wt_percentage = TRUE)
 
-plot_by_variable(disease_dt_by_gender, var_x = "SEXO", var_y = "Casos", var_fill = "SEXO", var_per = "Porcentaje", label_x = "Gender", label_y = "Cases \n (Percentages)", scale_name = "Gender", scale_labels = c("Femenino", "Masculino"), diagram_title = "Cases by gender", legend_pos = "right", bar_wd = 0.6, text_sz = 4, show_val = TRUE)
+plot_by_variable(disease_dt_by_gender, var_x = "sexo", var_y = "casos", var_fill = "sexo", var_per = "porcentaje", label_x = "Gender", label_y = "Cases \n (Percentages)", scale_name = "Gender", scale_labels = c("Femenino", "Masculino"), diagram_title = "Cases by gender", legend_pos = "right", bar_wd = 0.6, text_sz = 4, show_val = TRUE)
 ```

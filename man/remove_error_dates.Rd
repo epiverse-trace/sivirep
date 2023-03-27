@@ -4,7 +4,7 @@
 \alias{remove_error_dates}
 \title{Remove Error Dates}
 \usage{
-remove_error_dates(disease_data, col_init = "INI_SIN", col_cmp = "FEC_HOS")
+remove_error_dates(disease_data, col_init = "ini_sin", col_cmp = "fec_hos")
 }
 \arguments{
 \item{disease_data}{Disease data}
@@ -22,5 +22,5 @@ Function that removes greater dates than the comparison value
 }
 \examples{
 disease_data <- import_data_disease_by_year(2019, "DENGUE")
-remove_error_dates(disease_data, col_init = "INI_SI", col_cmp = "FEC_HOS")
+remove_error_dates(disease_data, col_init = "INI_SI", col_cmp = "fec_hos")
 }

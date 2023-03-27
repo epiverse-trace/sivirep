@@ -7,7 +7,7 @@ generate_distribution_by_age <- function(diseases_data) {
   plot <- ggplot2::ggplot(df1) +
     ggplot2::geom_col(ggplot2::aes(x = grupo_edad, y = casos, fill = enfermedad), alpha = 0.9) +
     ggplot2::theme_classic() +
-    ggplot2::xlab("Edad") + ggplot2::ylab("Casos") +
+    ggplot2::xlab("Edad") + ggplot2::ylab("casos") +
     ggplot2::scale_fill_discrete(name = "Enfermedad") +
     ggplot2::theme(legend.position = "bottom")
   
@@ -24,7 +24,7 @@ generate_distribution_by_age_and_sars <- function(diseases_data) {
   plot <- ggplot2::ggplot(df2) +
     ggplot2::geom_col(ggplot2::aes(x = grupo_edad, y = casos, fill = enfermedad), alpha = 0.9) +
     ggplot2::theme_classic() +
-    ggplot2::xlab("Edad") + ggplot2::ylab("Casos") +
+    ggplot2::xlab("Edad") + ggplot2::ylab("casos") +
     ggplot2::scale_fill_discrete(name = "Enfermedad") +
     ggplot2::theme(legend.position = "bottom")
   
@@ -40,7 +40,7 @@ generate_distribution_by_age_and_esi <- function(diseases_data) {
   plot <- ggplot2::ggplot(df3) +
     ggplot2::geom_col(ggplot2::aes(x = grupo_edad, y = casos, fill = enfermedad), alpha = 0.9) +
     ggplot2::theme_classic() +
-    ggplot2::xlab("Edad") + ggplot2::ylab("Casos") +
+    ggplot2::xlab("Edad") + ggplot2::ylab("casos") +
     ggplot2::scale_fill_discrete(name = "Enfermedad") +
     ggplot2::theme(legend.position = "bottom")
   
@@ -57,7 +57,7 @@ generate_distribution_by_age_and_ira <- function(diseases_data) {
   plot <- ggplot2::ggplot(df4) +
     ggplot2::geom_col(ggplot2::aes(x = grupo_edad, y = casos, fill = enfermedad), alpha = 0.9) +
     ggplot2::theme_classic() +
-    ggplot2::xlab("Edad") + ggplot2::ylab("Casos") +
+    ggplot2::xlab("Edad") + ggplot2::ylab("casos") +
     ggplot2::scale_fill_discrete(name = "Enfermedad") +
     ggplot2::theme(legend.position = "bottom")
   
@@ -73,7 +73,7 @@ generate_distribution_by_age_and_irag_inusitado <- function(diseases_data) {
   plot <- ggplot2::ggplot(df5) +
     ggplot2::geom_col(ggplot2::aes(x = grupo_edad, y = casos, fill = enfermedad), alpha = 0.9) +
     ggplot2::theme_classic() +
-    ggplot2::xlab("Edad") + ggplot2::ylab("Casos") +
+    ggplot2::xlab("Edad") + ggplot2::ylab("casos") +
     ggplot2::scale_fill_discrete(name = "Enfermedad") +
     ggplot2::theme(legend.position = "bottom")
   
@@ -211,7 +211,7 @@ plot_distribution_by_age_group <- function(report_data) {
   plot <- ggplot2::ggplot(report_data) +
     ggplot2::geom_col(ggplot2::aes(x = grupo_edad, y = porcentaje, fill = etiqueta), alpha = 0.9) +
     ggplot2::theme_classic() +
-    ggplot2::xlab("Grupo de edad") + ggplot2::ylab("Porcentaje de casos") +
+    ggplot2::xlab("Grupo de edad") + ggplot2::ylab("porcentaje de casos") +
     ggplot2::scale_fill_discrete(name = "Virus respiratorios") +
     ggplot2::theme(legend.position = "bottom")
   

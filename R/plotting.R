@@ -17,11 +17,11 @@
 plot_epiweek <- function(dat, col_week, col_cases, year, type = "week", xlabel = "Semana epidemiologica", ylabel = "Numero de casos por semana") {
   dat$epiweek <- dat[,col_week]
   dat$cases_count <- dat[,col_cases]
-  dat_plot <- dat %>% dplyr::group_by(.data$epiweek, .data$Nombre) %>% dplyr::summarise(casos = sum(.data$cases_count), .groups = "drop")
+  dat_plot <- dat %>% dplyr::group_by(.data$epiweek, .data$nombre) %>% dplyr::summarise(casos = sum(.data$cases_count), .groups = "drop")
   
   if (type == "week") {
     plot <- ggplot2::ggplot(dat_plot) +
-      ggplot2::geom_col(ggplot2::aes(x = .data$epiweek, y = .data$casos, fill = .data$Nombre), alpha = 0.9) +
+      ggplot2::geom_col(ggplot2::aes(x = .data$epiweek, y = .data$casos, fill = .data$nombre), alpha = 0.9) +
       ggplot2::theme_classic() +
       ggplot2::xlab(xlabel) + ggplot2::ylab(ylabel) +
       ggplot2::scale_fill_discrete(name = "") +
@@ -31,7 +31,7 @@ plot_epiweek <- function(dat, col_week, col_cases, year, type = "week", xlabel =
   if (type == "date") {
     dat_plot$date_week <- as.Date(paste(year, dat_plot$epiweek, 1, sep = "-"), "%Y-%U-%u")
     plot <- ggplot2::ggplot(dat_plot) +
-      ggplot2::geom_col(ggplot2::aes(x = .data$date_week, y = .data$casos, fill = .data$Nombre), alpha = 0.9) +
+      ggplot2::geom_col(ggplot2::aes(x = .data$date_week, y = .data$casos, fill = .data$nombre), alpha = 0.9) +
       ggplot2::theme_classic() +
       ggplot2::xlab(xlabel) + ggplot2::ylab(ylabel) +
       ggplot2::scale_fill_discrete(name = "") +
@@ -65,7 +65,7 @@ plot_dept_map <- function(data_map_depto, col_name_lj = "id", map_title, caption
     dplyr::left_join(data_map_depto, by = col_name_lj)
   
   map <- ggplot2::ggplot() +
-    ggplot2::geom_polygon(data = shp.df, ggplot2::aes(x = .data$long, y = .data$lat, group = .data$group, fill = .data$Casos),
+    ggplot2::geom_polygon(data = shp.df, ggplot2::aes(x = .data$long, y = .data$lat, group = .data$group, fill = .data$casos),
                           colour = "black") +
     ggplot2::scale_fill_gradient(low = "white", high = "darkred") +
     ggplot2::theme_void() + 
@@ -127,5 +127,5 @@ plot_by_variable <- function(data, var_x, var_y, var_per = NULL, var_fill = NULL
     ggplot2::facet_grid(~as.character(diagram_title)) +
     # ggplot2::ggtitle(diagram_title)
     ggplot2::theme(legend.position = legend_pos) +
-    {if (ncol(data) == 3 || (!is.null(var_fill) && var_fill == "SEXO")) ggplot2::scale_fill_manual(values = c("#56B4E9", "#E69F00")) else ggplot2::theme(legend.position = legend_pos) }
+    {if (ncol(data) == 3 || (!is.null(var_fill) && var_fill == "sexo")) ggplot2::scale_fill_manual(values = c("#56B4E9", "#E69F00")) else ggplot2::theme(legend.position = legend_pos) }
 }

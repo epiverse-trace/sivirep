@@ -24,6 +24,6 @@ Function that cleans the disease data with respect to the codes of the departmen
 geo_codes <- import_geo_codes()
 depto_codes <- get_depto_codes(geo_codes)
 disease_data <-  import_data_disease_by_year(2019, "DENGUE")
-disease_data <- group_by_columns_and_cases(disease_data, "COD_DPTO_O", wt_percentage = TRUE)
+disease_data <- group_by_columns_and_cases(disease_data, "cod_dpto_o", wt_percentage = TRUE)
 clean_depto_disease_codes(depto_codes, disease_data)
 }

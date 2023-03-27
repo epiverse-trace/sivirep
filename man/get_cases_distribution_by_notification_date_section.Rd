@@ -8,7 +8,7 @@ get_cases_distribution_by_notification_date_section(
   disease_data,
   year,
   type = "month",
-  col_name = "FEC_NOT",
+  col_name = "fec_not",
   plot_title
 )
 }
@@ -30,5 +30,5 @@ Function that generates the section of cases distribution by notification date
 }
 \examples{
 disease_data <-  import_data_disease_by_year(2020, "DENGUE")
-distribution_by_notification_date_section <- get_cases_distribution_by_notification_date_section(disease_data, year = 2020, type = "month", col_name = "FEC_NOT")
+distribution_by_notification_date_section <- get_cases_distribution_by_notification_date_section(disease_data, year = 2020, type = "month", col_name = "fec_not")
 }

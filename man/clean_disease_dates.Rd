@@ -8,7 +8,7 @@ clean_disease_dates(
   disease_data,
   year,
   date_format = "\%AAAA-\%MM-\%DD",
-  col_name = "INI_SIN",
+  col_name = "ini_sin",
   col_cmp = NULL
 )
 }
@@ -30,5 +30,5 @@ Function that cleans dates from a dataset
 }
 \examples{
 disease_data <- import_data_disease_by_year(2020, "DENGUE")
-clean_disease_dates(disease_data, year, date_format = "\%AAAA-\%MM-\%DD", col_name = "INI_SIN", col_cmp = "FEC_HOS")
+clean_disease_dates(disease_data, year, date_format = "\%AAAA-\%MM-\%DD", col_name = "ini_sin", col_cmp = "fec_hos")
 }

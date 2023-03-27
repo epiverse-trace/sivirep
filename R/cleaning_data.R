@@ -10,16 +10,16 @@
 #' geo_codes <- import_geo_codes()
 #' depto_codes <- get_depto_codes(geo_codes)
 #' disease_data <-  import_data_disease_by_year(2019, "DENGUE")
-#' disease_data <- group_by_columns_and_cases(disease_data, "COD_DPTO_O", wt_percentage = TRUE)
+#' disease_data <- group_by_columns_and_cases(disease_data, "cod_dpto_o", wt_percentage = TRUE)
 #' clean_depto_disease_codes(depto_codes, disease_data)
 #' @export
 clean_depto_disease_codes <- function(depto_codes, disease_data, make_group = TRUE) {
   depto_codes$id      <- as.character(depto_codes$cod_dep)
-  disease_data$id     <- as.character(disease_data$COD_DPTO_O)
+  disease_data$id     <- as.character(disease_data$cod_dpto_o)
   disease_data_clean  <- disease_data
   
   if (make_group)
-      disease_data_clean  <- disease_data %>% dplyr::group_by(.data$id) %>% dplyr::summarise(casos = sum(.data$Casos))
+      disease_data_clean  <- disease_data %>% dplyr::group_by(.data$id) %>% dplyr::summarise(casos = sum(.data$casos))
   
   disease_data_clean$id[
     nchar(disease_data_clean$id) < 2 & disease_data_clean$id != "1" & disease_data_clean$id != "0" 
@@ -29,6 +29,29 @@ clean_depto_disease_codes <- function(depto_codes, disease_data, make_group = TR
     &  paste("0", disease_data_clean$id, sep = "") %in% depto_codes$id
   ], sep = "")
   disease_data_clean$id[disease_data_clean$id == "1" &  paste("1", disease_data_clean$id, sep = "") %in% depto_codes$id] <- "11"
+  
+  return(disease_data_clean)
+}
+
+
+clean_depto_disease_codes <- function(disease_data, col_data_codes, geo_data, col_geo_codes) {
+  col_detps_geo <- eval(parse(text = paste0("geo_data$", col_geo_codes)))
+  col_detps_geo <- as.character(col_detps_geo)
+  
+  disease_data_clean  <- disease_data
+  col_detps_data  <- eval(parse(text = paste0("disease_data_clean$", col_data_codes)))
+  col_detps_data  <- as.character(col_detps_data)
+  
+  
+  
+  col_detps_data[
+    nchar(col_detps_data) < 2 & col_detps_data != "1" & col_detps_data != "0" 
+    &  paste("0", col_detps_data, sep = "") %in% col_detps_geo
+  ] <-  paste("0", col_detps_data[
+    nchar(col_detps_data) < 2 & col_detps_data != "1" & col_detps_data != "0" 
+    &  paste("0", col_detps_data, sep = "") %in% col_detps_geo
+  ], sep = "")
+  col_detps_data[col_detps_data == "1" &  paste("1", col_detps_data, sep = "") %in% col_detps_geo] <- "11"
   
   return(disease_data_clean)
 }
@@ -43,11 +66,11 @@ clean_depto_disease_codes <- function(depto_codes, disease_data, make_group = TR
 #' @return The ages in years
 #' @examples
 #' disease_data <- import_data_disease_by_year(2019, "DENGUE")
-#' parse_age_to_years(disease_data, col_age = "EDAD", col_uni_med = "UNI_MED")
+#' parse_age_to_years(disease_data, col_age = "edad", col_uni_med = "uni_med")
 #' @export
-parse_age_to_years <- function(disease_data, col_age = "EDAD", col_uni_med = "UNI_MED") {
+parse_age_to_years <- function(disease_data, col_age = "edad", col_uni_med = "uni_med") {
   disease_dt_to_years <- dplyr::mutate(disease_data,
-                                   EDAD = dplyr::case_when(
+                                   edad = dplyr::case_when(
                                     eval(parse(text = col_uni_med)) == 1 ~ round(eval(parse(text = col_age)), 3),
                                     eval(parse(text = col_uni_med)) == 2 ~ round((eval(parse(text = col_age))/12), 3),
                                     eval(parse(text = col_uni_med)) == 3 ~ round((eval(parse(text = col_age))/876), 3),
@@ -67,7 +90,7 @@ parse_age_to_years <- function(disease_data, col_age = "EDAD", col_uni_med = "UN
 #' @return The clean data without NA, Infinitive or NaN values of the column
 #' @examples
 #' disease_data <- import_data_disease_by_year(2019, "DENGUE")
-#' remove_nin_values(disease_data, name_col = "EDAD")
+#' remove_nin_values(disease_data, name_col = "edad")
 #' @export
 remove_nin_values <- function(disease_data, name_col) {
   ref_col  <- paste0("disease_data$", name_col) 
@@ -89,9 +112,9 @@ remove_nin_values <- function(disease_data, name_col) {
 #' @return The data without the erronous dates
 #' @examples
 #' disease_data <- import_data_disease_by_year(2019, "DENGUE")
-#' remove_error_dates(disease_data, col_init = "INI_SI", col_cmp = "FEC_HOS")
+#' remove_error_dates(disease_data, col_init = "INI_SI", col_cmp = "fec_hos")
 #' @export
-remove_error_dates <- function(disease_data, col_init = "INI_SIN", col_cmp = "FEC_HOS") {
+remove_error_dates <- function(disease_data, col_init = "ini_sin", col_cmp = "fec_hos") {
   ref_col_init  <- paste0("disease_data$", col_init) 
   ref_col_cmp  <- paste0("disease_data$", col_cmp) 
   del_rows <- which(ref_col_cmp <= ref_col_init)
@@ -109,7 +132,7 @@ remove_error_dates <- function(disease_data, col_init = "INI_SIN", col_cmp = "FE
 #' @return The data with formatted dates
 #' @examples
 #' disease_data <- import_data_disease_by_year(2020, "DENGUE")
-#' remove_error_dates(disease_data, date_format = "%AAAA-%MM-%DD", col_names = c("INI_SIN", "FEC_HOS"))
+#' remove_error_dates(disease_data, date_format = "%AAAA-%MM-%DD", col_names = c("ini_sin", "fec_hos"))
 #' @export
 format_dates_values <- function(disease_data, date_format = "%AAAA-%MM-%DD", col_names = c()) {
   clean_dates_disease_dt <- disease_data
@@ -133,11 +156,11 @@ format_dates_values <- function(disease_data, date_format = "%AAAA-%MM-%DD", col
 #' @return The data with clean dates
 #' @examples
 #' disease_data <- import_data_disease_by_year(2020, "DENGUE")
-#' clean_disease_dates(disease_data, year, date_format = "%AAAA-%MM-%DD", col_name = "INI_SIN", col_cmp = "FEC_HOS")
+#' clean_disease_dates(disease_data, year, date_format = "%AAAA-%MM-%DD", col_name = "ini_sin", col_cmp = "fec_hos")
 #' @export
-clean_disease_dates <- function(disease_data, year, date_format = "%AAAA-%MM-%DD", col_name = "INI_SIN", col_cmp = NULL) {
-  disease_dt_by_onset_sym <- format_dates_values(disease_data, date_format, c(col_name, col_cmp))
-  
+clean_disease_dates <- function(disease_data, year, date_format = "%AAAA-%MM-%DD", col_name = "ini_sin", col_cmp = NULL) {
+  #disease_dt_by_onset_sym <- format_dates_values(disease_data, date_format, c(col_name, col_cmp))
+  disease_dt_by_onset_sym <- disease_data
   if (!is.null(col_cmp)) {
       disease_dt_by_onset_sym <- remove_error_dates(disease_dt_by_onset_sym, col_name, col_cmp) 
   }
@@ -158,9 +181,31 @@ clean_disease_dates <- function(disease_data, year, date_format = "%AAAA-%MM-%DD
 #' @return The data with clean ages
 #' @examples
 #' disease_data <- import_data_disease_by_year(2020, "DENGUE")
-#' clean_disease_ages(disease_data, col_name = "EDAD")
+#' clean_disease_ages(disease_data, col_name = "edad")
 #' @export
-clean_disease_ages <- function(disease_data, col_name = "EDAD") {
+clean_disease_ages <- function(disease_data, col_name = "edad") {
   disease_data_by_years <- parse_age_to_years(disease_data)
   disease_data_by_years <- remove_nin_values(disease_data_by_years, col_name)
+}
+
+clean_sivigila_data <- function(disease_data, year) {
+  names(disease_data) <- epitrix::clean_labels(names(disease_data))
+  clean_disease_ages(disease_data);
+  
+  dates_column_names <- config::get(file = 
+                                      system.file("extdata", "config.yml", 
+                                                  package = "sivirep"), "dates_column_names")
+  clean_disease_data <- format_dates_values(disease_data, dates_column_names)
+  clean_disease_data <- clean_disease_dates(clean_disease_data, year, col_name = dates_column_names[3], col_cmp = dates_column_names[4]);
+  clean_disease_data <- clean_disease_dates(clean_disease_data, year, col_name = dates_column_names[5], col_cmp = dates_column_names[1]);
+  
+  
+  depto_column_names <- config::get(file = 
+                                      system.file("extdata", "config.yml", 
+                                                  package = "sivirep"), "depto_column_names")
+  geo_country_data <- import_geo_codes()
+  clean_disease_data <- clean_depto_disease_codes(disease_data, col_data_codes = depto_column_names[1], 
+                                 geo_data = geo_country_data, col_geo_codes = "c_digo_departamento")
+  
+  clean_disease_data <- parse_age_to_years(disease_data, col_age = "edad", col_uni_med = "uni_med")
 }

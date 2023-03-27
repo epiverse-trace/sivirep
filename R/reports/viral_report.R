@@ -4,25 +4,25 @@ df_other_virus_202252 <- read_csv("data/df_other_virus_202252.csv")
 df_respiratory_filmarray_202252 <- read_csv("data/df_respiratory_filmarray_202252.csv")
 
 
-list_diseases <- unique(sivigila_summary_data$Nombre)
+list_diseases <- unique(sivigila_summary_data$nombre)
 list_specific <- list_diseases[stringr::str_detect(list_diseases, name_disease) == TRUE]
 
 
 l<-stringr::str_detect(df_respiratory_filmarray_202252$adenovirus, "^DETECTADO$") == TRUE]
 
-disease_data_grouped  <- df_respiratory_filmarray_202252 %>% dplyr::group_by(dplyr::across(dplyr::all_of(c("grupo_edad")))) %>% filter(any(adenovirus == "DETECTADO")) %>% dplyr::summarise(Casos = dplyr::n(), .groups = "drop") 
+disease_data_grouped  <- df_respiratory_filmarray_202252 %>% dplyr::group_by(dplyr::across(dplyr::all_of(c("grupo_edad")))) %>% filter(any(adenovirus == "DETECTADO")) %>% dplyr::summarise(casos = dplyr::n(), .groups = "drop") 
 
-disease_data_grouped  <- df_respiratory_filmarray_202252 %>% dplyr::group_by(dplyr::across(dplyr::all_of(c("adenovirus", "grupo_edad")))) %>% filter(any(adenovirus == "DETECTADO")) %>% dplyr::summarise(Casos = dplyr::n(), .groups = "drop") 
+disease_data_grouped  <- df_respiratory_filmarray_202252 %>% dplyr::group_by(dplyr::across(dplyr::all_of(c("adenovirus", "grupo_edad")))) %>% filter(any(adenovirus == "DETECTADO")) %>% dplyr::summarise(casos = dplyr::n(), .groups = "drop") 
 colnames(disease_data_grouped)[1] <- "enfermedad"
 disease_data_grouped$enfermedad[disease_data_grouped$enfermedad == 'DETECTADO'] <- "adenovirus"
-disease_data_grouped2  <- df_respiratory_filmarray_202252 %>% dplyr::group_by(dplyr::across(dplyr::all_of(c("rinovirus_enterovirus_humano", "grupo_edad")))) %>% filter(any(rinovirus_enterovirus_humano == "DETECTADO")) %>% dplyr::summarise(Casos = dplyr::n(), .groups = "drop")
+disease_data_grouped2  <- df_respiratory_filmarray_202252 %>% dplyr::group_by(dplyr::across(dplyr::all_of(c("rinovirus_enterovirus_humano", "grupo_edad")))) %>% filter(any(rinovirus_enterovirus_humano == "DETECTADO")) %>% dplyr::summarise(casos = dplyr::n(), .groups = "drop")
 colnames(disease_data_grouped2)[1] <- "enfermedad"
 disease_data_grouped2$enfermedad[disease_data_grouped2$enfermedad == 'DETECTADO'] <- "rinovirus_enterovirus_humano"
-disease_data_grouped3  <- df_respiratory_filmarray_202252 %>% dplyr::group_by(dplyr::across(dplyr::all_of(c("influenza_b", "grupo_edad")))) %>% filter(any(influenza_b == "DETECTADO")) %>% dplyr::summarise(Casos = dplyr::n(), .groups = "drop")
-disease_data_grouped4  <- df_respiratory_filmarray_202252 %>% dplyr::group_by(dplyr::across(dplyr::all_of(c("virus_parainfluenza_1", "grupo_edad")))) %>% filter(any(virus_parainfluenza_1 == "DETECTADO")) %>% dplyr::summarise(Casos = dplyr::n(), .groups = "drop")
-disease_data_grouped5  <- df_respiratory_filmarray_202252 %>% dplyr::group_by(dplyr::across(dplyr::all_of(c("virus_parainfluenza_2", "grupo_edad")))) %>% filter(any(virus_parainfluenza_2 == "DETECTADO")) %>% dplyr::summarise(Casos = dplyr::n(), .groups = "drop")
-disease_data_grouped6  <- df_respiratory_filmarray_202252 %>% dplyr::group_by(dplyr::across(dplyr::all_of(c("virus_parainfluenza_3", "grupo_edad")))) %>% filter(any(virus_parainfluenza_3 == "DETECTADO")) %>% dplyr::summarise(Casos = dplyr::n(), .groups = "drop")
-disease_data_grouped7  <- df_respiratory_filmarray_202252 %>% dplyr::group_by(dplyr::across(dplyr::all_of(c("virus_parainfluenza_4", "grupo_edad")))) %>% filter(any(virus_parainfluenza_4 == "DETECTADO")) %>% dplyr::summarise(Casos = dplyr::n(), .groups = "drop")
+disease_data_grouped3  <- df_respiratory_filmarray_202252 %>% dplyr::group_by(dplyr::across(dplyr::all_of(c("influenza_b", "grupo_edad")))) %>% filter(any(influenza_b == "DETECTADO")) %>% dplyr::summarise(casos = dplyr::n(), .groups = "drop")
+disease_data_grouped4  <- df_respiratory_filmarray_202252 %>% dplyr::group_by(dplyr::across(dplyr::all_of(c("virus_parainfluenza_1", "grupo_edad")))) %>% filter(any(virus_parainfluenza_1 == "DETECTADO")) %>% dplyr::summarise(casos = dplyr::n(), .groups = "drop")
+disease_data_grouped5  <- df_respiratory_filmarray_202252 %>% dplyr::group_by(dplyr::across(dplyr::all_of(c("virus_parainfluenza_2", "grupo_edad")))) %>% filter(any(virus_parainfluenza_2 == "DETECTADO")) %>% dplyr::summarise(casos = dplyr::n(), .groups = "drop")
+disease_data_grouped6  <- df_respiratory_filmarray_202252 %>% dplyr::group_by(dplyr::across(dplyr::all_of(c("virus_parainfluenza_3", "grupo_edad")))) %>% filter(any(virus_parainfluenza_3 == "DETECTADO")) %>% dplyr::summarise(casos = dplyr::n(), .groups = "drop")
+disease_data_grouped7  <- df_respiratory_filmarray_202252 %>% dplyr::group_by(dplyr::across(dplyr::all_of(c("virus_parainfluenza_4", "grupo_edad")))) %>% filter(any(virus_parainfluenza_4 == "DETECTADO")) %>% dplyr::summarise(casos = dplyr::n(), .groups = "drop")
 
 d <- merge(x = disease_data_grouped, y = disease_data_grouped2, by = "grupo_edad")
 
@@ -45,7 +45,7 @@ df1 <- data.frame(enfermedad  = c("H3N2", "H3N2", "H3N2","H3N2", "H3N2", "H3N2",
 ggplot2::ggplot(df1) +
   ggplot2::geom_col(ggplot2::aes(x = grupo_edad, y = casos, fill = enfermedad), alpha = 0.9) +
   ggplot2::theme_classic() +
-  ggplot2::xlab("Edad") + ggplot2::ylab("Casos") +
+  ggplot2::xlab("Edad") + ggplot2::ylab("casos") +
   ggplot2::scale_fill_discrete(name = "Enfermedad") +
   ggplot2::theme(legend.position = "bottom")
 
@@ -57,7 +57,7 @@ df2 <- data.frame(enfermedad  = c("H3N2", "H3N2", "H3N2","H3N2", "H3N2", "H3N2",
 ggplot2::ggplot(df2) +
   ggplot2::geom_col(ggplot2::aes(x = grupo_edad, y = casos, fill = enfermedad), alpha = 0.9) +
   ggplot2::theme_classic() +
-  ggplot2::xlab("Edad") + ggplot2::ylab("Casos") +
+  ggplot2::xlab("Edad") + ggplot2::ylab("casos") +
   ggplot2::scale_fill_discrete(name = "Enfermedad") +
   ggplot2::theme(legend.position = "bottom")
 
@@ -69,7 +69,7 @@ df3 <- data.frame(enfermedad  = c("SARS CoV 2", "SARS CoV 2", "SARS CoV 2", "SAR
 ggplot2::ggplot(df3) +
   ggplot2::geom_col(ggplot2::aes(x = grupo_edad, y = casos, fill = enfermedad), alpha = 0.9) +
   ggplot2::theme_classic() +
-  ggplot2::xlab("Edad") + ggplot2::ylab("Casos") +
+  ggplot2::xlab("Edad") + ggplot2::ylab("casos") +
   ggplot2::scale_fill_discrete(name = "Enfermedad") +
   ggplot2::theme(legend.position = "bottom")
 
@@ -81,7 +81,7 @@ df4 <- data.frame(enfermedad  = c("SARS CoV 2", "SARS CoV 2", "SARS CoV 2", "SAR
 ggplot2::ggplot(df4) +
   ggplot2::geom_col(ggplot2::aes(x = grupo_edad, y = casos, fill = enfermedad), alpha = 0.9) +
   ggplot2::theme_classic() +
-  ggplot2::xlab("Edad") + ggplot2::ylab("Casos") +
+  ggplot2::xlab("Edad") + ggplot2::ylab("casos") +
   ggplot2::scale_fill_discrete(name = "Enfermedad") +
   ggplot2::theme(legend.position = "bottom")
 
@@ -93,7 +93,7 @@ df5 <- data.frame(enfermedad  = c("SARS CoV 2", "SARS CoV 2", "SARS CoV 2", "SAR
 ggplot2::ggplot(df5) +
   ggplot2::geom_col(ggplot2::aes(x = grupo_edad, y = casos, fill = enfermedad), alpha = 0.9) +
   ggplot2::theme_classic() +
-  ggplot2::xlab("Edad") + ggplot2::ylab("Casos") +
+  ggplot2::xlab("Edad") + ggplot2::ylab("casos") +
   ggplot2::scale_fill_discrete(name = "Enfermedad") +
   ggplot2::theme(legend.position = "bottom")
 
@@ -108,7 +108,7 @@ generate_distribution_by_age <- function(diseases_data) {
   plot <- ggplot2::ggplot(df1) +
     ggplot2::geom_col(ggplot2::aes(x = grupo_edad, y = casos, fill = enfermedad), alpha = 0.9) +
     ggplot2::theme_classic() +
-    ggplot2::xlab("Edad") + ggplot2::ylab("Casos") +
+    ggplot2::xlab("Edad") + ggplot2::ylab("casos") +
     ggplot2::scale_fill_discrete(name = "Enfermedad") +
     ggplot2::theme(legend.position = "bottom")
   
@@ -125,7 +125,7 @@ generate_distribution_by_age_and_sars <- function(diseases_data) {
   plot <- ggplot2::ggplot(df2) +
     ggplot2::geom_col(ggplot2::aes(x = grupo_edad, y = casos, fill = enfermedad), alpha = 0.9) +
     ggplot2::theme_classic() +
-    ggplot2::xlab("Edad") + ggplot2::ylab("Casos") +
+    ggplot2::xlab("Edad") + ggplot2::ylab("casos") +
     ggplot2::scale_fill_discrete(name = "Enfermedad") +
     ggplot2::theme(legend.position = "bottom")
   
@@ -141,7 +141,7 @@ generate_distribution_by_age_and_esi <- function(diseases_data) {
   plot <- ggplot2::ggplot(df3) +
     ggplot2::geom_col(ggplot2::aes(x = grupo_edad, y = casos, fill = enfermedad), alpha = 0.9) +
     ggplot2::theme_classic() +
-    ggplot2::xlab("Edad") + ggplot2::ylab("Casos") +
+    ggplot2::xlab("Edad") + ggplot2::ylab("casos") +
     ggplot2::scale_fill_discrete(name = "Enfermedad") +
     ggplot2::theme(legend.position = "bottom")
   
@@ -158,7 +158,7 @@ generate_distribution_by_age_and_ira <- function(diseases_data) {
   plot <- ggplot2::ggplot(df4) +
     ggplot2::geom_col(ggplot2::aes(x = grupo_edad, y = casos, fill = enfermedad), alpha = 0.9) +
     ggplot2::theme_classic() +
-    ggplot2::xlab("Edad") + ggplot2::ylab("Casos") +
+    ggplot2::xlab("Edad") + ggplot2::ylab("casos") +
     ggplot2::scale_fill_discrete(name = "Enfermedad") +
     ggplot2::theme(legend.position = "bottom")
   
@@ -174,7 +174,7 @@ generate_distribution_by_age_and_irag_inusitado <- function(diseases_data) {
   plot <- ggplot2::ggplot(df5) +
     ggplot2::geom_col(ggplot2::aes(x = grupo_edad, y = casos, fill = enfermedad), alpha = 0.9) +
     ggplot2::theme_classic() +
-    ggplot2::xlab("Edad") + ggplot2::ylab("Casos") +
+    ggplot2::xlab("Edad") + ggplot2::ylab("casos") +
     ggplot2::scale_fill_discrete(name = "Enfermedad") +
     ggplot2::theme(legend.position = "bottom")
   
@@ -325,7 +325,7 @@ viruses_by_age_group <- get_distribution_by_age_group(report_data = d2)
 plot <- ggplot2::ggplot(virus_by_age_group) +
   ggplot2::geom_col(ggplot2::aes(x = grupo_edad, y = porcentaje, fill = etiqueta), alpha = 0.9) +
   ggplot2::theme_classic() +
-  ggplot2::xlab("Grupo de edad") + ggplot2::ylab("Porcentaje de casos") +
+  ggplot2::xlab("Grupo de edad") + ggplot2::ylab("porcentaje de casos") +
   ggplot2::scale_fill_discrete(name = "Virus respiratorios") +
   ggplot2::theme(legend.position = "bottom")
 
@@ -334,7 +334,7 @@ plot
 plot2 <- ggplot2::ggplot(viruses_by_age_group) +
   ggplot2::geom_col(ggplot2::aes(x = grupo_edad, y = porcentaje_normalizado, fill = etiqueta), alpha = 0.9) +
   ggplot2::theme_classic() +
-  ggplot2::xlab("Grupo de edad") + ggplot2::ylab("Porcentaje de casos") +
+  ggplot2::xlab("Grupo de edad") + ggplot2::ylab("porcentaje de casos") +
   ggplot2::scale_fill_discrete(name = "Virus respiratorios") +
   ggplot2::theme(legend.position = "bottom")
 

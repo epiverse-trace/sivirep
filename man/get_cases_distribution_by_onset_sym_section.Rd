@@ -8,8 +8,8 @@ get_cases_distribution_by_onset_sym_section(
   disease_data,
   year,
   type = "month",
-  col_name = "INI_SIN",
-  col_cmp = "FEC_HOS",
+  col_name = "ini_sin",
+  col_cmp = "fec_hos",
   plot_title
 )
 }
@@ -33,5 +33,5 @@ Function that generates the section of distribution of cases by onset symptoms d
 }
 \examples{
 disease_data <-  import_data_disease_by_year(2020, "DENGUE")
-get_cases_distribution_by_onset_sym_section(disease_data, year = 2020, type = "month", col_name = "INI_SIN", col_cmp = "FEC_HOS")
+get_cases_distribution_by_onset_sym_section(disease_data, year = 2020, type = "month", col_name = "ini_sin", col_cmp = "fec_hos")
 }

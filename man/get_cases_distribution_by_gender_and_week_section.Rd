@@ -7,7 +7,7 @@
 get_cases_distribution_by_gender_and_week_section(
   disease_data,
   year,
-  col_names = c("SEXO", "SEMANA"),
+  col_names = c("sexo", "semana"),
   percentage = F,
   plot_title
 )
@@ -30,5 +30,5 @@ Function that generates the section of cases distribution by gender and week
 }
 \examples{
 disease_data <-  import_data_disease_by_year(2020, "DENGUE")
-distribution_by_gender_and_week_section <- get_cases_distribution_by_gender_and_week_section(disease_data, year = 2020, col_name = c("SEXO", "SEMANA"), percentage = F)
+distribution_by_gender_and_week_section <- get_cases_distribution_by_gender_and_week_section(disease_data, year = 2020, col_name = c("sexo", "semana"), percentage = F)
 }

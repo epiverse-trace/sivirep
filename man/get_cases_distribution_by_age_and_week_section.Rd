@@ -7,7 +7,7 @@
 get_cases_distribution_by_age_and_week_section(
   disease_data,
   year,
-  col_names = c("EDAD", "SEMANA"),
+  col_names = c("edad", "semana"),
   percentage = T,
   plot_title
 )
@@ -30,5 +30,5 @@ Function that generates the section of cases distribution by age range
 }
 \examples{
 disease_data <-  import_data_disease_by_year(2020, "DENGUE")
-distribution_by_age_and_week_section <- get_cases_distribution_by_age_and_week_section(disease_data, year = 2020, col_names = c("EDAD", "SEMANA"), percentage = T)
+distribution_by_age_and_week_section <- get_cases_distribution_by_age_and_week_section(disease_data, year = 2020, col_names = c("edad", "semana"), percentage = T)
 }

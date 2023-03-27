@@ -7,7 +7,7 @@
 get_cases_distribution_spatial_section(
   disease_data,
   year,
-  col_name = "COD_DPTO_R",
+  col_name = "cod_dpto_r",
   percentage = F,
   plot_title = ""
 )

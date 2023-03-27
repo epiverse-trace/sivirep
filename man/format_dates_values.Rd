@@ -26,5 +26,5 @@ Function that gives a specific format to a date
 }
 \examples{
 disease_data <- import_data_disease_by_year(2020, "DENGUE")
-remove_error_dates(disease_data, date_format = "\%AAAA-\%MM-\%DD", col_names = c("INI_SIN", "FEC_HOS"))
+remove_error_dates(disease_data, date_format = "\%AAAA-\%MM-\%DD", col_names = c("ini_sin", "fec_hos"))
 }

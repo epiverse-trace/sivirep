@@ -4,7 +4,7 @@
 \alias{clean_disease_ages}
 \title{clean_disease_dates}
 \usage{
-clean_disease_ages(disease_data, col_name = "EDAD")
+clean_disease_ages(disease_data, col_name = "edad")
 }
 \arguments{
 \item{disease_data}{Disease data}
@@ -20,5 +20,5 @@ Function that cleans ages from a dataset
 }
 \examples{
 disease_data <- import_data_disease_by_year(2020, "DENGUE")
-clean_disease_ages(disease_data, col_name = "EDAD")
+clean_disease_ages(disease_data, col_name = "edad")
 }
