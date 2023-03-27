@@ -134,7 +134,6 @@ group_by_age_range_and_cases <- function(disease_data, col_name, var_a = NULL, m
   return(data_values_range)
 }
 
-
 #' Group By Columns and Cases
 #'
 #' Función que agrupa los datos por el nombre de las columna(s) y los casos
@@ -154,4 +153,56 @@ group_by_columns_and_cases <- function(disease_data, col_names, wt_percentage = 
     disease_data_grouped  <-  disease_data_grouped %>% dplyr::mutate(porcentaje = round(disease_data_grouped$casos/sum(disease_data_grouped$casos)*100, 1))
   }
   return(disease_data_grouped)
+}
+
+#' group_by_onset_symptoms
+#'
+#' Función que agrupa los datos por la fecha de inicio de sintomas y los casos
+#' Function that groups the data by onset symptoms date and cases
+#' @param disease_data Disease data
+#' @param col_name Data set column name
+#' @param type Time unit
+#' @return The disease data grouped by onset symptoms date and cases
+#' @examples
+#' disease_data <- import_data_disease_by_year(2019, "DENGUE")
+#' group_by_columns_and_cases(disease_data, col_name = "ini_sin", type = "month")
+#' @export
+group_by_onset_symptoms <- function(disease_data, col_name = "ini_sin", type = "month") {
+  dates_column_names <- config::get(file = 
+                                      system.file("extdata", "config.yml", 
+                                                  package = "sivirep"), "dates_column_names")
+  if (is.null(col_name)) {
+    col_name <- dates_column_names[3]
+  }
+  group_by_onset_symp <- group_by_columns_and_cases(disease_data, col_names = col_name)
+  # disease_data_by_onset_sym <- disease_data %>% 
+   # dplyr::group_by(date = lubridate::floor_date(eval(parse(text = col_name)), type)) %>%
+   # dplyr::summarize(casos = sum(casos))
+  # colnames(disease_data_by_onset_sym)[colnames(disease_data_by_onset_sym) == "date" ] <- col_name
+  
+  return(group_by_onset_symp)
+}
+
+#' group_by_notification_date
+#'
+#' Función que agrupa los datos por la fecha de notificacion y los casos
+#' Function that groups the data by notification date and cases
+#' @param disease_data Disease data
+#' @param col_name Data set column name
+#' @param type Time unit
+#' @return The disease data grouped by onset symptoms date and cases
+#' @examples
+#' disease_data <- import_data_disease_by_year(2019, "DENGUE")
+#' group_by_columns_and_cases(disease_data, col_name = "ini_sin", type = "month")
+#' @export
+group_by_notification_date <- function(disease_data, col_name = "fec_not", type = "month") {
+  dates_column_names <- config::get(file = 
+                                      system.file("extdata", "config.yml", 
+                                                  package = "sivirep"), "dates_column_names")
+  if (is.null(col_name)) {
+    col_name <- dates_column_names[2]
+  }
+  group_by_onset_symp <- group_by_columns_and_cases(disease_data, col_names = col_name)
+  
+  return(group_by_onset_symp)
 }

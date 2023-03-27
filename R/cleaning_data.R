@@ -223,6 +223,7 @@ clean_sivigila_data <- function(disease_data, year) {
   
   clean_disease_data <- format_dates_values(disease_data, col_names = dates_column_names)
   clean_disease_data <- clean_disease_dates(clean_disease_data, year, col_name = dates_column_names[3], col_cmp = dates_column_names[4]);
+  clean_disease_data <- clean_disease_dates(clean_disease_data, year, col_name = dates_column_names[2]);
   #clean_disease_data <- clean_disease_dates(clean_disease_data, year, col_name = dates_column_names[5], col_cmp = dates_column_names[1]);
   
   

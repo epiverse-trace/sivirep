@@ -12,7 +12,7 @@
 #' disease_data <- import_data_disease_by_year(2020, "DENGUE")
 #' clean_disease_ages(disease_data, col_dates, col_cases, top = 3, concat_values = T)
 #' @export
-get_months_major_cases <- function(disease_data, col_dates, col_cases, top = 3, concat_values = T)  {
+get_months_major_cases <- function(disease_data, col_dates, col_cases = "casos", top = 3, concat_values = T)  {
   data_major_cases <- disease_data[order(eval(parse(text = paste0("disease_data$", col_cases))), decreasing = TRUE), ]
   if (nrow(data_major_cases) < top) {
     top <- nrow(data_major_cases)

@@ -100,7 +100,7 @@ plot_dept_map <- function(data_map_depto, col_name_lj = "id", map_title, caption
 #' disease_data <- import_data_disease_by_year(2019, "DENGUE")
 #' @export
 plot_by_variable <- function(data, var_x, var_y, var_per = NULL, var_fill = NULL, wt_per = TRUE, label_x, label_y,
-                             scale_name = NULL, scale_labels = NULL, diagram_title, legend_pos, bar_wd = 1, text_sz = 3, show_val = TRUE, ref_caption = "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia") {
+                             scale_name = NULL, scale_labels = NULL, diagram_title = "", legend_pos, bar_wd = 1, text_sz = 3, show_val = TRUE, ref_caption = "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia") {
   
   ggplot2::ggplot(data, {if (is.null(var_fill)) ggplot2::aes_string(x = var_x, y = var_y) else ggplot2::aes_string(x = var_x, y = var_y, fill = var_fill)}) +
     {if (is.null(var_fill)) ggplot2::geom_bar(width = bar_wd, stat = "identity", position = ggplot2::position_dodge(), fill = "#90C73D") 
@@ -128,4 +128,74 @@ plot_by_variable <- function(data, var_x, var_y, var_per = NULL, var_fill = NULL
     # ggplot2::ggtitle(diagram_title)
     ggplot2::theme(legend.position = legend_pos) +
     {if (ncol(data) == 3 || (!is.null(var_fill) && var_fill == "sexo")) ggplot2::scale_fill_manual(values = c("#56B4E9", "#E69F00")) else ggplot2::theme(legend.position = legend_pos) }
+}
+
+#' plot_onset_symptoms
+#'
+#' Función que genera la gráficas de distribucion de casos por fecha de inicio de sintomas
+#' Function that generates the plot of cases distribution by onset symptoms date
+#' @param disease_data Disease data
+#' @param year Year
+#' @param type Time unit
+#' @param col_name Data set column name
+#' @return A plot of cases distribution by onset symptoms date
+#' @examples
+#' disease_data <-  import_data_disease_by_year(2020, "DENGUE")
+#' plot_onset_symptoms(disease_data, col_name = "ini_sin", type = "month")
+#' @export
+plot_onset_symptoms <- function(disease_data, col_name = "ini_sin", type = "month") {
+  dates_column_names <- config::get(file = 
+                                      system.file("extdata", "config.yml", 
+                                                  package = "sivirep"), "dates_column_names")
+  if (is.null(col_name)) {
+    col_name <- dates_column_names[3]
+  }
+  
+  plot_cases_by_onset_symp <- plot_by_variable(disease_data,
+                                              var_x = col_name, 
+                                              var_y = "casos", 
+                                              label_x = "\nFecha de inicio de sintomas\n", 
+                                              label_y = "Numero de casos\n", 
+                                              legend_pos = "right", 
+                                              text_sz = 6,
+                                              bar_wd = 9,
+                                              show_val = FALSE) + 
+    ggplot2::scale_x_date(date_breaks = paste0("1 ", type), 
+                          date_labels = "%b %d")
+  return(plot_cases_by_onset_symp)
+}
+
+#' plot_notification_date
+#'
+#' Función que genera la gráficas de distribucion de casos por fecha de inicio de sintomas
+#' Function that generates the plot of cases distribution by onset symptoms date
+#' @param disease_data Disease data
+#' @param year Year
+#' @param type Time unit
+#' @param col_name Data set column name
+#' @return A plot of cases distribution by onset symptoms date
+#' @examples
+#' disease_data <-  import_data_disease_by_year(2020, "DENGUE")
+#' plot_onset_symptoms(disease_data, col_name = "fec_not", type = "month")
+#' @export
+plot_notification_date <- function(disease_data, col_name = "fec_not", type = "month") {
+  dates_column_names <- config::get(file = 
+                                      system.file("extdata", "config.yml", 
+                                                  package = "sivirep"), "dates_column_names")
+  if (is.null(col_name)) {
+    col_name <- dates_column_names[3]
+  }
+  
+  plot_cases_by_onset_symp <- plot_by_variable(disease_data,
+                                               var_x = col_name, 
+                                               var_y = "casos", 
+                                               label_x = "\nFecha de inicio de sintomas\n", 
+                                               label_y = "Numero de casos\n", 
+                                               legend_pos = "right", 
+                                               text_sz = 6,
+                                               bar_wd = 9,
+                                               show_val = FALSE) + 
+    ggplot2::scale_x_date(date_breaks = paste0("1 ", type), 
+                          date_labels = "%b %d")
+  return(plot_cases_by_onset_symp)
 }

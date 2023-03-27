@@ -16,17 +16,21 @@ subtitle: (fuente SIVIGILA, Datos libres)
 
 ```{r setup, echo=FALSE, error=FALSE, fig.height=5, fig.width=5, warning=FALSE, include = FALSE, message= FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-#remotes::install_github("epiverse-trace/sivirep", ref = "dev-feature-sections-bsreport")
+remotes::install_github("epiverse-trace/sivirep", ref = "dev-feature-sections-bsreport")
 
 rm(list = ls())
 
 library(sivirep)
 ```
 
-```{r import_data, echo=FALSE, error=FALSE, fig.height=8, fig.width=8, warning=FALSE, include = FALSE, message= FALSE}
+```{r import_data, echo=FALSE, error=FALSE, warning=FALSE, include = FALSE, message = FALSE}
 year <- 2020
 disease_name <-  "Dengue"
 disease_data <-  import_data_disease_by_year(year, toupper(disease_name))
+```
+
+```{r clean_data, echo=FALSE, error=FALSE, warning=FALSE, include = FALSE, message= FALSE}
+clean_disease_data <-  clean_sivigila_data(disease_data, year)
 ```
 
 \pagenumbering{gobble}
@@ -38,21 +42,23 @@ En total en Colombia durante `r year` se reportaron `r nrow(disease_data)` casos
 
 # Distribución temporal de los casos 
 
-```{r cases_by_onset_symptom_date, echo=FALSE, error=FALSE, fig.height=5, fig.width=8, warning=FALSE, include=TRUE, message=FALSE}
+```{r cases_by_onset_symptom_date, echo=FALSE, error=FALSE, warning=FALSE, include=TRUE, message=FALSE}
 
-distribution_by_onset_sym_section <- get_cases_distribution_by_onset_sym_section(disease_data, year, type = "month", col_name = "ini_sin", col_cmp = "fec_hos", plot_title = "Figura 1. Distribución de casos por fecha de inicio de síntomas.")
-months_major_cases <- get_months_major_cases(distribution_by_onset_sym_section$disease_cases, col_dates = "ini_sin", col_cases = "casos")
+onset_symptoms_data <- group_by_onset_symptoms(clean_disease_data, type = "month") 
+months_major_cases <- get_months_major_cases(clean_disease_data, col_dates = "ini_sin")
 
 ```
 
 Los casos se distribuyen a lo largo de los meses de enero a diciembre de `r year`, teniendo un mayor reporte en los meses `r months_major_cases` tanto por fecha de inicio de síntomas (Ver Figura 1) como por fecha de notificación (Ver Figura 2). Este comportamiento pudo haber sido distinto a años previos debido al inicio de estrategias de control de COVID-19 a comienzos de marzo de `r year`.
 
-```{r distribution_by_onset_symptom_date_section, echo=FALSE, error=FALSE, fig.height=5, fig.width=10, warning=FALSE, include=TRUE, message=FALSE}
-distribution_by_onset_sym_section$plot
+```{r plot_cases_by_onset_symptom_date, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, fig.height=5, fig.width=10, fig.cap = "Distribucion de casos por fecha de inicio de sintomas"}
+plot_onset_symptoms(onset_symptoms_data, type = "month")
 ```
-```{r distribution_not, echo=FALSE, error=FALSE, fig.height=5, fig.width=10, warning=FALSE, include=TRUE, message=FALSE}
-distribution_by_notification_date_section <- get_cases_distribution_by_notification_date_section(disease_data, year, type = "month", col_name = "fec_not", plot_title = paste0("Figura 2. Fecha de notificación de los casos de ", disease_name))
-distribution_by_notification_date_section$plot
+```{r cases_by_onset_notification_date, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, fig.height=5, fig.width=10, fig.cap = "Distribucion de casos por fecha de notificacion"}
+
+notification_date_data <- group_by_notification_date(clean_disease_data, type = "month")
+plot_onset_symptoms(notification_date_data, type = "month")
+
 ```
 
 # Distribución de casos por sexo y semana epidemiológica
