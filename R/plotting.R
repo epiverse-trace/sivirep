@@ -124,7 +124,7 @@ plot_by_variable <- function(data, var_x, var_y, var_per = NULL, var_fill = NULL
     # ggplot2::scale_fill_discrete(name = scale_name, {if (!is.null(scale_labels)) labels = scale_labels}) +
     # theme(axis.text.x = element_text(angle = -45, vjust = 1, hjust = -0.3)) +
     # theme_linedraw() +
-    {if (is.null(diagram_title)) ggplot2::facet_grid(~as.character(diagram_title)) } +
+    # {if (is.null(diagram_title)) ggplot2::facet_grid(~as.character(diagram_title)) } +
     # ggplot2::ggtitle(diagram_title)
     ggplot2::theme(legend.position = legend_pos) +
     {if (ncol(data) == 3 || (!is.null(var_fill) && var_fill == "sexo")) ggplot2::scale_fill_manual(values = c("#56B4E9", "#E69F00")) else ggplot2::theme(legend.position = legend_pos) }
@@ -232,7 +232,7 @@ plot_gender <- function(disease_data, col_name = "sexo", percentage = T) {
 #' Function that generates the plot of cases distribution by gender and epiweek
 #' @param disease_data Disease data
 #' @param col_names Data set column names
-#' @return A plot of cases distribution by gender
+#' @return A plot of cases distribution by gender and epiweek
 #' @examples
 #' disease_data <-  import_data_disease_by_year(2020, "DENGUE")
 #' plot_gender_and_week(disease_data, col_names = c("sexo", "semana"), percentage = T)
@@ -255,4 +255,81 @@ plot_gender_and_week <- function(disease_data, col_names = c("sexo", "semana"), 
     ggplot2::scale_x_continuous(breaks = seq(1, 52, 1))
   
   return(plot_cases_by_gender_and_week)
+}
+
+#' plot_age_and_week
+#'
+#' Función que genera la gráficas de distribucion de casos por edad y semana epidemiologica
+#' Function that generates the plot of cases distribution by age and epiweek
+#' @param disease_data Disease data
+#' @param col_names Data set column names
+#' @return A plot of cases distribution by age and epiweek
+#' @examples
+#' disease_data <-  import_data_disease_by_year(2020, "DENGUE")
+#' plot_gender_and_week(disease_data, col_names = c("edad", "semana"), percentage = T)
+#' @export
+plot_age_and_week <- function(disease_data, col_names = c("edad", "semana"), percentage = T) {
+  plot_cases_by_age_and_week <- plot_by_variable(disease_data,
+                                               var_x = col_names[1], 
+                                               var_y = "casos",
+                                               label_x = "\nEdad\n", 
+                                               label_y = "Numero de casos\n", 
+                                               scale_name = "Edad", 
+                                               legend_pos = "right", 
+                                               bar_wd = 0.7, 
+                                               text_sz = 3)
+  return(plot_cases_by_age_and_week)
+}
+
+#' plot_age_and_gender
+#'
+#' Función que genera la gráficas de distribucion de casos por edad y genero
+#' Function that generates the plot of cases distribution by age and gender
+#' @param disease_data Disease data
+#' @param col_names Data set column names
+#' @return A plot of cases distribution by age and gender
+#' @examples
+#' disease_data <-  import_data_disease_by_year(2020, "DENGUE")
+#' plot_age_and_gender(disease_data, col_names = c("edad", "sexo"), percentage = T)
+#' @export
+plot_age_and_gender <- function(disease_data, col_names = c("edad", "semana"), percentage = T) {
+  plot_cases_by_age_and_gender <- plot_by_variable(disease_data, 
+                                                 var_x = col_names[1], 
+                                                 var_y = "casos", 
+                                                 var_fill = col_names[2],
+                                                 label_x = "\nEdad\n", 
+                                                 label_y = "Numero de casos\n", 
+                                                 scale_name = "Edad", 
+                                                 legend_pos = "right", 
+                                                 bar_wd = 0.7, 
+                                                 text_sz = 3, 
+                                                 show_val = FALSE)
+  return(plot_cases_by_age_and_gender)
+}
+
+#' plot_special_population
+#'
+#' Función que genera la gráficas de distribucion de casos por poblacion especial
+#' Function that generates the plot of cases distribution by special population
+#' @param disease_data Disease data
+#' @param col_name Data set column name
+#' @return A plot of cases distribution by special population
+#' @examples
+#' disease_data <-  import_data_disease_by_year(2020, "DENGUE")
+#' plot_special_population(disease_data, col_name = "poblacion", percentage = T)
+#' @export
+plot_special_population <- function(disease_data, col_name = "poblacion", percentage = T) {
+  plot_cases_by_special_population <- plot_by_variable(disease_data, 
+                                                       var_x = col_name, 
+                                                       var_y = "casos",
+                                                       var_fill =  col_name,
+                                                       label_x = "Poblacion",
+                                                       label_y = "casos",
+                                                       scale_name = "Poblacion", 
+                                                       legend_pos = "right", 
+                                                       bar_wd = 0.5, 
+                                                       text_sz = 3, 
+                                                       show_val = TRUE) + 
+                                      ggplot2::theme(legend.position = "bottom")
+  return(plot_cases_by_special_population)
 }

@@ -14,7 +14,7 @@ header-includes:
 subtitle: (fuente SIVIGILA, Datos libres)
 ---
 
-```{r setup, echo=FALSE, error=FALSE, fig.height=5, fig.width=5, warning=FALSE, include = FALSE, message= FALSE}
+```{r setup, echo=FALSE, error=FALSE, warning=FALSE, include = FALSE, message= FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 remotes::install_github("epiverse-trace/sivirep", ref = "dev-feature-sections-bsreport")
 
@@ -89,27 +89,27 @@ plot_gender_and_week(gender_and_week_data)
 # Distribución de casos por edad y semana epidemiológica
 
 ```{r distribution_age_d, echo=FALSE, error=FALSE, fig.height=5, fig.width=10, warning=FALSE, include=TRUE, message=FALSE}
-distribution_by_age_and_week_section <- get_cases_distribution_by_age_and_week_section(disease_data, year, col_names = c("edad", "semana"), percentage = T, plot_title = "Figura 5. Distribucion de casos por edad.")
+age_and_week_data <- group_by_age_and_week(clean_disease_data)
+age_range_major_case <- get_major_cases(age_and_week_data)
 ```
 
-La distribución de los casos por grupos etarios muestra una tendencia decreciente a medida que se avanza en la edad. La población de `r distribution_by_age_and_week_section$age_range_major_cases$edad` años representó el   `r  distribution_by_age_and_week_section$percentage_major_cases` % de todos los casos de `r disease_name` en el país (Ver figura 5).
+La distribución de los casos por grupos etarios muestra una tendencia decreciente a medida que se avanza en la edad. La población de `r age_range_major_cases$edad` años representó el   `r  age_range_major_case$porcentaje` % de todos los casos de `r disease_name` en el país (Ver figura 5).
 De forma interesante, aunque el sexo masculino predominó en casi todos los grupos etários,  para el grupo de 0-10 años esta predominancia fue mucho menos marcada (Ver Figura 6).
 
-```{r distribution_age, echo=FALSE, error=FALSE, fig.height=5, fig.width=10, warning=FALSE, include=TRUE, message=FALSE}
-distribution_by_age_and_week_section$plot
+```{r distribution_age, echo=FALSE, error=FALSE, fig.height=5, fig.width=10, warning=FALSE, include=TRUE, message=FALSE, fig.cap =  "Distribucion de casos por edad y semana epidemiologica"}
+plot_age_and_week(age_and_week_data)
 ```
 
 # Distribución de casos por edad y sexo
-```{r distribution_age_anger, echo=FALSE, error=FALSE, fig.height=5, fig.width=10, warning=FALSE, include=TRUE, message=FALSE}
-distribution_by_age_and_gender_section <- get_cases_distribution_by_age_and_gender_section(disease_data, year, col_names = c("edad", "sexo"), percentage = T, plot_title = "Figura 6. Distribucion de casos por edad y sexo.")
-distribution_by_age_and_gender_section$plot
-
+```{r distribution_age_anger, echo=FALSE, error=FALSE, fig.height=5, fig.width=10, warning=FALSE, include=TRUE, message=FALSE, fig.cap =  "Distribucion de casos por edad y genero"}
+age_and_gender_data <- group_by_age_and_gender(clean_disease_data)
+plot_age_and_gender(age_and_gender_data)
 ```
 
 # Distribución de casos por población especial
-```{r distribution_sp, echo=FALSE, error=FALSE, fig.height=5, fig.width=15, warning=FALSE, include=TRUE, message=FALSE}
-distribution_by_special_population_section <- get_cases_distribution_by_special_population_section(disease_data, year, plot_title = "Figura 6. Distribucion de casos por poblacion especial")
-distribution_by_special_population_section$plot
+```{r distribution_sp, echo=FALSE, error=FALSE, fig.height=5, fig.width=15, warning=FALSE, include=TRUE, message=FALSE, fig.cap =  "Distribucion de casos por poblacion especial"}
+special_population_data <- group_by_special_population(clean_disease_data)
+plot_special_population(special_population_data)
 ```
 
 # Distribución espacial de casos
