@@ -133,7 +133,7 @@ departments_spacial_data <- group_by_deptos(clean_disease_data)
 
 ```{r map_distribution_spatial, echo = FALSE, error = FALSE,  warning = FALSE, include = TRUE, message = FALSE, fig.height = 10, fig.width = 10, fig.cap =  "Distribucion espacial de casos"}
 departments_spacial_data <- group_by_deptos(clean_disease_data)
-plot_dept_map(departments_spacial_data, map_title = "Colombia")
+plot_dept_map(departments_spacial_data, map_title = "")
 ```
 
 \newpage

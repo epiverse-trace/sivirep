@@ -2,3 +2,4 @@ language:
   label:
     fig: "Figura "
     tab: "Tabla "
+rmd_files: ["dengue-ejemplo.Rmd"]

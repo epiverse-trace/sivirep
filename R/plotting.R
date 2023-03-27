@@ -109,7 +109,7 @@ plot_by_variable <- function(data, var_x, var_y, var_per = NULL, var_fill = NULL
     ggplot2::labs(fill = "") +
     ggplot2::theme_classic() + {if (text_sz > 3)
     ggplot2::theme(text = ggplot2::element_text(size = text_sz * 2))} +
-    ggplot2::theme(plot.caption = ggplot2::element_text(size = 2)) +
+    ggplot2::theme(plot.caption = ggplot2::element_text(size = 6)) +
     {if (show_val)
       ggplot2::geom_text(
         {if (!is.null(var_per)) eval(parse(text = paste0("ggplot2::aes(label = paste0(", var_y,", '\n (' ,", var_per, ", '%', ')'","))")))
