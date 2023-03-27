@@ -111,7 +111,7 @@ plot_age_and_week(age_and_week_data)
 
 # Distribución de casos por edad y sexo
 
-```{r distribution_age_anger, echo = FALSE, error = FALSE,  warning = FALSE, include = TRUE, message = FALSE, fig.height = 3, fig.width = 8, fig.cap =  "Distribucion de casos por edad y genero"}
+```{r distribution_age_anger, echo = FALSE, error = FALSE,  warning = FALSE, include = TRUE, message = FALSE, fig.height = 3, fig.width = 9, fig.cap =  "Distribucion de casos por edad y genero"}
 age_and_gender_data <- group_by_age_and_gender(clean_disease_data)
 plot_age_and_gender(age_and_gender_data)
 ```
