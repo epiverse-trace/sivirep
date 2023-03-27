@@ -16,7 +16,7 @@ plot_gender_and_week(
 \item{col_names}{Data set column names}
 }
 \value{
-A plot of cases distribution by gender
+A plot of cases distribution by gender and epiweek
 }
 \description{
 Función que genera la gráficas de distribucion de casos por genero y semana epidemiologica

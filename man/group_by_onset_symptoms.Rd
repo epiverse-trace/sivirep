@@ -22,5 +22,5 @@ Function that groups the data by onset symptoms date and cases
 }
 \examples{
 disease_data <- import_data_disease_by_year(2019, "DENGUE")
-group_by_columns_and_cases(disease_data, col_name = "ini_sin", type = "month")
+group_by_onset_symptoms(disease_data, col_name = "ini_sin", type = "month")
 }

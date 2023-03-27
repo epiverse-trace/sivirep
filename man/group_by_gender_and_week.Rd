@@ -24,5 +24,5 @@ Function that groups the data by gender, epiweek and cases
 }
 \examples{
 disease_data <- import_data_disease_by_year(2019, "DENGUE")
-group_by_columns_and_cases(disease_data, col_name = "sexo",)
+group_by_gender_and_week(disease_data, col_names = c("sexo", "semana"), percentage = T)
 }

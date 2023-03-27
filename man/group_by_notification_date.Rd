@@ -22,5 +22,5 @@ Function that groups the data by notification date and cases
 }
 \examples{
 disease_data <- import_data_disease_by_year(2019, "DENGUE")
-group_by_columns_and_cases(disease_data, col_name = "ini_sin", type = "month")
+group_by_notification_date(disease_data, col_name = "fec_not", type = "month")
 }
