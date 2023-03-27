@@ -33,8 +33,21 @@ clean_depto_disease_codes <- function(depto_codes, disease_data, make_group = TR
   return(disease_data_clean)
 }
 
-
-clean_depto_disease_codes <- function(disease_data, col_data_codes, geo_data, col_geo_codes) {
+#' clean_depto_codes
+#' 
+#' Función que limpia los codigos de los departamentos de los datos de la enfermedad
+#' Function that cleans the departments codes of the disease data
+#' @param disease_data The disease data
+#' @param col_data_codes Column name of departments codes of the disease data
+#' @param geo_codes Geographical data that includes the departments codes
+#' @param col_geo_codes Column name of departments codes of the geographical data
+#' @return Clean codes of disease data departments
+#' @examples
+#' geo_codes <- import_geo_codes()
+#' disease_data <-  import_data_disease_by_year(2019, "DENGUE")
+#' clean_depto_codes(disease_data, col_data_codes = "cod_dpto_o", geo_codes, col_geo_codes = "c_digo_departamento")
+#' @export
+clean_depto_codes <- function(disease_data, col_data_codes, geo_data, col_geo_codes) {
   col_detps_geo <- eval(parse(text = paste0("geo_data$", col_geo_codes)))
   col_detps_geo <- as.character(col_detps_geo)
   
@@ -188,24 +201,37 @@ clean_disease_ages <- function(disease_data, col_name = "edad") {
   disease_data_by_years <- remove_nin_values(disease_data_by_years, col_name)
 }
 
+#' clean_sivigila_data
+#' 
+#' Función que limpia los datos de la enfermedad seleccionada de la fuente SIVIGILA
+#' Function that cleans the selected disease data of source SIVIGILA
+#' @param disease_data The disease data
+#' @param year Year of the disease data
+#' @return Clean data of disease
+#' @examples
+#' year <- 2019
+#' disease_data <-  import_data_disease_by_year(year, "DENGUE")
+#' clean_sivigila_data(disease_data, year)
+#' @export
 clean_sivigila_data <- function(disease_data, year) {
   names(disease_data) <- epitrix::clean_labels(names(disease_data))
-  clean_disease_ages(disease_data);
+  disease_data <- clean_disease_ages(disease_data);
   
   dates_column_names <- config::get(file = 
                                       system.file("extdata", "config.yml", 
                                                   package = "sivirep"), "dates_column_names")
-  clean_disease_data <- format_dates_values(disease_data, dates_column_names)
+  
+  clean_disease_data <- format_dates_values(disease_data, col_names = dates_column_names)
   clean_disease_data <- clean_disease_dates(clean_disease_data, year, col_name = dates_column_names[3], col_cmp = dates_column_names[4]);
-  clean_disease_data <- clean_disease_dates(clean_disease_data, year, col_name = dates_column_names[5], col_cmp = dates_column_names[1]);
+  #clean_disease_data <- clean_disease_dates(clean_disease_data, year, col_name = dates_column_names[5], col_cmp = dates_column_names[1]);
   
   
   depto_column_names <- config::get(file = 
                                       system.file("extdata", "config.yml", 
                                                   package = "sivirep"), "depto_column_names")
   geo_country_data <- import_geo_codes()
-  clean_disease_data <- clean_depto_disease_codes(disease_data, col_data_codes = depto_column_names[1], 
-                                 geo_data = geo_country_data, col_geo_codes = "c_digo_departamento")
+  clean_disease_data <- clean_depto_codes(disease_data, col_data_codes = depto_column_names[1], 
+                                geo_data = geo_country_data, col_geo_codes = "c_digo_departamento")
   
   clean_disease_data <- parse_age_to_years(disease_data, col_age = "edad", col_uni_med = "uni_med")
 }
