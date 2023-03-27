@@ -301,3 +301,22 @@ group_by_special_population <- function(disease_data, col_name = "poblacion", pe
   disease_data_special_grouped <- data.frame(Poblacion = disease_data_special$poblacion, casos = disease_data_special$casos)
   return(disease_data_special_grouped)
 }
+
+#' group_by_deptos
+#'
+#' Función que agrupa los datos por codigo de departamento y casos
+#' Function that groups the data by code departments and cases
+#' @param disease_data Disease data
+#' @param col_name Data set column name
+#' @return The disease data grouped by code departments and cases
+#' @examples
+#' disease_data <- import_data_disease_by_year(2019, "DENGUE")
+#' group_by_codes_deptos(disease_data, col_name = "cod_dpto_o", percentage = F)
+#' @export
+group_by_deptos <- function(disease_data, col_name = "cod_dpto_o", percentage = F) {
+  disease_data_by_depto_codes <- group_by_columns_and_cases(disease_data, col_names = col_name)
+  colnames(disease_data_by_depto_codes)[colnames(disease_data_by_depto_codes) == col_name] <- "id"
+  
+  disease_data_by_depto_codes$id <- sapply(disease_data_by_depto_codes$id, as.character)
+  return(disease_data_by_depto_codes)
+}

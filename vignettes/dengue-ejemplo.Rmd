@@ -115,12 +115,12 @@ plot_special_population(special_population_data)
 # Distribución espacial de casos
 
 ```{r distribution_spatial, echo=FALSE, error=FALSE, fig.height=5, fig.width=15, warning=FALSE, include=TRUE, message=FALSE}
-distribution_spatial_section <- get_cases_distribution_spatial_section(disease_data, year, col_name = "cod_dpto_r", plot_title = "Figura 7. Distribucion espacial de casos.")
-distribution_by_special_population_section$map
+departments_spacial_data <- group_by_deptos(clean_disease_data)
+plot_dept_map(, map_title = "Colombia")
 ```
 
 # Conclusiones
 a. Los casos totales reportados de `r disease_name` en Colombia en el año `r year` fueron `r nrow(disease_data)`.
 b. Los meses de `r months_major_cases` tuvieron el mayor reporte. Es posible que haya un impacto en el menor reporte y/o menor transmisión de `r disease_name` como producto de la pandemia COVID-19 y medidas de control que iniciaron en marzo de `r year`.
-c. El reporte de casos de `r disease_name` a lo largo de `r year` predominó en la población de `r distribution_by_age_and_week_section$age_range_major_cases$edad` años.
+c. El reporte de casos de `r disease_name` a lo largo de `r year` predominó en la población de `r age_range_major_cases$edad` años.
 d. El reporte de casos de `r disease_name` predominó a lo largo del año en el sexo masculino.
