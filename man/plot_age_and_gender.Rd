@@ -6,7 +6,7 @@
 \usage{
 plot_age_and_gender(
   disease_data,
-  col_names = c("edad", "semana"),
+  col_names = c("edad", "sexo"),
   percentage = T
 )
 }

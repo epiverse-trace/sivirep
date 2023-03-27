@@ -1,5 +1,5 @@
 ---
-title: "Reporte Automatizado para Dengue, Colombia 2020"
+title: "Reporte Automatizado para `r disease_name`, Colombia `r year`"
 author: "TRACE-LAC"
 date: '2023-02-01'
 output:

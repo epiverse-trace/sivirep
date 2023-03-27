@@ -298,7 +298,7 @@ disease_data_by_age_and_gender <- group_by_age_range_and_cases(disease_data_by_a
 #' @export
 group_by_special_population <- function(disease_data, col_name = "poblacion", percentage = T) {
   disease_data_special <- get_special_population_and_cases(disease_data)
-  disease_data_special_grouped <- data.frame(Poblacion = disease_data_special$poblacion, casos = disease_data_special$casos)
+  disease_data_special_grouped <- data.frame(poblacion = disease_data_special$poblacion, casos = disease_data_special$casos)
   return(disease_data_special_grouped)
 }
 

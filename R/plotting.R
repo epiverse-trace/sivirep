@@ -235,9 +235,9 @@ plot_gender <- function(disease_data, col_name = "sexo", percentage = T) {
 #' @return A plot of cases distribution by gender and epiweek
 #' @examples
 #' disease_data <-  import_data_disease_by_year(2020, "DENGUE")
-#' plot_gender_and_week(disease_data, col_names = c("sexo", "semana"), percentage = T)
+#' plot_gender_and_week(disease_data, col_names = c("sexo", "semana"), percentage = F)
 #' @export
-plot_gender_and_week <- function(disease_data, col_names = c("sexo", "semana"), percentage = T) {
+plot_gender_and_week <- function(disease_data, col_names = c("sexo", "semana"), percentage = F) {
   
   plot_cases_by_gender_and_week <- plot_by_variable(disease_data, 
                                                     var_x = col_names[2], 
@@ -292,7 +292,7 @@ plot_age_and_week <- function(disease_data, col_names = c("edad", "semana"), per
 #' disease_data <-  import_data_disease_by_year(2020, "DENGUE")
 #' plot_age_and_gender(disease_data, col_names = c("edad", "sexo"), percentage = T)
 #' @export
-plot_age_and_gender <- function(disease_data, col_names = c("edad", "semana"), percentage = T) {
+plot_age_and_gender <- function(disease_data, col_names = c("edad", "sexo"), percentage = T) {
   plot_cases_by_age_and_gender <- plot_by_variable(disease_data, 
                                                  var_x = col_names[1], 
                                                  var_y = "casos", 
