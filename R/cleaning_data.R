@@ -178,7 +178,7 @@ clean_disease_dates <- function(disease_data, year, date_format = "%AAAA-%MM-%DD
       disease_dt_by_onset_sym <- remove_error_dates(disease_dt_by_onset_sym, col_name, col_cmp) 
   }
   
-  disease_dt_by_onset_sym <- group_by_columns_and_cases(disease_dt_by_onset_sym, col_name)
+  #disease_dt_by_onset_sym <- group_by_columns_and_cases(disease_dt_by_onset_sym, col_name)
   disease_dt_by_onset_sym[order(eval(parse(text = paste0("disease_dt_by_onset_sym$", col_name))), decreasing = TRUE), ]
   disease_dt_by_onset_sym <- disease_dt_by_onset_sym[format(eval(
     parse(text = paste0("disease_dt_by_onset_sym$", col_name))),'%Y') == year, ]
@@ -215,6 +215,7 @@ clean_disease_ages <- function(disease_data, col_name = "edad") {
 #' @export
 clean_sivigila_data <- function(disease_data, year) {
   names(disease_data) <- epitrix::clean_labels(names(disease_data))
+  
   disease_data <- clean_disease_ages(disease_data);
   
   dates_column_names <- config::get(file = 
@@ -231,7 +232,7 @@ clean_sivigila_data <- function(disease_data, year) {
                                       system.file("extdata", "config.yml", 
                                                   package = "sivirep"), "depto_column_names")
   geo_country_data <- import_geo_codes()
-  clean_disease_data <- clean_depto_codes(disease_data, col_data_codes = depto_column_names[1], 
+  clean_disease_data <- clean_depto_codes(clean_disease_data, col_data_codes = depto_column_names[1], 
                                 geo_data = geo_country_data, col_geo_codes = "c_digo_departamento")
   
   clean_disease_data <- parse_age_to_years(disease_data, col_age = "edad", col_uni_med = "uni_med")
