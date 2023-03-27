@@ -16,13 +16,13 @@ plot_notification_date(disease_data, col_name = "fec_not", type = "month")
 \item{year}{Year}
 }
 \value{
-A plot of cases distribution by onset symptoms date
+A plot of cases distribution by onset notification date
 }
 \description{
-Función que genera la gráficas de distribucion de casos por fecha de inicio de sintomas
-Function that generates the plot of cases distribution by onset symptoms date
+Función que genera la gráficas de distribucion de casos por fecha de notificacion
+Function that generates the plot of cases distribution by notification date
 }
 \examples{
 disease_data <-  import_data_disease_by_year(2020, "DENGUE")
-plot_onset_symptoms(disease_data, col_name = "fec_not", type = "month")
+plot_notification_date(disease_data, col_name = "fec_not", type = "month")
 }

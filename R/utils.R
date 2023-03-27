@@ -10,7 +10,7 @@
 #' @return months major cases
 #' @examples
 #' disease_data <- import_data_disease_by_year(2020, "DENGUE")
-#' clean_disease_ages(disease_data, col_dates, col_cases, top = 3, concat_values = T)
+#' get_months_major_cases(disease_data, col_dates, col_cases, top = 3, concat_values = T)
 #' @export
 get_months_major_cases <- function(disease_data, col_dates, col_cases = "casos", top = 3, concat_values = T)  {
   data_major_cases <- disease_data[order(eval(parse(text = paste0("disease_data$", col_cases))), decreasing = TRUE), ]
@@ -36,7 +36,7 @@ get_months_major_cases <- function(disease_data, col_dates, col_cases = "casos",
 #' @return dataset with the department names
 #' @examples
 #' disease_data <- import_data_disease_by_year(2020, "DENGUE")
-#' clean_disease_ages(disease_data)
+#' get_depto_names(disease_data)
 #' @export
 get_depto_names <- function(disease_data) {
   disease_data_deptos <- disease_data
@@ -53,6 +53,27 @@ get_depto_names <- function(disease_data) {
   disease_data_deptos <- disease_data_deptos[order(disease_data_deptos$nombre, decreasing = F), ]
   disease_data_deptos <- disease_data_deptos[5:nrow(disease_data_deptos), ]
   return(disease_data_deptos)
+}
+
+#' get_row_major_cases
+#' 
+#' Función que obtiene la fila con mayor numero de casos
+#' Function that gets the row with the major number of cases
+#' @param disease_data Disease data
+#' @param col_name Data set column name
+#' @param percentage Percentage value
+#' @return row with major cases
+#' @examples
+#' disease_data <- import_data_disease_by_year(2020, "DENGUE")
+#' get_major_cases(disease_data, col_name = "casos", percentage = T)
+#' @export
+get_major_cases <- function(disease_data, col_name = "casos", percentage = T) {
+  data_major_cases <- disease_data[order(eval(parse(text = paste0("disease_data$", col_name))), decreasing = TRUE), ]
+  data_major_cases <- data_major_cases[1, ]
+  if (percentage) {
+    data_major_cases$porcentaje <-  round((data_major_cases$casos[1]/nrow(disease_data)) * 100, 2)
+  }
+  return(data_major_cases)
 }
 
 #' concatenate_values_with_token

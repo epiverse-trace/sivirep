@@ -15,7 +15,7 @@ plot_by_variable(
   label_y,
   scale_name = NULL,
   scale_labels = NULL,
-  diagram_title = "",
+  diagram_title = NULL,
   legend_pos,
   bar_wd = 1,
   text_sz = 3,

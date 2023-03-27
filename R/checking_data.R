@@ -206,3 +206,35 @@ group_by_notification_date <- function(disease_data, col_name = "fec_not", type 
   
   return(group_by_onset_symp)
 }
+
+#' group_by_gender
+#'
+#' Función que agrupa los datos por genero y los casos
+#' Function that groups the data by gender and cases
+#' @param disease_data Disease data
+#' @param col_name Data set column name
+#' @return The disease data grouped by gender date and cases
+#' @examples
+#' disease_data <- import_data_disease_by_year(2019, "DENGUE")
+#' group_by_columns_and_cases(disease_data, col_name = "sexo",)
+#' @export
+group_by_gender <- function(disease_data, col_name = "sexo", percentage = T) {
+  disease_data_by_gender <- group_by_columns_and_cases(disease_data, col_name, percentage)
+  return(disease_data_by_gender)
+}
+
+#' group_by_gender_and_week
+#'
+#' Función que agrupa los datos por genero, semana epidemiologica y los casos
+#' Function that groups the data by gender, epiweek and cases
+#' @param disease_data Disease data
+#' @param col_names Data set column names
+#' @return The disease data grouped by gender, epiweek and cases
+#' @examples
+#' disease_data <- import_data_disease_by_year(2019, "DENGUE")
+#' group_by_columns_and_cases(disease_data, col_name = "sexo",)
+#' @export
+group_by_gender_and_week <- function(disease_data, col_names = c("sexo", "semana"), percentage = T) {
+  disease_data_by_gender_and_week <- group_by_columns_and_cases(disease_data, col_names, percentage)
+  return(disease_data_by_gender_and_week)
+}

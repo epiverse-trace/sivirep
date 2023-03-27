@@ -45,42 +45,45 @@ En total en Colombia durante `r year` se reportaron `r nrow(disease_data)` casos
 ```{r cases_by_onset_symptom_date, echo=FALSE, error=FALSE, warning=FALSE, include=TRUE, message=FALSE}
 
 onset_symptoms_data <- group_by_onset_symptoms(clean_disease_data, type = "month") 
-months_major_cases <- get_months_major_cases(clean_disease_data, col_dates = "ini_sin")
+months_major_cases <- get_months_major_cases(onset_symptoms_data, col_dates = "ini_sin")
 
 ```
 
 Los casos se distribuyen a lo largo de los meses de enero a diciembre de `r year`, teniendo un mayor reporte en los meses `r months_major_cases` tanto por fecha de inicio de síntomas (Ver Figura 1) como por fecha de notificación (Ver Figura 2). Este comportamiento pudo haber sido distinto a años previos debido al inicio de estrategias de control de COVID-19 a comienzos de marzo de `r year`.
 
-```{r plot_cases_by_onset_symptom_date, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, fig.height=5, fig.width=10, fig.cap = "Distribucion de casos por fecha de inicio de sintomas"}
+```{r plot_cases_by_onset_symptom_date, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, fig.height=5, fig.width=11, fig.cap = "Distribucion de casos por fecha de inicio de sintomas"}
 plot_onset_symptoms(onset_symptoms_data, type = "month")
 ```
 ```{r cases_by_onset_notification_date, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, fig.height=5, fig.width=10, fig.cap = "Distribucion de casos por fecha de notificacion"}
 
 notification_date_data <- group_by_notification_date(clean_disease_data, type = "month")
-plot_onset_symptoms(notification_date_data, type = "month")
+plot_notification_date(notification_date_data, type = "month")
 
 ```
 
 # Distribución de casos por sexo y semana epidemiológica
 
-```{r distribution_cg, echo=FALSE, error=FALSE, fig.height=5, fig.width=10, warning=FALSE, include=TRUE, message=FALSE}
-distribution_by_gender_section <- get_cases_distribution_by_gender_section(disease_data, year, col_name = "sexo", percentage = T, plot_title = "Figura 3. Distribucion de casos por la variable sexo.")
+```{r distribution_cg, echo=FALSE, error=FALSE, warning=FALSE, include=TRUE, message=FALSE}
+gender_data <- group_by_gender(clean_disease_data)
+male_percentage <- gender_data$porcentaje[2]
+female_percentage <- gender_data$porcentaje[1]
+gender_major_cases <- get_major_cases(gender_data)
 ```
 
-En el total de casos para `r year` se observa una predominancia del sexo masculino (`r distribution_by_gender_section$male_percentage`%) con respecto al sexo femenino (`r distribution_by_gender_section$female_percentage`%) (Ver Figura 3).
+En el total de casos para `r year` se observa una predominancia del sexo masculino (`r male_percentage`%) con respecto al sexo femenino (`r female_percentage`%) (Ver Figura 3).
 
-```{r distribution_cg_plot, echo=FALSE, error=FALSE, fig.height=5, fig.width=10, warning=FALSE, include=TRUE, message=FALSE}
-distribution_by_gender_section$plot
+```{r distribution_cg_plot, echo = FALSE, error = FALSE,  warning = FALSE, include = TRUE, message = FALSE, fig.height = 5, fig.width = 10, fig.cap =  "Distribucion de casos por genero"}
+plot_gender(gender_data)
 ```
 
-```{r distribution_cg_epiweek, echo=FALSE, error=FALSE, fig.height=5, fig.width=10, warning=FALSE, include=TRUE, message=FALSE}
-distribution_by_gender_and_week_section <- get_cases_distribution_by_gender_and_week_section(disease_data, year, col_names = c("sexo", "semana"), plot_title = "Figura 4. Distribucion de casos por la variable sexo y semana epidemiologica.")
+```{r distribution_cg_epiweek, echo=FALSE, error=FALSE, warning=FALSE, include=TRUE, message=FALSE}
+gender_and_week_data <- group_by_gender_and_week(clean_disease_data)
 ```
 
 Esta predominancia del reporte de casos en sexo masculino se mantuvo a lo largo de todas las semanas epidemiológicas (Ver figura 4).
 
-```{r distribution_epiweek, echo=FALSE, error=FALSE, fig.height=5, fig.width=10, warning=FALSE, include=TRUE, message=FALSE}
-distribution_by_gender_and_week_section$plot
+```{r plot_cg_epiweek, echo=FALSE, error=FALSE, fig.height=5, fig.width=10, warning=FALSE, include=TRUE, message=FALSE, fig.cap =  "Distribucion de casos por genero y semana epidemiologica"}
+plot_gender_and_week(gender_and_week_data)
 ```
 
 # Distribución de casos por edad y semana epidemiológica

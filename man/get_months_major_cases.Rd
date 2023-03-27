@@ -32,5 +32,5 @@ Function that gets the months with the largest number of cases
 }
 \examples{
 disease_data <- import_data_disease_by_year(2020, "DENGUE")
-clean_disease_ages(disease_data, col_dates, col_cases, top = 3, concat_values = T)
+get_months_major_cases(disease_data, col_dates, col_cases, top = 3, concat_values = T)
 }

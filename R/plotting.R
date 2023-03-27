@@ -100,7 +100,7 @@ plot_dept_map <- function(data_map_depto, col_name_lj = "id", map_title, caption
 #' disease_data <- import_data_disease_by_year(2019, "DENGUE")
 #' @export
 plot_by_variable <- function(data, var_x, var_y, var_per = NULL, var_fill = NULL, wt_per = TRUE, label_x, label_y,
-                             scale_name = NULL, scale_labels = NULL, diagram_title = "", legend_pos, bar_wd = 1, text_sz = 3, show_val = TRUE, ref_caption = "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia") {
+                             scale_name = NULL, scale_labels = NULL, diagram_title = NULL, legend_pos, bar_wd = 1, text_sz = 3, show_val = TRUE, ref_caption = "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia") {
   
   ggplot2::ggplot(data, {if (is.null(var_fill)) ggplot2::aes_string(x = var_x, y = var_y) else ggplot2::aes_string(x = var_x, y = var_y, fill = var_fill)}) +
     {if (is.null(var_fill)) ggplot2::geom_bar(width = bar_wd, stat = "identity", position = ggplot2::position_dodge(), fill = "#90C73D") 
@@ -124,7 +124,7 @@ plot_by_variable <- function(data, var_x, var_y, var_per = NULL, var_fill = NULL
     # ggplot2::scale_fill_discrete(name = scale_name, {if (!is.null(scale_labels)) labels = scale_labels}) +
     # theme(axis.text.x = element_text(angle = -45, vjust = 1, hjust = -0.3)) +
     # theme_linedraw() +
-    ggplot2::facet_grid(~as.character(diagram_title)) +
+    {if (is.null(diagram_title)) ggplot2::facet_grid(~as.character(diagram_title)) } +
     # ggplot2::ggtitle(diagram_title)
     ggplot2::theme(legend.position = legend_pos) +
     {if (ncol(data) == 3 || (!is.null(var_fill) && var_fill == "sexo")) ggplot2::scale_fill_manual(values = c("#56B4E9", "#E69F00")) else ggplot2::theme(legend.position = legend_pos) }
@@ -156,8 +156,7 @@ plot_onset_symptoms <- function(disease_data, col_name = "ini_sin", type = "mont
                                               var_y = "casos", 
                                               label_x = "\nFecha de inicio de sintomas\n", 
                                               label_y = "Numero de casos\n", 
-                                              legend_pos = "right", 
-                                              bar_wd = 9,
+                                              legend_pos = "right",
                                               show_val = FALSE) + 
     ggplot2::scale_x_date(date_breaks = paste0("1 ", type), 
                           date_labels = "%b %d")
@@ -166,16 +165,16 @@ plot_onset_symptoms <- function(disease_data, col_name = "ini_sin", type = "mont
 
 #' plot_notification_date
 #'
-#' Función que genera la gráficas de distribucion de casos por fecha de inicio de sintomas
-#' Function that generates the plot of cases distribution by onset symptoms date
+#' Función que genera la gráficas de distribucion de casos por fecha de notificacion
+#' Function that generates the plot of cases distribution by notification date
 #' @param disease_data Disease data
 #' @param year Year
 #' @param type Time unit
 #' @param col_name Data set column name
-#' @return A plot of cases distribution by onset symptoms date
+#' @return A plot of cases distribution by onset notification date
 #' @examples
 #' disease_data <-  import_data_disease_by_year(2020, "DENGUE")
-#' plot_onset_symptoms(disease_data, col_name = "fec_not", type = "month")
+#' plot_notification_date(disease_data, col_name = "fec_not", type = "month")
 #' @export
 plot_notification_date <- function(disease_data, col_name = "fec_not", type = "month") {
   dates_column_names <- config::get(file = 
@@ -191,9 +190,69 @@ plot_notification_date <- function(disease_data, col_name = "fec_not", type = "m
                                                label_x = "\nFecha de notificacion\n", 
                                                label_y = "Numero de casos\n", 
                                                legend_pos = "right", 
-                                               bar_wd = 9,
                                                show_val = FALSE) + 
     ggplot2::scale_x_date(date_breaks = paste0("1 ", type), 
                           date_labels = "%b %d")
   return(plot_cases_by_onset_symp)
+}
+
+#' plot_gender
+#'
+#' Función que genera la gráficas de distribucion de casos por genero
+#' Function that generates the plot of cases distribution by gender
+#' @param disease_data Disease data
+#' @param col_name Data set column name
+#' @return A plot of cases distribution by gender
+#' @examples
+#' disease_data <-  import_data_disease_by_year(2020, "DENGUE")
+#' plot_gender(disease_data, col_name = "sexo", percentage = T)
+#' @export
+plot_gender <- function(disease_data, col_name = "sexo", percentage = T) {
+ 
+  plot_cases_by_gender <- plot_by_variable(disease_data, 
+                                           var_x = col_name, 
+                                           var_y = "casos", 
+                                           var_fill =  col_name, 
+                                           var_per = "porcentaje", 
+                                           label_x = "\nSexo\n", 
+                                           label_y = "Numero de casos\n", 
+                                           scale_name = "Sexo", 
+                                           scale_labels = c("Femenino", "Masculino"), 
+                                           legend_pos = "right", 
+                                           bar_wd = 0.5, 
+                                           text_sz = 3, 
+                                           show_val = percentage)
+  return(plot_cases_by_gender)
+
+}
+
+#' plot_gender_and_week
+#'
+#' Función que genera la gráficas de distribucion de casos por genero y semana epidemiologica
+#' Function that generates the plot of cases distribution by gender and epiweek
+#' @param disease_data Disease data
+#' @param col_names Data set column names
+#' @return A plot of cases distribution by gender
+#' @examples
+#' disease_data <-  import_data_disease_by_year(2020, "DENGUE")
+#' plot_gender_and_week(disease_data, col_names = c("sexo", "semana"), percentage = T)
+#' @export
+plot_gender_and_week <- function(disease_data, col_names = c("sexo", "semana"), percentage = T) {
+  
+  plot_cases_by_gender_and_week <- plot_by_variable(disease_data, 
+                                                    var_x = col_names[2], 
+                                                    var_y = "casos", 
+                                                    var_fill = col_names[1], 
+                                                    var_per = "porcentaje", 
+                                                    label_x = "\nSexo\n", 
+                                                    label_y = "Numero de casos\n", 
+                                                    scale_name = "Sexo", 
+                                                    scale_labels = c("Femenino", "Masculino"), 
+                                                    legend_pos = "right", 
+                                                    bar_wd = 0.5, 
+                                                    text_sz = 3, 
+                                                    show_val = percentage) +
+    ggplot2::scale_x_continuous(breaks = seq(1, 52, 1))
+  
+  return(plot_cases_by_gender_and_week)
 }
