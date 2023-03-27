@@ -235,5 +235,5 @@ clean_sivigila_data <- function(disease_data, year) {
   clean_disease_data <- clean_depto_codes(clean_disease_data, col_data_codes = depto_column_names[1], 
                                 geo_data = geo_country_data, col_geo_codes = "c_digo_departamento")
   
-  clean_disease_data <- parse_age_to_years(disease_data, col_age = "edad", col_uni_med = "uni_med")
+  clean_disease_data <- parse_age_to_years(clean_disease_data, col_age = "edad", col_uni_med = "uni_med")
 }

@@ -157,7 +157,6 @@ plot_onset_symptoms <- function(disease_data, col_name = "ini_sin", type = "mont
                                               label_x = "\nFecha de inicio de sintomas\n", 
                                               label_y = "Numero de casos\n", 
                                               legend_pos = "right", 
-                                              text_sz = 6,
                                               bar_wd = 9,
                                               show_val = FALSE) + 
     ggplot2::scale_x_date(date_breaks = paste0("1 ", type), 
@@ -183,16 +182,15 @@ plot_notification_date <- function(disease_data, col_name = "fec_not", type = "m
                                       system.file("extdata", "config.yml", 
                                                   package = "sivirep"), "dates_column_names")
   if (is.null(col_name)) {
-    col_name <- dates_column_names[3]
+    col_name <- dates_column_names[2]
   }
   
   plot_cases_by_onset_symp <- plot_by_variable(disease_data,
                                                var_x = col_name, 
                                                var_y = "casos", 
-                                               label_x = "\nFecha de inicio de sintomas\n", 
+                                               label_x = "\nFecha de notificacion\n", 
                                                label_y = "Numero de casos\n", 
                                                legend_pos = "right", 
-                                               text_sz = 6,
                                                bar_wd = 9,
                                                show_val = FALSE) + 
     ggplot2::scale_x_date(date_breaks = paste0("1 ", type), 
