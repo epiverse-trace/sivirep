@@ -71,7 +71,7 @@ get_major_cases <- function(disease_data, col_name = "casos", percentage = T) {
   data_major_cases <- disease_data[order(eval(parse(text = paste0("disease_data$", col_name))), decreasing = TRUE), ]
   data_major_cases <- data_major_cases[1, ]
   if (percentage) {
-    data_major_cases$porcentaje <-  round((data_major_cases$casos[1]/nrow(disease_data)) * 100, 2)
+    data_major_cases$porcentaje <-  round((data_major_cases$casos[1]/sum(eval(parse(text = paste0("disease_data$", col_name))))) * 100, 2)
   }
   return(data_major_cases)
 }

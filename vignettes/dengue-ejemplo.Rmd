@@ -103,7 +103,7 @@ age_range_major_cases <- get_major_cases(age_and_week_data)
 
 La distribución de los casos por grupos etarios muestra una tendencia decreciente a medida que se avanza en la edad. La población de `r age_range_major_cases$edad` años representó el `r  age_range_major_cases$porcentaje` % de todos los casos de `r disease_name` en el país (Ver figura 5). De forma interesante, aunque el sexo masculino predominó en casi todos los grupos etários, para el grupo de 0-10 años esta predominancia fue mucho menos marcada (Ver Figura 6).
 
-```{r distribution_age, echo = FALSE, error = FALSE,  warning = FALSE, include = TRUE, message = FALSE, fig.height = 3, fig.width = 8, fig.cap =  "Distribucion de casos por edad y semana epidemiologica"}
+```{r distribution_age, echo = FALSE, error = FALSE,  warning = FALSE, include = TRUE, message = FALSE, fig.height = 3, fig.width = 8, fig.cap =  "Distribucion de casos por edad"}
 plot_age_and_week(age_and_week_data)
 ```
 
