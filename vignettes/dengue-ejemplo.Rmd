@@ -15,9 +15,9 @@ subtitle: (fuente SIVIGILA, Datos libres)
 
 ```{r setup, echo=FALSE, error=FALSE, warning=FALSE, include = FALSE, message= FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-#remotes::install_github("epiverse-trace/sivirep", ref = "dev-feature-sections-bsreport")
+remotes::install_github("epiverse-trace/sivirep", ref = "dev-feature-sections-bsreport")
 
-#rm(list = ls())
+rm(list = ls())
 
 library(sivirep)
 
@@ -126,10 +126,6 @@ plot_special_population(special_population_data)
 \newpage
 
 # Distribución espacial de casos
-
-```{r distribution_spatial, echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
-departments_spacial_data <- group_by_deptos(clean_disease_data)
-```
 
 ```{r map_distribution_spatial, echo = FALSE, error = FALSE,  warning = FALSE, include = TRUE, message = FALSE, fig.height = 10, fig.width = 10, fig.cap =  "Distribucion espacial de casos"}
 departments_spacial_data <- group_by_deptos(clean_disease_data)

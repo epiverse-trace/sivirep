@@ -250,7 +250,7 @@ group_by_gender_and_week <- function(disease_data, col_names = c("sexo", "semana
 #' disease_data <- import_data_disease_by_year(2019, "DENGUE")
 #' group_by_age_and_week(disease_data, col_names = c("edad", "semana"), percentage = T)
 #' @export
-group_by_age_and_week <- function(disease_data, col_names = c("edad"), percentage = F) {
+group_by_age_and_week <- function(disease_data, col_names = c("edad", "semana"), percentage = F) {
   disease_data_by_age_and_week <- group_by_columns_and_cases(disease_data, col_names, percentage)
   disease_data_by_age_and_week <- group_by_age_range_and_cases(disease_data_by_age_and_week, 
                                                                col_names[1], min_val = 0, 
