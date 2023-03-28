@@ -7,7 +7,7 @@
 group_by_age_and_week(
   disease_data,
   col_names = c("edad", "semana"),
-  percentage = T
+  percentage = F
 )
 }
 \arguments{
