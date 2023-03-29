@@ -23,6 +23,6 @@ Función que genera la gráficas de distribucion de casos por fecha de inicio de
 Function that generates the plot of cases distribution by onset symptoms date
 }
 \examples{
-disease_data <-  import_data_disease_by_year(2020, "DENGUE")
+disease_data <- import_data_disease_by_year(2020, "DENGUE")
 plot_onset_symptoms(disease_data, col_name = "ini_sin", type = "month")
 }

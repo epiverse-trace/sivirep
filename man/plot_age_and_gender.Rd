@@ -23,6 +23,6 @@ Función que genera la gráficas de distribucion de casos por edad y genero
 Function that generates the plot of cases distribution by age and gender
 }
 \examples{
-disease_data <-  import_data_disease_by_year(2020, "DENGUE")
+disease_data <- import_data_disease_by_year(2020, "DENGUE")
 plot_age_and_gender(disease_data, col_names = c("edad", "sexo"), percentage = T)
 }

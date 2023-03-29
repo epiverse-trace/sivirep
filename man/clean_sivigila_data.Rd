@@ -2,7 +2,7 @@
 % Please edit documentation in R/cleaning_data.R
 \name{clean_sivigila_data}
 \alias{clean_sivigila_data}
-\title{clean_sivigila_data}
+\title{Clean SIVIGILA data}
 \usage{
 clean_sivigila_data(disease_data, year)
 }
@@ -12,14 +12,13 @@ clean_sivigila_data(disease_data, year)
 \item{year}{Year of the disease data}
 }
 \value{
-Clean data of disease
+Clean data of the disease
 }
 \description{
-Función que limpia los datos de la enfermedad seleccionada de la fuente SIVIGILA
-Function that cleans the selected disease data of source SIVIGILA
+Function that cleans the selected disease data of SIVIGILA source
 }
 \examples{
 year <- 2019
-disease_data <-  import_data_disease_by_year(year, "DENGUE")
+disease_data <- import_data_disease_by_year(year, "DENGUE")
 clean_sivigila_data(disease_data, year)
 }

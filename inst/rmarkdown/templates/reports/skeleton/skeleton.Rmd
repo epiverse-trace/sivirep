@@ -33,7 +33,7 @@ disease_data <-  import_data_disease_by_year(params$year, params$disease_name)
 ```
 
 ```{r clean_data, include = FALSE}
-clean_disease_data <-  clean_sivigila_data(disease_data, year)
+clean_disease_data <-  clean_sivigila_data(disease_data, params$year)
 ```
 
 ```{=tex}
@@ -128,7 +128,7 @@ plot_special_population(special_population_data)
 
 ```{r map_distribution_spatial, fig.height = 10, fig.width = 10, fig.cap =  "Distribucion espacial de casos"}
 departments_spacial_data <- group_by_deptos(clean_disease_data)
-plot_dept_map(departments_spacial_data, map_title = "")
+plot_dept_map(departments_spacial_data)
 ```
 
 \newpage

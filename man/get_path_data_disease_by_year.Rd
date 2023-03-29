@@ -2,20 +2,19 @@
 % Please edit documentation in R/scraping_data.R
 \name{get_path_data_disease_by_year}
 \alias{get_path_data_disease_by_year}
-\title{Get Path Data Disease by Year}
+\title{Gets the download path for a disease by specific year}
 \usage{
 get_path_data_disease_by_year(year, disease_name)
 }
 \arguments{
-\item{year}{Specific year}
+\item{year}{Specific year to download}
 
-\item{disease_name}{Disease name}
+\item{disease_name}{Disease name to download}
 }
 \value{
-Path or URL for download the disease data by a specific year
+Path or URL for download the disease data by a specific year of SIVIGILA source
 }
 \description{
-Función que obtiene la ruta o URL del servicio de SIVIGILA para descargar los datos de una enfermedad por un año especifico
 Function that gets the path or URL of the SIVIGILA service to download the data of a disease for a specific year
 }
 \examples{

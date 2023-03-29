@@ -2,7 +2,7 @@
 % Please edit documentation in R/import_data.R
 \name{import_geo_codes}
 \alias{import_geo_codes}
-\title{Import Geographical Data}
+\title{Import geographical data of Colombia}
 \usage{
 import_geo_codes(
   url_data = config::get(file = system.file("extdata", "config.yml", package =
@@ -16,7 +16,6 @@ import_geo_codes(
 A data frame with the names and codes of the departments and municipalities of Colombia in csv format
 }
 \description{
-Función que importa los nombres y códigos de los departamentos de Colombia a través de una URL
 Function that imports the names and codes of the departments and municipalities of Colombia through a URL
 }
 \examples{

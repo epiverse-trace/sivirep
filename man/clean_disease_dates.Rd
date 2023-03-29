@@ -2,7 +2,7 @@
 % Please edit documentation in R/cleaning_data.R
 \name{clean_disease_dates}
 \alias{clean_disease_dates}
-\title{clean_disease_dates}
+\title{Clean dates of the disease data}
 \usage{
 clean_disease_dates(
   disease_data,
@@ -13,7 +13,7 @@ clean_disease_dates(
 )
 }
 \arguments{
-\item{disease_data}{Disease data}
+\item{disease_data}{The disease data}
 
 \item{date_format}{Date format}
 
@@ -25,8 +25,7 @@ clean_disease_dates(
 The data with clean dates
 }
 \description{
-Función que limpia las fechas de un conjunto de datos
-Function that cleans dates from a dataset
+Function that cleans dates from the disease data
 }
 \examples{
 disease_data <- import_data_disease_by_year(2020, "DENGUE")

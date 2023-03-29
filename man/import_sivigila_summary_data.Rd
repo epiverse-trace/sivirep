@@ -2,7 +2,7 @@
 % Please edit documentation in R/import_data.R
 \name{import_sivigila_summary_data}
 \alias{import_sivigila_summary_data}
-\title{Import SIVIGILA Summary Data}
+\title{Import SIVIGILA summary data}
 \usage{
 import_sivigila_summary_data(
   url_data = config::get(file = system.file("extdata", "config.yml", package =
@@ -16,10 +16,10 @@ import_sivigila_summary_data(
 The data downloaded in csv format
 }
 \description{
-Función que importa la informacion de SIVIGILA a través de una URL
 Function that imports SIVIGILA data through a URL
 }
 \examples{
 import_sivigila_summary_data(
-"https://www.datos.gov.co/api/views/qvnt-2igj/rows.csv?accessType=DOWNLOAD")
+  "https://www.datos.gov.co/api/views/qvnt-2igj/rows.csv?accessType=DOWNLOAD"
+)
 }

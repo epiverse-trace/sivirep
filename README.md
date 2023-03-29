@@ -40,7 +40,7 @@ To view the list of diseases available to make a report with `sivirep`:
 ``` r
 library(sivirep)
 
-list_of_diseases <- list_avaliable_diseases_and_years()
+list_of_diseases <- list_available_diseases_and_years()
 knitr::kable(list_of_diseases)
 ```
 

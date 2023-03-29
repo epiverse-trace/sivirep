@@ -2,7 +2,7 @@
 % Please edit documentation in R/import_data.R
 \name{import_data_disease_by_year}
 \alias{import_data_disease_by_year}
-\title{Import Data of a Disease By Year}
+\title{Import data of a disease by year from the SIVIGILA microdata source}
 \usage{
 import_data_disease_by_year(year, disease_name, cache = TRUE)
 }
@@ -14,10 +14,9 @@ import_data_disease_by_year(year, disease_name, cache = TRUE)
 \item{cache}{Indicates if the downloaded data to be cached}
 }
 \value{
-The disease data by year
+The disease data by year from the SIVIGILA microdata source
 }
 \description{
-Función que obtiene los datos de una enfermedad por año
 Function that obtains the data of a disease by year
 }
 \examples{

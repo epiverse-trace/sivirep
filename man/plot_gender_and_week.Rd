@@ -23,6 +23,6 @@ Función que genera la gráficas de distribucion de casos por genero y semana ep
 Function that generates the plot of cases distribution by gender and epiweek
 }
 \examples{
-disease_data <-  import_data_disease_by_year(2020, "DENGUE")
+disease_data <- import_data_disease_by_year(2020, "DENGUE")
 plot_gender_and_week(disease_data, col_names = c("sexo", "semana"), percentage = F)
 }

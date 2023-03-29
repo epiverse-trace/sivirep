@@ -23,6 +23,6 @@ Función que genera la gráficas de distribucion de casos por fecha de notificac
 Function that generates the plot of cases distribution by notification date
 }
 \examples{
-disease_data <-  import_data_disease_by_year(2020, "DENGUE")
+disease_data <- import_data_disease_by_year(2020, "DENGUE")
 plot_notification_date(disease_data, col_name = "fec_not", type = "month")
 }

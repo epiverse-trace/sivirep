@@ -2,25 +2,24 @@
 % Please edit documentation in R/cleaning_data.R
 \name{parse_age_to_years}
 \alias{parse_age_to_years}
-\title{Parse Age to Years}
+\title{Parse age to years}
 \usage{
-parse_age_to_years(disease_data, col_age = "edad", col_uni_med = "uni_med")
+parse_age_to_years(disease_data, col_age = "edad", col_uni_met = "uni_med")
 }
 \arguments{
-\item{disease_data}{Disease data}
+\item{disease_data}{The disease data}
 
-\item{col_age}{Age column name}
+\item{col_age}{Column name in the disease data that contains the ages}
 
-\item{col_uni_med}{Unit of measure column name}
+\item{col_uni_met}{Column name in the disease data that contains the measurement units}
 }
 \value{
 The ages in years
 }
 \description{
-Función que convierte las edades en años según las unidades de medida de SIVIGILA
 Function that converts ages into years according to SIVIGILA measurement units
 }
 \examples{
 disease_data <- import_data_disease_by_year(2019, "DENGUE")
-parse_age_to_years(disease_data, col_age = "edad", col_uni_med = "uni_med")
+parse_age_to_years(disease_data, col_age = "edad", col_uni_met = "uni_med")
 }

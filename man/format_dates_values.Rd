@@ -2,7 +2,7 @@
 % Please edit documentation in R/cleaning_data.R
 \name{format_dates_values}
 \alias{format_dates_values}
-\title{format_dates_values}
+\title{Format dates}
 \usage{
 format_dates_values(
   disease_data,
@@ -11,17 +11,16 @@ format_dates_values(
 )
 }
 \arguments{
-\item{disease_data}{Disease data}
+\item{disease_data}{The disease data}
 
 \item{date_format}{Date format}
 
-\item{col_names}{Data set column names}
+\item{col_names}{Column names to format}
 }
 \value{
 The data with formatted dates
 }
 \description{
-Función que da un formato especifico a una fecha
 Function that gives a specific format to a date
 }
 \examples{

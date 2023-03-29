@@ -9,9 +9,9 @@
 #' sivigila_summary_data <- import_sivigila_summary_data()
 #' filter_disease("MALAR", sivigila_summary_data)
 #' @export
-filter_disease  <- function(name_disease, sivigila_summary_data) {
+filter_disease <- function(name_disease, sivigila_summary_data) {
   if ("conteo_casos" %in% names(sivigila_summary_data)) {
-      names(sivigila_summary_data)[names(sivigila_summary_data) == "conteo_casos"] = "casos"
+    names(sivigila_summary_data)[names(sivigila_summary_data) == "conteo_casos"] <- "casos"
   }
   list_diseases <- unique(sivigila_summary_data$nombre)
   list_specific <- list_diseases[stringr::str_detect(list_diseases, name_disease) == TRUE]
@@ -30,9 +30,11 @@ filter_disease  <- function(name_disease, sivigila_summary_data) {
 #' get_depto_codes(geo_codes)
 #' @export
 get_depto_codes <- function(geo_codes) {
-  deptos_data   <- geo_codes %>% dplyr::group_by(cod_dep = .data$codigo_departamento, name_dep = .data$nombre_departamento) %>%
-    dplyr::select(.data$cod_dep, .data$name_dep) %>% dplyr::distinct()
-  deptos_data   <- deptos_data[1:33,]
+  deptos_data <- geo_codes %>%
+    dplyr::group_by(cod_dep = .data$codigo_departamento, name_dep = .data$nombre_departamento) %>%
+    dplyr::select(.data$cod_dep, .data$name_dep) %>%
+    dplyr::distinct()
+  deptos_data <- deptos_data[1:33, ]
   return(deptos_data)
 }
 
@@ -53,7 +55,7 @@ get_special_population_and_cases <- function(disease_data) {
   for (sp in special_populations) {
     special_cases <- append(special_cases, sum(eval(parse(text = paste0("disease_data$", sp)))))
   }
-  
+
   disease_data_special_population <- data.frame(poblacion = special_populations, casos = special_cases, nombre = special_populations_names)
   return(disease_data_special_population)
 }
@@ -69,8 +71,10 @@ get_special_population_and_cases <- function(disease_data) {
 #' group_by_week_and_cases(disease_data)
 #' @export
 group_by_week_and_cases <- function(disease_data) {
-  disease_data_grouped  <- disease_data %>% dplyr::group_by(.data$semana) %>% dplyr::summarise(casos = sum(.data$uni_med))
-  disease_data_grouped  <- disease_data_grouped[1:52,]
+  disease_data_grouped <- disease_data %>%
+    dplyr::group_by(.data$semana) %>%
+    dplyr::summarise(casos = sum(.data$uni_med))
+  disease_data_grouped <- disease_data_grouped[1:52, ]
   return(disease_data_grouped)
 }
 
@@ -85,12 +89,14 @@ group_by_week_and_cases <- function(disease_data) {
 #' @examples
 #' disease_data <- import_data_disease_by_year(2019, "DENGUE")
 #' group_by_columns_and_cases(disease_data, col_names = "sexo", wt_percentage = TRUE)
-#' group_by_columns_and_cases(disease_data, col_names = c("sexo","semana"))
+#' group_by_columns_and_cases(disease_data, col_names = c("sexo", "semana"))
 #' @export
 group_by_columns_and_cases <- function(disease_data, col_names, wt_percentage = FALSE) {
-  disease_data_grouped  <- disease_data %>% dplyr::group_by(dplyr::across(dplyr::all_of(col_names))) %>% dplyr::summarise(casos = dplyr::n(), .groups = "drop")
+  disease_data_grouped <- disease_data %>%
+    dplyr::group_by(dplyr::across(dplyr::all_of(col_names))) %>%
+    dplyr::summarise(casos = dplyr::n(), .groups = "drop")
   if (wt_percentage) {
-      disease_data_grouped  <-  disease_data_grouped %>% dplyr::mutate(porcentaje = round(disease_data_grouped$casos/sum(disease_data_grouped$casos)*100, 1))
+    disease_data_grouped <- disease_data_grouped %>% dplyr::mutate(porcentaje = round(disease_data_grouped$casos / sum(disease_data_grouped$casos) * 100, 1))
   }
   return(disease_data_grouped)
 }
@@ -108,28 +114,36 @@ group_by_columns_and_cases <- function(disease_data, col_names, wt_percentage = 
 #' @return The disease data grouped by the age range and cases
 #' @examples
 #' disease_data <- import_data_disease_by_year(2019, "DENGUE")
-#' disease_dt_by_age <- group_by_columns_and_cases(disease_data, c("edad", "semana"), 
-#' wt_percentage = TRUE)
-#' group_by_age_range_and_cases(disease_dt_by_age, "edad", min_val = 0, 
-#' max_val = max(disease_dt_by_age$edad), step = 10)
+#' disease_dt_by_age <- group_by_columns_and_cases(disease_data, c("edad", "semana"),
+#'   wt_percentage = TRUE
+#' )
+#' group_by_age_range_and_cases(disease_dt_by_age, "edad",
+#'   min_val = 0,
+#'   max_val = max(disease_dt_by_age$edad), step = 10
+#' )
 #' @export
 group_by_age_range_and_cases <- function(disease_data, col_name, var_a = NULL, min_val, max_val, step) {
   data_values_range <- data.frame()
-  if (!is.null(var_a) & length(var_a) > 0 ) {
-      data_values_range <-  disease_data %>%
-        dplyr::mutate(ranges = cut(.data$edad,
-                                   seq(min_val, max_val, step))) %>%
-        dplyr::group_by_("ranges", var_a) %>%
-        dplyr::summarize(casos = sum(.data$casos), .groups = "drop") %>% as.data.frame()
-      names(data_values_range)[names(data_values_range) == "ranges" ] <- col_name
-  }
-  else {
-      data_values_range <-  disease_data %>%
-        dplyr::mutate(ranges = cut(.data$edad,
-                                   seq(min_val, max_val, step))) %>%
-        dplyr::group_by_("ranges") %>%
-        dplyr::summarize(casos = sum(.data$casos), .groups = "drop") %>% as.data.frame()
-      names(data_values_range)[names(data_values_range) == "ranges" ] <- col_name
+  if (!is.null(var_a) & length(var_a) > 0) {
+    data_values_range <- disease_data %>%
+      dplyr::mutate(ranges = cut(
+        .data$edad,
+        seq(min_val, max_val, step)
+      )) %>%
+      dplyr::group_by_("ranges", var_a) %>%
+      dplyr::summarize(casos = sum(.data$casos), .groups = "drop") %>%
+      as.data.frame()
+    names(data_values_range)[names(data_values_range) == "ranges"] <- col_name
+  } else {
+    data_values_range <- disease_data %>%
+      dplyr::mutate(ranges = cut(
+        .data$edad,
+        seq(min_val, max_val, step)
+      )) %>%
+      dplyr::group_by_("ranges") %>%
+      dplyr::summarize(casos = sum(.data$casos), .groups = "drop") %>%
+      as.data.frame()
+    names(data_values_range)[names(data_values_range) == "ranges"] <- col_name
   }
   return(data_values_range)
 }
@@ -145,12 +159,14 @@ group_by_age_range_and_cases <- function(disease_data, col_name, var_a = NULL, m
 #' @examples
 #' disease_data <- import_data_disease_by_year(2019, "DENGUE")
 #' group_by_columns_and_cases(disease_data, col_names = "sexo", wt_percentage = TRUE)
-#' group_by_columns_and_cases(disease_data, col_names = c("sexo","semana"))
+#' group_by_columns_and_cases(disease_data, col_names = c("sexo", "semana"))
 #' @export
 group_by_columns_and_cases <- function(disease_data, col_names, wt_percentage = FALSE) {
-  disease_data_grouped  <- disease_data %>% dplyr::group_by(dplyr::across(dplyr::all_of(col_names))) %>% dplyr::summarise(casos = dplyr::n(), .groups = "drop")
+  disease_data_grouped <- disease_data %>%
+    dplyr::group_by(dplyr::across(dplyr::all_of(col_names))) %>%
+    dplyr::summarise(casos = dplyr::n(), .groups = "drop")
   if (wt_percentage) {
-    disease_data_grouped  <-  disease_data_grouped %>% dplyr::mutate(porcentaje = round(disease_data_grouped$casos/sum(disease_data_grouped$casos)*100, 1))
+    disease_data_grouped <- disease_data_grouped %>% dplyr::mutate(porcentaje = round(disease_data_grouped$casos / sum(disease_data_grouped$casos) * 100, 1))
   }
   return(disease_data_grouped)
 }
@@ -168,18 +184,21 @@ group_by_columns_and_cases <- function(disease_data, col_names, wt_percentage = 
 #' group_by_onset_symptoms(disease_data, col_name = "ini_sin", type = "month")
 #' @export
 group_by_onset_symptoms <- function(disease_data, col_name = "ini_sin", type = "month") {
-  dates_column_names <- config::get(file = 
-                                      system.file("extdata", "config.yml", 
-                                                  package = "sivirep"), "dates_column_names")
+  dates_column_names <- config::get(
+    file =
+      system.file("extdata", "config.yml",
+        package = "sivirep"
+      ), "dates_column_names"
+  )
   if (is.null(col_name)) {
     col_name <- dates_column_names[3]
   }
   group_by_onset_symp <- group_by_columns_and_cases(disease_data, col_names = col_name)
-  # disease_data_by_onset_sym <- disease_data %>% 
-   # dplyr::group_by(date = lubridate::floor_date(eval(parse(text = col_name)), type)) %>%
-   # dplyr::summarize(casos = sum(casos))
+  # disease_data_by_onset_sym <- disease_data %>%
+  # dplyr::group_by(date = lubridate::floor_date(eval(parse(text = col_name)), type)) %>%
+  # dplyr::summarize(casos = sum(casos))
   # colnames(disease_data_by_onset_sym)[colnames(disease_data_by_onset_sym) == "date" ] <- col_name
-  
+
   return(group_by_onset_symp)
 }
 
@@ -196,14 +215,17 @@ group_by_onset_symptoms <- function(disease_data, col_name = "ini_sin", type = "
 #' group_by_notification_date(disease_data, col_name = "fec_not", type = "month")
 #' @export
 group_by_notification_date <- function(disease_data, col_name = "fec_not", type = "month") {
-  dates_column_names <- config::get(file = 
-                                      system.file("extdata", "config.yml", 
-                                                  package = "sivirep"), "dates_column_names")
+  dates_column_names <- config::get(
+    file =
+      system.file("extdata", "config.yml",
+        package = "sivirep"
+      ), "dates_column_names"
+  )
   if (is.null(col_name)) {
     col_name <- dates_column_names[2]
   }
   group_by_onset_symp <- group_by_columns_and_cases(disease_data, col_names = col_name)
-  
+
   return(group_by_onset_symp)
 }
 
@@ -216,7 +238,7 @@ group_by_notification_date <- function(disease_data, col_name = "fec_not", type 
 #' @return The disease data grouped by gender date and cases
 #' @examples
 #' disease_data <- import_data_disease_by_year(2019, "DENGUE")
-#' group_by_gender(disease_data, col_name = "sexo",)
+#' group_by_gender(disease_data, col_name = "sexo", )
 #' @export
 group_by_gender <- function(disease_data, col_name = "sexo", percentage = T) {
   disease_data_by_gender <- group_by_columns_and_cases(disease_data, col_name, percentage)
@@ -252,11 +274,16 @@ group_by_gender_and_week <- function(disease_data, col_names = c("sexo", "semana
 #' @export
 group_by_age_and_week <- function(disease_data, col_names = c("edad", "semana"), percentage = F) {
   disease_data_by_age_and_week <- group_by_columns_and_cases(disease_data, col_names, percentage)
-  disease_data_by_age_and_week <- group_by_age_range_and_cases(disease_data_by_age_and_week, 
-                                                               col_names[1], min_val = 0, 
-                                                               max_val = max(eval(parse(
-                                                                 text = paste0("disease_data_by_age_and_week$", 
-                                                                                col_names[1])))), step = 10)
+  disease_data_by_age_and_week <- group_by_age_range_and_cases(disease_data_by_age_and_week,
+    col_names[1],
+    min_val = 0,
+    max_val = max(eval(parse(
+      text = paste0(
+        "disease_data_by_age_and_week$",
+        col_names[1]
+      )
+    ))), step = 10
+  )
   return(disease_data_by_age_and_week)
 }
 
@@ -272,16 +299,20 @@ group_by_age_and_week <- function(disease_data, col_names = c("edad", "semana"),
 #' group_by_age_and_gender(disease_data, col_names = c("edad", "sexo"), percentage = T)
 #' @export
 group_by_age_and_gender <- function(disease_data, col_names = c("edad", "sexo"), percentage = T) {
-disease_data_by_age_and_gender <- group_by_columns_and_cases(disease_data, col_names, percentage)
-disease_data_by_age_and_gender <- group_by_age_range_and_cases(disease_data_by_age_and_gender, 
-                                                               col_names[1], 
-                                                               col_names[2], 
-                                                               min_val = 0, 
-                                                               max_val = 
-                                                                 max(eval(parse(
-                                                                   text = paste0("disease_data_by_age_and_gender$", 
-                                                                                 col_names[1])))), 
-                                                               step = 10)
+  disease_data_by_age_and_gender <- group_by_columns_and_cases(disease_data, col_names, percentage)
+  disease_data_by_age_and_gender <- group_by_age_range_and_cases(disease_data_by_age_and_gender,
+    col_names[1],
+    col_names[2],
+    min_val = 0,
+    max_val =
+      max(eval(parse(
+        text = paste0(
+          "disease_data_by_age_and_gender$",
+          col_names[1]
+        )
+      ))),
+    step = 10
+  )
   return(disease_data_by_age_and_gender)
 }
 
@@ -316,7 +347,7 @@ group_by_special_population <- function(disease_data, col_name = "poblacion", pe
 group_by_deptos <- function(disease_data, col_name = "cod_dpto_o", percentage = F) {
   disease_data_by_depto_codes <- group_by_columns_and_cases(disease_data, col_names = col_name)
   colnames(disease_data_by_depto_codes)[colnames(disease_data_by_depto_codes) == col_name] <- "id"
-  
+
   disease_data_by_depto_codes$id <- sapply(disease_data_by_depto_codes$id, as.character)
   return(disease_data_by_depto_codes)
 }

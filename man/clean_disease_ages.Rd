@@ -2,21 +2,20 @@
 % Please edit documentation in R/cleaning_data.R
 \name{clean_disease_ages}
 \alias{clean_disease_ages}
-\title{clean_disease_dates}
+\title{Clean ages of the disease data}
 \usage{
 clean_disease_ages(disease_data, col_name = "edad")
 }
 \arguments{
-\item{disease_data}{Disease data}
+\item{disease_data}{The disease data}
 
-\item{col_name}{Data set column name}
+\item{col_name}{Column name in the disease data that contains the ages}
 }
 \value{
-The data with clean ages
+The disease data with clean ages
 }
 \description{
-Función que limpia las edades de un conjunto de datos
-Function that cleans ages from a dataset
+Function that cleans ages of the disease data
 }
 \examples{
 disease_data <- import_data_disease_by_year(2020, "DENGUE")

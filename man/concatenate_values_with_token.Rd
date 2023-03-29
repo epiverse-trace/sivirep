@@ -28,5 +28,5 @@ Función que concantena valores con un separador o token especifico
 Function that concatenates values with a specific separator or token
 }
 \examples{
-concatenate_values_with_token(values = c("enero", "febrero", "marzo"), length = 3, main_token = ", ", final_token = "y ") 
+concatenate_values_with_token(values = c("enero", "febrero", "marzo"), length = 3, main_token = ", ", final_token = "y ")
 }
