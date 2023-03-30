@@ -7,11 +7,10 @@
 
 [![License:
 MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![R-CMD-check](https://github.com/epiverse-trace/readepi/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/epiverse-trace/readepi/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/epiverse-trace/sivirep/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/epiverse-trace/sivirep/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/epiverse-trace/readepi/branch/main/graph/badge.svg)](https://app.codecov.io/gh/epiverse-trace/readepi?branch=main)
 [![lifecycle-concept](https://raw.githubusercontent.com/reconverse/reconverse.github.io/master/images/badge-concept.svg)](https://www.reconverse.org/lifecycle.html#concept)
-[![R-CMD-check](https://github.com/epiverse-trace/sivirep/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/epiverse-trace/sivirep/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 Current version of *sivirep* provides functions for data wrangling and
@@ -97,22 +96,22 @@ knitr::kable(list_of_diseases)
 | MENINGITIS POR NEUMOCOCO                                     | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2019, 2020, 2021 |
 | MENINGITIS TUBERCULOSA                                       | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
 | MORBILIDAD MATERNA EXTREMA                                   | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| MORBILIDAD POR IRA                                           | 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021                                     |
 | MORTALIDAD MATERNA                                           | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
 | MORTALIDAD PERINATAL Y NEONATAL TARDIA                       | 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021             |
 | MORTALIDAD POR DENGUE                                        | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+| MORTALIDAD POR DESNUTRICION                                  | 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021                                           |
 | MORTALIDAD POR EDA 0-4 AÑOS                                  | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2019, 2020, 2021 |
 | MORTALIDAD POR IRA                                           | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
 | MORTALIDAD POR MALARIA                                       | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
 | PARALISIS FLACIDA AGUDA (MENORES DE 15 AÑOS)                 | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020             |
 | PAROTIDITIS                                                  | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
-| RABIA HUMANA                                                 | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2020                         |
+| RUBEOLA                                                      | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017                               |
 | SARAMPION                                                    | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020             |
 | SINDROME DE RUBEOLA CONGENITA                                | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017                               |
 | TETANOS ACCIDENTAL                                           | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
 | TETANOS NEONATAL                                             | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
 | TOS FERINA                                                   | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
-| TRACOMA                                                      | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2019             |
-| TUBERCULOSIS EXTRA PULMONAR                                  | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015                                           |
 
 ### Contributions
 
@@ -121,11 +120,11 @@ requests](https://github.com/epiverse-trace/sivirep/pulls).
 
 Contributors to the project include:
 
--   [Geraldine Gómez-Millán](https://github.com/GeraldineGomez) (author)
+- [Geraldine Gómez-Millán](https://github.com/GeraldineGomez) (author)
 
--   [Zulma M. Cucunubá](https://github.com/zmcucunuba) (author)
+- [Zulma M. Cucunubá](https://github.com/zmcucunuba) (author)
 
--   [Hugo Gruson](https://github.com/Bisaloo) (contributor)
+- [Hugo Gruson](https://github.com/Bisaloo) (contributor)
 
 ### Code of Conduct
 

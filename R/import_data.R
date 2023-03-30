@@ -121,7 +121,7 @@ list_available_diseases_and_years <- function() {
     i <- i + 2
   }
 
-  list_available_diseases_and_years <- data.frame(ENFERMEDAD = name_diseases, AA = years_diseases)
+  list_available_diseases_and_years <- data.frame(enfermedad = name_diseases, aa = years_diseases)
   return(list_available_diseases_and_years)
 }
 
