@@ -2,27 +2,27 @@
 % Please edit documentation in R/plotting.R
 \name{plot_onset_symptoms}
 \alias{plot_onset_symptoms}
-\title{plot_onset_symptoms}
+\title{Plot cases distribution by symptoms onset date}
 \usage{
 plot_onset_symptoms(disease_data, col_name = "ini_sin", type = "month")
 }
 \arguments{
-\item{disease_data}{Disease data}
+\item{disease_data}{The disease data}
 
-\item{col_name}{Data set column name}
+\item{col_name}{Column name in the disease data that contains the symptom onset dates}
 
-\item{type}{Time unit}
+\item{type}{Time unit (day, month and year)}
 
-\item{year}{Year}
+\item{year}{Year of the disease data}
 }
 \value{
-A plot of cases distribution by onset symptoms date
+A plot of cases distribution by symptoms onset date
 }
 \description{
-Función que genera la gráficas de distribucion de casos por fecha de inicio de sintomas
 Function that generates the plot of cases distribution by onset symptoms date
 }
 \examples{
 disease_data <- import_data_disease_by_year(2020, "DENGUE")
+disease_data <- group_by_onset_symptoms(disease_data, col_name = "ini_sin", type = "month")
 plot_onset_symptoms(disease_data, col_name = "ini_sin", type = "month")
 }

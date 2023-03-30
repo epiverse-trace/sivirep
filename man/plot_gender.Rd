@@ -2,23 +2,23 @@
 % Please edit documentation in R/plotting.R
 \name{plot_gender}
 \alias{plot_gender}
-\title{plot_gender}
+\title{Plot cases distribution by gender}
 \usage{
-plot_gender(disease_data, col_name = "sexo", percentage = T)
+plot_gender(disease_data, col_name = "sexo", percentage = TRUE)
 }
 \arguments{
-\item{disease_data}{Disease data}
+\item{disease_data}{The disease data}
 
-\item{col_name}{Data set column name}
+\item{col_name}{Column name in the disease data that contains the gender}
 }
 \value{
 A plot of cases distribution by gender
 }
 \description{
-Función que genera la gráficas de distribucion de casos por genero
 Function that generates the plot of cases distribution by gender
 }
 \examples{
 disease_data <- import_data_disease_by_year(2020, "DENGUE")
-plot_gender(disease_data, col_name = "sexo", percentage = T)
+disease_data <- group_by_gender(disease_data, col_name = "sexo", percentage = TRUE)
+plot_gender(disease_data, col_name = "sexo", percentage = TRUE)
 }

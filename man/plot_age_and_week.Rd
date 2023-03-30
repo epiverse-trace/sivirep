@@ -2,27 +2,27 @@
 % Please edit documentation in R/plotting.R
 \name{plot_age_and_week}
 \alias{plot_age_and_week}
-\title{plot_age_and_week}
+\title{Plot cases distribution by age and epidemiological week}
 \usage{
 plot_age_and_week(
   disease_data,
   col_names = c("edad", "semana"),
-  percentage = T
+  percentage = FALSE
 )
 }
 \arguments{
-\item{disease_data}{Disease data}
+\item{disease_data}{The disease data}
 
-\item{col_names}{Data set column names}
+\item{col_names}{Column names in the disease data that contains the ages and the epidemiological weeks}
 }
 \value{
-A plot of cases distribution by age and epiweek
+A plot of cases distribution by age and epidemiological week
 }
 \description{
-Función que genera la gráficas de distribucion de casos por edad y semana epidemiologica
-Function that generates the plot of cases distribution by age and epiweek
+Function that generates the plot of cases distribution by age and epidemiological week
 }
 \examples{
 disease_data <- import_data_disease_by_year(2020, "DENGUE")
-plot_gender_and_week(disease_data, col_names = c("edad", "semana"), percentage = T)
+disease_data <- group_by_age_and_week(disease_data, col_names = c("edad", "semana"), percentage = FALSE)
+plot_gender_and_week(disease_data, col_names = c("edad", "semana"), percentage = FALSE)
 }

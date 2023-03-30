@@ -2,18 +2,17 @@
 % Please edit documentation in R/checking_data.R
 \name{get_special_population_and_cases}
 \alias{get_special_population_and_cases}
-\title{Get Special Population and Cases}
+\title{Get special population and cases}
 \usage{
 get_special_population_and_cases(disease_data)
 }
 \arguments{
-\item{disease_data}{Disease data}
+\item{disease_data}{The disease data}
 }
 \value{
 The cases by special population type of a disease
 }
 \description{
-Función que obtiene los casos por tipo de población especial de una enfermedad
 Function that gets the cases by special population type of a disease
 }
 \examples{

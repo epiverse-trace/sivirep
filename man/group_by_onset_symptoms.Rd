@@ -2,23 +2,22 @@
 % Please edit documentation in R/checking_data.R
 \name{group_by_onset_symptoms}
 \alias{group_by_onset_symptoms}
-\title{group_by_onset_symptoms}
+\title{Group by symptom onset date and cases}
 \usage{
 group_by_onset_symptoms(disease_data, col_name = "ini_sin", type = "month")
 }
 \arguments{
-\item{disease_data}{Disease data}
+\item{disease_data}{The disease data}
 
-\item{col_name}{Data set column name}
+\item{col_name}{Column name in the disease data that contains the symptom onset dates}
 
-\item{type}{Time unit}
+\item{type}{Time unit (day, month and year)}
 }
 \value{
-The disease data grouped by onset symptoms date and cases
+The disease data grouped by symptom onset date and number of cases
 }
 \description{
-Función que agrupa los datos por la fecha de inicio de sintomas y los casos
-Function that groups the data by onset symptoms date and cases
+Function that groups the disease data by symptom onset date and number of cases
 }
 \examples{
 disease_data <- import_data_disease_by_year(2019, "DENGUE")

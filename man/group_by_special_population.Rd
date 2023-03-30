@@ -2,27 +2,28 @@
 % Please edit documentation in R/checking_data.R
 \name{group_by_special_population}
 \alias{group_by_special_population}
-\title{group_by_special_population}
+\title{Group by special population and cases}
 \usage{
 group_by_special_population(
   disease_data,
   col_name = "poblacion",
-  percentage = T
+  percentage = TRUE
 )
 }
 \arguments{
-\item{disease_data}{Disease data}
+\item{disease_data}{The disease data}
 
-\item{col_name}{Data set column name}
+\item{col_name}{Column name in the disease data that contains the special populations}
+
+\item{percentage}{Indicates if it is required to add a percentage of cases as a column}
 }
 \value{
-The disease data grouped by  special population and cases
+The disease data grouped by special populations and cases
 }
 \description{
-Función que agrupa los datos por poblacion especial y casos
-Function that groups the data by special population and cases
+Function that groups the disease data by special population and cases
 }
 \examples{
 disease_data <- import_data_disease_by_year(2019, "DENGUE")
-group_by_special_population(disease_data, col_name = "poblacion", percentage = T)
+group_by_special_population(disease_data, col_name = "poblacion", percentage = TRUE)
 }

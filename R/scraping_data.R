@@ -1,4 +1,4 @@
-#' Gets the download path for a disease by specific year
+#' Get the download path for a disease by specific year
 #'
 #' Function that gets the path or URL of the SIVIGILA service to download the data of a disease for a specific year
 #' @param year Specific year to download

@@ -2,7 +2,7 @@
 % Please edit documentation in R/scraping_data.R
 \name{get_path_data_disease_by_year}
 \alias{get_path_data_disease_by_year}
-\title{Gets the download path for a disease by specific year}
+\title{Get the download path for a disease by specific year}
 \usage{
 get_path_data_disease_by_year(year, disease_name)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{concatenate_values_with_token}
 \alias{concatenate_values_with_token}
-\title{concatenate_values_with_token}
+\title{Concatenate values with separator or token}
 \usage{
 concatenate_values_with_token(
   values,
@@ -12,19 +12,18 @@ concatenate_values_with_token(
 )
 }
 \arguments{
-\item{values}{Values}
+\item{values}{The values}
 
-\item{length}{Length}
+\item{length}{Values length}
 
-\item{main_token}{Main token}
+\item{main_token}{Main separator or token}
 
-\item{final_token}{Final token}
+\item{final_token}{Final separator or token}
 }
 \value{
 Concatenated final value
 }
 \description{
-Función que concantena valores con un separador o token especifico
 Function that concatenates values with a specific separator or token
 }
 \examples{

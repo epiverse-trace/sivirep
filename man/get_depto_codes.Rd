@@ -2,7 +2,7 @@
 % Please edit documentation in R/checking_data.R
 \name{get_depto_codes}
 \alias{get_depto_codes}
-\title{Get Department Codes}
+\title{Get department codes}
 \usage{
 get_depto_codes(geo_codes)
 }
@@ -13,7 +13,6 @@ get_depto_codes(geo_codes)
 The Departments data with code and name
 }
 \description{
-Función que obtiene el listado de departamentos de Colombia con su nombre y código
 Function that gets the list of departments of Colombia with their name and code
 }
 \examples{

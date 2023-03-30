@@ -2,35 +2,34 @@
 % Please edit documentation in R/utils.R
 \name{get_months_major_cases}
 \alias{get_months_major_cases}
-\title{get_months_major_cases}
+\title{Get months major cases}
 \usage{
 get_months_major_cases(
   disease_data,
   col_dates,
   col_cases = "casos",
   top = 3,
-  concat_values = T
+  concat_values = TRUE
 )
 }
 \arguments{
-\item{disease_data}{Disease data}
+\item{disease_data}{The disease data}
 
-\item{col_dates}{Data set column dates name}
+\item{col_dates}{Column names in the disease data that contains the dates}
 
-\item{col_cases}{Data set column cases name}
+\item{col_cases}{Column name in the disease data that contains the cases number}
 
 \item{top}{Top}
 
-\item{concat_values}{Concatenate values}
+\item{concat_values}{Indicates if it is required to concatenate the months as a string}
 }
 \value{
-months major cases
+Months major cases
 }
 \description{
-Función que obtiene los meses con la cantidad mayor de casos
-Function that gets the months with the largest number of cases
+Function that gets the months with the major number of cases
 }
 \examples{
 disease_data <- import_data_disease_by_year(2020, "DENGUE")
-get_months_major_cases(disease_data, col_dates, col_cases, top = 3, concat_values = T)
+get_months_major_cases(disease_data, col_dates, col_cases, top = 3, concat_values = TRUE)
 }

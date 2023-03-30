@@ -2,23 +2,24 @@
 % Please edit documentation in R/checking_data.R
 \name{group_by_deptos}
 \alias{group_by_deptos}
-\title{group_by_deptos}
+\title{Group by department and cases}
 \usage{
-group_by_deptos(disease_data, col_name = "cod_dpto_o", percentage = F)
+group_by_deptos(disease_data, col_name = "cod_dpto_o", percentage = FALSE)
 }
 \arguments{
-\item{disease_data}{Disease data}
+\item{disease_data}{The disease data}
 
-\item{col_name}{Data set column name}
+\item{col_name}{Column name in the disease data that contains the department codes}
+
+\item{percentage}{Indicates if it is required to add a percentage of cases as a column}
 }
 \value{
-The disease data grouped by code departments and cases
+The disease data grouped by department codes and cases number
 }
 \description{
-Función que agrupa los datos por codigo de departamento y casos
-Function that groups the data by code departments and cases
+Function that groups the data by code departments and cases number
 }
 \examples{
 disease_data <- import_data_disease_by_year(2019, "DENGUE")
-group_by_codes_deptos(disease_data, col_name = "cod_dpto_o", percentage = F)
+group_by_deptos(disease_data, col_name = "cod_dpto_o", percentage = FALSE)
 }

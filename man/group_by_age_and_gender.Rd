@@ -2,27 +2,28 @@
 % Please edit documentation in R/checking_data.R
 \name{group_by_age_and_gender}
 \alias{group_by_age_and_gender}
-\title{group_by_age_and_gender}
+\title{Group by ages, gender and cases}
 \usage{
 group_by_age_and_gender(
   disease_data,
   col_names = c("edad", "sexo"),
-  percentage = T
+  percentage = TRUE
 )
 }
 \arguments{
-\item{disease_data}{Disease data}
+\item{disease_data}{The disease data}
 
-\item{col_names}{Data set column names}
+\item{col_names}{Column names in the disease data that contains the ages and gender}
+
+\item{percentage}{Indicates if it is required to add a percentage of cases as a column}
 }
 \value{
-The disease data grouped by age, gender and cases
+The disease data grouped by ages, gender and number cases
 }
 \description{
-Función que agrupa los datos por edad, genero y los casos
-Function that groups the data by age, gender and cases
+Function that groups the data by age, gender and cases number
 }
 \examples{
 disease_data <- import_data_disease_by_year(2019, "DENGUE")
-group_by_age_and_gender(disease_data, col_names = c("edad", "sexo"), percentage = T)
+group_by_age_and_gender(disease_data, col_names = c("edad", "sexo"), percentage = TRUE)
 }

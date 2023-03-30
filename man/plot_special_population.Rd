@@ -2,23 +2,27 @@
 % Please edit documentation in R/plotting.R
 \name{plot_special_population}
 \alias{plot_special_population}
-\title{plot_special_population}
+\title{Plot cases distribution by special population}
 \usage{
-plot_special_population(disease_data, col_name = "poblacion", percentage = T)
+plot_special_population(
+  disease_data,
+  col_name = "poblacion",
+  percentage = FALSE
+)
 }
 \arguments{
-\item{disease_data}{Disease data}
+\item{disease_data}{The disease data}
 
-\item{col_name}{Data set column name}
+\item{col_name}{Column names in the disease data that contains the ages and gender}
 }
 \value{
 A plot of cases distribution by special population
 }
 \description{
-Función que genera la gráficas de distribucion de casos por poblacion especial
 Function that generates the plot of cases distribution by special population
 }
 \examples{
 disease_data <- import_data_disease_by_year(2020, "DENGUE")
-plot_special_population(disease_data, col_name = "poblacion", percentage = T)
+disease_data <- group_by_age_and_gender(disease_data, col_names = c("edad", "sexo"), percentage = TRUE)
+plot_special_population(disease_data, col_name = "poblacion", percentage = FALSE)
 }

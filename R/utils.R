@@ -1,18 +1,17 @@
-#' get_months_major_cases
+#' Get months major cases
 #'
-#' Función que obtiene los meses con la cantidad mayor de casos
-#' Function that gets the months with the largest number of cases
-#' @param disease_data Disease data
-#' @param col_dates Data set column dates name
-#' @param col_cases Data set column cases name
+#' Function that gets the months with the major number of cases
+#' @param disease_data The disease data
+#' @param col_dates Column names in the disease data that contains the dates
+#' @param col_cases Column name in the disease data that contains the cases number
 #' @param top Top
-#' @param concat_values Concatenate values
-#' @return months major cases
+#' @param concat_values Indicates if it is required to concatenate the months as a string 
+#' @return Months major cases
 #' @examples
 #' disease_data <- import_data_disease_by_year(2020, "DENGUE")
-#' get_months_major_cases(disease_data, col_dates, col_cases, top = 3, concat_values = T)
+#' get_months_major_cases(disease_data, col_dates, col_cases, top = 3, concat_values = TRUE)
 #' @export
-get_months_major_cases <- function(disease_data, col_dates, col_cases = "casos", top = 3, concat_values = T) {
+get_months_major_cases <- function(disease_data, col_dates, col_cases = "casos", top = 3, concat_values = TRUE) {
   data_major_cases <- disease_data[order(eval(parse(text = paste0("disease_data$", col_cases))), decreasing = TRUE), ]
   if (nrow(data_major_cases) < top) {
     top <- nrow(data_major_cases)
@@ -28,12 +27,11 @@ get_months_major_cases <- function(disease_data, col_dates, col_cases = "casos",
   return(data_major_cases)
 }
 
-#' get_depto_names
+#' Get department names
 #'
-#' Función que obtiene los nombres de los departamentos
 #' Function that gets the department names
-#' @param disease_data Disease data
-#' @return dataset with the department names
+#' @param disease_data The disease data
+#' @return Dataframe with the department names
 #' @examples
 #' disease_data <- import_data_disease_by_year(2020, "DENGUE")
 #' get_depto_names(disease_data)
@@ -57,19 +55,18 @@ get_depto_names <- function(disease_data) {
   return(disease_data_deptos)
 }
 
-#' get_row_major_cases
+#' Get row with major cases
 #'
-#' Función que obtiene la fila con mayor numero de casos
 #' Function that gets the row with the major number of cases
-#' @param disease_data Disease data
-#' @param col_name Data set column name
-#' @param percentage Percentage value
-#' @return row with major cases
+#' @param disease_data The disease data
+#' @param col_name Column name in the disease data that contains the cases number
+#' @param percentage Indicates if it is required to add a percentage of cases as a column
+#' @return Row with major cases
 #' @examples
 #' disease_data <- import_data_disease_by_year(2020, "DENGUE")
 #' get_major_cases(disease_data, col_name = "casos", percentage = T)
 #' @export
-get_major_cases <- function(disease_data, col_name = "casos", percentage = T) {
+get_major_cases <- function(disease_data, col_name = "casos", percentage = TRUE) {
   data_major_cases <- disease_data[order(eval(parse(text = paste0("disease_data$", col_name))), decreasing = TRUE), ]
   data_major_cases <- data_major_cases[1, ]
   if (percentage) {
@@ -78,14 +75,13 @@ get_major_cases <- function(disease_data, col_name = "casos", percentage = T) {
   return(data_major_cases)
 }
 
-#' concatenate_values_with_token
+#' Concatenate values with separator or token
 #'
-#' Función que concantena valores con un separador o token especifico
 #' Function that concatenates values with a specific separator or token
-#' @param values Values
-#' @param length Length
-#' @param main_token Main token
-#' @param final_token Final token
+#' @param values The values
+#' @param length Values length
+#' @param main_token Main separator or token
+#' @param final_token Final separator or token
 #' @return Concatenated final value
 #' @examples
 #' concatenate_values_with_token(values = c("enero", "febrero", "marzo"), length = 3, main_token = ", ", final_token = "y ")

@@ -2,23 +2,22 @@
 % Please edit documentation in R/checking_data.R
 \name{group_by_notification_date}
 \alias{group_by_notification_date}
-\title{group_by_notification_date}
+\title{Group by notification date and cases}
 \usage{
 group_by_notification_date(disease_data, col_name = "fec_not", type = "month")
 }
 \arguments{
-\item{disease_data}{Disease data}
+\item{disease_data}{The disease data}
 
-\item{col_name}{Data set column name}
+\item{col_name}{Column name in the disease data that contains the notification dates}
 
-\item{type}{Time unit}
+\item{type}{Time unit (day, month and year)}
 }
 \value{
-The disease data grouped by onset symptoms date and cases
+The disease data grouped by notification date and cases
 }
 \description{
-Función que agrupa los datos por la fecha de notificacion y los casos
-Function that groups the data by notification date and cases
+Function that groups the disease data by notification date and cases number
 }
 \examples{
 disease_data <- import_data_disease_by_year(2019, "DENGUE")

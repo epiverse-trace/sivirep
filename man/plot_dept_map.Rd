@@ -2,7 +2,7 @@
 % Please edit documentation in R/plotting.R
 \name{plot_dept_map}
 \alias{plot_dept_map}
-\title{Plot Department Map}
+\title{Plot map by department}
 \usage{
 plot_dept_map(
   data_map_depto,
@@ -12,22 +12,18 @@ plot_dept_map(
 )
 }
 \arguments{
-\item{data_map_depto}{Data for department}
+\item{data_map_depto}{The disease data grouped by department and cases number}
 
 \item{col_name_lj}{Column name to join with the shape file}
 }
 \value{
-The map for department with the data of a specific disease
+The map by department with the cases number of a specific disease
 }
 \description{
-Función que genera el mapa por departamento con los datos de una enfermedad especifica
-Function that generates the map by department with the data of a specific disease
+Function that generates the map by department with the cases number of a specific disease
 }
 \examples{
-geo_codes <- import_geo_codes()
-deptos_data <- get_depto_codes(geo_codes)
-sivigila_summary_data <- import_sivigila_summary_data()
-filtered_data <- filter_disease("MALAR", sivigila_summary_data)
-data_map_disease_deptos <- clean_depto_disease_codes(deptos_data, filtered_data)
-plot_dept_map(data_map_disease_deptos, col_name_lj = "id")
+disease_data <- import_data_disease_by_year(2019, "DENGUE")
+departments_spacial_data <- group_by_deptos(disease_data)
+plot_dept_map(departments_spacial_data, col_name_lj = "id", caption_label = "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia")
 }

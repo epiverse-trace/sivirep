@@ -2,7 +2,7 @@
 % Please edit documentation in R/plotting.R
 \name{plot_epiweek}
 \alias{plot_epiweek}
-\title{Plot Epiweek}
+\title{Plot epidemiological weeks}
 \usage{
 plot_epiweek(
   dat,
@@ -15,28 +15,28 @@ plot_epiweek(
 )
 }
 \arguments{
-\item{dat}{Disease data}
+\item{dat}{The disease data}
 
-\item{col_week}{Column Name that indicates the week in the data}
+\item{col_week}{Column name in the disease data that contains the epidemiological weeks}
 
-\item{col_cases}{Column Name hat indicates the cases number in the data}
+\item{col_cases}{Column Name in the disease data that contains the cases number}
 
-\item{year}{Year of the data}
+\item{year}{Year of the disease data}
 
-\item{type}{Type for axis x (week, date)}
+\item{type}{Time unit for axis x (week and date)}
 
 \item{xlabel}{Label of axis x}
 
 \item{ylabel}{Label of axis y}
 }
 \value{
-The graphic of Epidemiological Week
+The graphic of epidemiological weeks
 }
 \description{
-Función que genera la gráfica de la Semana epidemiológica
-Function that generates the graphic of the Epidemiological Week
+Function that generates the graphic of the epidemiological weeks
 }
 \examples{
 sivigila_summary_data <- import_sivigila_summary_data()
-data <- filter_disease("MALAR", sivigila_summary_data)
+filtered_data <- filter_disease("MALAR", sivigila_summary_data)
+plot_epiweek(filtered_data, col_week = "semana", col_cases = "conteo_casos", year = 2019, type = "date", xlabel = "Fecha de semana epidemiologica")
 }

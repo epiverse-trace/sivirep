@@ -2,18 +2,17 @@
 % Please edit documentation in R/utils.R
 \name{get_depto_names}
 \alias{get_depto_names}
-\title{get_depto_names}
+\title{Get department names}
 \usage{
 get_depto_names(disease_data)
 }
 \arguments{
-\item{disease_data}{Disease data}
+\item{disease_data}{The disease data}
 }
 \value{
-dataset with the department names
+Dataframe with the department names
 }
 \description{
-Función que obtiene los nombres de los departamentos
 Function that gets the department names
 }
 \examples{

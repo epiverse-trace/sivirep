@@ -2,27 +2,27 @@
 % Please edit documentation in R/plotting.R
 \name{plot_notification_date}
 \alias{plot_notification_date}
-\title{plot_notification_date}
+\title{Plot cases distribution by notification date}
 \usage{
 plot_notification_date(disease_data, col_name = "fec_not", type = "month")
 }
 \arguments{
-\item{disease_data}{Disease data}
+\item{disease_data}{The disease data}
 
-\item{col_name}{Data set column name}
+\item{col_name}{Column name in the disease data that contains the notification dates}
 
-\item{type}{Time unit}
+\item{type}{Time unit (day, month and year)}
 
-\item{year}{Year}
+\item{year}{Year of the disease data}
 }
 \value{
 A plot of cases distribution by onset notification date
 }
 \description{
-Función que genera la gráficas de distribucion de casos por fecha de notificacion
 Function that generates the plot of cases distribution by notification date
 }
 \examples{
 disease_data <- import_data_disease_by_year(2020, "DENGUE")
+disease_data <- group_by_notification_date(disease_data, col_name = "fec_not", type = "month")
 plot_notification_date(disease_data, col_name = "fec_not", type = "month")
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/checking_data.R
 \name{group_by_age_range_and_cases}
 \alias{group_by_age_range_and_cases}
-\title{Group By Age Range and Cases}
+\title{Group by age range and cases}
 \usage{
 group_by_age_range_and_cases(
   disease_data,
@@ -14,24 +14,21 @@ group_by_age_range_and_cases(
 )
 }
 \arguments{
-\item{disease_data}{Disease data}
+\item{disease_data}{The disease data}
 
-\item{col_name}{Colunm name}
+\item{col_name}{Column name in the disease data that contains the ages}
 
-\item{var_a}{Additional variables}
+\item{min_val}{Minimum value of ages}
 
-\item{min_val}{Min value to group}
+\item{max_val}{Maximum value of ages}
 
-\item{max_val}{Max value to group}
-
-\item{step}{Step for the range}
+\item{step}{Step to generate the age range}
 }
 \value{
-The disease data grouped by the age range and cases
+The disease data grouped by the age range and cases number
 }
 \description{
-Función que agrupa los datos por un rango de edades y por el número de casos
-Function that groups the data by an age range and cases number
+Function that groups the disease data by age range and cases number
 }
 \examples{
 disease_data <- import_data_disease_by_year(2019, "DENGUE")

@@ -2,27 +2,28 @@
 % Please edit documentation in R/checking_data.R
 \name{group_by_gender_and_week}
 \alias{group_by_gender_and_week}
-\title{group_by_gender_and_week}
+\title{Group by gender, epidemiological week and cases}
 \usage{
 group_by_gender_and_week(
   disease_data,
   col_names = c("sexo", "semana"),
-  percentage = T
+  percentage = TRUE
 )
 }
 \arguments{
-\item{disease_data}{Disease data}
+\item{disease_data}{The disease data}
 
-\item{col_names}{Data set column names}
+\item{col_names}{Column names in the disease data that contains the gender and the epidemiological weeks}
+
+\item{percentage}{Indicates if it is required to add a percentage of cases as a column}
 }
 \value{
-The disease data grouped by gender, epiweek and cases
+The disease data grouped by gender, epidemiological week and cases number
 }
 \description{
-Función que agrupa los datos por genero, semana epidemiologica y los casos
-Function that groups the data by gender, epiweek and cases
+Function that groups the disease data by gender, epidemiological week and cases number
 }
 \examples{
 disease_data <- import_data_disease_by_year(2019, "DENGUE")
-group_by_gender_and_week(disease_data, col_names = c("sexo", "semana"), percentage = T)
+group_by_gender_and_week(disease_data, col_names = c("sexo", "semana"), percentage = TRUE)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/plotting.R
 \name{plot_by_variable}
 \alias{plot_by_variable}
-\title{Plot by Variable}
+\title{Plot by variable(s) or column(s)}
 \usage{
 plot_by_variable(
   data,
@@ -55,12 +55,25 @@ plot_by_variable(
 \item{show_val}{Indicates if the bars should show the values}
 }
 \value{
-The map for department
+The plot by variable(s) or column(s)
 }
 \description{
-Función que genera gráficas por cualquier tipo de variable
-Function that generates graphs by any type of variable
+Function that generates a graph by any type of variable or column of dataframe
 }
 \examples{
 disease_data <- import_data_disease_by_year(2019, "DENGUE")
+plot_by_variable(disease_data,
+  var_x = col_name,
+  var_y = "casos",
+  var_fill = col_name,
+  var_per = "porcentaje",
+  label_x = "Genero",
+  label_y = "Numero de casos",
+  scale_name = "Sexo",
+  scale_labels = c("Femenino", "Masculino"),
+  legend_pos = "right",
+  bar_wd = 0.5,
+  text_sz = 3,
+  show_val = percentage
+  )
 }

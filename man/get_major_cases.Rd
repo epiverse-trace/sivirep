@@ -2,22 +2,21 @@
 % Please edit documentation in R/utils.R
 \name{get_major_cases}
 \alias{get_major_cases}
-\title{get_row_major_cases}
+\title{Get row with major cases}
 \usage{
-get_major_cases(disease_data, col_name = "casos", percentage = T)
+get_major_cases(disease_data, col_name = "casos", percentage = TRUE)
 }
 \arguments{
-\item{disease_data}{Disease data}
+\item{disease_data}{The disease data}
 
-\item{col_name}{Data set column name}
+\item{col_name}{Column name in the disease data that contains the cases number}
 
-\item{percentage}{Percentage value}
+\item{percentage}{Indicates if it is required to add a percentage of cases as a column}
 }
 \value{
-row with major cases
+Row with major cases
 }
 \description{
-Función que obtiene la fila con mayor numero de casos
 Function that gets the row with the major number of cases
 }
 \examples{

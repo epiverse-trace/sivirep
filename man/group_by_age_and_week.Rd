@@ -2,27 +2,28 @@
 % Please edit documentation in R/checking_data.R
 \name{group_by_age_and_week}
 \alias{group_by_age_and_week}
-\title{group_by_age_and_week}
+\title{Group by age, epidemiological week and cases}
 \usage{
 group_by_age_and_week(
   disease_data,
   col_names = c("edad", "semana"),
-  percentage = F
+  percentage = FALSE
 )
 }
 \arguments{
-\item{disease_data}{Disease data}
+\item{disease_data}{The disease data}
 
-\item{col_names}{Data set column names}
+\item{col_names}{Column names in the disease data that contains the ages and the epidemiological weeks}
+
+\item{percentage}{Indicates if it is required to add a percentage of cases as a column}
 }
 \value{
 The disease data grouped by age, epiweek and cases
 }
 \description{
-Función que agrupa los datos por edad, semana epidemiologica y los casos
-Function that groups the data by age, epiweek and cases
+Function that groups the disease data by age, epidemiological week and cases
 }
 \examples{
 disease_data <- import_data_disease_by_year(2019, "DENGUE")
-group_by_age_and_week(disease_data, col_names = c("edad", "semana"), percentage = T)
+group_by_age_and_week(disease_data, col_names = c("edad", "semana"), percentage = FALSE)
 }

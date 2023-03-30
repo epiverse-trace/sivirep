@@ -2,23 +2,24 @@
 % Please edit documentation in R/checking_data.R
 \name{group_by_gender}
 \alias{group_by_gender}
-\title{group_by_gender}
+\title{Group by gender and cases}
 \usage{
-group_by_gender(disease_data, col_name = "sexo", percentage = T)
+group_by_gender(disease_data, col_name = "sexo", percentage = TRUE)
 }
 \arguments{
-\item{disease_data}{Disease data}
+\item{disease_data}{The disease data}
 
-\item{col_name}{Data set column name}
+\item{col_name}{Column name in the disease data that contains the gender}
+
+\item{percentage}{Indicates if it is required to add a percentage of cases as a column}
 }
 \value{
-The disease data grouped by gender date and cases
+The disease data grouped by gender and cases number
 }
 \description{
-Función que agrupa los datos por genero y los casos
-Function that groups the data by gender and cases
+Function that groups the disease data by gender and cases number
 }
 \examples{
 disease_data <- import_data_disease_by_year(2019, "DENGUE")
-group_by_gender(disease_data, col_name = "sexo", )
+group_by_gender(disease_data, col_name = "sexo", percentage = TRUE)
 }

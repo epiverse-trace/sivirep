@@ -2,19 +2,18 @@
 % Please edit documentation in R/checking_data.R
 \name{group_by_week_and_cases}
 \alias{group_by_week_and_cases}
-\title{Group By Week and Cases}
+\title{Group By week and cases}
 \usage{
 group_by_week_and_cases(disease_data)
 }
 \arguments{
-\item{disease_data}{Disease data}
+\item{disease_data}{The disease data}
 }
 \value{
-The disease data grouped by week
+The disease data grouped by epidemiological week and cases number
 }
 \description{
-Función que agrupa los datos por semana epidemiológica y número de casos
-Function that groups the data by epidemiological week and number of cases
+Function that groups the disease data by epidemiological week and cases number
 }
 \examples{
 disease_data <- import_data_disease_by_year(2019, "DENGUE")
