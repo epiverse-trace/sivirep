@@ -51,7 +51,17 @@ knitr::kable(list_of_diseases)
 
 
 
+## Usage
 
+Reports are provided a [rmarkdown templates](https://rstudio.github.io/rstudio-extensions/rmarkdown_templates.html). You can load them either via RStudio graphical interface
+
+![Graphical interface to open a sivirep rmarkdown template in RStudio](man/figures/template_rstudio.png)
+
+or by running:
+
+```{r, eval = FALSE}
+rmarkdown::draft(file = "myreport.Rmd", template = "Reporte Basico", package = "sivirep")
+```
 
 
 ### Contributions

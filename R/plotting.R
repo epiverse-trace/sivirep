@@ -71,7 +71,6 @@ plot_dept_map <- function(data_map_depto, col_name_lj = "id", map_title, caption
     ) +
     ggplot2::scale_fill_gradient(low = "white", high = "darkred") +
     ggplot2::theme_void() +
-    ggplot2::ggtitle(map_title) +
     ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5)) +
     ggplot2::labs(caption = caption_label)
 

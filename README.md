@@ -43,7 +43,7 @@ list_of_diseases <- list_available_diseases_and_years()
 knitr::kable(list_of_diseases)
 ```
 
-| ENFERMEDAD                                                   | AA                                                                                             |
+| enfermedad                                                   | aa                                                                                             |
 |:-------------------------------------------------------------|:-----------------------------------------------------------------------------------------------|
 | ACCIDENTE OFIDICO                                            | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
 | AGRESIONES POR ANIMALES POTENCIALMENTE TRANSMISORES DE RABIA | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
@@ -112,6 +112,21 @@ knitr::kable(list_of_diseases)
 | TETANOS ACCIDENTAL                                           | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
 | TETANOS NEONATAL                                             | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
 | TOS FERINA                                                   | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
+
+## Usage
+
+Reports are provided a [rmarkdown
+templates](https://rstudio.github.io/rstudio-extensions/rmarkdown_templates.html).
+You can load them either via RStudio graphical interface
+
+![Graphical interface to open a sivirep rmarkdown template in
+RStudio](man/figures/template_rstudio.png)
+
+or by running:
+
+``` r
+rmarkdown::draft(file = "myreport.Rmd", template = "Reporte Basico", package = "sivirep")
+```
 
 ### Contributions
 

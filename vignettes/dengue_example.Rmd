@@ -15,7 +15,7 @@ subtitle: (fuente SIVIGILA, Datos libres)
 
 ```{r setup, echo=FALSE, error=FALSE, warning=FALSE, include = FALSE, message= FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-remotes::install_github("epiverse-trace/sivirep", ref = "dev-feature-sections-bsreport")
+#remotes::install_github("epiverse-trace/sivirep", ref = "dev-feature-sections-bsreport")
 
 rm(list = ls())
 
