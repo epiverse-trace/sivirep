@@ -49,7 +49,7 @@ months_major_cases <- get_months_major_cases(onset_symptoms_data, col_dates = "i
 
 Los casos se distribuyen a lo largo de los meses de enero a diciembre de `r params$year`, teniendo un mayor reporte en los meses `r months_major_cases` tanto por fecha de inicio de síntomas (Ver Figura 1) como por fecha de notificación (Ver Figura 2). Este comportamiento pudo haber sido distinto a años previos debido al inicio de estrategias de control de COVID-19 a comienzos de marzo de `r params$year`.
 
-```{r plot_cases_by_onset_symptom_date, fig.height = 5, fig.width = 10, fig.cap = "Distribucion de casos por fecha de inicio de sintomas"}
+```{r plot_cases_by_onset_symptom_date, fig.height = 5, fig.width = 10, fig.cap = "Distribucion de casos por dia de inicio de sintomas"}
 plot_onset_symptoms(onset_symptoms_data, type = "month")
 ```
 

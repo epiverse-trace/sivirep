@@ -198,7 +198,7 @@ plot_onset_symptoms <- function(disease_data, col_name = "ini_sin", type = "mont
   ) +
     ggplot2::scale_x_date(
       date_breaks = paste0("1 ", type),
-      date_labels = "%b %d"
+      date_labels = "%b"
     )
   return(plot_cases_by_onset_symp)
 }
