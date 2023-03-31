@@ -98,7 +98,7 @@ plot_dept_map <- function(data_map_depto, col_name_lj = "id", map_title, caption
 #' @return The plot by variable(s) or column(s)
 #' @examples
 #' disease_data <- import_data_disease_by_year(2019, "DENGUE")
-#' plot_by_variable(disease_data,
+#' plot_variable(disease_data,
 #'   var_x = col_name,
 #'   var_y = "casos",
 #'   var_fill = col_name,
@@ -113,7 +113,7 @@ plot_dept_map <- function(data_map_depto, col_name_lj = "id", map_title, caption
 #'   show_val = percentage
 #'   )
 #' @export
-plot_by_variable <- function(data, var_x, var_y, var_per = NULL, var_fill = NULL, wt_per = TRUE, label_x, label_y,
+plot_variable <- function(data, var_x, var_y, var_per = NULL, var_fill = NULL, wt_per = TRUE, label_x, label_y,
                              scale_name = NULL, scale_labels = NULL, diagram_title = NULL, legend_pos, bar_wd = 1, text_sz = 3, show_val = TRUE, ref_caption = "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia") {
   ggplot2::ggplot(data, {
     if (is.null(var_fill)) ggplot2::aes_string(x = var_x, y = var_y) else ggplot2::aes_string(x = var_x, y = var_y, fill = var_fill)
@@ -188,10 +188,10 @@ plot_onset_symptoms <- function(disease_data, col_name = "ini_sin", type = "mont
     col_name <- dates_column_names[3]
   }
 
-  plot_cases_by_onset_symp <- plot_by_variable(disease_data,
+  plot_cases_by_onset_symp <- plot_variable(disease_data,
     var_x = col_name,
     var_y = "casos",
-    label_x = "\nFecha de inicio de sintomas\n",
+    label_x = "\nFecha de inicio de sintomas\n por dia",
     label_y = "Numero de casos\n",
     legend_pos = "right",
     show_val = FALSE
@@ -227,17 +227,17 @@ plot_notification_date <- function(disease_data, col_name = "fec_not", type = "m
     col_name <- dates_column_names[2]
   }
 
-  plot_cases_by_onset_symp <- plot_by_variable(disease_data,
+  plot_cases_by_onset_symp <- plot_variable(disease_data,
     var_x = col_name,
     var_y = "casos",
     label_x = "\nFecha de notificacion\n",
-    label_y = "Numero de casos\n",
+    label_y = "Numero de casos\n  por dia",
     legend_pos = "right",
     show_val = FALSE
   ) +
     ggplot2::scale_x_date(
       date_breaks = paste0("1 ", type),
-      date_labels = "%b %d"
+      date_labels = "%b"
     )
   return(plot_cases_by_onset_symp)
 }
@@ -254,7 +254,7 @@ plot_notification_date <- function(disease_data, col_name = "fec_not", type = "m
 #' plot_gender(disease_data, col_name = "sexo", percentage = TRUE)
 #' @export
 plot_gender <- function(disease_data, col_name = "sexo", percentage = TRUE) {
-  plot_cases_by_gender <- plot_by_variable(disease_data,
+  plot_cases_by_gender <- plot_variable(disease_data,
     var_x = col_name,
     var_y = "casos",
     var_fill = col_name,
@@ -280,10 +280,10 @@ plot_gender <- function(disease_data, col_name = "sexo", percentage = TRUE) {
 #' @examples
 #' disease_data <- import_data_disease_by_year(2020, "DENGUE")
 #' disease_data <- group_by_gender_and_week(disease_data, col_names = c("sexo", "semana"), percentage = TRUE)
-#' plot_gender_and_week(disease_data, col_names = c("sexo", "semana"), percentage = FALSE)
+#' plot_gender_epiweek(disease_data, col_names = c("sexo", "semana"), percentage = FALSE)
 #' @export
-plot_gender_and_week <- function(disease_data, col_names = c("sexo", "semana"), percentage = FALSE) {
-  plot_cases_by_gender_and_week <- plot_by_variable(disease_data,
+plot_gender_epiweek <- function(disease_data, col_names = c("sexo", "semana"), percentage = FALSE) {
+  plot_cases_by_gender_and_week <- plot_variable(disease_data,
     var_x = col_names[2],
     var_y = "casos",
     var_fill = col_names[1],
@@ -311,10 +311,10 @@ plot_gender_and_week <- function(disease_data, col_names = c("sexo", "semana"), 
 #' @examples
 #' disease_data <- import_data_disease_by_year(2020, "DENGUE")
 #' disease_data <- group_by_age_and_week(disease_data, col_names = c("edad", "semana"), percentage = FALSE)
-#' plot_gender_and_week(disease_data, col_names = c("edad", "semana"), percentage = FALSE)
+#' plot_age_epiweek(disease_data, col_names = c("edad", "semana"), percentage = FALSE)
 #' @export
-plot_age_and_week <- function(disease_data, col_names = c("edad", "semana"), percentage = FALSE) {
-  plot_cases_by_age_and_week <- plot_by_variable(disease_data,
+plot_age_epiweek <- function(disease_data, col_names = c("edad", "semana"), percentage = FALSE) {
+  plot_cases_by_age_and_week <- plot_variable(disease_data,
     var_x = col_names[1],
     var_y = "casos",
     label_x = "\nEdad\n",
@@ -336,10 +336,10 @@ plot_age_and_week <- function(disease_data, col_names = c("edad", "semana"), per
 #' @examples
 #' disease_data <- import_data_disease_by_year(2020, "DENGUE")
 #' disease_data <- group_by_age_and_week(disease_data, col_names = c("edad", "semana"), percentage = FALSE)
-#' plot_age_and_gender(disease_data, col_names = c("edad", "sexo"), percentage = FALSE)
+#' plot_age_gender(disease_data, col_names = c("edad", "sexo"), percentage = FALSE)
 #' @export
-plot_age_and_gender <- function(disease_data, col_names = c("edad", "sexo"), percentage = FALSE) {
-  plot_cases_by_age_and_gender <- plot_by_variable(disease_data,
+plot_age_gender <- function(disease_data, col_names = c("edad", "sexo"), percentage = FALSE) {
+  plot_cases_by_age_and_gender <- plot_variable(disease_data,
     var_x = col_names[1],
     var_y = "casos",
     var_fill = col_names[2],
@@ -366,7 +366,7 @@ plot_age_and_gender <- function(disease_data, col_names = c("edad", "sexo"), per
 #' plot_special_population(disease_data, col_name = "poblacion", percentage = FALSE)
 #' @export
 plot_special_population <- function(disease_data, col_name = "poblacion", percentage = FALSE) {
-  plot_cases_by_special_population <- plot_by_variable(disease_data,
+  plot_cases_by_special_population <- plot_variable(disease_data,
     var_x = col_name,
     var_y = "casos",
     var_fill = col_name,

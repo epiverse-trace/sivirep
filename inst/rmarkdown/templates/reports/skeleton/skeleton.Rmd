@@ -26,7 +26,7 @@ title: "Reporte Automatizado para `r params$disease_name`, Colombia `r params$ye
 ---
 
 ```{r import_data, include = FALSE}
-disease_data <-  import_data_disease_by_year(params$year, params$disease_name)
+disease_data <-  import_linelist_disease_year(params$year, params$disease_name)
 ```
 
 ```{r clean_data, include = FALSE}
@@ -43,8 +43,8 @@ En este reporte se presenta el comportamiento del `r params$disease_name` durant
 # Distribución temporal de los casos
 
 ```{r cases_by_onset_symptom_date, include = FALSE}
-onset_symptoms_data <- group_by_onset_symptoms(clean_disease_data, type = "month") 
-months_major_cases <- get_months_major_cases(onset_symptoms_data, col_dates = "ini_sin")
+onset_symptoms_data <- group_onset_symptoms(clean_disease_data, type = "month") 
+months_major_cases <- get_months_most_cases(onset_symptoms_data, col_dates = "ini_sin")
 ```
 
 Los casos se distribuyen a lo largo de los meses de enero a diciembre de `r params$year`, teniendo un mayor reporte en los meses `r months_major_cases` tanto por fecha de inicio de síntomas (Ver Figura 1) como por fecha de notificación (Ver Figura 2). Este comportamiento pudo haber sido distinto a años previos debido al inicio de estrategias de control de COVID-19 a comienzos de marzo de `r params$year`.
@@ -54,7 +54,7 @@ plot_onset_symptoms(onset_symptoms_data, type = "month")
 ```
 
 ```{r cases_by_onset_notification_date, include = FALSE}
-notification_date_data <- group_by_notification_date(clean_disease_data, type = "month")
+notification_date_data <- group_notification_date(clean_disease_data, type = "month")
 ```
 
 \newpage 
@@ -66,10 +66,10 @@ plot_notification_date(notification_date_data, type = "month")
 # Distribución de casos por sexo y semana epidemiológica
 
 ```{r distribution_cg, include = FALSE}
-gender_data <- group_by_gender(clean_disease_data)
+gender_data <- group_gender(clean_disease_data)
 male_percentage <- gender_data$porcentaje[2]
 female_percentage <- gender_data$porcentaje[1]
-gender_major_cases <- get_major_cases(gender_data)
+gender_most_cases <- get_most_cases(gender_data)
 ```
 
 En el total de casos para `r params$year` se observa una predominancia del sexo masculino (`r male_percentage`%) con respecto al sexo femenino (`r female_percentage`%) (Ver Figura 3).
@@ -81,26 +81,26 @@ plot_gender(gender_data)
 \newpage
 
 ```{r distribution_cg_epiweek, include = FALSE}
-gender_and_week_data <- group_by_gender_and_week(clean_disease_data)
+gender_week_data <- group_gender_epiweek(clean_disease_data)
 ```
 
 Esta predominancia del reporte de casos en sexo masculino se mantuvo a lo largo de todas las semanas epidemiológicas (Ver figura 4).
 
 ```{r plot_cg_epiweek, fig.height = 5, fig.width = 11, fig.cap =  "Distribucion de casos por genero y semana epidemiologica"}
-plot_gender_and_week(gender_and_week_data)
+plot_gender_epiweek(gender_week_data)
 ```
 
 # Distribución de casos por edad
 
 ```{r distribution_age_d, include = FALSE}
-age_and_week_data <- group_by_age_and_week(clean_disease_data)
-age_range_major_cases <- get_major_cases(age_and_week_data)
+age_week_data <- group_age_epiweek(clean_disease_data)
+age_range_most_cases <- get_most_cases(age_week_data)
 ```
 
-La distribución de los casos por grupos etarios muestra una tendencia decreciente a medida que se avanza en la edad. La población de `r age_range_major_cases$edad` años representó el `r  age_range_major_cases$porcentaje` % de todos los casos de `r params$disease_name` en el país (Ver figura 5). De forma interesante, aunque el sexo masculino predominó en casi todos los grupos etários, para el grupo de 0-10 años esta predominancia fue mucho menos marcada (Ver Figura 6).
+La distribución de los casos por grupos etarios muestra una tendencia decreciente a medida que se avanza en la edad. La población de `r age_range_most_cases$edad` años representó el `r  age_range_most_cases$porcentaje` % de todos los casos de `r params$disease_name` en el país (Ver figura 5). De forma interesante, aunque el sexo masculino predominó en casi todos los grupos etários, para el grupo de 0-10 años esta predominancia fue mucho menos marcada (Ver Figura 6).
 
 ```{r distribution_age, fig.height = 3, fig.width = 8, fig.cap =  "Distribucion de casos por edad"}
-plot_age_and_week(age_and_week_data)
+plot_age_epiweek(age_week_data)
 ```
 
 \newpage
@@ -108,14 +108,14 @@ plot_age_and_week(age_and_week_data)
 # Distribución de casos por edad y sexo
 
 ```{r distribution_age_anger, fig.height = 3, fig.width = 9, fig.cap =  "Distribucion de casos por edad y genero"}
-age_and_gender_data <- group_by_age_and_gender(clean_disease_data)
-plot_age_and_gender(age_and_gender_data)
+age_gender_data <- group_age_gender(clean_disease_data)
+plot_age_gender(age_gender_data)
 ```
 
 # Distribución de casos por población especial
 
 ```{r distribution_sp, fig.height = 6, fig.width = 11, fig.cap =  "Distribucion de casos por poblacion especial"}
-special_population_data <- group_by_special_population(clean_disease_data)
+special_population_data <- group_special_population(clean_disease_data)
 plot_special_population(special_population_data)
 ```
 
@@ -124,7 +124,7 @@ plot_special_population(special_population_data)
 # Distribución espacial de casos
 
 ```{r map_distribution_spatial, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, fig.height = 10, fig.width = 10, fig.cap =  "Distribucion espacial de casos"}
-departments_spacial_data <- group_by_deptos(clean_disease_data)
+departments_spacial_data <- group_deptos(clean_disease_data)
 plot_dept_map(departments_spacial_data)
 ```
 
@@ -134,5 +134,5 @@ plot_dept_map(departments_spacial_data)
 
 a.  Los casos totales reportados de `r params$disease_name` en Colombia en el año `r params$year` fueron `r nrow(disease_data)`.
 b.  Los meses de `r months_major_cases` tuvieron el mayor reporte. Es posible que haya un impacto en el menor reporte y/o menor transmisión de `r params$disease_name` como producto de la pandemia COVID-19 y medidas de control que iniciaron en marzo de `r params$year`.
-c.  El reporte de casos de `r params$disease_name` a lo largo de `r params$year` predominó en la población de `r age_range_major_cases$edad` años.
+c.  El reporte de casos de `r params$disease_name` a lo largo de `r params$year` predominó en la población de `r age_range_most_cases$edad` años.
 d.  El reporte de casos de `r params$disease_name` predominó a lo largo del año en el sexo masculino.

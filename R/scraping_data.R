@@ -5,9 +5,9 @@
 #' @param disease_name Disease name to download
 #' @return Path or URL for download the disease data by a specific year of SIVIGILA source
 #' @examples
-#' get_path_data_disease_by_year(year = 2010, disease_name = "DENGUE")
+#' get_path_data_disease_year(year = 2010, disease_name = "DENGUE")
 #' @export
-get_path_data_disease_by_year <- function(year, disease_name) {
+get_path_data_disease_year <- function(year, disease_name) {
   base_path <- config::get(file = system.file("extdata", "config.yml", package = "sivirep"), "base_path_microdata")
   file_path_parameters <- config::get(file = system.file("extdata", "config.yml", package = "sivirep"), "file_path_parameters_microdata")
 

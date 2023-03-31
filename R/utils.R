@@ -9,9 +9,9 @@
 #' @return Months major cases
 #' @examples
 #' disease_data <- import_data_disease_by_year(2020, "DENGUE")
-#' get_months_major_cases(disease_data, col_dates, col_cases, top = 3, concat_values = TRUE)
+#' get_months_most_cases(disease_data, col_dates, col_cases, top = 3, concat_values = TRUE)
 #' @export
-get_months_major_cases <- function(disease_data, col_dates, col_cases = "casos", top = 3, concat_values = TRUE) {
+get_months_most_cases <- function(disease_data, col_dates, col_cases = "casos", top = 3, concat_values = TRUE) {
   data_major_cases <- disease_data[order(eval(parse(text = paste0("disease_data$", col_cases))), decreasing = TRUE), ]
   if (nrow(data_major_cases) < top) {
     top <- nrow(data_major_cases)
@@ -21,7 +21,7 @@ get_months_major_cases <- function(disease_data, col_dates, col_cases = "casos",
 
   data_major_cases$Meses <- sapply(eval(parse(text = paste0("data_major_cases$", col_dates))), months)
   if (concat_values) {
-    months_concat <- concatenate_values_with_token(as.character(data_major_cases$Meses)[1:top])
+    months_concat <- concatenate_values_token(as.character(data_major_cases$Meses)[1:top])
     return(months_concat)
   }
   return(data_major_cases)
@@ -64,9 +64,9 @@ get_depto_names <- function(disease_data) {
 #' @return Row with major cases
 #' @examples
 #' disease_data <- import_data_disease_by_year(2020, "DENGUE")
-#' get_major_cases(disease_data, col_name = "casos", percentage = T)
+#' get_most_cases(disease_data, col_name = "casos", percentage = T)
 #' @export
-get_major_cases <- function(disease_data, col_name = "casos", percentage = TRUE) {
+get_most_cases <- function(disease_data, col_name = "casos", percentage = TRUE) {
   data_major_cases <- disease_data[order(eval(parse(text = paste0("disease_data$", col_name))), decreasing = TRUE), ]
   data_major_cases <- data_major_cases[1, ]
   if (percentage) {
@@ -84,9 +84,9 @@ get_major_cases <- function(disease_data, col_name = "casos", percentage = TRUE)
 #' @param final_token Final separator or token
 #' @return Concatenated final value
 #' @examples
-#' concatenate_values_with_token(values = c("enero", "febrero", "marzo"), length = 3, main_token = ", ", final_token = "y ")
+#' concatenate_values_token(values = c("enero", "febrero", "marzo"), length = 3, main_token = ", ", final_token = "y ")
 #' @export
-concatenate_values_with_token <- function(values, length = 3, main_token = ", ", final_token = "y ") {
+concatenate_values_token <- function(values, length = 3, main_token = ", ", final_token = "y ") {
   final_value <- ""
   i <- 1
   for (value in values) {

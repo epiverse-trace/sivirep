@@ -82,9 +82,9 @@ import_data_endemic_channel <- function(disease_name, year) {
 #' Function that obtains the diseases and the years available from the SIVIGILA microdata source
 #' @return The diseases and the years available from the SIVIGILA microdata source
 #' @examples
-#' list_available_diseases_and_years()
+#' list_available_diseases_years()
 #' @export
-list_available_diseases_and_years <- function() {
+list_available_diseases_years <- function() {
   query_diseases_by_year_path <- config::get(file = system.file("extdata", "config.yml", package = "sivirep"), "query_diseases_by_year_path")
   get_query_diseases_by_year <- httr::GET(query_diseases_by_year_path, httr::add_headers("Accept" = "*/*"))
 
@@ -133,10 +133,10 @@ list_available_diseases_and_years <- function() {
 #' @param cache Indicates if the downloaded data to be cached
 #' @return The disease data by year from the SIVIGILA microdata source
 #' @examples
-#' import_data_disease_by_year(2018, "DENGUE")
+#' import_linelist_disease_year(2018, "DENGUE")
 #' @export
-import_data_disease_by_year <- function(year, disease_name, cache = TRUE) {
-  data_url <- get_path_data_disease_by_year(year, disease_name)
+import_linelist_disease_year <- function(year, disease_name, cache = TRUE) {
+  data_url <- get_path_data_disease_year(year, disease_name)
   data_disease_by_year <- data.frame()
 
   data_disease_by_year <- import_data_separator(data_url)

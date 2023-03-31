@@ -45,7 +45,7 @@ To view the list of diseases available to make a report with `sivirep`:
 ```{r example}
 library(sivirep)
 
-list_of_diseases <- list_available_diseases_and_years()
+list_of_diseases <- list_available_diseases_years()
 knitr::kable(list_of_diseases)
 ```
 
@@ -55,7 +55,7 @@ knitr::kable(list_of_diseases)
 
 Reports are provided a [rmarkdown templates](https://rstudio.github.io/rstudio-extensions/rmarkdown_templates.html). You can load them either via RStudio graphical interface
 
-![Graphical interface to open a sivirep rmarkdown template in RStudio](man/figures/template_rstudio.png)
+![Graphical interface to open a sivirep rmarkdown template in RStudio](man/figures/template_rmarkdown.png)
 
 or by running:
 
