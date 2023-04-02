@@ -219,91 +219,93 @@ group_notification_date <- function(disease_data, col_name = "fec_not", type = "
   return(group_by_onset_symp)
 }
 
-#' Group by gender and cases
+#' Group by sex and cases
 #'
-#' Function that groups the disease data by gender and cases number
+#' Function that groups the disease data by sex and cases number
 #' @param disease_data The disease data
-#' @param col_name Column name in the disease data that contains the gender
+#' @param col_name Column name in the disease data that contains the sex
 #' @param percentage Indicates if it is required to add a percentage of cases as a column
-#' @return The disease data grouped by gender and cases number
+#' @return The disease data grouped by sex and cases number
 #' @examples
 #' disease_data <- import_data_disease_by_year(2019, "DENGUE")
-#' group_gender(disease_data, col_name = "sexo", percentage = TRUE)
+#' group_sex(disease_data, col_name = "sexo", percentage = TRUE)
 #' @export
-group_gender <- function(disease_data, col_name = "sexo", percentage = TRUE) {
-  disease_data_by_gender <- group_columns_cases(disease_data, col_name, percentage)
-  return(disease_data_by_gender)
+group_sex <- function(disease_data, col_name = "sexo", percentage = TRUE) {
+  disease_data_by_sex <- group_columns_cases(disease_data, col_name, percentage)
+  return(disease_data_by_sex)
 }
 
-#' Group by gender, epidemiological week and cases
+#' Group by sex, epidemiological week and cases
 #'
-#' Function that groups the disease data by gender, epidemiological week and cases number
+#' Function that groups the disease data by sex, epidemiological week and cases number
 #' @param disease_data The disease data
-#' @param col_names Column names in the disease data that contains the gender and the epidemiological weeks
+#' @param col_names Column names in the disease data that contains the sex and the epidemiological weeks
 #' @param percentage Indicates if it is required to add a percentage of cases as a column
-#' @return The disease data grouped by gender, epidemiological week and cases number
+#' @return The disease data grouped by sex, epidemiological week and cases number
 #' @examples
 #' disease_data <- import_data_disease_by_year(2019, "DENGUE")
-#' group_gender_epiweek(disease_data, col_names = c("sexo", "semana"), percentage = TRUE)
+#' group_sex_epiweek(disease_data, col_names = c("sexo", "semana"), percentage = TRUE)
 #' @export
-group_gender_epiweek <- function(disease_data, col_names = c("sexo", "semana"), percentage = TRUE) {
-  disease_data_by_gender_and_week <- group_columns_cases(disease_data, col_names, percentage)
-  return(disease_data_by_gender_and_week)
+group_sex_epiweek <- function(disease_data, col_names = c("sexo", "semana"), percentage = TRUE) {
+  disease_data_by_sex_and_week <- group_columns_cases(disease_data, col_names, percentage)
+  return(disease_data_by_sex_and_week)
 }
 
-#' Group by age, epidemiological week and cases
+#' Group by age and cases
 #'
-#' Function that groups the disease data by age, epidemiological week and cases
+#' Function that groups the disease data by age and cases
 #' @param disease_data The disease data
-#' @param col_names Column names in the disease data that contains the ages and the epidemiological weeks
+#' @param col_name Column name in the disease data that contains the ages
 #' @param percentage Indicates if it is required to add a percentage of cases as a column
-#' @return The disease data grouped by age, epiweek and cases
+#' @param age_interval The interval of age range
+#' @return The disease data grouped by age and cases
 #' @examples
 #' disease_data <- import_data_disease_by_year(2019, "DENGUE")
-#' group_age_epiweek(disease_data, col_names = c("edad", "semana"), percentage = FALSE)
+#' group_age(disease_data, col_name = "edad", percentage = FALSE)
 #' @export
-group_age_epiweek <- function(disease_data, col_names = c("edad", "semana"), percentage = FALSE) {
-  disease_data_by_age_and_week <- group_columns_cases(disease_data, col_names, percentage)
-  disease_data_by_age_and_week <- group_age_range_cases(disease_data_by_age_and_week,
-    col_names[1],
+group_age <- function(disease_data, col_name = "edad", percentage = FALSE, age_interval = 10) {
+  disease_data_by_age <- group_columns_cases(disease_data, col_name, percentage)
+  disease_data_by_age <- group_age_range_cases(disease_data_by_age,
+    col_name,
     min_val = 0,
     max_val = max(eval(parse(
       text = paste0(
-        "disease_data_by_age_and_week$",
-        col_names[1]
+        "disease_data_by_age$",
+        col_name
       )
-    ))), step = 10
+    ))), step = age_interval
   )
-  return(disease_data_by_age_and_week)
+  return(disease_data_by_age)
 }
 
-#' Group by ages, gender and cases
+#' Group by ages, sex and cases
 #'
-#' Function that groups the data by age, gender and cases number
+#' Function that groups the data by age, sex and cases number
 #' @param disease_data The disease data
-#' @param col_names Column names in the disease data that contains the ages and gender
+#' @param col_names Column names in the disease data that contains the ages and sex
 #' @param percentage Indicates if it is required to add a percentage of cases as a column
-#' @return The disease data grouped by ages, gender and number cases
+#' @param age_interval The interval of age range
+#' @return The disease data grouped by ages, sex and number cases
 #' @examples
 #' disease_data <- import_data_disease_by_year(2019, "DENGUE")
-#' group_age_gender(disease_data, col_names = c("edad", "sexo"), percentage = TRUE)
+#' group_age_sex(disease_data, col_names = c("edad", "sexo"), percentage = TRUE)
 #' @export
-group_age_gender <- function(disease_data, col_names = c("edad", "sexo"), percentage = TRUE) {
-  disease_data_by_age_and_gender <- group_columns_cases(disease_data, col_names, percentage)
-  disease_data_by_age_and_gender <- group_age_range_cases(disease_data_by_age_and_gender,
+group_age_sex <- function(disease_data, col_names = c("edad", "sexo"), percentage = TRUE, age_interval = 10) {
+  disease_data_by_age_and_sex <- group_columns_cases(disease_data, col_names, percentage)
+  disease_data_by_age_and_sex <- group_age_range_cases(disease_data_by_age_and_sex,
     col_names[1],
     col_names[2],
     min_val = 0,
     max_val =
       max(eval(parse(
         text = paste0(
-          "disease_data_by_age_and_gender$",
+          "disease_data_by_age_and_sex$",
           col_names[1]
         )
       ))),
-    step = 10
+    age_interval = 10
   )
-  return(disease_data_by_age_and_gender)
+  return(disease_data_by_age_and_sex)
 }
 
 #' Group by special population and cases
@@ -332,9 +334,9 @@ group_special_population <- function(disease_data, col_name = "poblacion", perce
 #' @return The disease data grouped by department codes and cases number
 #' @examples
 #' disease_data <- import_data_disease_by_year(2019, "DENGUE")
-#' group_deptos(disease_data, col_name = "cod_dpto_o", percentage = FALSE)
+#' group_dept(disease_data, col_name = "cod_dpto_o", percentage = FALSE)
 #' @export
-group_deptos <- function(disease_data, col_name = "cod_dpto_o", percentage = FALSE) {
+group_dept <- function(disease_data, col_name = "cod_dpto_o", percentage = FALSE) {
   disease_data_by_depto_codes <- group_columns_cases(disease_data, col_names = col_name)
   colnames(disease_data_by_depto_codes)[colnames(disease_data_by_depto_codes) == col_name] <- "id"
 

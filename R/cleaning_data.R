@@ -206,9 +206,9 @@ clean_disease_ages <- function(disease_data, col_name = "edad") {
 #' @examples
 #' year <- 2019
 #' disease_data <- import_data_disease_by_year(year, "DENGUE")
-#' clean_sivigila_data(disease_data, year)
+#' cleansing_sivigila_data(disease_data, year)
 #' @export
-clean_sivigila_data <- function(disease_data, year) {
+cleansing_sivigila_data <- function(disease_data, year) {
   names(disease_data) <- epitrix::clean_labels(names(disease_data))
 
   disease_data <- clean_disease_ages(disease_data)

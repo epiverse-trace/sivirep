@@ -2,9 +2,9 @@
 author: "TRACE-LAC"
 date: "`r Sys.Date()`"
 output:
-  pdf_document: 
-    number_sections: true
   html_document:
+    number_sections: true
+  pdf_document: 
     number_sections: true
   word_document: 
     number_sections: true

@@ -48,21 +48,21 @@ plot_epiweek <- function(dat, col_week, col_cases, year, type = "week", xlabel =
 #' Plot map by department
 #'
 #' Function that generates the map by department with the cases number of a specific disease
-#' @param data_map_depto The disease data grouped by department and cases number
+#' @param data_grouped The disease data grouped by department and cases number
 #' @param col_name_lj Column name to join with the shape file
 #' @return The map by department with the cases number of a specific disease
 #' @examples
 #' disease_data <- import_data_disease_by_year(2019, "DENGUE")
-#' departments_spacial_data <- group_by_deptos(disease_data)
+#' departments_spacial_data <- group_dept(disease_data)
 #' plot_dept_map(departments_spacial_data, col_name_lj = "id", caption_label = "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia")
 #' @export
-plot_dept_map <- function(data_map_depto, col_name_lj = "id", map_title, caption_label = "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia") {
+plot_dept_map <- function(data_grouped, col_name_lj = "id", map_title, caption_label = "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia") {
   maptools::gpclibPermit()
 
   shp <- rgdal::readOGR(dsn = system.file("extdata/depto_adm_shp", "depto.shp", package = "sivirep"), stringsAsFactors = FALSE, verbose = FALSE)
   shp.df <- ggplot2::fortify(shp, region = "DPTO")
   shp.df <- shp.df %>%
-    dplyr::left_join(data_map_depto, by = col_name_lj)
+    dplyr::left_join(data_grouped, by = col_name_lj)
 
   map <- ggplot2::ggplot() +
     ggplot2::geom_polygon(
@@ -167,17 +167,17 @@ plot_variable <- function(data, var_x, var_y, var_per = NULL, var_fill = NULL, w
 #' Plot cases distribution by symptoms onset date
 #'
 #' Function that generates the plot of cases distribution by onset symptoms date
-#' @param disease_data The disease data
-#' @param year Year of the disease data
+#' @param data_grouped The disease data grouped
+#' @param year Year of the disease data grouped
 #' @param type Time unit (day, month and year)
-#' @param col_name Column name in the disease data that contains the symptom onset dates
+#' @param col_name Column name in the disease data grouped that contains the symptom onset dates
 #' @return A plot of cases distribution by symptoms onset date
 #' @examples
 #' disease_data <- import_data_disease_by_year(2020, "DENGUE")
-#' disease_data <- group_by_onset_symptoms(disease_data, col_name = "ini_sin", type = "month")
-#' plot_onset_symptoms(disease_data, col_name = "ini_sin", type = "month")
+#' data_grouped <- group_by_onset_symptoms(disease_data, col_name = "ini_sin", break_tick_date = "month")
+#' plot_onset_symptoms(data_grouped, col_name = "ini_sin", break_tick_date = "month")
 #' @export
-plot_onset_symptoms <- function(disease_data, col_name = "ini_sin", type = "month") {
+plot_onset_symptoms <- function(data_grouped, col_name = "ini_sin", break_tick_date = "month") {
   dates_column_names <- config::get(
     file =
       system.file("extdata", "config.yml",
@@ -188,7 +188,7 @@ plot_onset_symptoms <- function(disease_data, col_name = "ini_sin", type = "mont
     col_name <- dates_column_names[3]
   }
 
-  plot_cases_by_onset_symp <- plot_variable(disease_data,
+  plot_cases_by_onset_symp <- plot_variable(data_grouped,
     var_x = col_name,
     var_y = "casos",
     label_x = "\nFecha de inicio de sintomas\n por dia",
@@ -197,7 +197,7 @@ plot_onset_symptoms <- function(disease_data, col_name = "ini_sin", type = "mont
     show_val = FALSE
   ) +
     ggplot2::scale_x_date(
-      date_breaks = paste0("1 ", type),
+      date_breaks = paste0("1 ", break_tick_date),
       date_labels = "%b"
     )
   return(plot_cases_by_onset_symp)
@@ -206,17 +206,17 @@ plot_onset_symptoms <- function(disease_data, col_name = "ini_sin", type = "mont
 #' Plot cases distribution by notification date
 #'
 #' Function that generates the plot of cases distribution by notification date
-#' @param disease_data The disease data
-#' @param year Year of the disease data
+#' @param data_grouped The disease data grouped
+#' @param year Year of the disease data grouped
 #' @param type Time unit (day, month and year)
-#' @param col_name Column name in the disease data that contains the notification dates
+#' @param col_name Column name in the disease data grouped that contains the notification dates
 #' @return A plot of cases distribution by onset notification date
 #' @examples
 #' disease_data <- import_data_disease_by_year(2020, "DENGUE")
-#' disease_data <- group_by_notification_date(disease_data, col_name = "fec_not", type = "month")
-#' plot_notification_date(disease_data, col_name = "fec_not", type = "month")
+#' data_grouped <- group_notification_date(disease_data, col_name = "fec_not", break_tick_date = "month")
+#' plot_notification_date(data_grouped, col_name = "fec_not", break_tick_date = "month")
 #' @export
-plot_notification_date <- function(disease_data, col_name = "fec_not", type = "month") {
+plot_notification_date <- function(data_grouped, col_name = "fec_not", break_tick_date = "month") {
   dates_column_names <- config::get(
     file =
       system.file("extdata", "config.yml",
@@ -227,7 +227,7 @@ plot_notification_date <- function(disease_data, col_name = "fec_not", type = "m
     col_name <- dates_column_names[2]
   }
 
-  plot_cases_by_onset_symp <- plot_variable(disease_data,
+  plot_cases_by_onset_symp <- plot_variable(data_grouped,
     var_x = col_name,
     var_y = "casos",
     label_x = "\nFecha de notificacion\n",
@@ -236,25 +236,25 @@ plot_notification_date <- function(disease_data, col_name = "fec_not", type = "m
     show_val = FALSE
   ) +
     ggplot2::scale_x_date(
-      date_breaks = paste0("1 ", type),
+      date_breaks = paste0("1 ", break_tick_date),
       date_labels = "%b"
     )
   return(plot_cases_by_onset_symp)
 }
 
-#' Plot cases distribution by gender
+#' Plot cases distribution by sex
 #'
-#' Function that generates the plot of cases distribution by gender
-#' @param disease_data The disease data
-#' @param col_name Column name in the disease data that contains the gender
-#' @return A plot of cases distribution by gender
+#' Function that generates the plot of cases distribution by sex
+#' @param data_grouped The disease data grouped
+#' @param col_name Column name in the disease data grouped that contains the sex
+#' @return A plot of cases distribution by sex
 #' @examples
 #' disease_data <- import_data_disease_by_year(2020, "DENGUE")
-#' disease_data <- group_by_gender(disease_data, col_name = "sexo", percentage = TRUE)
-#' plot_gender(disease_data, col_name = "sexo", percentage = TRUE)
+#' data_grouped <- group_sex(disease_data, col_name = "sexo", percentage = TRUE)
+#' plot_sex(data_grouped, col_name = "sexo", percentage = TRUE)
 #' @export
-plot_gender <- function(disease_data, col_name = "sexo", percentage = TRUE) {
-  plot_cases_by_gender <- plot_variable(disease_data,
+plot_sex <- function(data_grouped, col_name = "sexo", percentage = TRUE) {
+  plot_cases_by_sex <- plot_variable(data_grouped,
     var_x = col_name,
     var_y = "casos",
     var_fill = col_name,
@@ -268,22 +268,22 @@ plot_gender <- function(disease_data, col_name = "sexo", percentage = TRUE) {
     text_sz = 3,
     show_val = percentage
   )
-  return(plot_cases_by_gender)
+  return(plot_cases_by_sex)
 }
 
-#' Plot cases distribution by gender and epidemiological week
+#' Plot cases distribution by sex and epidemiological week
 #'
-#' Function that generates the plot of cases distribution by gender and epidemiological week
-#' @param disease_data The disease data
-#' @param col_names Column names in the disease data that contains the gender and the epidemiological weeks
-#' @return A plot of cases distribution by gender and epidemiological week
+#' Function that generates the plot of cases distribution by sex and epidemiological week
+#' @param data_grouped The disease data grouped
+#' @param col_names Column names in the disease data grouped that contains the sex and the epidemiological weeks
+#' @return A plot of cases distribution by sex and epidemiological week
 #' @examples
 #' disease_data <- import_data_disease_by_year(2020, "DENGUE")
-#' disease_data <- group_by_gender_and_week(disease_data, col_names = c("sexo", "semana"), percentage = TRUE)
-#' plot_gender_epiweek(disease_data, col_names = c("sexo", "semana"), percentage = FALSE)
+#' data_grouped <- group_sex_and_week(disease_data, col_names = c("sexo", "semana"), percentage = TRUE)
+#' plot_sex_epiweek(data_grouped, col_names = c("sexo", "semana"), percentage = FALSE)
 #' @export
-plot_gender_epiweek <- function(disease_data, col_names = c("sexo", "semana"), percentage = FALSE) {
-  plot_cases_by_gender_and_week <- plot_variable(disease_data,
+plot_sex_epiweek <- function(data_grouped, col_names = c("sexo", "semana"), percentage = FALSE) {
+  plot_cases_by_sex_and_week <- plot_variable(data_grouped,
     var_x = col_names[2],
     var_y = "casos",
     var_fill = col_names[1],
@@ -299,22 +299,22 @@ plot_gender_epiweek <- function(disease_data, col_names = c("sexo", "semana"), p
   ) +
     ggplot2::scale_x_continuous(breaks = seq(1, 52, 4))
 
-  return(plot_cases_by_gender_and_week)
+  return(plot_cases_by_sex_and_week)
 }
 
-#' Plot cases distribution by age and epidemiological week
+#' Plot cases distribution by age
 #'
-#' Function that generates the plot of cases distribution by age and epidemiological week
-#' @param disease_data The disease data
-#' @param col_names Column names in the disease data that contains the ages and the epidemiological weeks
-#' @return A plot of cases distribution by age and epidemiological week
+#' Function that generates the plot of cases distribution by age
+#' @param data_grouped The disease data grouped
+#' @param col_name Column name in the disease data grouped that contains the ages
+#' @return A plot of cases distribution by age
 #' @examples
 #' disease_data <- import_data_disease_by_year(2020, "DENGUE")
-#' disease_data <- group_by_age_and_week(disease_data, col_names = c("edad", "semana"), percentage = FALSE)
-#' plot_age_epiweek(disease_data, col_names = c("edad", "semana"), percentage = FALSE)
+#' data_grouped <- group_age(disease_data, col_name = "edad", percentage = FALSE)
+#' plot_age(data_grouped, col_name = "edad", percentage = FALSE)
 #' @export
-plot_age_epiweek <- function(disease_data, col_names = c("edad", "semana"), percentage = FALSE) {
-  plot_cases_by_age_and_week <- plot_variable(disease_data,
+plot_age <- function(data_grouped, col_names = "edad", percentage = FALSE) {
+  plot_cases_by_age <- plot_variable(data_grouped,
     var_x = col_names[1],
     var_y = "casos",
     label_x = "\nEdad\n",
@@ -324,22 +324,24 @@ plot_age_epiweek <- function(disease_data, col_names = c("edad", "semana"), perc
     bar_wd = 0.7,
     text_sz = 2.5
   )
-  return(plot_cases_by_age_and_week)
+  
+  return(plot_cases_by_age)
+
 }
 
-#' Plot cases distribution by age and gender
+#' Plot cases distribution by age and sex
 #'
-#' Function that generates the plot of cases distribution by age and gender
-#' @param disease_data The disease data
-#' @param col_names Column names in the disease data that contains the ages and the epidemiological weeks
-#' @return A plot of cases distribution by age and gender
+#' Function that generates the plot of cases distribution by age and sex
+#' @param data_grouped The disease data grouped
+#' @param col_names Column names in the disease data grouped that contains the ages and the epidemiological weeks
+#' @return A plot of cases distribution by age and sex
 #' @examples
 #' disease_data <- import_data_disease_by_year(2020, "DENGUE")
-#' disease_data <- group_by_age_and_week(disease_data, col_names = c("edad", "semana"), percentage = FALSE)
-#' plot_age_gender(disease_data, col_names = c("edad", "sexo"), percentage = FALSE)
+#' data_grouped <- group_by_age_and_week(disease_data, col_names = c("edad", "semana"), percentage = FALSE)
+#' plot_age_sex(data_grouped, col_names = c("edad", "sexo"), percentage = FALSE)
 #' @export
-plot_age_gender <- function(disease_data, col_names = c("edad", "sexo"), percentage = FALSE) {
-  plot_cases_by_age_and_gender <- plot_variable(disease_data,
+plot_age_sex <- function(data_grouped, col_names = c("edad", "sexo"), percentage = FALSE) {
+  plot_cases_by_age_and_sex <- plot_variable(data_grouped,
     var_x = col_names[1],
     var_y = "casos",
     var_fill = col_names[2],
@@ -351,22 +353,22 @@ plot_age_gender <- function(disease_data, col_names = c("edad", "sexo"), percent
     text_sz = 3,
     show_val = percentage
   )
-  return(plot_cases_by_age_and_gender)
+  return(plot_cases_by_age_and_sex)
 }
 
 #' Plot cases distribution by special population
 #'
 #' Function that generates the plot of cases distribution by special population
-#' @param disease_data The disease data
-#' @param col_name Column names in the disease data that contains the ages and gender
+#' @param data_grouped The disease data grouped
+#' @param col_name Column names in the disease data grouped that contains the ages and sex
 #' @return A plot of cases distribution by special population
 #' @examples
 #' disease_data <- import_data_disease_by_year(2020, "DENGUE")
-#' disease_data <- group_by_age_and_gender(disease_data, col_names = c("edad", "sexo"), percentage = TRUE)
-#' plot_special_population(disease_data, col_name = "poblacion", percentage = FALSE)
+#' data_grouped <- group_by_age_and_sex(disease_data, col_names = c("edad", "sexo"), percentage = TRUE)
+#' plot_special_population(data_grouped, col_name = "poblacion", percentage = FALSE)
 #' @export
-plot_special_population <- function(disease_data, col_name = "poblacion", percentage = FALSE) {
-  plot_cases_by_special_population <- plot_variable(disease_data,
+plot_special_population <- function(data_grouped, col_name = "poblacion", percentage = FALSE) {
+  plot_cases_by_special_population <- plot_variable(data_grouped,
     var_x = col_name,
     var_y = "casos",
     var_fill = col_name,
