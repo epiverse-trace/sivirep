@@ -303,7 +303,7 @@ group_age_sex <- function(disease_data, col_names = c("edad", "sexo"), percentag
           col_names[1]
         )
       ))),
-    age_interval = 10
+    step = age_interval
   )
   return(disease_data_by_age_and_sex)
 }

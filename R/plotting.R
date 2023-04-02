@@ -191,8 +191,8 @@ plot_onset_symptoms <- function(data_grouped, col_name = "ini_sin", break_tick_d
   plot_cases_by_onset_symp <- plot_variable(data_grouped,
     var_x = col_name,
     var_y = "casos",
-    label_x = "\nFecha de inicio de sintomas\n por dia",
-    label_y = "Numero de casos\n",
+    label_x = "\nFecha de inicio de sintomas\n",
+    label_y = "Numero de casos por dia\n",
     legend_pos = "right",
     show_val = FALSE
   ) +
@@ -231,7 +231,7 @@ plot_notification_date <- function(data_grouped, col_name = "fec_not", break_tic
     var_x = col_name,
     var_y = "casos",
     label_x = "\nFecha de notificacion\n",
-    label_y = "Numero de casos\n  por dia",
+    label_y = "Numero de casos por dia\n  ",
     legend_pos = "right",
     show_val = FALSE
   ) +

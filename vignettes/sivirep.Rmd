@@ -143,7 +143,7 @@ SIVILA data is a highly trusted official source of information with ISO certific
 sivirep provides a wrapper generic function called cleansing_sivigila_data for identifying and correcting errors, inconsistencies, and discrepancies in the datasets to improve their quality and accuracy. This process can include removing duplicates, correcting typographical errors, imputing missing values, and validating data, among other tasks, such as removing improbable dates, cleaning geolocation codes, and standardising column names and age categories. 
 
 ```{r}
-clean_disease_data <- cleansing_sivigila_data(disease_data, params$year)
+clean_disease_data <- cleansing_sivigila_data(disease_data, year = 2020)
 ```
 
 The cleansing functions inside cleansing_sivigila_data have been gathered and built based on the experience from field epidemiologists. These may include internal functions such as:
@@ -262,7 +262,6 @@ The corresponding plotting function is 'plot_age_sex'
 
 ```{r}
 plot_age_sex(data_grouped = cases_age_sex)
-
 ```
 
 ### 5. Spatial distribution of cases
