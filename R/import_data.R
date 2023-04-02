@@ -77,7 +77,7 @@ import_data_endemic_channel <- function(disease_name, year) {
   return(disease_data_by_years)
 }
 
-#' Import diseases and years available for download
+#' Import diseases and years available for download from the SIVIGILA microdata
 #'
 #' Function that obtains the diseases and the years available from the SIVIGILA microdata source
 #' @return The diseases and the years available from the SIVIGILA microdata source

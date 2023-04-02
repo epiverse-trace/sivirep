@@ -2,7 +2,7 @@
 % Please edit documentation in R/import_data.R
 \name{list_available_diseases_years}
 \alias{list_available_diseases_years}
-\title{Import diseases and years available for download}
+\title{Import diseases and years available for download from the SIVIGILA microdata}
 \usage{
 list_available_diseases_years()
 }
