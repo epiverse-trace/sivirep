@@ -5,14 +5,14 @@
 \title{Plot map by department}
 \usage{
 plot_dept_map(
-  data_map_depto,
+  data_grouped,
   col_name_lj = "id",
   map_title,
   caption_label = "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
 )
 }
 \arguments{
-\item{data_map_depto}{The disease data grouped by department and cases number}
+\item{data_grouped}{The disease data grouped by department and cases number}
 
 \item{col_name_lj}{Column name to join with the shape file}
 }
@@ -24,6 +24,6 @@ Function that generates the map by department with the cases number of a specifi
 }
 \examples{
 disease_data <- import_data_disease_by_year(2019, "DENGUE")
-departments_spacial_data <- group_by_deptos(disease_data)
+departments_spacial_data <- group_dept(disease_data)
 plot_dept_map(departments_spacial_data, col_name_lj = "id", caption_label = "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia")
 }
