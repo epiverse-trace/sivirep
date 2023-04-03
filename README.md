@@ -142,7 +142,7 @@ knitr::kable(list_of_diseases)
 
 ## Future versions
 
-Future versions of `sivirep` may include
+Future versions of `sivirep` may include:
 
 - Interaction with other data sources in Colombia
 - Other epidemiological surveillance systems in Latin America
@@ -320,8 +320,10 @@ which you can specify the time unit to group these dates, the allowed
 values for this parameter are: day and month.
 
 ``` r
-cases_onset_symptoms_by_day <- group_onset_symptoms(clean_disease_data, type = "day") 
-cases_onset_symptoms_by_month <- group_onset_symptoms(clean_disease_data, type = "month") 
+cases_onset_symptoms_by_day <- group_onset_symptoms(disease_data = clean_disease_data, 
+                                                    type = "day") 
+cases_onset_symptoms_by_month <- group_onset_symptoms(disease_data = clean_disease_data, 
+                                                      type = "month") 
 ```
 
 ##### 💡 Tip 2 - Get the first n months with most cases
@@ -348,10 +350,10 @@ consist in group the disease data by this variables, you can use the
 following function of `sivirep` to do this:
 
 ``` r
-cases_notification_date_by_day <- group_notification_date(clean_disease_data, 
-                                                    type = "day") 
-cases_notification_date_by_month <- group_notification_date(clean_disease_data, 
-                                                      type = "month") 
+cases_notification_date_by_day <- group_notification_date(disease_data = clean_disease_data, 
+                                                          type = "day") 
+cases_notification_date_by_month <- group_notification_date(disease_data = clean_disease_data, 
+                                                            type = "month") 
 ```
 
 The graph that allows to visualise this distribution must be generated
@@ -457,7 +459,7 @@ Obtaining the spatial distribution of cases is helpful to identify areas
 with a high concentration of cases, disease clusters and environmental
 or social risk factors.
 
-In Colombia, there 32 administrative geographic units (adm1) called
+In Colombia, there are 32 administrative geographic units (adm1) called
 departments. `sivirep` provides a function called `group_deptos` which
 allows obtaining a data.frame of grouped cases by department.
 
