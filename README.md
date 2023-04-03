@@ -173,14 +173,14 @@ The template can be used by following the following steps:
 
 1.  In RStudio click *‘File/New File/R’* Markdown:
 
-<img src="man/figures/file_rmarkdown.png" align="right" width="550px" style="margin-left: 2.8em;     margin-top: 0.8em; margin-bottom: 0.8em; float: none;"/>
+<img src="man/figures/file_rmarkdown.png" align="right" width="550px" style="margin-left: 2.8em;margin-top: 0.8em;margin-bottom: 0.8em;float: none;"/>
 
 2.  Select the left panel option: *‘From Template’*, then select the
     template report called `Reporte Básico {sivirep}`, indicate the name
     you want for the report (i.e. MyReport_Laura), the location to store
     it and press *‘Ok’*.
 
-<img src="man/figures/reporte_basico.png" align="right" width="550px" style="margin-left: 2.8em;     margin-top: 0.8em; margin-bottom: 0.8em; float: none;" />
+<img src="man/figures/reporte_basico.png" align="right" width="550px" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em; float: none;" />
 
 3.  Then, you can select the disease (the disease name) and the year of
     the report. This action will download the data wanted and also will
@@ -188,14 +188,14 @@ The template can be used by following the following steps:
     important to find Knit button, display the options and select *‘Knit
     with parameters’*.
 
-<img src="man/figures/button_knit.png" align="right" width="550px" style="margin-left: 2.8em;     margin-top: 0.8em; margin-bottom: 0.8em; float: none;"/>
+<img src="man/figures/button_knit.png" align="right" width="550px" style="margin-left: 2.8em;margin-top: 0.8em;margin-bottom: 0.8em;float: none;"/>
 
 4.  Wait a few seconds while the report is rendered in a PDF file.
 
 5.  You can add, edit, delete and customise sections of the report in
     the R Markdown file generated earlier.
 
-<img src="man/figures/editable_rmarkdown.png" align="right" width="550px" style="margin-left: 2.8em;  margin-top: 0.8em; margin-bottom: 0.8em; float: none;"/>
+<img src="man/figures/editable_rmarkdown.png" align="right" width="550px" style="margin-left: 2.8em;margin-top: 0.8em;margin-bottom: 0.8em; float: none;"/>
 
 For more details on generic Rmarkdown templates and reports please see
 [rmarkdown
