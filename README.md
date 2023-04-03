@@ -55,7 +55,20 @@ quality of internet access in some locations.
 
 You can install the development version of `sivirep` from GitHub with:
 
+``` r
+# install.packages("remotes")
+# remotes::install_github("epiverse-trace/sivirep")   
+library(sivirep)
+```
+
 ## Quick start
+
+Please check the available diseases and years, using:
+
+``` r
+list_of_diseases <- list_available_diseases_years()
+knitr::kable(list_of_diseases)
+```
 
 | enfermedad                                                   | aa                                                                                             |
 |:-------------------------------------------------------------|:-----------------------------------------------------------------------------------------------|
@@ -163,7 +176,15 @@ By contributing to this project, you agree to abide by its terms.
 After installation and importation of the library you can start using
 `sivirep`:
 
+``` r
+library(sivirep)
+```
+
 Check the list of diseases available to make a report with `sivirep` in:
+
+``` r
+list_available_diseases_years()
+```
 
 Currently, `sivirep` provides a report template
 `Reporte Básico {sivirep}`, which contains six sections and receive two
@@ -226,10 +247,19 @@ December 2021) for most diseases with a few exceptions.
 
 Please check the available diseases and years, using:
 
+``` r
+list_of_diseases <- list_available_diseases_years()
+```
+
 Once you have decided the disease and year you want,
 `import_linelist_disease_year` is the function that allows importation
 of data from sivigila service using a parameterised format based on
 disease and year.
+
+``` r
+disease_data <-  import_linelist_disease_year(year = 2020, 
+                                              disease_name = "dengue")
+```
 
 ##### 💡 Tip 1 - Avoid time delays when importing data
 
@@ -252,6 +282,10 @@ quality and accuracy. This process can include removing duplicates,
 correcting typographical errors, imputing missing values, and validating
 data, among other tasks, such as removing improbable dates, cleaning
 geolocation codes, and standardising column names and age categories.
+
+``` r
+clean_disease_data <- cleansing_sivigila_data(disease_data, year = 2020)
+```
 
 The cleansing functions inside `cleansing_sivigila_data` have been
 gathered and built based on the experience from field epidemiologists.
@@ -285,6 +319,11 @@ function that allows this grouping called `group_onset_symptoms`, in
 which you can specify the time unit to group these dates, the allowed
 values for this parameter are: day and month.
 
+``` r
+cases_onset_symptoms_by_day <- group_onset_symptoms(clean_disease_data, type = "day") 
+cases_onset_symptoms_by_month <- group_onset_symptoms(clean_disease_data, type = "month") 
+```
+
 ##### 💡 Tip 2 - Get the first n months with most cases
 
 - When building a report section or analysing this data it can be useful
@@ -295,6 +334,11 @@ The graph that allows to visualise this distribution must be generated
 with the function `plot_onset_symptoms`. Please notice that even if you
 have grouped the data by day you may prefer to plot it by month, as in:
 
+``` r
+plot_onset_symptoms(data_grouped = cases_onset_symptoms_by_day,
+                    break_tick_date = "months")
+```
+
 ![](man/figures/unnamed-chunk-10-1.png)<!-- -->
 
 #### 3.2. Group the data by notification date at the desired temporal scale
@@ -303,10 +347,22 @@ The process to generate the distribution of cases by notification date
 consist in group the disease data by this variables, you can use the
 following function of `sivirep` to do this:
 
+``` r
+cases_notification_date_by_day <- group_notification_date(clean_disease_data, 
+                                                    type = "day") 
+cases_notification_date_by_month <- group_notification_date(clean_disease_data, 
+                                                      type = "month") 
+```
+
 The graph that allows to visualise this distribution must be generated
 with the function `plot_notification_date`. Please notice that even if
 you have grouped the data by day you may prefer to plot it by month, as
 in:
+
+``` r
+plot_notification_date(data_grouped = cases_notification_date_by_day,
+                       break_tick_date = "months")
+```
 
 ![](man/figures/unnamed-chunk-12-1.png)<!-- -->
 
@@ -321,15 +377,32 @@ SIVIGILA source only records sex.
 `sivirep` provides a function that aggregates and computes percentages
 by sex automatically after the cleansing process.
 
+``` r
+cases_sex <- group_sex(disease_data = clean_disease_data, 
+                       percentage = TRUE)
+```
+
 Also, `sivirep` has a `plot_sex` function:
+
+``` r
+plot_sex(data_grouped = cases_sex)
+```
 
 ![](man/figures/unnamed-chunk-14-1.png)<!-- -->
 
 The distribution of cases by sex and epidemiological week can be using
 the `group_sex_epiweek` function provided by `sivirep`
 
+``` r
+cases_sex_epiweek <- group_sex_epiweek(disease_data = clean_disease_data)
+```
+
 The corresponding visualisation function is `plot_sex_epiweek` that
 provides `sivirep`:
+
+``` r
+plot_sex_epiweek(data_grouped = cases_sex_epiweek)
+```
 
 ![](man/figures/unnamed-chunk-16-1.png)<!-- -->
 
@@ -346,7 +419,15 @@ disease data by age groups. By default this function produces age ranges
 with intervals of 10 years. Also, users can customise a different age
 range.
 
+``` r
+cases_age <- group_age(disease_data = clean_disease_data, age_interval = 10)
+```
+
 The corresponding plot function is `plot_age`
+
+``` r
+plot_age(data_grouped = cases_age)
+```
 
 ![](man/figures/unnamed-chunk-18-1.png)<!-- -->
 
@@ -357,7 +438,16 @@ disease data by age ranges and sex simultaneously and obtain their
 number of cases and percentages. Also, the age interval can be
 customised.
 
+``` r
+cases_age_sex <- group_age_sex(disease_data = clean_disease_data, 
+                               age_interval = 10)
+```
+
 The corresponding plotting function is `plot_age_sex`.
+
+``` r
+plot_age_sex(data_grouped = cases_age_sex)
+```
 
 ![](man/figures/unnamed-chunk-20-1.png)<!-- -->
 
@@ -371,8 +461,16 @@ In Colombia, there 32 administrative geographic units (adm1) called
 departments. `sivirep` provides a function called `group_deptos` which
 allows obtaining a data.frame of grouped cases by department.
 
+``` r
+spatial_dept_dist <- group_dept(disease_data = clean_disease_data)
+```
+
 Currently, with the function called `plot_dept_map` the user can produce
 a static map of Colombia with the distribution of cases by departments.
+
+``` r
+plot_dept_map(data_grouped = spatial_dept_dist)
+```
 
 ![](man/figures/unnamed-chunk-22-1.png)<!-- -->
 

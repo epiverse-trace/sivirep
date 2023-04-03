@@ -13,7 +13,6 @@ knitr::opts_chunk$set(
   comment = "#>",
   fig.path = "man/figures/",
   include = TRUE, 
-  echo = FALSE, 
   error = FALSE,  
   warning = FALSE, 
   message = FALSE
@@ -82,6 +81,8 @@ library(sivirep)
 
 ## Quick start
 
+Please check the available diseases and years, using:
+
 ```{r}
 list_of_diseases <- list_available_diseases_years()
 knitr::kable(list_of_diseases)
@@ -89,7 +90,7 @@ knitr::kable(list_of_diseases)
 
 ## Future versions
 
-Future versions of `sivirep` may include
+Future versions of `sivirep` may include:
 
 -   Interaction with other data sources in Colombia
 -   Other epidemiological surveillance systems in Latin America
