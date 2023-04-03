@@ -164,15 +164,6 @@ After installation and importation of the library you can start using
 
 Check the list of diseases available to make a report with `sivirep` in:
 
-<style>
-    .rmarkdown-img {
-        margin-left: 2.8em;     
-        margin-top: 0.8em; 
-        margin-bottom: 0.8em;
-        float: none;
-    }
-</style>
-
 Currently, `sivirep` provides a report template
 `Reporte Básico {sivirep}`, which contains six sections and receive two
 input parameters: disease (the disease name) and year in order to
@@ -182,7 +173,7 @@ The template can be used by following the following steps:
 
 1.  In RStudio click *‘File/New File/R’* Markdown:
 
-<img class="rmarkdown-img" src="man/figures/file_rmarkdown.png" align="right" width="550px"/>
+<img src="man/figures/file_rmarkdown.png" width="70" style="display: block; margin: auto;" />
 
 2.  Select the left panel option: *‘From Template’*, then select the
     template report called `Reporte Básico {sivirep}`, indicate the name
@@ -295,7 +286,7 @@ The graph that allows to visualise this distribution must be generated
 with the function `plot_onset_symptoms`. Please notice that even if you
 have grouped the data by day you may prefer to plot it by month, as in:
 
-![](man/figures/unnamed-chunk-10-1.png)<!-- -->
+![](man/figures/unnamed-chunk-11-1.png)<!-- -->
 
 #### 3.2. Group the data by notification date at the desired temporal scale
 
@@ -308,7 +299,7 @@ with the function `plot_notification_date`. Please notice that even if
 you have grouped the data by day you may prefer to plot it by month, as
 in:
 
-![](man/figures/unnamed-chunk-12-1.png)<!-- -->
+![](man/figures/unnamed-chunk-13-1.png)<!-- -->
 
 ### 4. Age and sex
 
@@ -323,7 +314,7 @@ by sex automatically after the cleansing process.
 
 Also, `sivirep` has a `plot_sex` function:
 
-![](man/figures/unnamed-chunk-14-1.png)<!-- -->
+![](man/figures/unnamed-chunk-15-1.png)<!-- -->
 
 The distribution of cases by sex and epidemiological week can be using
 the `group_sex_epiweek` function provided by `sivirep`
@@ -331,7 +322,7 @@ the `group_sex_epiweek` function provided by `sivirep`
 The corresponding visualisation function is `plot_sex_epiweek` that
 provides `sivirep`:
 
-![](man/figures/unnamed-chunk-16-1.png)<!-- -->
+![](man/figures/unnamed-chunk-17-1.png)<!-- -->
 
 ### 4.2. Age variable
 
@@ -348,7 +339,7 @@ range.
 
 The corresponding plot function is `plot_age`
 
-![](man/figures/unnamed-chunk-18-1.png)<!-- -->
+![](man/figures/unnamed-chunk-19-1.png)<!-- -->
 
 ### 4.3. Age and sex simultaneously
 
@@ -359,7 +350,7 @@ customised.
 
 The corresponding plotting function is `plot_age_sex`.
 
-![](man/figures/unnamed-chunk-20-1.png)<!-- -->
+![](man/figures/unnamed-chunk-21-1.png)<!-- -->
 
 ### 5. Spatial distribution of cases
 
@@ -374,7 +365,7 @@ allows obtaining a data.frame of grouped cases by department.
 Currently, with the function called `plot_dept_map` the user can produce
 a static map of Colombia with the distribution of cases by departments.
 
-![](man/figures/unnamed-chunk-22-1.png)<!-- -->
+![](man/figures/unnamed-chunk-23-1.png)<!-- -->
 
 ##### 💡 Tip 3 - Get the row with most cases
 
