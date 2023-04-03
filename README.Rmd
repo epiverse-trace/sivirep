@@ -142,18 +142,14 @@ The template can be used by following the following steps:
 
 1.  In RStudio click *'File/New File/R'* Markdown:
 
-![](man/figures/file_rmarkdown.png){.rmarkdown-img align="center"
-style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;"
-width="560"}
+![](man/figures/file_rmarkdown.png){.rmarkdown-img align="center" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;"width="560"}
 
 2.  Select the left panel option: *'From Template'*, then select the
     template report called `Reporte Básico {sivirep}`, indicate the name
     you want for the report (i.e. MyReport_Laura), the location to store
     it and press *'Ok'*.
 
-![](man/figures/reporte_basico.png){.rmarkdown-img align="center"
-style="margin-left: 2.8em;  margin-top: 0.8em;   margin-bottom: 0.8em;"
-width="560"}
+![](man/figures/reporte_basico.png){.rmarkdown-img align="center" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;" width="550"}
 
 3.  Then, you can select the disease (the disease name) and the year of
     the report. This action will download the data wanted and also will
@@ -161,18 +157,14 @@ width="560"}
     important to find Knit button, display the options and select *'Knit
     with parameters'*.
 
-![](man/figures/button_knit.png){.rmarkdown-img align="center"
-style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;"
-width="560"}
+![](man/figures/button_knit.png){.rmarkdown-img align="center" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;" width="560"}
 
 4.  Wait a few seconds while the report is rendered in a PDF file.
 
 5.  You can add, edit, delete and customise sections of the report in
     the R Markdown file generated earlier.
 
-![](man/figures/editable_rmarkdown.png){.rmarkdown-img align="center"
-style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;"
-width="560"}
+![](man/figures/editable_rmarkdown.png){.rmarkdown-img align="center" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;" width="560"}
 
 For more details on generic Rmarkdown templates and reports please see
 [rmarkdown
