@@ -24,8 +24,7 @@ Imports:
     stringr,
     xml2,
     maptools,
-    epitrix,
-    gpclib
+    epitrix
 Suggests: 
     knitr,
     rmarkdown

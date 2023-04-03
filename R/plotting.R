@@ -86,9 +86,7 @@ plot_dept_map <- function(data_grouped,
     caption_label <- "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
   }
   
-  if (!require(gpclib)) {
-    maptools::gpclibPermit()
-  }
+  maptools::gpclibPermit()
 
   shp <- rgdal::readOGR(dsn = 
                           system.file("extdata/depto_adm_shp", "depto.shp", 
