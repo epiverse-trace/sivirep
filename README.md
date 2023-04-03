@@ -182,7 +182,7 @@ The template can be used by following the following steps:
 
 1.  In RStudio click *‘File/New File/R’* Markdown:
 <br />
-<img class="rmarkdown-img" src="man/figures/file_rmarkdown.png" align="right" width="60%"/>
+<img class="rmarkdown-img" src="man/figures/file_rmarkdown.png" align="left" width="60%"/>
 
 2.  Select the left panel option: *‘From Template’*, then select the
     template report called `Reporte Básico {sivirep}`, indicate the name
