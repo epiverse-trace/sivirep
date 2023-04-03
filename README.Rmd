@@ -144,7 +144,7 @@ The template can be used by following the following steps:
 
 ![](man/figures/file_rmarkdown.png){.rmarkdown-img align="center"
 style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;"
-width="550"}
+width="560"}
 
 2.  Select the left panel option: *'From Template'*, then select the
     template report called `Reporte Básico {sivirep}`, indicate the name
@@ -153,7 +153,7 @@ width="550"}
 
 ![](man/figures/reporte_basico.png){.rmarkdown-img align="center"
 style="margin-left: 2.8em;  margin-top: 0.8em;   margin-bottom: 0.8em;"
-width="550"}
+width="560"}
 
 3.  Then, you can select the disease (the disease name) and the year of
     the report. This action will download the data wanted and also will
@@ -163,7 +163,7 @@ width="550"}
 
 ![](man/figures/button_knit.png){.rmarkdown-img align="center"
 style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;"
-width="550"}
+width="560"}
 
 4.  Wait a few seconds while the report is rendered in a PDF file.
 
@@ -172,7 +172,7 @@ width="550"}
 
 ![](man/figures/editable_rmarkdown.png){.rmarkdown-img align="center"
 style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;"
-width="550"}
+width="560"}
 
 For more details on generic Rmarkdown templates and reports please see
 [rmarkdown
