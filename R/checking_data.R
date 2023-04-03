@@ -158,7 +158,7 @@ group_age_range_cases <- function(disease_data,
         .data$edad,
         seq(min_val, max_val, step)
       )) %>%
-      dplyr::group_by_("ranges", var_a) %>%
+      eval(parse(text = paste0("dplyr::group_by(ranges,", var_a, ")"))) %>%
       dplyr::summarize(casos = sum(.data$casos), .groups = "drop") %>%
       as.data.frame()
     names(data_values_range)[names(data_values_range) == "ranges"] <- col_name
@@ -168,7 +168,7 @@ group_age_range_cases <- function(disease_data,
         .data$edad,
         seq(min_val, max_val, step)
       )) %>%
-      dplyr::group_by_("ranges") %>%
+      eval(parse(text = "dplyr::group_by(ranges)")) %>%
       dplyr::summarize(casos = sum(.data$casos), .groups = "drop") %>%
       as.data.frame()
     names(data_values_range)[names(data_values_range) == "ranges"] <- col_name
