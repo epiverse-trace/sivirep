@@ -8,8 +8,13 @@ output: github_document
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "100%"
+  fig.path = "man/figures/",
+  out.width = "100%",
+  include = TRUE, 
+  echo = FALSE, 
+  error = FALSE,  
+  warning = FALSE, 
+  message = FALSE
 )
 ```
 
@@ -109,21 +114,21 @@ The template can be used by following the following steps:
 
 1. In RStudio click *'File/New File/R'* Markdown:
 
-<img src="../man/figures/file_rmarkdown.png" align="right" width="550px" style="margin-left: 2.8em;     margin-top: 0.8em; margin-bottom: 0.8em; float: none;"/>
+<img src="man/figures/file_rmarkdown.png" align="right" width="550px" style="margin-left: 2.8em;     margin-top: 0.8em; margin-bottom: 0.8em; float: none;"/>
 
 2. Select the left panel option: *'From Template'*, then select the template report called `Reporte Básico {sivirep}`, indicate the name you want for the report (i.e. MyReport_Laura), the location to store it and press *'Ok'*.
 
-<img src="../man/figures/reporte_basico.png" align="right" width="550px" style="margin-left: 2.8em;     margin-top: 0.8em; margin-bottom: 0.8em; float: none;" />
+<img src="man/figures/reporte_basico.png" align="right" width="550px" style="margin-left: 2.8em;     margin-top: 0.8em; margin-bottom: 0.8em; float: none;" />
 
 3. Then, you can select the disease (the disease name) and the year of the report. This action will download the data wanted and also will provide the template in R Markdown .Rmd file. For this, it is important to find Knit button, display the options and select *'Knit with parameters'*.
 
-<img src="../man/figures/button_knit.png" align="right" width="550px" style="margin-left: 2.8em;     margin-top: 0.8em; margin-bottom: 0.8em; float: none;"/>
+<img src="man/figures/button_knit.png" align="right" width="550px" style="margin-left: 2.8em;     margin-top: 0.8em; margin-bottom: 0.8em; float: none;"/>
 
 4. Wait a few seconds while the report is rendered in a PDF file. 
 
 5. You can add, edit, delete and customise sections of the report in the R Markdown file generated earlier.
 
-<img src="../man/figures/editable_rmarkdown.png" align="right" width="550px" style="margin-left: 2.8em;  margin-top: 0.8em; margin-bottom: 0.8em; float: none;"/>
+<img src="man/figures/editable_rmarkdown.png" align="right" width="550px" style="margin-left: 2.8em;  margin-top: 0.8em; margin-bottom: 0.8em; float: none;"/>
 
 For more details on generic Rmarkdown templates and reports please see [rmarkdown templates](https://rstudio.github.io/rstudio-extensions/rmarkdown_templates.html).
 
@@ -183,15 +188,13 @@ cases_onset_symptoms_by_day <- group_onset_symptoms(clean_disease_data, type = "
 cases_onset_symptoms_by_month <- group_onset_symptoms(clean_disease_data, type = "month") 
 ```
 
-<div>
-    <img src="../man/figures/tip.svg" align="right" width="60" style="margin-right: 2.8em; margin-bottom: 0.8em;"/>
-    <p>Tip 2 - Get the first n months with most cases</p>
-    <p>When building a report section or analysing this data it can be useful to get the months with the most cases, in sivirep you can use the function get_months_most_cases to get this information.</p>
-</div>
+<img src="man/figures/tip.svg" align="right" width="60" style="margin-right: 2.8em; margin-bottom: 0.8em;"/>
+<p>Tip 2 - Get the first n months with most cases</p>
+<p>When building a report section or analysing this data it can be useful to get the months with the most cases, in sivirep you can use the function get_months_most_cases to get this information.</p>
 
 The graph that allows to visualise this distribution must be generated with the function `plot_onset_symptoms`. Please notice that even if you have grouped the data by day you may prefer to plot it by month, as in:
 
-```{r fig.height = 5, fig.width = 7}
+```{r fig.height = 4, fig.width = 7}
 plot_onset_symptoms(data_grouped = cases_onset_symptoms_by_day,
                     break_tick_date = "months")
 ```
@@ -209,7 +212,7 @@ cases_notification_date_by_month <- group_notification_date(clean_disease_data,
 
 The graph that allows to visualise this distribution must be generated with the function `plot_notification_date`. Please notice that even if you have grouped the data by day you may prefer to plot it by month, as in:
 
-```{r fig.height = 5, fig.width = 7}
+```{r fig.height = 4, fig.width = 7}
 plot_notification_date(data_grouped = cases_notification_date_by_day,
                        break_tick_date = "months")
 ```
@@ -230,7 +233,7 @@ cases_sex <- group_sex(disease_data = clean_disease_data,
 
 Also, `sivirep` has a `plot_sex` function:
 
-```{r fig.height = 3, fig.width = 7}
+```{r fig.height = 4, fig.width = 7}
 plot_sex(data_grouped = cases_sex)
 ```
 
@@ -242,7 +245,7 @@ cases_sex_epiweek <- group_sex_epiweek(disease_data = clean_disease_data)
 
 The corresponding visualisation function is `plot_sex_epiweek` that provides `sivirep`:
 
-```{r fig.height = 5, fig.width = 7}
+```{r fig.height = 4, fig.width = 7}
 plot_sex_epiweek(data_grouped = cases_sex_epiweek)
 ```
 
@@ -258,7 +261,7 @@ cases_age <- group_age(disease_data = clean_disease_data, age_interval = 10)
 
 The corresponding plot function is `plot_age`
 
-```{r fig.height = 5, fig.width = 7}
+```{r fig.height = 4, fig.width = 7}
 plot_age(data_grouped = cases_age)
 ```
 
@@ -275,7 +278,7 @@ cases_age_sex <- group_age_sex(disease_data = clean_disease_data,
 
 The corresponding plotting function is `plot_age_sex`.
 
-```{r fig.height = 5, fig.width = 7}
+```{r fig.height = 3, fig.width = 7}
 plot_age_sex(data_grouped = cases_age_sex)
 ```
 

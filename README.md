@@ -54,18 +54,7 @@ quality of internet access in some locations.
 
 You can install the development version of `sivirep` from GitHub with:
 
-``` r
-# install.packages("remotes")
-# remotes::install_github("epiverse-trace/sivirep")   
-library(sivirep)
-```
-
 ## Quick start
-
-``` r
-list_of_diseases <- list_available_diseases_years()
-knitr::kable(list_of_diseases)
-```
 
 | enfermedad                                                   | aa                                                                                             |
 |:-------------------------------------------------------------|:-----------------------------------------------------------------------------------------------|
@@ -173,15 +162,7 @@ By contributing to this project, you agree to abide by its terms.
 After installation and importation of the library you can start using
 `sivirep`:
 
-``` r
-library(sivirep)
-```
-
 Check the list of diseases available to make a report with `sivirep` in:
-
-``` r
-list_available_diseases_years()
-```
 
 Currently, `sivirep` provides a report template
 `Reporte Básico {sivirep}`, which contains six sections and receive two
@@ -192,14 +173,14 @@ The template can be used by following the following steps:
 
 1.  In RStudio click *‘File/New File/R’* Markdown:
 
-<img src="../man/figures/file_rmarkdown.png" align="right" width="550px" style="margin-left: 2.8em;     margin-top: 0.8em; margin-bottom: 0.8em; float: none;"/>
+<img src="man/figures/file_rmarkdown.png" align="right" width="550px" style="margin-left: 2.8em;     margin-top: 0.8em; margin-bottom: 0.8em; float: none;"/>
 
 2.  Select the left panel option: *‘From Template’*, then select the
     template report called `Reporte Básico {sivirep}`, indicate the name
     you want for the report (i.e. MyReport_Laura), the location to store
     it and press *‘Ok’*.
 
-<img src="../man/figures/reporte_basico.png" align="right" width="550px" style="margin-left: 2.8em;     margin-top: 0.8em; margin-bottom: 0.8em; float: none;" />
+<img src="man/figures/reporte_basico.png" align="right" width="550px" style="margin-left: 2.8em;     margin-top: 0.8em; margin-bottom: 0.8em; float: none;" />
 
 3.  Then, you can select the disease (the disease name) and the year of
     the report. This action will download the data wanted and also will
@@ -207,14 +188,14 @@ The template can be used by following the following steps:
     important to find Knit button, display the options and select *‘Knit
     with parameters’*.
 
-<img src="../man/figures/button_knit.png" align="right" width="550px" style="margin-left: 2.8em;     margin-top: 0.8em; margin-bottom: 0.8em; float: none;"/>
+<img src="man/figures/button_knit.png" align="right" width="550px" style="margin-left: 2.8em;     margin-top: 0.8em; margin-bottom: 0.8em; float: none;"/>
 
 4.  Wait a few seconds while the report is rendered in a PDF file.
 
 5.  You can add, edit, delete and customise sections of the report in
     the R Markdown file generated earlier.
 
-<img src="../man/figures/editable_rmarkdown.png" align="right" width="550px" style="margin-left: 2.8em;  margin-top: 0.8em; margin-bottom: 0.8em; float: none;"/>
+<img src="man/figures/editable_rmarkdown.png" align="right" width="550px" style="margin-left: 2.8em;  margin-top: 0.8em; margin-bottom: 0.8em; float: none;"/>
 
 For more details on generic Rmarkdown templates and reports please see
 [rmarkdown
@@ -236,19 +217,10 @@ December 2021) for most diseases with a few exceptions.
 
 Please check the available diseases and years, using:
 
-``` r
-list_of_diseases <- list_available_diseases_years()
-```
-
 Once you have decided the disease and year you want,
 `import_linelist_disease_year` is the function that allows importation
 of data from sivigila service using a parameterised format based on
 disease and year.
-
-``` r
-disease_data <-  import_linelist_disease_year(year = 2020, 
-                                              disease_name = "dengue")
-```
 
 ### 2. Cleansing sivigila data
 
@@ -263,10 +235,6 @@ quality and accuracy. This process can include removing duplicates,
 correcting typographical errors, imputing missing values, and validating
 data, among other tasks, such as removing improbable dates, cleaning
 geolocation codes, and standardising column names and age categories.
-
-``` r
-clean_disease_data <- cleansing_sivigila_data(disease_data, year = 2020)
-```
 
 The cleansing functions inside `cleansing_sivigila_data` have been
 gathered and built based on the experience from field epidemiologists.
@@ -300,29 +268,21 @@ function that allows this grouping called `group_onset_symptoms`, in
 which you can specify the time unit to group these dates, the allowed
 values for this parameter are: day and month.
 
-``` r
-cases_onset_symptoms_by_day <- group_onset_symptoms(clean_disease_data, type = "day") 
-cases_onset_symptoms_by_month <- group_onset_symptoms(clean_disease_data, type = "month") 
-```
-
-<div>
-
-    <img src="../man/figures/tip.svg" align="right" width="60" style="margin-right: 2.8em; margin-bottom: 0.8em;"/>
-    <p>Tip 2 - Get the first n months with most cases</p>
-    <p>When building a report section or analysing this data it can be useful to get the months with the most cases, in sivirep you can use the function get_months_most_cases to get this information.</p>
-
-</div>
+<img src="man/figures/tip.svg" align="right" width="60" style="margin-right: 2.8em; margin-bottom: 0.8em;"/>
+<p>
+Tip 2 - Get the first n months with most cases
+</p>
+<p>
+When building a report section or analysing this data it can be useful
+to get the months with the most cases, in sivirep you can use the
+function get_months_most_cases to get this information.
+</p>
 
 The graph that allows to visualise this distribution must be generated
 with the function `plot_onset_symptoms`. Please notice that even if you
 have grouped the data by day you may prefer to plot it by month, as in:
 
-``` r
-plot_onset_symptoms(data_grouped = cases_onset_symptoms_by_day,
-                    break_tick_date = "months")
-```
-
-<img src="man/figures/README-unnamed-chunk-10-1.png" width="100%" />
+<img src="man/figures/unnamed-chunk-10-1.png" width="100%" />
 
 #### 3.2. Group the data by notification date at the desired temporal scale
 
@@ -330,24 +290,12 @@ The process to generate the distribution of cases by notification date
 consist in group the disease data by this variables, you can use the
 following function of `sivirep` to do this:
 
-``` r
-cases_notification_date_by_day <- group_notification_date(clean_disease_data, 
-                                                    type = "day") 
-cases_notification_date_by_month <- group_notification_date(clean_disease_data, 
-                                                      type = "month") 
-```
-
 The graph that allows to visualise this distribution must be generated
 with the function `plot_notification_date`. Please notice that even if
 you have grouped the data by day you may prefer to plot it by month, as
 in:
 
-``` r
-plot_notification_date(data_grouped = cases_notification_date_by_day,
-                       break_tick_date = "months")
-```
-
-<img src="man/figures/README-unnamed-chunk-12-1.png" width="100%" />
+<img src="man/figures/unnamed-chunk-12-1.png" width="100%" />
 
 ### 4. Age and sex
 
@@ -360,35 +308,17 @@ SIVIGILA source only records sex.
 `sivirep` provides a function that aggregates and computes percentages
 by sex automatically after the cleansing process.
 
-``` r
-cases_sex <- group_sex(disease_data = clean_disease_data, 
-                       percentage = TRUE)
-```
-
 Also, `sivirep` has a `plot_sex` function:
 
-``` r
-plot_sex(data_grouped = cases_sex)
-```
-
-<img src="man/figures/README-unnamed-chunk-14-1.png" width="100%" />
+<img src="man/figures/unnamed-chunk-14-1.png" width="100%" />
 
 The distribution of cases by sex and epidemiological week can be using
 the `group_sex_epiweek` function provided by `sivirep`
 
-``` r
-cases_sex_epiweek <- group_sex_epiweek(disease_data = clean_disease_data)
-```
-
 The corresponding visualisation function is `plot_sex_epiweek` that
 provides `sivirep`:
 
-``` r
-plot_sex_epiweek(data_grouped = cases_sex_epiweek)
-#> Warning: Removed 1 rows containing missing values (geom_bar).
-```
-
-<img src="man/figures/README-unnamed-chunk-16-1.png" width="100%" />
+<img src="man/figures/unnamed-chunk-16-1.png" width="100%" />
 
 ### 4.2. Age variable
 
@@ -403,22 +333,9 @@ disease data by age groups. By default this function produces age ranges
 with intervals of 10 years. Also, users can customise a different age
 range.
 
-``` r
-cases_age <- group_age(disease_data = clean_disease_data, age_interval = 10)
-#> Warning: `group_by_()` was deprecated in dplyr 0.7.0.
-#> ℹ Please use `group_by()` instead.
-#> ℹ See vignette('programming') for more help
-#> ℹ The deprecated feature was likely used in the dplyr package.
-#>   Please report the issue at <https://github.com/tidyverse/dplyr/issues>.
-```
-
 The corresponding plot function is `plot_age`
 
-``` r
-plot_age(data_grouped = cases_age)
-```
-
-<img src="man/figures/README-unnamed-chunk-18-1.png" width="100%" />
+<img src="man/figures/unnamed-chunk-18-1.png" width="100%" />
 
 ### 4.3. Age and sex simultaneously
 
@@ -427,18 +344,9 @@ disease data by age ranges and sex simultaneously and obtain their
 number of cases and percentages. Also, the age interval can be
 customised.
 
-``` r
-cases_age_sex <- group_age_sex(disease_data = clean_disease_data, 
-                               age_interval = 10)
-```
-
 The corresponding plotting function is `plot_age_sex`.
 
-``` r
-plot_age_sex(data_grouped = cases_age_sex)
-```
-
-<img src="man/figures/README-unnamed-chunk-20-1.png" width="100%" />
+<img src="man/figures/unnamed-chunk-20-1.png" width="100%" />
 
 ### 5. Spatial distribution of cases
 
@@ -450,26 +358,7 @@ In Colombia, there 32 administrative geographic units (adm1) called
 departments. `sivirep` provides a function called `group_deptos` which
 allows obtaining a data.frame of grouped cases by department.
 
-``` r
-spatial_dept_dist <- group_dept(disease_data = clean_disease_data)
-```
-
 Currently, with the function called `plot_dept_map` the user can produce
 a static map of Colombia with the distribution of cases by departments.
 
-``` r
-plot_dept_map(data_grouped = spatial_dept_dist)
-#> Warning in maptools::gpclibPermit(): support for gpclib will be withdrawn from
-#> maptools at the next major release
-#> Warning in OGRSpatialRef(dsn, layer, morphFromESRI = morphFromESRI, dumpSRS
-#> = dumpSRS, : Discarded datum Bogota_1975 in Proj4 definition: +proj=tmerc
-#> +lat_0=4.59904722222222 +lon_0=-74.0809166666667 +k=1 +x_0=1000000 +y_0=1000000
-#> +ellps=intl +towgs84=307,304,-318,0,0,0,0 +units=m +no_defs
-#> Warning in proj4string(SpP): CRS object has comment, which is lost in output; in tests, see
-#> https://cran.r-project.org/web/packages/sp/vignettes/CRS_warnings.html
-#> Warning in showSRID(uprojargs, format = "PROJ", multiline = "NO", prefer_proj
-#> = prefer_proj): Discarded datum Unknown based on International 1909 (Hayford)
-#> ellipsoid in Proj4 definition
-```
-
-<img src="man/figures/README-unnamed-chunk-22-1.png" width="100%" />
+<img src="man/figures/unnamed-chunk-22-1.png" width="100%" />
