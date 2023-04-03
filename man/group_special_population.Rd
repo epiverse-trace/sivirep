@@ -13,9 +13,11 @@ group_special_population(
 \arguments{
 \item{disease_data}{The disease data}
 
-\item{col_name}{Column name in the disease data that contains the special populations}
+\item{col_name}{Column name in the disease data that contains 
+the special populations}
 
-\item{percentage}{Indicates if it is required to add a percentage of cases as a column}
+\item{percentage}{Indicates if it is required to add a 
+percentage of cases as a column}
 }
 \value{
 The disease data grouped by special populations and cases
@@ -24,6 +26,8 @@ The disease data grouped by special populations and cases
 Function that groups the disease data by special population and cases
 }
 \examples{
-disease_data <- import_data_disease_by_year(2019, "DENGUE")
-group_special_population(disease_data, col_name = "poblacion", percentage = TRUE)
+disease_data <- import_linelist_disease_year(2019, "DENGUE")
+group_special_population(disease_data, 
+                         col_name = "poblacion", 
+                         percentage = TRUE)
 }

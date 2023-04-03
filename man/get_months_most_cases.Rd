@@ -17,11 +17,13 @@ get_months_most_cases(
 
 \item{col_dates}{Column names in the disease data that contains the dates}
 
-\item{col_cases}{Column name in the disease data that contains the cases number}
+\item{col_cases}{Column name in the disease data that contains 
+the cases number}
 
 \item{top}{Top}
 
-\item{concat_values}{Indicates if it is required to concatenate the months as a string}
+\item{concat_values}{Indicates if it is required to concatenate 
+the months as a string}
 }
 \value{
 Months major cases
@@ -31,5 +33,8 @@ Function that gets the months with the major number of cases
 }
 \examples{
 disease_data <- import_data_disease_by_year(2020, "DENGUE")
-get_months_most_cases(disease_data, col_dates, col_cases, top = 3, concat_values = TRUE)
+get_months_most_cases(disease_data, col_dates, 
+                       col_cases, 
+                       top = 3, 
+                       concat_values = TRUE)
 }

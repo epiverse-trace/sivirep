@@ -4,20 +4,20 @@
 \alias{import_geo_codes}
 \title{Import geographical data of Colombia}
 \usage{
-import_geo_codes(
-  url_data = config::get(file = system.file("extdata", "config.yml", package =
-    "sivirep"), "geo_data_path")
-)
+import_geo_codes(url_data = NULL)
 }
 \arguments{
 \item{url_data}{URL of geographical data}
 }
 \value{
-A data frame with the names and codes of the departments and municipalities of Colombia in csv format
+A data frame with the names and codes of the departments and 
+municipalities of Colombia in csv format
 }
 \description{
-Function that imports the names and codes of the departments and municipalities of Colombia through a URL
+Function that imports the names and codes of the departments and 
+municipalities of Colombia through a URL
 }
 \examples{
-import_geo_codes("https://www.datos.gov.co/api/views/gdxc-w37w/rows.csv?accessType=DOWNLOAD")
+import_geo_codes(
+ "https://www.datos.gov.co/api/views/gdxc-w37w/rows.csv?accessType=DOWNLOAD")
 }

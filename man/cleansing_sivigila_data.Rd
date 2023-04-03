@@ -19,6 +19,6 @@ Function that cleans the selected disease data of SIVIGILA source
 }
 \examples{
 year <- 2019
-disease_data <- import_data_disease_by_year(year, "DENGUE")
+disease_data <- import_linelist_disease_year(year, "DENGUE")
 cleansing_sivigila_data(disease_data, year)
 }

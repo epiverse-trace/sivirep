@@ -9,7 +9,8 @@ group_onset_symptoms(disease_data, col_name = "ini_sin", type = "month")
 \arguments{
 \item{disease_data}{The disease data}
 
-\item{col_name}{Column name in the disease data that contains the symptom onset dates}
+\item{col_name}{Column name in the disease data that contains 
+the symptom onset dates}
 
 \item{type}{Time unit (day, month and year)}
 }
@@ -17,9 +18,10 @@ group_onset_symptoms(disease_data, col_name = "ini_sin", type = "month")
 The disease data grouped by symptom onset date and number of cases
 }
 \description{
-Function that groups the disease data by symptom onset date and number of cases
+Function that groups the disease data by symptom onset date and 
+number of cases
 }
 \examples{
-disease_data <- import_data_disease_by_year(2019, "DENGUE")
+disease_data <- import_linelist_disease_year(2019, "DENGUE")
 group_onset_symptoms(disease_data, col_name = "ini_sin", type = "month")
 }

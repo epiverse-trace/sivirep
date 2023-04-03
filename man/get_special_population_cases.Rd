@@ -16,6 +16,6 @@ The cases by special population type of a disease
 Function that gets the cases by special population type of a disease
 }
 \examples{
-disease_data <- import_data_disease_by_year(2019, "DENGUE")
+disease_data <- import_linelist_disease_year(2019, "DENGUE")
 get_special_population_cases(disease_data)
 }

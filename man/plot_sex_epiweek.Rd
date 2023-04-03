@@ -13,16 +13,24 @@ plot_sex_epiweek(
 \arguments{
 \item{data_grouped}{The disease data grouped}
 
-\item{col_names}{Column names in the disease data grouped that contains the sex and the epidemiological weeks}
+\item{col_names}{Column names in the disease data grouped that contains 
+the sex and the epidemiological weeks}
+
+\item{percentage}{Indicates if the data has percentages}
 }
 \value{
 A plot of cases distribution by sex and epidemiological week
 }
 \description{
-Function that generates the plot of cases distribution by sex and epidemiological week
+Function that generates the plot of cases distribution by sex and 
+epidemiological week
 }
 \examples{
 disease_data <- import_data_disease_by_year(2020, "DENGUE")
-data_grouped <- group_sex_and_week(disease_data, col_names = c("sexo", "semana"), percentage = TRUE)
-plot_sex_epiweek(data_grouped, col_names = c("sexo", "semana"), percentage = FALSE)
+data_grouped <- group_sex_and_week(disease_data, 
+                                   col_names = c("sexo", "semana"), 
+                                   percentage = TRUE)
+plot_sex_epiweek(data_grouped, 
+                 col_names = c("sexo", "semana"),
+                 percentage = FALSE)
 }

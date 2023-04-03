@@ -15,6 +15,8 @@ clean_disease_dates(
 \arguments{
 \item{disease_data}{The disease data}
 
+\item{year}{Year of the disease data}
+
 \item{date_format}{Date format}
 
 \item{col_name}{Data set column name}
@@ -28,6 +30,10 @@ The data with clean dates
 Function that cleans dates from the disease data
 }
 \examples{
-disease_data <- import_data_disease_by_year(2020, "DENGUE")
-clean_disease_dates(disease_data, year, date_format = "\%AAAA-\%MM-\%DD", col_name = "ini_sin", col_cmp = "fec_hos")
+disease_data <- import_linelist_disease_year(2020, "DENGUE")
+clean_disease_dates(disease_data, 
+                     year, 
+                     date_format = "\%AAAA-\%MM-\%DD", 
+                     col_name = "ini_sin", 
+                     col_cmp = "fec_hos")
 }

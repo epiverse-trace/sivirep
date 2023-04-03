@@ -13,11 +13,10 @@ plot_onset_symptoms(
 \arguments{
 \item{data_grouped}{The disease data grouped}
 
-\item{col_name}{Column name in the disease data grouped that contains the symptom onset dates}
+\item{col_name}{Column name in the disease data grouped that contains 
+the symptom onset dates}
 
-\item{year}{Year of the disease data grouped}
-
-\item{type}{Time unit (day, month and year)}
+\item{break_tick_date}{Tick unit (day, month and year)}
 }
 \value{
 A plot of cases distribution by symptoms onset date
@@ -27,6 +26,11 @@ Function that generates the plot of cases distribution by onset symptoms date
 }
 \examples{
 disease_data <- import_data_disease_by_year(2020, "DENGUE")
-data_grouped <- group_by_onset_symptoms(disease_data, col_name = "ini_sin", break_tick_date = "month")
-plot_onset_symptoms(data_grouped, col_name = "ini_sin", break_tick_date = "month")
+data_grouped <- group_by_onset_symptoms(
+                                         disease_data, 
+                                         col_name = "ini_sin", 
+                                         break_tick_date = "month")
+plot_onset_symptoms(data_grouped, 
+                     col_name = "ini_sin", 
+                     break_tick_date = "month")
 }

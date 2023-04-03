@@ -13,7 +13,10 @@ plot_special_population(
 \arguments{
 \item{data_grouped}{The disease data grouped}
 
-\item{col_name}{Column names in the disease data grouped that contains the ages and sex}
+\item{col_name}{Column names in the disease data grouped that contains 
+the ages and sex}
+
+\item{percentage}{Indicates if the data has percentages}
 }
 \value{
 A plot of cases distribution by special population
@@ -23,6 +26,10 @@ Function that generates the plot of cases distribution by special population
 }
 \examples{
 disease_data <- import_data_disease_by_year(2020, "DENGUE")
-data_grouped <- group_by_age_and_sex(disease_data, col_names = c("edad", "sexo"), percentage = TRUE)
-plot_special_population(data_grouped, col_name = "poblacion", percentage = FALSE)
+data_grouped <- group_by_age_and_sex(disease_data, 
+                                     col_names = c("edad", "sexo"), 
+                                     percentage = TRUE)
+plot_special_population(data_grouped, 
+                         col_name = "poblacion", 
+                         percentage = FALSE)
 }

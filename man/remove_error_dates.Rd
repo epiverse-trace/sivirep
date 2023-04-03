@@ -20,6 +20,6 @@ The data without the erroneous dates
 Function that removes dates greater than the comparison value
 }
 \examples{
-disease_data <- import_data_disease_by_year(2019, "DENGUE")
+disease_data <- import_linelist_disease_year(2019, "DENGUE")
 remove_error_dates(disease_data, col_init = "ini_sin", col_cmp = "fec_hos")
 }

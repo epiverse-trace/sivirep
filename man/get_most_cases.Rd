@@ -9,9 +9,11 @@ get_most_cases(disease_data, col_name = "casos", percentage = TRUE)
 \arguments{
 \item{disease_data}{The disease data}
 
-\item{col_name}{Column name in the disease data that contains the cases number}
+\item{col_name}{Column name in the disease data that contains 
+the cases number}
 
-\item{percentage}{Indicates if it is required to add a percentage of cases as a column}
+\item{percentage}{Indicates if it is required to add a percentage of
+cases as a column}
 }
 \value{
 Row with major cases
@@ -21,5 +23,7 @@ Function that gets the row with the major number of cases
 }
 \examples{
 disease_data <- import_data_disease_by_year(2020, "DENGUE")
-get_most_cases(disease_data, col_name = "casos", percentage = T)
+get_most_cases(disease_data, 
+               col_name = "casos", 
+               percentage = T)
 }

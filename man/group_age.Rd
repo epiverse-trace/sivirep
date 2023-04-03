@@ -16,7 +16,8 @@ group_age(
 
 \item{col_name}{Column name in the disease data that contains the ages}
 
-\item{percentage}{Indicates if it is required to add a percentage of cases as a column}
+\item{percentage}{Indicates if it is required to add a 
+percentage of cases as a column}
 
 \item{age_interval}{The interval of age range}
 }
@@ -27,6 +28,6 @@ The disease data grouped by age and cases
 Function that groups the disease data by age and cases
 }
 \examples{
-disease_data <- import_data_disease_by_year(2019, "DENGUE")
+disease_data <- import_linelist_disease_year(2019, "DENGUE")
 group_age(disease_data, col_name = "edad", percentage = FALSE)
 }

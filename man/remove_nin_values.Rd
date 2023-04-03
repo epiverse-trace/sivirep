@@ -15,9 +15,10 @@ remove_nin_values(disease_data, col_name)
 The clean data without NA, Infinitive or NaN values
 }
 \description{
-Function that removes a rows if the selected column values includes NA, Infinitive or NaN
+Function that removes a rows if the selected column 
+values includes NA, Infinitive or NaN
 }
 \examples{
-disease_data <- import_data_disease_by_year(2019, "DENGUE")
+disease_data <- import_linelist_disease_year(2019, "DENGUE")
 remove_nin_values(disease_data, name_col = "edad")
 }

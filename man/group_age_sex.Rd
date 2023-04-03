@@ -16,7 +16,8 @@ group_age_sex(
 
 \item{col_names}{Column names in the disease data that contains the ages and sex}
 
-\item{percentage}{Indicates if it is required to add a percentage of cases as a column}
+\item{percentage}{Indicates if it is required to add a 
+percentage of cases as a column}
 
 \item{age_interval}{The interval of age range}
 }
@@ -27,6 +28,6 @@ The disease data grouped by ages, sex and number cases
 Function that groups the data by age, sex and cases number
 }
 \examples{
-disease_data <- import_data_disease_by_year(2019, "DENGUE")
+disease_data <- import_linelist_disease_year(2019, "DENGUE")
 group_age_sex(disease_data, col_names = c("edad", "sexo"), percentage = TRUE)
 }

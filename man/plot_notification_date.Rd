@@ -13,11 +13,10 @@ plot_notification_date(
 \arguments{
 \item{data_grouped}{The disease data grouped}
 
-\item{col_name}{Column name in the disease data grouped that contains the notification dates}
+\item{col_name}{Column name in the disease data grouped that contains 
+the notification dates}
 
-\item{year}{Year of the disease data grouped}
-
-\item{type}{Time unit (day, month and year)}
+\item{break_tick_date}{Tick unit (day, month and year)}
 }
 \value{
 A plot of cases distribution by onset notification date
@@ -27,6 +26,8 @@ Function that generates the plot of cases distribution by notification date
 }
 \examples{
 disease_data <- import_data_disease_by_year(2020, "DENGUE")
-data_grouped <- group_notification_date(disease_data, col_name = "fec_not", break_tick_date = "month")
+data_grouped <- group_notification_date(disease_data, 
+                                         col_name = "fec_not", 
+                                         break_tick_date = "month")
 plot_notification_date(data_grouped, col_name = "fec_not", break_tick_date = "month")
 }

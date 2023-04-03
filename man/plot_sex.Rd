@@ -10,6 +10,8 @@ plot_sex(data_grouped, col_name = "sexo", percentage = TRUE)
 \item{data_grouped}{The disease data grouped}
 
 \item{col_name}{Column name in the disease data grouped that contains the sex}
+
+\item{percentage}{Indicates if the data has percentages}
 }
 \value{
 A plot of cases distribution by sex

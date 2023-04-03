@@ -10,12 +10,14 @@ group_epiweek_cases(disease_data)
 \item{disease_data}{The disease data}
 }
 \value{
-The disease data grouped by epidemiological week and cases number
+The disease data grouped by epidemiological week 
+and cases number
 }
 \description{
-Function that groups the disease data by epidemiological week and cases number
+Function that groups the disease data by epidemiological week 
+and cases number
 }
 \examples{
-disease_data <- import_data_disease_by_year(2019, "DENGUE")
+disease_data <- import_linelist_disease_year(2019, "DENGUE")
 group_epiweek_cases(disease_data)
 }

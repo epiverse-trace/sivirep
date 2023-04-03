@@ -7,13 +7,15 @@
 get_depto_codes(geo_codes)
 }
 \arguments{
-\item{geo_codes}{Geographical codes (Colombia departments and municipalities)}
+\item{geo_codes}{Geographical codes (Colombia departments and 
+municipalities)}
 }
 \value{
 The Departments data with code and name
 }
 \description{
-Function that gets the list of departments of Colombia with their name and code
+Function that gets the list of departments of Colombia with their name
+and code
 }
 \examples{
 geo_codes <- import_geo_codes()

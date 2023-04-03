@@ -12,10 +12,12 @@ get_path_data_disease_year(year, disease_name)
 \item{disease_name}{Disease name to download}
 }
 \value{
-Path or URL for download the disease data by a specific year of SIVIGILA source
+Path or URL for download the disease data by a specific year of 
+SIVIGILA source
 }
 \description{
-Function that gets the path or URL of the SIVIGILA service to download the data of a disease for a specific year
+Function that gets the path or URL of the SIVIGILA service to 
+download the data of a disease for a specific year
 }
 \examples{
 get_path_data_disease_year(year = 2010, disease_name = "DENGUE")

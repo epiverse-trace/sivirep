@@ -18,6 +18,8 @@ group_age_range_cases(
 
 \item{col_name}{Column name in the disease data that contains the ages}
 
+\item{var_a}{Additional column name in the disease data to group with the age}
+
 \item{min_val}{Minimum value of ages}
 
 \item{max_val}{Maximum value of ages}
@@ -31,7 +33,7 @@ The disease data grouped by the age range and cases number
 Function that groups the disease data by age range and cases number
 }
 \examples{
-disease_data <- import_data_disease_by_year(2019, "DENGUE")
+disease_data <- import_linelist_disease_year(2019, "DENGUE")
 disease_dt_by_age <- group_columns_cases(disease_data, c("edad", "semana"),
   wt_percentage = TRUE
 )

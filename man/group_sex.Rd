@@ -11,7 +11,8 @@ group_sex(disease_data, col_name = "sexo", percentage = TRUE)
 
 \item{col_name}{Column name in the disease data that contains the sex}
 
-\item{percentage}{Indicates if it is required to add a percentage of cases as a column}
+\item{percentage}{Indicates if it is required to add a 
+percentage of cases as a column}
 }
 \value{
 The disease data grouped by sex and cases number
@@ -20,6 +21,6 @@ The disease data grouped by sex and cases number
 Function that groups the disease data by sex and cases number
 }
 \examples{
-disease_data <- import_data_disease_by_year(2019, "DENGUE")
+disease_data <- import_linelist_disease_year(2019, "DENGUE")
 group_sex(disease_data, col_name = "sexo", percentage = TRUE)
 }

@@ -9,7 +9,10 @@ plot_age_sex(data_grouped, col_names = c("edad", "sexo"), percentage = FALSE)
 \arguments{
 \item{data_grouped}{The disease data grouped}
 
-\item{col_names}{Column names in the disease data grouped that contains the ages and the epidemiological weeks}
+\item{col_names}{Column names in the disease data grouped that contains}
+
+\item{percentage}{Indicates if the data has percentages
+the ages and the epidemiological weeks}
 }
 \value{
 A plot of cases distribution by age and sex
@@ -19,6 +22,10 @@ Function that generates the plot of cases distribution by age and sex
 }
 \examples{
 disease_data <- import_data_disease_by_year(2020, "DENGUE")
-data_grouped <- group_by_age_and_week(disease_data, col_names = c("edad", "semana"), percentage = FALSE)
-plot_age_sex(data_grouped, col_names = c("edad", "sexo"), percentage = FALSE)
+data_grouped <- group_by_age_and_week(disease_data, 
+                                       col_names = c("edad", "semana"), 
+                                       percentage = FALSE)
+plot_age_sex(data_grouped, 
+             col_names = c("edad", "sexo"), 
+             percentage = FALSE)
 }

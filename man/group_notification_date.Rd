@@ -9,7 +9,8 @@ group_notification_date(disease_data, col_name = "fec_not", type = "month")
 \arguments{
 \item{disease_data}{The disease data}
 
-\item{col_name}{Column name in the disease data that contains the notification dates}
+\item{col_name}{Column name in the disease data that contains 
+the notification dates}
 
 \item{type}{Time unit (day, month and year)}
 }
@@ -20,6 +21,6 @@ The disease data grouped by notification date and cases
 Function that groups the disease data by notification date and cases number
 }
 \examples{
-disease_data <- import_data_disease_by_year(2019, "DENGUE")
+disease_data <- import_linelist_disease_year(2019, "DENGUE")
 group_notification_date(disease_data, col_name = "fec_not", type = "month")
 }

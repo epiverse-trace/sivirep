@@ -20,7 +20,7 @@ plot_variable(
   bar_wd = 1,
   text_sz = 3,
   show_val = TRUE,
-  ref_caption = "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
+  caption_label = NULL
 )
 }
 \arguments{
@@ -34,7 +34,7 @@ plot_variable(
 
 \item{var_fill}{The variable fill}
 
-\item{wt_per}{Indicates if the data have percentages}
+\item{wt_per}{Indicates if the data has percentages}
 
 \item{label_x}{The label for axis x}
 
@@ -53,12 +53,15 @@ plot_variable(
 \item{text_sz}{The text size}
 
 \item{show_val}{Indicates if the bars should show the values}
+
+\item{caption_label}{Caption or information source of the disease data}
 }
 \value{
 The plot by variable(s) or column(s)
 }
 \description{
-Function that generates a graph by any type of variable or column of dataframe
+Function that generates a graph by any type of variable or column of 
+dataframe
 }
 \examples{
 disease_data <- import_data_disease_by_year(2019, "DENGUE")

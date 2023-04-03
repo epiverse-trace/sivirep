@@ -13,8 +13,10 @@ import_data_separator(path_data)
 A data frame
 }
 \description{
-Function that identifies the separator with which the information comes to be able to tabulate it
+Function that identifies the separator with which the information 
+comes to be able to tabulate it
 }
 \examples{
-import_data_separator("https://www.datos.gov.co/api/views/qvnt-2igj/rows.csv?accessType=DOWNLOAD")
+import_data_separator(
+ "https://www.datos.gov.co/api/views/qvnt-2igj/rows.csv?accessType=DOWNLOAD")
 }

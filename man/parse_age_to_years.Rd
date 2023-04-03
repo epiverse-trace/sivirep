@@ -17,9 +17,10 @@ parse_age_to_years(disease_data, col_age = "edad", col_uni_met = "uni_med")
 The ages in years
 }
 \description{
-Function that converts ages into years according to SIVIGILA measurement units
+Function that converts ages into years according to 
+SIVIGILA measurement units
 }
 \examples{
-disease_data <- import_data_disease_by_year(2019, "DENGUE")
+disease_data <- import_linelist_disease_year(2019, "DENGUE")
 parse_age_to_years(disease_data, col_age = "edad", col_uni_met = "uni_med")
 }
