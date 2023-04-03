@@ -164,6 +164,15 @@ After installation and importation of the library you can start using
 
 Check the list of diseases available to make a report with `sivirep` in:
 
+<style>
+    .rmarkdown-img {
+        margin-left: 2.8em;     
+        margin-top: 0.8em; 
+        margin-bottom: 0.8em;
+        float: none;
+    }
+</style>
+
 Currently, `sivirep` provides a report template
 `Reporte Básico {sivirep}`, which contains six sections and receive two
 input parameters: disease (the disease name) and year in order to
@@ -173,14 +182,14 @@ The template can be used by following the following steps:
 
 1.  In RStudio click *‘File/New File/R’* Markdown:
 
-<img src="man/figures/file_rmarkdown.png" align="right" width="550px" style="margin-left: 2.8em;margin-top: 0.8em;margin-bottom: 0.8em;float: none;"/>
+<img class="rmarkdown-img" src="man/figures/file_rmarkdown.png" align="right" width="550px"/>
 
 2.  Select the left panel option: *‘From Template’*, then select the
     template report called `Reporte Básico {sivirep}`, indicate the name
     you want for the report (i.e. MyReport_Laura), the location to store
     it and press *‘Ok’*.
 
-<img src="man/figures/reporte_basico.png" align="right" width="550px" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em; float: none;" />
+<img class="rmarkdown-img" src="man/figures/reporte_basico.png" align="right" width="550px"/>
 
 3.  Then, you can select the disease (the disease name) and the year of
     the report. This action will download the data wanted and also will
@@ -188,14 +197,14 @@ The template can be used by following the following steps:
     important to find Knit button, display the options and select *‘Knit
     with parameters’*.
 
-<img src="man/figures/button_knit.png" align="right" width="550px" style="margin-left: 2.8em;margin-top: 0.8em;margin-bottom: 0.8em;float: none;"/>
+<img class="rmarkdown-img" src="man/figures/button_knit.png" align="right" width="550px"/>
 
 4.  Wait a few seconds while the report is rendered in a PDF file.
 
 5.  You can add, edit, delete and customise sections of the report in
     the R Markdown file generated earlier.
 
-<img src="man/figures/editable_rmarkdown.png" align="right" width="550px" style="margin-left: 2.8em;margin-top: 0.8em;margin-bottom: 0.8em; float: none;"/>
+<img class="rmarkdown-img" src="man/figures/editable_rmarkdown.png" align="right" width="550px"/>
 
 For more details on generic Rmarkdown templates and reports please see
 [rmarkdown
@@ -221,6 +230,14 @@ Once you have decided the disease and year you want,
 `import_linelist_disease_year` is the function that allows importation
 of data from sivigila service using a parameterised format based on
 disease and year.
+
+##### 💡 Tip 1 - Avoid time delays when importing data
+
+- `sivirep` 0.0.1 is meant to assist with access to SIVIGILA source.
+  This process of downloading the information may take a few minutes
+  depending on the size of the dataset. To avoid repeating downloading
+  the same data every time you can use `cache = TRUE` in the function
+  `import_linelist_disease_year` This option is set by default.
 
 ### 2. Cleansing sivigila data
 
@@ -268,21 +285,17 @@ function that allows this grouping called `group_onset_symptoms`, in
 which you can specify the time unit to group these dates, the allowed
 values for this parameter are: day and month.
 
-<img src="man/figures/tip.svg" align="right" width="60" style="margin-right: 2.8em; margin-bottom: 0.8em;"/>
-<p>
-Tip 2 - Get the first n months with most cases
-</p>
-<p>
-When building a report section or analysing this data it can be useful
-to get the months with the most cases, in sivirep you can use the
-function get_months_most_cases to get this information.
-</p>
+##### 💡 Tip 2 - Get the first n months with most cases
+
+- When building a report section or analysing this data it can be useful
+  to get the months with the most cases, in `sivirep` you can use the
+  function `get_months_most_cases` to get this information.
 
 The graph that allows to visualise this distribution must be generated
 with the function `plot_onset_symptoms`. Please notice that even if you
 have grouped the data by day you may prefer to plot it by month, as in:
 
-<img src="man/figures/unnamed-chunk-10-1.png" width="100%" />
+![](man/figures/unnamed-chunk-10-1.png)<!-- -->
 
 #### 3.2. Group the data by notification date at the desired temporal scale
 
@@ -295,7 +308,7 @@ with the function `plot_notification_date`. Please notice that even if
 you have grouped the data by day you may prefer to plot it by month, as
 in:
 
-<img src="man/figures/unnamed-chunk-12-1.png" width="100%" />
+![](man/figures/unnamed-chunk-12-1.png)<!-- -->
 
 ### 4. Age and sex
 
@@ -310,7 +323,7 @@ by sex automatically after the cleansing process.
 
 Also, `sivirep` has a `plot_sex` function:
 
-<img src="man/figures/unnamed-chunk-14-1.png" width="100%" />
+![](man/figures/unnamed-chunk-14-1.png)<!-- -->
 
 The distribution of cases by sex and epidemiological week can be using
 the `group_sex_epiweek` function provided by `sivirep`
@@ -318,7 +331,7 @@ the `group_sex_epiweek` function provided by `sivirep`
 The corresponding visualisation function is `plot_sex_epiweek` that
 provides `sivirep`:
 
-<img src="man/figures/unnamed-chunk-16-1.png" width="100%" />
+![](man/figures/unnamed-chunk-16-1.png)<!-- -->
 
 ### 4.2. Age variable
 
@@ -335,7 +348,7 @@ range.
 
 The corresponding plot function is `plot_age`
 
-<img src="man/figures/unnamed-chunk-18-1.png" width="100%" />
+![](man/figures/unnamed-chunk-18-1.png)<!-- -->
 
 ### 4.3. Age and sex simultaneously
 
@@ -346,7 +359,7 @@ customised.
 
 The corresponding plotting function is `plot_age_sex`.
 
-<img src="man/figures/unnamed-chunk-20-1.png" width="100%" />
+![](man/figures/unnamed-chunk-20-1.png)<!-- -->
 
 ### 5. Spatial distribution of cases
 
@@ -361,4 +374,12 @@ allows obtaining a data.frame of grouped cases by department.
 Currently, with the function called `plot_dept_map` the user can produce
 a static map of Colombia with the distribution of cases by departments.
 
-<img src="man/figures/unnamed-chunk-22-1.png" width="100%" />
+![](man/figures/unnamed-chunk-22-1.png)<!-- -->
+
+##### 💡 Tip 3 - Get the row with most cases
+
+- When building a report section or analysing this data it can be
+  helpful to know which gender has the most cases, in `sivirep` you can
+  use the function `get_most_cases` to get this information. This
+  function works with any dataset that contains a column called “cases”
+  by any level of aggregation.
