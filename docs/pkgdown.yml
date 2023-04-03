@@ -1,0 +1,8 @@
+pandoc: 2.19.2
+pkgdown: 2.0.6
+pkgdown_sha: ~
+articles:
+  dengue_example: dengue_example.html
+  sivirep: sivirep.html
+last_built: 2023-04-03T18:02Z
+

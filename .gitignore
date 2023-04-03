@@ -36,7 +36,7 @@
 
 # Mac File
 .DS_Store
-docs
+# docs
 inst/doc
 /doc/
 /Meta/

@@ -12,8 +12,12 @@ header-includes:
 - \usepackage{fancyhdr}
 subtitle: (fuente SIVIGILA, Datos libres)
 params:
-  year: 2020
-  disease_name: "Dengue"
+  year:
+    value: 2020
+    label: Año
+  disease_name:
+    value: "Dengue" 
+    label: Enfermedad
 ---
 
 ```{r setup, echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}

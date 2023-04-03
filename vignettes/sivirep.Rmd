@@ -11,9 +11,8 @@ vignette: >
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  include = TRUE, 
-  echo = FALSE, 
-  error = FALSE,  
+  include = TRUE,
+  error = FALSE, 
   warning = FALSE, 
   message = FALSE
 )
@@ -70,6 +69,8 @@ library(sivirep)
 
 ## Quick start
 
+Please check the available diseases and years, using:
+
 ```{r}
 list_of_diseases <- list_available_diseases_years()
 knitr::kable(list_of_diseases)
@@ -77,7 +78,7 @@ knitr::kable(list_of_diseases)
 
 ## Future versions
 
-Future versions of `sivirep` may include
+Future versions of `sivirep` may include:
 
 -   Interaction with other data sources in Colombia
 -   Other epidemiological surveillance systems in Latin America
@@ -130,14 +131,14 @@ The template can be used by following the following steps:
 
 1.  In RStudio click *'File/New File/R'* Markdown:
 
-![](man/figures/file_rmarkdown.png){.rmarkdown-img align="center" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;"width="560"}
+![](../man/figures/file_rmarkdown.png){.rmarkdown-img align="center" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;"width="560"}
 
 2.  Select the left panel option: *'From Template'*, then select the
     template report called `Reporte Básico {sivirep}`, indicate the name
     you want for the report (i.e. MyReport_Laura), the location to store
     it and press *'Ok'*.
 
-![](man/figures/reporte_basico.png){.rmarkdown-img align="center" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;" width="550"}
+![](../man/figures/reporte_basico.png){.rmarkdown-img align="center" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;" width="550"}
 
 3.  Then, you can select the disease (the disease name) and the year of
     the report. This action will download the data wanted and also will
@@ -145,14 +146,14 @@ The template can be used by following the following steps:
     important to find Knit button, display the options and select *'Knit
     with parameters'*.
 
-![](man/figures/button_knit.png){.rmarkdown-img align="center" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;" width="560"}
+![](../man/figures/button_knit.png){.rmarkdown-img align="center" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;" width="560"}
 
 4.  Wait a few seconds while the report is rendered in a PDF file.
 
 5.  You can add, edit, delete and customise sections of the report in
     the R Markdown file generated earlier.
 
-![](man/figures/editable_rmarkdown.png){.rmarkdown-img align="center" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;" width="560"}
+![](../man/figures/editable_rmarkdown.png){.rmarkdown-img align="center" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;" width="560"}
 
 For more details on generic Rmarkdown templates and reports please see
 [rmarkdown
@@ -248,8 +249,10 @@ which you can specify the time unit to group these dates, the allowed
 values for this parameter are: day and month.
 
 ```{r}
-cases_onset_symptoms_by_day <- group_onset_symptoms(clean_disease_data, type = "day") 
-cases_onset_symptoms_by_month <- group_onset_symptoms(clean_disease_data, type = "month") 
+cases_onset_symptoms_by_day <- group_onset_symptoms(disease_data = clean_disease_data, 
+                                                    type = "day") 
+cases_onset_symptoms_by_month <- group_onset_symptoms(disease_data = clean_disease_data, 
+                                                      type = "month") 
 ```
 
 ##### 💡 Tip 2 - Get the first n months with most cases
@@ -274,10 +277,10 @@ consist in group the disease data by this variables, you can use the
 following function of `sivirep` to do this:
 
 ```{r}
-cases_notification_date_by_day <- group_notification_date(clean_disease_data, 
-                                                    type = "day") 
-cases_notification_date_by_month <- group_notification_date(clean_disease_data, 
-                                                      type = "month") 
+cases_notification_date_by_day <- group_notification_date(disease_data = clean_disease_data, 
+                                                          type = "day") 
+cases_notification_date_by_month <- group_notification_date(disease_data = clean_disease_data, 
+                                                            type = "month") 
 ```
 
 The graph that allows to visualise this distribution must be generated
@@ -374,7 +377,7 @@ Obtaining the spatial distribution of cases is helpful to identify areas
 with a high concentration of cases, disease clusters and environmental
 or social risk factors.
 
-In Colombia, there 32 administrative geographic units (adm1) called
+In Colombia, there are 32 administrative geographic units (adm1) called
 departments. `sivirep` provides a function called `group_deptos` which
 allows obtaining a data.frame of grouped cases by department.
 

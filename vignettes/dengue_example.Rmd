@@ -14,18 +14,14 @@ subtitle: (fuente SIVIGILA, Datos libres)
 params:
   year: 2020
   disease_name: "Dengue"
-vignette: >
-  %\VignetteIndexEntry{dengue_example}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
-knitr::opts_chunk$set(include = TRUE, 
-                      echo = FALSE, 
+knitr::opts_chunk$set(include = TRUE,
                       error = FALSE,  
                       warning = FALSE, 
-                      message = FALSE)
+                      message = FALSE,
+                      echo = FALSE)
 library(sivirep)
 ```
 
