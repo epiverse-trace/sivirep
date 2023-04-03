@@ -181,14 +181,14 @@ download the data from SIVIGILA source.
 The template can be used by following the following steps:
 
 1.  In RStudio click *‘File/New File/R’* Markdown:
-
-<img class="rmarkdown-img" src="man/figures/file_rmarkdown.png" align="right" width="90%"/>
+<br />
+<img class="rmarkdown-img" src="man/figures/file_rmarkdown.png" align="right" width="60%"/>
 
 2.  Select the left panel option: *‘From Template’*, then select the
     template report called `Reporte Básico {sivirep}`, indicate the name
     you want for the report (i.e. MyReport_Laura), the location to store
     it and press *‘Ok’*.
-
+<br />
 <img class="rmarkdown-img" src="man/figures/reporte_basico.png" align="right" width="90%"/>
 
 3.  Then, you can select the disease (the disease name) and the year of
