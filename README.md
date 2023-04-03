@@ -182,14 +182,14 @@ The template can be used by following the following steps:
 
 1.  In RStudio click *‘File/New File/R’* Markdown:
 
-<img class="rmarkdown-img" src="man/figures/file_rmarkdown.png" align="right" width="650px"/>
+<img class="rmarkdown-img" src="man/figures/file_rmarkdown.png" align="right" width="90%"/>
 
 2.  Select the left panel option: *‘From Template’*, then select the
     template report called `Reporte Básico {sivirep}`, indicate the name
     you want for the report (i.e. MyReport_Laura), the location to store
     it and press *‘Ok’*.
 
-<img class="rmarkdown-img" src="man/figures/reporte_basico.png" align="right" width="650px"/>
+<img class="rmarkdown-img" src="man/figures/reporte_basico.png" align="right" width="90%"/>
 
 3.  Then, you can select the disease (the disease name) and the year of
     the report. This action will download the data wanted and also will
@@ -197,14 +197,14 @@ The template can be used by following the following steps:
     important to find Knit button, display the options and select *‘Knit
     with parameters’*.
 
-<img class="rmarkdown-img" src="man/figures/button_knit.png" align="right" width="650px"/>
+<img class="rmarkdown-img" src="man/figures/button_knit.png" align="right" width="90%"/>
 
 4.  Wait a few seconds while the report is rendered in a PDF file.
 
 5.  You can add, edit, delete and customise sections of the report in
     the R Markdown file generated earlier.
 
-<img class="rmarkdown-img" src="man/figures/editable_rmarkdown.png" align="right" width="650px"/>
+<img class="rmarkdown-img" src="man/figures/editable_rmarkdown.png" align="right" width="90%"/>
 
 For more details on generic Rmarkdown templates and reports please see
 [rmarkdown
