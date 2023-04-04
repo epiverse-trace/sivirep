@@ -213,6 +213,7 @@ plot_variable <- function(data, var_x, var_y, var_per = NULL, var_fill = NULL,
         ggplot2::scale_fill_manual(values = c("#56B4E9", "#E69F00")) 
       else ggplot2::theme(legend.position = legend_pos)
     }
+    ggplot2::scale_y_continuous(limits = c(0,max(data$casos)))
 }
 
 #' Plot cases distribution by symptoms onset date

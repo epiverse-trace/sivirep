@@ -2,6 +2,7 @@
 author: "TRACE-LAC"
 date: "`r Sys.Date()`"
 output:
+  rmarkdown::html_vignette
   html_document:
     number_sections: true
   pdf_document: 
@@ -14,6 +15,10 @@ subtitle: (fuente SIVIGILA, Datos libres)
 params:
   year: 2020
   disease_name: "Dengue"
+vignette: >
+  %\VignetteIndexEntry{Dengue example}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
@@ -23,10 +28,13 @@ knitr::opts_chunk$set(include = TRUE,
                       message = FALSE,
                       echo = FALSE)
 library(sivirep)
+
+year <- 2020
+disease_name <- "Dengue"
 ```
 
 ---
-title: "Reporte Automatizado para `r params$disease_name`, Colombia `r params$year`"
+title: "Reporte Automatizado para `r disease_name`, Colombia `r year`"
 ---
 
 ```{r import_data, include = FALSE}

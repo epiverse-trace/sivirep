@@ -11,11 +11,11 @@
 Provides functions for data wrangling and automated reports from SIVIGILA source.
 }
 \author{
-\strong{Maintainer}: Geraldine GC3mez MillC!n \email{geralidine.gomez@javeriana.edu.co}
+\strong{Maintainer}: Geraldine Gómez Millán \email{geralidine.gomez@javeriana.edu.co}
 
 Authors:
 \itemize{
-  \item Zulma M. CucunubC!
+  \item Zulma M. Cucunubá
 }
 
 }
