@@ -95,7 +95,7 @@ plot_dept_map <- function(data_grouped,
     #                                  package = "sivirep"), 
      #                   stringsAsFactors = FALSE, 
       #                  verbose = FALSE)
-  shp <- sf::st_read(dsn = dsn) %>% sf::st_transform()
+  shp <- sf::st_read(dsn = dsn)
   colnames(shp)[colnames(shp) == "DPTO"] <- "id"
   shp <- ggplot2::fortify(shp, region = "id")
   shp <- shp %>%
