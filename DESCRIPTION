@@ -25,7 +25,8 @@ Imports:
     xml2,
     maptools,
     epitrix,
-    rgeos
+    rgeos,
+    sf
 Suggests: 
     knitr,
     rmarkdown

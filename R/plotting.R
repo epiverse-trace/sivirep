@@ -87,27 +87,38 @@ plot_dept_map <- function(data_grouped,
   }
   
   # maptools::gpclibPermit()
-
-  shp <- rgdal::readOGR(dsn = 
-                          system.file("extdata/depto_adm_shp", "depto.shp", 
-                                      package = "sivirep"), 
-                        stringsAsFactors = FALSE, 
-                        verbose = FALSE)
-  shp.df <- ggplot2::fortify(shp, region = "DPTO")
-  shp.df <- shp.df %>%
+  dsn <-  system.file("extdata/depto_adm_shp", "depto.shp", 
+                      package = "sivirep") 
+  
+  #shp <- rgdal::readOGR(dsn = 
+   #                       system.file("extdata/depto_adm_shp", "depto.shp", 
+    #                                  package = "sivirep"), 
+     #                   stringsAsFactors = FALSE, 
+      #                  verbose = FALSE)
+  shp <- sf::st_read(dsn = dsn) %>% sf::st_transform()
+  colnames(shp)[colnames(shp) == "DPTO"] <- "id"
+  shp <- ggplot2::fortify(shp, region = "id")
+  shp <- shp %>%
     dplyr::left_join(data_grouped, by = col_name_lj)
   
+  #map <- ggplot2::ggplot() +
+   # ggplot2::geom_polygon(
+    #  data = shp.df, ggplot2::aes(x = .data$X, y = .data$Y, 
+     #                             group = .data$group, fill = .data$casos),
+    #  colour = "black"
+    #) +
+    # ggplot2::scale_fill_gradient(low = "white", high = "darkred") +
+    # ggplot2::theme_void() +
+    # ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5)) +
+    # ggplot2::labs(caption = caption_label)
+  shp <- cbind(shp, sf::st_coordinates(sf::st_centroid(shp$geometry)))
   map <- ggplot2::ggplot() +
-    ggplot2::geom_polygon(
-      data = shp.df, ggplot2::aes(x = .data$long, y = .data$lat, 
-                                  group = .data$group, fill = .data$casos),
-      colour = "black"
-    ) +
-    ggplot2::scale_fill_gradient(low = "white", high = "darkred") +
-    ggplot2::theme_void() +
-    ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5)) +
-    ggplot2::labs(caption = caption_label)
-  
+    ggplot2::geom_sf() +
+    ggplot2::geom_sf(data = shp, ggplot2::aes(fill = .data$casos)) +
+         ggplot2::scale_fill_gradient(low = "white", high = "darkred") +
+         ggplot2::theme_void() +
+         ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5)) +
+         ggplot2::labs(caption = caption_label)
   return(map)
 }
 

@@ -326,7 +326,7 @@ The corresponding visualisation function is `plot_sex_epiweek` that
 provides `sivirep`:
 
 ```{r fig.height = 4, fig.width = 7}
-plot_sex_epiweek(data_grouped = cases_sex_epiweek)
+#plot_sex_epiweek(data_grouped = cases_sex_epiweek)
 ```
 
 ### 4.2. Age variable
@@ -343,13 +343,13 @@ with intervals of 10 years. Also, users can customise a different age
 range.
 
 ```{r}
-#cases_age <- group_age(disease_data = clean_disease_data, age_interval = 10)
+cases_age <- group_age(disease_data = clean_disease_data, age_interval = 10)
 ```
 
 The corresponding plot function is `plot_age`
 
 ```{r fig.height = 4, fig.width = 8}
-#plot_age(data_grouped = cases_age)
+plot_age(data_grouped = cases_age)
 ```
 
 ### 4.3. Age and sex simultaneously
@@ -360,15 +360,15 @@ number of cases and percentages. Also, the age interval can be
 customised.
 
 ```{r}
-#cases_age_sex <- group_age_sex(disease_data = clean_disease_data, 
-#                               age_interval = 10)
+cases_age_sex <- group_age_sex(disease_data = clean_disease_data, 
+                              age_interval = 10)
 
 ```
 
 The corresponding plotting function is `plot_age_sex`.
 
 ```{r fig.height = 3, fig.width = 7}
-#plot_age_sex(data_grouped = cases_age_sex)
+plot_age_sex(data_grouped = cases_age_sex)
 ```
 
 ### 5. Spatial distribution of cases
