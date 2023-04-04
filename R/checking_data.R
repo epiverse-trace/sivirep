@@ -112,7 +112,7 @@ group_columns_cases <- function(disease_data,
                                 col_names, 
                                 wt_percentage = FALSE) {
   disease_data_grouped <- disease_data %>%
-    dplyr::group_by(dplyr::across(dplyr::all_of(col_names))) %>%
+    dplyr::group_by_at(col_names) %>%
     dplyr::summarise(casos = dplyr::n(), .groups = "drop")
   if (wt_percentage) {
     disease_data_grouped <- 
@@ -158,7 +158,7 @@ group_age_range_cases <- function(disease_data,
         .data$edad,
         seq(min_val, max_val, step)
       )) %>%
-      eval(parse(text = paste0("dplyr::group_by(ranges,", var_a, ")"))) %>%
+      dplyr::group_by_at(c("ranges", var_a)) %>%
       dplyr::summarize(casos = sum(.data$casos), .groups = "drop") %>%
       as.data.frame()
     names(data_values_range)[names(data_values_range) == "ranges"] <- col_name
@@ -168,7 +168,7 @@ group_age_range_cases <- function(disease_data,
         .data$edad,
         seq(min_val, max_val, step)
       )) %>%
-      eval(parse(text = "dplyr::group_by(ranges)")) %>%
+      dplyr::group_by_at("ranges") %>%
       dplyr::summarize(casos = sum(.data$casos), .groups = "drop") %>%
       as.data.frame()
     names(data_values_range)[names(data_values_range) == "ranges"] <- col_name
@@ -193,7 +193,7 @@ group_columns_cases <- function(disease_data,
                                 col_names, 
                                 wt_percentage = FALSE) {
   disease_data_grouped <- disease_data %>%
-    dplyr::group_by(dplyr::across(dplyr::all_of(col_names))) %>%
+    dplyr::group_by_at(col_names) %>%
     dplyr::summarise(casos = dplyr::n(), .groups = "drop")
   if (wt_percentage) {
     disease_data_grouped <- 
