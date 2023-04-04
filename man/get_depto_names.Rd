@@ -17,5 +17,4 @@ Function that gets the department names
 }
 \examples{
 disease_data <- import_data_disease_by_year(2020, "DENGUE")
-get_depto_names(disease_data)
 }

@@ -21,5 +21,6 @@ Function that removes dates greater than the comparison value
 }
 \examples{
 disease_data <- import_linelist_disease_year(2019, "DENGUE")
+disease_data <- clean_header(disease_data)
 remove_error_dates(disease_data, col_init = "ini_sin", col_cmp = "fec_hos")
 }

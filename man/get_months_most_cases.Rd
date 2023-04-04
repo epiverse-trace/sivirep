@@ -33,8 +33,11 @@ Function that gets the months with the major number of cases
 }
 \examples{
 disease_data <- import_data_disease_by_year(2020, "DENGUE")
-get_months_most_cases(disease_data, col_dates, 
-                       col_cases, 
-                       top = 3, 
+disease_data <- clean_header(disease_data)
+cases_onset_symptoms_by_day <- group_onset_symptoms(disease_data, 
+get_months_most_cases(cases_onset_symptoms_by_day, 
+                       col_dates = "ini_sin",
+                       col_cases = "casos", 
+                       top = 3,
                        concat_values = TRUE)
 }

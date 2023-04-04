@@ -19,5 +19,6 @@ Function that cleans ages of the disease data
 }
 \examples{
 disease_data <- import_linelist_disease_year(2020, "DENGUE")
+disease_data <- clean_header(disease_data)
 clean_disease_ages(disease_data, col_name = "edad")
 }

@@ -10,8 +10,9 @@
 #' geo_codes <- import_geo_codes()
 #' depto_codes <- get_depto_codes(geo_codes)
 #' disease_data <- import_linelist_disease_year(2019, "DENGUE")
-#' data_grouped <- group_columns_cases(disease_data, "COD_DPTO_O", wt_percentage = TRUE)
-#' clean_depto_disease_codes(data_grouped, disease_data)
+#' disease_data <- clean_header(disease_data)
+#' data_grouped <- group_columns_cases(disease_data, "cod_dpto_o", wt_percentage = TRUE)
+#' clean_depto_disease_codes(depto_codes, data_grouped)
 #' @export
 clean_depto_disease_codes <- function(depto_codes, 
                                       disease_data, 
@@ -55,10 +56,11 @@ clean_depto_disease_codes <- function(depto_codes,
 #' @examples
 #' geo_codes <- import_geo_codes()
 #' disease_data <- import_linelist_disease_year(2019, "DENGUE")
+#' disease_data <- clean_header(disease_data)
 #' clean_depto_codes(disease_data, 
 #'                   col_data_codes = "cod_dpto_o", 
 #'                   geo_codes, 
-#'                   col_geo_codes = "c_digo_departamento")
+#'                   col_geo_codes = "codigo_departamento")
 #' @export
 clean_depto_codes <- function(disease_data, 
                               col_data_codes, 
@@ -96,6 +98,7 @@ clean_depto_codes <- function(disease_data,
 #' @return The ages in years
 #' @examples
 #' disease_data <- import_linelist_disease_year(2019, "DENGUE")
+#' disease_data <- clean_header(disease_data)
 #' parse_age_to_years(disease_data, col_age = "edad", col_uni_met = "uni_med")
 #' @export
 parse_age_to_years <- function(disease_data, 
@@ -122,7 +125,8 @@ parse_age_to_years <- function(disease_data,
 #' @return The clean data without NA, Infinitive or NaN values
 #' @examples
 #' disease_data <- import_linelist_disease_year(2019, "DENGUE")
-#' remove_nin_values(disease_data, name_col = "edad")
+#' disease_data <- clean_header(disease_data)
+#' remove_nin_values(disease_data, col_name = "edad")
 #' @export
 remove_nin_values <- function(disease_data, col_name) {
   ref_col <- paste0("disease_data$", col_name)
@@ -145,6 +149,7 @@ remove_nin_values <- function(disease_data, col_name) {
 #' @return The data without the erroneous dates
 #' @examples
 #' disease_data <- import_linelist_disease_year(2019, "DENGUE")
+#' disease_data <- clean_header(disease_data)
 #' remove_error_dates(disease_data, col_init = "ini_sin", col_cmp = "fec_hos")
 #' @export
 remove_error_dates <- function(disease_data, 
@@ -166,7 +171,8 @@ remove_error_dates <- function(disease_data,
 #' @return The data with formatted dates
 #' @examples
 #' disease_data <- import_linelist_disease_year(2020, "DENGUE")
-#' remove_error_dates(disease_data, 
+#' disease_data <- clean_header(disease_data)
+#' format_dates_values(disease_data, 
 #'                    date_format = "%AAAA-%MM-%DD", 
 #'                    col_names = c("ini_sin", "fec_hos"))
 #' @export
@@ -183,6 +189,20 @@ format_dates_values <- function(disease_data,
   return(clean_dates_disease_dt)
 }
 
+#' Clean the header labels of the disease data
+#'
+#' Function that cleans the header labels of the disease data
+#' @param disease_data The disease data
+#' @return Formatted header labels
+#' @examples
+#' disease_data <- import_linelist_disease_year(2019, "DENGUE")
+#' clean_header(disease_data)
+#' @export
+clean_header <- function(disease_data) {
+    names(disease_data) <- epitrix::clean_labels(names(disease_data))
+    return(disease_data)
+}
+
 #' Clean dates of the disease data 
 #'
 #' Function that cleans dates from the disease data
@@ -194,13 +214,18 @@ format_dates_values <- function(disease_data,
 #' @return The data with clean dates
 #' @examples
 #' disease_data <- import_linelist_disease_year(2020, "DENGUE")
+#' disease_data <- clean_header(disease_data)
 #' clean_disease_dates(disease_data, 
-#'                      year, 
+#'                      year = 2020, 
 #'                      date_format = "%AAAA-%MM-%DD", 
 #'                      col_name = "ini_sin", 
 #'                      col_cmp = "fec_hos")
 #' @export
-clean_disease_dates <- function(disease_data, year, date_format = "%AAAA-%MM-%DD", col_name = "ini_sin", col_cmp = NULL) {
+clean_disease_dates <- function(disease_data, 
+                                year, 
+                                date_format = "%AAAA-%MM-%DD", 
+                                col_name = "ini_sin", 
+                                col_cmp = NULL) {
   disease_dt_by_onset_sym <- disease_data
   if (!is.null(col_cmp)) {
     disease_dt_by_onset_sym <- remove_error_dates(
@@ -226,6 +251,7 @@ clean_disease_dates <- function(disease_data, year, date_format = "%AAAA-%MM-%DD
 #' @return The disease data with clean ages
 #' @examples
 #' disease_data <- import_linelist_disease_year(2020, "DENGUE")
+#' disease_data <- clean_header(disease_data)
 #' clean_disease_ages(disease_data, col_name = "edad")
 #' @export
 clean_disease_ages <- function(disease_data, col_name = "edad") {
@@ -245,7 +271,7 @@ clean_disease_ages <- function(disease_data, col_name = "edad") {
 #' cleansing_sivigila_data(disease_data, year)
 #' @export
 cleansing_sivigila_data <- function(disease_data, year) {
-  names(disease_data) <- epitrix::clean_labels(names(disease_data))
+  disease_data <- clean_header(disease_data)
   
   disease_data <- clean_disease_ages(disease_data)
   

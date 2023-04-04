@@ -22,6 +22,7 @@ specific disease
 }
 \examples{
 disease_data <- import_data_disease_by_year(2019, "DENGUE")
+disease_data <- clean_header(disease_data)
 departments_spacial_data <- group_dept(disease_data)
    plot_dept_map(departments_spacial_data, 
    col_name_lj = "id", 

@@ -22,5 +22,6 @@ SIVIGILA measurement units
 }
 \examples{
 disease_data <- import_linelist_disease_year(2019, "DENGUE")
+disease_data <- clean_header(disease_data)
 parse_age_to_years(disease_data, col_age = "edad", col_uni_met = "uni_med")
 }

@@ -22,5 +22,6 @@ Function that groups the disease data by sex and cases number
 }
 \examples{
 disease_data <- import_linelist_disease_year(2019, "DENGUE")
+disease_data <- clean_header(disease_data)
 group_sex(disease_data, col_name = "sexo", percentage = TRUE)
 }

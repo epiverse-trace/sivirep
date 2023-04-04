@@ -105,6 +105,7 @@ group_epiweek_cases <- function(disease_data) {
 #' @return The disease data grouped by a specific column name(s) and cases number
 #' @examples
 #' disease_data <- import_linelist_disease_year(2019, "DENGUE")
+#' disease_data <- clean_header(disease_data)
 #' group_columns_cases(disease_data, col_names = "sexo", wt_percentage = TRUE)
 #' group_columns_cases(disease_data, col_names = c("sexo", "semana"))
 #' @export
@@ -137,6 +138,7 @@ group_columns_cases <- function(disease_data,
 #' @return The disease data grouped by the age range and cases number
 #' @examples
 #' disease_data <- import_linelist_disease_year(2019, "DENGUE")
+#' disease_data <- clean_header(disease_data)
 #' disease_dt_by_age <- group_columns_cases(disease_data, c("edad", "semana"),
 #'   wt_percentage = TRUE
 #' )
@@ -186,6 +188,7 @@ group_age_range_cases <- function(disease_data,
 #' @return The disease data grouped by a specific column name(s) and cases number
 #' @examples
 #' disease_data <- import_linelist_disease_year(2019, "DENGUE")
+#' disease_data <- clean_header(disease_data)
 #' group_columns_cases(disease_data, col_names = "sexo", wt_percentage = TRUE)
 #' group_columns_cases(disease_data, col_names = c("sexo", "semana"))
 #' @export
@@ -216,6 +219,7 @@ group_columns_cases <- function(disease_data,
 #' @return The disease data grouped by symptom onset date and number of cases
 #' @examples
 #' disease_data <- import_linelist_disease_year(2019, "DENGUE")
+#' disease_data <- clean_header(disease_data)
 #' group_onset_symptoms(disease_data, col_name = "ini_sin", type = "month")
 #' @export
 group_onset_symptoms <- function(disease_data, 
@@ -249,6 +253,7 @@ group_onset_symptoms <- function(disease_data,
 #' @return The disease data grouped by notification date and cases
 #' @examples
 #' disease_data <- import_linelist_disease_year(2019, "DENGUE")
+#' disease_data <- clean_header(disease_data)
 #' group_notification_date(disease_data, col_name = "fec_not", type = "month")
 #' @export
 group_notification_date <- function(disease_data, 
@@ -278,6 +283,7 @@ group_notification_date <- function(disease_data,
 #' @return The disease data grouped by sex and cases number
 #' @examples
 #' disease_data <- import_linelist_disease_year(2019, "DENGUE")
+#' disease_data <- clean_header(disease_data)
 #' group_sex(disease_data, col_name = "sexo", percentage = TRUE)
 #' @export
 group_sex <- function(disease_data, 
@@ -300,6 +306,7 @@ group_sex <- function(disease_data,
 #' cases number
 #' @examples
 #' disease_data <- import_linelist_disease_year(2019, "DENGUE")
+#' disease_data <- clean_header(disease_data)
 #' group_sex_epiweek(disease_data, 
 #'                   col_names = c("sexo", "semana"), 
 #'                   percentage = TRUE)
@@ -322,6 +329,7 @@ group_sex_epiweek <- function(disease_data,
 #' @return The disease data grouped by age and cases
 #' @examples
 #' disease_data <- import_linelist_disease_year(2019, "DENGUE")
+#' disease_data <- clean_header(disease_data)
 #' group_age(disease_data, col_name = "edad", percentage = FALSE)
 #' @export
 group_age <- function(disease_data, 
@@ -353,6 +361,7 @@ group_age <- function(disease_data,
 #' @return The disease data grouped by ages, sex and number cases
 #' @examples
 #' disease_data <- import_linelist_disease_year(2019, "DENGUE")
+#' disease_data <- clean_header(disease_data)
 #' group_age_sex(disease_data, col_names = c("edad", "sexo"), percentage = TRUE)
 #' @export
 group_age_sex <- function(disease_data, 
@@ -387,6 +396,7 @@ group_age_sex <- function(disease_data,
 #' @return The disease data grouped by special populations and cases
 #' @examples
 #' disease_data <- import_linelist_disease_year(2019, "DENGUE")
+#' disease_data <- clean_header(disease_data)
 #' group_special_population(disease_data, 
 #'                          col_name = "poblacion", 
 #'                          percentage = TRUE)
@@ -410,6 +420,7 @@ group_special_population <- function(disease_data,
 #' @return The disease data grouped by department codes and cases number
 #' @examples
 #' disease_data <- import_linelist_disease_year(2019, "DENGUE")
+#' disease_data <- clean_header(disease_data)
 #' group_dept(disease_data, col_name = "cod_dpto_o", percentage = FALSE)
 #' @export
 group_dept <- function(disease_data, 

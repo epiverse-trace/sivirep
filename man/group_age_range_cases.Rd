@@ -34,6 +34,7 @@ Function that groups the disease data by age range and cases number
 }
 \examples{
 disease_data <- import_linelist_disease_year(2019, "DENGUE")
+disease_data <- clean_header(disease_data)
 disease_dt_by_age <- group_columns_cases(disease_data, c("edad", "semana"),
   wt_percentage = TRUE
 )

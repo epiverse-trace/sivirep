@@ -20,5 +20,6 @@ values includes NA, Infinitive or NaN
 }
 \examples{
 disease_data <- import_linelist_disease_year(2019, "DENGUE")
-remove_nin_values(disease_data, name_col = "edad")
+disease_data <- clean_header(disease_data)
+remove_nin_values(disease_data, col_name = "edad")
 }

@@ -26,6 +26,7 @@ Function that generates the plot of cases distribution by notification date
 }
 \examples{
 disease_data <- import_data_disease_by_year(2020, "DENGUE")
+disease_data <- clean_header(disease_data)
 data_grouped <- group_notification_date(disease_data, 
                                          col_name = "fec_not", 
                                          break_tick_date = "month")

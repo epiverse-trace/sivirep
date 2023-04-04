@@ -65,12 +65,15 @@ dataframe
 }
 \examples{
 disease_data <- import_data_disease_by_year(2019, "DENGUE")
-plot_variable(disease_data,
+disease_data <- clean_header(disease_data)
+cases_sex <- group_sex(disease_data, 
+                       percentage = TRUE)
+plot_variable(cases_sex,
   var_x = col_name,
   var_y = "casos",
   var_fill = col_name,
   var_per = "porcentaje",
-  label_x = "Genero",
+  label_x = "Sexo",
   label_y = "Numero de casos",
   scale_name = "Sexo",
   scale_labels = c("Femenino", "Masculino"),

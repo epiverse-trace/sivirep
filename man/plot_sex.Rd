@@ -21,6 +21,7 @@ Function that generates the plot of cases distribution by sex
 }
 \examples{
 disease_data <- import_data_disease_by_year(2020, "DENGUE")
+disease_data <- clean_header(disease_data)
 data_grouped <- group_sex(disease_data, col_name = "sexo", percentage = TRUE)
 plot_sex(data_grouped, col_name = "sexo", percentage = TRUE)
 }

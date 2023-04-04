@@ -29,6 +29,7 @@ cases number
 }
 \examples{
 disease_data <- import_linelist_disease_year(2019, "DENGUE")
+disease_data <- clean_header(disease_data)
 group_sex_epiweek(disease_data, 
                   col_names = c("sexo", "semana"), 
                   percentage = TRUE)

@@ -23,5 +23,6 @@ number of cases
 }
 \examples{
 disease_data <- import_linelist_disease_year(2019, "DENGUE")
+disease_data <- clean_header(disease_data)
 group_onset_symptoms(disease_data, col_name = "ini_sin", type = "month")
 }

@@ -29,9 +29,11 @@ Function that groups the disease data by a specific column name(s) and cases
 }
 \examples{
 disease_data <- import_linelist_disease_year(2019, "DENGUE")
+disease_data <- clean_header(disease_data)
 group_columns_cases(disease_data, col_names = "sexo", wt_percentage = TRUE)
 group_columns_cases(disease_data, col_names = c("sexo", "semana"))
 disease_data <- import_linelist_disease_year(2019, "DENGUE")
+disease_data <- clean_header(disease_data)
 group_columns_cases(disease_data, col_names = "sexo", wt_percentage = TRUE)
 group_columns_cases(disease_data, col_names = c("sexo", "semana"))
 }

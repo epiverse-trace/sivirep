@@ -27,6 +27,7 @@ epidemiological week
 }
 \examples{
 disease_data <- import_data_disease_by_year(2020, "DENGUE")
+disease_data <- clean_header(disease_data)
 data_grouped <- group_sex_and_week(disease_data, 
                                    col_names = c("sexo", "semana"), 
                                    percentage = TRUE)
