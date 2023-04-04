@@ -10,7 +10,7 @@
 #' geo_codes <- import_geo_codes()
 #' depto_codes <- get_depto_codes(geo_codes)
 #' disease_data <- import_linelist_disease_year(2019, "DENGUE")
-#' data_grouped <- group_columns_cases(disease_data, "cod_dpto_o", wt_percentage = TRUE)
+#' data_grouped <- group_columns_cases(disease_data, "COD_DPTO_O", wt_percentage = TRUE)
 #' clean_depto_disease_codes(data_grouped, disease_data)
 #' @export
 clean_depto_disease_codes <- function(depto_codes, 

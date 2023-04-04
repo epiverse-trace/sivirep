@@ -20,12 +20,9 @@ Imports:
     dplyr,
     ggplot2,
     httr,
-    rgdal,
     stringr,
     xml2,
-    maptools,
     epitrix,
-    rgeos,
     sf
 Suggests: 
     knitr,
