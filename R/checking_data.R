@@ -6,10 +6,12 @@
 #' @return Data filtered with the disease selected
 #' @examples
 #' sivigila_summary_data <- import_sivigila_summary_data()
+#' sivigila_summary_data <- clean_header(sivigila_summary_data)  
 #' filter_disease("MALAR", sivigila_summary_data)
 #' @export
 filter_disease <- function(name_disease, 
                            sivigila_summary_data) {
+  
   if ("conteo_casos" %in% names(sivigila_summary_data)) {
     names(sivigila_summary_data)[
       names(sivigila_summary_data) == "conteo_casos"] <- "casos"
@@ -53,12 +55,17 @@ get_depto_codes <- function(geo_codes) {
 #' get_special_population_cases(disease_data)
 #' @export
 get_special_population_cases <- function(disease_data) {
-  config_file <- system.file("extdata", "config.yml", package = "sivirep")
-  
-  special_populations <- config::get(file = config_file, 
-                                     "special_populations_cols")
-  special_populations_names <- config::get(config_file, 
-                                           "special_populations_names")
+
+  special_populations <- config::get(file = system.file(
+                                     "extdata", 
+                                      "config.yml", 
+                                      package = "sivirep"), 
+                          "special_populations_cols")
+  special_populations_names <- config::get(file = system.file(
+                                           "extdata", 
+                                           "config.yml", 
+                                           package = "sivirep"), 
+                                "special_populations_names")
   special_cases <- c()
   for (sp in special_populations) {
     special_cases <- append(special_cases, sum(
@@ -84,6 +91,7 @@ get_special_population_cases <- function(disease_data) {
 #' and cases number
 #' @examples
 #' disease_data <- import_linelist_disease_year(2019, "DENGUE")
+#' disease_data <- clean_header(disease_data)
 #' group_epiweek_cases(disease_data)
 #' @export
 group_epiweek_cases <- function(disease_data) {

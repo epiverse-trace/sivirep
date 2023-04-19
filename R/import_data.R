@@ -4,9 +4,7 @@
 #' @param url_data URL of SIVIGILA data
 #' @return The data downloaded in csv format
 #' @examples
-#' import_sivigila_summary_data(
-#'   "https://www.datos.gov.co/api/views/qvnt-2igj/rows.csv?accessType=DOWNLOAD"
-#' )
+#' import_sivigila_summary_data()
 #' @export
 import_sivigila_summary_data <- function(url_data = NULL) {
   if (is.null(url_data)) {

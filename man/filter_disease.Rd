@@ -19,5 +19,6 @@ Function that filters by disease name in a dataset
 }
 \examples{
 sivigila_summary_data <- import_sivigila_summary_data()
+sivigila_summary_data <- clean_header(sivigila_summary_data)  
 filter_disease("MALAR", sivigila_summary_data)
 }

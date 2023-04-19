@@ -39,6 +39,7 @@ Function that generates the graphic of the epidemiological weeks
 }
 \examples{
 sivigila_summary_data <- import_sivigila_summary_data()
+sivigila_summary_data <- clean_header(sivigila_summary_data)
 filtered_data <- filter_disease("MALAR", sivigila_summary_data)
 plot_epiweek(filtered_data, 
              col_week = "semana", 

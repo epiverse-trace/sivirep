@@ -64,7 +64,7 @@ Function that generates a graph by any type of variable or column of
 dataframe
 }
 \examples{
-disease_data <- import_data_disease_by_year(2019, "DENGUE")
+disease_data <- import_linelist_disease_year(2019, "DENGUE")
 disease_data <- clean_header(disease_data)
 cases_sex <- group_sex(disease_data, 
                        percentage = TRUE)

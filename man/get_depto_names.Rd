@@ -16,5 +16,5 @@ Dataframe with the department names
 Function that gets the department names
 }
 \examples{
-disease_data <- import_data_disease_by_year(2020, "DENGUE")
+disease_data <- import_linelist_disease_year(2020, "DENGUE")
 }

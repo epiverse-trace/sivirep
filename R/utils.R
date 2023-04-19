@@ -10,11 +10,10 @@
 #' the months as a string 
 #' @return Months major cases
 #' @examples
-#' disease_data <- import_data_disease_by_year(2020, "DENGUE")
+#' disease_data <- import_linelist_disease_year(2020, "DENGUE")
 #' disease_data <- clean_header(disease_data)
-#' cases_onset_symptoms_by_day <- group_onset_symptoms(disease_data, 
-#                                                      type = "day")
-#' get_months_most_cases(cases_onset_symptoms_by_day, 
+#' cases_onset_symptoms <- group_onset_symptoms(disease_data, type = "day")
+#' get_months_most_cases(cases_onset_symptoms, 
 #'                        col_dates = "ini_sin",
 #'                        col_cases = "casos", 
 #'                        top = 3,
@@ -52,7 +51,7 @@ get_months_most_cases <- function(disease_data,
 #' @param disease_data The disease data
 #' @return Dataframe with the department names
 #' @examples
-#' disease_data <- import_data_disease_by_year(2020, "DENGUE")
+#' disease_data <- import_linelist_disease_year(2020, "DENGUE")
 #' @export
 get_depto_names <- function(disease_data) {
   disease_data_deptos <- disease_data
@@ -86,13 +85,13 @@ get_depto_names <- function(disease_data) {
 #'  cases as a column
 #' @return Row with major cases
 #' @examples
-#' disease_data <- import_data_disease_by_year(2020, "DENGUE")
+#' disease_data <- import_linelist_disease_year(2020, "DENGUE")
 #' disease_data <- clean_header(disease_data)
 #' cases_sex <- group_sex(disease_data, 
 #'                        percentage = TRUE)
-#' get_most_cases(disease_data, 
+#' get_most_cases(cases_sex, 
 #'                col_name = "casos", 
-#'                percentage = T)
+#'                percentage = TRUE)
 #' @export
 get_most_cases <- function(disease_data, 
                            col_name = "casos", 

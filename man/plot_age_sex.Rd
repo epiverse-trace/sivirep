@@ -21,11 +21,11 @@ A plot of cases distribution by age and sex
 Function that generates the plot of cases distribution by age and sex
 }
 \examples{
-disease_data <- import_data_disease_by_year(2020, "DENGUE")
+disease_data <- import_linelist_disease_year(2020, "DENGUE")
 disease_data <- clean_header(disease_data)
-data_grouped <- group_by_age_and_week(disease_data, 
-                                       col_names = c("edad", "semana"), 
-                                       percentage = FALSE)
+data_grouped <- group_age_sex(disease_data, 
+                              col_names = c("edad", "sexo"), 
+                              percentage = FALSE)
 plot_age_sex(data_grouped, 
              col_names = c("edad", "sexo"), 
              percentage = FALSE)

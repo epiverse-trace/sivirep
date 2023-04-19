@@ -13,6 +13,7 @@
 #' @return The graphic of epidemiological weeks
 #' @examples
 #' sivigila_summary_data <- import_sivigila_summary_data()
+#' sivigila_summary_data <- clean_header(sivigila_summary_data)
 #' filtered_data <- filter_disease("MALAR", sivigila_summary_data)
 #' plot_epiweek(filtered_data, 
 #'              col_week = "semana", 
@@ -73,7 +74,7 @@ plot_epiweek <- function(dat,
 #' @param caption_label Caption or information source of the disease data
 #' @return The map by department with the cases number of a specific disease
 #' @examples
-#' disease_data <- import_data_disease_by_year(2019, "DENGUE")
+#' disease_data <- import_linelist_disease_year(2019, "DENGUE")
 #' disease_data <- clean_header(disease_data)
 #' departments_spacial_data <- group_dept(disease_data)
 #'    plot_dept_map(departments_spacial_data, 
@@ -145,7 +146,7 @@ plot_dept_map <- function(data_grouped,
 #' @param caption_label Caption or information source of the disease data
 #' @return The plot by variable(s) or column(s)
 #' @examples
-#' disease_data <- import_data_disease_by_year(2019, "DENGUE")
+#' disease_data <- import_linelist_disease_year(2019, "DENGUE")
 #' disease_data <- clean_header(disease_data)
 #' cases_sex <- group_sex(disease_data, 
 #'                        percentage = TRUE)
@@ -240,7 +241,7 @@ plot_variable <- function(data, var_x, var_y, var_per = NULL, var_fill = NULL,
 #' the symptom onset dates
 #' @return A plot of cases distribution by symptoms onset date
 #' @examples
-#' disease_data <- import_data_disease_by_year(2020, "DENGUE")
+#' disease_data <- import_linelist_disease_year(2020, "DENGUE")
 #' disease_data <- clean_header(disease_data)
 #' data_grouped <- group_by_onset_symptoms(
 #'                                          disease_data, 
@@ -286,7 +287,7 @@ plot_onset_symptoms <- function(data_grouped,
 #' the notification dates
 #' @return A plot of cases distribution by onset notification date
 #' @examples
-#' disease_data <- import_data_disease_by_year(2020, "DENGUE")
+#' disease_data <- import_linelist_disease_year(2020, "DENGUE")
 #' disease_data <- clean_header(disease_data)
 #' data_grouped <- group_notification_date(disease_data, 
 #'                                          col_name = "fec_not", 
@@ -328,7 +329,7 @@ plot_notification_date <- function(data_grouped,
 #' @param percentage Indicates if the data has percentages
 #' @return A plot of cases distribution by sex
 #' @examples
-#' disease_data <- import_data_disease_by_year(2020, "DENGUE")
+#' disease_data <- import_linelist_disease_year(2020, "DENGUE")
 #' disease_data <- clean_header(disease_data)
 #' data_grouped <- group_sex(disease_data, col_name = "sexo", percentage = TRUE)
 #' plot_sex(data_grouped, col_name = "sexo", percentage = TRUE)
@@ -362,7 +363,7 @@ plot_sex <- function(data_grouped,
 #' @param percentage Indicates if the data has percentages
 #' @return A plot of cases distribution by sex and epidemiological week
 #' @examples
-#' disease_data <- import_data_disease_by_year(2020, "DENGUE")
+#' disease_data <- import_linelist_disease_year(2020, "DENGUE")
 #' disease_data <- clean_header(disease_data)
 #' data_grouped <- group_sex_and_week(disease_data, 
 #'                                    col_names = c("sexo", "semana"), 
@@ -401,7 +402,7 @@ plot_sex_epiweek <- function(data_grouped,
 #' @param percentage Indicates if the data has percentages
 #' @return A plot of cases distribution by age
 #' @examples
-#' disease_data <- import_data_disease_by_year(2020, "DENGUE")
+#' disease_data <- import_linelist_disease_year(2020, "DENGUE")
 #' disease_data <- clean_header(disease_data)
 #' data_grouped <- group_age(disease_data, 
 #'                            col_name = "edad", 
@@ -437,11 +438,11 @@ plot_age <- function(data_grouped,
 #' the ages and the epidemiological weeks
 #' @return A plot of cases distribution by age and sex
 #' @examples
-#' disease_data <- import_data_disease_by_year(2020, "DENGUE")
+#' disease_data <- import_linelist_disease_year(2020, "DENGUE")
 #' disease_data <- clean_header(disease_data)
-#' data_grouped <- group_by_age_and_week(disease_data, 
-#'                                        col_names = c("edad", "semana"), 
-#'                                        percentage = FALSE)
+#' data_grouped <- group_age_sex(disease_data, 
+#'                               col_names = c("edad", "sexo"), 
+#'                               percentage = FALSE)
 #' plot_age_sex(data_grouped, 
 #'              col_names = c("edad", "sexo"), 
 #'              percentage = FALSE)
@@ -472,7 +473,7 @@ plot_age_sex <- function(data_grouped,
 #' @param percentage Indicates if the data has percentages
 #' @return A plot of cases distribution by special population
 #' @examples
-#' disease_data <- import_data_disease_by_year(2020, "DENGUE")
+#' disease_data <- import_linelist_disease_year(2020, "DENGUE")
 #' disease_data <- clean_header(disease_data)
 #' data_grouped <- group_by_age_and_sex(disease_data, 
 #'                                      col_names = c("edad", "sexo"), 
@@ -497,4 +498,4 @@ plot_special_population <- function(data_grouped,
                                                     show_val = percentage) +
     ggplot2::theme(legend.position = "bottom")
   return(plot_cases_by_special_population)
-}
+} 

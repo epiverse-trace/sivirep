@@ -233,13 +233,14 @@ clean_disease_dates <- function(disease_data,
       col_name, col_cmp)
   }
   
-  disease_dt_by_onset_sym[order(eval(parse(text = 
-                                             paste0("disease_dt_by_onset_sym$", 
-                                                    col_name))), 
-                                decreasing = TRUE), ]
+  disease_dt_by_onset_sym[
+    order(eval(parse(text = paste0("disease_dt_by_onset_sym$", col_name))), 
+          decreasing = TRUE), ]
+  
   disease_dt_by_onset_sym <- disease_dt_by_onset_sym[format(eval(
     parse(text = paste0("disease_dt_by_onset_sym$", col_name))
   ), "%Y") == year, ]
+  
   return(disease_dt_by_onset_sym)
 }
 
