@@ -20,11 +20,10 @@ Imports:
     dplyr,
     ggplot2,
     httr,
-    rgdal,
     stringr,
     xml2,
-    maptools,
-    epitrix
+    epitrix,
+    sf
 Suggests: 
     knitr,
     rmarkdown

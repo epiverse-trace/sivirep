@@ -2,7 +2,7 @@
 % Please edit documentation in R/import_data.R
 \name{import_data_endemic_channel}
 \alias{import_data_endemic_channel}
-\title{Import Data Endemic Channel}
+\title{Import data of a disease to build its endemic channel}
 \usage{
 import_data_endemic_channel(disease_name, year)
 }
@@ -15,8 +15,8 @@ import_data_endemic_channel(disease_name, year)
 The last five years data of a disease
 }
 \description{
-Función que importa la informacion del SIVIGILA para la construcción del canal endémico
-Function that imports SIVIGILA for building the endemic channel
+Function that imports the last five years of a disease data for building
+the endemic channel from SIVIGILA source
 }
 \examples{
 import_data_endemic_channel("MALARIA", 2020)

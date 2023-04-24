@@ -2,23 +2,23 @@
 % Please edit documentation in R/checking_data.R
 \name{filter_disease}
 \alias{filter_disease}
-\title{Filter Disease}
+\title{Filter disease}
 \usage{
 filter_disease(name_disease, sivigila_summary_data)
 }
 \arguments{
 \item{name_disease}{Name of the disease}
 
-\item{sivigila_summary_data}{Data set}
+\item{sivigila_summary_data}{The data set}
 }
 \value{
-The filtered data with the disease selected
+Data filtered with the disease selected
 }
 \description{
-Función que filtra en un conjunto de datos por el nombre de la enfermedad
-Function that filters in a dataset by the disease name
+Function that filters by disease name in a dataset
 }
 \examples{
 sivigila_summary_data <- import_sivigila_summary_data()
+sivigila_summary_data <- clean_header(sivigila_summary_data)
 filter_disease("MALAR", sivigila_summary_data)
 }
