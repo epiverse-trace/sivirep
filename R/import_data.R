@@ -10,7 +10,7 @@ import_sivigila_summary_data <- function(url_data = NULL) {
   if (is.null(url_data)) {
     url_data <- config::get(
       file = system.file("extdata", "config.yml",
-                         package = "sivirep"), 
+                         package = "sivirep"),
       "sivigila_open_data_path")
   }
   data <- utils::read.csv(url_data)
@@ -19,10 +19,10 @@ import_sivigila_summary_data <- function(url_data = NULL) {
 
 #' Import geographical data of Colombia
 #'
-#' Function that imports the names and codes of the departments and 
+#' Function that imports the names and codes of the departments and
 #' municipalities of Colombia through a URL
 #' @param url_data URL of geographical data
-#' @return A data frame with the names and codes of the departments and 
+#' @return A data frame with the names and codes of the departments and
 #' municipalities of Colombia in csv format
 #' @examples
 #' import_geo_codes(
@@ -32,7 +32,7 @@ import_geo_codes <- function(url_data = NULL) {
   if (is.null(url_data)) {
     url_data <- config::get(
       file = system.file("extdata", "config.yml",
-                         package = "sivirep"), 
+                         package = "sivirep"),
       "geo_data_path")
   }
   data <- utils::read.csv(url_data)
@@ -42,7 +42,7 @@ import_geo_codes <- function(url_data = NULL) {
 
 #' Import data with a specific separator
 #'
-#' Function that identifies the separator with which the information 
+#' Function that identifies the separator with which the information
 #' comes to be able to tabulate it
 #' @param path_data Path or URL of SIVIGILA data
 #' @return A data frame
@@ -51,7 +51,7 @@ import_geo_codes <- function(url_data = NULL) {
 #'  "https://www.datos.gov.co/api/views/qvnt-2igj/rows.csv?accessType=DOWNLOAD")
 #' @export
 import_data_separator <- function(path_data) {
-  delims <- config::get(file = system.file("extdata", "config.yml", 
+  delims <- config::get(file = system.file("extdata", "config.yml",
                                            package = "sivirep"), "data_delim")
   data <- data.frame()
   for (delim in delims) {
@@ -60,17 +60,15 @@ import_data_separator <- function(path_data) {
       break
     }
   }
-  
   if (nrow(data) == 0) {
     data <- data.table::fread(path_data)
   }
-  
   return(data)
 }
 
 #' Import data of a disease to build its endemic channel
 #'
-#' Function that imports the last five years of a disease data for building 
+#' Function that imports the last five years of a disease data for building
 #' the endemic channel from SIVIGILA source
 #' @param disease_name The disease name
 #' @param year Last year
@@ -85,35 +83,34 @@ import_data_endemic_channel <- function(disease_name, year) {
 
 #' Import diseases and years available for download from the SIVIGILA microdata
 #'
-#' Function that obtains the diseases and the years available from 
+#' Function that obtains the diseases and the years available from
 #' the SIVIGILA microdata source
-#' @return The diseases and the years available from the SIVIGILA 
+#' @return The diseases and the years available from the SIVIGILA
 #' microdata source
 #' @examples
 #' list_available_diseases_years()
 #' @export
 list_available_diseases_years <- function() {
-  query_diseases_by_year_path <- config::get(file = 
-                                               system.file("extdata", "config.yml", 
-                                                           package = "sivirep"), 
-                                             "query_diseases_by_year_path")
-  get_query_diseases_by_year <- httr::GET(query_diseases_by_year_path, 
+  query_diseases_by_year_path <- config::get(file =
+                                        system.file("extdata", "config.yml",
+                                            package = "sivirep"),
+                                            "query_diseases_by_year_path")
+  get_query_diseases_by_year <- httr::GET(query_diseases_by_year_path,
                                           httr::add_headers("Accept" = "*/*"))
-  
   content_type_response <- stringr::str_split_fixed(httr::headers(
-    get_query_diseases_by_year)$`content-type`, 
+    get_query_diseases_by_year)$`content-type`,
     pattern = ";", 3)
-  content_type_response <- stringr::str_replace(content_type_response[[1]], "atom\\+", "")
-  query_diseases_by_year_content <- httr::content(get_query_diseases_by_year, 
-                                                  type = content_type_response, 
+  content_type_response <- stringr::str_replace(
+                              content_type_response[[1]],
+                              "atom\\+", "")
+  query_diseases_by_year_content <- httr::content(get_query_diseases_by_year,
+                                                  type = content_type_response,
                                                   encoding = "UTF-8")
-  
   children <- xml2::xml_children(query_diseases_by_year_content)
   children <- xml2::xml_children(children)
   children <- xml2::xml_children(children)
   children <- xml2::xml_children(children)
   children_text <- xml2::xml_text(children)
-  
   i <- 2
   name_diseases <- c()
   years_diseases <- c()
@@ -121,28 +118,22 @@ list_available_diseases_years <- function() {
   children_text <- children_text[-base::seq(3, length(children_text), 3)]
   while (i < base::length(children)) {
     disease <- xml2::xml_text(children[i])
-    
     name_diseases <- base::append(name_diseases, disease)
     tmp_diseases <- base::which(children_text == disease)
-    
     tmp_years <- tmp_diseases - 1
     years_diseases <- base::append(years_diseases, base::toString(
       base::sort(
-        children_text[tmp_years], 
+        children_text[tmp_years],
         decreasing = FALSE)))
-    
     children <- children[-tmp_years]
     children_text <- children_text[-(tmp_diseases - 1)]
-    
     children <- children[-base::which(children_text == disease)]
     children_text <- children_text[-base::which(children_text == disease)]
-    
     i <- i + 2
   }
-  
-  list_available_diseases_and_years <- data.frame(enfermedad = name_diseases, 
+  list_available_diseases_years <- data.frame(enfermedad = name_diseases,
                                                   aa = years_diseases)
-  return(list_available_diseases_and_years)
+  return(list_available_diseases_years)
 }
 
 #' Import data of a disease by year from the SIVIGILA microdata source
@@ -155,14 +146,12 @@ list_available_diseases_years <- function() {
 #' @examples
 #' import_linelist_disease_year(2018, "DENGUE")
 #' @export
-import_linelist_disease_year <- function(year, 
-                                         disease_name, 
+import_linelist_disease_year <- function(year,
+                                         disease_name,
                                          cache = TRUE) {
   data_url <- get_path_data_disease_year(year, disease_name)
   data_disease_by_year <- data.frame()
-  
   data_disease_by_year <- import_data_separator(data_url)
-  
   return(data_disease_by_year)
 }
 
@@ -175,9 +164,9 @@ import_linelist_disease_year <- function(year,
 #' get_name_file_path("DENGUE")
 #' @export
 get_name_file_path <- function(path) {
-  name_file <- strsplit(path, config::get(file = 
-                                            system.file("extdata", "config.yml", 
-                                                        package = "sivirep"), 
+  name_file <- strsplit(path, config::get(file =
+                                 system.file("extdata", "config.yml",
+                                             package = "sivirep"),
                                           "name_file_split"))
   name_file <- strsplit(name_file[[1]][2], "')")[[1]][1] %>% as.character()
   return(name_file)

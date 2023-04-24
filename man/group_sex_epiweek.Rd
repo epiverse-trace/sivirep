@@ -13,24 +13,24 @@ group_sex_epiweek(
 \arguments{
 \item{disease_data}{The disease data}
 
-\item{col_names}{Column names in the disease data that contains the sex and 
-the epidemiological weeks}
+\item{col_names}{Column names in the disease data that contains the
+sex and the epidemiological weeks}
 
-\item{percentage}{Indicates if it is required to add a 
+\item{percentage}{Indicates if it is required to add a
 percentage of cases as a column}
 }
 \value{
-The disease data grouped by sex, epidemiological week and 
+The disease data grouped by sex, epidemiological week and
 cases number
 }
 \description{
-Function that groups the disease data by sex, epidemiological week and 
-cases number
+Function that groups the disease data by sex, epidemiological
+week and cases number
 }
 \examples{
 disease_data <- import_linelist_disease_year(2019, "DENGUE")
 disease_data <- clean_header(disease_data)
-group_sex_epiweek(disease_data, 
-                  col_names = c("sexo", "semana"), 
+group_sex_epiweek(disease_data,
+                  col_names = c("sexo", "semana"),
                   percentage = TRUE)
 }

@@ -13,10 +13,10 @@ group_special_population(
 \arguments{
 \item{disease_data}{The disease data}
 
-\item{col_name}{Column name in the disease data that contains 
+\item{col_name}{Column name in the disease data that contains
 the special populations}
 
-\item{percentage}{Indicates if it is required to add a 
+\item{percentage}{Indicates if it is required to add a
 percentage of cases as a column}
 }
 \value{
@@ -28,7 +28,7 @@ Function that groups the disease data by special population and cases
 \examples{
 disease_data <- import_linelist_disease_year(2019, "DENGUE")
 disease_data <- clean_header(disease_data)
-group_special_population(disease_data, 
-                         col_name = "poblacion", 
+group_special_population(disease_data,
+                         col_name = "poblacion",
                          percentage = TRUE)
 }

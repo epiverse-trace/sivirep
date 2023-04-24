@@ -11,13 +11,14 @@ parse_age_to_years(disease_data, col_age = "edad", col_uni_met = "uni_med")
 
 \item{col_age}{Column name in the disease data that contains the ages}
 
-\item{col_uni_met}{Column name in the disease data that contains the measurement units}
+\item{col_uni_met}{Column name in the disease data that contains the
+measurement units}
 }
 \value{
 The ages in years
 }
 \description{
-Function that converts ages into years according to 
+Function that converts ages into years according to
 SIVIGILA measurement units
 }
 \examples{

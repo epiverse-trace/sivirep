@@ -16,7 +16,7 @@ group_age(
 
 \item{col_name}{Column name in the disease data that contains the ages}
 
-\item{percentage}{Indicates if it is required to add a 
+\item{percentage}{Indicates if it is required to add a
 percentage of cases as a column}
 
 \item{age_interval}{The interval of age range}

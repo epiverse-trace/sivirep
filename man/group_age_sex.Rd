@@ -14,9 +14,10 @@ group_age_sex(
 \arguments{
 \item{disease_data}{The disease data}
 
-\item{col_names}{Column names in the disease data that contains the ages and sex}
+\item{col_names}{Column names in the disease data that contains
+the ages and sex}
 
-\item{percentage}{Indicates if it is required to add a 
+\item{percentage}{Indicates if it is required to add a
 percentage of cases as a column}
 
 \item{age_interval}{The interval of age range}

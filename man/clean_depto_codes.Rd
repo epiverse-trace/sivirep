@@ -9,12 +9,12 @@ clean_depto_codes(disease_data, col_data_codes, geo_data, col_geo_codes)
 \arguments{
 \item{disease_data}{The disease data}
 
-\item{col_data_codes}{Column name in the disease data that contains 
+\item{col_data_codes}{Column name in the disease data that contains
 the department codes}
 
 \item{geo_data}{Geographical data that includes the departments codes}
 
-\item{col_geo_codes}{Column name in the geographical data than 
+\item{col_geo_codes}{Column name in the geographical data than
 contains the department codes}
 }
 \value{
@@ -27,8 +27,8 @@ Function that cleans the department codes of the disease data
 geo_codes <- import_geo_codes()
 disease_data <- import_linelist_disease_year(2019, "DENGUE")
 disease_data <- clean_header(disease_data)
-clean_depto_codes(disease_data, 
-                  col_data_codes = "cod_dpto_o", 
-                  geo_codes, 
+clean_depto_codes(disease_data,
+                  col_data_codes = "cod_dpto_o",
+                  geo_codes,
                   col_geo_codes = "codigo_departamento")
 }

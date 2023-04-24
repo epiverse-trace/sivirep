@@ -17,10 +17,10 @@ plot_epiweek(
 \arguments{
 \item{dat}{The disease data}
 
-\item{col_week}{Column name in the disease data that contains 
+\item{col_week}{Column name in the disease data that contains
 the epidemiological weeks}
 
-\item{col_cases}{Column Name in the disease data that contains 
+\item{col_cases}{Column Name in the disease data that contains
 the cases number}
 
 \item{year}{Year of the disease data}
@@ -41,10 +41,10 @@ Function that generates the graphic of the epidemiological weeks
 sivigila_summary_data <- import_sivigila_summary_data()
 sivigila_summary_data <- clean_header(sivigila_summary_data)
 filtered_data <- filter_disease("MALAR", sivigila_summary_data)
-plot_epiweek(filtered_data, 
-             col_week = "semana", 
-             col_cases = "conteo_casos", 
-             year = 2019, 
-             type = "date", 
+plot_epiweek(filtered_data,
+             col_week = "semana",
+             col_cases = "casos",
+             year = 2019,
+             type = "date",
              xlabel = "Fecha de semana epidemiologica")
 }

@@ -9,7 +9,7 @@ get_most_cases(disease_data, col_name = "casos", percentage = TRUE)
 \arguments{
 \item{disease_data}{The disease data}
 
-\item{col_name}{Column name in the disease data that contains 
+\item{col_name}{Column name in the disease data that contains
 the cases number}
 
 \item{percentage}{Indicates if it is required to add a percentage of
@@ -24,9 +24,9 @@ Function that gets the row with the major number of cases
 \examples{
 disease_data <- import_linelist_disease_year(2020, "DENGUE")
 disease_data <- clean_header(disease_data)
-cases_sex <- group_sex(disease_data, 
+cases_sex <- group_sex(disease_data,
                        percentage = TRUE)
-get_most_cases(cases_sex, 
-               col_name = "casos", 
+get_most_cases(cases_sex,
+               col_name = "casos",
                percentage = TRUE)
 }

@@ -10,11 +10,11 @@ import_geo_codes(url_data = NULL)
 \item{url_data}{URL of geographical data}
 }
 \value{
-A data frame with the names and codes of the departments and 
+A data frame with the names and codes of the departments and
 municipalities of Colombia in csv format
 }
 \description{
-Function that imports the names and codes of the departments and 
+Function that imports the names and codes of the departments and
 municipalities of Colombia through a URL
 }
 \examples{

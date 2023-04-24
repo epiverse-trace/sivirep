@@ -9,10 +9,10 @@ group_dept(disease_data, col_name = "cod_dpto_o", percentage = FALSE)
 \arguments{
 \item{disease_data}{The disease data}
 
-\item{col_name}{Column name in the disease data that contains 
+\item{col_name}{Column name in the disease data that contains
 the department codes}
 
-\item{percentage}{Indicates if it is required to add a 
+\item{percentage}{Indicates if it is required to add a
 percentage of cases as a column}
 }
 \value{

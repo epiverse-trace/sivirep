@@ -23,10 +23,10 @@ Function that generates the plot of cases distribution by age and sex
 \examples{
 disease_data <- import_linelist_disease_year(2020, "DENGUE")
 disease_data <- clean_header(disease_data)
-data_grouped <- group_age_sex(disease_data, 
-                              col_names = c("edad", "sexo"), 
+data_grouped <- group_age_sex(disease_data,
+                              col_names = c("edad", "sexo"),
                               percentage = FALSE)
-plot_age_sex(data_grouped, 
-             col_names = c("edad", "sexo"), 
+plot_age_sex(data_grouped,
+             col_names = c("edad", "sexo"),
              percentage = FALSE)
 }

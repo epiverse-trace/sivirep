@@ -9,7 +9,7 @@ group_notification_date(disease_data, col_name = "fec_not", type = "month")
 \arguments{
 \item{disease_data}{The disease data}
 
-\item{col_name}{Column name in the disease data that contains 
+\item{col_name}{Column name in the disease data that contains
 the notification dates}
 
 \item{type}{Time unit (day, month and year)}

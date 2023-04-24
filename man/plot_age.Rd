@@ -9,7 +9,7 @@ plot_age(data_grouped, col_name = "edad", percentage = FALSE)
 \arguments{
 \item{data_grouped}{The disease data grouped}
 
-\item{col_name}{Column name in the disease data grouped that contains 
+\item{col_name}{Column name in the disease data grouped that contains
 the ages}
 
 \item{percentage}{Indicates if the data has percentages}
@@ -23,10 +23,10 @@ Function that generates the plot of cases distribution by age
 \examples{
 disease_data <- import_linelist_disease_year(2020, "DENGUE")
 disease_data <- clean_header(disease_data)
-data_grouped <- group_age(disease_data, 
-                           col_name = "edad", 
+data_grouped <- group_age(disease_data,
+                           col_name = "edad",
                            percentage = FALSE)
-plot_age(data_grouped, 
-         col_name = "edad", 
+plot_age(data_grouped,
+         col_name = "edad",
          percentage = FALSE)
 }

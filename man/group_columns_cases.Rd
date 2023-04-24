@@ -13,24 +13,29 @@ group_columns_cases(disease_data, col_names, wt_percentage = FALSE)
 
 \item{col_names}{The column name(s)}
 
-\item{wt_percentage}{Indicates if it is required to add a percentage 
+\item{wt_percentage}{Indicates if it is required to add a percentage
 of cases as a column}
 }
 \value{
-The disease data grouped by a specific column name(s) and cases number
+The disease data grouped by a specific column name(s) and
+cases number
 
-The disease data grouped by a specific column name(s) and cases number
+The disease data grouped by a specific column name(s) and cases
+number
 }
 \description{
-Function that groups the disease data by a specific column name(s) 
+Function that groups the disease data by a specific column name(s)
 and cases number
 
-Function that groups the disease data by a specific column name(s) and cases
+Function that groups the disease data by a specific column name(s) and
+cases
 }
 \examples{
 disease_data <- import_linelist_disease_year(2019, "DENGUE")
 disease_data <- clean_header(disease_data)
-group_columns_cases(disease_data, col_names = "sexo", wt_percentage = TRUE)
+group_columns_cases(disease_data,
+                    col_names = "sexo",
+                    wt_percentage = TRUE)
 group_columns_cases(disease_data, col_names = c("sexo", "semana"))
 disease_data <- import_linelist_disease_year(2019, "DENGUE")
 disease_data <- clean_header(disease_data)

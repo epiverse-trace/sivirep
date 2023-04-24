@@ -17,12 +17,12 @@ get_months_most_cases(
 
 \item{col_dates}{Column names in the disease data that contains the dates}
 
-\item{col_cases}{Column name in the disease data that contains 
+\item{col_cases}{Column name in the disease data that contains
 the cases number}
 
 \item{top}{Top}
 
-\item{concat_values}{Indicates if it is required to concatenate 
+\item{concat_values}{Indicates if it is required to concatenate
 the months as a string}
 }
 \value{
@@ -35,9 +35,9 @@ Function that gets the months with the major number of cases
 disease_data <- import_linelist_disease_year(2020, "DENGUE")
 disease_data <- clean_header(disease_data)
 cases_onset_symptoms <- group_onset_symptoms(disease_data, type = "day")
-get_months_most_cases(cases_onset_symptoms, 
+get_months_most_cases(cases_onset_symptoms,
                        col_dates = "ini_sin",
-                       col_cases = "casos", 
+                       col_cases = "casos",
                        top = 3,
                        concat_values = TRUE)
 }

@@ -11,7 +11,7 @@ clean_depto_disease_codes(depto_codes, disease_data, make_group = TRUE)
 
 \item{disease_data}{The disease data}
 
-\item{make_group}{Indicates if it is necessary to group by 
+\item{make_group}{Indicates if it is necessary to group by
 department IDs and case numbers}
 }
 \value{
@@ -25,6 +25,8 @@ geo_codes <- import_geo_codes()
 depto_codes <- get_depto_codes(geo_codes)
 disease_data <- import_linelist_disease_year(2019, "DENGUE")
 disease_data <- clean_header(disease_data)
-data_grouped <- group_columns_cases(disease_data, "cod_dpto_o", wt_percentage = TRUE)
+data_grouped <- group_columns_cases(disease_data,
+                                    "cod_dpto_o",
+                                    wt_percentage = TRUE)
 clean_depto_disease_codes(depto_codes, data_grouped)
 }

@@ -26,7 +26,7 @@ Function that gives a specific format to a date
 \examples{
 disease_data <- import_linelist_disease_year(2020, "DENGUE")
 disease_data <- clean_header(disease_data)
-format_dates_values(disease_data, 
-                   date_format = "\%AAAA-\%MM-\%DD", 
+format_dates_values(disease_data,
+                   date_format = "\%AAAA-\%MM-\%DD",
                    col_names = c("ini_sin", "fec_hos"))
 }

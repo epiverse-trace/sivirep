@@ -15,7 +15,7 @@ remove_nin_values(disease_data, col_name)
 The clean data without NA, Infinitive or NaN values
 }
 \description{
-Function that removes a rows if the selected column 
+Function that removes a rows if the selected column
 values includes NA, Infinitive or NaN
 }
 \examples{

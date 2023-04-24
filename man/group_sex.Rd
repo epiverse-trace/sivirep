@@ -11,7 +11,7 @@ group_sex(disease_data, col_name = "sexo", percentage = TRUE)
 
 \item{col_name}{Column name in the disease data that contains the sex}
 
-\item{percentage}{Indicates if it is required to add a 
+\item{percentage}{Indicates if it is required to add a
 percentage of cases as a column}
 }
 \value{

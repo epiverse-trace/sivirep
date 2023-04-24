@@ -60,18 +60,18 @@ plot_variable(
 The plot by variable(s) or column(s)
 }
 \description{
-Function that generates a graph by any type of variable or column of 
+Function that generates a graph by any type of variable or column of
 dataframe
 }
 \examples{
 disease_data <- import_linelist_disease_year(2019, "DENGUE")
 disease_data <- clean_header(disease_data)
-cases_sex <- group_sex(disease_data, 
+cases_sex <- group_sex(disease_data,
                        percentage = TRUE)
 plot_variable(cases_sex,
-  var_x = col_name,
+  var_x = "sexo",
   var_y = "casos",
-  var_fill = col_name,
+  var_fill = "sexo",
   var_per = "porcentaje",
   label_x = "Sexo",
   label_y = "Numero de casos",
@@ -80,6 +80,6 @@ plot_variable(cases_sex,
   legend_pos = "right",
   bar_wd = 0.5,
   text_sz = 3,
-  show_val = percentage
+  show_val = TRUE
   )
 }

@@ -17,14 +17,14 @@ plot_dept_map(data_grouped, col_name_lj = "id", caption_label = NULL)
 The map by department with the cases number of a specific disease
 }
 \description{
-Function that generates the map by department with the cases number of a 
+Function that generates the map by department with the cases number of a
 specific disease
 }
 \examples{
 disease_data <- import_linelist_disease_year(2019, "DENGUE")
 disease_data <- clean_header(disease_data)
 departments_spacial_data <- group_dept(disease_data)
-   plot_dept_map(departments_spacial_data, 
-   col_name_lj = "id", 
+   plot_dept_map(departments_spacial_data,
+   col_name_lj = "id",
    caption_label = "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia")
 }

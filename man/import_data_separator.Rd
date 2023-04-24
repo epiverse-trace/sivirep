@@ -13,7 +13,7 @@ import_data_separator(path_data)
 A data frame
 }
 \description{
-Function that identifies the separator with which the information 
+Function that identifies the separator with which the information
 comes to be able to tabulate it
 }
 \examples{

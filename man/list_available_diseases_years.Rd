@@ -7,11 +7,11 @@
 list_available_diseases_years()
 }
 \value{
-The diseases and the years available from the SIVIGILA 
+The diseases and the years available from the SIVIGILA
 microdata source
 }
 \description{
-Function that obtains the diseases and the years available from 
+Function that obtains the diseases and the years available from
 the SIVIGILA microdata source
 }
 \examples{

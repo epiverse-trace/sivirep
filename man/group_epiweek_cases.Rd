@@ -10,11 +10,11 @@ group_epiweek_cases(disease_data)
 \item{disease_data}{The disease data}
 }
 \value{
-The disease data grouped by epidemiological week 
+The disease data grouped by epidemiological week
 and cases number
 }
 \description{
-Function that groups the disease data by epidemiological week 
+Function that groups the disease data by epidemiological week
 and cases number
 }
 \examples{
