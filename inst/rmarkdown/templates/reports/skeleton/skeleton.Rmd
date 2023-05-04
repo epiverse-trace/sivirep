@@ -2,9 +2,9 @@
 author: "TRACE-LAC"
 date: "`r Sys.Date()`"
 output:
-  html_document:
-    number_sections: true
   pdf_document: 
+    number_sections: true
+  html_document:
     number_sections: true
   word_document: 
     number_sections: true
@@ -137,9 +137,13 @@ plot_special_population(cases_special_population)
 
 # Distribución espacial de casos
 
-```{r map_distribution_spatial, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, fig.height = 10, fig.width = 10, fig.cap =  "Distribucion espacial de casos"}
+```{r plot_distribution_spatial,  results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE, fig.height = 10, fig.width = 10, fig.cap =  "Distribucion espacial de casos"}
 spatial_dept_dist <- group_dept(disease_data = clean_disease_data)
-plot_dept_map(data_grouped = spatial_dept_dist)
+map <- plot_dept_map(data_grouped = spatial_dept_dist)
+```
+
+```{r map_distribution_spatial, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, echo=FALSE, cache=FALSE, results=FALSE, warning=FALSE, comment=FALSE, warning=FALSE, fig.height = 10, fig.width = 10, fig.cap =  "Distribucion espacial de casos"}
+map
 ```
 
 \newpage
