@@ -137,7 +137,7 @@ plot_special_population(cases_special_population)
 
 # Distribución espacial de casos
 
-```{r plot_distribution_spatial,  results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE, fig.height = 10, fig.width = 10, fig.cap =  "Distribucion espacial de casos"}
+```{r plot_distribution_spatial,  results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
 spatial_dept_dist <- group_dept(disease_data = clean_disease_data)
 map <- plot_dept_map(data_grouped = spatial_dept_dist)
 ```
