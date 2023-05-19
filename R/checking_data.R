@@ -19,8 +19,44 @@ filter_disease <- function(name_disease,
   list_specific <- list_diseases[
     stringr::str_detect(list_diseases, name_disease) == TRUE]
   filtered_data <- sivigila_summary_data %>%
-                      dplyr::filter(.data$nombre %in% list_specific)
+    dplyr::filter(.data$nombre %in% list_specific)
   return(filtered_data)
+}
+
+#' Filter by departments and municipalities
+#'
+#' Function that filters disease data by departments and municipalities
+#' @param name_disease Name of the disease
+#' @param departments Names of departments
+#' @param municipalities Names of departments
+#' @return Data filtered with the disease selected
+#' @examples
+#' disease_data <- import_linelist_disease_year(2019, "DENGUE")
+#' disease_data <- clean_header(disease_data)
+#' geographical_filter(disease_data, department = "ANTIOQUIA")
+#' @export
+geographical_filter <- function(disease_data, department = NULL, municipalitie = NULL) {
+  dept_filtered_data <- data.frame()
+  dept_data <- data.frame()
+  cols_ocurrence <- c()
+  if (!is.null(department)) {
+    dept_data <- get_info_depts(department, municipalitie)
+    dept_data <- dept_data[1, ]
+    cols_ocurrence <- get_geo_occurrence_type(disease_data$cod_eve[1])
+  }
+  if (!is.null(dept_data)) {
+    dept_filtered_data <- dplyr::filter(disease_data,
+                                        .data$cod_dpto_o %in%
+                                          dept_data$codigo_departamento)
+  }
+  if (!is.null(municipalitie)) {
+    code_mpio <- set_code_mpio(dept_data$codigo_departamento,
+                               dept_data$codigo_municipio)
+    dept_filtered_data <- dplyr::filter(dept_filtered_data,
+                                        .data$cod_mun_o %in%
+                                          code_mpio)
+  }
+  return(dept_filtered_data)
 }
 
 #' Get department codes
@@ -54,17 +90,17 @@ get_depto_codes <- function(geo_codes) {
 #' get_special_population_cases(disease_data)
 #' @export
 get_special_population_cases <- function(disease_data) {
-
+  
   special_populations <- config::get(file = system.file(
-                                     "extdata",
-                                      "config.yml",
-                                      package = "sivirep"),
-                          "special_populations_cols")
+    "extdata",
+    "config.yml",
+    package = "sivirep"),
+    "special_populations_cols")
   special_populations_names <- config::get(file = system.file(
-                                           "extdata",
-                                           "config.yml",
-                                           package = "sivirep"),
-                                "special_populations_names")
+    "extdata",
+    "config.yml",
+    package = "sivirep"),
+    "special_populations_names")
   special_cases <- c()
   for (sp in special_populations) {
     special_cases <- append(special_cases, sum(
@@ -130,7 +166,7 @@ group_columns_cases <- function(disease_data,
       dplyr::mutate(
         porcentaje =
           round(disease_data_grouped$casos
-                 / sum(disease_data_grouped$casos) * 100, 1))
+                / sum(disease_data_grouped$casos) * 100, 1))
   }
   return(disease_data_grouped)
 }
@@ -212,9 +248,9 @@ group_columns_cases <- function(disease_data,
   if (wt_percentage) {
     disease_data_grouped <-
       disease_data_grouped %>% dplyr::mutate(
-          porcentaje =
-            round(disease_data_grouped$casos
-                  / sum(disease_data_grouped$casos) * 100, 1))
+        porcentaje =
+          round(disease_data_grouped$casos
+                / sum(disease_data_grouped$casos) * 100, 1))
   }
   return(disease_data_grouped)
 }
@@ -245,6 +281,7 @@ group_onset_symptoms <- function(disease_data,
   if (is.null(col_name)) {
     col_name <- dates_column_names[3]
   }
+  col_name <- c(col_name, "cod_dpto_o", "cod_mun_o")
   group_by_onset_symp <- group_columns_cases(disease_data, col_names = col_name)
   return(group_by_onset_symp)
 }
@@ -274,6 +311,7 @@ group_notification_date <- function(disease_data,
   if (is.null(col_name)) {
     col_name <- dates_column_names[2]
   }
+  col_name <- c(col_name, "cod_dpto_o")
   group_by_onset_symp <- group_columns_cases(disease_data, col_names = col_name)
   return(group_by_onset_symp)
 }
@@ -294,6 +332,7 @@ group_notification_date <- function(disease_data,
 group_sex <- function(disease_data,
                       col_name = "sexo",
                       percentage = TRUE) {
+  col_name <- c(col_name, "cod_dpto_o")
   disease_data_by_sex <- group_columns_cases(disease_data, col_name, percentage)
   return(disease_data_by_sex)
 }
@@ -319,6 +358,7 @@ group_sex <- function(disease_data,
 group_sex_epiweek <- function(disease_data,
                               col_names = c("sexo", "semana"),
                               percentage = TRUE) {
+  col_names <- append(col_names, "cod_dpto_o")
   disease_data_by_sex_and_week <- group_columns_cases(disease_data,
                                                       col_names,
                                                       percentage)
@@ -378,22 +418,23 @@ group_age_sex <- function(disease_data,
                           col_names = c("edad", "sexo"),
                           percentage = TRUE,
                           age_interval = 10) {
+  col_names <- append(col_names, "cod_dpto_o")
   disease_data_age_sex <- group_columns_cases(disease_data,
-                                                     col_names,
-                                                     percentage)
+                                              col_names,
+                                              percentage)
   disease_data_age_sex <- group_age_range_cases(
-                                                  disease_data_age_sex,
-                                                       col_names[1],
-                                                       col_names[2],
-                                                       min_val = 0,
-                                                       max_val =
-                                                         max(eval(parse(
-                                                           text = paste0(
-                                                   "disease_data_age_sex$",
-                                                             col_names[1]
-                                                           )
-                                                         ))),
-                                                       step = age_interval
+    disease_data_age_sex,
+    col_names[1],
+    col_names[2],
+    min_val = 0,
+    max_val =
+      max(eval(parse(
+        text = paste0(
+          "disease_data_age_sex$",
+          col_names[1]
+        )
+      ))),
+    step = age_interval
   )
   return(disease_data_age_sex)
 }
@@ -417,6 +458,7 @@ group_age_sex <- function(disease_data,
 group_special_population <- function(disease_data,
                                      col_name = "poblacion",
                                      percentage = TRUE) {
+  col_name <- c(col_name, "cod_dpto_o")
   disease_data_special <- get_special_population_cases(disease_data)
   disease_data_special_grouped <- data.frame(poblacion =
                                                disease_data_special$poblacion,
@@ -442,11 +484,40 @@ group_special_population <- function(disease_data,
 group_dept <- function(disease_data,
                        col_name = "cod_dpto_o",
                        percentage = FALSE) {
-  disease_data_by_depto_codes <- group_columns_cases(disease_data,
-                                                     col_names = col_name)
+  disease_data_by_depto_codes <- disease_data
+  #disease_data_by_depto_codes <- group_columns_cases(disease_data,
+  #                                                  col_names = col_name)
   colnames(disease_data_by_depto_codes)[
     colnames(disease_data_by_depto_codes) == col_name] <- "id"
   disease_data_by_depto_codes$id <- sapply(disease_data_by_depto_codes$id,
                                            as.character)
   return(disease_data_by_depto_codes)
+}
+
+
+#' Group by municipalities and cases
+#'
+#' Function that groups the data by code municipalities and cases number
+#' @param disease_data The disease data
+#' @param col_name Column name in the disease data that contains
+#' the municipalities codes
+#' @param percentage Indicates if it is required to add a
+#' percentage of cases as a column
+#' @return The disease data grouped by municipalitie codes and cases number
+#' @examples
+#' disease_data <- import_linelist_disease_year(2019, "DENGUE")
+#' disease_data <- clean_header(disease_data)
+#' group_municipalities(disease_data, col_name = "cod_mun_o", percentage = FALSE)
+#' @export
+group_municipalities <- function(disease_data,
+                                 col_name = "cod_mun_o",
+                                 percentage = FALSE) {
+  disease_data_muns_codes <- disease_data
+  disease_data_muns_codes <- group_columns_cases(disease_data,
+                                                 col_names = col_name)
+  colnames(disease_data_muns_codes)[
+    colnames(disease_data_muns_codes) == col_name] <- "id"
+  disease_data_muns_codes$id <- sapply(disease_data_muns_codes$id,
+                                       as.character)
+  return(disease_data_muns_codes)
 }

@@ -1,3 +1,42 @@
+#' Standardize geographic codes of the disease data
+#'
+#' Function that standardizes the geographic codes of the disease data
+#' @param disease_data The disease data
+#' @return The geographic codes of the disease data
+#' @examples
+#' disease_data <- import_linelist_disease_year(2019, "DENGUE")
+#' disease_data <- clean_header(disease_data)
+#' standardize_geo_codes(disease_data)
+#' @export
+standardize_geo_codes <- function(disease_data) {
+  disease_data <- clean_header(disease_data)
+  
+  geo_column_names <- config::get(
+    file =
+      system.file("extdata", "config.yml",
+                  package = "sivirep"
+      ), "geo_column_names"
+  )
+  
+  disease_data$cod_dpto_o <- formatC(disease_data$cod_dpto_o,
+          width = 2,
+          format = "d",
+          flag = "0")
+  disease_data$cod_dpto_r <- formatC(disease_data$cod_dpto_r,
+                                     width = 2,
+                                     format = "d",
+                                     flag = "0")
+  disease_data$cod_mun_o <- formatC(as.integer(disease_data$cod_mun_o),
+                                     width = 3,
+                                     format = "d",
+                                     flag = "0")
+  disease_data$cod_mun_r <- formatC(as.integer(disease_data$cod_mun_r),
+                                     width = 3,
+                                     format = "d",
+                                     flag = "0")
+  return(disease_data)
+}
+
 #' Clean department codes of the disease data
 #'
 #' Function that cleans the department codes of the disease data
@@ -298,14 +337,7 @@ cleansing_sivigila_data <- function(disease_data, year) {
                   package = "sivirep"
       ), "depto_column_names"
   )
-  geo_country_data <- import_geo_codes()
-  clean_disease_data <- clean_depto_codes(clean_disease_data,
-                                          col_data_codes =
-                                            depto_column_names[1],
-                                          geo_data = geo_country_data,
-                                          col_geo_codes =
-                                            "c_digo_departamento"
-  )
+  clean_disease_data <- standardize_geo_codes(clean_disease_data)
   clean_disease_data <- parse_age_to_years(clean_disease_data,
                                            col_age = "edad",
                                            col_uni_met = "uni_med")

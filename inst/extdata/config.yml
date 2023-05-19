@@ -16,4 +16,9 @@ default:
   respiratory_virus_column_names: [ "influenza_a_h1_2009", "influenza_a_h1", "influenza_a_h3", "influenza_b", "metapneumovirus_humano", "rinovirus_enterovirus_humano", "virus_sincitial_respiratorio", "adenovirus"]
   respiratory_virus_names: [ "H1N1 2009", "H1N1", "H3N1", "Influenza B", "Metapneumovirus", "Rinovirus", "VSR", "Adenovirus"]
   dates_column_names: ["fecha_nto", "fec_not", "ini_sin", "fec_hos", "fec_def", "fec_con"]
-  depto_column_names: ["cod_dpto_o"]
+  depto_column_names: ["cod_dpto_o", "cod_dpto_r"]
+  geo_column_names: ["cod_dpto_o", "cod_dpto_r", "cod_mun_o", "cod_mun_r", "cod_mpio_o", "cod_mpio_r"]
+  occurrence_geo_diseases:
+    cod_dpto_o: [{ 100 : "ACCIDENTE OFIDICO" }, { 205 : "CHAGAS" }, { 100 :  "CHIKUNGUNYA" }, { 210 : "DENGUE" }, { 220 : "DENGUE GRAVE" }, { 310 : "FIEBRE AMARILLA" }, { 420 : "LEISHMANIASIS CUTANEA" }, { 430 :  "LEISHMANIASIS MUCOSA" }, { 410 :  "LEISHMANIASIS VISCERAL" }, { 460 :  "MALARIA ASOCIADA (FORMAS MIXTAS)" }, { 495 :  "MALARIA COMPLICADA" }, { 470 :  "MALARIA FALCIPARUM" }, { 490 :  "MALARIA VIVAX"}]
+    cod_dpto_r: [{ 110 : "BAJO PESO AL NACER" }, { 100 :  "CÁNCER DE LA MAMA Y CUELLO UTERINO" }, { 459 :  "CANCER INFANTIL" }, { 100 :  "ENFERMEDADES HUERFANAS - RARAS" }, { 549 :  "MORBILIDAD MATERNA EXTREMA" }, { 550 :  "MORTALIDAD MATERNA" }, { 560 :  "MORTALIDAD PERINATAL Y NEONATAL TARDIA" }, { 112 :  "MORTALIDAD POR DESNUTRICION"}],
+  cod_depts_exceptions: ["00", "01", "19"]

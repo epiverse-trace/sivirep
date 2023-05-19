@@ -141,3 +141,70 @@ concatenate_values_token <- function(values,
   }
   return(final_value)
 }
+
+#' Get geographic information of the disease data
+#'
+#' Function that standardizes the geographic codes of the disease data
+#' @param code_disease The disease code
+#' @return The geographic codes of the disease data
+#' @examples
+#' get_geo_occurrence_type(code_disease = 210)
+#' @export
+get_geo_occurrence_type <- function(code_disease) {
+  geo_occurrences <- config::get(file =
+                                system.file("extdata", "config.yml",
+                                            package = "sivirep"),
+                      "occurrence_geo_diseases")
+  col_ocurrences <- c("cod_dpto_o", "cod_mpio_o")
+  if (grep(code_disease, geo_occurrences$cod_dpto_o) > 0) {
+    col_ocurrences <- c("cod_dpto_o", "cod_mpio_o")
+  }
+  else if (grep(code_disease, geo_occurrences$cod_dpto_r) > 0) {
+    col_ocurrences <- c("cod_dpto_r", "cod_mpio_r")
+  }
+}
+
+#' Get geographic information of the disease data
+#'
+#' Function that standardizes the geographic codes of the disease data
+#' @param department The disease data
+#' @param municipalitie The disease data
+#' @return The geographic codes of the disease data
+#' @examples
+#' get_info_depts(department = "ANTIOQUIA")
+#' @export
+get_info_depts <- function(department = NULL, municipalitie = NULL) {
+  geo_data <- import_geo_codes()
+  
+  list_departments <- unique(geo_data$nombre_departamento)
+  list_specific <- list_departments[
+    stringr::str_detect(list_departments, toupper(department)) == TRUE]
+  dept_data <- dplyr::filter(geo_data, .data$nombre_departamento %in%
+                               list_specific)
+  if (!is.null(municipalitie)) {
+    list_municipalities <- unique(geo_data$nombre_municipio)
+    list_specific <- list_municipalities[
+      stringr::str_detect(list_municipalities, toupper(municipalitie)) == TRUE]
+    dept_data <- dplyr::filter(geo_data, .data$nombre_municipio %in%
+                                 list_specific)
+  }
+  return(dept_data)
+}
+
+#' Set geographic information of the disease data
+#'
+#' Function that standardizes the geographic codes of the disease data
+#' @param code_dept The disease data
+#' @param code_mpio The disease data
+#' @return The geographic codes of the disease data
+#' @examples
+#' set_code_mpio(code_dept = 01, code_mpio = "001")
+#' @export
+set_code_mpio <- function(code_dept, code_mpio) {
+  code_mpio <- as.character(code_mpio)
+  if (substr(code_dept, 1, 1) == "0") {
+    code_dept <- substr(code_dept, 2, 2)
+    code_mpio <- gsub(code_dept, "", code_mpio) 
+  }
+  return(code_mpio)
+}

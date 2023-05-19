@@ -18,6 +18,12 @@ params:
   disease_name:
     value: "Dengue" 
     label: Enfermedad
+  department:
+    value: "Antioquia" 
+    label: Departamento
+  municipalitie:
+    value: "Embigado" 
+    label: Municipio
 ---
 
 ```{r setup, echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
@@ -41,6 +47,10 @@ disease_data <-  import_linelist_disease_year(params$year, params$disease_name)
 clean_disease_data <-  cleansing_sivigila_data(disease_data, params$year)
 ```
 
+```{r clean_data, include = FALSE}
+filter_disease_data <-  geographical_filter(clean_disease_data, params$department)
+```
+
 ```{=tex}
 \pagenumbering{gobble}
 \pagenumbering{arabic}
@@ -48,10 +58,17 @@ clean_disease_data <-  cleansing_sivigila_data(disease_data, params$year)
 
 En este reporte se presenta el comportamiento del `r params$disease_name` durante el año `r params$year` para Colombia con base en la fuente de datos SIVIGILA de acceso libre. En total en Colombia durante `r params$year` se reportaron `r nrow(disease_data)` casos en todo el territorio nacional.
 
+# Distribución por municipio de los casos
+
+```{r plot_distribution_municipalitie, fig.height = 5, fig.width = 10, fig.cap = "Distribucion de casos por municipio"}
+
+```
+
+
 # Distribución temporal de los casos
 
 ```{r cases_by_onset_symptom_date, include = FALSE}
-cases_onset_symptoms_by_day <- group_onset_symptoms(clean_disease_data, 
+cases_onset_symptoms_by_day <- group_onset_symptoms(filter_disease_data, 
                                                     type = "day")
 months_most_cases <- get_months_most_cases(cases_onset_symptoms_by_day, 
                                            col_dates = "ini_sin")
@@ -65,7 +82,7 @@ plot_onset_symptoms(data_grouped = cases_onset_symptoms_by_day,
 ```
 
 ```{r cases_by_onset_notification_date, include = FALSE}
-cases_notification_date_by_day <- group_notification_date(clean_disease_data, 
+cases_notification_date_by_day <- group_notification_date(filter_disease_data, 
                                                           type = "day")
 ```
 
@@ -79,7 +96,7 @@ plot_notification_date(data_grouped = cases_notification_date_by_day,
 # Distribución de casos por sexo y semana epidemiológica
 
 ```{r distribution_cg, include = FALSE}
-cases_sex <- group_sex(clean_disease_data)
+cases_sex <- group_sex(filter_disease_data)
 male_percentage <- cases_sex$porcentaje[2]
 female_percentage <- cases_sex$porcentaje[1]
 sex_most_cases <- get_most_cases(cases_sex)
@@ -87,14 +104,13 @@ sex_most_cases <- get_most_cases(cases_sex)
 
 En el total de casos para `r params$year` se observa una predominancia del sexo masculino (`r male_percentage`%) con respecto al sexo femenino (`r female_percentage`%) (Ver Figura 3).
 
-```{r distribution_cg_plot, fig.height = 3, fig.width = 7, fig.cap =  "Distribucion de casos por genero"}
+```{r distribution_cg_plot, fig.height = 4, fig.width = 9, fig.cap =  "Distribucion de casos por genero"}
 plot_sex(cases_sex)
 ```
-
 \newpage
 
 ```{r distribution_cg_epiweek, include = FALSE}
-cases_sex_epiweek <- group_sex_epiweek(disease_data = clean_disease_data)
+cases_sex_epiweek <- group_sex_epiweek(disease_data = filter_disease_data)
 ```
 
 Esta predominancia del reporte de casos en sexo masculino se mantuvo a lo largo de todas las semanas epidemiológicas (Ver figura 4).
@@ -106,7 +122,7 @@ plot_sex_epiweek(data_grouped = cases_sex_epiweek)
 # Distribución de casos por edad
 
 ```{r distribution_age_d, include = FALSE}
-cases_age <- group_age(disease_data = clean_disease_data, age_interval = 10)
+cases_age <- group_age(disease_data = filter_disease_data, age_interval = 10)
 age_most_cases <- get_most_cases(cases_age)
 ```
 
@@ -121,7 +137,7 @@ plot_age(data_grouped = cases_age)
 # Distribución de casos por edad y sexo
 
 ```{r distribution_age_anger, fig.height = 3, fig.width = 9, fig.cap =  "Distribucion de casos por edad y genero"}
-cases_age_sex <- group_age_sex(disease_data = clean_disease_data, 
+cases_age_sex <- group_age_sex(disease_data = filter_disease_data, 
                                age_interval = 10)
 plot_age_sex(data_grouped = cases_age_sex)
 ```
@@ -129,7 +145,7 @@ plot_age_sex(data_grouped = cases_age_sex)
 # Distribución de casos por población especial
 
 ```{r distribution_sp, fig.height = 6, fig.width = 11, fig.cap =  "Distribucion de casos por poblacion especial"}
-cases_special_population <- group_special_population(clean_disease_data)
+cases_special_population <- group_special_population(filter_disease_data)
 plot_special_population(cases_special_population)
 ```
 
@@ -138,8 +154,10 @@ plot_special_population(cases_special_population)
 # Distribución espacial de casos
 
 ```{r plot_distribution_spatial,  results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
-spatial_dept_dist <- group_dept(disease_data = clean_disease_data)
-map <- plot_dept_map(data_grouped = spatial_dept_dist)
+#spatial_dept_dist <- group_dept(disease_data = filter_disease_data)
+#map <- plot_dept_map(data_grouped = spatial_dept_dist)
+spatial_muns_dist <- group_municipalities(disease_data = filter_disease_data)
+map <- plot_map(data_grouped = spatial_muns_dist, department = params$department)
 ```
 
 ```{r map_distribution_spatial, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, echo=FALSE, cache=FALSE, results=FALSE, warning=FALSE, comment=FALSE, warning=FALSE, fig.height = 10, fig.width = 10, fig.cap =  "Distribucion espacial de casos"}

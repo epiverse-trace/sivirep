@@ -305,7 +305,7 @@ SIVIGILA source only records sex.
 by sex automatically after the cleansing process.
 
 ```{r}
-cases_sex <- group_sex(disease_data = clean_disease_data, 
+cases_sex <- group_sex(disease_data = filter_disease_data, 
                        percentage = TRUE)
 ```
 

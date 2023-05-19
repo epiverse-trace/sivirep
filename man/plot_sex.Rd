@@ -4,7 +4,7 @@
 \alias{plot_sex}
 \title{Plot cases distribution by sex}
 \usage{
-plot_sex(data_grouped, col_name = "sexo", percentage = TRUE)
+plot_sex(data_grouped, col_name = "sexo", department = TRUE, percentage = TRUE)
 }
 \arguments{
 \item{data_grouped}{The disease data grouped}
