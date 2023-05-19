@@ -47,7 +47,7 @@ disease_data <-  import_linelist_disease_year(params$year, params$disease_name)
 clean_disease_data <-  cleansing_sivigila_data(disease_data, params$year)
 ```
 
-```{r clean_data, include = FALSE}
+```{r filter_data, include = FALSE}
 filter_disease_data <-  geographical_filter(clean_disease_data, params$department)
 ```
 
