@@ -2,38 +2,40 @@
 #'
 #' Function that standardizes the geographic codes of the disease data
 #' @param disease_data The disease data
-#' @return The geographic codes of the disease data
+#' @return The standardized geographic codes of the disease data
 #' @examples
 #' disease_data <- import_linelist_disease_year(2019, "DENGUE")
 #' disease_data <- clean_header(disease_data)
 #' standardize_geo_codes(disease_data)
 #' @export
 standardize_geo_codes <- function(disease_data) {
-  disease_data <- clean_header(disease_data)
-  
+  disease_data2 <- clean_header(disease_data)
   geo_column_names <- config::get(
     file =
       system.file("extdata", "config.yml",
                   package = "sivirep"
       ), "geo_column_names"
   )
-  
-  disease_data$cod_dpto_o <- formatC(disease_data$cod_dpto_o,
-          width = 2,
-          format = "d",
-          flag = "0")
-  disease_data$cod_dpto_r <- formatC(disease_data$cod_dpto_r,
-                                     width = 2,
-                                     format = "d",
-                                     flag = "0")
-  disease_data$cod_mun_o <- formatC(as.integer(disease_data$cod_mun_o),
-                                     width = 3,
-                                     format = "d",
-                                     flag = "0")
-  disease_data$cod_mun_r <- formatC(as.integer(disease_data$cod_mun_r),
-                                     width = 3,
-                                     format = "d",
-                                     flag = "0")
+  exceptions <- config::get(
+    file =
+      system.file("extdata", "config.yml",
+                  package = "sivirep"
+      ), "cod_depts_exceptions"
+  )
+  for (column in geo_column_names) {
+    if (stringr::str_detect(column, "dpto") == TRUE) {
+      disease_data2[[column]] <- formatC(disease_data2[[column]],
+                                      width = 2,
+                                      format = "d",
+                                      flag = "0")
+    }
+    if (stringr::str_detect(column, "mun") == TRUE) {
+      disease_data2[[column]] <- formatC(disease_data2[[column]],
+                                         width = 3,
+                                         format = "d",
+                                         flag = "0")
+    }
+  }
   return(disease_data)
 }
 
@@ -66,18 +68,6 @@ clean_depto_disease_codes <- function(depto_codes,
       dplyr::group_by(.data$id) %>%
       dplyr::summarise(casos = sum(.data$casos))
   }
-  disease_data_clean$id[
-    nchar(disease_data_clean$id) < 2
-    & disease_data_clean$id != "1" & disease_data_clean$id != "0" &
-      paste("0", disease_data_clean$id, sep = "") %in% depto_codes$id
-  ] <- paste("0", disease_data_clean$id[
-    nchar(disease_data_clean$id) < 2
-    & disease_data_clean$id != "1" & disease_data_clean$id != "0" &
-      paste("0", disease_data_clean$id, sep = "") %in% depto_codes$id
-  ], sep = "")
-  disease_data_clean$id[disease_data_clean$id == "1"
-                        & paste("1", disease_data_clean$id, sep = "")
-                        %in% depto_codes$id] <- "11"
   return(disease_data_clean)
 }
 
@@ -331,12 +321,6 @@ cleansing_sivigila_data <- function(disease_data, year) {
                                             col_cmp = dates_column_names[4])
   clean_disease_data <- clean_disease_dates(clean_disease_data, year,
                                             col_name = dates_column_names[2])
-  depto_column_names <- config::get(
-    file =
-      system.file("extdata", "config.yml",
-                  package = "sivirep"
-      ), "depto_column_names"
-  )
   clean_disease_data <- standardize_geo_codes(clean_disease_data)
   clean_disease_data <- parse_age_to_years(clean_disease_data,
                                            col_age = "edad",

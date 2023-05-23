@@ -142,11 +142,11 @@ concatenate_values_token <- function(values,
   return(final_value)
 }
 
-#' Get geographic information of the disease data
+#' Get geographic occurrence columns of the disease data
 #'
-#' Function that standardizes the geographic codes of the disease data
+#' Function that gets the geographic occurrence columns of the disease data
 #' @param code_disease The disease code
-#' @return The geographic codes of the disease data
+#' @return The geographic occurrence columns of the disease data
 #' @examples
 #' get_geo_occurrence_type(code_disease = 210)
 #' @export
@@ -155,25 +155,27 @@ get_geo_occurrence_type <- function(code_disease) {
                                 system.file("extdata", "config.yml",
                                             package = "sivirep"),
                       "occurrence_geo_diseases")
-  col_ocurrences <- c("cod_dpto_o", "cod_mpio_o")
+  col_ocurrences <- c("cod_dpto_o", "cod_mun_o")
   if (grep(code_disease, geo_occurrences$cod_dpto_o) > 0) {
-    col_ocurrences <- c("cod_dpto_o", "cod_mpio_o")
+    col_ocurrences <- c("cod_dpto_o", "cod_mun_o")
   }
   else if (grep(code_disease, geo_occurrences$cod_dpto_r) > 0) {
-    col_ocurrences <- c("cod_dpto_r", "cod_mpio_r")
+    col_ocurrences <- c("cod_dpto_r", "cod_mun_r")
   }
+  
+  return(col_ocurrences) 
 }
 
 #' Get geographic information of the disease data
 #'
-#' Function that standardizes the geographic codes of the disease data
-#' @param department The disease data
-#' @param municipalitie The disease data
-#' @return The geographic codes of the disease data
+#' Function that gets the geographic information of the disease data
+#' @param department The department name
+#' @param municipality The municipality data
+#' @return The geographic information of the disease data
 #' @examples
 #' get_info_depts(department = "ANTIOQUIA")
 #' @export
-get_info_depts <- function(department = NULL, municipalitie = NULL) {
+get_info_depts <- function(department = NULL, municipality = NULL) {
   geo_data <- import_geo_codes()
   
   list_departments <- unique(geo_data$nombre_departamento)
@@ -181,21 +183,21 @@ get_info_depts <- function(department = NULL, municipalitie = NULL) {
     stringr::str_detect(list_departments, toupper(department)) == TRUE]
   dept_data <- dplyr::filter(geo_data, .data$nombre_departamento %in%
                                list_specific)
-  if (!is.null(municipalitie)) {
+  if (!is.null(municipality)) {
     list_municipalities <- unique(geo_data$nombre_municipio)
     list_specific <- list_municipalities[
-      stringr::str_detect(list_municipalities, toupper(municipalitie)) == TRUE]
+      stringr::str_detect(list_municipalities, toupper(municipality)) == TRUE]
     dept_data <- dplyr::filter(geo_data, .data$nombre_municipio %in%
                                  list_specific)
   }
   return(dept_data)
 }
 
-#' Set geographic information of the disease data
+#' Set geographic codes of the disease data
 #'
-#' Function that standardizes the geographic codes of the disease data
-#' @param code_dept The disease data
-#' @param code_mpio The disease data
+#' Function that sets the geographic codes of the disease data
+#' @param code_dept The department code
+#' @param code_mpio The municipality code
 #' @return The geographic codes of the disease data
 #' @examples
 #' set_code_mpio(code_dept = 01, code_mpio = "001")
@@ -207,4 +209,43 @@ set_code_mpio <- function(code_dept, code_mpio) {
     code_mpio <- gsub(code_dept, "", code_mpio) 
   }
   return(code_mpio)
+}
+
+#' Get departments of Colombia
+#'
+#' Function that gets the departments of Colombia
+#' @return The departments of Colombia
+#' @examples
+#' get_departments()
+#' @export
+get_departments <- function() {
+  departments <- config::get(file =
+                                   system.file("extdata", "config.yml",
+                                               package = "sivirep"),
+                                 "departments")
+  return(departments)
+}
+
+#' Get name of municipality in Colombia
+#'
+#' Function that gets the municipality name
+#' @param code_dept The department code
+#' @param code_mpio The municipality code
+#' @return The municipality name
+#' @examples
+#' get_departments()
+#' @export
+get_name_mpios <- function(geo_data, code_dept, code_mpio) {
+  if (substr(code_dept, 1, 1) == "0") {
+    code_dept <- substr(code_dept, 2, 2)
+    code_mpio <- paste0(code_dept, code_mpio) 
+  }
+  else {
+    code_mpio <- paste0(code_dept, code_mpio) 
+  }
+
+  mpio_data <- dplyr::filter(geo_data, .data$codigo_municipio %in%
+                               as.integer(code_mpio))
+  mpio_data <- mpio_data[1, ]
+  return(mpio_data$nombre_municipio)
 }

@@ -19,12 +19,10 @@ params:
     value: "Dengue" 
     label: Enfermedad
   department:
-    value: "" 
+    value: "Antioquia" 
     label: Departamento
-    input: select
-    choices: !r get_departments()
   municipalitie:
-    value: ""
+    value: "Embigado" 
     label: Municipio
 ---
 
@@ -38,7 +36,7 @@ library(sivirep)
 ```
 
 ---
-title: "Reporte Automatizado para `r params$disease_name`, `r params$department` - Colombia `r params$year`"
+title: "Reporte Automatizado para `r params$disease_name`, Colombia `r params$year`"
 ---
 
 ```{r import_data, include = FALSE}
@@ -62,7 +60,9 @@ En este reporte se presenta el comportamiento del `r params$disease_name` durant
 
 # Distribución por municipio de los casos
 
+```{r plot_distribution_municipalitie, fig.height = 5, fig.width = 10, fig.cap = "Distribucion de casos por municipio"}
 
+```
 
 
 # Distribución temporal de los casos
@@ -153,20 +153,11 @@ plot_special_population(cases_special_population)
 
 # Distribución espacial de casos
 
-```{r group_distribution_spatial,  results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
+```{r plot_distribution_spatial,  results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
 #spatial_dept_dist <- group_dept(disease_data = filter_disease_data)
 #map <- plot_dept_map(data_grouped = spatial_dept_dist)
-spatial_muns_dist <- group_municipalities(disease_data = filter_disease_data, 
-                                          department = params$department)
-spatial_most_cases <- get_most_cases(spatial_muns_dist)
+spatial_muns_dist <- group_municipalities(disease_data = filter_disease_data)
 map <- plot_map(data_grouped = spatial_muns_dist, department = params$department)
-```
-
-Los casos se distribuyen a lo largo de `r nrow(spatial_muns_dist)` municipios del departamento de `r param$department`, teniendo un mayor reporte el municipio de `r stringr::str_to_title(spatial_most_cases$nombre)` con `r spatial_most_cases$casos` casos (Ver Figura 7).
-
-```{r plot_distribution_municipalities, fig.height = 10, fig.width = 10, fig.cap = "Distribucion de casos por municipio"}
-plot_spatial <- plot_municipalities(spatial_muns_dist)
-plot_spatial
 ```
 
 ```{r map_distribution_spatial, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, echo=FALSE, cache=FALSE, results=FALSE, warning=FALSE, comment=FALSE, warning=FALSE, fig.height = 10, fig.width = 10, fig.cap =  "Distribucion espacial de casos"}
