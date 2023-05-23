@@ -4,18 +4,18 @@
 \alias{get_info_depts}
 \title{Get geographic information of the disease data}
 \usage{
-get_info_depts(department = NULL, municipalitie = NULL)
+get_info_depts(department = NULL, municipality = NULL)
 }
 \arguments{
-\item{department}{The disease data}
+\item{department}{The department name}
 
-\item{municipalitie}{The disease data}
+\item{municipality}{The municipality data}
 }
 \value{
-The geographic codes of the disease data
+The geographic information of the disease data
 }
 \description{
-Function that standardizes the geographic codes of the disease data
+Function that gets the geographic information of the disease data
 }
 \examples{
 get_info_depts(department = "ANTIOQUIA")

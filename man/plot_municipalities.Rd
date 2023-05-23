@@ -2,31 +2,30 @@
 % Please edit documentation in R/plotting.R
 \name{plot_municipalities}
 \alias{plot_municipalities}
-\title{Plot cases distribution by special population}
+\title{Plot cases distribution of municipalities}
 \usage{
-plot_municipalities(data_grouped, col_name = "cod_mun_o", percentage = FALSE)
+plot_municipalities(data_grouped, col_name = "nombre", percentage = FALSE)
 }
 \arguments{
 \item{data_grouped}{The disease data grouped}
 
 \item{col_name}{Column names in the disease data grouped that contains
-the ages and sex}
+the municipalities}
 
 \item{percentage}{Indicates if the data has percentages}
 }
 \value{
-A plot of cases distribution by special population
+A plot of cases distribution by municipalities
 }
 \description{
-Function that generates the plot of cases distribution by special population
+Function that generates the plot of cases distribution by municipalities
 }
 \examples{
 disease_data <- import_linelist_disease_year(2020, "DENGUE")
 disease_data <- clean_header(disease_data)
-data_grouped <- group_special_population(disease_data,
-                         col_name = "poblacion",
-                         percentage = TRUE)
-plot_special_population(data_grouped,
-                         col_name = "poblacion",
-                         percentage = FALSE)
+data_grouped <- group_municipalities(disease_data, 
+                                  department = "Antioquia")
+plot_municipalities(data_grouped,
+                    col_name = "nombre",
+                    percentage = FALSE)
 }

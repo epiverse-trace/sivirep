@@ -9,7 +9,7 @@ plot_map(
   col_name_lj = "id",
   caption_label = NULL,
   department = NULL,
-  municipalitie = NULL
+  municipality = NULL
 )
 }
 \arguments{
@@ -18,19 +18,26 @@ plot_map(
 \item{col_name_lj}{Column name to join with the shape file}
 
 \item{caption_label}{Caption or information source of the disease data}
+
+\item{department}{Department name}
+
+\item{municipality}{Municipality name}
 }
 \value{
-The map by department with the cases number of a specific disease
+The map by departments or municipalities with the cases number of 
+a specific disease
 }
 \description{
-Function that generates the map by department with the cases number of a
-specific disease
+Function that generates the map by departments or municipalities with the 
+cases number of a specific disease
 }
 \examples{
 disease_data <- import_linelist_disease_year(2019, "DENGUE")
 disease_data <- clean_header(disease_data)
-departments_spacial_data <- group_dept(disease_data)
-   plot_dept_map(departments_spacial_data,
+department_spacial_data <- group_dept(disease_data)
+plot_map(department_spacial_data,
    col_name_lj = "id",
-   caption_label = "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia")
+   caption_label = "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia",
+   deparment = "Antioquia",
+   municipalitie = "Envigado")
 }

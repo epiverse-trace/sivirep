@@ -10,7 +10,7 @@ standardize_geo_codes(disease_data)
 \item{disease_data}{The disease data}
 }
 \value{
-The geographic codes of the disease data
+The standardized geographic codes of the disease data
 }
 \description{
 Function that standardizes the geographic codes of the disease data

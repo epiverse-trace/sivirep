@@ -2,20 +2,20 @@
 % Please edit documentation in R/utils.R
 \name{set_code_mpio}
 \alias{set_code_mpio}
-\title{Set geographic information of the disease data}
+\title{Set geographic codes of the disease data}
 \usage{
 set_code_mpio(code_dept, code_mpio)
 }
 \arguments{
-\item{code_dept}{The disease data}
+\item{code_dept}{The department code}
 
-\item{code_mpio}{The disease data}
+\item{code_mpio}{The municipality code}
 }
 \value{
 The geographic codes of the disease data
 }
 \description{
-Function that standardizes the geographic codes of the disease data
+Function that sets the geographic codes of the disease data
 }
 \examples{
 set_code_mpio(code_dept = 01, code_mpio = "001")

@@ -19,7 +19,7 @@ params:
     value: "Dengue" 
     label: Enfermedad
   department:
-    value: "" 
+    value: "Antioquia" 
     label: Departamento
     input: select
     choices: !r get_departments()
@@ -50,7 +50,7 @@ clean_disease_data <-  cleansing_sivigila_data(disease_data, params$year)
 ```
 
 ```{r filter_data, include = FALSE}
-filter_disease_data <-  geographical_filter(clean_disease_data, params$department)
+filter_disease_data <-  geo_filter(clean_disease_data, params$department)
 ```
 
 ```{=tex}
@@ -59,11 +59,6 @@ filter_disease_data <-  geographical_filter(clean_disease_data, params$departmen
 ```
 
 En este reporte se presenta el comportamiento del `r params$disease_name` durante el año `r params$year` para Colombia con base en la fuente de datos SIVIGILA de acceso libre. En total en Colombia durante `r params$year` se reportaron `r nrow(disease_data)` casos en todo el territorio nacional.
-
-# Distribución por municipio de los casos
-
-
-
 
 # Distribución temporal de los casos
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{get_geo_occurrence_type}
 \alias{get_geo_occurrence_type}
-\title{Get geographic information of the disease data}
+\title{Get geographic occurrence columns of the disease data}
 \usage{
 get_geo_occurrence_type(code_disease)
 }
@@ -10,10 +10,10 @@ get_geo_occurrence_type(code_disease)
 \item{code_disease}{The disease code}
 }
 \value{
-The geographic codes of the disease data
+The geographic occurrence columns of the disease data
 }
 \description{
-Function that standardizes the geographic codes of the disease data
+Function that gets the geographic occurrence columns of the disease data
 }
 \examples{
 get_geo_occurrence_type(code_disease = 210)

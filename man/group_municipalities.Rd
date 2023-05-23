@@ -4,7 +4,12 @@
 \alias{group_municipalities}
 \title{Group by municipalities and cases}
 \usage{
-group_municipalities(disease_data, col_name = "cod_mun_o", percentage = FALSE)
+group_municipalities(
+  disease_data,
+  department = NULL,
+  col_name = "cod_mun_o",
+  percentage = FALSE
+)
 }
 \arguments{
 \item{disease_data}{The disease data}
@@ -16,7 +21,7 @@ the municipalities codes}
 percentage of cases as a column}
 }
 \value{
-The disease data grouped by municipalitie codes and cases number
+The disease data grouped by municipality codes and cases number
 }
 \description{
 Function that groups the data by code municipalities and cases number

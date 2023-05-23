@@ -27,15 +27,15 @@ filter_disease <- function(name_disease,
 #'
 #' Function that filters disease data by departments and municipalities
 #' @param name_disease The disease name
-#' @param department The department names
-#' @param municipality The municipality names
+#' @param dept_name The department names
+#' @param mun_name The municipality names
 #' @return Data filtered with the disease, departments and municipalities selected
 #' @examples
 #' disease_data <- import_linelist_disease_year(2019, "DENGUE")
 #' disease_data <- clean_header(disease_data)
-#' geographical_filter(disease_data, department = "ANTIOQUIA")
+#' geo_filter(disease_data, department = "ANTIOQUIA")
 #' @export
-geographical_filter <- function(disease_data, department = NULL, municipality = NULL) {
+geo_filter <- function(disease_data, dept_name = NULL, mun_name = NULL) {
   dept_filtered_data <- data.frame()
   dept_data <- data.frame()
   cols_ocurrence <- c()
