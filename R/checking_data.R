@@ -517,15 +517,15 @@ group_dept <- function(disease_data,
 #'            percentage = FALSE)
 #' @export
 group_mun <- function(disease_data,
-                                 dept_name = NULL,
-                                 col_name = "cod_mun_o",
-                                 percentage = FALSE) {
-  col_name <- get_geo_occurrence_type(disease_data$cod_eve)[2]
+                      dept_name = NULL,
+                      col_name = "cod_mun_o",
+                      percentage = FALSE) {
+  col_name <- get_geo_occurrence_type(disease_data$cod_eve[1])
   disease_data_muns <- disease_data
   disease_data_muns <- group_columns_cases(disease_data,
-                                           col_names = col_name)
+                                           col_names = col_name[2])
   colnames(disease_data_muns)[
-    colnames(disease_data_muns) == col_name] <- "id"
+    colnames(disease_data_muns) == col_name[2]] <- "id"
   disease_data_muns$id <- sapply(disease_data_muns$id,
                                        as.character)
   dept_data <- get_info_depts(dept_name)

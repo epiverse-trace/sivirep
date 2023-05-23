@@ -22,7 +22,7 @@ params:
     value: "Antioquia" 
     label: Departamento
     input: select
-    choices: !r get_departments()
+    choices: !r sivirep::get_departments()
   municipalitie:
     value: ""
     label: Municipio
