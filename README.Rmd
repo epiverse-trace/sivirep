@@ -12,9 +12,9 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/",
-  include = TRUE, 
-  error = FALSE,  
-  warning = FALSE, 
+  include = TRUE,
+  error = FALSE,
+  warning = FALSE,
   message = FALSE
 )
 ```
@@ -75,7 +75,7 @@ You can install the development version of `sivirep` from GitHub with:
 
 ```{r}
 # install.packages("remotes")
-# remotes::install_github("epiverse-trace/sivirep")   
+# remotes::install_github("epiverse-trace/sivirep")
 library(sivirep)
 ```
 
@@ -197,7 +197,7 @@ of data from sivigila service using a parameterised format based on
 disease and year.
 
 ```{r}
-disease_data <-  import_linelist_disease_year(year = 2020, 
+disease_data <-  import_linelist_disease_year(year = 2020,
                                               disease_name = "dengue")
 ```
 
@@ -261,10 +261,12 @@ which you can specify the time unit to group these dates, the allowed
 values for this parameter are: day and month.
 
 ```{r}
-cases_onset_symptoms_by_day <- group_onset_symptoms(disease_data = clean_disease_data, 
-                                                    type = "day") 
-cases_onset_symptoms_by_month <- group_onset_symptoms(disease_data = clean_disease_data, 
-                                                      type = "month") 
+cases_onset_symptoms_by_day <- group_onset_symptoms(disease_data =
+                                                    clean_disease_data,
+                                                    type = "day")
+cases_onset_symptoms_month <- group_onset_symptoms(disease_data =
+                                                   clean_disease_data,
+                                                   type = "month")
 ```
 
 ##### 💡 Tip 2 - Get the first n months with most cases
@@ -289,10 +291,12 @@ consist in group the disease data by this variables, you can use the
 following function of `sivirep` to do this:
 
 ```{r}
-cases_notification_date_by_day <- group_notification_date(disease_data = clean_disease_data, 
-                                                          type = "day") 
-cases_notification_date_by_month <- group_notification_date(disease_data = clean_disease_data, 
-                                                            type = "month") 
+cases_notification_date_by_day <- group_notification_date(disease_data =
+                                                          clean_disease_data,
+                                                          type = "day")
+cases_notification_date_month <- group_notification_date(disease_data =
+                                                         clean_disease_data,
+                                                         type = "month")
 ```
 
 The graph that allows to visualise this distribution must be generated
@@ -317,7 +321,7 @@ SIVIGILA source only records sex.
 by sex automatically after the cleansing process.
 
 ```{r}
-cases_sex <- group_sex(disease_data = clean_disease_data, 
+cases_sex <- group_sex(disease_data = clean_disease_data,
                        percentage = TRUE)
 ```
 
@@ -372,7 +376,7 @@ number of cases and percentages. Also, the age interval can be
 customised.
 
 ```{r}
-cases_age_sex <- group_age_sex(disease_data = clean_disease_data, 
+cases_age_sex <- group_age_sex(disease_data = clean_disease_data,
                                age_interval = 10)
 
 ```

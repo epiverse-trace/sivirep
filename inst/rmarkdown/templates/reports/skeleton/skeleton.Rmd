@@ -29,10 +29,10 @@ params:
 ---
 
 ```{r setup, echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
-knitr::opts_chunk$set(include = TRUE, 
-                      echo = FALSE, 
-                      error = FALSE,  
-                      warning = FALSE, 
+knitr::opts_chunk$set(include = TRUE,
+                      echo = FALSE,
+                      error = FALSE,
+                      warning = FALSE,
                       message = FALSE)
 library(sivirep)
 ```
@@ -63,9 +63,9 @@ En este reporte se presenta el comportamiento del `r params$disease_name` durant
 # Distribución temporal de los casos
 
 ```{r cases_by_onset_symptom_date, include = FALSE}
-cases_onset_symptoms_by_day <- group_onset_symptoms(filter_disease_data, 
+cases_onset_symptoms_by_day <- group_onset_symptoms(filter_disease_data,
                                                     type = "day")
-months_most_cases <- get_months_most_cases(cases_onset_symptoms_by_day, 
+months_most_cases <- get_months_most_cases(cases_onset_symptoms_by_day,
                                            col_dates = "ini_sin")
 ```
 
@@ -77,7 +77,7 @@ plot_onset_symptoms(data_grouped = cases_onset_symptoms_by_day,
 ```
 
 ```{r cases_by_onset_notification_date, include = FALSE}
-cases_notification_date_by_day <- group_notification_date(filter_disease_data, 
+cases_notification_date_by_day <- group_notification_date(filter_disease_data,
                                                           type = "day")
 ```
 
@@ -132,7 +132,7 @@ plot_age(data_grouped = cases_age)
 # Distribución de casos por edad y sexo
 
 ```{r distribution_age_anger, fig.height = 3, fig.width = 9, fig.cap =  "Distribucion de casos por edad y genero"}
-cases_age_sex <- group_age_sex(disease_data = filter_disease_data, 
+cases_age_sex <- group_age_sex(disease_data = filter_disease_data,
                                age_interval = 10)
 plot_age_sex(data_grouped = cases_age_sex)
 ```
@@ -151,20 +151,21 @@ plot_special_population(cases_special_population)
 ```{r group_distribution_spatial,  results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
 #spatial_dept_dist <- group_dept(disease_data = filter_disease_data)
 #map <- plot_dept_map(data_grouped = spatial_dept_dist)
-spatial_muns_dist <- group_municipalities(disease_data = filter_disease_data, 
-                                          department = params$department)
+spatial_muns_dist <- group_mun(disease_data = filter_disease_data,
+                               dept_name = params$department)
 spatial_most_cases <- get_most_cases(spatial_muns_dist)
-map <- plot_map(data_grouped = spatial_muns_dist, department = params$department)
+map <- plot_map(data_grouped = spatial_muns_dist,
+                department = params$department)
 ```
 
 Los casos se distribuyen a lo largo de `r nrow(spatial_muns_dist)` municipios del departamento de `r param$department`, teniendo un mayor reporte el municipio de `r stringr::str_to_title(spatial_most_cases$nombre)` con `r spatial_most_cases$casos` casos (Ver Figura 7).
 
 ```{r plot_distribution_municipalities, fig.height = 10, fig.width = 10, fig.cap = "Distribucion de casos por municipio"}
-plot_spatial <- plot_municipalities(spatial_muns_dist)
+plot_spatial <- plot_muns(spatial_muns_dist)
 plot_spatial
 ```
 
-```{r map_distribution_spatial, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, echo=FALSE, cache=FALSE, results=FALSE, warning=FALSE, comment=FALSE, warning=FALSE, fig.height = 10, fig.width = 10, fig.cap =  "Distribucion espacial de casos"}
+```{r map_distribution_spatial, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, cache = FALSE, results = FALSE, comment = FALSE, fig.height = 10, fig.width = 10, fig.cap =  "Distribucion espacial de casos"}
 map
 ```
 

@@ -24,11 +24,11 @@ plot_map(
 \item{municipality}{Municipality name}
 }
 \value{
-The map by departments or municipalities with the cases number of 
+The map by departments or municipalities with the cases number of
 a specific disease
 }
 \description{
-Function that generates the map by departments or municipalities with the 
+Function that generates the map by departments or municipalities with the
 cases number of a specific disease
 }
 \examples{

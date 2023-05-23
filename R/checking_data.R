@@ -27,34 +27,36 @@ filter_disease <- function(name_disease,
 #'
 #' Function that filters disease data by departments and municipalities
 #' @param name_disease The disease name
-#' @param dept_name The department names
-#' @param mun_name The municipality names
-#' @return Data filtered with the disease, departments and municipalities selected
+#' @param dept_name The department name
+#' @param mun_name The municipality name
+#' @return Data filtered with the disease, departments and
+#' municipalities selected
 #' @examples
 #' disease_data <- import_linelist_disease_year(2019, "DENGUE")
 #' disease_data <- clean_header(disease_data)
-#' geo_filter(disease_data, department = "ANTIOQUIA")
+#' geo_filter(disease_data, dept_name = "ANTIOQUIA")
 #' @export
 geo_filter <- function(disease_data, dept_name = NULL, mun_name = NULL) {
   dept_filtered_data <- data.frame()
   dept_data <- data.frame()
   cols_ocurrence <- c()
-  if (!is.null(department)) {
-    dept_data <- get_info_depts(department, municipality)
+  if (!is.null(dept_name)) {
+    dept_data <- get_info_depts(dept_name, mun_name)
     dept_data <- dept_data[1, ]
     cols_ocurrence <- get_geo_occurrence_type(disease_data$cod_eve[1])
   }
   if (!is.null(dept_data)) {
     dept_filtered_data <- dplyr::filter(disease_data,
                                         disease_data[[cols_ocurrence[1]]] %in%
-                                          dept_data$codigo_departamento)
+                                          as.integer(dept_data$codigo_departamento))
   }
-  if (!is.null(municipality)) {
-    code_mpio <- set_code_mpio(dept_data$codigo_departamento,
+  if (!is.null(mun_name)) {
+    code_mun <- set_code_mun(dept_data$codigo_departamento,
                                dept_data$codigo_municipio)
     dept_filtered_data <- dplyr::filter(dept_filtered_data,
-                                        dept_filtered_data[[cols_ocurrence[2]]] %in%
-                                          code_mpio)
+                                        dept_filtered_data[[
+                                          cols_ocurrence[2]]] %in%
+                                          as.integer(code_mun))
   }
   return(dept_filtered_data)
 }
@@ -90,7 +92,6 @@ get_depto_codes <- function(geo_codes) {
 #' get_special_population_cases(disease_data)
 #' @export
 get_special_population_cases <- function(disease_data) {
-  
   special_populations <- config::get(file = system.file(
     "extdata",
     "config.yml",
@@ -281,8 +282,8 @@ group_onset_symptoms <- function(disease_data,
   if (is.null(col_name)) {
     col_name <- dates_column_names[3]
   }
-  #cols_ocurrence <- get_geo_occurrence_type(disease_data$cod_eve[1])
-  #col_name <- append(col_name, cols_ocurrence)
+  cols_ocurrence <- get_geo_occurrence_type(disease_data$cod_eve[1])
+  col_name <- append(col_name, cols_ocurrence)
   group_by_onset_symp <- group_columns_cases(disease_data, col_names = col_name)
   return(group_by_onset_symp)
 }
@@ -312,8 +313,8 @@ group_notification_date <- function(disease_data,
   if (is.null(col_name)) {
     col_name <- dates_column_names[2]
   }
-  #cols_ocurrence <- get_geo_occurrence_type(disease_data$cod_eve[1])
-  #col_name <- append(col_name, cols_ocurrence)
+  cols_ocurrence <- get_geo_occurrence_type(disease_data$cod_eve[1])
+  col_name <- append(col_name, cols_ocurrence)
   group_by_onset_symp <- group_columns_cases(disease_data, col_names = col_name)
   return(group_by_onset_symp)
 }
@@ -359,8 +360,8 @@ group_sex <- function(disease_data,
 group_sex_epiweek <- function(disease_data,
                               col_names = c("sexo", "semana"),
                               percentage = TRUE) {
-  #cols_ocurrence <- get_geo_occurrence_type(disease_data$cod_eve[1])
-  #col_names <- append(col_names, cols_ocurrence)
+  cols_ocurrence <- get_geo_occurrence_type(disease_data$cod_eve[1])
+  col_names <- append(col_names, cols_ocurrence)
   disease_data_by_sex_and_week <- group_columns_cases(disease_data,
                                                       col_names,
                                                       percentage)
@@ -420,8 +421,8 @@ group_age_sex <- function(disease_data,
                           col_names = c("edad", "sexo"),
                           percentage = TRUE,
                           age_interval = 10) {
-  #cols_ocurrence <- get_geo_occurrence_type(disease_data$cod_eve[1])
-  #col_names <- append(col_names, cols_ocurrence)
+  cols_ocurrence <- get_geo_occurrence_type(disease_data$cod_eve[1])
+  col_names <- append(col_names, cols_ocurrence)
   disease_data_age_sex <- group_columns_cases(disease_data,
                                               col_names,
                                               percentage)
@@ -461,8 +462,8 @@ group_age_sex <- function(disease_data,
 group_special_population <- function(disease_data,
                                      col_name = "poblacion",
                                      percentage = TRUE) {
-  #cols_ocurrence <- get_geo_occurrence_type(disease_data$cod_eve[1])
-  #col_name <- append(col_name, cols_ocurrence)
+  cols_ocurrence <- get_geo_occurrence_type(disease_data$cod_eve[1])
+  col_name <- append(col_name, cols_ocurrence)
   disease_data_special <- get_special_population_cases(disease_data)
   disease_data_special_grouped <- data.frame(poblacion =
                                                disease_data_special$poblacion,
@@ -489,8 +490,6 @@ group_dept <- function(disease_data,
                        col_name = "cod_dpto_o",
                        percentage = FALSE) {
   disease_data_by_depto_codes <- disease_data
-  #disease_data_by_depto_codes <- group_columns_cases(disease_data,
-  #                                                  col_names = col_name)
   colnames(disease_data_by_depto_codes)[
     colnames(disease_data_by_depto_codes) == col_name] <- "id"
   disease_data_by_depto_codes$id <- sapply(disease_data_by_depto_codes$id,
@@ -503,6 +502,7 @@ group_dept <- function(disease_data,
 #'
 #' Function that groups the data by code municipalities and cases number
 #' @param disease_data The disease data
+#' @param dept_name The department name
 #' @param col_name Column name in the disease data that contains
 #' the municipalities codes
 #' @param percentage Indicates if it is required to add a
@@ -511,15 +511,16 @@ group_dept <- function(disease_data,
 #' @examples
 #' disease_data <- import_linelist_disease_year(2019, "DENGUE")
 #' disease_data <- clean_header(disease_data)
-#' group_municipalities(disease_data, col_name = "cod_mun_o", percentage = FALSE)
+#' group_mun(disease_data,
+#'            dept_name = "Antioquia",
+#'            col_name = "cod_mun_o",
+#'            percentage = FALSE)
 #' @export
-group_municipalities <- function(disease_data,
-                                 department = NULL,
+group_mun <- function(disease_data,
+                                 dept_name = NULL,
                                  col_name = "cod_mun_o",
                                  percentage = FALSE) {
-  
   col_name <- get_geo_occurrence_type(disease_data$cod_eve)[2]
-  
   disease_data_muns <- disease_data
   disease_data_muns <- group_columns_cases(disease_data,
                                            col_names = col_name)
@@ -527,19 +528,17 @@ group_municipalities <- function(disease_data,
     colnames(disease_data_muns) == col_name] <- "id"
   disease_data_muns$id <- sapply(disease_data_muns$id,
                                        as.character)
-  
-  dept_data <- get_info_depts(department)
+  dept_data <- get_info_depts(dept_name)
   dept_data <- dept_data[1, ]
-  
-  names_mpios <- c()
+  names_muns <- c()
   geo_data <- import_geo_codes()
   for (id in disease_data_muns$id) {
-    names_mpios <- append(names_mpios, 
-                          get_name_mpios(
+    names_muns <- append(names_muns,
+                          get_name_muns(
                             geo_data,
                             dept_data$codigo_departamento,
                             id))
   }
-  disease_data_muns$nombre <- names_mpios
+  disease_data_muns$nombre <- names_muns
   return(disease_data_muns)
 }

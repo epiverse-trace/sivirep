@@ -104,14 +104,14 @@ plot_dept_map <- function(data_grouped,
 
 #' Plot department map
 #'
-#' Function that generates the map by departments or municipalities with the 
+#' Function that generates the map by departments or municipalities with the
 #' cases number of a specific disease
 #' @param data_grouped The disease data grouped by department and cases number
 #' @param col_name_lj Column name to join with the shape file
 #' @param caption_label Caption or information source of the disease data
 #' @param department Department name
 #' @param municipality Municipality name
-#' @return The map by departments or municipalities with the cases number of 
+#' @return The map by departments or municipalities with the cases number of
 #' a specific disease
 #' @examples
 #' disease_data <- import_linelist_disease_year(2019, "DENGUE")
@@ -128,42 +128,40 @@ plot_map <- function(data_grouped,
                      caption_label = NULL,
                      department = NULL,
                      municipality = NULL) {
-  
   if (is.null(caption_label)) {
     caption_label <- "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
   }
-  
   dsn <-  system.file("extdata/depto_adm_shp", "MGN_ANM_MPIOS.shp",
                       package = "sivirep")
-  
   shp <- sf::st_read(dsn = dsn)
-  
   dept_data <- get_info_depts(department, municipality)
   dept_data <- dept_data[1, ]
-  
   selected_polygon <- shp
-  
   if (!is.null(department)) {
     selected_polygon <- shp[shp$DPTO_CCDGO == dept_data$codigo_departamento, ]
-    
     if (!is.null(municipality)) {
-      code_mpio <- set_code_mpio(dept_data$codigo_departamento,
+      code_mun <- set_code_mun(dept_data$codigo_departamento,
                                  dept_data$codigo_municipio)
-      selected_polygon <- selected_polygon[selected_polygon$MPIO_CCDGO == code_mpio, ]
+      selected_polygon <-
+        selected_polygon[
+          selected_polygon$MPIO_CCDGO == code_mun, ]
     }
-    
-    colnames(selected_polygon)[colnames(selected_polygon) == "MPIO_CCDGO"] <- "id"
+    colnames(selected_polygon)[colnames(
+                                  selected_polygon) == "MPIO_CCDGO"] <- "id"
   } else {
-    colnames(selected_polygon)[colnames(selected_polygon) == "DPTO_CCDGO"] <- "id"
+    colnames(selected_polygon)[colnames(
+                                  selected_polygon) == "DPTO_CCDGO"] <- "id"
   }
-  
   selected_polygon <- ggplot2::fortify(selected_polygon, region = "id")
   selected_polygon <- selected_polygon %>%
     dplyr::left_join(data_grouped, by = col_name_lj)
-  selected_polygon <- cbind(selected_polygon, sf::st_coordinates(sf::st_centroid(selected_polygon$geometry)))
+  selected_polygon <- cbind(selected_polygon,
+                            sf::st_coordinates(sf::st_centroid(
+                                  selected_polygon$geometry)))
   map <- ggplot2::ggplot() +
     ggplot2::geom_sf() +
-    ggplot2::geom_sf(data = selected_polygon, ggplot2::aes(fill = .data$casos)) +
+    ggplot2::geom_sf(data = selected_polygon,
+                     ggplot2::aes(fill = .data$casos)) +
     ggplot2::scale_fill_gradient(low = "white", high = "darkred") +
     ggplot2::theme_void() +
     ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5)) +
@@ -239,9 +237,9 @@ plot_variable <- function(data, var_x, var_y, var_per = NULL, var_fill = NULL,
     ggplot2::labs(fill = "") + {
       if (var_y == "casos") {
         ggplot2::scale_y_continuous(limits = c(0, max(data$casos)))
-      } else { 
-        ggplot2::scale_x_continuous(limits = c(0, max(data$casos))) 
-      } 
+      } else {
+        ggplot2::scale_x_continuous(limits = c(0, max(data$casos)))
+      }
     } +
     ggplot2::theme_classic() + {
       if (text_sz > 3) {
@@ -561,13 +559,13 @@ plot_special_population <- function(data_grouped,
 #' @examples
 #' disease_data <- import_linelist_disease_year(2020, "DENGUE")
 #' disease_data <- clean_header(disease_data)
-#' data_grouped <- group_municipalities(disease_data, 
+#' data_grouped <- group_municipalities(disease_data,
 #'                                   department = "Antioquia")
-#' plot_municipalities(data_grouped,
+#' plot_muns(data_grouped,
 #'                     col_name = "nombre",
 #'                     percentage = FALSE)
 #' @export
-plot_municipalities <- function(data_grouped,
+plot_muns <- function(data_grouped,
                       col_name = "nombre",
                       percentage = FALSE) {
   plot_cases_special_population <- plot_variable(data_grouped,
@@ -580,7 +578,7 @@ plot_municipalities <- function(data_grouped,
                                                  bar_wd = 1,
                                                  text_sz = 3,
                                                  show_val = percentage) +
-    ggplot2::theme(legend.position = "bottom") + 
+    ggplot2::theme(legend.position = "bottom") +
     ggplot2::coord_flip()
   return(plot_cases_special_population)
 }

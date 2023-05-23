@@ -158,12 +158,10 @@ get_geo_occurrence_type <- function(code_disease) {
   col_ocurrences <- c("cod_dpto_o", "cod_mun_o")
   if (grep(code_disease, geo_occurrences$cod_dpto_o) > 0) {
     col_ocurrences <- c("cod_dpto_o", "cod_mun_o")
-  }
-  else if (grep(code_disease, geo_occurrences$cod_dpto_r) > 0) {
+  } else if (grep(code_disease, geo_occurrences$cod_dpto_r) > 0) {
     col_ocurrences <- c("cod_dpto_r", "cod_mun_r")
   }
-  
-  return(col_ocurrences) 
+  return(col_ocurrences)
 }
 
 #' Get geographic information of the disease data
@@ -177,7 +175,6 @@ get_geo_occurrence_type <- function(code_disease) {
 #' @export
 get_info_depts <- function(department = NULL, municipality = NULL) {
   geo_data <- import_geo_codes()
-  
   list_departments <- unique(geo_data$nombre_departamento)
   list_specific <- list_departments[
     stringr::str_detect(list_departments, toupper(department)) == TRUE]
@@ -197,18 +194,18 @@ get_info_depts <- function(department = NULL, municipality = NULL) {
 #'
 #' Function that sets the geographic codes of the disease data
 #' @param code_dept The department code
-#' @param code_mpio The municipality code
+#' @param code_mun The municipality code
 #' @return The geographic codes of the disease data
 #' @examples
-#' set_code_mpio(code_dept = 01, code_mpio = "001")
+#' set_code_mun(code_dept = 01, code_mun = "001")
 #' @export
-set_code_mpio <- function(code_dept, code_mpio) {
-  code_mpio <- as.character(code_mpio)
+set_code_mun <- function(code_dept, code_mun) {
+  code_mun <- as.character(code_mun)
   if (substr(code_dept, 1, 1) == "0") {
     code_dept <- substr(code_dept, 2, 2)
-    code_mpio <- gsub(code_dept, "", code_mpio) 
+    code_mun <- gsub(code_dept, "", code_mun)
   }
-  return(code_mpio)
+  return(code_mun)
 }
 
 #' Get departments of Colombia
@@ -230,22 +227,23 @@ get_departments <- function() {
 #'
 #' Function that gets the municipality name
 #' @param code_dept The department code
-#' @param code_mpio The municipality code
+#' @param code_mun The municipality code
 #' @return The municipality name
 #' @examples
-#' get_departments()
+#' geo_data <- import_geo_codes()
+#' get_name_muns(geo_data,
+#'               code_dept = "05",
+#'               code_mun = "001")
 #' @export
-get_name_mpios <- function(geo_data, code_dept, code_mpio) {
+get_name_muns <- function(geo_data, code_dept, code_mun) {
   if (substr(code_dept, 1, 1) == "0") {
     code_dept <- substr(code_dept, 2, 2)
-    code_mpio <- paste0(code_dept, code_mpio) 
+    code_mun <- paste0(code_dept, code_mun)
+  } else {
+    code_mun <- paste0(code_dept, code_mun)
   }
-  else {
-    code_mpio <- paste0(code_dept, code_mpio) 
-  }
-
-  mpio_data <- dplyr::filter(geo_data, .data$codigo_municipio %in%
-                               as.integer(code_mpio))
-  mpio_data <- mpio_data[1, ]
-  return(mpio_data$nombre_municipio)
+  mun_data <- dplyr::filter(geo_data, .data$codigo_municipio %in%
+                               as.integer(code_mun))
+  mun_data <- mun_data[1, ]
+  return(mun_data$nombre_municipio)
 }

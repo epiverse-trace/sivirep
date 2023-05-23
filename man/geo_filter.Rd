@@ -7,14 +7,15 @@
 geo_filter(disease_data, dept_name = NULL, mun_name = NULL)
 }
 \arguments{
-\item{dept_name}{The department names}
+\item{dept_name}{The department name}
 
-\item{mun_name}{The municipality names}
+\item{mun_name}{The municipality name}
 
 \item{name_disease}{The disease name}
 }
 \value{
-Data filtered with the disease, departments and municipalities selected
+Data filtered with the disease, departments and
+municipalities selected
 }
 \description{
 Function that filters disease data by departments and municipalities
@@ -22,5 +23,5 @@ Function that filters disease data by departments and municipalities
 \examples{
 disease_data <- import_linelist_disease_year(2019, "DENGUE")
 disease_data <- clean_header(disease_data)
-geo_filter(disease_data, department = "ANTIOQUIA")
+geo_filter(disease_data, dept_name = "ANTIOQUIA")
 }
