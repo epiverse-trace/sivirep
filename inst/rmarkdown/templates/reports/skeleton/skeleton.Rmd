@@ -146,23 +146,32 @@ plot_special_population(cases_special_population)
 
 \newpage
 
-# Distribución espacial de casos
+# Distribución de los casos por municipio
 
-```{r group_distribution_spatial,  results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
+```{r group_distribution_municipalities,  results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
 #spatial_dept_dist <- group_dept(disease_data = filter_disease_data)
 #map <- plot_dept_map(data_grouped = spatial_dept_dist)
 spatial_muns_dist <- group_mun(disease_data = filter_disease_data,
                                dept_name = params$department)
 spatial_most_cases <- get_most_cases(spatial_muns_dist)
-map <- plot_map(data_grouped = spatial_muns_dist,
-                department = params$department)
 ```
 
-Los casos se distribuyen a lo largo de `r nrow(spatial_muns_dist)` municipios del departamento de `r param$department`, teniendo un mayor reporte el municipio de `r stringr::str_to_title(spatial_most_cases$nombre)` con `r spatial_most_cases$casos` casos (Ver Figura 7).
+Los casos se distribuyen a lo largo de `r nrow(spatial_muns_dist)` municipios del departamento de `r params$department`, teniendo un mayor reporte el municipio de `r stringr::str_to_title(spatial_most_cases$nombre)` con `r spatial_most_cases$casos` casos (Ver Figura 7).
 
 ```{r plot_distribution_municipalities, fig.height = 10, fig.width = 10, fig.cap = "Distribucion de casos por municipio"}
 plot_spatial <- plot_muns(spatial_muns_dist)
 plot_spatial
+```
+
+\newpage
+
+# Distribución espacial de casos
+
+```{r plot_distribution_spatial,  results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
+#spatial_dept_dist <- group_dept(disease_data = filter_disease_data)
+#map <- plot_dept_map(data_grouped = spatial_dept_dist)
+map <- plot_map(data_grouped = spatial_muns_dist,
+                department = params$department)
 ```
 
 ```{r map_distribution_spatial, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, cache = FALSE, results = FALSE, comment = FALSE, fig.height = 10, fig.width = 10, fig.cap =  "Distribucion espacial de casos"}
