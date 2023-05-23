@@ -281,8 +281,8 @@ group_onset_symptoms <- function(disease_data,
   if (is.null(col_name)) {
     col_name <- dates_column_names[3]
   }
-  cols_ocurrence <- get_geo_occurrence_type(disease_data$cod_eve[1])
-  col_name <- append(col_name, cols_ocurrence)
+  #cols_ocurrence <- get_geo_occurrence_type(disease_data$cod_eve[1])
+  #col_name <- append(col_name, cols_ocurrence)
   group_by_onset_symp <- group_columns_cases(disease_data, col_names = col_name)
   return(group_by_onset_symp)
 }
@@ -312,8 +312,8 @@ group_notification_date <- function(disease_data,
   if (is.null(col_name)) {
     col_name <- dates_column_names[2]
   }
-  cols_ocurrence <- get_geo_occurrence_type(disease_data$cod_eve[1])
-  col_name <- append(col_name, cols_ocurrence)
+  #cols_ocurrence <- get_geo_occurrence_type(disease_data$cod_eve[1])
+  #col_name <- append(col_name, cols_ocurrence)
   group_by_onset_symp <- group_columns_cases(disease_data, col_names = col_name)
   return(group_by_onset_symp)
 }
@@ -359,8 +359,8 @@ group_sex <- function(disease_data,
 group_sex_epiweek <- function(disease_data,
                               col_names = c("sexo", "semana"),
                               percentage = TRUE) {
-  cols_ocurrence <- get_geo_occurrence_type(disease_data$cod_eve[1])
-  col_names <- append(col_names, cols_ocurrence)
+  #cols_ocurrence <- get_geo_occurrence_type(disease_data$cod_eve[1])
+  #col_names <- append(col_names, cols_ocurrence)
   disease_data_by_sex_and_week <- group_columns_cases(disease_data,
                                                       col_names,
                                                       percentage)
@@ -420,8 +420,8 @@ group_age_sex <- function(disease_data,
                           col_names = c("edad", "sexo"),
                           percentage = TRUE,
                           age_interval = 10) {
-  cols_ocurrence <- get_geo_occurrence_type(disease_data$cod_eve[1])
-  col_names <- append(col_names, cols_ocurrence)
+  #cols_ocurrence <- get_geo_occurrence_type(disease_data$cod_eve[1])
+  #col_names <- append(col_names, cols_ocurrence)
   disease_data_age_sex <- group_columns_cases(disease_data,
                                               col_names,
                                               percentage)
@@ -461,8 +461,8 @@ group_age_sex <- function(disease_data,
 group_special_population <- function(disease_data,
                                      col_name = "poblacion",
                                      percentage = TRUE) {
-  cols_ocurrence <- get_geo_occurrence_type(disease_data$cod_eve[1])
-  col_name <- append(col_name, cols_ocurrence)
+  #cols_ocurrence <- get_geo_occurrence_type(disease_data$cod_eve[1])
+  #col_name <- append(col_name, cols_ocurrence)
   disease_data_special <- get_special_population_cases(disease_data)
   disease_data_special_grouped <- data.frame(poblacion =
                                                disease_data_special$poblacion,
