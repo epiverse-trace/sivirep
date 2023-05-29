@@ -146,7 +146,7 @@ plot_special_population(cases_special_population)
 
 \newpage
 
-# Distribución de los casos por municipio
+# Distribución de casos por municipio
 
 ```{r group_distribution_municipalities,  results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
 #spatial_dept_dist <- group_dept(disease_data = filter_disease_data)
