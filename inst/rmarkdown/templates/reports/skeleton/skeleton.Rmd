@@ -12,12 +12,14 @@ header-includes:
 - \usepackage{fancyhdr}
 subtitle: (fuente SIVIGILA, Datos libres)
 params:
+  disease_name:
+    value: ""
+    label: Enfermedad
+    input: select
+    choices: !r sivirep::list_available_diseases_years()$enfermedad
   year:
     value: 2020
     label: Año
-  disease_name:
-    value: "Dengue" 
-    label: Enfermedad
   department:
     value: "Antioquia" 
     label: Departamento
