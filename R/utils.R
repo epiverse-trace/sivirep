@@ -160,6 +160,8 @@ get_geo_occurrence_type <- function(code_disease) {
     col_ocurrences <- c("cod_dpto_o", "cod_mun_o")
   } else if (grep(code_disease, geo_occurrences$cod_dpto_r) > 0) {
     col_ocurrences <- c("cod_dpto_r", "cod_mun_r")
+  } else {
+    col_ocurrences <- c("cod_dpto_o", "cod_mun_o")
   }
   return(col_ocurrences)
 }

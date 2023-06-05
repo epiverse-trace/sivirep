@@ -3,6 +3,7 @@
 export(clean_depto_codes)
 export(clean_depto_disease_codes)
 export(clean_disease_ages)
+export(clean_disease_cols)
 export(clean_disease_dates)
 export(clean_header)
 export(cleansing_sivigila_data)

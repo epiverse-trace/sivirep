@@ -245,14 +245,22 @@ based on SIVIGILA data dictionary.
 The user may want to use these functions individually or simply use the
 generic wrapper cleansing function `cleansing_sivigila_data`
 
-### 3. Temporal distribution of cases
+### 3. Filter cases
+
+`sivirep` provides a function that allows to filter the disease data by department or municipality name called `geo_filter`, allows the user to create a subnational report
+
+```{r}
+filter_disease_data <- geo_filter(clean_disease_data, "Antioquia")
+``` 
+
+### 4. Temporal distribution of cases
 
 In `sivirep` the temporal distribution of cases is defined by the
 variables symptom onset date and notification date, for each of these
 variables there are specialised functions to group the data and generate
 the plots.
 
-#### 3.1. Group the data by onset symptoms at the desired temporal scale
+#### 4.1. Group the data by onset symptoms at the desired temporal scale
 
 To generate the distribution of cases by symptom onset date it is
 necessary to group the data by these variables. `sivirep` provides a
@@ -284,7 +292,7 @@ plot_onset_symptoms(data_grouped = cases_onset_symptoms_by_day,
                     break_tick_date = "months")
 ```
 
-#### 3.2. Group the data by notification date at the desired temporal scale
+#### 4.2. Group the data by notification date at the desired temporal scale
 
 The process to generate the distribution of cases by notification date
 consist in group the disease data by this variables, you can use the
@@ -309,9 +317,9 @@ plot_notification_date(data_grouped = cases_notification_date_by_day,
                        break_tick_date = "months")
 ```
 
-### 4. Age and sex
+### 5. Age and sex
 
-### 4.1. Sex variable
+### 5.1. Sex variable
 
 When analysing or reporting disease data, it is often necessary to
 determine the distribution of cases by gender or sex. However, the
@@ -345,7 +353,7 @@ provides `sivirep`:
 plot_sex_epiweek(data_grouped = cases_sex_epiweek)
 ```
 
-### 4.2. Age variable
+### 5.2. Age variable
 
 Age is an important variable to analyse, as it is a known risk factor
 for many diseases. Certain diseases and conditions tend to occur more
@@ -368,7 +376,7 @@ The corresponding plot function is `plot_age`
 plot_age(data_grouped = cases_age)
 ```
 
-### 4.3. Age and sex simultaneously
+### 5.3. Age and sex simultaneously
 
 `sivirep` provides a function called `group_age_sex`, which can group
 disease data by age ranges and sex simultaneously and obtain their
@@ -387,7 +395,7 @@ The corresponding plotting function is `plot_age_sex`.
 plot_age_sex(data_grouped = cases_age_sex)
 ```
 
-### 5. Spatial distribution of cases
+### 6. Spatial distribution of cases
 
 Obtaining the spatial distribution of cases is helpful to identify areas
 with a high concentration of cases, disease clusters and environmental

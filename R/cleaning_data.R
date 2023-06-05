@@ -294,6 +294,39 @@ clean_disease_ages <- function(disease_data, col_name = "edad") {
   disease_data_by_years <- remove_nin_values(disease_data_by_years, col_name)
 }
 
+#' Clean outliers from disease data columns
+#'
+#' Function that clean outliers from disease data columns
+#' @param disease_data The disease data
+#' @return The disease data with clean columns
+#' @examples
+#' disease_data <- import_linelist_disease_year(2020, "DENGUE")
+#' disease_data <- clean_header(disease_data)
+#' clean_disease_cols(disease_data)
+#' @export
+clean_disease_cols <- function(disease_data) {
+  diseases_cols <- config::get(
+    file =
+      system.file("extdata", "config.yml",
+                  package = "sivirep"
+      ), "diseases_exceptions"
+  )
+  disease_code <- disease_data$cod_eve[1]
+  if (disease_code > 0) {
+    for (event in diseases_cols) {
+      code <- names(event)
+      if (disease_code %in% code) {
+        cols <- event[as.character(disease_code)]
+        for (cols_names in cols) {
+          for (col in cols_names) {
+            disease_data[eval(parse(text = col))] <- NA
+          }
+        }
+      }
+    }
+  }
+}
+
 #' Clean SIVIGILA data
 #'
 #' Function that cleans the selected disease data of SIVIGILA source
@@ -322,6 +355,7 @@ cleansing_sivigila_data <- function(disease_data, year) {
   clean_disease_data <- clean_disease_dates(clean_disease_data, year,
                                             col_name = dates_column_names[2])
   clean_disease_data <- standardize_geo_codes(clean_disease_data)
+  clean_disease_data <- clean_disease_cols()
   clean_disease_data <- parse_age_to_years(clean_disease_data,
                                            col_age = "edad",
                                            col_uni_met = "uni_med")
