@@ -156,8 +156,8 @@ get_geo_occurrence_type <- function(code_disease) {
                                             package = "sivirep"),
                       "occurrence_geo_diseases")
   col_ocurrences <- c("cod_dpto_o", "cod_mun_o")
-  if (grep(code_disease, geo_occurrences$cod_dpto_o) > 0) {
-    col_ocurrences <- c("cod_dpto_o", "cod_mun_o")
+  if (grep(code_disease, geo_occurrences$cod_dpto_n) > 0) {
+    col_ocurrences <- c("cod_dpto_n", "cod_mun_n")
   } else if (grep(code_disease, geo_occurrences$cod_dpto_r) > 0) {
     col_ocurrences <- c("cod_dpto_r", "cod_mun_r")
   } else {
