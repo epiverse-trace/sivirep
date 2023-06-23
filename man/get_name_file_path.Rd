@@ -2,7 +2,7 @@
 % Please edit documentation in R/import_data.R
 \name{get_name_file_path}
 \alias{get_name_file_path}
-\title{Get Name File Path or URL}
+\title{Get name file path or URL}
 \usage{
 get_name_file_path(path)
 }
@@ -10,10 +10,9 @@ get_name_file_path(path)
 \item{path}{The path or URL}
 }
 \value{
-The name file
+The name file for download
 }
 \description{
-Función que obtiene el nombre del archivo a descargar desde una URL o ruta
 Function that gets the file name for download from a URL or path
 }
 \examples{

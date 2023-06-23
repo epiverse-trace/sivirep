@@ -2,25 +2,25 @@
 % Please edit documentation in R/cleaning_data.R
 \name{remove_error_dates}
 \alias{remove_error_dates}
-\title{Remove Error Dates}
+\title{Remove error dates}
 \usage{
-remove_error_dates(disease_data, col_init = "INI_SI", col_cmp = "FEC_HOS")
+remove_error_dates(disease_data, col_init = "ini_sin", col_cmp = "fec_hos")
 }
 \arguments{
-\item{disease_data}{Disease data}
+\item{disease_data}{The disease data}
 
 \item{col_init}{Column name of the date}
 
-\item{col_cmp}{Column name of comparison value}
+\item{col_cmp}{Column name of the comparison date}
 }
 \value{
-The data without the erronous dates
+The data without the erroneous dates
 }
 \description{
-Función que elimina las fechas que son superiores al valor de comparación
-Function that removes greater dates than the comparison value
+Function that removes dates greater than the comparison value
 }
 \examples{
-disease_data <- import_data_disease_by_year(2019, "DENGUE")
-remove_error_dates(disease_data, col_init = "INI_SI", col_cmp = "FEC_HOS")
+disease_data <- import_linelist_disease_year(2019, "DENGUE")
+disease_data <- clean_header(disease_data)
+remove_error_dates(disease_data, col_init = "ini_sin", col_cmp = "fec_hos")
 }

@@ -2,23 +2,24 @@
 % Please edit documentation in R/cleaning_data.R
 \name{remove_nin_values}
 \alias{remove_nin_values}
-\title{Remove NIN (NA, Infinitive, NaN) Values}
+\title{Remove NIN (NA, Infinitive, NaN) values}
 \usage{
-remove_nin_values(disease_data, name_col)
+remove_nin_values(disease_data, col_name)
 }
 \arguments{
-\item{disease_data}{Disease data}
+\item{disease_data}{The disease data}
 
-\item{name_col}{Column name}
+\item{col_name}{Column name in the disease data to evaluate}
 }
 \value{
-The clean data without NA, Infinitive or NaN values of the column
+The clean data without NA, Infinitive or NaN values
 }
 \description{
-Función que elimina los valores (NA, Infinitive, NaN) de una columna
-Function that eliminates the values (NA, Infinitive, NaN) of a column
+Function that removes a rows if the selected column
+values includes NA, Infinitive or NaN
 }
 \examples{
-disease_data <- import_data_disease_by_year(2019, "DENGUE")
-remove_nin_values(disease_data, name_col = "EDAD")
+disease_data <- import_linelist_disease_year(2019, "DENGUE")
+disease_data <- clean_header(disease_data)
+remove_nin_values(disease_data, col_name = "edad")
 }
