@@ -28,7 +28,7 @@ MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.or
 [![R-CMD-check](https://github.com/epiverse-trace/sivirep/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/epiverse-trace/sivirep/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/epiverse-trace/readepi/branch/main/graph/badge.svg)](https://app.codecov.io/gh/epiverse-trace/readepi?branch=main)
-[![lifecycle-concept](https://raw.githubusercontent.com/reconverse/reconverse.github.io/master/images/badge-concept.svg)](https://www.reconverse.org/lifecycle.html#concept)
+[![lifecycle-maturing](https://raw.githubusercontent.com/reconverse/reconverse.github.io/master/images/badge-maturing.svg)](https://www.reconverse.org/lifecycle.html#maturing)
 
 <!-- badges: end -->
 
@@ -109,6 +109,8 @@ Contributors to the project include:
 -   [Hugo Gruson](https://github.com/Bisaloo) (contributor)
 
 -   Laura Gómez-Bermeo (contributor to documentation)
+
+-   Miguel Gámez (contributor)
 
 ## Code of Conduct
 
@@ -402,19 +404,24 @@ with a high concentration of cases, disease clusters and environmental
 or social risk factors.
 
 In Colombia, there are 32 administrative geographic units (adm1) called
-departments. `sivirep` provides a function called `group_deptos` which
-allows obtaining a data.frame of grouped cases by department.
+departments. `sivirep` provides a function called `group_mun` which
+allows obtaining a data.frame of grouped cases by department or municipality.
 
 ```{r}
-spatial_dept_dist <- group_dept(disease_data = clean_disease_data)
+spatial_dept_dist <- group_mun(disease_data = filter_disease_data, dept_name = "Antioquia")
 ```
 
-Currently, with the function called `plot_dept_map` the user can produce
-a static map of Colombia with the distribution of cases by departments.
+Currently, with the function called `plot_map` the user can produce
+a static map of Colombia with the distribution of cases by departments and municipalities.
+
+```{r fig.height = 7, fig.width = 7, results='hide', echo = FALSE}
+map <- plot_map(data_grouped = spatial_dept_dist, department = "Antioquia")
+```
 
 ```{r fig.height = 7, fig.width = 7}
-plot_dept_map(data_grouped = spatial_dept_dist)
+map
 ```
+
 
 ##### 💡 Tip 3 - Get the row with most cases
 
