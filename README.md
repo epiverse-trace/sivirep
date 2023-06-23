@@ -489,18 +489,10 @@ static map of Colombia with the distribution of cases by departments and
 municipalities.
 
 ``` r
-plot_map(data_grouped = spatial_dept_dist, department = "Antioquia")
-#> Reading layer `MGN_ANM_MPIOS' from data source 
-#>   `C:\Users\geral\AppData\Local\R\win-library\4.2\sivirep\extdata\depto_adm_shp\MGN_ANM_MPIOS.shp' 
-#>   using driver `ESRI Shapefile'
-#> Simple feature collection with 1122 features and 90 fields
-#> Geometry type: MULTIPOLYGON
-#> Dimension:     XY
-#> Bounding box:  xmin: -81.73562 ymin: -4.229406 xmax: -66.84722 ymax: 13.39473
-#> Geodetic CRS:  MAGNA-SIRGAS
+map
 ```
 
-![](man/figures/unnamed-chunk-23-1.png)<!-- -->
+![](man/figures/unnamed-chunk-24-1.png)<!-- -->
 
 ##### 💡 Tip 3 - Get the row with most cases
 
