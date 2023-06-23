@@ -142,6 +142,7 @@ concatenate_values_token <- function(values,
   return(final_value)
 }
 
+
 #' Get geographic occurrence columns of the disease data
 #'
 #' Function that gets the geographic occurrence columns of the disease data
