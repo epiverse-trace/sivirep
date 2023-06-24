@@ -24,20 +24,20 @@ get_months_most_cases <- function(disease_data,
                                   col_cases = "casos",
                                   top = 3,
                                   concat_values = TRUE) {
-  data_major_cases <- disease_data[order(eval(
-    parse(text = paste0("disease_data$", col_cases))),
-    decreasing = TRUE), ]
+  data_major_cases <-
+    disease_data[order(eval(parse(text = paste0("disease_data$", col_cases))),
+                       decreasing = TRUE), ]
   if (nrow(data_major_cases) < top) {
     top <- nrow(data_major_cases)
   }
   data_major_cases <- data_major_cases[1:top, ]
-  data_major_cases$Meses <- sapply(eval(
-    parse(text = paste0("data_major_cases$",
-                        col_dates))),
-    months)
+  data_major_cases$Meses <-
+    sapply(eval(parse(text = paste0("data_major_cases$",
+                                    col_dates))),
+           months)
   if (concat_values) {
-    months_concat <- concatenate_values_token(
-      as.character(data_major_cases$Meses)[1:top])
+    months_concat <-
+      concatenate_values_token(as.character(data_major_cases$Meses)[1:top])
     return(months_concat)
   }
   return(data_major_cases)
@@ -62,11 +62,11 @@ get_depto_names <- function(disease_data) {
   i <- 1
   for (code in deptos_data$id) {
     disease_data_deptos$id[disease_data_deptos$id == code] <-
-                                            deptos_data$nombre[i]
+      deptos_data$nombre[i]
     i <- i + 1
   }
   colnames(disease_data_deptos)[colnames(disease_data_deptos) == "id"] <-
-                                                                    "nombre"
+    "nombre"
   disease_data_deptos <- disease_data_deptos[order(disease_data_deptos$nombre,
                                                    decreasing = FALSE), ]
   disease_data_deptos <- disease_data_deptos[5:nrow(disease_data_deptos), ]
@@ -94,19 +94,17 @@ get_depto_names <- function(disease_data) {
 get_most_cases <- function(disease_data,
                            col_name = "casos",
                            percentage = TRUE) {
-  data_major_cases <- disease_data[order(eval(
-    parse(text = paste0("disease_data$",
-                        col_name))),
-    decreasing = TRUE), ]
+  data_major_cases <- disease_data[order(eval(parse(text =
+                                                      paste0("disease_data$",
+                                                             col_name))),
+                                         decreasing = TRUE), ]
   data_major_cases <- data_major_cases[1, ]
   if (percentage) {
-    data_major_cases$porcentaje <- round((data_major_cases$casos[1] /
-                                            sum(eval(
-                                              parse(
-                                                text = paste0("disease_data$",
-                                                              col_name)
-                                              )))) * 100,
-                                         2)
+    value_per <-
+      data_major_cases$casos[1] / sum(eval(parse(text =
+                                                   paste0("disease_data$",
+                                                          col_name))))
+    data_major_cases$porcentaje <- round(value_per * 100, 2)
   }
   return(data_major_cases)
 }
@@ -142,7 +140,6 @@ concatenate_values_token <- function(values,
   return(final_value)
 }
 
-
 #' Get geographic occurrence columns of the disease data
 #'
 #' Function that gets the geographic occurrence columns of the disease data
@@ -153,9 +150,10 @@ concatenate_values_token <- function(values,
 #' @export
 get_geo_occurrence_type <- function(code_disease) {
   geo_occurrences <- config::get(file =
-                                system.file("extdata", "config.yml",
-                                            package = "sivirep"),
-                      "occurrence_geo_diseases")
+                                   system.file("extdata",
+                                               "config.yml",
+                                               package = "sivirep"),
+                                 "occurrence_geo_diseases")
   col_ocurrences <- c("cod_dpto_o", "cod_mun_o")
   if (grep(code_disease, geo_occurrences$cod_dpto_n) > 0) {
     col_ocurrences <- c("cod_dpto_n", "cod_mun_n")
@@ -179,14 +177,16 @@ get_geo_occurrence_type <- function(code_disease) {
 get_info_depts <- function(department = NULL, municipality = NULL) {
   geo_data <- import_geo_codes()
   list_departments <- unique(geo_data$nombre_departamento)
-  list_specific <- list_departments[
-    stringr::str_detect(list_departments, toupper(department)) == TRUE]
+  list_specific <-
+    list_departments[stringr::str_detect(list_departments,
+                                         toupper(department)) == TRUE]
   dept_data <- dplyr::filter(geo_data, .data$nombre_departamento %in%
                                list_specific)
   if (!is.null(municipality)) {
     list_municipalities <- unique(geo_data$nombre_municipio)
-    list_specific <- list_municipalities[
-      stringr::str_detect(list_municipalities, toupper(municipality)) == TRUE]
+    list_specific <-
+      list_municipalities[stringr::str_detect(list_municipalities,
+                                              toupper(municipality)) == TRUE]
     dept_data <- dplyr::filter(geo_data, .data$nombre_municipio %in%
                                  list_specific)
   }
@@ -220,9 +220,9 @@ set_code_mun <- function(code_dept, code_mun) {
 #' @export
 get_departments <- function() {
   departments <- config::get(file =
-                                   system.file("extdata", "config.yml",
-                                               package = "sivirep"),
-                                 "departments")
+                               system.file("extdata", "config.yml",
+                                           package = "sivirep"),
+                             "departments")
   return(departments)
 }
 
@@ -245,8 +245,8 @@ get_name_muns <- function(geo_data, code_dept, code_mun) {
   } else {
     code_mun <- paste0(code_dept, code_mun)
   }
-  mun_data <- dplyr::filter(geo_data, .data$codigo_municipio %in%
-                               as.integer(code_mun))
+  mun_data <- dplyr::filter(geo_data,
+                            .data$codigo_municipio %in% as.integer(code_mun))
   mun_data <- mun_data[1, ]
   return(mun_data$nombre_municipio)
 }

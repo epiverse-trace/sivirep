@@ -95,10 +95,10 @@ plot_dept_map <- function(data_grouped,
   map <- ggplot2::ggplot() +
     ggplot2::geom_sf() +
     ggplot2::geom_sf(data = shp, ggplot2::aes(fill = .data$casos)) +
-         ggplot2::scale_fill_gradient(low = "white", high = "darkred") +
-         ggplot2::theme_void() +
-         ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5)) +
-         ggplot2::labs(caption = caption_label)
+    ggplot2::scale_fill_gradient(low = "white", high = "darkred") +
+    ggplot2::theme_void() +
+    ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5)) +
+    ggplot2::labs(caption = caption_label)
   return(map)
 }
 
@@ -141,23 +141,22 @@ plot_map <- function(data_grouped,
     selected_polygon <- shp[shp$DPTO_CCDGO == dept_data$codigo_departamento, ]
     if (!is.null(municipality)) {
       code_mun <- set_code_mun(dept_data$codigo_departamento,
-                                 dept_data$codigo_municipio)
+                               dept_data$codigo_municipio)
       selected_polygon <-
-        selected_polygon[
-          selected_polygon$MPIO_CCDGO == code_mun, ]
+        selected_polygon[selected_polygon$MPIO_CCDGO == code_mun, ]
     }
-    colnames(selected_polygon)[colnames(
-                                  selected_polygon) == "MPIO_CCDGO"] <- "id"
+    colnames(selected_polygon)[colnames(selected_polygon) ==
+                                 "MPIO_CCDGO"] <- "id"
   } else {
-    colnames(selected_polygon)[colnames(
-                                  selected_polygon) == "DPTO_CCDGO"] <- "id"
+    colnames(selected_polygon)[colnames(selected_polygon) ==
+                                 "DPTO_CCDGO"] <- "id"
   }
   selected_polygon <- ggplot2::fortify(selected_polygon, region = "id")
   selected_polygon <- selected_polygon %>%
     dplyr::left_join(data_grouped, by = col_name_lj)
-  selected_polygon <- cbind(selected_polygon,
-                            sf::st_coordinates(sf::st_centroid(
-                                  selected_polygon$geometry)))
+  selected_polygon <-
+    cbind(selected_polygon,
+          sf::st_coordinates(sf::st_centroid(selected_polygon$geometry)))
   map <- ggplot2::ggplot() +
     ggplot2::geom_sf() +
     ggplot2::geom_sf(data = selected_polygon,
@@ -227,50 +226,50 @@ plot_variable <- function(data, var_x, var_y, var_per = NULL, var_fill = NULL,
       ggplot2::geom_bar(width = bar_wd, stat = "identity",
                         position = ggplot2::position_dodge(),
                         fill = "#90C73D")
-      } else {
-        ggplot2::geom_bar(width = bar_wd,
-                          stat = "identity",
-                          position = ggplot2::position_dodge())
-      }
-    } +
+    } else {
+      ggplot2::geom_bar(width = bar_wd,
+                        stat = "identity",
+                        position = ggplot2::position_dodge())
+    }
+  } +
     ggplot2::labs(x = label_x, y = label_y, caption = caption_label) +
     ggplot2::labs(fill = "") + {
-      if (var_y == "casos") {
-        ggplot2::scale_y_continuous(limits = c(0, max(data$casos)))
-      } else {
-        ggplot2::scale_x_continuous(limits = c(0, max(data$casos)))
-      }
-    } +
-    ggplot2::theme_classic() + {
-      if (text_sz > 3) {
-        ggplot2::theme(text = ggplot2::element_text(size = text_sz * 2))
-      }
-    } +
-    ggplot2::theme(plot.caption = ggplot2::element_text(size = 8)) + {
-      if (show_val) {
-        ggplot2::geom_text({
-          if (!is.null(var_per)) {
-              eval(parse(text = paste0("ggplot2::aes(label = paste0(",
-                                       var_y, ", '\n (' ,",
-                                       var_per, ", '%', ')'", "))")))
-            } else {
-              eval(parse(text = paste0("ggplot2::aes(label = ", var_y, ")")))
-            }
-          },
-          vjust = 1.3,
-          color = "black",
-          hjust = 0.5,
-          position = ggplot2::position_dodge(0.9),
-          angle = 0,
-          size = text_sz,
-        )
-      }
-    } +
-    ggplot2::theme(legend.position = legend_pos) + {
-      if (ncol(data) == 3 || (!is.null(var_fill) && var_fill == "sexo"))
-        ggplot2::scale_fill_manual(values = c("#56B4E9", "#E69F00"))
-      else ggplot2::theme(legend.position = legend_pos)
+    if (var_y == "casos") {
+      ggplot2::scale_y_continuous(limits = c(0, max(data$casos)))
+    } else {
+      ggplot2::scale_x_continuous(limits = c(0, max(data$casos)))
     }
+  } +
+    ggplot2::theme_classic() + {
+    if (text_sz > 3) {
+      ggplot2::theme(text = ggplot2::element_text(size = text_sz * 2))
+    }
+  } +
+    ggplot2::theme(plot.caption = ggplot2::element_text(size = 8)) + {
+    if (show_val) {
+      ggplot2::geom_text({
+        if (!is.null(var_per)) {
+          eval(parse(text = paste0("ggplot2::aes(label = paste0(",
+                                   var_y, ", '\n (' ,",
+                                   var_per, ", '%', ')'", "))")))
+        } else {
+          eval(parse(text = paste0("ggplot2::aes(label = ", var_y, ")")))
+        }
+      },
+      vjust = 1.3,
+      color = "black",
+      hjust = 0.5,
+      position = ggplot2::position_dodge(0.9),
+      angle = 0,
+      size = text_sz,
+      )
+    }
+  } +
+    ggplot2::theme(legend.position = legend_pos) + {
+    if (ncol(data) == 3 || (!is.null(var_fill) && var_fill == "sexo"))
+      ggplot2::scale_fill_manual(values = c("#56B4E9", "#E69F00"))
+    else ggplot2::theme(legend.position = legend_pos)
+  }
 }
 
 #' Plot cases distribution by symptoms onset date
@@ -295,12 +294,10 @@ plot_variable <- function(data, var_x, var_y, var_per = NULL, var_fill = NULL,
 plot_onset_symptoms <- function(data_grouped,
                                 col_name = "ini_sin",
                                 break_tick_date = "month") {
-  dates_column_names <- config::get(
-    file =
-      system.file("extdata", "config.yml",
-                  package = "sivirep"
-      ), "dates_column_names"
-  )
+  dates_column_names <- config::get(file = system.file("extdata",
+                                                       "config.yml",
+                                                       package = "sivirep"),
+                                    "dates_column_names")
   if (is.null(col_name)) {
     col_name <- dates_column_names[3]
   }
@@ -341,12 +338,10 @@ plot_onset_symptoms <- function(data_grouped,
 plot_notification_date <- function(data_grouped,
                                    col_name = "fec_not",
                                    break_tick_date = "month") {
-  dates_column_names <- config::get(
-    file =
-      system.file("extdata", "config.yml",
-                  package = "sivirep"
-      ), "dates_column_names"
-  )
+  dates_column_names <- config::get(file =
+                                      system.file("extdata", "config.yml",
+                                                  package = "sivirep"),
+                                    "dates_column_names")
   if (is.null(col_name)) {
     col_name <- dates_column_names[2]
   }
@@ -438,7 +433,7 @@ plot_sex_epiweek <- function(data_grouped,
                                               bar_wd = 0.5,
                                               text_sz = 3,
                                               show_val = percentage) +
-   ggplot2::scale_x_continuous(breaks = seq(1, 52, 4))
+    ggplot2::scale_x_continuous(breaks = seq(1, 52, 4))
   return(plot_cases_by_sex_and_week)
 }
 
@@ -533,16 +528,16 @@ plot_special_population <- function(data_grouped,
                                     col_name = "poblacion",
                                     percentage = FALSE) {
   plot_cases_special_population <- plot_variable(data_grouped,
-                                                    var_x = col_name,
-                                                    var_y = "casos",
-                                                    var_fill = col_name,
-                                                    label_x = "Poblacion",
-                                                    label_y = "casos",
-                                                    scale_name = "Poblacion",
-                                                    legend_pos = "right",
-                                                    bar_wd = 0.5,
-                                                    text_sz = 3,
-                                                    show_val = percentage) +
+                                                 var_x = col_name,
+                                                 var_y = "casos",
+                                                 var_fill = col_name,
+                                                 label_x = "Poblacion",
+                                                 label_y = "casos",
+                                                 scale_name = "Poblacion",
+                                                 legend_pos = "right",
+                                                 bar_wd = 0.5,
+                                                 text_sz = 3,
+                                                 show_val = percentage) +
     ggplot2::theme(legend.position = "bottom")
   return(plot_cases_special_population)
 }

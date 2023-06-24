@@ -151,8 +151,6 @@ plot_special_population(cases_special_population)
 # Distribución de casos por municipio
 
 ```{r group_distribution_municipalities,  results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
-#spatial_dept_dist <- group_dept(disease_data = filter_disease_data)
-#map <- plot_dept_map(data_grouped = spatial_dept_dist)
 spatial_muns_dist <- group_mun(disease_data = filter_disease_data,
                                dept_name = params$department)
 spatial_most_cases <- get_most_cases(spatial_muns_dist)
@@ -170,8 +168,6 @@ plot_spatial
 # Distribución espacial de casos
 
 ```{r plot_distribution_spatial,  results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
-#spatial_dept_dist <- group_dept(disease_data = filter_disease_data)
-#map <- plot_dept_map(data_grouped = spatial_dept_dist)
 map <- plot_map(data_grouped = spatial_muns_dist,
                 department = params$department)
 ```
