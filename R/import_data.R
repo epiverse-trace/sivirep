@@ -8,10 +8,10 @@
 #' @export
 import_sivigila_summary_data <- function(url_data = NULL) {
   if (is.null(url_data)) {
-    url_data <- config::get(
-      file = system.file("extdata", "config.yml",
-                         package = "sivirep"),
-      "sivigila_open_data_path")
+    url_data <- config::get(file =
+                              system.file("extdata", "config.yml",
+                                          package = "sivirep"),
+                            "sivigila_open_data_path")
   }
   data <- utils::read.csv(url_data)
   return(data)
@@ -30,10 +30,11 @@ import_sivigila_summary_data <- function(url_data = NULL) {
 #' @export
 import_geo_codes <- function(url_data = NULL) {
   if (is.null(url_data)) {
-    url_data <- config::get(
-      file = system.file("extdata", "config.yml",
-                         package = "sivirep"),
-      "geo_data_path")
+    url_data <- config::get(file =
+                              system.file("extdata",
+                                          "config.yml",
+                                          package = "sivirep"),
+                            "geo_data_path")
   }
   data <- utils::read.csv(url_data)
   names(data) <- epitrix::clean_labels(names(data))
@@ -92,21 +93,23 @@ import_data_endemic_channel <- function(disease_name, year) {
 #' @export
 list_available_diseases_years <- function() {
   query_diseases_by_year_path <- config::get(file =
-                                        system.file("extdata", "config.yml",
-                                            package = "sivirep"),
-                                            "query_diseases_by_year_path")
-  get_query_diseases_by_year <- httr::GET(query_diseases_by_year_path,
-                                          httr::add_headers("Accept" = "*/*"))
-  content_type_response <- stringr::str_split_fixed(httr::headers(
-    get_query_diseases_by_year)$`content-type`,
-    pattern = ";", 3)
-  content_type_response <- stringr::str_replace(
-                              content_type_response[[1]],
-                              "atom\\+", "")
-  query_diseases_by_year_content <- httr::content(get_query_diseases_by_year,
-                                                  type = content_type_response,
-                                                  encoding = "UTF-8")
-  children <- xml2::xml_children(query_diseases_by_year_content)
+                                               system.file("extdata",
+                                                           "config.yml",
+                                                           package = "sivirep"),
+                                             "query_diseases_by_year_path")
+  query_diseases_year <- httr::GET(query_diseases_by_year_path,
+                                   httr::add_headers("Accept" = "*/*"))
+  content_type_response <-
+    stringr::str_split_fixed(httr::headers(query_diseases_year)$`content-type`,
+                             pattern = ";",
+                             3)
+  content_type_response <-
+    stringr::str_replace(content_type_response[[1]],
+                         "atom\\+", "")
+  query_diseases_year_content <- httr::content(query_diseases_year,
+                                               type = content_type_response,
+                                               encoding = "UTF-8")
+  children <- xml2::xml_children(query_diseases_year_content)
   children <- xml2::xml_children(children)
   children <- xml2::xml_children(children)
   children <- xml2::xml_children(children)
@@ -119,20 +122,20 @@ list_available_diseases_years <- function() {
   while (i < base::length(children)) {
     disease <- xml2::xml_text(children[i])
     name_diseases <- base::append(name_diseases, disease)
-    tmp_diseases <- base::which(children_text == disease)
-    tmp_years <- tmp_diseases - 1
-    years_diseases <- base::append(years_diseases, base::toString(
-      base::sort(
-        children_text[tmp_years],
-        decreasing = FALSE)))
-    children <- children[-tmp_years]
-    children_text <- children_text[-(tmp_diseases - 1)]
+    diseases <- base::which(children_text == disease)
+    years <- diseases - 1
+    years_diseases <-
+      base::append(years_diseases,
+                   base::toString(base::sort(children_text[years],
+                                             decreasing = FALSE)))
+    children <- children[-years]
+    children_text <- children_text[-(diseases - 1)]
     children <- children[-base::which(children_text == disease)]
     children_text <- children_text[-base::which(children_text == disease)]
     i <- i + 2
   }
   list_available_diseases_years <- data.frame(enfermedad = name_diseases,
-                                                  aa = years_diseases)
+                                              aa = years_diseases)
   return(list_available_diseases_years)
 }
 
@@ -165,8 +168,8 @@ import_linelist_disease_year <- function(year,
 #' @export
 get_name_file_path <- function(path) {
   name_file <- strsplit(path, config::get(file =
-                                 system.file("extdata", "config.yml",
-                                             package = "sivirep"),
+                                            system.file("extdata", "config.yml",
+                                                        package = "sivirep"),
                                           "name_file_split"))
   name_file <- strsplit(name_file[[1]][2], "')")[[1]][1] %>% as.character()
   return(name_file)

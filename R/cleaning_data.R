@@ -10,24 +10,16 @@
 #' @export
 standardize_geo_codes <- function(disease_data) {
   disease_data2 <- clean_header(disease_data)
-  geo_column_names <- config::get(
-    file =
-      system.file("extdata", "config.yml",
-                  package = "sivirep"
-      ), "geo_column_names"
-  )
-  exceptions <- config::get(
-    file =
-      system.file("extdata", "config.yml",
-                  package = "sivirep"
-      ), "cod_depts_exceptions"
-  )
+  geo_column_names <- config::get(file =
+                                    system.file("extdata", "config.yml",
+                                                package = "sivirep"),
+                                  "geo_column_names")
   for (column in geo_column_names) {
     if (stringr::str_detect(column, "dpto") == TRUE) {
       disease_data2[[column]] <- formatC(disease_data2[[column]],
-                                      width = 2,
-                                      format = "d",
-                                      flag = "0")
+                                         width = 2,
+                                         format = "d",
+                                         flag = "0")
     }
     if (stringr::str_detect(column, "mun") == TRUE) {
       disease_data2[[column]] <- formatC(disease_data2[[column]],
@@ -130,26 +122,25 @@ clean_depto_codes <- function(disease_data,
 parse_age_to_years <- function(disease_data,
                                col_age = "edad",
                                col_uni_met = "uni_med") {
-  disease_dt_to_years <- dplyr::mutate(disease_data,
-                                       edad = dplyr::case_when(
-                                         eval(parse(text = col_uni_met)) == 1 ~
-                                          round(eval(parse(text = col_age)), 3),
-                                         eval(parse(text = col_uni_met)) == 2 ~
-                                          round((eval(
-                                            parse(text = col_age)) / 12), 3),
-                                         eval(parse(text = col_uni_met)) == 3 ~
-                                          round((eval(
-                                            parse(text = col_age)) / 876), 3),
-                                         eval(parse(text = col_uni_met)) == 4 ~
-                                          round((eval(
-                                            parse(text =
-                                                    col_age)) / 525960), 3),
-                                         eval(parse(text = col_uni_met)) == 5 ~
-                                          round((eval(
-                                            parse(text =
-                                                    col_age)) / 3.156e+7), 3)
-                                       )
-  )
+  disease_dt_to_years <-
+    dplyr::mutate(disease_data,
+                  edad =
+                  dplyr::case_when(eval(parse(text = col_uni_met)) == 1 ~
+                                     round(eval(parse(text = col_age)), 3),
+                                   eval(parse(text = col_uni_met)) == 2 ~
+                                     round((eval(parse(text =
+                                                         col_age)) / 12), 3),
+                                   eval(parse(text = col_uni_met)) == 3 ~
+                                     round((eval(parse(text =
+                                                         col_age)) / 876), 3),
+                                   eval(parse(text = col_uni_met)) == 4 ~
+                                     round((eval(parse(text =
+                                                         col_age)) / 525960),
+                                           3),
+                                   eval(parse(text = col_uni_met)) == 5 ~
+                                     round((eval(parse(text =
+                                                         col_age)) / 3.156e+7),
+                                           3)))
   return(disease_dt_to_years)
 }
 
@@ -168,11 +159,10 @@ parse_age_to_years <- function(disease_data,
 remove_nin_values <- function(disease_data, col_name) {
   ref_col <- paste0("disease_data$", col_name)
   disease_data_del <- disease_data
-  del_rows <- which(ifelse(is.na(eval(parse(text = ref_col))), TRUE,
-                           ifelse(is.nan(eval(parse(text = ref_col))), TRUE,
-                                  is.infinite(eval(parse(text = ref_col)))
-                           )
-  ))
+  del_rows <-
+    which(ifelse(is.na(eval(parse(text = ref_col))), TRUE,
+                 ifelse(is.nan(eval(parse(text = ref_col))), TRUE,
+                        is.infinite(eval(parse(text = ref_col))))))
   if (length(del_rows) > 0) disease_data_del <- disease_data[-del_rows]
   return(disease_data_del)
 }
@@ -236,8 +226,8 @@ format_dates_values <- function(disease_data,
 #' clean_header(disease_data)
 #' @export
 clean_header <- function(disease_data) {
-    names(disease_data) <- epitrix::clean_labels(names(disease_data))
-    return(disease_data)
+  names(disease_data) <- epitrix::clean_labels(names(disease_data))
+  return(disease_data)
 }
 
 #' Clean dates of the disease data
@@ -265,13 +255,15 @@ clean_disease_dates <- function(disease_data,
                                 col_cmp = NULL) {
   disease_dt_by_onset_sym <- disease_data
   if (!is.null(col_cmp)) {
-    disease_dt_by_onset_sym <- remove_error_dates(
-      disease_dt_by_onset_sym,
-      col_name, col_cmp)
+    disease_dt_by_onset_sym <-
+      remove_error_dates(disease_dt_by_onset_sym,
+                         col_name,
+                         col_cmp)
   }
-  disease_dt_by_onset_sym[
-    order(eval(parse(text = paste0("disease_dt_by_onset_sym$", col_name))),
-          decreasing = TRUE), ]
+  disease_dt_by_onset_sym[order(eval(parse(text =
+                                             paste0("disease_dt_by_onset_sym$",
+                                                    col_name))),
+                                decreasing = TRUE), ]
   disease_dt_by_onset_sym <- disease_dt_by_onset_sym[format(eval(
     parse(text = paste0("disease_dt_by_onset_sym$", col_name))
   ), "%Y") == year, ]
@@ -305,12 +297,11 @@ clean_disease_ages <- function(disease_data, col_name = "edad") {
 #' clean_disease_cols(disease_data)
 #' @export
 clean_disease_cols <- function(disease_data) {
-  diseases_cols <- config::get(
-    file =
-      system.file("extdata", "config.yml",
-                  package = "sivirep"
-      ), "diseases_exceptions"
-  )
+  diseases_cols <- config::get(file =
+                                 system.file("extdata",
+                                             "config.yml",
+                                             package = "sivirep"),
+                               "diseases_exceptions")
   disease_code <- disease_data$cod_eve[1]
   if (disease_code > 0) {
     for (event in diseases_cols) {
@@ -341,12 +332,10 @@ clean_disease_cols <- function(disease_data) {
 cleansing_sivigila_data <- function(disease_data, year) {
   disease_data <- clean_header(disease_data)
   disease_data <- clean_disease_ages(disease_data)
-  dates_column_names <- config::get(
-    file =
-      system.file("extdata", "config.yml",
-                  package = "sivirep"
-      ), "dates_column_names"
-  )
+  dates_column_names <- config::get(file = system.file("extdata",
+                                                       "config.yml",
+                                                       package = "sivirep"),
+                                    "dates_column_names")
   clean_disease_data <- format_dates_values(disease_data,
                                             col_names = dates_column_names)
   clean_disease_data <- clean_disease_dates(clean_disease_data, year,

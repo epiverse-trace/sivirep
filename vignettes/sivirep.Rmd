@@ -62,8 +62,6 @@ quality of internet access in some locations.
 You can install the development version of `sivirep` from GitHub with:
 
 ```{r}
-# install.packages("remotes")
-# remotes::install_github("epiverse-trace/sivirep")
 library(sivirep)
 ```
 
@@ -279,12 +277,12 @@ consist in group the disease data by this variables, you can use the
 following function of `sivirep` to do this:
 
 ```{r}
-cases_notification_date_by_day <- group_notification_date(disease_data =
-                                                          clean_disease_data,
-                                                          type = "day")
-cases_notification_date_month <- group_notification_date(disease_data =
-                                                         clean_disease_data,
-                                                         type = "month")
+cases_notification_date_by_day <-
+  group_notification_date(disease_data = clean_disease_data,
+                          type = "day")
+cases_notification_date_month <-
+  group_notification_date(disease_data = clean_disease_data,
+                          type = "month")
 ```
 
 The graph that allows to visualise this distribution must be generated
@@ -330,7 +328,7 @@ The corresponding visualisation function is `plot_sex_epiweek` that
 provides `sivirep`:
 
 ```{r fig.height = 4, fig.width = 7}
-#plot_sex_epiweek(data_grouped = cases_sex_epiweek)
+
 ```
 
 ### 4.2. Age variable
@@ -365,8 +363,7 @@ customised.
 
 ```{r}
 cases_age_sex <- group_age_sex(disease_data = clean_disease_data,
-                              age_interval = 10)
-
+                               age_interval = 10)
 ```
 
 The corresponding plotting function is `plot_age_sex`.

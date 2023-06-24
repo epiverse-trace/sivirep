@@ -65,17 +65,17 @@ disease_dt_by_onset_sym <- remove_nin_values(disease_data,
                                              "ini_sin")
 disease_dt_by_onset_sym <- remove_error_dates(disease_dt_by_onset_sym)
 disease_dt_by_onset_sym <- group_columns_cases(disease_dt_by_onset_sym,
-                                         "ini_sin")
-disease_dt_by_onset_sym[
-  order(disease_dt_by_onset_sym$ini_sin, decreasing = TRUE), ]
+                                               "ini_sin")
+disease_dt_by_onset_sym[order(disease_dt_by_onset_sym$ini_sin,
+                              decreasing = TRUE), ]
 
-plot_variable(disease_dt_by_onset_sym, var_x = "ini_sin",
+plot_variable(disease_dt_by_onset_sym,
+              var_x = "ini_sin",
               var_y = "casos",
               var_fill = "ini_sin",
               label_x = "Fecha de inicio de síntomas",
               label_y = "casos",
-              diagram_title =
-              "Diagrama para la variable Fecha de inicio de síntomas",
+              diagram_title = "Distribución Fecha de inicio de síntomas",
               legend_pos = "right",
               text_sz = 4,
               show_val = FALSE)
@@ -195,12 +195,12 @@ disease_dt_by_age <- remove_nin_values(disease_dt_by_age, "edad")
 disease_dt_by_age <- group_columns_cases(disease_dt_by_age,
                                          c("edad", "semana"),
                                          wt_percentage = TRUE)
-disease_dt_by_age_range <- group_age_range_cases(disease_dt_by_age,
-                                                 "edad",
-                                                 min_val = 0,
-                                                 max_val =
-                                  max(disease_dt_by_age$edad), step = 10)
-
+disease_dt_by_age_range <-
+  group_age_range_cases(disease_dt_by_age,
+                        "edad",
+                        min_val = 0,
+                        max_val = max(disease_dt_by_age$edad),
+                        step = 10)
 plot_variable(disease_dt_by_age_range,
               var_x = "edad",
               var_y = "casos",
@@ -221,12 +221,12 @@ disease_dt_by_age_gen <- remove_nin_values(disease_dt_by_age_gen, "edad")
 disease_dt_by_age_gen <- group_columns_cases(disease_dt_by_age_gen,
                                              c("edad", "sexo"),
                                              wt_percentage = TRUE)
-disease_dt_by_age_gen_range <- group_age_range_cases(disease_dt_by_age_gen,
-                                                     "edad",
-                                                     "sexo",
-                                                     min_val = 0,
-                                                     max_val =
-                                        max(disease_dt_by_age_gen$edad), 10)
+disease_dt_by_age_gen_range <-
+  group_age_range_cases(disease_dt_by_age_gen,
+                        "edad",
+                        "sexo",
+                        min_val = 0,
+                        max_val = max(disease_dt_by_age_gen$edad), 10)
 
 plot_variable(disease_dt_by_age_gen_range,
               var_x = "edad",
