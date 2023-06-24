@@ -12,9 +12,9 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/",
-  include = TRUE,
-  error = FALSE,
-  warning = FALSE,
+  include = TRUE, 
+  error = FALSE,  
+  warning = FALSE, 
   message = FALSE
 )
 ```

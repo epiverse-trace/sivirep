@@ -488,6 +488,7 @@ static map of Colombia with the distribution of cases by departments and
 municipalities.
 
 ``` r
+map <- plot_map(data_grouped = spatial_dept_dist, department = "Antioquia")
 map
 ```
 
