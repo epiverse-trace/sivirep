@@ -344,7 +344,7 @@ cleansing_sivigila_data <- function(disease_data, year) {
   clean_disease_data <- clean_disease_dates(clean_disease_data, year,
                                             col_name = dates_column_names[2])
   clean_disease_data <- standardize_geo_codes(clean_disease_data)
-  clean_disease_data <- clean_disease_cols()
+  clean_disease_data <- clean_disease_cols(clean_disease_data)
   clean_disease_data <- parse_age_to_years(clean_disease_data,
                                            col_age = "edad",
                                            col_uni_met = "uni_med")
