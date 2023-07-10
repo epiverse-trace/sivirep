@@ -1,7 +1,7 @@
 Package: sivirep
 Title: Data Wrangling and Automated Reports from 'SIVIGILA' source
 Type: Package
-Version: 0.0.1.0
+Version: 0.0.2.0
 Authors@R: 
   c(
     person("Zulma M. Cucunubá", role = "aut"),
