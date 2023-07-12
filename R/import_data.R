@@ -41,7 +41,6 @@ import_geo_cods <- function(url_data = NULL) {
   return(data)
 }
 
-
 #' Importar datos con un separador específico
 #'
 #' Función que identifica el separador con el que
