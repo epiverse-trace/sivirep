@@ -66,7 +66,7 @@ En este reporte se presenta el comportamiento del `r params$nombre_evento` duran
 
 ```{r cases_by_onset_symptom_date, include = FALSE}
 casos_iniciosin_dia <- agrupar_fecha_inisintomas(data_event_filtrada,
-                                                       tipo = "day")
+                                                 tipo = "day")
 meses_mayor_casos <- obtener_meses_mas_casos(data_event = casos_iniciosin_dia,
                                              col_fechas = "ini_sin")
 ```
