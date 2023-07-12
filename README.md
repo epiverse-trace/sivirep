@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-## *sivirep*: Automated reporting from epidemiological surveillance databases <img src="man/figures/logo.png" align="right" width="120"/>
+## *sivirep*: Generación automatizada de reportes a partir de bases de datos de vigilancia epidemiológica <img src="man/figures/logo.png" align="right" width="120"/>
 
 <!-- badges: start -->
 
@@ -11,48 +11,54 @@ MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.or
 [![Codecov test
 coverage](https://codecov.io/gh/epiverse-trace/readepi/branch/main/graph/badge.svg)](https://app.codecov.io/gh/epiverse-trace/readepi?branch=main)
 [![lifecycle-maturing](https://raw.githubusercontent.com/reconverse/reconverse.github.io/master/images/badge-maturing.svg)](https://www.reconverse.org/lifecycle.html#maturing)
+
 <!-- badges: end -->
 
-Current version of *sivirep* provides functions for data wrangling and
-automated reports based on linelist data from
+La versión actual de *sivirep* proporciona funciones para la
+manipulación de datos y la generación de reportes automatizados basados
+en las listas de casos de
 [SIVIGILA](https://www.ins.gov.co/Direcciones/Vigilancia/Paginas/SIVIGILA.aspx),
-which is the official epidemiological surveillance system for Colombia,
-South America.
+que es el sistema oficial de vigilancia epidemiológica de Colombia,
+América del Sur.
 
-## Motivation
+## Motivación
 
-Latin America has progressed in the quality of epidemiological
-notification and surveillance systems. Particularly, Colombia has
-improved over the years the quality and openness of its official
-epidemiological surveillance system,
+América Latina ha progresado en la calidad de sus sistemas de
+notificación y vigilancia epidemiológica. En particular, Colombia ha
+mejorado a lo largo de los años la calidad, la accesibilidad y la
+transparencia de su sistema oficial de vigilancia epidemiológica,
 [SIVIGILA](https://www.ins.gov.co/Direcciones/Vigilancia/Paginas/SIVIGILA.aspx).
-This system is regulated by Colombia’s National Institute of Health and
-operated by thousands of health workers at local secretaries of health,
-hospitals, and local notification units.
+Este sistema está regulado por el Instituto Nacional de Salud de
+Colombia y es operado por miles de trabajadores de la salud en las
+secretarías de salud locales, hospitales y unidades locales de
+notificación.
 
-However, some challenges remain particularly at local levels in terms of
-timeliness and quality of epidemiological analytics and epidemiological
-reports. These tasks may involve a great deal of manual labor reinforced
-by limitations in training for data analytics, time, technology and
-quality of internet access in some locations.
+Sin embargo, todavía existen desafíos, especialmente a nivel local, en
+cuanto a la puntualidad y a la calidad del análisis epidemiológico y los
+informes epidemiológicos. Estas tareas pueden requerir una gran cantidad
+de trabajo manual, reforzado por limitaciones en el entrenamiento para
+el análisis de datos, el tiempo, la tecnología y la calidad del acceso a
+Internet en algunas regiones de Colombia.
 
-`sivirep` is aimed at providing a set of customisable functions for:
+El objetivo de `sivirep` es proporcionar un conjunto de funciones para:
 
-1)  downloading, pre-processing and preparing SIVIGILA data for further
-    analytics
-2)  producing customisable epidemiological automated reports
-3)  getting feedback on the surveillance system to the source provider
+1)  Descargar, preprocesar y preparar los datos de SIVIGILA para su
+    posterior análisis.
+2)  Generar informes epidemiológicos automatizados personalizables.
+3)  Proporcionar retroalimentación sobre el sistema de vigilancia al
+    proveedor de origen.
 
-## Potential users
+## Potenciales usuarios
 
-- Public health professionals and field epidemiologist users of SIVIGILA
-  source at local levels
-- Epidemiology and public health students
-- National and international researchers and data analysts
+- Profesionales de salud pública y epidemiólogos de campo que utilizan
+  la fuente de datos de SIVIGILA a nivel local.
+- Estudiantes de epidemiología y salud pública.
+- Investigadores y analistas de datos nacionales e internacionales.
 
-## Installation
+## Instalación
 
-You can install the development version of `sivirep` from GitHub with:
+Puedes instalar la versión de desarrollo de `sivirep` desde GitHub con
+el siguiente comando:
 
 ``` r
 # install.packages("remotes")
@@ -60,12 +66,12 @@ You can install the development version of `sivirep` from GitHub with:
 library(sivirep)
 ```
 
-## Quick start
+## Inicio rápido
 
-Please check the available diseases and years, using:
+Puedes revisar las enfermedades y los años disponibles utilizando:
 
 ``` r
-list_of_diseases <- list_available_diseases_years()
+lista_eventos <- list_events()
 knitr::kable(list_of_diseases)
 ```
 
@@ -139,19 +145,19 @@ knitr::kable(list_of_diseases)
 | TETANOS NEONATAL                                             | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
 | TOS FERINA                                                   | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021       |
 
-## Future versions
+## Versiones futuras
 
-Future versions of `sivirep` may include:
+Las versiones futuras de `sivirep` podrían incluir:
 
-- Interaction with other data sources in Colombia
-- Other epidemiological surveillance systems in Latin America
+- Interacción con otras fuentes de datos en Colombia.
+- Otros sistemas de vigilancia epidemiológica en América Latina.
 
-## Contributions
+## Contribuciones
 
-Contributions are welcome via [pull
+Las contribuciones son bienvenidas via [pull
 requests](https://github.com/epiverse-trace/sivirep/pulls).
 
-Contributors to the project include:
+Los contribuyentes al paquete incluyen:
 
 - [Geraldine Gómez-Millán](https://github.com/GeraldineGomez) (author)
 
@@ -163,243 +169,268 @@ Contributors to the project include:
 
 - Miguel Gámez (contributor)
 
-## Code of Conduct
+## Código de conducta
 
-Please note that the linelist project is released with a [Contributor
-Code of
-Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).
-By contributing to this project, you agree to abide by its terms.
+Por favor, ten en cuenta que el proyecto `sivirep` se publica con un
+[Código de Conducta para
+Contribuyentes](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).
+Al contribuir a este proyecto, aceptas cumplir con sus términos.
 
-## Get Started
+## Comenzar
 
-### For automated reporting
+### Para reportes automatizados
 
-After installation and importation of the library you can start using
-`sivirep`:
+Después de la instalación e importación del paquete, puedes comenzar a
+usar `sivirep`:
 
 ``` r
 library(sivirep)
 ```
 
-Check the list of diseases available to make a report with `sivirep` in:
+Revisa la lista de enfermedades disponibles para hacer un reporte con
+`sivirep` en:
 
 ``` r
-list_available_diseases_years()
+list_events()
 ```
 
-Currently, `sivirep` provides a report template
-`Reporte Básico {sivirep}`, which contains six sections and receive two
-input parameters: disease (the disease name) and year in order to
-download the data from SIVIGILA source.
+Actualmente, `sivirep` provee una plantilla de reporte llamada
+`Reporte Básico {sivirep}`, la cual contiene seis secciones y recibe los
+siguientes parámetros de entrada: el nombre de la enfermedad, el año, el
+nombre de departamento (opcional) y nombre del municipio (opcional) para
+descargar los datos de la fuente de SIVIGILA.
 
-The template can be used by following the following steps:
+La plantilla se puede utilizar siguiendo los siguientes pasos:
 
-1.  In RStudio click *‘File/New File/R’* Markdown:
+1.  En RStudio hacer click *‘File/New File/R’* Markdown:
 
 <img src="man/figures/file_rmarkdown.png" class="rmarkdown-img"
 style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;"
 data-align="center" width="560" />
 
-2.  Select the left panel option: *‘From Template’*, then select the
-    template report called `Reporte Básico {sivirep}`, indicate the name
-    you want for the report (i.e. MyReport_Laura), the location to store
-    it and press *‘Ok’*.
+2.  Selecciona la opción del panel izquierdo: *‘From Template’*, después
+    selecciona el template del reporte llamado
+    `Reporte Básico {sivirep}`, indica el nombre que deseas para el
+    reporte (i.e. Reporte_Laura), la ubicación donde deseas guardarlo y
+    presiona *‘Ok’*.
 
 <img src="man/figures/reporte_basico.png" class="rmarkdown-img"
 style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;"
 data-align="center" width="550" />
 
-3.  Then, you can select the disease (the disease name) and the year of
-    the report. This action will download the data wanted and also will
-    provide the template in R Markdown .Rmd file. For this, it is
-    important to find Knit button, display the options and select *‘Knit
-    with parameters’*.
+3.  A continuación, podrás seleccionar el nombre de la enfermedad, el
+    año, el departamento (opcional) y el municipio (opcional) del
+    reporte. Esta acción descargará los datos deseados y también
+    proporcionará la plantilla en un archivo R Markdown (.Rmd). Para
+    esto, es importante encontrar el botón *‘Knit’*, desplegar las
+    opciones y seleccionar *‘Knit with parameters’*.
 
 <img src="man/figures/button_knit.png" class="rmarkdown-img"
 style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;"
 data-align="center" width="560" />
 
-4.  Wait a few seconds while the report is rendered in a PDF file.
+4.  Espera unos segundos mientras el informe se genera en un archivo
+    PDF.
 
-5.  You can add, edit, delete and customise sections of the report in
-    the R Markdown file generated earlier.
+5.  Puedes agregar, editar, eliminar y personalizar las secciones del
+    reporte en el archivo R Markdown generado anteriormente.
 
 <img src="man/figures/editable_rmarkdown.png" class="rmarkdown-img"
 style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;"
 data-align="center" width="560" />
 
-For more details on generic Rmarkdown templates and reports please see
-[rmarkdown
+Para obtener más detalles sobre plantillas y reportes genéricos de R
+Markdown, por favor consulta [rmarkdown
 templates](https://rstudio.github.io/rstudio-extensions/rmarkdown_templates.html).
 
-## For customisable analytics or reports
+## Para análisis o reportes personalizados
 
-This section provides a basic set of instructions for using `sivirep`
-0.0.1 if: - You have already produced an .Rmd file and you want to edit
-a report - You want to perform customised analytics without an .Rmd file
+Esta sección proporciona un conjunto básico de instrucciones para usar
+`sivirep` 0.0.2 si: - Ya has producido un archivo .Rmd y deseas editar
+un reporte. - Deseas realizar análisis personalizados sin un archivo
+.Rmd.
 
-### 1. Importing sivigila data
+### 1. Importación de datos de SIVIGILA
 
-The SIVIGILA source provides the historical linelist data up to the
-latest closed epidemiological year. The closing of an epidemiological
-year usually occurs in April next year (i.e. if you’re using `sivirep`
-in march 2023, you may be able to access the historical data up to
-December 2021) for most diseases with a few exceptions.
+La fuente de SIVIGILA proporciona los datos de la lista de casos
+históricos hasta el último año epidemiológico cerrado. El cierre de un
+año epidemiológico generalmente ocurre en abril del siguiente año (por
+ejemplo, si estás utilizando `sivirep` en marzo de 2023, es posible que
+puedas acceder a los datos históricos hasta diciembre de 2021) para la
+mayoría de las enfermedades, con algunas excepciones.
+
+Por favor, verifica las enfermedades y años disponibles utilizando:
 
 Please check the available diseases and years, using:
 
 ``` r
-list_of_diseases <- list_available_diseases_years()
+lista_eventos <- list_events()
 ```
 
-Once you have decided the disease and year you want,
-`import_linelist_disease_year` is the function that allows importation
-of data from sivigila service using a parameterised format based on
-disease and year.
+Una vez que hayas decidido la enfermedad y el año de la cual deseas
+obtener la información, `import_data_event` es la función que
+permite la importación de datos desde la fuente de SIVIGILA utilizando
+un formato parametrizado basado en la enfermedad y el año.
 
 ``` r
-disease_data <-  import_linelist_disease_year(year = 2020,
-                                              disease_name = "dengue")
+data_event <-  import_data_event(year = 2020,
+                                 disease_name = "dengue")
 ```
 
-##### 💡 Tip 1 - Avoid time delays when importing data
+##### 💡 Tip 1 - Evita retrasos en el tiempo al importar los datos
 
-- `sivirep` 0.0.1 is meant to assist with access to SIVIGILA source.
-  This process of downloading the information may take a few minutes
-  depending on the size of the dataset. To avoid repeating downloading
-  the same data every time you can use `cache = TRUE` in the function
-  `import_linelist_disease_year` This option is set by default.
+- `sivirep` 0.0.2 está diseñado para ayudar con el acceso a la fuente de
+  SIVIGILA. Este proceso de descarga de información puede tomar unos
+  minutos dependiendo del tamaño del conjunto de datos. Para evitar
+  descargar los mismos datos repetidamente, puedes utilizar
+  `cache = TRUE` en la función `import_data_event`. Esta
+  opción está configurada de forma predeterminada.
 
-### 2. Cleansing sivigila data
+### 2. Limpieza de datos de SIVIGILA
 
-SIVILA data is a highly trusted official source of information with ISO
-certification of data quality. Nevertheless, sometimes there are some
-potential outliers in the data that may need some additional cleansing.
+Los datos de SIVIGILA son una fuente de información oficial altamente
+confiable, con certificación ISO de calidad de datos. Sin embargo, a
+veces puede haber algunos valores atípicos en los datos que requieran
+una limpieza adicional.
 
-`sivirep` provides a wrapper generic function called
-`cleansing_sivigila_data` for identifying and correcting errors,
-inconsistencies, and discrepancies in the datasets to improve their
-quality and accuracy. This process can include removing duplicates,
-correcting typographical errors, imputing missing values, and validating
-data, among other tasks, such as removing improbable dates, cleaning
-geolocation codes, and standardising column names and age categories.
+`sivirep` proporciona una función genérica llamada
+`limpiar_data_sivigila` que envuelve diversas tareas para identificar
+y corregir errores, inconsistencias y discrepancias en los conjuntos de
+datos con el fin de mejorar su calidad y precisión. Este proceso puede
+incluir la eliminación de duplicados, la corrección de errores
+tipográficos, el reemplazo de valores faltantes y la validación de
+datos, entre otras tareas, como eliminar fechas improbables, limpiar
+códigos de geolocalización y estandarizar los nombres de las columnas y
+las categorías de edad.
 
 ``` r
-clean_disease_data <- cleansing_sivigila_data(disease_data, year = 2020)
+clean_disease_data <- limpiar_data_sivigila(disease_data, year = 2020)
 ```
 
-The cleansing functions inside `cleansing_sivigila_data` have been
-gathered and built based on the experience from field epidemiologists.
-These may include internal functions such as: `clean_labels`: function
-that cleans and standardises the column names of SIVIGILA linelist data
-based on SIVIGILA data dictionary.
+Las funciones de limpieza dentro de `limpiar_data_sivigila` se han
+recopilado y creado en base a la experiencia de epidemiólogos de campo.
+Estas pueden incluir funciones internas como:
 
-- `clean_disease_ages`: function that cleans ages of SIVIGILA linelist
-  data
-- `format_dates_values`: function that gives a specific format to a date
-- `clean_disease_dates`: function that cleans dates from the disease
-  data
-- `clean_depto_codes`: function that cleans the geographical department
-  codes of the disease data
+- `clean_labels`: función que limpia y estandariza los nombres de las
+  columnas de los datos de lista de casos de SIVIGILA basándose en el
+  diccionario de datos de SIVIGILA.
 
-The user may want to use these functions individually or simply use the
-generic wrapper cleansing function `cleansing_sivigila_data`
+- `clean_disease_ages`: función que limpia las edades de los datos de
+  lista de casos de SIVIGILA.
 
-### 3. Filter cases
+- `format_dates_values`: función que da un formato específico a una
+  fecha.
 
-`sivirep` provides a function that allows to filter the disease data by
-department or municipality name called `geo_filter`, allows the user to
-create a subnational report
+- `clean_disease_dates`: función que limpia las fechas de los datos de
+  enfermedades.
+
+- `clean_depto_codes`: función que limpia los códigos geográficos de
+  departamentos en los datos de enfermedades.
+
+El usuario puede utilizar estas funciones individualmente o simplemente
+utilizar la función envolvente genérica `limpiar_data_sivigila`.
+
+### 3. Filtrar casos
+
+`sivirep` proporciona una función que permite filtrar los datos de
+enfermedades por departamento o nombre del municipio llamada
+`geo_filtro`. Esto permite al usuario crear un informe a nivel
+subnacional, seleccionando casos específicos basados en la ubicación
+geográfica.
 
 ``` r
-filter_disease_data <- geo_filter(clean_disease_data, "Antioquia")
+filter_disease_data <- geo_filtro(clean_disease_data, "Antioquia")
 ```
 
-### 4. Temporal distribution of cases
+### 4. Distribución temporal de casos
 
-In `sivirep` the temporal distribution of cases is defined by the
-variables symptom onset date and notification date, for each of these
-variables there are specialised functions to group the data and generate
-the plots.
+En `sivirep`, la distribución temporal de casos se define por las
+variables de fecha de inicio de síntomas y fecha de notificación. Para
+cada una de estas variables, existen funciones especializadas para
+agrupar los datos y generar los gráficos.
 
-#### 4.1. Group the data by onset symptoms at the desired temporal scale
+#### 4.1. Agrupar los datos por fecha de inicio de síntomas en la escala temporal deseada
 
-To generate the distribution of cases by symptom onset date it is
-necessary to group the data by these variables. `sivirep` provides a
-function that allows this grouping called `group_onset_symptoms`, in
-which you can specify the time unit to group these dates, the allowed
-values for this parameter are: day and month.
+Para generar la distribución de casos por fecha de inicio de síntomas,
+es necesario agrupar los datos por estas variables. `sivirep`
+proporciona una función que permite esta agrupación llamada
+`agrupar_fecha_inisintomas`, en la cual puedes especificar la unidad de
+tiempo para agrupar estas fechas. Los valores permitidos para este
+parámetro son: día y mes.
 
 ``` r
-cases_onset_symptoms_by_day <- group_onset_symptoms(disease_data =
+cases_onset_symptoms_by_day <- agrupar_fecha_inisintomas(disease_data =
                                                     clean_disease_data,
-                                                    type = "day")
-cases_onset_symptoms_month <- group_onset_symptoms(disease_data =
+                                                    tipo = "day")
+cases_onset_symptoms_month <- agrupar_fecha_inisintomas(disease_data =
                                                    clean_disease_data,
-                                                   type = "month")
+                                                   tipo = "month")
 ```
 
-##### 💡 Tip 2 - Get the first n months with most cases
+##### 💡 Tip 2 - Obtén los primeros n meses con más casos
 
-- When building a report section or analysing this data it can be useful
-  to get the months with the most cases, in `sivirep` you can use the
-  function `get_months_most_cases` to get this information.
+- Al construir una sección del reporte o analizar estos datos, puede ser
+  útil obtener los meses con más casos. En `sivirep`, puedes utilizar la
+  función `obtener_meses_mas_casos` para obtener esta información.
 
-The graph that allows to visualise this distribution must be generated
-with the function `plot_onset_symptoms`. Please notice that even if you
-have grouped the data by day you may prefer to plot it by month, as in:
+El gráfico que permite visualizar esta distribución se debe generar con
+la función `plot_fecha_inisintomas`. Ten en cuenta que, incluso si has
+agrupado los datos por día, es posible que prefieras representarlo por
+mes, como en:
 
 ``` r
-plot_onset_symptoms(data_grouped = cases_onset_symptoms_by_day,
+plot_fecha_inisintomas(data_grouped = cases_onset_symptoms_by_day,
                     break_tick_date = "months")
 ```
 
 ![](man/figures/unnamed-chunk-11-1.png)<!-- -->
 
-#### 4.2. Group the data by notification date at the desired temporal scale
+#### 4.2. Agrupar los datos por fecha de notificación en la escala temporal deseada
 
-The process to generate the distribution of cases by notification date
-consist in group the disease data by this variables, you can use the
-following function of `sivirep` to do this:
+El proceso para generar la distribución de casos por fecha de
+notificación consiste en agrupar los datos de enfermedades por esta
+variable. Puedes utilizar la siguiente función de `sivirep` para hacer
+esto:
 
 ``` r
-cases_notification_date_by_day <- group_notification_date(disease_data =
+cases_notification_date_by_day <- agrupar_fecha_notifica(disease_data =
                                                           clean_disease_data,
-                                                          type = "day")
-cases_notification_date_month <- group_notification_date(disease_data =
+                                                          tipo = "day")
+cases_notification_date_month <- agrupar_fecha_notifica(disease_data =
                                                          clean_disease_data,
-                                                         type = "month")
+                                                         tipo = "month")
 ```
 
-The graph that allows to visualise this distribution must be generated
-with the function `plot_notification_date`. Please notice that even if
-you have grouped the data by day you may prefer to plot it by month, as
-in:
+El gráfico que permite visualizar esta distribución debe generarse con
+la función `plot_fecha_notifica`. Ten en cuenta que, aunque hayas
+agrupado los datos por día, es posible que prefieras representarlos por
+mes, como en:
 
 ``` r
-plot_notification_date(data_grouped = cases_notification_date_by_day,
+plot_fecha_notifica(data_grouped = cases_notification_date_by_day,
                        break_tick_date = "months")
 ```
 
 ![](man/figures/unnamed-chunk-13-1.png)<!-- -->
 
-### 5. Age and sex
+### 5. Edad y sexo
 
-### 5.1. Sex variable
+### 5.1. Variable de sexo
 
-When analysing or reporting disease data, it is often necessary to
-determine the distribution of cases by gender or sex. However, the
-SIVIGILA source only records sex.
+Cuando se analizan o se informan datos de enfermedades, a menudo es
+necesario determinar la distribución de casos por género o sexo. Sin
+embargo, la fuente de SIVIGILA solo registra el sexo.
 
-`sivirep` provides a function that aggregates and computes percentages
-by sex automatically after the cleansing process.
+`sivirep` proporciona una función que agrega y calcula automáticamente
+los porcentajes por sexo después del proceso de limpieza.
 
 ``` r
-cases_sex <- group_sex(disease_data = clean_disease_data,
-                       percentage = TRUE)
+cases_sex <- agrupar_sex(disease_data = clean_disease_data,
+                       porcentaje = TRUE)
 ```
 
-Also, `sivirep` has a `plot_sex` function:
+Además, `sivirep` cuenta con una función para generar el gráfico por
+esta variable llamada `plot_sex`:
 
 ``` r
 plot_sex(data_grouped = cases_sex)
@@ -407,97 +438,100 @@ plot_sex(data_grouped = cases_sex)
 
 ![](man/figures/unnamed-chunk-15-1.png)<!-- -->
 
-The distribution of cases by sex and epidemiological week can be using
-the `group_sex_epiweek` function provided by `sivirep`
+La distribución de casos por sexo y semana epidemiológica se puede
+generar utilizando la función `agrupar_sex_epiweek` proporcionada por
+`sivirep`.
 
 ``` r
-cases_sex_epiweek <- group_sex_epiweek(disease_data = clean_disease_data)
+cases_sex_epiweek <- agrupar_sex_epiweek(disease_data = clean_disease_data)
 ```
 
-The corresponding visualisation function is `plot_sex_epiweek` that
-provides `sivirep`:
+La función de visualización correspondiente es `plot_sex_semanaepi`, que
+`sivirep` proporciona para mostrar la distribución de casos por sexo y
+semana epidemiológica.
 
 ``` r
-plot_sex_epiweek(data_grouped = cases_sex_epiweek)
+plot_sex_semanaepi(data_grouped = cases_sex_epiweek)
 ```
 
 ![](man/figures/unnamed-chunk-17-1.png)<!-- -->
 
-### 5.2. Age variable
+### 5.2. Variable de edad
 
-Age is an important variable to analyse, as it is a known risk factor
-for many diseases. Certain diseases and conditions tend to occur more
-frequently in specific age groups, and this distribution can help
-identify populations at higher risk and implement targeted prevention
-and control strategies.
+La edad es una variable importante para analizar, ya que es un factor de
+riesgo conocido para muchas enfermedades. Ciertas enfermedades y
+condiciones tienden a ocurrir con más frecuencia en grupos de edad
+específicos, y esta distribución puede ayudar a identificar poblaciones
+con mayor riesgo e implementar estrategias de prevención y control
+dirigidas.
 
-`sivirep` provides a function called `group_age`, which can group
-disease data by age groups. By default this function produces age ranges
-with intervals of 10 years. Also, users can customise a different age
-range.
+`sivirep` proporciona una función llamada `agrupar_edad`, que puede agrupar
+los datos de enfermedades por grupos de edad. De forma predeterminada,
+esta función produce rangos de edad con intervalos de 10 años. Además,
+los usuarios pueden personalizar un rango de edad diferente.
 
 ``` r
-cases_age <- group_age(disease_data = clean_disease_data, age_interval = 10)
+cases_age <- agrupar_edad(disease_data = clean_disease_data, age_interval = 10)
 ```
 
-The corresponding plot function is `plot_age`
+La función de visualización correspondiente es `plot_edad`.
 
 ``` r
-plot_age(data_grouped = cases_age)
+plot_edad(data_grouped = cases_age)
 ```
 
 ![](man/figures/unnamed-chunk-19-1.png)<!-- -->
 
-### 5.3. Age and sex simultaneously
+### 5.3. Edad y sexo simultáneamente
 
-`sivirep` provides a function called `group_age_sex`, which can group
-disease data by age ranges and sex simultaneously and obtain their
-number of cases and percentages. Also, the age interval can be
-customised.
+`sivirep` proporciona una función llamada `agrupar_edad_sex`, que puede
+agrupar los datos de enfermedades por rangos de edad y sexo de forma
+simultánea y obtener el número de casos y los porcentajes
+correspondientes. Además, permite personalizar el intervalo de edad.
 
 ``` r
-cases_age_sex <- group_age_sex(disease_data = clean_disease_data,
+cases_age_sex <- agrupar_edad_sex(disease_data = clean_disease_data,
                                age_interval = 10)
 ```
 
-The corresponding plotting function is `plot_age_sex`.
+La función de visualización correspondiente es `plot_edad_sex`.
 
 ``` r
-plot_age_sex(data_grouped = cases_age_sex)
+plot_edad_sex(data_grouped = cases_age_sex)
 ```
 
 ![](man/figures/unnamed-chunk-21-1.png)<!-- -->
 
-### 6. Spatial distribution of cases
+### 6. Distribución espacial de casos
 
-Obtaining the spatial distribution of cases is helpful to identify areas
-with a high concentration of cases, disease clusters and environmental
-or social risk factors.
+Obtener la distribución espacial de los casos es útil para identificar
+áreas con una alta concentración de casos, agrupaciones de enfermedades
+y factores de riesgo ambientales o sociales.
 
-In Colombia, there are 32 administrative geographic units (adm1) called
-departments. `sivirep` provides a function called `group_mun` which
-allows obtaining a data.frame of grouped cases by department or
-municipality.
+En Colombia, existen 32 unidades geográficas administrativas (adm1)
+llamadas departamentos. `sivirep` proporciona una función llamada
+`agrupar_mun` que permite obtener un data.frame de casos agrupados por
+departamento o municipio.
 
 ``` r
-spatial_dept_dist <- group_mun(disease_data = filter_disease_data, dept_name = "Antioquia")
+spatial_dept_dist <- agrupar_mun(disease_data = filter_disease_data, dept_name = "Antioquia")
 ```
 
-Currently, with the function called `plot_map` the user can produce a
-static map of Colombia with the distribution of cases by departments and
-municipalities.
+Actualmente, con la función llamada `plot_map`, el usuario puede generar
+un mapa estático de Colombia que muestra la distribución de casos por
+departamentos y municipios.
 
 ``` r
-map <- plot_map(data_grouped = spatial_dept_dist, department = "Antioquia")
 map
 ```
 
 ![](man/figures/unnamed-chunk-24-1.png)<!-- -->
 
-##### 💡 Tip 3 - Get the row with most cases
+##### 💡 Tip 3 - Obtén la fila con más casos
 
-- When building a report section or analysing this data it can be
-  helpful to know which gender has the most cases, in `sivirep` you can
-  use the function `get_most_cases` to get this information. This
-  function works with any dataset that contains a column called “cases”
-  by any level of aggregation.
+- Al construir una sección del reporte o analizar estos datos, puede ser
+  útil saber cuál es la variable que tiene la mayoría de los casos. En
+  `sivirep`, puedes utilizar la función `obtener_fila_mas_casos` para obtener
+  esta información. Esta función funciona con cualquier conjunto de
+  datos que contenga una columna llamada “casos” en cualquier nivel de
+  agregación.
