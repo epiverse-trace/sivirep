@@ -1,252 +1,260 @@
-#' Get months major cases
+#' Obtener los meses con mayor número de casos
 #'
-#' Function that gets the months with the major number of cases
-#' @param disease_data The disease data
-#' @param col_dates Column names in the disease data that contains the dates
-#' @param col_cases Column name in the disease data that contains
-#' the cases number
-#' @param top Top
-#' @param concat_values Indicates if it is required to concatenate
-#' the months as a string
-#' @return Months major cases
+#' Función que obtiene los meses con el mayor número de casos
+#' @param data_event Los datos de la enfermedad
+#' @param col_fechas Nombres de columna en los datos de la
+#' enfermedad o evento que contienen las fechas
+#' @param col_casos Nombre de la columna en los datos de la
+#' enfermedad o evento que contiene
+#' el número de casos
+#' @param top Cantidad máxima de meses a retornar
+#' @param concat_vals Indica si se requiere concatenar los meses
+#' como una cadena
+#' @return Los meses con mayor número de casos
 #' @examples
-#' disease_data <- import_linelist_disease_year(2020, "DENGUE")
-#' disease_data <- clean_header(disease_data)
-#' cases_onset_symptoms <- group_onset_symptoms(disease_data, type = "day")
-#' get_months_most_cases(cases_onset_symptoms,
-#'                        col_dates = "ini_sin",
-#'                        col_cases = "casos",
-#'                        top = 3,
-#'                        concat_values = TRUE)
+#' data_event <- import_data_event(2020, "DENGUE")
+#' data_event <- limpiar_encabezado(data_event)
+#' casos_inisintomas <- agrupar_fecha_inisintomas(data_event, tipo = "day")
+#' obtener_meses_mas_casos(casos_inisintomas,
+#'                     col_fechas = "ini_sin",
+#'                     col_casos = "casos",
+#'                     top = 3,
+#'                     concat_vals = TRUE)
 #' @export
-get_months_most_cases <- function(disease_data,
-                                  col_dates,
-                                  col_cases = "casos",
-                                  top = 3,
-                                  concat_values = TRUE) {
-  data_major_cases <-
-    disease_data[order(eval(parse(text = paste0("disease_data$", col_cases))),
-                       decreasing = TRUE), ]
-  if (nrow(data_major_cases) < top) {
-    top <- nrow(data_major_cases)
+obtener_meses_mas_casos <- function(data_event,
+                                    col_fechas,
+                                    col_casos = "casos",
+                                    top = 3,
+                                    concat_vals = TRUE) {
+  data_mas_casos <-
+    data_event[order(eval(parse(text = paste0("data_event$", col_casos))),
+                     decreasing = TRUE), ]
+  if (nrow(data_mas_casos) < top) {
+    top <- nrow(data_mas_casos)
   }
-  data_major_cases <- data_major_cases[1:top, ]
-  data_major_cases$Meses <-
-    sapply(eval(parse(text = paste0("data_major_cases$",
-                                    col_dates))),
+  data_mas_casos <- data_mas_casos[1:top, ]
+  data_mas_casos$Meses <-
+    sapply(eval(parse(text = paste0("data_mas_casos$",
+                                    col_fechas))),
            months)
-  if (concat_values) {
+  if (concat_vals) {
     months_concat <-
-      concatenate_values_token(as.character(data_major_cases$Meses)[1:top])
+      concatenar_vals_token(as.character(data_mas_casos$Meses)[1:top])
     return(months_concat)
   }
-  return(data_major_cases)
+  return(data_mas_casos)
 }
 
-#' Get department names
+#' Obtener nombres de departamentos
 #'
-#' Function that gets the department names
-#' @param disease_data The disease data
-#' @return Dataframe with the department names
+#' Función que obtiene los nombres de los departamentos
+#' @param data_event Los datos de la enfermedad
+#' @return Dataframe con los nombres de los departamentos
 #' @examples
-#' disease_data <- import_linelist_disease_year(2020, "DENGUE")
+#' data_event <- import_data_event(2020, "DENGUE")
 #' @export
-get_depto_names <- function(disease_data) {
-  disease_data_deptos <- disease_data
-  disease_data_deptos$codigo <- disease_data$id
-  geo_country_data <- import_geo_codes()
+obtener_nombres_dptos <- function(data_event) {
+  data_event_dptos <- data_event
+  data_event_dptos$codigo <- data_event$id
+  geo_country_data <- import_geo_cods()
   deptos_data <- data.frame(
     id = geo_country_data$c_digo_departamento,
     nombre = geo_country_data$nombre_departamento
   )
   i <- 1
   for (code in deptos_data$id) {
-    disease_data_deptos$id[disease_data_deptos$id == code] <-
+    data_event_dptos$id[data_event_dptos$id == code] <-
       deptos_data$nombre[i]
     i <- i + 1
   }
-  colnames(disease_data_deptos)[colnames(disease_data_deptos) == "id"] <-
+  colnames(data_event_dptos)[colnames(data_event_dptos) == "id"] <-
     "nombre"
-  disease_data_deptos <- disease_data_deptos[order(disease_data_deptos$nombre,
-                                                   decreasing = FALSE), ]
-  disease_data_deptos <- disease_data_deptos[5:nrow(disease_data_deptos), ]
-  return(disease_data_deptos)
+  data_event_dptos <- data_event_dptos[order(data_event_dptos$nombre,
+                                             decreasing = FALSE), ]
+  data_event_dptos <- data_event_dptos[5:nrow(data_event_dptos), ]
+  return(data_event_dptos)
 }
 
-#' Get row with major cases
+#' Obtener fila con mayor número de casos
 #'
-#' Function that gets the row with the major number of cases
-#' @param disease_data The disease data
-#' @param col_name Column name in the disease data that contains
-#' the cases number
-#' @param percentage Indicates if it is required to add a percentage of
-#' cases as a column
-#' @return Row with major cases
+#' Función que obtiene la fila con el mayor número de casos
+#' @param data_event Los datos de la enfermedad
+#' @param col_name Nombre de la columna en los datos de la
+#' enfermedad o evento que contiene el número de casos
+#' @param porcentaje Indica si se requiere agregar un porcentaje
+#' de casos como columna
+#' @return La fila con mayor número de casos
 #' @examples
-#' disease_data <- import_linelist_disease_year(2020, "DENGUE")
-#' disease_data <- clean_header(disease_data)
-#' cases_sex <- group_sex(disease_data,
-#'                        percentage = TRUE)
-#' get_most_cases(cases_sex,
-#'                col_name = "casos",
-#'                percentage = TRUE)
+#' data_event <- import_data_event(2020, "DENGUE")
+#' data_event <- limpiar_encabezado(data_event)
+#' casos_sex <- agrupar_sex(data_event,
+#'                          porcentaje = TRUE)
+#' obtener_fila_mas_casos(casos_sex,
+#'                        col_name = "casos",
+#'                        porcentaje = TRUE)
 #' @export
-get_most_cases <- function(disease_data,
-                           col_name = "casos",
-                           percentage = TRUE) {
-  data_major_cases <- disease_data[order(eval(parse(text =
-                                                      paste0("disease_data$",
-                                                             col_name))),
-                                         decreasing = TRUE), ]
-  data_major_cases <- data_major_cases[1, ]
-  if (percentage) {
+obtener_fila_mas_casos <- function(data_event,
+                                   col_name = "casos",
+                                   porcentaje = TRUE) {
+  data_mas_casos <- data_event[order(eval(parse(text =
+                                                  paste0("data_event$",
+                                                         col_name))),
+                                     decreasing = TRUE), ]
+  data_mas_casos <- data_mas_casos[1, ]
+  if (porcentaje) {
     value_per <-
-      data_major_cases$casos[1] / sum(eval(parse(text =
-                                                   paste0("disease_data$",
-                                                          col_name))))
-    data_major_cases$porcentaje <- round(value_per * 100, 2)
+      data_mas_casos$casos[1] / sum(eval(parse(text =
+                                                 paste0("data_event$",
+                                                        col_name))))
+    data_mas_casos$porcentaje <- round(value_per * 100, 2)
   }
-  return(data_major_cases)
+  return(data_mas_casos)
 }
 
-#' Concatenate values with separator or token
+#' Concatenar vals con separador o token
 #'
-#' Function that concatenates values with a specific separator or token
-#' @param values The values
-#' @param length Values length
-#' @param main_token Main separator or token
-#' @param final_token Final separator or token
-#' @return Concatenated final value
+#' Función que concatena vals con un separador o token específico
+#' @param vals Los vals
+#' @param longitud Longitud de los vals
+#' @param princ_token Separador o token principal
+#' @param final_token Separador o token final
+#' @return Valor final concatenado
 #' @examples
-#' concatenate_values_token(values = c("enero", "febrero", "marzo"),
-#'                          length = 3,
-#'                          main_token = ", ",
+#' concatenar_vals_token(vals = c("enero", "febrero", "marzo"),
+#'                          longitud = 3,
+#'                          princ_token = ", ",
 #'                          final_token = "y ")
 #' @export
-concatenate_values_token <- function(values,
-                                     length = 3,
-                                     main_token = ", ",
-                                     final_token = "y ") {
-  final_value <- ""
+concatenar_vals_token <- function(vals,
+                                  longitud = 3,
+                                  princ_token = ", ",
+                                  final_token = "y ") {
+  final_val <- ""
   i <- 1
-  for (value in values) {
-    if (i != length) {
-      final_value <- paste0(final_value, value, main_token)
+  for (value in vals) {
+    if (i != longitud) {
+      final_val <- paste0(final_val, value, princ_token)
     } else {
-      final_value <- paste0(final_value, final_token, value)
+      final_val <- paste0(final_val, final_token, value)
     }
     i <- i + 1
   }
-  return(final_value)
+  return(final_val)
 }
 
-#' Get geographic occurrence columns of the disease data
+#' Obtener columnas de ocurrencia geográfica de los datos de la enfermedad
 #'
-#' Function that gets the geographic occurrence columns of the disease data
-#' @param code_disease The disease code
-#' @return The geographic occurrence columns of the disease data
+#' Función que obtiene las columnas de ocurrencia geográfica de los
+#' datos de la enfermedad o evento
+#' @param code_disease El código de la enfermedad
+#' @return Las columnas de ocurrencia geográfica de los datos de la enfermedad
 #' @examples
-#' get_geo_occurrence_type(code_disease = 210)
+#' obtener_tip_ocurren_geo(code_disease = 210)
 #' @export
-get_geo_occurrence_type <- function(code_disease) {
-  geo_occurrences <- config::get(file =
-                                   system.file("extdata",
-                                               "config.yml",
-                                               package = "sivirep"),
-                                 "occurrence_geo_diseases")
-  col_ocurrences <- c("cod_dpto_o", "cod_mun_o")
-  if (grep(code_disease, geo_occurrences$cod_dpto_n) > 0) {
-    col_ocurrences <- c("cod_dpto_n", "cod_mun_n")
-  } else if (grep(code_disease, geo_occurrences$cod_dpto_r) > 0) {
-    col_ocurrences <- c("cod_dpto_r", "cod_mun_r")
+obtener_tip_ocurren_geo <- function(code_disease) {
+  geo_occurren <- config::get(file =
+                                system.file("extdata",
+                                            "config.yml",
+                                            package = "sivirep"),
+                              "occurrence_geo_diseases")
+  col_ocurren <- c("cod_dpto_o", "cod_mun_o")
+  if (length(grep(code_disease, geo_occurren$cod_dpto_n)) == 1
+      && grep(code_disease, geo_occurren$cod_dpto_n) > 0) {
+    col_ocurren <- c("cod_dpto_n", "cod_mun_n")
+  } else if (length(grep(code_disease, geo_occurren$cod_dpto_r)) == 1
+             && grep(code_disease, geo_occurren$cod_dpto_r) > 0) {
+    col_ocurren <- c("cod_dpto_r", "cod_mun_r")
   } else {
-    col_ocurrences <- c("cod_dpto_o", "cod_mun_o")
+    col_ocurren <- c("cod_dpto_o", "cod_mun_o")
   }
-  return(col_ocurrences)
+  return(col_ocurren)
 }
 
-#' Get geographic information of the disease data
+#' Obtener información geográfica de los datos de la enfermedad
 #'
-#' Function that gets the geographic information of the disease data
-#' @param department The department name
-#' @param municipality The municipality data
-#' @return The geographic information of the disease data
+#' Función que obtiene la información geográfica de los datos de la enfermedad
+#' @param department El nombre del departamento
+#' @param municip Los datos del municipio
+#' @return La información geográfica de los datos de la enfermedad
 #' @examples
-#' get_info_depts(department = "ANTIOQUIA")
+#' obtener_info_depts(department = "ANTIOQUIA")
 #' @export
-get_info_depts <- function(department = NULL, municipality = NULL) {
-  geo_data <- import_geo_codes()
-  list_departments <- unique(geo_data$nombre_departamento)
+obtener_info_depts <- function(department = NULL, municip = NULL) {
+  data_geo <- import_geo_cods()
+  list_dptos <- unique(data_geo$nombre_departamento)
   list_specific <-
-    list_departments[stringr::str_detect(list_departments,
-                                         toupper(department)) == TRUE]
-  dept_data <- dplyr::filter(geo_data, .data$nombre_departamento %in%
+    list_dptos[stringr::str_detect(list_dptos,
+                                   toupper(department)) == TRUE]
+  data_dpto <- dplyr::filter(data_geo, .data$nombre_departamento %in%
                                list_specific)
-  if (!is.null(municipality)) {
-    list_municipalities <- unique(geo_data$nombre_municipio)
+  if (!is.null(municip)) {
+    list_municipalities <- unique(data_geo$nombre_municipio)
     list_specific <-
       list_municipalities[stringr::str_detect(list_municipalities,
-                                              toupper(municipality)) == TRUE]
-    dept_data <- dplyr::filter(geo_data, .data$nombre_municipio %in%
+                                              toupper(municip)) == TRUE]
+    data_dpto <- dplyr::filter(data_geo, .data$nombre_municipio %in%
                                  list_specific)
   }
-  return(dept_data)
+  return(data_dpto)
 }
 
-#' Set geographic codes of the disease data
+#' Establecer códigos geográficos de los datos de la enfermedad
 #'
-#' Function that sets the geographic codes of the disease data
-#' @param code_dept The department code
-#' @param code_mun The municipality code
-#' @return The geographic codes of the disease data
+#' Función que establece los códigos geográficos de los datos de la enfermedad
+#' @param code_dept El código del departamento
+#' @param cod_mun El código del municipio
+#' @return Los códigos geográficos de los datos de la enfermedad
 #' @examples
-#' set_code_mun(code_dept = 01, code_mun = "001")
+#' modficar_cod_mun(code_dept = 01, cod_mun = "001")
 #' @export
-set_code_mun <- function(code_dept, code_mun) {
-  code_mun <- as.character(code_mun)
+modficar_cod_mun <- function(code_dept, cod_mun) {
+  cod_mun <- as.character(cod_mun)
   if (substr(code_dept, 1, 1) == "0") {
     code_dept <- substr(code_dept, 2, 2)
-    code_mun <- gsub(code_dept, "", code_mun)
+    cod_mun <- gsub(code_dept, "", cod_mun)
   }
-  return(code_mun)
+  return(cod_mun)
 }
 
-#' Get departments of Colombia
+#' Obtener departamentos de Colombia
 #'
-#' Function that gets the departments of Colombia
-#' @return The departments of Colombia
+#' Función que obtiene los departamentos de Colombia
+#' @return Los departamentos de Colombia
 #' @examples
-#' get_departments()
+#' obtener_dptos()
 #' @export
-get_departments <- function() {
-  departments <- config::get(file =
-                               system.file("extdata", "config.yml",
-                                           package = "sivirep"),
-                             "departments")
-  return(departments)
+obtener_dptos <- function() {
+  dptos <- config::get(file =
+                         system.file("extdata", "config.yml",
+                                     package = "sivirep"),
+                       "departments")
+  return(dptos)
 }
 
-#' Get name of municipality in Colombia
+
+#' Obtener nombre del municipio en Colombia
 #'
-#' Function that gets the municipality name
-#' @param code_dept The department code
-#' @param code_mun The municipality code
-#' @return The municipality name
+#' Función que obtiene el nombre del municipio
+#' @param data_geo Códigos geográficos (departamentos y municipios de
+#' Colombia)
+#' @param code_dept El código del departamento
+#' @param cod_mun El código del municipio
+#' @return El nombre del municipio
 #' @examples
-#' geo_data <- import_geo_codes()
-#' get_name_muns(geo_data,
-#'               code_dept = "05",
-#'               code_mun = "001")
+#' data_geo <- import_geo_cods()
+#' obtener_nombres_muns(data_geo,
+#'                      code_dept = "05",
+#'                      cod_mun = "001")
 #' @export
-get_name_muns <- function(geo_data, code_dept, code_mun) {
+obtener_nombres_muns <- function(data_geo, code_dept, cod_mun) {
   if (substr(code_dept, 1, 1) == "0") {
     code_dept <- substr(code_dept, 2, 2)
-    code_mun <- paste0(code_dept, code_mun)
+    cod_mun <- paste0(code_dept, cod_mun)
   } else {
-    code_mun <- paste0(code_dept, code_mun)
+    cod_mun <- paste0(code_dept, cod_mun)
   }
-  mun_data <- dplyr::filter(geo_data,
-                            .data$codigo_municipio %in% as.integer(code_mun))
-  mun_data <- mun_data[1, ]
-  return(mun_data$nombre_municipio)
+  data_mun <- dplyr::filter(data_geo,
+                            .data$codigo_municipio %in% as.integer(cod_mun))
+  data_mun <- data_mun[1, ]
+  return(data_mun$nombre_municipio)
 }
