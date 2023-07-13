@@ -7,10 +7,11 @@
 remove_val_nin(data_event, nom_col)
 }
 \arguments{
-\item{data_event}{Los datos de una enfermedad o evento}
+\item{data_event}{Un data frame que contiene los datos de una
+enfermedad o evento}
 
-\item{nom_col}{Nombre de la columna en los datos
-de una enfermedad o evento a evaluar}
+\item{nom_col}{Un character (cadena de caracteres) que contiene el
+nombre de la columna en los datos de una enfermedad o evento a evaluar}
 }
 \value{
 Los datos limpios sin valores NA, Infinito o NaN
@@ -22,5 +23,5 @@ incluyen NA, Infinito o NaN
 \examples{
 data_event <- import_data_event(2019, "DENGUE")
 data_event <- limpiar_encabezado(data_event)
-remove_val_nin(data_event, nom_col = "edad")
+remove_val_nin(data_event = data_event, nom_col = "edad")
 }

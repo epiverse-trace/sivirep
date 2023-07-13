@@ -7,25 +7,29 @@
 convert_edad(data_event, col_edad = "edad", col_uni_med = "uni_med")
 }
 \arguments{
-\item{data_event}{Los datos de una enfermedad o evento}
+\item{data_event}{Un data frame que contiene los datos de una
+enfermedad o evento}
 
-\item{col_edad}{Nombre de la columna en los datos
-de una enfermedad o evento
-que contiene las edades}
+\item{col_edad}{Un character (cadena de caracteres) con el nombre
+de la columna en los datos de una enfermedad o evento que
+contiene las edades; su valor por defecto es edad}
 
-\item{col_uni_med}{Nombre de la columna en los datos
-de una enfermedad o evento
-que contiene las unidades de medida}
+\item{col_uni_med}{Un character (cadena de caracteres) con el nombre
+de la columna en los datos de una enfermedad o evento que contiene
+las unidades de medida; su valor por defecto es uni_med}
 }
 \value{
-Las edades en años
+Un data framecon las edades en años según las unidades de medida
+del SIVIGILA
 }
 \description{
-Función que convierte las edades en años según las unidades de medida de
+Función que convierte las edades en años según las unidades de medida del
 SIVIGILA
 }
 \examples{
 data_event <- import_data_event(2019, "DENGUE")
 data_event <- limpiar_encabezado(data_event)
-convert_edad(data_event, col_edad = "edad", col_uni_med = "uni_med")
+convert_edad(data_event = data_event,
+             col_edad = "edad",
+             col_uni_med = "uni_med")
 }
