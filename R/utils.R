@@ -1,25 +1,28 @@
 #' Obtener los meses con mayor número de casos
 #'
 #' Función que obtiene los meses con el mayor número de casos
-#' @param data_event Los datos de la enfermedad
-#' @param col_fechas Nombres de columna en los datos de la
-#' enfermedad o evento que contienen las fechas
-#' @param col_casos Nombre de la columna en los datos de la
-#' enfermedad o evento que contiene
-#' el número de casos
-#' @param top Cantidad máxima de meses a retornar
-#' @param concat_vals Indica si se requiere concatenar los meses
-#' como una cadena
-#' @return Los meses con mayor número de casos
+#' @param data_event Un data frame con los datos de la enfermedad
+#' o vento
+#' @param col_fechas Un array (arreglo) de character (cadena de caracteres)
+#' con los nombres de columna de los datos de la enfermedad o evento
+#' que contienen las fechas
+#' @param col_casos Un character (cadena de caracteres) con el nombre de la
+#' columna de los datos de la enfermedad o evento que contiene el número
+#' de casos; su valor por defecto es "casos"
+#' @param top Un numeric (numerico) que contiene la cantidad máxima
+#' de meses a retornar; su valor por defecto es 3
+#' @param concat_vals Un boolean (TRUE/FALSE) que indica si se requiere
+#' concatenar los meses como una cadena; su valor por defecto es TRUE
+#' @return Un data frame que contiene los meses con mayor número de casos
 #' @examples
 #' data_event <- import_data_event(2020, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
 #' casos_inisintomas <- agrupar_fecha_inisintomas(data_event, tipo = "day")
-#' obtener_meses_mas_casos(casos_inisintomas,
-#'                     col_fechas = "ini_sin",
-#'                     col_casos = "casos",
-#'                     top = 3,
-#'                     concat_vals = TRUE)
+#' obtener_meses_mas_casos(data_event= casos_inisintomas,
+#'                         col_fechas = "ini_sin",
+#'                         col_casos = "casos",
+#'                         top = 3,
+#'                         concat_vals = TRUE)
 #' @export
 obtener_meses_mas_casos <- function(data_event,
                                     col_fechas,
@@ -48,8 +51,9 @@ obtener_meses_mas_casos <- function(data_event,
 #' Obtener nombres de departamentos
 #'
 #' Función que obtiene los nombres de los departamentos
-#' @param data_event Los datos de la enfermedad
-#' @return Dataframe con los nombres de los departamentos
+#' @param data_event Un data frame que contiene los datos de
+#' la enfermedad o evento
+#' @return Un data frame con los nombres de los departamentos
 #' @examples
 #' data_event <- import_data_event(2020, "DENGUE")
 #' @export
@@ -78,18 +82,20 @@ obtener_nombres_dptos <- function(data_event) {
 #' Obtener fila con mayor número de casos
 #'
 #' Función que obtiene la fila con el mayor número de casos
-#' @param data_event Los datos de la enfermedad
-#' @param col_name Nombre de la columna en los datos de la
-#' enfermedad o evento que contiene el número de casos
-#' @param porcentaje Indica si se requiere agregar un porcentaje
-#' de casos como columna
-#' @return La fila con mayor número de casos
+#' @param data_event Un data frame que contiene los datos de la
+#' enfermedad o evento
+#' @param col_name Un character (cadena de caracteres) con el
+#' nombre de la columna de los datos de la enfermedad o evento que
+#' contiene el número de casos
+#' @param porcentaje Un boolean (TRUE/FALSE) que indica si se
+#' requiere agregar un porcentaje de casos como columna
+#' @return Un data frame que contiene la fila con mayor número de casos
 #' @examples
 #' data_event <- import_data_event(2020, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
 #' casos_sex <- agrupar_sex(data_event,
 #'                          porcentaje = TRUE)
-#' obtener_fila_mas_casos(casos_sex,
+#' obtener_fila_mas_casos(data_event = casos_sex,
 #'                        col_name = "casos",
 #'                        porcentaje = TRUE)
 #' @export
@@ -111,19 +117,23 @@ obtener_fila_mas_casos <- function(data_event,
   return(data_mas_casos)
 }
 
-#' Concatenar vals con separador o token
+#' Concatenar valores con separador o token
 #'
-#' Función que concatena vals con un separador o token específico
-#' @param vals Los vals
-#' @param longitud Longitud de los vals
-#' @param princ_token Separador o token principal
-#' @param final_token Separador o token final
-#' @return Valor final concatenado
+#' Función que concatena valores con un separador o token específico
+#' @param vals Un array (arreglo) de character (cadena de caracteres)
+#' que contiene los valores que se desean concatenar
+#' @param longitud Un numeric (numerico) que contiene la longitud de
+#' los valores que se desean concatenar; su valor por defecto es 3
+#' @param princ_token Un character (cadena de caracteres) que contiene el
+#' separador o token principal; su valor por defecto es ", "
+#' @param final_token Un character (cadena de caracteres) que contien el
+#' separador o token final; su valor por defecto es "y "
+#' @return Un character (cadena de caracteres) con el valor final concatenado
 #' @examples
 #' concatenar_vals_token(vals = c("enero", "febrero", "marzo"),
-#'                          longitud = 3,
-#'                          princ_token = ", ",
-#'                          final_token = "y ")
+#'                       longitud = 3,
+#'                       princ_token = ", ",
+#'                       final_token = "y ")
 #' @export
 concatenar_vals_token <- function(vals,
                                   longitud = 3,
@@ -142,12 +152,15 @@ concatenar_vals_token <- function(vals,
   return(final_val)
 }
 
-#' Obtener columnas de ocurrencia geográfica de los datos de la enfermedad
+#' Obtener columnas de ocurrencia geográfica de los datos de la
+#' enfermedad o evento
 #'
 #' Función que obtiene las columnas de ocurrencia geográfica de los
 #' datos de la enfermedad o evento
-#' @param code_disease El código de la enfermedad
-#' @return Las columnas de ocurrencia geográfica de los datos de la enfermedad
+#' @param code_disease Un numeric (numerico) que contiene el código de la
+#' enfermedad o evento
+#' @return Un data frame con las columnas de ocurrencia geográfica de los
+#' datos de la enfermedad
 #' @examples
 #' obtener_tip_ocurren_geo(code_disease = 210)
 #' @export
@@ -170,40 +183,46 @@ obtener_tip_ocurren_geo <- function(code_disease) {
   return(col_ocurren)
 }
 
-#' Obtener información geográfica de los datos de la enfermedad
+#' Obtener información geográfica de los datos de la enfermedad o evento
 #'
 #' Función que obtiene la información geográfica de los datos de la enfermedad
-#' @param department El nombre del departamento
-#' @param municip Los datos del municipio
-#' @return La información geográfica de los datos de la enfermedad
+#' o evento
+#' @param dpto Un character (cadena de caracteres) que contiene el nombre
+#' del departamento; su valor por defecto es NULL
+#' @param munpio Un character (cadena de caracteres) que contiene los datos del
+#' municipio; su valor por defecto es NULL
+#' @return Un data frame con la información geográfica de los datos de
+#' la enfermedad o evento
 #' @examples
-#' obtener_info_depts(department = "ANTIOQUIA")
+#' obtener_info_depts(dpto = "ANTIOQUIA")
 #' @export
-obtener_info_depts <- function(department = NULL, municip = NULL) {
+obtener_info_depts <- function(dpto = NULL, munpio = NULL) {
   data_geo <- import_geo_cods()
   list_dptos <- unique(data_geo$nombre_departamento)
   list_specific <-
     list_dptos[stringr::str_detect(list_dptos,
-                                   toupper(department)) == TRUE]
+                                   toupper(dpto)) == TRUE]
   data_dpto <- dplyr::filter(data_geo, .data$nombre_departamento %in%
                                list_specific)
-  if (!is.null(municip)) {
+  if (!is.null(munpio)) {
     list_municipalities <- unique(data_geo$nombre_municipio)
     list_specific <-
       list_municipalities[stringr::str_detect(list_municipalities,
-                                              toupper(municip)) == TRUE]
+                                              toupper(munpio)) == TRUE]
     data_dpto <- dplyr::filter(data_geo, .data$nombre_municipio %in%
                                  list_specific)
   }
   return(data_dpto)
 }
 
-#' Establecer códigos geográficos de los datos de la enfermedad
+#' Establecer códigos geográficos de los datos de la enfermedad o evento
 #'
 #' Función que establece los códigos geográficos de los datos de la enfermedad
-#' @param code_dept El código del departamento
-#' @param cod_mun El código del municipio
-#' @return Los códigos geográficos de los datos de la enfermedad
+#' o evento
+#' @param code_dept Un numeric (numerico) que contiene el código del
+#' departamento
+#' @param cod_mun Un numeric (numerico) que contiene el código del municipio
+#' @return Un data frame con los códigos geográficos
 #' @examples
 #' modficar_cod_mun(code_dept = 01, cod_mun = "001")
 #' @export
@@ -219,7 +238,7 @@ modficar_cod_mun <- function(code_dept, cod_mun) {
 #' Obtener departamentos de Colombia
 #'
 #' Función que obtiene los departamentos de Colombia
-#' @return Los departamentos de Colombia
+#' @return Un data frame con los departamentos de Colombia
 #' @examples
 #' obtener_dptos()
 #' @export
@@ -231,15 +250,16 @@ obtener_dptos <- function() {
   return(dptos)
 }
 
-
 #' Obtener nombre del municipio en Colombia
 #'
 #' Función que obtiene el nombre del municipio
-#' @param data_geo Códigos geográficos (departamentos y municipios de
-#' Colombia)
-#' @param code_dept El código del departamento
-#' @param cod_mun El código del municipio
-#' @return El nombre del municipio
+#' @param data_geo Un data frame que contiene los códigos
+#' geográficos (departamentos y municipios de Colombia)
+#' @param code_dept Un numeric (numerico) que contiene el código
+#' del departamento
+#' @param cod_mun Un numeric (numerico) que contiene el código
+#' del municipio
+#' @return Un character (cadena de caracteres) con el nombre del municipio
 #' @examples
 #' data_geo <- import_geo_cods()
 #' obtener_nombres_muns(data_geo,

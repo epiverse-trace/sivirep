@@ -7,11 +7,12 @@
 obtener_cods_dpto(geo_cods)
 }
 \arguments{
-\item{geo_cods}{Códigos geográficos (departamentos y municipios de
-Colombia)}
+\item{geo_cods}{Un data frame que contiene los códigos geográficos
+(departamentos y municipios de Colombia)}
 }
 \value{
-Los datos de los departamentos con código y nombre
+Un data frame con los datos de los departamentos con
+código y nombre
 }
 \description{
 Función que obtiene la lista de departamentos de Colombia con su nombre
@@ -19,5 +20,5 @@ y código
 }
 \examples{
 geo_cods <- import_geo_cods()
-obtener_cods_dpto(geo_cods)
+obtener_cods_dpto(geo_cods = geo_cods)
 }

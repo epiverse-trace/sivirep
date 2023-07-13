@@ -2,21 +2,25 @@
 % Please edit documentation in R/utils.R
 \name{obtener_info_depts}
 \alias{obtener_info_depts}
-\title{Obtener información geográfica de los datos de la enfermedad}
+\title{Obtener información geográfica de los datos de la enfermedad o evento}
 \usage{
-obtener_info_depts(department = NULL, municip = NULL)
+obtener_info_depts(dpto = NULL, munpio = NULL)
 }
 \arguments{
-\item{department}{El nombre del departamento}
+\item{dpto}{Un character (cadena de caracteres) que contiene el nombre
+del departamento; su valor por defecto es NULL}
 
-\item{municip}{Los datos del municipio}
+\item{munpio}{Un character (cadena de caracteres) que contiene los datos del
+municipio; su valor por defecto es NULL}
 }
 \value{
-La información geográfica de los datos de la enfermedad
+Un data frame con la información geográfica de los datos de
+la enfermedad o evento
 }
 \description{
 Función que obtiene la información geográfica de los datos de la enfermedad
+o evento
 }
 \examples{
-obtener_info_depts(department = "ANTIOQUIA")
+obtener_info_depts(dpto = "ANTIOQUIA")
 }

@@ -2,20 +2,22 @@
 % Please edit documentation in R/utils.R
 \name{modficar_cod_mun}
 \alias{modficar_cod_mun}
-\title{Establecer códigos geográficos de los datos de la enfermedad}
+\title{Establecer códigos geográficos de los datos de la enfermedad o evento}
 \usage{
 modficar_cod_mun(code_dept, cod_mun)
 }
 \arguments{
-\item{code_dept}{El código del departamento}
+\item{code_dept}{Un numeric (numerico) que contiene el código del
+departamento}
 
-\item{cod_mun}{El código del municipio}
+\item{cod_mun}{Un numeric (numerico) que contiene el código del municipio}
 }
 \value{
-Los códigos geográficos de los datos de la enfermedad
+Un data frame con los códigos geográficos
 }
 \description{
 Función que establece los códigos geográficos de los datos de la enfermedad
+o evento
 }
 \examples{
 modficar_cod_mun(code_dept = 01, cod_mun = "001")

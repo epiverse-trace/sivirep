@@ -2,15 +2,18 @@
 % Please edit documentation in R/utils.R
 \name{obtener_tip_ocurren_geo}
 \alias{obtener_tip_ocurren_geo}
-\title{Obtener columnas de ocurrencia geográfica de los datos de la enfermedad}
+\title{Obtener columnas de ocurrencia geográfica de los datos de la
+enfermedad o evento}
 \usage{
 obtener_tip_ocurren_geo(code_disease)
 }
 \arguments{
-\item{code_disease}{El código de la enfermedad}
+\item{code_disease}{Un numeric (numerico) que contiene el código de la
+enfermedad o evento}
 }
 \value{
-Las columnas de ocurrencia geográfica de los datos de la enfermedad
+Un data frame con las columnas de ocurrencia geográfica de los
+datos de la enfermedad
 }
 \description{
 Función que obtiene las columnas de ocurrencia geográfica de los

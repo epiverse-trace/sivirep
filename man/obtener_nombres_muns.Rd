@@ -7,15 +7,17 @@
 obtener_nombres_muns(data_geo, code_dept, cod_mun)
 }
 \arguments{
-\item{data_geo}{Códigos geográficos (departamentos y municipios de
-Colombia)}
+\item{data_geo}{Un data frame que contiene los códigos
+geográficos (departamentos y municipios de Colombia)}
 
-\item{code_dept}{El código del departamento}
+\item{code_dept}{Un numeric (numerico) que contiene el código
+del departamento}
 
-\item{cod_mun}{El código del municipio}
+\item{cod_mun}{Un numeric (numerico) que contiene el código
+del municipio}
 }
 \value{
-El nombre del municipio
+Un character (cadena de caracteres) con el nombre del municipio
 }
 \description{
 Función que obtiene el nombre del municipio

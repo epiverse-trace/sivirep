@@ -7,10 +7,12 @@
 obtener_casos_pob_especial(data_event)
 }
 \arguments{
-\item{data_event}{Los datos de una enfermedad o evento}
+\item{data_event}{Un data frame que contiene los datos de una
+enfermedad o evento}
 }
 \value{
-Los casos por tipo de población especial de una enfermedad
+Un data frame con los casos por tipo de población especial
+de una enfermedad o evento
 }
 \description{
 Función que obtiene los casos por tipo de población
@@ -18,5 +20,5 @@ especial de una enfermedad
 }
 \examples{
 data_event <- import_data_event(2019, "DENGUE")
-obtener_casos_pob_especial(data_event)
+obtener_casos_pob_especial(data_event = data_event)
 }

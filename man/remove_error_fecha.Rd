@@ -2,19 +2,25 @@
 % Please edit documentation in R/cleaning_data.R
 \name{remove_error_fecha}
 \alias{remove_error_fecha}
-\title{Eliminar fechas erróneas}
+\title{Eliminar fechas mayores que el valor de comparación}
 \usage{
 remove_error_fecha(data_event, col_ini = "ini_sin", col_comp = "fec_hos")
 }
 \arguments{
-\item{data_event}{Los datos de una enfermedad o evento}
+\item{data_event}{Un data frame que contiene los datos de
+una enfermedad o evento}
 
-\item{col_ini}{Nombre de la columna de la fecha}
+\item{col_ini}{Un character (cadena de caracteres) que contiene
+el nombre de la columna de la fecha inicial;
+su valor por defecto es ini_sin}
 
-\item{col_comp}{Nombre de la columna de la fecha de comparación}
+\item{col_comp}{Un character (cadena de caracteres) que contiene el
+nombre de la columna de la fecha de comparación;
+su valor por defecto es fec_hos}
 }
 \value{
-Los datos sin las fechas erróneas
+Un data framecon los datos sin las fechas mayores que el
+valor de comparación
 }
 \description{
 Función que elimina fechas mayores que el valor de comparación
@@ -22,5 +28,7 @@ Función que elimina fechas mayores que el valor de comparación
 \examples{
 data_event <- import_data_event(2019, "DENGUE")
 data_event <- limpiar_encabezado(data_event)
-remove_error_fecha(data_event, col_ini = "ini_sin", col_comp = "fec_hos")
+remove_error_fecha(data_event = data_event,
+                   col_ini = "ini_sin",
+                   col_comp = "fec_hos")
 }

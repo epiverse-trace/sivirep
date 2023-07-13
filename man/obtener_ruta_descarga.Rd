@@ -2,15 +2,17 @@
 % Please edit documentation in R/import_data.R
 \name{obtener_ruta_descarga}
 \alias{obtener_ruta_descarga}
-\title{Obtener el nombre del archivo de ruta o URL}
+\title{Obtener el nombre del archivo desde una URL}
 \usage{
 obtener_ruta_descarga(ruta)
 }
 \arguments{
-\item{ruta}{La ruta o URL}
+\item{ruta}{Un character (cadena de caracteres) con la ruta o URL
+de descarga}
 }
 \value{
-El nombre del archivo a descargar
+Un character (cadena de caracteres) con el nombre del
+archivo a descargar
 }
 \description{
 Función que obtiene el nombre del archivo a descargar desde una URL o ruta

@@ -7,10 +7,11 @@
 obtener_nombres_dptos(data_event)
 }
 \arguments{
-\item{data_event}{Los datos de la enfermedad}
+\item{data_event}{Un data frame que contiene los datos de
+la enfermedad o evento}
 }
 \value{
-Dataframe con los nombres de los departamentos
+Un data frame con los nombres de los departamentos
 }
 \description{
 Función que obtiene los nombres de los departamentos

@@ -7,16 +7,18 @@
 obtener_fila_mas_casos(data_event, col_name = "casos", porcentaje = TRUE)
 }
 \arguments{
-\item{data_event}{Los datos de la enfermedad}
+\item{data_event}{Un data frame que contiene los datos de la
+enfermedad o evento}
 
-\item{col_name}{Nombre de la columna en los datos de la
-enfermedad o evento que contiene el número de casos}
+\item{col_name}{Un character (cadena de caracteres) con el
+nombre de la columna de los datos de la enfermedad o evento que
+contiene el número de casos}
 
-\item{porcentaje}{Indica si se requiere agregar un porcentaje
-de casos como columna}
+\item{porcentaje}{Un boolean (TRUE/FALSE) que indica si se
+requiere agregar un porcentaje de casos como columna}
 }
 \value{
-La fila con mayor número de casos
+Un data frame que contiene la fila con mayor número de casos
 }
 \description{
 Función que obtiene la fila con el mayor número de casos
@@ -26,7 +28,7 @@ data_event <- import_data_event(2020, "DENGUE")
 data_event <- limpiar_encabezado(data_event)
 casos_sex <- agrupar_sex(data_event,
                          porcentaje = TRUE)
-obtener_fila_mas_casos(casos_sex,
+obtener_fila_mas_casos(data_event = casos_sex,
                        col_name = "casos",
                        porcentaje = TRUE)
 }
