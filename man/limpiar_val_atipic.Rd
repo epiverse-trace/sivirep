@@ -2,21 +2,23 @@
 % Please edit documentation in R/cleaning_data.R
 \name{limpiar_val_atipic}
 \alias{limpiar_val_atipic}
-\title{Limpiar las edades de los datos de una enfermedad o evento}
+\title{Limpiar los valores atipicos de los datos}
 \usage{
 limpiar_val_atipic(data_event)
 }
 \arguments{
-\item{data_event}{Los datos de una enfermedad o evento
-de una enfermedad o evento que contiene las edades}
+\item{data_event}{Un data frame que contiene los datos de una
+enfermedad o evento}
 }
 \value{
-Los datos de una enfermedad o evento con las edades limpias
+Un data framecon los datos de una enfermedad o
+evento con los valores atípicos limpios (NA)
 }
 \description{
-Función que limpia las edades de los datos de una enfermedad o evento
+Función que limpia los valores atipicos de los datos de una
+enfermedad o evento del SIVIGILA
 }
 \examples{
 data_event <- import_data_event(2020, "DENGUE")
-data_event <- limpiar_encabezado(data_event)
+data_event <- limpiar_encabezado(data_event = data_event)
 }

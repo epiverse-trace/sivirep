@@ -7,12 +7,14 @@
 limpiar_data_sivigila(data_event, year)
 }
 \arguments{
-\item{data_event}{Los datos de una enfermedad o evento}
+\item{data_event}{Un data frame que contiene los datos de
+una enfermedad o evento}
 
-\item{year}{Año de los datos de una enfermedad o evento}
+\item{year}{Un numeric (numerico) que contiene el año de los
+datos de una enfermedad o evento}
 }
 \value{
-Datos limpios de la enfermedad
+Un data framecon los datos limpios de la enfermedad o evento
 }
 \description{
 Función que limpia los datos seleccionados de una enfermedad o evento de
@@ -21,5 +23,5 @@ la fuente de SIVIGILA
 \examples{
 year <- 2019
 data_event <- import_data_event(year, "DENGUE")
-limpiar_data_sivigila(data_event, year)
+limpiar_data_sivigila(data_event = data_event, year = year)
 }

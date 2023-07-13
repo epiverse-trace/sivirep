@@ -13,18 +13,23 @@ limpiar_fecha_event(
 )
 }
 \arguments{
-\item{data_event}{Los datos de una enfermedad o evento}
+\item{data_event}{Un data frame que contiene los datos de
+una enfermedad o evento}
 
-\item{year}{Año de los datos de una enfermedad o evento}
+\item{year}{Un numeric (numerico) que contiene el año de los datos
+de una enfermedad o evento}
 
-\item{format_fecha}{Formato de fecha}
+\item{format_fecha}{Un character (cadena de caracteres) que contiene
+el formato deseado de fecha; su valor por defecto es "\%AAAA-\%MM-\%DD"}
 
-\item{nombre_col}{Nombre de la columna del conjunto de datos}
+\item{nombre_col}{Un character (cadena de caracteres) que contiene
+el nombre de la columna del conjunto de datos}
 
-\item{col_comp}{Nombre de la columna de comparación del conjunto de datos}
+\item{col_comp}{Un character (cadena de caracteres) que contiene el
+nombre de la columna de comparación del conjunto de datos}
 }
 \value{
-Los datos con las fechas limpias
+Un data framecon los datos con las fechas limpias
 }
 \description{
 Función que limpia las fechas de los datos de una enfermedad o evento
@@ -32,7 +37,7 @@ Función que limpia las fechas de los datos de una enfermedad o evento
 \examples{
 data_event <- import_data_event(2020, "DENGUE")
 data_event <- limpiar_encabezado(data_event)
-limpiar_fecha_event(data_event,
+limpiar_fecha_event(data_event = data_event,
                     year = 2020,
                     format_fecha = "\%AAAA-\%MM-\%DD",
                     nombre_col = "ini_sin",

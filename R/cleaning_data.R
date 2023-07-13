@@ -2,13 +2,14 @@
 #'
 #' Función que estandariza los códigos geográficos de los datos
 #' de una enfermedad o evento
-#' @param data_event Los datos de una enfermedad o evento
-#' @return Los códigos geográficos estandarizados de los datos
-#' de una enfermedad o evento
+#' @param data_event Un data frame que contiene los datos de una
+#' enfermedad o evento
+#' @return Un data frame que contiene los códigos geográficos estandarizados
+#' de los datos de una enfermedad o evento
 #' @examples
 #' data_event <- import_data_event(2019, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
-#' estandarizar_geo_cods(data_event)
+#' estandarizar_geo_cods(data_event = data_event)
 #' @export
 estandarizar_geo_cods <- function(data_event) {
   geo_columns <- config::get(file =
@@ -37,21 +38,25 @@ estandarizar_geo_cods <- function(data_event) {
 #'
 #' Función que limpia los códigos de departamento de los datos
 #' de una enfermedad o evento
-#' @param depto_cods Los códigos de departamento
-#' @param data_event Los datos de una enfermedad o evento
-#' @param agrupar Indica si es necesario agrupar por
-#' códigos de departamento y números de casos
-#' @return Los códigos de departamento limpios de los datos
-#' de una enfermedad o evento
+#' @param depto_cods Un data frame que contiene los códigos de
+#' departamento
+#' @param data_event Un data frame que contiene los datos de una
+#' enfermedad o evento
+#' @param agrupar Un boolean (TRUE o FALSE) que indica si es
+#' necesario agrupar por códigos de departamento y números de casos
+#' @return Un data framecon los códigos de departamento
+#' limpios de los datos de una enfermedad o evento
 #' @examples
 #' geo_cods <- import_geo_cods()
 #' depto_cods <- obtener_cods_dpto(geo_cods)
 #' data_event <- import_data_event(2019, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
 #' data_agrupada <- agrupar_cols_casos(data_event,
-#'                                      "cod_dpto_o",
-#'                                      agr_porcentaje = TRUE)
-#' limpiar_cods_event_dpto(depto_cods, data_agrupada)
+#'                                     "cod_dpto_o",
+#'                                     agr_porcentaje = TRUE)
+#' limpiar_cods_event_dpto(depto_cods = depto_cods,
+#'                         data_event = data_agrupada,
+#'                         agrupar = TRUE)
 #' @export
 limpiar_cods_event_dpto <- function(depto_cods,
                                     data_event,
@@ -72,19 +77,23 @@ limpiar_cods_event_dpto <- function(depto_cods,
 #'
 #' Función que limpia los códigos de departamento de los datos
 #' de una enfermedad o evento
-#' @param data_event Los datos de una enfermedad o evento
-#' @param col_cods_data Nombre de la columna en los datos
+#' @param data_event Un data frame que contiene los datos de
+#' una enfermedad o evento
+#' @param col_cods_data Un character (cadena de caracteres) que
+#' contiene el nombre de la columna en los datos
 #' de una enfermedad o evento que contiene los códigos de departamento
-#' @param geo_data Datos geográficos que incluyen los códigos de departamento
-#' @param col_geo_cods Nombre de la columna en los datos geográficos
+#' @param geo_data Datos geográficos que incluyen los códigos de
+#' departamento
+#' @param col_geo_cods Un character (cadena de caracteres) con
+#' el nombre de la columna en los datos geográficos
 #' que contiene los códigos de departamento
-#' @return Los códigos de departamento limpios de los datos
-#' de una enfermedad o evento
+#' @return Un data framecon los códigos de departamento limpios
+#' de los datos de una enfermedad o evento
 #' @examples
 #' geo_codes <- import_geo_cods()
 #' data_event <- import_data_event(2019, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
-#' limpiar_cods_dpto(data_event,
+#' limpiar_cods_dpto(data_event = data_event,
 #'                   col_cods_data = "cod_dpto_o",
 #'                   geo_data = geo_codes,
 #'                   col_geo_cods = "codigo_departamento")
@@ -114,20 +123,24 @@ limpiar_cods_dpto <- function(data_event,
 
 #' Convertir edad a años
 #'
-#' Función que convierte las edades en años según las unidades de medida de
+#' Función que convierte las edades en años según las unidades de medida del
 #' SIVIGILA
-#' @param data_event Los datos de una enfermedad o evento
-#' @param col_edad Nombre de la columna en los datos
-#' de una enfermedad o evento
-#' que contiene las edades
-#' @param col_uni_med Nombre de la columna en los datos
-#' de una enfermedad o evento
-#' que contiene las unidades de medida
-#' @return Las edades en años
+#' @param data_event Un data frame que contiene los datos de una
+#' enfermedad o evento
+#' @param col_edad Un character (cadena de caracteres) con el nombre
+#' de la columna en los datos de una enfermedad o evento que
+#' contiene las edades; su valor por defecto es edad
+#' @param col_uni_med Un character (cadena de caracteres) con el nombre
+#' de la columna en los datos de una enfermedad o evento que contiene
+#' las unidades de medida; su valor por defecto es uni_med
+#' @return Un data framecon las edades en años según las unidades de medida
+#' del SIVIGILA
 #' @examples
 #' data_event <- import_data_event(2019, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
-#' convert_edad(data_event, col_edad = "edad", col_uni_med = "uni_med")
+#' convert_edad(data_event = data_event,
+#'              col_edad = "edad",
+#'              col_uni_med = "uni_med")
 #' @export
 convert_edad <- function(data_event,
                          col_edad = "edad",
@@ -158,14 +171,15 @@ convert_edad <- function(data_event,
 #'
 #' Función que elimina filas si los valores de la columna seleccionada
 #' incluyen NA, Infinito o NaN
-#' @param data_event Los datos de una enfermedad o evento
-#' @param nom_col Nombre de la columna en los datos
-#' de una enfermedad o evento a evaluar
+#' @param data_event Un data frame que contiene los datos de una
+#' enfermedad o evento
+#' @param nom_col Un character (cadena de caracteres) que contiene el
+#' nombre de la columna en los datos de una enfermedad o evento a evaluar
 #' @return Los datos limpios sin valores NA, Infinito o NaN
 #' @examples
 #' data_event <- import_data_event(2019, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
-#' remove_val_nin(data_event, nom_col = "edad")
+#' remove_val_nin(data_event = data_event, nom_col = "edad")
 #' @export
 remove_val_nin <- function(data_event, nom_col) {
   ref_col <- paste0("data_event$", nom_col)
@@ -178,17 +192,25 @@ remove_val_nin <- function(data_event, nom_col) {
   return(data_event_del)
 }
 
-#' Eliminar fechas erróneas
+#' Eliminar fechas mayores que el valor de comparación
 #'
 #' Función que elimina fechas mayores que el valor de comparación
-#' @param data_event Los datos de una enfermedad o evento
-#' @param col_ini Nombre de la columna de la fecha
-#' @param col_comp Nombre de la columna de la fecha de comparación
-#' @return Los datos sin las fechas erróneas
+#' @param data_event Un data frame que contiene los datos de
+#' una enfermedad o evento
+#' @param col_ini Un character (cadena de caracteres) que contiene
+#' el nombre de la columna de la fecha inicial;
+#' su valor por defecto es ini_sin
+#' @param col_comp Un character (cadena de caracteres) que contiene el
+#' nombre de la columna de la fecha de comparación;
+#' su valor por defecto es fec_hos
+#' @return Un data framecon los datos sin las fechas mayores que el
+#' valor de comparación
 #' @examples
 #' data_event <- import_data_event(2019, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
-#' remove_error_fecha(data_event, col_ini = "ini_sin", col_comp = "fec_hos")
+#' remove_error_fecha(data_event = data_event,
+#'                    col_ini = "ini_sin",
+#'                    col_comp = "fec_hos")
 #' @export
 remove_error_fecha <- function(data_event,
                                col_ini = "ini_sin",
@@ -203,16 +225,19 @@ remove_error_fecha <- function(data_event,
 #' Formatear fechas
 #'
 #' Función que da un formato específico a una fecha
-#' @param data_event Los datos de un evento o enfermedad
-#' @param format_fecha Formato de fecha
-#' @param nombres_col Nombres de columna a formatear
-#' @return Los datos con las fechas formateadas
+#' @param data_event Un data frame que contiene los datos
+#' de un evento o enfermedad
+#' @param format_fecha Un character (cadena de caracteres)
+#' que contiene  el formato deseado de fecha
+#' @param nombres_col Un character (cadena de caracteres) que
+#' contiene los nombres de la columna a formatear
+#' @return Un data framecon los datos con las fechas formateadas
 #' @examples
 #' data_event <- import_data_event(2020, "DENGUE")
 #' data_event <- format_fecha(data_event)
-#' format_fecha(data_event,
-#'                    format_fecha = "%AAAA-%MM-%DD",
-#'                    nombres_col = c("ini_sin", "fec_hos"))
+#' format_fecha(data_event = data_event,
+#'              format_fecha = "%AAAA-%MM-%DD",
+#'              nombres_col = c("ini_sin", "fec_hos"))
 #' @export
 format_fecha <- function(data_event,
                          format_fecha = "%AAAA-%MM-%DD",
@@ -231,11 +256,13 @@ format_fecha <- function(data_event,
 #'
 #' Función que limpia las etiquetas del encabezado de los datos
 #' de una enfermedad o evento
-#' @param data_event Los datos de una enfermedad o evento
-#' @return Etiquetas del encabezado formateadas
+#' @param data_event Un data frame que contiene los datos de una
+#' enfermedad o evento
+#' @return Un data framecon las etiquetas del encabezado formateadas
+#' con guión bajo (_)
 #' @examples
 #' data_event <- import_data_event(2019, "DENGUE")
-#' limpiar_encabezado(data_event)
+#' limpiar_encabezado(data_event = data_event)
 #' @export
 limpiar_encabezado <- function(data_event) {
   names(data_event) <- epitrix::clean_labels(names(data_event))
@@ -245,16 +272,21 @@ limpiar_encabezado <- function(data_event) {
 #' Limpiar fechas de los datos de una enfermedad o evento
 #'
 #' Función que limpia las fechas de los datos de una enfermedad o evento
-#' @param data_event Los datos de una enfermedad o evento
-#' @param year Año de los datos de una enfermedad o evento
-#' @param format_fecha Formato de fecha
-#' @param nombre_col Nombre de la columna del conjunto de datos
-#' @param col_comp Nombre de la columna de comparación del conjunto de datos
-#' @return Los datos con las fechas limpias
+#' @param data_event Un data frame que contiene los datos de
+#' una enfermedad o evento
+#' @param year Un numeric (numerico) que contiene el año de los datos
+#' de una enfermedad o evento
+#' @param format_fecha Un character (cadena de caracteres) que contiene
+#' el formato deseado de fecha; su valor por defecto es "\%AAAA-\%MM-\%DD"
+#' @param nombre_col Un character (cadena de caracteres) que contiene
+#' el nombre de la columna del conjunto de datos
+#' @param col_comp Un character (cadena de caracteres) que contiene el
+#' nombre de la columna de comparación del conjunto de datos
+#' @return Un data framecon los datos con las fechas limpias
 #' @examples
 #' data_event <- import_data_event(2020, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
-#' limpiar_fecha_event(data_event,
+#' limpiar_fecha_event(data_event = data_event,
 #'                     year = 2020,
 #'                     format_fecha = "%AAAA-%MM-%DD",
 #'                     nombre_col = "ini_sin",
@@ -285,29 +317,34 @@ limpiar_fecha_event <- function(data_event,
 #' Limpiar las edades de los datos de una enfermedad o evento
 #'
 #' Función que limpia las edades de los datos de una enfermedad o evento
-#' @param data_event Los datos de una enfermedad o evento
-#' @param nombre_col Nombre de la columna en los datos
-#' de una enfermedad o evento que contiene las edades
-#' @return Los datos de una enfermedad o evento con las edades limpias
+#' @param data_event Un data frame que contiene los datos de una
+#' enfermedad o evento
+#' @param nombre_col Un character (cadena de caracteres) con el nombre
+#' de la columna de los datos que contiene las edades;
+#' su valor por defecto es edad
+#' @return Un data framecon los datos de una enfermedad o evento
+#' con las edades limpias
 #' @examples
 #' data_event <- import_data_event(2020, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
-#' limpiar_edad_event(data_event, nombre_col = "edad")
+#' limpiar_edad_event(data_event = data_event, nombre_col = "edad")
 #' @export
 limpiar_edad_event <- function(data_event, nombre_col = "edad") {
   data_event_years <- convert_edad(data_event)
   data_event_years <- remove_val_nin(data_event_years, nombre_col)
 }
 
-#' Limpiar las edades de los datos de una enfermedad o evento
+#' Limpiar los valores atipicos de los datos
 #'
-#' Función que limpia las edades de los datos de una enfermedad o evento
-#' @param data_event Los datos de una enfermedad o evento
-#' de una enfermedad o evento que contiene las edades
-#' @return Los datos de una enfermedad o evento con las edades limpias
+#' Función que limpia los valores atipicos de los datos de una
+#' enfermedad o evento del SIVIGILA
+#' @param data_event Un data frame que contiene los datos de una
+#' enfermedad o evento
+#' @return Un data framecon los datos de una enfermedad o
+#' evento con los valores atípicos limpios (NA)
 #' @examples
 #' data_event <- import_data_event(2020, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data_event <- limpiar_encabezado(data_event = data_event)
 #' @export
 limpiar_val_atipic <- function(data_event) {
   cols_events <- config::get(file =
@@ -335,13 +372,15 @@ limpiar_val_atipic <- function(data_event) {
 #'
 #' Función que limpia los datos seleccionados de una enfermedad o evento de
 #' la fuente de SIVIGILA
-#' @param data_event Los datos de una enfermedad o evento
-#' @param year Año de los datos de una enfermedad o evento
-#' @return Datos limpios de la enfermedad
+#' @param data_event Un data frame que contiene los datos de
+#' una enfermedad o evento
+#' @param year Un numeric (numerico) que contiene el año de los
+#' datos de una enfermedad o evento
+#' @return Un data framecon los datos limpios de la enfermedad o evento
 #' @examples
 #' year <- 2019
 #' data_event <- import_data_event(year, "DENGUE")
-#' limpiar_data_sivigila(data_event, year)
+#' limpiar_data_sivigila(data_event = data_event, year = year)
 #' @export
 limpiar_data_sivigila <- function(data_event, year) {
   data_event <- limpiar_encabezado(data_event)

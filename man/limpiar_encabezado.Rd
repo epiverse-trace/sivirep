@@ -7,10 +7,12 @@
 limpiar_encabezado(data_event)
 }
 \arguments{
-\item{data_event}{Los datos de una enfermedad o evento}
+\item{data_event}{Un data frame que contiene los datos de una
+enfermedad o evento}
 }
 \value{
-Etiquetas del encabezado formateadas
+Un data framecon las etiquetas del encabezado formateadas
+con guión bajo (_)
 }
 \description{
 Función que limpia las etiquetas del encabezado de los datos
@@ -18,5 +20,5 @@ de una enfermedad o evento
 }
 \examples{
 data_event <- import_data_event(2019, "DENGUE")
-limpiar_encabezado(data_event)
+limpiar_encabezado(data_event = data_event)
 }

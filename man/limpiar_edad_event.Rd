@@ -7,13 +7,16 @@
 limpiar_edad_event(data_event, nombre_col = "edad")
 }
 \arguments{
-\item{data_event}{Los datos de una enfermedad o evento}
+\item{data_event}{Un data frame que contiene los datos de una
+enfermedad o evento}
 
-\item{nombre_col}{Nombre de la columna en los datos
-de una enfermedad o evento que contiene las edades}
+\item{nombre_col}{Un character (cadena de caracteres) con el nombre
+de la columna de los datos que contiene las edades;
+su valor por defecto es edad}
 }
 \value{
-Los datos de una enfermedad o evento con las edades limpias
+Un data framecon los datos de una enfermedad o evento
+con las edades limpias
 }
 \description{
 Función que limpia las edades de los datos de una enfermedad o evento
@@ -21,5 +24,5 @@ Función que limpia las edades de los datos de una enfermedad o evento
 \examples{
 data_event <- import_data_event(2020, "DENGUE")
 data_event <- limpiar_encabezado(data_event)
-limpiar_edad_event(data_event, nombre_col = "edad")
+limpiar_edad_event(data_event = data_event, nombre_col = "edad")
 }
