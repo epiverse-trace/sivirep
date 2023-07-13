@@ -54,7 +54,7 @@ para:
 
 - Profesionales de salud pública y de epidemiología de campo que
   utilizan la fuente de datos de SIVIGILA a nivel local.
-- Estudiantes de epidemiología y salud pública.
+- Estudiantes del área de la salud y epidemiología.
 - Investigadores y analistas de datos a nivel nacional e internacional.
 
 ## Instalación
@@ -203,7 +203,7 @@ siguientes parámetros de entrada: el nombre de la enfermedad, el año, el
 nombre de departamento (opcional) y nombre del municipio (opcional) para
 descargar los datos de la fuente de SIVIGILA.
 
-La plantilla se puede utilizar siguiendo los siguientes pasos:
+Para hacer uso de la plantilla del reporte se deben seguir los siguientes pasos:
 
 1.  En RStudio hacer click *‘File/New File/R’* Markdown:
 

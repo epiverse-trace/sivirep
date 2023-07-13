@@ -51,7 +51,7 @@ El objetivo de `sivirep` es proporcionar un conjunto de herramientas para:
 ## Potenciales usuarios
 
 - Profesionales de salud pública y de epidemiología de campo que utilizan la fuente de datos de SIVIGILA a nivel local.
-- Estudiantes de epidemiología y salud pública.
+- Estudiantes del área de la salud y epidemiología.
 - Investigadores y analistas de datos a nivel nacional e internacional.
 
 ## Instalación
@@ -105,13 +105,13 @@ Por favor, ten en cuenta que el proyecto `sivirep` se publica con un
 
 ### Para reportes automatizados
 
-Después de la instalación e importación del paquete, puedes comenzar a usar `sivirep`:
+Después de la instalación de `sivirep`, puedes comenzar importando el paquete a través del siguiente comando:
 
 ```{r}
 library(sivirep)
 ```
 
-Revisa la lista de enfermedades disponibles para hacer un reporte con `sivirep` en:
+Ante de iniciar con el reporte automatizado, revisa la lista de enfermedades disponibles para hacer un reporte con `sivirep` en:
 
 ```{r results = 'hide'}
 list_events()
@@ -119,7 +119,7 @@ list_events()
 
 Actualmente, `sivirep` provee una plantilla de reporte llamada `Reporte Básico {sivirep}`, la cual contiene seis secciones y recibe los siguientes parámetros de entrada: el nombre de la enfermedad, el año, el nombre de departamento (opcional) y nombre del municipio (opcional) para descargar los datos de la fuente de SIVIGILA.
 
-La plantilla se puede utilizar siguiendo los siguientes pasos:
+Para hacer uso de la plantilla del reporte se deben seguir los siguientes pasos:
 
 1.  En RStudio hacer click *'File/New File/R'* Markdown:
 
