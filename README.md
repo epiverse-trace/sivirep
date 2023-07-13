@@ -183,15 +183,15 @@ Al contribuir a este proyecto, aceptas cumplir con sus términos.
 
 ### Para reportes automatizados
 
-Después de la instalación e importación del paquete, puedes comenzar a
-usar `sivirep`:
+Después de la instalación de `sivirep`, puedes comenzar importando el
+paquete a través del siguiente comando:
 
 ``` r
 library(sivirep)
 ```
 
-Revisa la lista de enfermedades disponibles para hacer un reporte con
-`sivirep` en:
+Ante de iniciar con el reporte automatizado, revisa la lista de
+enfermedades disponibles para hacer un reporte con `sivirep` en:
 
 ``` r
 list_events()
@@ -203,7 +203,8 @@ siguientes parámetros de entrada: el nombre de la enfermedad, el año, el
 nombre de departamento (opcional) y nombre del municipio (opcional) para
 descargar los datos de la fuente de SIVIGILA.
 
-Para hacer uso de la plantilla del reporte se deben seguir los siguientes pasos:
+Para hacer uso de la plantilla del reporte se deben seguir los
+siguientes pasos:
 
 1.  En RStudio hacer click *‘File/New File/R’* Markdown:
 
