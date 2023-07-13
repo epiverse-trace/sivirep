@@ -7,16 +7,17 @@
 import_sep_data(path_data)
 }
 \arguments{
-\item{path_data}{Ruta o URL de los datos de SIVIGILA}
+\item{path_data}{Un character (cadena de caracteres) que contiene
+la URL de los datos de SIVIGILA}
 }
 \value{
-Un data frame
+Un `data.frame` con los datos
 }
 \description{
-Función que identifica el separador con el que
-llega la información para poder tabularla
+Función que identifica el separador que tiene
+los datos para tabularla
 }
 \examples{
-import_sep_data(
+import_sep_data(path_data =
 "https://www.datos.gov.co/api/views/qvnt-2igj/rows.csv?accessType=DOWNLOAD")
 }

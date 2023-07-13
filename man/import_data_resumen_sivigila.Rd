@@ -2,18 +2,19 @@
 % Please edit documentation in R/import_data.R
 \name{import_data_resumen_sivigila}
 \alias{import_data_resumen_sivigila}
-\title{Importar datos resumidos de SIVIGILA}
+\title{Importar datos resumidos del SIVIGILA}
 \usage{
 import_data_resumen_sivigila(url_data = NULL)
 }
 \arguments{
-\item{url_data}{URL de los datos de SIVIGILA}
+\item{url_data}{Un character (cadena de caracteres) que contiene
+la URL de los datos de SIVIGILA; su valor por defecto es NULL}
 }
 \value{
-Los datos descargados en formato csv
+Un `data.frame` con los datos descargados
 }
 \description{
-Función que importa datos de SIVIGILA a través de una URL
+Función que importa datos resumidos de SIVIGILA a través de una URL
 }
 \examples{
 import_data_resumen_sivigila()

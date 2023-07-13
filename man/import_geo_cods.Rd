@@ -7,17 +7,18 @@
 import_geo_cods(url_data = NULL)
 }
 \arguments{
-\item{url_data}{URL de los datos geográficos}
+\item{url_data}{Un character (cadena de caracteres) que contiene
+la URL de los datos geográficos; su valor por defecto es NULL}
 }
 \value{
-Un data frame con los nombres y códigos de los departamentos
-y municipios de Colombia en formato csv
+Un `data.frame` con los nombres y códigos de los departamentos
+y municipios de Colombia
 }
 \description{
 Función que importa los nombres y códigos de los departamentos
 y municipios de Colombia a través de una URL
 }
 \examples{
-import_geo_cods(
+import_geo_cods(url_data =
 "https://www.datos.gov.co/api/views/gdxc-w37w/rows.csv?accessType=DOWNLOAD")
 }

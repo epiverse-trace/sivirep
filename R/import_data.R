@@ -1,8 +1,9 @@
-#' Importar datos resumidos de SIVIGILA
+#' Importar datos resumidos del SIVIGILA
 #'
-#' Función que importa datos de SIVIGILA a través de una URL
-#' @param url_data URL de los datos de SIVIGILA
-#' @return Los datos descargados en formato csv
+#' Función que importa datos resumidos de SIVIGILA a través de una URL
+#' @param url_data Un character (cadena de caracteres) que contiene
+#' la URL de los datos de SIVIGILA; su valor por defecto es NULL
+#' @return Un `data.frame` con los datos descargados
 #' @examples
 #' import_data_resumen_sivigila()
 #' @export
@@ -21,11 +22,12 @@ import_data_resumen_sivigila <- function(url_data = NULL) {
 #'
 #' Función que importa los nombres y códigos de los departamentos
 #' y municipios de Colombia a través de una URL
-#' @param url_data URL de los datos geográficos
-#' @return Un data frame con los nombres y códigos de los departamentos
-#' y municipios de Colombia en formato csv
+#' @param url_data Un character (cadena de caracteres) que contiene
+#' la URL de los datos geográficos; su valor por defecto es NULL
+#' @return Un `data.frame` con los nombres y códigos de los departamentos
+#' y municipios de Colombia
 #' @examples
-#' import_geo_cods(
+#' import_geo_cods(url_data =
 #' "https://www.datos.gov.co/api/views/gdxc-w37w/rows.csv?accessType=DOWNLOAD")
 #' @export
 import_geo_cods <- function(url_data = NULL) {
@@ -43,12 +45,13 @@ import_geo_cods <- function(url_data = NULL) {
 
 #' Importar datos con un separador específico
 #'
-#' Función que identifica el separador con el que
-#' llega la información para poder tabularla
-#' @param path_data Ruta o URL de los datos de SIVIGILA
-#' @return Un data frame
+#' Función que identifica el separador que tiene
+#' los datos para tabularla
+#' @param path_data Un character (cadena de caracteres) que contiene
+#' la URL de los datos de SIVIGILA
+#' @return Un `data.frame` con los datos
 #' @examples
-#' import_sep_data(
+#' import_sep_data(path_data =
 #' "https://www.datos.gov.co/api/views/qvnt-2igj/rows.csv?accessType=DOWNLOAD")
 #' @export
 import_sep_data <- function(path_data) {
@@ -67,29 +70,34 @@ import_sep_data <- function(path_data) {
   return(data)
 }
 
-#' Importar datos de una enfermedad para construir su canal endémico
+#' Importar datos de una enfermedad o evento para construir
+#' su canal endémico
 #'
-#' Función que importa los últimos cinco años de datos de
-#' una enfermedad para construir
-#' el canal endémico desde la fuente de SIVIGILA
-#' @param nombre_event El nombre del evento
-#' @param year Año final
-#' @return Los datos de los últimos cinco años de una enfermedad
+#' Función que importa los datos necesarios de una enfermedad
+#' o evento para construir el canal endémico desde la fuente
+#' de SIVIGILA
+#' @param nombre_event Un character (cadena de caracteres) que
+#' contiene el nombre de la enfermedad o evento
+#' @param year Un numeric (numerico) que contiene el año
+#' de referencia para la descarga de los datos
+#' @return Un `data.frame` con los datos de los últimos cinco años
+#' de una enfermedad
 #' @examples
-#' import_data_canal_endemico("MALARIA", 2020)
+#' import_data_canal_endemico(nombre_event = "MALARIA",
+#'                            year = 2020)
 #' @export
 import_data_canal_endemico <- function(nombre_event, year) {
   event_data <- data.frame()
   return(event_data)
 }
 
-#' Importar una enfermedad o evento y años disponibles para descargar
-#' desde los microdatos de SIVIGILA
+#' Importar las enfermedades y años disponibles disposibles
+#' para su descarga desde los microdatos de SIVIGILA
 #'
-#' Función que obtiene las una enfermedad o evento y los años disponibles
-#' desde los microdatos de SIVIGILA
-#' @return Las una enfermedad o evento y los años disponibles desde
-#' los microdatos de SIVIGILA
+#' Función que obtiene las enfermedades y los años disponibles
+#' para su descarga desde los microdatos de SIVIGILA
+#' @return Una list con las enfermedades y los años disponibles
+#' para su descarga desde los microdatos de SIVIGILA
 #' @examples
 #' list_events()
 #' @export
@@ -141,13 +149,19 @@ list_events <- function() {
   return(list_events)
 }
 
-#' Importar datos de una enfermedad por año desde los microdatos de SIVIGILA
+#' Importar los datos de una enfermedad o evento por año
+#' desde los microdatos de SIVIGILA
 #'
 #' Función que obtiene los datos de una enfermedad por año
-#' @param year El año seleccionado
-#' @param nombre_event El nombre de la enfermedad
-#' @param cache Indica si los datos descargados deben ser almacenados en caché
-#' @return Los datos de la enfermedad por año desde los microdatos de SIVIGILA
+#' desde los microdatos de SIVIGILA
+#' @param year Un numeric (numerico) con el año deseado para la descarga
+#' de los datos
+#' @param nombre_event Un character (cadena de caracteres) con el nombre de
+#' la enfermedad o evento
+#' @param cache Un boolean (TRUE o FALSE) que indica si los datos descargados
+#' deben ser almacenados en caché; su valor por defecto es TRUE
+#' @return Un `data.frame` con los datos de la enfermedad o evento seleccionado
+#' por año desde los microdatos de SIVIGILA
 #' @examples
 #' import_data_event(2018, "DENGUE")
 #' @export
@@ -160,11 +174,13 @@ import_data_event <- function(year,
   return(event_data)
 }
 
-#' Obtener el nombre del archivo de ruta o URL
+#' Obtener el nombre del archivo desde una URL
 #'
 #' Función que obtiene el nombre del archivo a descargar desde una URL o ruta
-#' @param ruta La ruta o URL
-#' @return El nombre del archivo a descargar
+#' @param ruta Un character (cadena de caracteres) con la ruta o URL
+#' de descarga
+#' @return Un character (cadena de caracteres) con el nombre del
+#' archivo a descargar
 #' @examples
 #' obtener_ruta_descarga("DENGUE")
 #' @export

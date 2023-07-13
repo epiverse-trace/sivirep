@@ -2,23 +2,28 @@
 % Please edit documentation in R/import_data.R
 \name{import_data_canal_endemico}
 \alias{import_data_canal_endemico}
-\title{Importar datos de una enfermedad para construir su canal endémico}
+\title{Importar datos de una enfermedad o evento para construir
+su canal endémico}
 \usage{
 import_data_canal_endemico(nombre_event, year)
 }
 \arguments{
-\item{nombre_event}{El nombre del evento}
+\item{nombre_event}{Un character (cadena de caracteres) que
+contiene el nombre de la enfermedad o evento}
 
-\item{year}{Año final}
+\item{year}{Un numeric (numerico) que contiene el año
+de referencia para la descarga de los datos}
 }
 \value{
-Los datos de los últimos cinco años de una enfermedad
+Un `data.frame` con los datos de los últimos cinco años
+de una enfermedad
 }
 \description{
-Función que importa los últimos cinco años de datos de
-una enfermedad para construir
-el canal endémico desde la fuente de SIVIGILA
+Función que importa los datos necesarios de una enfermedad
+o evento para construir el canal endémico desde la fuente
+de SIVIGILA
 }
 \examples{
-import_data_canal_endemico("MALARIA", 2020)
+import_data_canal_endemico(nombre_event = "MALARIA",
+                           year = 2020)
 }
