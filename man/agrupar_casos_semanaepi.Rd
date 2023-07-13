@@ -7,11 +7,12 @@
 agrupar_casos_semanaepi(data_event)
 }
 \arguments{
-\item{data_event}{Los datos de una enfermedad o evento}
+\item{data_event}{Un data frame que contiene los datos de
+una enfermedad o evento}
 }
 \value{
-Los datos de una enfermedad o evento agrupados
-por semana epidemiológica y número de casos
+Un data frame con los datos de una enfermedad o
+evento agrupados por semana epidemiológica y número de casos
 }
 \description{
 Función que agrupa los datos de una enfermedad o evento
@@ -20,5 +21,5 @@ por semana epidemiológica y número de casos
 \examples{
 data_event <- import_data_event(2019, "DENGUE")
 data_event <- limpiar_encabezado(data_event)
-agrupar_casos_semanaepi(data_event)
+agrupar_casos_semanaepi(data_event = data_event)
 }

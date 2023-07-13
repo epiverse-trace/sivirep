@@ -1,13 +1,18 @@
-#' Filtrar enfermedad
+#' Filtrar por enfermedad o evento
 #'
-#' Función que filtra por nombre de enfermedad en un conjunto de datos
-#' @param nombre_event Nombre de la enfermedad
-#' @param data_sivigila El conjunto de datos
-#' @return Datos filtrados con la enfermedad seleccionada
+#' Función que filtra por nombre de enfermedad o evento
+#' en un conjunto de datos
+#' @param nombre_event Un character (cadena de caracteres) que contiene
+#' el nombre de la enfermedad o evento
+#' @param data_sivigila Un data frame que contiene el conjunto de datos
+#' del SIVIGILA
+#' @return Un data frame con los datos filtrados por la enfermedad o
+#' evento seleccionado
 #' @examples
 #' data_sivigila <- import_data_resumen_sivigila()
 #' data_sivigila <- limpiar_encabezado(data_sivigila)
-#' filtrar_event("MALAR", data_sivigila)
+#' filtrar_event(nombre_event = "MALAR",
+#'               data_sivigila = data_sivigila)
 #' @export
 filtrar_event <- function(nombre_event,
                           data_sivigila) {
@@ -27,11 +32,13 @@ filtrar_event <- function(nombre_event,
 #'
 #' Función que filtra los datos de una enfermedad o evento por departamentos
 #' y municipios
-#' @param data_event Los datos de una enfermedad o evento
-#' @param nombre_dpto El nombre del departamento
-#' @param nombre_mun El nombre del municipio
-#' @return Datos filtrados con la enfermedad, departamentos y
-#' municipios seleccionados
+#' @param data_event Un data frame con los datos de una enfermedad o evento
+#' @param nombre_dpto Un character (cadena de caracteres) que contiene
+#' el nombre del departamento; valor por defecto NULL
+#' @param nombre_mun Un character (cadena de caracteres) que contiene el
+#' nombre del municipio; su valor por defecto es NULL
+#' @return Un data frame con los datos filtrados con la enfermedad,
+#' departamentos y municipios seleccionados
 #' @examples
 #' data_event <- import_data_event(2019, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
@@ -67,12 +74,13 @@ geo_filtro <- function(data_event, nombre_dpto = NULL, nombre_mun = NULL) {
 #'
 #' Función que obtiene la lista de departamentos de Colombia con su nombre
 #' y código
-#' @param geo_cods Códigos geográficos (departamentos y municipios de
-#' Colombia)
-#' @return Los datos de los departamentos con código y nombre
+#' @param geo_cods Un data frame que contiene los códigos geográficos
+#' (departamentos y municipios de Colombia)
+#' @return Un data frame con los datos de los departamentos con
+#' código y nombre
 #' @examples
 #' geo_cods <- import_geo_cods()
-#' obtener_cods_dpto(geo_cods)
+#' obtener_cods_dpto(geo_cods = geo_cods)
 #' @export
 obtener_cods_dpto <- function(geo_cods) {
   data_deptos <- geo_cods %>%
@@ -88,11 +96,13 @@ obtener_cods_dpto <- function(geo_cods) {
 #'
 #' Función que obtiene los casos por tipo de población
 #' especial de una enfermedad
-#' @param data_event Los datos de una enfermedad o evento
-#' @return Los casos por tipo de población especial de una enfermedad
+#' @param data_event Un data frame que contiene los datos de una
+#' enfermedad o evento
+#' @return Un data frame con los casos por tipo de población especial
+#' de una enfermedad o evento
 #' @examples
 #' data_event <- import_data_event(2019, "DENGUE")
-#' obtener_casos_pob_especial(data_event)
+#' obtener_casos_pob_especial(data_event = data_event)
 #' @export
 obtener_casos_pob_especial <- function(data_event) {
   pob_especial <- config::get(file = system.file("extdata",
@@ -123,13 +133,14 @@ obtener_casos_pob_especial <- function(data_event) {
 #'
 #' Función que agrupa los datos de una enfermedad o evento
 #' por semana epidemiológica y número de casos
-#' @param data_event Los datos de una enfermedad o evento
-#' @return Los datos de una enfermedad o evento agrupados
-#' por semana epidemiológica y número de casos
+#' @param data_event Un data frame que contiene los datos de
+#' una enfermedad o evento
+#' @return Un data frame con los datos de una enfermedad o
+#' evento agrupados por semana epidemiológica y número de casos
 #' @examples
 #' data_event <- import_data_event(2019, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
-#' agrupar_casos_semanaepi(data_event)
+#' agrupar_casos_semanaepi(data_event = data_event)
 #' @export
 agrupar_casos_semanaepi <- function(data_event) {
   data_event_agrupada <- data_event %>%
@@ -142,20 +153,25 @@ agrupar_casos_semanaepi <- function(data_event) {
 #' Agrupar por columnas y casos
 #'
 #' Función que agrupa los datos de una enfermedad o evento
-#' por un nombre de columna(s) específico y número de casos
-#' @param data_event Los datos de una enfermedad o evento
-#' @param cols_nombres El nombre de la(s) columna(s)
-#' @param agr_porcentaje Indica si es necesario agregar un porcentaje de
-#' casos como una columna
-#' @return Los datos de una enfermedad o evento agrupados
-#' por un nombre de columna(s) específico y número de casos
+#' por nombre de columna(s) y número de casos
+#' @param data_event Un data frame que contiene los datos de
+#' una enfermedad o evento
+#' @param cols_nombres Un character (cadena de caracteres) o
+#' array (arreglo) de character que contiene el nombre de
+#' la(s) columna(s)
+#' @param agr_porcentaje Un boolean (TRUE o FALSE) que indica si
+#' es necesario agregar un porcentaje de casos como columna
+#' @return Un data frame con los datos de una enfermedad
+#' o evento agrupados por el nombre de la(s) columna(s) y el
+#' número de casos; su valor por defecto es TRUE
 #' @examples
 #' data_event <- import_data_event(2019, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
-#' agrupar_cols_casos(data_event,
-#'                     cols_nombres = "sexo",
-#'                     agr_porcentaje = TRUE)
-#' agrupar_cols_casos(data_event, cols_nombres = c("sexo", "semana"))
+#' agrupar_cols_casos(data_event = data_event,
+#'                    cols_nombres = "sexo",
+#'                    agr_porcentaje = TRUE)
+#' agrupar_cols_casos(data_event = data_event,
+#'                    cols_nombres = c("sexo", "semana"))
 #' @export
 agrupar_cols_casos <- function(data_event,
                                cols_nombres,
@@ -178,26 +194,34 @@ agrupar_cols_casos <- function(data_event,
 #'
 #' Función que agrupa los datos de una enfermedad o evento por rango
 #' de edad y número de casos
-#' @param data_event Los datos de una enfermedad o evento
-#' @param col_nombre Nombre de la columna en los datos de una enfermedad
-#' o evento que contiene las edades
-#' @param var_a Nombre adicional de columna en los datos de
-#' una enfermedad o evento para agrupar con la edad
-#' @param min_val Valor mínimo de las edades
-#' @param max_val Valor máximo de las edades
-#' @param paso Paso para generar el rango de edades
-#' @return Los datos de una enfermedad o evento agrupados por el rango
-#' de edad y número de casos
+#' @param data_event Un data frame que contiene los datos de la
+#' enfermedad o evento
+#' @param col_nombre Un character (cadena de caracteres) con
+#' el nombre de la columna de los datos de la enfermedad o evento
+#' que contiene las edades
+#' @param var_a Un character (cadena de caracteres) con
+#' el nombre adicional de la columna de los datos de la enfermedad
+#' o evento para agrupar con la edad; su valor por defecto es
+#' NULL
+#' @param min_val Un numeric (numerico) que contiene el valor mínimo
+#' de las edades
+#' @param max_val Un numeric (numerico) que contiene el valor máximo
+#' de las edades
+#' @param paso Un numeric (numerico) que contiene el valor del paso
+#' para generar el rango de edades
+#' @return Un data frame con los datos de la enfermedad o evento
+#' agrupados por el rango de edad y número de casos
 #' @examples
 #' data_event <- import_data_event(2019, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
-#' disease_dt_by_age <- agrupar_cols_casos(data_event, c("edad", "semana"),
-#'   agr_porcentaje = TRUE
-#' )
-#' agrupar_rango_edad_casos(disease_dt_by_age, "edad",
-#'   min_val = 0,
-#'   max_val = max(disease_dt_by_age$edad), paso = 10
-#' )
+#' data_edad <- agrupar_cols_casos(data_event = data_event,
+#'                                 c("edad", "semana"),
+#'                                 agr_porcentaje = TRUE)
+#' agrupar_rango_edad_casos(data_event = data_edad,
+#'                          col_nombre = "edad",
+#'                          min_val = 0,
+#'                          max_val = max(data_edad$edad),
+#'                          paso = 10)
 #' @export
 agrupar_rango_edad_casos <- function(data_event,
                                      col_nombre,
@@ -234,17 +258,24 @@ agrupar_rango_edad_casos <- function(data_event,
 #'
 #' Función que agrupa los datos de una enfermedad o evento
 #' por un nombre de columna(s) específico y número de casos
-#' @param data_event Los datos de una enfermedad o evento
-#' @param cols_nombres El nombre de la(s) columna(s)
-#' @param agr_porcentaje Indica si es necesario agregar un porcentaje de
-#' casos como una columna
-#' @return Los datos de una enfermedad o evento agrupados
-#' por un nombre de columna(s) específico y número de casos
+#' @param data_event Un data frame que contiene los datos
+#' de la enfermedad o evento
+#' @param cols_nombres Un character (cadena de caracteres) o
+#' array (arreglo) de character que contiene el nombre de
+#' la(s) columna(s) por la(s) que se desea agrupar los datos
+#' @param agr_porcentaje Un boolean (TRUE o FALSE) que indica si
+#' es necesario agregar un porcentaje de casos como una columna;
+#' su valor por defecto es FALSE
+#' @return Un data frame con los datos de una enfermedad
+#' o evento agrupados por nombre de columna(s) y número de casos
 #' @examples
 #' data_event <- import_data_event(2019, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
-#' agrupar_cols_casos(data_event, cols_nombres = "sexo", agr_porcentaje = TRUE)
-#' agrupar_cols_casos(data_event, cols_nombres = c("sexo", "semana"))
+#' agrupar_cols_casos(data_event = data_event,
+#'                    cols_nombres = "sexo",
+#'                    agr_porcentaje = TRUE)
+#' agrupar_cols_casos(data_event = data_event,
+#'                    cols_nombres = c("sexo", "semana"))
 #' @export
 agrupar_cols_casos <- function(data_event,
                                cols_nombres,
@@ -263,19 +294,26 @@ agrupar_cols_casos <- function(data_event,
   return(data_event_agrupada)
 }
 
-#' Group by symptom onset date and cases
+#' Agrupar por fecha de inicio de síntomas y casos
 #'
-#' Function that groups the disease data by symptom onset date and
-#' number of cases
-#' @param data_event The disease data
-#' @param col_nombre Column name in the disease data that contains
-#' the symptom onset dates
-#' @param tipo Time unit (day, month and year)
-#' @return The disease data grouped by symptom onset date and number of cases
+#' Función que agrupa los datos de una enfermedad o evento por
+#' fecha de inicio de síntomas y número de casos
+#' @param data_event Un data frame que contiene los datos de
+#' la enfermedad o evento
+#' @param col_nombre Un character (cadena de caracteres) con el
+#' nombre de la columna de los datos de la enfermedad o evento que contiene
+#' las fechas de inicio de síntomas; su valor por defecto es ini_sin
+#' @param tipo Un character (cadena de caracteres) que contiene
+#' la unidad de tiempo (day: día, month: mes, y year: año);
+#' su valor por defecto es month
+#' @return Un data frame con los datos de la enfermedad o evento
+#' agrupados por fecha de inicio de síntomas y número de casos
 #' @examples
 #' data_event <- import_data_event(2019, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
-#' agrupar_fecha_inisintomas(data_event, col_nombre = "ini_sin", tipo = "month")
+#' agrupar_fecha_inisintomas(data_event = data_event,
+#'                           col_nombre = "ini_sin",
+#'                           tipo = "month")
 #' @export
 agrupar_fecha_inisintomas <- function(data_event,
                                       col_nombre = "ini_sin",
@@ -297,18 +335,24 @@ agrupar_fecha_inisintomas <- function(data_event,
 
 #' Agrupar por fecha de notificación y casos
 #'
-#' Función que agrupa los datos de enfermedades por fecha de
+#' Función que agrupa los datos de una enfermedad o evento por fecha de
 #' notificación y número de casos
-#' @param data_event Los datos de enfermedades
-#' @param col_nombre Nombre de la columna en los datos de enfermedades
-#' que contiene las fechas de notificación
-#' @param tipo Unidad de tiempo (día, mes y año)
-#' @return Los datos de enfermedades agrupados por fecha de
+#' @param data_event Un data frame que contiene los datos de la enfermedad
+#' o evento
+#' @param col_nombre Un character (cadena de caracteres) con el nombre de
+#' la columna de los datos de la enfermedad o evento que contiene las
+#' fechas de notificación; su valor por defecto es fec_not
+#' @param tipo Un character (cadena de caracteres) que contiene
+#' la unidad de tiempo (day: día, month: mes, y year: año);
+#' su valor por defecto es month
+#' @return Un data frame con los datos de enfermedades agrupados por fecha de
 #' notificación y número de casos
 #' @examples
 #' data_event <- import_data_event(2019, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
-#' agrupar_fecha_notifica(data_event, col_nombre = "fec_not", tipo = "month")
+#' agrupar_fecha_notifica(data_event = data_event,
+#'                        col_nombre = "fec_not",
+#'                        tipo = "month")
 #' @export
 agrupar_fecha_notifica <- function(data_event,
                                    col_nombre = "fec_not",
@@ -330,18 +374,24 @@ agrupar_fecha_notifica <- function(data_event,
 
 #' Agrupar por sexo y casos
 #'
-#' Función que agrupa los datos de enfermedades
+#' Función que agrupa los datos de una enfermedad o evento
 #' por sexo y número de casos
-#' @param data_event Los datos de enfermedades
-#' @param col_nombre Nombre de la columna en los datos de enfermedades
-#' que contiene el sexo
-#' @param porcentaje Indica si es necesario agregar un porcentaje de casos
-#' como una columna
-#' @return Los datos de enfermedades agrupados por sexo y número de casos
+#' @param data_event Un data frame que contiene los datos de la enfermedad
+#' o evento
+#' @param col_nombre Un character (cadena de caracteres) con el nombre
+#' de la columna de los datos de la enfermedad o evento que contiene el sexo;
+#' su valor por defecto es sexo
+#' @param porcentaje Un boolean (TRUE o FALSE) que indica si es necesario
+#' agregar un porcentaje de casos como una columna; su valor por defecto es
+#' TRUE
+#' @return Un data frame con los datos de la enfermedad o evento
+#' agrupados por sexo y número de casos
 #' @examples
 #' data_event <- import_data_event(2019, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
-#' agrupar_sex(data_event, col_nombre = "sexo", porcentaje = TRUE)
+#' agrupar_sex(data_event = data_event,
+#'             col_nombre = "sexo",
+#'             porcentaje = TRUE)
 #' @export
 agrupar_sex <- function(data_event,
                         col_nombre = "sexo",
@@ -354,17 +404,22 @@ agrupar_sex <- function(data_event,
 #'
 #' Función que agrupa los datos de enfermedades por sexo, semana
 #' epidemiológica y número de casos
-#' @param data_event Los datos de enfermedades
-#' @param col_nombres Nombres de las columnas en los datos de enfermedades
-#' que contienen el sexo y las semanas epidemiológicas
-#' @param porcentaje Indica si es necesario agregar un porcentaje
-#' de casos como una columna
-#' @return Los datos de enfermedades agrupados por
-#' sexo, semana epidemiológica y número de casos
+#' @param data_event Un data frame que contiene los datos de
+#' la enfermedad o evento
+#' @param col_nombres Un character (cadena de caracteres) o
+#' array (arreglo) de character que contiene el nombre de
+#' la(s) columna(s) de los datos de la enfermedad o evento
+#' que contienen el sexo y las semanas epidemiológicas; su valor
+#' por defecto es `c("sexo", "semana")`
+#' @param porcentaje Un boolean (TRUE o FALSE) que indica si
+#' es necesario agregar un porcentaje de casos como una columna; su
+#' valor por defecto es `TRUE`
+#' @return Un data frame con los datos de la enfermedad o evento
+#' agrupados por sexo, semana epidemiológica y número de casos
 #' @examples
 #' data_event <- import_data_event(2019, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
-#' agrupar_sex_semanaepi(data_event,
+#' agrupar_sex_semanaepi(data_event = data_event,
 #'                       col_nombres = c("sexo", "semana"),
 #'                       porcentaje = TRUE)
 #' @export
@@ -381,18 +436,26 @@ agrupar_sex_semanaepi <- function(data_event,
 
 #' Agrupar por edad y casos
 #'
-#' Función que agrupa los datos de enfermedades por edad y número de casos
-#' @param data_event Los datos de enfermedades
-#' @param col_nombre Nombre de la columna en los datos de enfermedades que
-#' contiene las edades
-#' @param porcentaje Indica si es necesario agregar un porcentaje de
-#' casos como una columna
-#' @param interval_edad El intervalo del rango de edades
-#' @return Los datos de enfermedades agrupados por edad y número de casos
+#' Función que agrupa los datos de una enfermedad o evento por edad
+#' y número de casos
+#' @param data_event Un data frame que contiene los datos de la enfermedad
+#' o evento
+#' @param col_nombre Un character (cadena de caracteres) con el nombre
+#' de la columna de los datos de la enfermedad o evento que contiene las edades;
+#' su valor por defecto es edad
+#' @param porcentaje Un boolean (TRUE o FALSE) que indica si
+#' es necesario agregar un porcentaje de casos como una columna; su valor por
+#' defecto es `FALSE`
+#' @param interval_edad Un numeric (numerico) que contiene el intervalo del
+#' rango de edades; su valor por defecto es 10
+#' @return Un data frame con los datos de la enfermedad o evento agrupados
+#' por edad y número de casos
 #' @examples
 #' data_event <- import_data_event(2019, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
-#' agrupar_edad(data_event, col_nombre = "edad", porcentaje = FALSE)
+#' agrupar_edad(data_event = data_event,
+#'              col_nombre = "edad",
+#'              porcentaje = FALSE)
 #' @export
 agrupar_edad <- function(data_event,
                          col_nombre = "edad",
@@ -415,20 +478,25 @@ agrupar_edad <- function(data_event,
 
 #' Agrupar por edades, sexo y casos
 #'
-#' Función que agrupa los datos de enfermedades por edades,
+#' Función que agrupa los datos de una enfermedad o evento por edades,
 #' sexo y número de casos
-#' @param data_event Los datos de enfermedades
-#' @param col_nombres Nombres de las columnas en los datos de
-#' enfermedades que contienen las edades y el sexo
-#' @param porcentaje Indica si es necesario agregar un porcentaje de
-#' casos como una columna
-#' @param interval_edad El intervalo del rango de edades
-#' @return Los datos de enfermedades agrupados por edades, sexo y
-#' número de casos
+#' @param data_event Un data frame que contiene los datos de la enfermedad
+#' o evento
+#' @param col_nombres Un character (cadena de caracteres) o
+#' array (arreglo) de character que contiene el nombre de
+#' la(s) columna(s) de los datos de la enfermedad o evento que contienen
+#' las edades y el sexo; su valor por defecto es c("edad", "sexo")
+#' @param porcentaje Un boolean (TRUE o FALSE) que indica si
+#' es necesario agregar un porcentaje de casos como una columna; su valor
+#' por defecto es `TRUE`
+#' @param interval_edad Un numeric (numerico) que contiene el intervalo del
+#' rango de edades; su valor por defeccto es `10`
+#' @return Un data frame con los datos de enfermedades agrupados
+#' por edades, sexo y número de casos
 #' @examples
 #' data_event <- import_data_event(2019, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
-#' agrupar_edad_sex(data_event,
+#' agrupar_edad_sex(data_event = data_event,
 #'                  col_nombres = c("edad", "sexo"),
 #'                  porcentaje = TRUE)
 #' @export
@@ -460,18 +528,22 @@ agrupar_edad_sex <- function(data_event,
 
 #' Agrupar por población especial y casos
 #'
-#' Función que agrupa los datos de la enfermedad por población especial y casos
-#' @param data_event Los datos de la enfermedad
-#' @param col_nombre Nombre de la columna en los datos de la
-#' enfermedad que contiene las poblaciones especiales
-#' @param porcentaje Indica si se requiere agregar un
-#' porcentaje de casos como columna
-#' @return Los datos de la enfermedad agrupados por poblaciones
-#' especiales y casos
+#' Función que agrupa los datos de la enfermedad o evento por población
+#' especial y casos
+#' @param data_event Un data frame que contiene los datos de la enfermedad
+#' o evento
+#' @param col_nombre Un character (cadena de caracteres) con el nombre de la
+#' columna de los datos de la enfermedad o evento que contiene las poblaciones
+#' especiales; su valor por defecto es poblacion
+#' @param porcentaje Un boolean (TRUE o FALSE) que indica si
+#' es necesario agregar un porcentaje de casos como una columna; su valor
+#' por defecto es `TRUE`
+#' @return Un data frame con los datos de la enfermedad o evento agrupados
+#' por poblaciones especiales y casos
 #' @examples
 #' data_event <- import_data_event(2019, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
-#' agrupar_pob_especial(data_event,
+#' agrupar_pob_especial(data_event = data_event,
 #'                      col_nombre = "poblacion",
 #'                      porcentaje = TRUE)
 #' @export
@@ -492,17 +564,22 @@ agrupar_pob_especial <- function(data_event,
 #'
 #' Función que agrupa los datos por códigos de departamento y
 #' número de casos
-#' @param data_event Los datos de la enfermedad
-#' @param col_nombre Nombre de la columna en los datos de la
-#' enfermedad que contiene los códigos de departamento
-#' @param porcentaje Indica si se requiere agregar un porcentaje
-#' de casos como columna
-#' @return Los datos de la enfermedad agrupados por códigos de
-#' departamento y número de casos
+#' @param data_event Un data frame que contiene los datos de la
+#' enfermedad o evento
+#' @param col_nombre Un character (cadena de caracteres) con el nombre
+#' de la columna en los datos de la enfermedad o evento que contiene los
+#' códigos de departamento; su valor por defecto es cod_dpto_o
+#' @param porcentaje Un boolean (TRUE o FALSE) que indica si
+#' es necesario agregar un porcentaje de casos como una columna; su valor
+#' por defecto es FALSE
+#' @return Un data frame con los datos de la enfermedad o evento agrupados
+#' por códigos de departamento y número de casos
 #' @examples
 #' data_event <- import_data_event(2019, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
-#' agrupar_dpto(data_event, col_nombre = "cod_dpto_o", porcentaje = FALSE)
+#' agrupar_dpto(data_event = data_event,
+#'              col_nombre = "cod_dpto_o",
+#'              porcentaje = FALSE)
 #' @export
 agrupar_dpto <- function(data_event,
                          col_nombre = "cod_dpto_o",
@@ -521,19 +598,24 @@ agrupar_dpto <- function(data_event,
 
 #' Agrupar por municipios y casos
 #'
-#' Función que agrupa los datos por códigos de municipios y número de casos
-#' @param data_event Los datos de la enfermedad
-#' @param dept_nombre El nombre del departamento
-#' @param col_nombre Nombre de la columna en los datos de la
-#' enfermedad que contiene los códigos de municipios
-#' @param porcentaje Indica si se requiere agregar un porcentaje
-#' de casos como columna
-#' @return Los datos de la enfermedad agrupados por códigos de
-#' municipios y número de casos
+#' Función que agrupa los datos de una enfermedad o evento por código
+#' de municipios y número de casos
+#' @param data_event Un data frame que contiene los datos de la
+#' enfermedad o evento
+#' @param dept_nombre Un character (cadena de caracteres) que contiene
+#' el nombre del departamento; su valor por defecto es NULL
+#' @param col_nombre Un character (cadena de caracteres) con el nombre de
+#' la columna en los datos de la enfermedad o evento que contiene los códigos
+#' de municipios; su valor por defecto es cod_mun_o
+#' @param porcentaje Un boolean (TRUE o FALSE) que indica si es necesario
+#' agregar un porcentaje de casos como una columna; su valor por
+#' defecto es FALSE
+#' @return Un data frame con los datos de la enfermedad o evento agrupados
+#' por códigos de municipios y número de casos
 #' @examples
 #' data_event <- import_data_event(2019, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
-#' agrupar_mun(data_event,
+#' agrupar_mun(data_event = data_event,
 #'             dept_nombre = "Antioquia",
 #'             col_nombre = "cod_mun_o",
 #'             porcentaje = FALSE)

@@ -7,23 +7,29 @@
 agrupar_fecha_notifica(data_event, col_nombre = "fec_not", tipo = "month")
 }
 \arguments{
-\item{data_event}{Los datos de enfermedades}
+\item{data_event}{Un data frame que contiene los datos de la enfermedad
+o evento}
 
-\item{col_nombre}{Nombre de la columna en los datos de enfermedades
-que contiene las fechas de notificación}
+\item{col_nombre}{Un character (cadena de caracteres) con el nombre de
+la columna de los datos de la enfermedad o evento que contiene las
+fechas de notificación; su valor por defecto es fec_not}
 
-\item{tipo}{Unidad de tiempo (día, mes y año)}
+\item{tipo}{Un character (cadena de caracteres) que contiene
+la unidad de tiempo (day: día, month: mes, y year: año);
+su valor por defecto es month}
 }
 \value{
-Los datos de enfermedades agrupados por fecha de
+Un data frame con los datos de enfermedades agrupados por fecha de
 notificación y número de casos
 }
 \description{
-Función que agrupa los datos de enfermedades por fecha de
+Función que agrupa los datos de una enfermedad o evento por fecha de
 notificación y número de casos
 }
 \examples{
 data_event <- import_data_event(2019, "DENGUE")
 data_event <- limpiar_encabezado(data_event)
-agrupar_fecha_notifica(data_event, col_nombre = "fec_not", tipo = "month")
+agrupar_fecha_notifica(data_event = data_event,
+                       col_nombre = "fec_not",
+                       tipo = "month")
 }

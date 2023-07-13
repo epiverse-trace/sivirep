@@ -12,27 +12,32 @@ agrupar_mun(
 )
 }
 \arguments{
-\item{data_event}{Los datos de la enfermedad}
+\item{data_event}{Un data frame que contiene los datos de la
+enfermedad o evento}
 
-\item{dept_nombre}{El nombre del departamento}
+\item{dept_nombre}{Un character (cadena de caracteres) que contiene
+el nombre del departamento; su valor por defecto es NULL}
 
-\item{col_nombre}{Nombre de la columna en los datos de la
-enfermedad que contiene los códigos de municipios}
+\item{col_nombre}{Un character (cadena de caracteres) con el nombre de
+la columna en los datos de la enfermedad o evento que contiene los códigos
+de municipios; su valor por defecto es cod_mun_o}
 
-\item{porcentaje}{Indica si se requiere agregar un porcentaje
-de casos como columna}
+\item{porcentaje}{Un boolean (TRUE o FALSE) que indica si es necesario
+agregar un porcentaje de casos como una columna; su valor por
+defecto es FALSE}
 }
 \value{
-Los datos de la enfermedad agrupados por códigos de
-municipios y número de casos
+Un data frame con los datos de la enfermedad o evento agrupados
+por códigos de municipios y número de casos
 }
 \description{
-Función que agrupa los datos por códigos de municipios y número de casos
+Función que agrupa los datos de una enfermedad o evento por código
+de municipios y número de casos
 }
 \examples{
 data_event <- import_data_event(2019, "DENGUE")
 data_event <- limpiar_encabezado(data_event)
-agrupar_mun(data_event,
+agrupar_mun(data_event = data_event,
             dept_nombre = "Antioquia",
             col_nombre = "cod_mun_o",
             porcentaje = FALSE)

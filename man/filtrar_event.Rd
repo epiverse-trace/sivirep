@@ -2,23 +2,28 @@
 % Please edit documentation in R/checking_data.R
 \name{filtrar_event}
 \alias{filtrar_event}
-\title{Filtrar enfermedad}
+\title{Filtrar por enfermedad o evento}
 \usage{
 filtrar_event(nombre_event, data_sivigila)
 }
 \arguments{
-\item{nombre_event}{Nombre de la enfermedad}
+\item{nombre_event}{Un character (cadena de caracteres) que contiene
+el nombre de la enfermedad o evento}
 
-\item{data_sivigila}{El conjunto de datos}
+\item{data_sivigila}{Un data frame que contiene el conjunto de datos
+del SIVIGILA}
 }
 \value{
-Datos filtrados con la enfermedad seleccionada
+Un data frame con los datos filtrados por la enfermedad o
+evento seleccionado
 }
 \description{
-Función que filtra por nombre de enfermedad en un conjunto de datos
+Función que filtra por nombre de enfermedad o evento
+en un conjunto de datos
 }
 \examples{
 data_sivigila <- import_data_resumen_sivigila()
 data_sivigila <- limpiar_encabezado(data_sivigila)
-filtrar_event("MALAR", data_sivigila)
+filtrar_event(nombre_event = "MALAR",
+              data_sivigila = data_sivigila)
 }

@@ -7,25 +7,29 @@
 agrupar_pob_especial(data_event, col_nombre = "poblacion", porcentaje = TRUE)
 }
 \arguments{
-\item{data_event}{Los datos de la enfermedad}
+\item{data_event}{Un data frame que contiene los datos de la enfermedad
+o evento}
 
-\item{col_nombre}{Nombre de la columna en los datos de la
-enfermedad que contiene las poblaciones especiales}
+\item{col_nombre}{Un character (cadena de caracteres) con el nombre de la
+columna de los datos de la enfermedad o evento que contiene las poblaciones
+especiales; su valor por defecto es poblacion}
 
-\item{porcentaje}{Indica si se requiere agregar un
-porcentaje de casos como columna}
+\item{porcentaje}{Un boolean (TRUE o FALSE) que indica si
+es necesario agregar un porcentaje de casos como una columna; su valor
+por defecto es `TRUE`}
 }
 \value{
-Los datos de la enfermedad agrupados por poblaciones
-especiales y casos
+Un data frame con los datos de la enfermedad o evento agrupados
+por poblaciones especiales y casos
 }
 \description{
-Función que agrupa los datos de la enfermedad por población especial y casos
+Función que agrupa los datos de la enfermedad o evento por población
+especial y casos
 }
 \examples{
 data_event <- import_data_event(2019, "DENGUE")
 data_event <- limpiar_encabezado(data_event)
-agrupar_pob_especial(data_event,
+agrupar_pob_especial(data_event = data_event,
                      col_nombre = "poblacion",
                      porcentaje = TRUE)
 }

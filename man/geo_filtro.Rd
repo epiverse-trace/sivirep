@@ -7,15 +7,17 @@
 geo_filtro(data_event, nombre_dpto = NULL, nombre_mun = NULL)
 }
 \arguments{
-\item{data_event}{Los datos de una enfermedad o evento}
+\item{data_event}{Un data frame con los datos de una enfermedad o evento}
 
-\item{nombre_dpto}{El nombre del departamento}
+\item{nombre_dpto}{Un character (cadena de caracteres) que contiene
+el nombre del departamento; valor por defecto NULL}
 
-\item{nombre_mun}{El nombre del municipio}
+\item{nombre_mun}{Un character (cadena de caracteres) que contiene el
+nombre del municipio; su valor por defecto es NULL}
 }
 \value{
-Datos filtrados con la enfermedad, departamentos y
-municipios seleccionados
+Un data frame con los datos filtrados con la enfermedad,
+departamentos y municipios seleccionados
 }
 \description{
 Función que filtra los datos de una enfermedad o evento por departamentos

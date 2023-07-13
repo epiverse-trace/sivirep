@@ -7,23 +7,29 @@
 agrupar_sex(data_event, col_nombre = "sexo", porcentaje = TRUE)
 }
 \arguments{
-\item{data_event}{Los datos de enfermedades}
+\item{data_event}{Un data frame que contiene los datos de la enfermedad
+o evento}
 
-\item{col_nombre}{Nombre de la columna en los datos de enfermedades
-que contiene el sexo}
+\item{col_nombre}{Un character (cadena de caracteres) con el nombre
+de la columna de los datos de la enfermedad o evento que contiene el sexo;
+su valor por defecto es sexo}
 
-\item{porcentaje}{Indica si es necesario agregar un porcentaje de casos
-como una columna}
+\item{porcentaje}{Un boolean (TRUE o FALSE) que indica si es necesario
+agregar un porcentaje de casos como una columna; su valor por defecto es
+TRUE}
 }
 \value{
-Los datos de enfermedades agrupados por sexo y número de casos
+Un data frame con los datos de la enfermedad o evento
+agrupados por sexo y número de casos
 }
 \description{
-Función que agrupa los datos de enfermedades
+Función que agrupa los datos de una enfermedad o evento
 por sexo y número de casos
 }
 \examples{
 data_event <- import_data_event(2019, "DENGUE")
 data_event <- limpiar_encabezado(data_event)
-agrupar_sex(data_event, col_nombre = "sexo", porcentaje = TRUE)
+agrupar_sex(data_event = data_event,
+            col_nombre = "sexo",
+            porcentaje = TRUE)
 }

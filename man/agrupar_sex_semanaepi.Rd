@@ -11,17 +11,22 @@ agrupar_sex_semanaepi(
 )
 }
 \arguments{
-\item{data_event}{Los datos de enfermedades}
+\item{data_event}{Un data frame que contiene los datos de
+la enfermedad o evento}
 
-\item{col_nombres}{Nombres de las columnas en los datos de enfermedades
-que contienen el sexo y las semanas epidemiológicas}
+\item{col_nombres}{Un character (cadena de caracteres) o
+array (arreglo) de character que contiene el nombre de
+la(s) columna(s) de los datos de la enfermedad o evento
+que contienen el sexo y las semanas epidemiológicas; su valor
+por defecto es `c("sexo", "semana")`}
 
-\item{porcentaje}{Indica si es necesario agregar un porcentaje
-de casos como una columna}
+\item{porcentaje}{Un boolean (TRUE o FALSE) que indica si
+es necesario agregar un porcentaje de casos como una columna; su
+valor por defecto es `TRUE`}
 }
 \value{
-Los datos de enfermedades agrupados por
-sexo, semana epidemiológica y número de casos
+Un data frame con los datos de la enfermedad o evento
+agrupados por sexo, semana epidemiológica y número de casos
 }
 \description{
 Función que agrupa los datos de enfermedades por sexo, semana
@@ -30,7 +35,7 @@ epidemiológica y número de casos
 \examples{
 data_event <- import_data_event(2019, "DENGUE")
 data_event <- limpiar_encabezado(data_event)
-agrupar_sex_semanaepi(data_event,
+agrupar_sex_semanaepi(data_event = data_event,
                       col_nombres = c("sexo", "semana"),
                       porcentaje = TRUE)
 }

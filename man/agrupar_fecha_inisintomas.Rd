@@ -2,27 +2,34 @@
 % Please edit documentation in R/checking_data.R
 \name{agrupar_fecha_inisintomas}
 \alias{agrupar_fecha_inisintomas}
-\title{Group by symptom onset date and cases}
+\title{Agrupar por fecha de inicio de síntomas y casos}
 \usage{
 agrupar_fecha_inisintomas(data_event, col_nombre = "ini_sin", tipo = "month")
 }
 \arguments{
-\item{data_event}{The disease data}
+\item{data_event}{Un data frame que contiene los datos de
+la enfermedad o evento}
 
-\item{col_nombre}{Column name in the disease data that contains
-the symptom onset dates}
+\item{col_nombre}{Un character (cadena de caracteres) con el
+nombre de la columna de los datos de la enfermedad o evento que contiene
+las fechas de inicio de síntomas; su valor por defecto es ini_sin}
 
-\item{tipo}{Time unit (day, month and year)}
+\item{tipo}{Un character (cadena de caracteres) que contiene
+la unidad de tiempo (day: día, month: mes, y year: año);
+su valor por defecto es month}
 }
 \value{
-The disease data grouped by symptom onset date and number of cases
+Un data frame con los datos de la enfermedad o evento
+agrupados por fecha de inicio de síntomas y número de casos
 }
 \description{
-Function that groups the disease data by symptom onset date and
-number of cases
+Función que agrupa los datos de una enfermedad o evento por
+fecha de inicio de síntomas y número de casos
 }
 \examples{
 data_event <- import_data_event(2019, "DENGUE")
 data_event <- limpiar_encabezado(data_event)
-agrupar_fecha_inisintomas(data_event, col_nombre = "ini_sin", tipo = "month")
+agrupar_fecha_inisintomas(data_event = data_event,
+                          col_nombre = "ini_sin",
+                          tipo = "month")
 }
