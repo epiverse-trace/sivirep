@@ -1,21 +1,28 @@
 #' Plot de las semanas epidemiológicas
 #'
 #' Función que genera el gráfico de las semanas epidemiológicas
-#' @param data Los datos de la enfermedad
-#' @param col_semana Nombre de la columna en los datos de la
-#' enfermedad o evento que contiene las semanas epidemiológicas
-#' @param col_casos Nombre de la columna en los datos de la
-#' enfermedad o evento que contiene el número de casos
-#' @param year Año de los datos de la enfermedad
-#' @param tipo Unidad de tiempo para el eje x (semana y fecha)
-#' @param etiqueta_x Etiqueta del eje x
-#' @param etiqueta_y Etiqueta del eje y
-#' @return El gráfico de las semanas epidemiológicas
+#' @param data Un data frame con los datos de la enfermedad
+#' o evento
+#' @param col_semana Un data frame con el nombre de la columna
+#' de los datos de la enfermedad o evento que contiene las semanas
+#' epidemiológicas
+#' @param col_casos Un character (cadena de caracteres) que contiene
+#' el nombre de la columna de los datos de la enfermedad o evento
+#' que contiene el número de casos
+#' @param year Un numeric (numerico) que contiene el año de los datos
+#' de la enfermedad o evento
+#' @param tipo Un character (cadena de caracteres) que contiene la unidad de
+#' tiempo para el eje x ("week": semana y "date": fecha)
+#' @param etiqueta_x Un character (cadena de caracteres) que contiene la
+#' etiqueta del eje x
+#' @param etiqueta_y Un character (cadena de caracteres) que contiene la
+#' etiqueta del eje y
+#' @return Un plot o gráfico de las semanas epidemiológicas
 #' @examples
 #' data_resumida_sivigila <- import_data_resumen_sivigila()
 #' data_resumida_sivigila <- limpiar_encabezado(data_resumida_sivigila)
 #' data_filtrada <- filtrar_event("MALAR", data_resumida_sivigila)
-#' plot_semanaepi(data_filtrada,
+#' plot_semanaepi(data = data_filtrada,
 #'                col_semana = "semana",
 #'                col_casos = "casos",
 #'                year = 2019,
@@ -64,16 +71,16 @@ plot_semanaepi <- function(data,
 
 #' Generar mapa por departamento
 #'
-#' Función que genera el mapa por departamento con el número de casos de una
-#' enfermedad específica
-#' @param data_agrupada Los datos de la enfermedad agrupados por departamento
-#' y número de casos
-#' @param col_nombre_lj Nombre de la columna para unir con el archivo
-#' de forma (shape file)
-#' @param fuente_data Leyenda o fuente de información de los datos de la
-#' enfermedad
-#' @return El mapa por departamento con el número de casos de una enfermedad
-#' específica
+#' Función que genera el mapa por departamento con el número de casos
+#' de una enfermedad o evento
+#' @param data_agrupada Un data frame que contiene los datos de la enfermedad
+#' o evento agrupados por departamento y número de casos
+#' @param col_nombre_lj Un character (cadena de caracteres) que contiene el
+#' nombre de la columna para unir con el archivo de forma (shape file)
+#' @param fuente_data Un character (cadena de caracteres) que contiene la
+#' leyenda o fuente de información de los datos de la enfermedad o evento
+#' @return Un plot con el mapa por departamento con el número de casos de
+#' la enfermedad o evento
 #' @examples
 #' data_event <- import_data_event(2019, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
@@ -110,17 +117,19 @@ plot_map_dpto <- function(data_agrupada,
 #' Generar mapa por departamento
 #'
 #' Función que genera el mapa por departamentos o municipios con el número de
+#' casos de una enfermedad o evento
+#' @param data_agrupada Un data frame que contiene los datos de la enfermedad
+#' agrupados por departamento y número de casos
+#' @param col_nombre_lj Un character (cadena de caracteres) que contiene el
+#' nombre de la columna para unir con el archivo de forma (shape file)
+#' @param fuente_data Un character (cadena de caracteres) que contiene la
+#' leyenda o fuente de información de los datos de la enfermedad o evento
+#' @param dpto Un character (cadena de caracteres) que contiene el
+#' nombre del departamento
+#' @param munpio Un character (cadena de caracteres) que contiene el
+#' nombre del municipio
+#' @return El plot o mapa por departamentos o municipios con el número de
 #' casos de una enfermedad específica
-#' @param data_agrupada Los datos de la enfermedad agrupados por departamento
-#' y número de casos
-#' @param col_nombre_lj Nombre de la columna para unir con el archivo
-#' de forma (shape file)
-#' @param fuente_data Leyenda o fuente de información de los datos
-#' de la enfermedad
-#' @param dpto Nombre del departamento
-#' @param munpio Nombre del municipio
-#' @return El mapa por departamentos o municipios con el número de casos de una
-#' enfermedad específica
 #' @examples
 #' data_event <- import_data_event(2019, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
@@ -128,7 +137,7 @@ plot_map_dpto <- function(data_agrupada,
 #' data_espacial_dpto <- geo_filtro(data_event = data_event,
 #'                                  nombre_dpto = "Antioquia")
 #' data_espacial_dpto <- agrupar_mun(data_event, dept_nombre = "Antioquia")
-#' plot_map(data_espacial_dpto,
+#' plot_map(data_agrupada = data_espacial_dpto,
 #'    col_nombre_lj = "id",
 #'    fuente_data = "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia",
 #'    dpto = "Antioquia",
@@ -183,30 +192,45 @@ plot_map <- function(data_agrupada,
 #' Generar gráfico por variable(s) o columna(s)
 #'
 #' Función que genera un gráfico por cualquier tipo de variable o columna de un
-#' dataframe
-#' @param data Los datos a graficar
-#' @param var_x El nombre de la variable para el eje x
-#' @param var_y El nombre de la variable para el eje y
-#' @param var_por El nombre de la variable si los datos tienen porcentajes
-#' @param var_fill La variable de llenado
-#' @param agr_per Indica si los datos tienen porcentajes
-#' @param etiqueta_x La etiqueta para el eje x
-#' @param etiqueta_y La etiqueta para el eje y
-#' @param nombre_escala El nombre de la escala
-#' @param etiquetas_escala Las etiquetas de la escala
-#' @param tit_diagram El título del diagrama
-#' @param pos_leyenda La posición de la leyenda
-#' @param ancho_barra El ancho de las barra
-#' @param tam_text El tamaño del texto
-#' @param most_val Indica si las barras deben mostrar los valores
-#' @param fuente_data Leyenda o fuente de información de los datos
-#' @return El gráfico por variable(s) o columna(s)
+#' data frame
+#' @param data Un data frame con los datos a graficar
+#' @param var_x Un character (cadena de caracteres) que contiene el nombre de
+#' la variable para el eje x
+#' @param var_y Un character (cadena de caracteres) que contiene el nombre de
+#' la variable para el eje y
+#' @param var_por Un character (cadena de caracteres) que contiene el nombre
+#' de la variable si los datos tienen porcentajes; su valor por defecto es NULL
+#' @param var_fill Un character (cadena de caracteres) que contiene la
+#' variable de llenado; su valor por defecto es NULL
+#' @param agr_per Un boolean (TRUE/FALSE) que indica si los datos
+#' tienen porcentajes; su valor por defecto es TRUE
+#' @param etiqueta_x Un character (cadena de caracteres) que contiene
+#' la etiqueta para el eje x
+#' @param etiqueta_y Un character (cadena de caracteres) que contiene
+#' la etiqueta para el eje y
+#' @param nombre_escala Un character (cadena de caracteres) que contiene
+#' el nombre de la escala; su valor por defecto es NULL
+#' @param etiquetas_escala Un array (arreglo) de character (cadena de
+#' caracteres) que contiene las etiquetas de la escala
+#' @param tit_diagram Un character (cadena de caracteres) que contiene
+#' el título del diagrama; su valor por defecto es NULL
+#' @param pos_leyenda Un character (cadena de caracteres) que contiene la
+#' posición de la leyenda
+#' @param ancho_barra Un numeric (numerico) que contiene el ancho de las
+#' barras; su valor por defecto es 1
+#' @param tam_text Un numeric (numerico) que contiene el tamaño del texto;
+#' su valor por defecto es 3
+#' @param most_val Un boolean (TRUE/FALSE) que indica si las barras deben
+#' mostrar los valores; su valor por defecto es TRUE
+#' @param fuente_data Un character (cadena de caracteres) que contiene la
+#' leyenda o fuente de información de los datos; su valor por defecto es NULL
+#' @return Un plot o gráfico por variable(s) o columna(s)
 #' @examples
 #' data_event <- import_data_event(2019, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
 #' cases_sex <- agrupar_sex(data_event,
 #'                          porcentaje = TRUE)
-#' plot_variable(cases_sex,
+#' plot_variable(data = cases_sex,
 #'   var_x = "sexo",
 #'   var_y = "casos",
 #'   var_fill = "sexo",
@@ -290,12 +314,16 @@ plot_variable <- function(data, var_x, var_y, var_por = NULL,
 #'
 #' Función que genera el gráfico de distribución de casos
 #' por fecha de inicio de síntomas
-#' @param data_agrupada Los datos de la enfermedad agrupados
-#' @param uni_marca Unidad de marcas (día, mes y año)
-#' @param col_nombre Nombre de la columna en los datos de la
-#' enfermedad agrupados que contiene
-#' las fechas de inicio de síntomas
-#' @return Un gráfico de distribución de casos por fecha de inicio
+#' @param data_agrupada Un data frame que contiene los datos de la enfermedad
+#' o evento agrupados
+#' @param uni_marca Un character (cadena de caracteres) que contiene la unidad
+#' de las marcas del gráfico ("day": día, "month": mes y "year": año);
+#' su valor por defecto es "month"
+#' @param col_nombre Un character (cadena de caracteres) que contiene el
+#' nombre de la columna en los datos de la enfermedad o evento
+#' agrupados que contiene las fechas de inicio de síntomas; su valor por
+#' defecto es "ini_sin"
+#' @return Un plot o gráfico de la distribución de casos por fecha de inicio
 #' de síntomas
 #' @examples
 #' data_event <- import_data_event(2020, "DENGUE")
@@ -304,7 +332,7 @@ plot_variable <- function(data, var_x, var_y, var_por = NULL,
 #'                                      data_event,
 #'                                      col_nombre = "ini_sin",
 #'                                      tipo = "month")
-#' plot_fecha_inisintomas(data_agrupada,
+#' plot_fecha_inisintomas(data_agrupada = data_agrupada,
 #'                        col_nombre = "ini_sin",
 #'                        uni_marca = "month")
 #' @export
@@ -338,18 +366,22 @@ plot_fecha_inisintomas <- function(data_agrupada,
 #'
 #' Función que genera el gráfico de distribución de casos por
 #' fecha de notificación
-#' @param data_agrupada Los datos de la enfermedad agrupados
-#' @param uni_marca Unidad de marcas (día, mes y año)
-#' @param col_nombre Nombre de la columna en los datos de la
-#' enfermedad o evento agrupados que contiene las fechas de notificación
-#' @return Un gráfico de distribución de casos por fecha de notificación
+#' @param data_agrupada Un data frame que contiene los datos de la
+#' enfermedad o evento agrupados
+#' @param uni_marca Un character (cadena de caracteres) que contiene la unidad
+#' de las marcas del gráfico ("day": día, "month": mes y "year": año); su
+#' valor por defecto es "month"
+#' @param col_nombre Un character (cadena de caracteres) que contiene el
+#' nombre de la columna en los datos de la enfermedad o evento agrupados que
+#' contiene las fechas de notificación; su valor por defecto es "fec_not"
+#' @return Un plot o gráfico de distribución de casos por fecha de notificación
 #' @examples
 #' data_event <- import_data_event(2020, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
 #' data_agrupada <- agrupar_fecha_notifica(data_event,
 #'                                         col_nombre = "fec_not",
 #'                                         tipo = "month")
-#' plot_fecha_notifica(data_agrupada,
+#' plot_fecha_notifica(data_agrupada = data_agrupada,
 #'                     col_nombre = "fec_not",
 #'                     uni_marca = "month")
 #' @export
@@ -383,19 +415,23 @@ plot_fecha_notifica <- function(data_agrupada,
 #' Generar gráfico de distribución de casos por sexo
 #'
 #' Función que genera el gráfico de distribución de casos por sexo
-#' @param data_agrupada Los datos de la enfermedad agrupados
-#' @param col_nombre Nombre de la columna en los datos de la enfermedad
-#' agrupados que contiene
-#' el sexo
-#' @param porcentaje Indica si los datos tienen porcentajes
-#' @return Un gráfico de distribución de casos por sexo
+#' @param data_agrupada Un data fram que contiene los datos de la
+#' enfermedad o evento agrupados
+#' @param col_nombre Un character (cadena de caracteres) con el
+#' nombre de la columna de los datos agrupados de la enfermedad
+#' o evento que contiene el sexo; su valor por defecto es "sexo"
+#' @param porcentaje Un boolean (TRUE/FALSE) que indica si los datos
+#' tienen porcentajes; su valor por defecto es TRUE
+#' @return Un plot o gráfico de distribución de casos por sexo
 #' @examples
 #' data_event <- import_data_event(2020, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
 #' data_agrupada <- agrupar_sex(data_event,
 #'                              col_nombre = "sexo",
 #'                              porcentaje = TRUE)
-#' plot_sex(data_agrupada, col_nombre = "sexo", porcentaje = TRUE)
+#' plot_sex(data_agrupada = data_agrupada,
+#'          col_nombre = "sexo",
+#'          porcentaje = TRUE)
 #' @export
 plot_sex <- function(data_agrupada,
                      col_nombre = "sexo",
@@ -421,11 +457,15 @@ plot_sex <- function(data_agrupada,
 #'
 #' Función que genera el gráfico de distribución de casos por sexo
 #' y semana epidemiológica
-#' @param data_agrupada Los datos de la enfermedad agrupados
-#' @param col_nombres Nombres de columna en los datos de la
-#' enfermedad agrupados que contienen el sexo y las semanas epidemiológicas
-#' @param porcentaje Indica si los datos tienen porcentajes
-#' @return Un gráfico de distribución de casos por sexo y semana
+#' @param data_agrupada Un data frame que contiene los datos de la enfermedad
+#' o evento agrupados
+#' @param col_nombres Un array (arreglo) de character (cadena de caracteres) con
+#' los nombres de columna de los datos agrupados de la enfermedad o evento que
+#' contienen el sexo y las semanas epidemiológicas; su valor por defecto es
+#' c("sexo", "semana")
+#' @param porcentaje Un boolean (TRUE/FALSE) que indica si los datos tienen
+#' porcentajes; su valor por defecto es TRUE
+#' @return Un plot o gráfico de distribución de casos por sexo y semana
 #' epidemiológica
 #' @examples
 #' data_event <- import_data_event(2020, "DENGUE")
@@ -433,7 +473,7 @@ plot_sex <- function(data_agrupada,
 #' data_agrupada <- agrupar_sex_semanaepi(data_event,
 #'                                        col_nombres = c("sexo", "semana"),
 #'                                        porcentaje = TRUE)
-#' plot_sex_semanaepi(data_agrupada,
+#' plot_sex_semanaepi(data_agrupada = data_agrupada,
 #'                    col_nombres = c("sexo", "semana"),
 #'                    porcentaje = FALSE)
 #' @export
@@ -463,18 +503,21 @@ plot_sex_semanaepi <- function(data_agrupada,
 #' Generar gráfico de distribución de casos por edad
 #'
 #' Función que genera el gráfico de distribución de casos por edad
-#' @param data_agrupada Los datos de la enfermedad agrupados
-#' @param col_nombre Nombre de la columna en los datos de la
-#' enfermedad o evento agrupados que contiene las edades
-#' @param porcentaje Indica si los datos tienen porcentajes
-#' @return Un gráfico de distribución de casos por edad
+#' @param data_agrupada Un data frame que contiene los datos de la enfermedad
+#' o evento agrupados
+#' @param col_nombre Un character (cadena de carácteres) con el nombre de
+#' la columna de los datos agrupados de la enfermedad o evento que contiene
+#' las edades; su valor por defecto es "edad"
+#' @param porcentaje Un boolean (TRUE/FALSE) que indica si los datos tienen
+#' porcentajes; su valor por defecto es FALSE
+#' @return Un plot o gráfico de distribución de casos por edad
 #' @examples
 #' data_event <- import_data_event(2020, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
 #' data_agrupada <- agrupar_edad(data_event,
 #'                               col_nombre = "edad",
 #'                               porcentaje = FALSE)
-#' plot_edad(data_agrupada,
+#' plot_edad(data_agrupada = data_agrupada,
 #'           col_nombre = "edad",
 #'           porcentaje = FALSE)
 #' @export
@@ -497,19 +540,22 @@ plot_edad <- function(data_agrupada,
 #' Generar gráfico de distribución de casos por edad y sexo
 #'
 #' Función que genera el gráfico de distribución de casos por edad y sexo
-#' @param data_agrupada Los datos de la enfermedad agrupados
-#' @param col_nombres Nombres de columna en los datos de la
-#' enfermedad o evento agrupados que contienen
-#' las edades y las semanas epidemiológicas
-#' @param porcentaje Indica si los datos tienen porcentajes
-#' @return Un gráfico de distribución de casos por edad y sexo
+#' @param data_agrupada Un data frame que contiene los datos de la
+#' enfermedad o evento agrupados
+#' @param col_nombres Un array (arreglo) de character (cadena de caracteres) con
+#' los nombres de columna de los datos agrupados de la enfermedad o evento que
+#' contiene las edades y las semanas epidemiológicas; su valor por defecto
+#' es c("edad", "sexo")
+#' @param porcentaje Un boolean (TRUE/FALSE) que indica si los datos tienen
+#' porcentajes; su valor por defecto es FALSE
+#' @return Un plot o gráfico de distribución de casos por edad y sexo
 #' @examples
 #' data_event <- import_data_event(2020, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
 #' data_agrupada <- agrupar_edad_sex(data_event,
 #'                                   col_nombres = c("edad", "sexo"),
 #'                                   porcentaje = FALSE)
-#' plot_edad_sex(data_agrupada,
+#' plot_edad_sex(data_agrupada = data_agrupada,
 #'               col_nombres = c("edad", "sexo"),
 #'               porcentaje = FALSE)
 #' @export
@@ -533,18 +579,21 @@ plot_edad_sex <- function(data_agrupada,
 #' Generar gráfico de distribución de casos por población especial
 #'
 #' Función que genera el gráfico de distribución de casos por población especial
-#' @param data_agrupada Los datos de la enfermedad agrupados
-#' @param col_nombre Nombres de columna en los datos de la
-#' enfermedad o evento agrupados que contienen las edades y el sexo
-#' @param porcentaje Indica si los datos tienen porcentajes
-#' @return Un gráfico de distribución de casos por población especial
+#' @param data_agrupada Un data frame que contiene los datos de la
+#' enfermedad o evento agrupados
+#' @param col_nombre Un character (cadena de carácteres) con el nombre de
+#' la columna de los datos agrupados de la enfermedad o evento que contiene
+#' las poblaciones especiales; su valor por defecto es "poblacion"
+#' @param porcentaje Un boolean (TRUE/FALSE) que indica si los datos tienen
+#' porcentajes; su valor por defecto es FALSE
+#' @return Un plot o gráfico de distribución de casos por población especial
 #' @examples
 #' data_event <- import_data_event(2020, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
 #' data_agrupada <- agrupar_pob_especial(data_event,
 #'                          col_nombre = "poblacion",
 #'                          porcentaje = TRUE)
-#' plot_pob_especial(data_agrupada,
+#' plot_pob_especial(data_agrupada = data_agrupada,
 #'                   col_nombre = "poblacion",
 #'                   porcentaje = FALSE)
 #' @export
@@ -569,11 +618,14 @@ plot_pob_especial <- function(data_agrupada,
 #' Generar gráfico de distribución de casos por municipios
 #'
 #' Función que genera el gráfico de distribución de casos por municipios
-#' @param data_agrupada Los datos de la enfermedad agrupados
-#' @param col_nombre Nombres de columna en los datos de la
-#' enfermedad o evento agrupados que contienen los municipios
-#' @param porcentaje Indica si los datos tienen porcentajes
-#' @return Un gráfico de distribución de casos por municipios
+#' @param data_agrupada Un data frame que contiene los datos de la
+#' enfermedad o evento agrupados
+#' @param col_nombre Un character (cadena de carácteres) con el nombre de
+#' la columna de los datos agrupados de la enfermedad o evento que contiene
+#' los municipios; su valor por defecto es "nombre"
+#' @param porcentaje Un boolean (TRUE/FALSE) que indica si los datos tienen
+#' porcentajes; su valor por defecto es FALSE
+#' @return Un plot o gráfico de distribución de casos por municipios
 #' @examples
 #' data_event <- import_data_event(2020, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)

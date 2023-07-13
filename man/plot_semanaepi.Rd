@@ -15,24 +15,31 @@ plot_semanaepi(
 )
 }
 \arguments{
-\item{data}{Los datos de la enfermedad}
+\item{data}{Un data frame con los datos de la enfermedad
+o evento}
 
-\item{col_semana}{Nombre de la columna en los datos de la
-enfermedad o evento que contiene las semanas epidemiológicas}
+\item{col_semana}{Un data frame con el nombre de la columna
+de los datos de la enfermedad o evento que contiene las semanas
+epidemiológicas}
 
-\item{col_casos}{Nombre de la columna en los datos de la
-enfermedad o evento que contiene el número de casos}
+\item{col_casos}{Un character (cadena de caracteres) que contiene
+el nombre de la columna de los datos de la enfermedad o evento
+que contiene el número de casos}
 
-\item{year}{Año de los datos de la enfermedad}
+\item{year}{Un numeric (numerico) que contiene el año de los datos
+de la enfermedad o evento}
 
-\item{tipo}{Unidad de tiempo para el eje x (semana y fecha)}
+\item{tipo}{Un character (cadena de caracteres) que contiene la unidad de
+tiempo para el eje x ("week": semana y "date": fecha)}
 
-\item{etiqueta_x}{Etiqueta del eje x}
+\item{etiqueta_x}{Un character (cadena de caracteres) que contiene la
+etiqueta del eje x}
 
-\item{etiqueta_y}{Etiqueta del eje y}
+\item{etiqueta_y}{Un character (cadena de caracteres) que contiene la
+etiqueta del eje y}
 }
 \value{
-El gráfico de las semanas epidemiológicas
+Un plot o gráfico de las semanas epidemiológicas
 }
 \description{
 Función que genera el gráfico de las semanas epidemiológicas
@@ -41,7 +48,7 @@ Función que genera el gráfico de las semanas epidemiológicas
 data_resumida_sivigila <- import_data_resumen_sivigila()
 data_resumida_sivigila <- limpiar_encabezado(data_resumida_sivigila)
 data_filtrada <- filtrar_event("MALAR", data_resumida_sivigila)
-plot_semanaepi(data_filtrada,
+plot_semanaepi(data = data_filtrada,
                col_semana = "semana",
                col_casos = "casos",
                year = 2019,

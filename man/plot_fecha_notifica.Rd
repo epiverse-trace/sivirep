@@ -7,15 +7,19 @@
 plot_fecha_notifica(data_agrupada, col_nombre = "fec_not", uni_marca = "month")
 }
 \arguments{
-\item{data_agrupada}{Los datos de la enfermedad agrupados}
+\item{data_agrupada}{Un data frame que contiene los datos de la
+enfermedad o evento agrupados}
 
-\item{col_nombre}{Nombre de la columna en los datos de la
-enfermedad o evento agrupados que contiene las fechas de notificación}
+\item{col_nombre}{Un character (cadena de caracteres) que contiene el
+nombre de la columna en los datos de la enfermedad o evento agrupados que
+contiene las fechas de notificación; su valor por defecto es "fec_not"}
 
-\item{uni_marca}{Unidad de marcas (día, mes y año)}
+\item{uni_marca}{Un character (cadena de caracteres) que contiene la unidad
+de las marcas del gráfico ("day": día, "month": mes y "year": año); su
+valor por defecto es "month"}
 }
 \value{
-Un gráfico de distribución de casos por fecha de notificación
+Un plot o gráfico de distribución de casos por fecha de notificación
 }
 \description{
 Función que genera el gráfico de distribución de casos por
@@ -27,7 +31,7 @@ data_event <- limpiar_encabezado(data_event)
 data_agrupada <- agrupar_fecha_notifica(data_event,
                                         col_nombre = "fec_not",
                                         tipo = "month")
-plot_fecha_notifica(data_agrupada,
+plot_fecha_notifica(data_agrupada = data_agrupada,
                     col_nombre = "fec_not",
                     uni_marca = "month")
 }

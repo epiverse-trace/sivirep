@@ -13,26 +13,28 @@ plot_map(
 )
 }
 \arguments{
-\item{data_agrupada}{Los datos de la enfermedad agrupados por departamento
-y número de casos}
+\item{data_agrupada}{Un data frame que contiene los datos de la enfermedad
+agrupados por departamento y número de casos}
 
-\item{col_nombre_lj}{Nombre de la columna para unir con el archivo
-de forma (shape file)}
+\item{col_nombre_lj}{Un character (cadena de caracteres) que contiene el
+nombre de la columna para unir con el archivo de forma (shape file)}
 
-\item{fuente_data}{Leyenda o fuente de información de los datos
-de la enfermedad}
+\item{fuente_data}{Un character (cadena de caracteres) que contiene la
+leyenda o fuente de información de los datos de la enfermedad o evento}
 
-\item{dpto}{Nombre del departamento}
+\item{dpto}{Un character (cadena de caracteres) que contiene el
+nombre del departamento}
 
-\item{munpio}{Nombre del municipio}
+\item{munpio}{Un character (cadena de caracteres) que contiene el
+nombre del municipio}
 }
 \value{
-El mapa por departamentos o municipios con el número de casos de una
-enfermedad específica
+El plot o mapa por departamentos o municipios con el número de
+casos de una enfermedad específica
 }
 \description{
 Función que genera el mapa por departamentos o municipios con el número de
-casos de una enfermedad específica
+casos de una enfermedad o evento
 }
 \examples{
 data_event <- import_data_event(2019, "DENGUE")
@@ -41,7 +43,7 @@ data_espacial_dpto <- estandarizar_geo_cods(data_event)
 data_espacial_dpto <- geo_filtro(data_event = data_event,
                                  nombre_dpto = "Antioquia")
 data_espacial_dpto <- agrupar_mun(data_event, dept_nombre = "Antioquia")
-plot_map(data_espacial_dpto,
+plot_map(data_agrupada = data_espacial_dpto,
    col_nombre_lj = "id",
    fuente_data = "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia",
    dpto = "Antioquia",

@@ -7,22 +7,22 @@
 plot_map_dpto(data_agrupada, col_nombre_lj = "id", fuente_data = NULL)
 }
 \arguments{
-\item{data_agrupada}{Los datos de la enfermedad agrupados por departamento
-y número de casos}
+\item{data_agrupada}{Un data frame que contiene los datos de la enfermedad
+o evento agrupados por departamento y número de casos}
 
-\item{col_nombre_lj}{Nombre de la columna para unir con el archivo
-de forma (shape file)}
+\item{col_nombre_lj}{Un character (cadena de caracteres) que contiene el
+nombre de la columna para unir con el archivo de forma (shape file)}
 
-\item{fuente_data}{Leyenda o fuente de información de los datos de la
-enfermedad}
+\item{fuente_data}{Un character (cadena de caracteres) que contiene la
+leyenda o fuente de información de los datos de la enfermedad o evento}
 }
 \value{
-El mapa por departamento con el número de casos de una enfermedad
-específica
+Un plot con el mapa por departamento con el número de casos de
+la enfermedad o evento
 }
 \description{
-Función que genera el mapa por departamento con el número de casos de una
-enfermedad específica
+Función que genera el mapa por departamento con el número de casos
+de una enfermedad o evento
 }
 \examples{
 data_event <- import_data_event(2019, "DENGUE")

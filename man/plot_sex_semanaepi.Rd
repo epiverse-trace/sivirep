@@ -11,15 +11,19 @@ plot_sex_semanaepi(
 )
 }
 \arguments{
-\item{data_agrupada}{Los datos de la enfermedad agrupados}
+\item{data_agrupada}{Un data frame que contiene los datos de la enfermedad
+o evento agrupados}
 
-\item{col_nombres}{Nombres de columna en los datos de la
-enfermedad agrupados que contienen el sexo y las semanas epidemiológicas}
+\item{col_nombres}{Un array (arreglo) de character (cadena de caracteres) con
+los nombres de columna de los datos agrupados de la enfermedad o evento que
+contienen el sexo y las semanas epidemiológicas; su valor por defecto es
+c("sexo", "semana")}
 
-\item{porcentaje}{Indica si los datos tienen porcentajes}
+\item{porcentaje}{Un boolean (TRUE/FALSE) que indica si los datos tienen
+porcentajes; su valor por defecto es TRUE}
 }
 \value{
-Un gráfico de distribución de casos por sexo y semana
+Un plot o gráfico de distribución de casos por sexo y semana
 epidemiológica
 }
 \description{
@@ -32,7 +36,7 @@ data_event <- limpiar_encabezado(data_event)
 data_agrupada <- agrupar_sex_semanaepi(data_event,
                                        col_nombres = c("sexo", "semana"),
                                        porcentaje = TRUE)
-plot_sex_semanaepi(data_agrupada,
+plot_sex_semanaepi(data_agrupada = data_agrupada,
                    col_nombres = c("sexo", "semana"),
                    porcentaje = FALSE)
 }

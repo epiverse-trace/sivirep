@@ -11,16 +11,20 @@ plot_fecha_inisintomas(
 )
 }
 \arguments{
-\item{data_agrupada}{Los datos de la enfermedad agrupados}
+\item{data_agrupada}{Un data frame que contiene los datos de la enfermedad
+o evento agrupados}
 
-\item{col_nombre}{Nombre de la columna en los datos de la
-enfermedad agrupados que contiene
-las fechas de inicio de síntomas}
+\item{col_nombre}{Un character (cadena de caracteres) que contiene el
+nombre de la columna en los datos de la enfermedad o evento
+agrupados que contiene las fechas de inicio de síntomas; su valor por
+defecto es "ini_sin"}
 
-\item{uni_marca}{Unidad de marcas (día, mes y año)}
+\item{uni_marca}{Un character (cadena de caracteres) que contiene la unidad
+de las marcas del gráfico ("day": día, "month": mes y "year": año);
+su valor por defecto es "month"}
 }
 \value{
-Un gráfico de distribución de casos por fecha de inicio
+Un plot o gráfico de la distribución de casos por fecha de inicio
 de síntomas
 }
 \description{
@@ -34,7 +38,7 @@ data_agrupada <- agrupar_fecha_inisintomas(
                                      data_event,
                                      col_nombre = "ini_sin",
                                      tipo = "month")
-plot_fecha_inisintomas(data_agrupada,
+plot_fecha_inisintomas(data_agrupada = data_agrupada,
                        col_nombre = "ini_sin",
                        uni_marca = "month")
 }

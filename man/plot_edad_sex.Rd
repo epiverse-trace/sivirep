@@ -11,16 +11,19 @@ plot_edad_sex(
 )
 }
 \arguments{
-\item{data_agrupada}{Los datos de la enfermedad agrupados}
+\item{data_agrupada}{Un data frame que contiene los datos de la
+enfermedad o evento agrupados}
 
-\item{col_nombres}{Nombres de columna en los datos de la
-enfermedad o evento agrupados que contienen
-las edades y las semanas epidemiológicas}
+\item{col_nombres}{Un array (arreglo) de character (cadena de caracteres) con
+los nombres de columna de los datos agrupados de la enfermedad o evento que
+contiene las edades y las semanas epidemiológicas; su valor por defecto
+es c("edad", "sexo")}
 
-\item{porcentaje}{Indica si los datos tienen porcentajes}
+\item{porcentaje}{Un boolean (TRUE/FALSE) que indica si los datos tienen
+porcentajes; su valor por defecto es FALSE}
 }
 \value{
-Un gráfico de distribución de casos por edad y sexo
+Un plot o gráfico de distribución de casos por edad y sexo
 }
 \description{
 Función que genera el gráfico de distribución de casos por edad y sexo
@@ -31,7 +34,7 @@ data_event <- limpiar_encabezado(data_event)
 data_agrupada <- agrupar_edad_sex(data_event,
                                   col_nombres = c("edad", "sexo"),
                                   porcentaje = FALSE)
-plot_edad_sex(data_agrupada,
+plot_edad_sex(data_agrupada = data_agrupada,
               col_nombres = c("edad", "sexo"),
               porcentaje = FALSE)
 }

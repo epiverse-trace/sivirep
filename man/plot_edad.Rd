@@ -7,15 +7,18 @@
 plot_edad(data_agrupada, col_nombre = "edad", porcentaje = FALSE)
 }
 \arguments{
-\item{data_agrupada}{Los datos de la enfermedad agrupados}
+\item{data_agrupada}{Un data frame que contiene los datos de la enfermedad
+o evento agrupados}
 
-\item{col_nombre}{Nombre de la columna en los datos de la
-enfermedad o evento agrupados que contiene las edades}
+\item{col_nombre}{Un character (cadena de carácteres) con el nombre de
+la columna de los datos agrupados de la enfermedad o evento que contiene
+las edades; su valor por defecto es "edad"}
 
-\item{porcentaje}{Indica si los datos tienen porcentajes}
+\item{porcentaje}{Un boolean (TRUE/FALSE) que indica si los datos tienen
+porcentajes; su valor por defecto es FALSE}
 }
 \value{
-Un gráfico de distribución de casos por edad
+Un plot o gráfico de distribución de casos por edad
 }
 \description{
 Función que genera el gráfico de distribución de casos por edad
@@ -26,7 +29,7 @@ data_event <- limpiar_encabezado(data_event)
 data_agrupada <- agrupar_edad(data_event,
                               col_nombre = "edad",
                               porcentaje = FALSE)
-plot_edad(data_agrupada,
+plot_edad(data_agrupada = data_agrupada,
           col_nombre = "edad",
           porcentaje = FALSE)
 }

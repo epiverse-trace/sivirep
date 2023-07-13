@@ -24,51 +24,66 @@ plot_variable(
 )
 }
 \arguments{
-\item{data}{Los datos a graficar}
+\item{data}{Un data frame con los datos a graficar}
 
-\item{var_x}{El nombre de la variable para el eje x}
+\item{var_x}{Un character (cadena de caracteres) que contiene el nombre de
+la variable para el eje x}
 
-\item{var_y}{El nombre de la variable para el eje y}
+\item{var_y}{Un character (cadena de caracteres) que contiene el nombre de
+la variable para el eje y}
 
-\item{var_por}{El nombre de la variable si los datos tienen porcentajes}
+\item{var_por}{Un character (cadena de caracteres) que contiene el nombre
+de la variable si los datos tienen porcentajes; su valor por defecto es NULL}
 
-\item{var_fill}{La variable de llenado}
+\item{var_fill}{Un character (cadena de caracteres) que contiene la
+variable de llenado; su valor por defecto es NULL}
 
-\item{agr_per}{Indica si los datos tienen porcentajes}
+\item{agr_per}{Un boolean (TRUE/FALSE) que indica si los datos
+tienen porcentajes; su valor por defecto es TRUE}
 
-\item{etiqueta_x}{La etiqueta para el eje x}
+\item{etiqueta_x}{Un character (cadena de caracteres) que contiene
+la etiqueta para el eje x}
 
-\item{etiqueta_y}{La etiqueta para el eje y}
+\item{etiqueta_y}{Un character (cadena de caracteres) que contiene
+la etiqueta para el eje y}
 
-\item{nombre_escala}{El nombre de la escala}
+\item{nombre_escala}{Un character (cadena de caracteres) que contiene
+el nombre de la escala; su valor por defecto es NULL}
 
-\item{etiquetas_escala}{Las etiquetas de la escala}
+\item{etiquetas_escala}{Un array (arreglo) de character (cadena de
+caracteres) que contiene las etiquetas de la escala}
 
-\item{tit_diagram}{El título del diagrama}
+\item{tit_diagram}{Un character (cadena de caracteres) que contiene
+el título del diagrama; su valor por defecto es NULL}
 
-\item{pos_leyenda}{La posición de la leyenda}
+\item{pos_leyenda}{Un character (cadena de caracteres) que contiene la
+posición de la leyenda}
 
-\item{ancho_barra}{El ancho de las barra}
+\item{ancho_barra}{Un numeric (numerico) que contiene el ancho de las
+barras; su valor por defecto es 1}
 
-\item{tam_text}{El tamaño del texto}
+\item{tam_text}{Un numeric (numerico) que contiene el tamaño del texto;
+su valor por defecto es 3}
 
-\item{most_val}{Indica si las barras deben mostrar los valores}
+\item{most_val}{Un boolean (TRUE/FALSE) que indica si las barras deben
+mostrar los valores; su valor por defecto es TRUE}
 
-\item{fuente_data}{Leyenda o fuente de información de los datos}
+\item{fuente_data}{Un character (cadena de caracteres) que contiene la
+leyenda o fuente de información de los datos; su valor por defecto es NULL}
 }
 \value{
-El gráfico por variable(s) o columna(s)
+Un plot o gráfico por variable(s) o columna(s)
 }
 \description{
 Función que genera un gráfico por cualquier tipo de variable o columna de un
-dataframe
+data frame
 }
 \examples{
 data_event <- import_data_event(2019, "DENGUE")
 data_event <- limpiar_encabezado(data_event)
 cases_sex <- agrupar_sex(data_event,
                          porcentaje = TRUE)
-plot_variable(cases_sex,
+plot_variable(data = cases_sex,
   var_x = "sexo",
   var_y = "casos",
   var_fill = "sexo",
