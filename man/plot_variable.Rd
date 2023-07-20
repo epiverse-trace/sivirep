@@ -2,84 +2,99 @@
 % Please edit documentation in R/plotting.R
 \name{plot_variable}
 \alias{plot_variable}
-\title{Plot by variable(s) or column(s)}
+\title{Generar gráfico por variable(s) o columna(s)}
 \usage{
 plot_variable(
   data,
   var_x,
   var_y,
-  var_per = NULL,
+  var_por = NULL,
   var_fill = NULL,
-  wt_per = TRUE,
-  label_x,
-  label_y,
-  scale_name = NULL,
-  scale_labels = NULL,
-  diagram_title = NULL,
-  legend_pos,
-  bar_wd = 1,
-  text_sz = 3,
-  show_val = TRUE,
-  caption_label = NULL
+  agr_per = TRUE,
+  etiqueta_x,
+  etiqueta_y,
+  nombre_escala = NULL,
+  etiquetas_escala = NULL,
+  tit_diagram = NULL,
+  pos_leyenda,
+  ancho_barra = 1,
+  tam_text = 3,
+  most_val = TRUE,
+  fuente_data = NULL
 )
 }
 \arguments{
-\item{data}{The data to plot}
+\item{data}{Un data frame con los datos a graficar}
 
-\item{var_x}{The variable name for axis x}
+\item{var_x}{Un character (cadena de caracteres) que contiene el nombre de
+la variable para el eje x}
 
-\item{var_y}{The variable name for axis y}
+\item{var_y}{Un character (cadena de caracteres) que contiene el nombre de
+la variable para el eje y}
 
-\item{var_per}{The variable name if the data have percentages}
+\item{var_por}{Un character (cadena de caracteres) que contiene el nombre
+de la variable si los datos tienen porcentajes; su valor por defecto es NULL}
 
-\item{var_fill}{The variable fill}
+\item{var_fill}{Un character (cadena de caracteres) que contiene la
+variable de llenado; su valor por defecto es NULL}
 
-\item{wt_per}{Indicates if the data has percentages}
+\item{agr_per}{Un boolean (TRUE/FALSE) que indica si los datos
+tienen porcentajes; su valor por defecto es TRUE}
 
-\item{label_x}{The label for axis x}
+\item{etiqueta_x}{Un character (cadena de caracteres) que contiene
+la etiqueta para el eje x}
 
-\item{label_y}{The label for axis y}
+\item{etiqueta_y}{Un character (cadena de caracteres) que contiene
+la etiqueta para el eje y}
 
-\item{scale_name}{The scale name}
+\item{nombre_escala}{Un character (cadena de caracteres) que contiene
+el nombre de la escala; su valor por defecto es NULL}
 
-\item{scale_labels}{The scale labels}
+\item{etiquetas_escala}{Un array (arreglo) de character (cadena de
+caracteres) que contiene las etiquetas de la escala}
 
-\item{diagram_title}{The diagram title}
+\item{tit_diagram}{Un character (cadena de caracteres) que contiene
+el título del diagrama; su valor por defecto es NULL}
 
-\item{legend_pos}{The legend position}
+\item{pos_leyenda}{Un character (cadena de caracteres) que contiene la
+posición de la leyenda}
 
-\item{bar_wd}{The bar width}
+\item{ancho_barra}{Un numeric (numerico) que contiene el ancho de las
+barras; su valor por defecto es 1}
 
-\item{text_sz}{The text size}
+\item{tam_text}{Un numeric (numerico) que contiene el tamaño del texto;
+su valor por defecto es 3}
 
-\item{show_val}{Indicates if the bars should show the values}
+\item{most_val}{Un boolean (TRUE/FALSE) que indica si las barras deben
+mostrar los valores; su valor por defecto es TRUE}
 
-\item{caption_label}{Caption or information source of the disease data}
+\item{fuente_data}{Un character (cadena de caracteres) que contiene la
+leyenda o fuente de información de los datos; su valor por defecto es NULL}
 }
 \value{
-The plot by variable(s) or column(s)
+Un plot o gráfico por variable(s) o columna(s)
 }
 \description{
-Function that generates a graph by any type of variable or column of
-dataframe
+Función que genera un gráfico por cualquier tipo de variable o columna de un
+data frame
 }
 \examples{
-disease_data <- import_linelist_disease_year(2019, "DENGUE")
-disease_data <- clean_header(disease_data)
-cases_sex <- group_sex(disease_data,
-                       percentage = TRUE)
-plot_variable(cases_sex,
+data_event <- import_data_event(2019, "DENGUE")
+data_event <- limpiar_encabezado(data_event)
+cases_sex <- agrupar_sex(data_event,
+                         porcentaje = TRUE)
+plot_variable(data = cases_sex,
   var_x = "sexo",
   var_y = "casos",
   var_fill = "sexo",
-  var_per = "porcentaje",
-  label_x = "Sexo",
-  label_y = "Numero de casos",
-  scale_name = "Sexo",
-  scale_labels = c("Femenino", "Masculino"),
-  legend_pos = "right",
-  bar_wd = 0.5,
-  text_sz = 3,
-  show_val = TRUE
+  var_por = "porcentaje",
+  etiqueta_x = "Sexo",
+  etiqueta_y = "Numero de casos",
+  nombre_escala = "Sexo",
+  etiquetas_escala = c("Femenino", "Masculino"),
+  pos_leyenda = "right",
+  ancho_barra = 0.5,
+  tam_text = 3,
+  most_val = TRUE
   )
 }

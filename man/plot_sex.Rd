@@ -2,26 +2,34 @@
 % Please edit documentation in R/plotting.R
 \name{plot_sex}
 \alias{plot_sex}
-\title{Plot cases distribution by sex}
+\title{Generar gráfico de distribución de casos por sexo}
 \usage{
-plot_sex(data_grouped, col_name = "sexo", percentage = TRUE)
+plot_sex(data_agrupada, col_nombre = "sexo", porcentaje = TRUE)
 }
 \arguments{
-\item{data_grouped}{The disease data grouped}
+\item{data_agrupada}{Un data fram que contiene los datos de la
+enfermedad o evento agrupados}
 
-\item{col_name}{Column name in the disease data grouped that contains the sex}
+\item{col_nombre}{Un character (cadena de caracteres) con el
+nombre de la columna de los datos agrupados de la enfermedad
+o evento que contiene el sexo; su valor por defecto es "sexo"}
 
-\item{percentage}{Indicates if the data has percentages}
+\item{porcentaje}{Un boolean (TRUE/FALSE) que indica si los datos
+tienen porcentajes; su valor por defecto es TRUE}
 }
 \value{
-A plot of cases distribution by sex
+Un plot o gráfico de distribución de casos por sexo
 }
 \description{
-Function that generates the plot of cases distribution by sex
+Función que genera el gráfico de distribución de casos por sexo
 }
 \examples{
-disease_data <- import_linelist_disease_year(2020, "DENGUE")
-disease_data <- clean_header(disease_data)
-data_grouped <- group_sex(disease_data, col_name = "sexo", percentage = TRUE)
-plot_sex(data_grouped, col_name = "sexo", percentage = TRUE)
+data_event <- import_data_event(2020, "DENGUE")
+data_event <- limpiar_encabezado(data_event)
+data_agrupada <- agrupar_sex(data_event,
+                             col_nombre = "sexo",
+                             porcentaje = TRUE)
+plot_sex(data_agrupada = data_agrupada,
+         col_nombre = "sexo",
+         porcentaje = TRUE)
 }
