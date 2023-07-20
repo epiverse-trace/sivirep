@@ -17,8 +17,8 @@ library(sivirep)
 ## Malaria Report in Colombia 2019
 
 ```{r read, echo=FALSE, error=FALSE, fig.height=5, fig.width=5, warning=FALSE, include = FALSE, message= FALSE}
-sivigila_data <- import_sivigila_summary_data()
-filtered_data <- filter_disease("MALAR", sivigila_data)
+sivigila_data <- import_data_resumen_sivigila()
+filtered_data <- filtrar_event("MALAR", sivigila_data)
 
 ```
 
@@ -27,31 +27,31 @@ filtered_data <- filter_disease("MALAR", sivigila_data)
 
 ```{r epiweek, echo=FALSE, error=FALSE, fig.height=5, fig.width=10, warning=FALSE, include = TRUE, message= FALSE}
 
-plot_epiweek(filtered_data,
-             col_week = "semana",
-             col_cases = "conteo_casos",
-             year = 2019,
-             type = "date",
-             xlabel = "Fecha de semana epidemiologica")
+plot_semanaepi(filtered_data,
+               col_week = "semana",
+               col_cases = "conteo_casos",
+               year = 2019,
+               tipo = "date",
+               xlabel = "Fecha de semana epidemiologica")
 
 ```
 
 ## Spatial distribution of malaria cases in Colombia
 
 ```{r inciencia, echo=FALSE, error=FALSE, fig.height=8, fig.width=8, warning=FALSE, include = TRUE, message= FALSE}
-deptos_data    <- import_geo_codes()
-deptos_data    <- get_depto_codes(deptos_data)
-data_map_disease_deptos <- clean_depto_disease_codes(deptos_data,
-                                                     filtered_data)
-map <- plot_dept_map(data_map_disease_deptos, col_name_lj = "id")
+deptos_data    <- import_geo_cods()
+deptos_data    <- obtener_cods_dpto(deptos_data)
+data_map_disease_deptos <- limpiar_cods_event_dpto(deptos_data,
+                                                   filtered_data)
+map <- plot_map_dpto(data_map_disease_deptos, col_name_lj = "id")
 map
 
 ```
 ## Import Data
 
 ```{r import_data, echo=FALSE, error=FALSE, fig.height=8, fig.width=8, warning=FALSE, include = TRUE, message= FALSE}
-disease_data       <-  import_linelist_disease_year(2016, "DENGUE")
-disease_data_cache <- import_linelist_disease_year(2019, "DENGUE")
+disease_data       <-  import_data_event(2016, "DENGUE")
+disease_data_cache <- import_data_event(2019, "DENGUE")
 ```
 
 ## Distribution of cases by onset of symptoms
@@ -61,11 +61,11 @@ disease_dt_by_onset_sym$ini_sin <- as.Date(disease_data$fec_hos,
                                            format = "%AAAA-%MM-%DD")
 disease_dt_by_onset_sym$ini_sin <- as.Date(disease_data$ini_sin,
                                            format = "%AAAA-%MM-%DD")
-disease_dt_by_onset_sym <- remove_nin_values(disease_data,
-                                             "ini_sin")
-disease_dt_by_onset_sym <- remove_error_dates(disease_dt_by_onset_sym)
-disease_dt_by_onset_sym <- group_columns_cases(disease_dt_by_onset_sym,
-                                               "ini_sin")
+disease_dt_by_onset_sym <- remove_val_nin(disease_data,
+                                          "ini_sin")
+disease_dt_by_onset_sym <- remove_error_fecha(disease_dt_by_onset_sym)
+disease_dt_by_onset_sym <- agrupar_cols_casos(disease_dt_by_onset_sym,
+                                              "ini_sin")
 disease_dt_by_onset_sym[order(disease_dt_by_onset_sym$ini_sin,
                               decreasing = TRUE), ]
 
@@ -89,8 +89,8 @@ disease_data_dd$fecha_nto <- as.Date(disease_data$fecha_nto,
                                      format = "%AAAA-%MM-%DD")
 disease_data_dd$fec_def <- as.Date(disease_data$fec_def,
                                    format = "%AAAA-%MM-%DD")
-disease_data_dd <- remove_nin_values(disease_data_dd, "fecha_nto")
-disease_data_dd <- group_columns_cases(disease_data_dd, "fec_def")
+disease_data_dd <- remove_val_nin(disease_data_dd, "fecha_nto")
+disease_data_dd <- agrupar_cols_casos(disease_data_dd, "fec_def")
 disease_data_dd[order(disease_data_dd$fec_def, decreasing = TRUE), ]
 
 plot_variable(disease_data_dd,
@@ -110,7 +110,7 @@ plot_variable(disease_data_dd,
 disease_data_not <- disease_data
 disease_data_not$fec_not <- as.Date(disease_data$fec_not,
                                     format = "%AAAA-%MM-%DD")
-disease_data_not <- group_columns_cases(disease_data, "fec_not")
+disease_data_not <- agrupar_cols_casos(disease_data, "fec_not")
 disease_data_not[order(disease_data_not$fec_not, decreasing = TRUE), ]
 
 plot_variable(disease_data_not,
@@ -127,7 +127,7 @@ plot_variable(disease_data_not,
 
 ## Distribution of cases by special populations
 ```{r distribution_sp, echo=FALSE, error=FALSE, fig.height=5, fig.width=10, warning=FALSE, include=TRUE, message=FALSE}
-disease_dt_special <- get_special_population_cases(disease_data)
+disease_dt_special <- obtener_casos_pob_especial(disease_data)
 
 plot_variable(disease_dt_special,
               var_x = "Poblacion",
@@ -146,9 +146,9 @@ plot_variable(disease_dt_special,
 
 ## Distribution of cases by gender
 ```{r distribution_cg, echo=FALSE, error=FALSE, fig.height=5, fig.width=10, warning=FALSE, include=TRUE, message=FALSE}
-disease_dt_by_gender <- group_columns_cases(disease_data,
-                                            "sexo",
-                                            wt_percentage = TRUE)
+disease_dt_by_gender <- agrupar_cols_casos(disease_data,
+                                           "sexo",
+                                           agr_porcentaje = TRUE)
 
 plot_variable(disease_dt_by_gender,
               var_x = "sexo",
@@ -168,9 +168,9 @@ plot_variable(disease_dt_by_gender,
 
 ## Distribution of cases by gender and epidemiological week
 ```{r distribution_epiweek, echo=FALSE, error=FALSE, fig.height=5, fig.width=10, warning=FALSE, include=TRUE, message=FALSE}
-disease_dt_by_gender_wk <- group_columns_cases(disease_data,
-                                               c("semana", "sexo"),
-                                               TRUE)
+disease_dt_by_gender_wk <- agrupar_cols_casos(disease_data,
+                                              c("semana", "sexo"),
+                                              TRUE)
 
 plot_variable(disease_dt_by_gender_wk,
               var_x = "semana",
@@ -190,17 +190,17 @@ plot_variable(disease_dt_by_gender_wk,
 
 ## Distribution of cases by age
 ```{r distribution_age, echo=FALSE, error=FALSE, fig.height=5, fig.width=10, warning=FALSE, include=TRUE, message=FALSE}
-disease_dt_by_age <- parse_age_to_years(disease_data)
-disease_dt_by_age <- remove_nin_values(disease_dt_by_age, "edad")
-disease_dt_by_age <- group_columns_cases(disease_dt_by_age,
-                                         c("edad", "semana"),
-                                         wt_percentage = TRUE)
+disease_dt_by_age <- convert_edad(disease_data)
+disease_dt_by_age <- remove_val_nin(disease_dt_by_age, "edad")
+disease_dt_by_age <- agrupar_cols_casos(disease_dt_by_age,
+                                        c("edad", "semana"),
+                                        agr_porcentaje = TRUE)
 disease_dt_by_age_range <-
-  group_age_range_cases(disease_dt_by_age,
-                        "edad",
-                        min_val = 0,
-                        max_val = max(disease_dt_by_age$edad),
-                        step = 10)
+  agrupar_edad_range_cases(disease_dt_by_age,
+                           "edad",
+                           min_val = 0,
+                           max_val = max(disease_dt_by_age$edad),
+                           step = 10)
 plot_variable(disease_dt_by_age_range,
               var_x = "edad",
               var_y = "casos",
@@ -216,17 +216,17 @@ plot_variable(disease_dt_by_age_range,
 
 ## Distribution of cases by age and gender
 ```{r distribution_age_anger, echo=FALSE, error=FALSE, fig.height=5, fig.width=10, warning=FALSE, include=TRUE, message=FALSE}
-disease_dt_by_age_gen <- parse_age_to_years(disease_data)
-disease_dt_by_age_gen <- remove_nin_values(disease_dt_by_age_gen, "edad")
-disease_dt_by_age_gen <- group_columns_cases(disease_dt_by_age_gen,
-                                             c("edad", "sexo"),
-                                             wt_percentage = TRUE)
+disease_dt_by_age_gen <- convert_edad(disease_data)
+disease_dt_by_age_gen <- remove_val_nin(disease_dt_by_age_gen, "edad")
+disease_dt_by_age_gen <- agrupar_cols_casos(disease_dt_by_age_gen,
+                                            c("edad", "sexo"),
+                                            agr_porcentaje = TRUE)
 disease_dt_by_age_gen_range <-
-  group_age_range_cases(disease_dt_by_age_gen,
-                        "edad",
-                        "sexo",
-                        min_val = 0,
-                        max_val = max(disease_dt_by_age_gen$edad), 10)
+  agrupar_edad_range_cases(disease_dt_by_age_gen,
+                           "edad",
+                           "sexo",
+                           min_val = 0,
+                           max_val = max(disease_dt_by_age_gen$edad), 10)
 
 plot_variable(disease_dt_by_age_gen_range,
               var_x = "edad",
