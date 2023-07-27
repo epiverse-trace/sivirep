@@ -282,6 +282,7 @@ agrupar_rango_edad_casos <- function(data_event,
 agrupar_cols_casos <- function(data_event,
                                cols_nombres,
                                agr_porcentaje = FALSE) {
+  cols_nombres <- append(cols_nombres, c("nombre_evento"))
   data_event_agrupada <- data_event %>%
     dplyr::group_by_at(cols_nombres) %>%
     dplyr::summarise(casos = dplyr::n(), .groups = "drop")
