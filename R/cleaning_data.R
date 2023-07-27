@@ -391,11 +391,14 @@ limpiar_data_sivigila <- function(data_event, year) {
                                  "dates_column_names")
   data_event_limp <- format_fecha(data_event,
                                   nombres_col = nom_cols_fechas)
-  data_event_limp <- limpiar_fecha_event(data_event_limp, year,
-                                         nombre_col = nom_cols_fechas[3],
-                                         col_comp = nom_cols_fechas[4])
-  data_event_limp <- limpiar_fecha_event(data_event_limp, year,
-                                         nombre_col = nom_cols_fechas[2])
+  nombre <- unique(data_event$nombre_evento)
+  if (!stringr::str_detect(nombre, "MORTALIDAD")) {
+    data_event_limp <- limpiar_fecha_event(data_event_limp, year,
+                                           nombre_col = nom_cols_fechas[3],
+                                           col_comp = nom_cols_fechas[4])
+    data_event_limp <- limpiar_fecha_event(data_event_limp, year,
+                                           nombre_col = nom_cols_fechas[2]) 
+  }
   data_event_limp <- estandarizar_geo_cods(data_event_limp)
   data_event_limp <- convert_edad(data_event_limp,
                                   col_edad = "edad",
