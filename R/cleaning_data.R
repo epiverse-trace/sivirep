@@ -376,7 +376,7 @@ limpiar_val_atipic <- function(data_event) {
 #' una enfermedad o evento
 #' @param year Un numeric (numerico) que contiene el año de los
 #' datos de una enfermedad o evento
-#' @return Un data framecon los datos limpios de la enfermedad o evento
+#' @return Un data frame con los datos limpios de la enfermedad o evento
 #' @examples
 #' year <- 2019
 #' data_event <- import_data_event(year, "DENGUE")
@@ -392,7 +392,7 @@ limpiar_data_sivigila <- function(data_event, year) {
   data_event_limp <- format_fecha(data_event,
                                   nombres_col = nom_cols_fechas)
   nombre <- unique(data_event$nombre_evento)
-  if (!stringr::str_detect(nombre, "MORTALIDAD")) {
+  if (length(nombre) == 1 && !stringr::str_detect(nombre, "MORTALIDAD")) {
     data_event_limp <- limpiar_fecha_event(data_event_limp, year,
                                            nombre_col = nom_cols_fechas[3],
                                            col_comp = nom_cols_fechas[4])
