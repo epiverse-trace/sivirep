@@ -6,8 +6,6 @@
 \alias{sivirep-package}
 \title{sivirep: Data Wrangling and Automated Reports from 'SIVIGILA' source}
 \description{
-\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
-
 Provides functions for data wrangling and automated reports from SIVIGILA source.
 }
 \author{
