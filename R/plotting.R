@@ -306,9 +306,11 @@ plot_variable <- function(data, var_x, var_y, var_por = NULL,
     if (ncol(data) == 3 || (!is.null(var_fill) && var_fill == "sexo"))
       ggplot2::scale_fill_manual(values = c("#56B4E9", "#E69F00"))
     else ggplot2::theme(legend.position = pos_leyenda)
+  } + {
+    if (length(unique(data$nombre_evento)) > 1)
+      ggplot2::facet_wrap(~nombre_evento)
   }
 }
-
 
 #' Generar gráfico de distribución de casos por fecha de inicio de síntomas
 #'

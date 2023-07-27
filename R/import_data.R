@@ -144,8 +144,17 @@ list_events <- function() {
     children_text <- children_text[-base::which(children_text == disease)]
     i <- i + 2
   }
+  additional_diseases <- config::get(file =
+                                       system.file("extdata",
+                                                   "config.yml",
+                                                   package = "sivirep"),
+                                     "additional_diseases")
+  name_diseases <- base::append(name_diseases, additional_diseases)
+  years_diseases <- base::append(years_diseases, c("", ""))
   list_events <- data.frame(enfermedad = name_diseases,
                             aa = years_diseases)
+  list_events <- list_events[order(list_events$enfermedad,
+                                   decreasing = FALSE), ]
   return(list_events)
 }
 
@@ -168,10 +177,21 @@ list_events <- function() {
 import_data_event <- function(year,
                               nombre_event,
                               cache = TRUE) {
-  data_url <- get_path_data_disease_year(year, nombre_event)
-  event_data <- data.frame()
-  event_data <- import_sep_data(data_url)
-  return(event_data)
+  data_event <- data.frame()
+  list_events <- list_events()
+  grupo_events <-
+    list_events[which(stringr::str_detect(list_events$enfermedad,
+                                          substr(nombre_event,
+                                                 1,
+                                                 nchar(nombre_event) - 1))), ]
+  for (event in grupo_events$enfermedad) {
+    data_url <- get_path_data_disease_year(year, event)
+    data_import <- import_sep_data(data_url)
+    data_import <- limpiar_encabezado(data_import)
+    data_import$fec_def <- as.character(data_import$fec_def)
+    data_event <- rbind(data_event, data_import)
+  }
+  return(data_event)
 }
 
 #' Obtener el nombre del archivo desde una URL
