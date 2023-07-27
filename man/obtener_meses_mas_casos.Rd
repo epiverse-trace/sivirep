@@ -8,7 +8,7 @@ obtener_meses_mas_casos(
   data_event,
   col_fechas,
   col_casos = "casos",
-  top = 3,
+  top = 1,
   concat_vals = TRUE
 )
 }
