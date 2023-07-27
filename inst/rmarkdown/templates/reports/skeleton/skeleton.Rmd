@@ -97,9 +97,16 @@ casos_sex <- agrupar_sex(data_event_filtrada)
 porcentaje_masculino <- casos_sex$porcentaje[2]
 porcentaje_femenino <- casos_sex$porcentaje[1]
 sexo_mayor_casos <- obtener_fila_mas_casos(casos_sex)
+
+sexo_mayor <- c("femenino", porcentaje_femenino)
+sexo_menor <- c("masculino", porcentaje_masculino)
+if (porcentaje_femenino < porcentaje_masculino) {
+  sexo_mayor <- c("masculino", porcentaje_masculino)
+  sexo_menor <- c("femenino", porcentaje_femenino)
+}
 ```
 
-En el total de casos para `r params$year` se observa una predominancia del sexo masculino (`r porcentaje_masculino`%) con respecto al sexo femenino (`r porcentaje_femenino`%) (Ver Figura 3).
+En el total de casos para `r params$year` se observa una predominancia del sexo `r sexo_mayor[1]` (`r sexo_mayor[2]`)% respecto al sexo `r sexo_menor[1]` (`r sexo_menor[2]`)% (Ver Figura 3).
 
 ```{r distribution_cg_plot, fig.height = 4, fig.width = 9, fig.cap =  "Distribucion de casos por genero"}
 plot_sex(casos_sex)
@@ -110,7 +117,7 @@ plot_sex(casos_sex)
 casos_sex_semanaepi <- agrupar_sex_semanaepi(data_event = data_event_filtrada)
 ```
 
-Esta predominancia del reporte de casos en sexo masculino se mantuvo a lo largo de todas las semanas epidemiológicas (Ver figura 4).
+Esta predominancia del reporte de casos del sexo `r sexo_mayor[1]` se mantuvo a lo largo de la mayoria de semanas epidemiológicas (Ver figura 4).
 
 ```{r plot_cg_semanaepi, fig.height = 5, fig.width = 11, fig.cap =  "Distribucion de casos por genero y semana epidemiologica"}
 plot_sex_semanaepi(data_agrupada = casos_sex_semanaepi)
@@ -123,7 +130,7 @@ casos_edad <- agrupar_edad(data_event = data_event_filtrada, interval_edad = 10)
 age_most_cases <- obtener_fila_mas_casos(casos_edad)
 ```
 
-La distribución de los casos por grupos etarios muestra una tendencia decreciente a medida que se avanza en la edad. La población de `r age_most_cases$edad` años representó el `r  age_most_cases$porcentaje` % de todos los casos de `r stringr::str_to_title(params$nombre_evento)` en el país (Ver figura 5). De forma interesante, aunque el sexo masculino predominó en casi todos los grupos etários, para el grupo de 0-10 años esta predominancia fue mucho menos marcada (Ver Figura 6).
+La distribución de los casos por grupos etarios muestra una tendencia decreciente a medida que se avanza en la edad. La población de `r age_most_cases$edad` años representó el `r  age_most_cases$porcentaje` % de todos los casos de `r stringr::str_to_title(params$nombre_evento)` (Ver figura 5).
 
 ```{r distribution_age, fig.height = 3, fig.width = 8, fig.cap =  "Distribucion de casos por edad"}
 plot_edad(data_agrupada = casos_edad)
@@ -174,6 +181,7 @@ mapa
 # Conclusiones
 
 a.  Los casos totales reportados de `r stringr::str_to_title(params$nombre_evento)` en Colombia en el año `r params$year` fueron `r nrow(data_event)`.
-b.  Los meses de `r meses_mayor_casos` tuvieron el mayor reporte.
-c.  El reporte de casos de `r stringr::str_to_title(params$nombre_evento)` a lo largo de `r params$year` predominó en la población de `r age_most_cases$edad` años.
-d.  El reporte de casos de `rstringr::str_to_title(params$nombre_evento)` predominó a lo largo del año en el sexo masculino.
+b.  Los casos totales reportados de `r stringr::str_to_title(params$nombre_evento)` en el departamento del `r params$departmento` en el año `r params$year` fueron `r nrow(data_event_filtrada)`.
+c.  Los meses de `r meses_mayor_casos` tuvieron el mayor reporte.
+d.  El reporte de casos de `r stringr::str_to_title(params$nombre_evento)` a lo largo de `r params$year` predominó en la población de `r age_most_cases$edad` años.
+e.  El reporte de casos de `r stringr::str_to_title(params$nombre_evento)` predominó a lo largo del año en el sexo `r sexo_mayor[1]`.
