@@ -397,7 +397,7 @@ limpiar_data_sivigila <- function(data_event, year) {
                                            nombre_col = nom_cols_fechas[3],
                                            col_comp = nom_cols_fechas[4])
     data_event_limp <- limpiar_fecha_event(data_event_limp, year,
-                                           nombre_col = nom_cols_fechas[2]) 
+                                           nombre_col = nom_cols_fechas[2])
   }
   data_event_limp <- estandarizar_geo_cods(data_event_limp)
   data_event_limp <- convert_edad(data_event_limp,
