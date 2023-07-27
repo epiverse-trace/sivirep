@@ -68,7 +68,7 @@ En este reporte se presenta el comportamiento del `r stringr::str_to_title(param
 casos_iniciosin_dia <- agrupar_fecha_inisintomas(data_event_filtrada,
                                                  tipo = "day")
 mes_mayor_casos <- obtener_meses_mas_casos(data_event = casos_iniciosin_dia,
-                                             col_fechas = "ini_sin")
+                                           col_fechas = "ini_sin")
 ```
 
 Los casos se distribuyen a lo largo de los meses de enero a diciembre de `r params$year`, teniendo un mayor reporte en el mes de `r mes_mayor_casos` tanto por fecha de inicio de síntomas (Ver Figura 1) como por fecha de notificación (Ver Figura 2).
