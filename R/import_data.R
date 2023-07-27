@@ -185,11 +185,13 @@ import_data_event <- function(year,
                                                  1,
                                                  nchar(nombre_event) - 1))), ]
   for (event in grupo_events$enfermedad) {
-    data_url <- get_path_data_disease_year(year, event)
-    data_import <- import_sep_data(data_url)
-    data_import <- limpiar_encabezado(data_import)
-    data_import$fec_def <- as.character(data_import$fec_def)
-    data_event <- rbind(data_event, data_import)
+    if (event != "MALARIA") {
+      data_url <- get_path_data_disease_year(year, event)
+      data_import <- import_sep_data(data_url)
+      data_import <- limpiar_encabezado(data_import)
+      data_import$fec_def <- as.character(data_import$fec_def)
+      data_event <- rbind(data_event, data_import)
+    }
   }
   return(data_event)
 }

@@ -67,11 +67,11 @@ En este reporte se presenta el comportamiento del `r stringr::str_to_title(param
 ```{r cases_by_onset_symptom_date, include = FALSE}
 casos_iniciosin_dia <- agrupar_fecha_inisintomas(data_event_filtrada,
                                                  tipo = "day")
-meses_mayor_casos <- obtener_meses_mas_casos(data_event = casos_iniciosin_dia,
+mes_mayor_casos <- obtener_meses_mas_casos(data_event = casos_iniciosin_dia,
                                              col_fechas = "ini_sin")
 ```
 
-Los casos se distribuyen a lo largo de los meses de enero a diciembre de `r params$year`, teniendo un mayor reporte en los meses `r meses_mayor_casos` tanto por fecha de inicio de síntomas (Ver Figura 1) como por fecha de notificación (Ver Figura 2).
+Los casos se distribuyen a lo largo de los meses de enero a diciembre de `r params$year`, teniendo un mayor reporte en el mes de `r mes_mayor_casos` tanto por fecha de inicio de síntomas (Ver Figura 1) como por fecha de notificación (Ver Figura 2).
 
 ```{r plot_cases_by_onset_symptom_date, fig.height = 5, fig.width = 10, fig.cap = "Distribucion de casos por dia de inicio de sintomas"}
 plot_fecha_inisintomas(data_agrupada = casos_iniciosin_dia,
@@ -182,6 +182,6 @@ mapa
 
 a.  Los casos totales reportados de `r stringr::str_to_title(params$nombre_evento)` en Colombia en el año `r params$year` fueron `r nrow(data_event)`.
 b.  Los casos totales reportados de `r stringr::str_to_title(params$nombre_evento)` en el departamento del `r params$departmento` en el año `r params$year` fueron `r nrow(data_event_filtrada)`.
-c.  Los meses de `r meses_mayor_casos` tuvieron el mayor reporte.
+c.  El mes de `r mes_mayor_casos` tuvo el mayor reporte.
 d.  El reporte de casos de `r stringr::str_to_title(params$nombre_evento)` a lo largo de `r params$year` predominó en la población de `r age_most_cases$edad` años.
 e.  El reporte de casos de `r stringr::str_to_title(params$nombre_evento)` predominó a lo largo del año en el sexo `r sexo_mayor[1]`.
