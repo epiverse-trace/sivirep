@@ -308,7 +308,7 @@ plot_variable <- function(data, var_x, var_y, var_por = NULL,
     else ggplot2::theme(legend.position = pos_leyenda)
   } + {
     if (length(unique(data$nombre_evento)) > 1)
-      ggplot2::facet_grid(~nombre_evento, scales = "free")
+      ggplot2::facet_wrap(~nombre_evento)
   }
 }
 
