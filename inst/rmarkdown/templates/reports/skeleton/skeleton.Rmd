@@ -13,7 +13,7 @@ header-includes:
 subtitle: (fuente SIVIGILA, Datos libres)
 params:
   nombre_evento:
-    value: "DENGUE"
+    value: "MORTALIDAD MATERNA"
     label: Enfermedad
     input: select
     choices: !r sivirep::list_events()$enfermedad
@@ -100,9 +100,11 @@ sexo_mayor_casos <- obtener_fila_mas_casos(casos_sex)
 
 sexo_mayor <- c("femenino", porcentaje_femenino)
 sexo_menor <- c("masculino", porcentaje_masculino)
-if (porcentaje_femenino < porcentaje_masculino) {
-  sexo_mayor <- c("masculino", porcentaje_masculino)
-  sexo_menor <- c("femenino", porcentaje_femenino)
+if (!is.na(porcentaje_femenino) && !is.na(porcentaje_masculino)) {
+  if (porcentaje_femenino < porcentaje_masculino) {
+    sexo_mayor <- c("masculino", porcentaje_masculino)
+    sexo_menor <- c("femenino", porcentaje_femenino)
+  }
 }
 ```
 
