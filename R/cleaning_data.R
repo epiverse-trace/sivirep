@@ -376,7 +376,7 @@ limpiar_val_atipic <- function(data_event) {
 #' una enfermedad o evento
 #' @param year Un numeric (numerico) que contiene el año de los
 #' datos de una enfermedad o evento
-#' @return Un data framecon los datos limpios de la enfermedad o evento
+#' @return Un data frame con los datos limpios de la enfermedad o evento
 #' @examples
 #' year <- 2019
 #' data_event <- import_data_event(year, "DENGUE")
