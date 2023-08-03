@@ -173,16 +173,16 @@ convert_edad <- function(data_event,
 #' incluyen NA, Infinito o NaN
 #' @param data_event Un data frame que contiene los datos de una
 #' enfermedad o evento
-#' @param nom_col Un character (cadena de caracteres) que contiene el
+#' @param column Un character (cadena de caracteres) que contiene el
 #' nombre de la columna en los datos de una enfermedad o evento a evaluar
 #' @return Los datos limpios sin valores NA, Infinito o NaN
 #' @examples
 #' data_event <- import_data_event(2019, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
-#' remove_val_nin(data_event = data_event, nom_col = "edad")
+#' remove_val_nin(data_event = data_event, column = "edad")
 #' @export
-remove_val_nin <- function(data_event, nom_col) {
-  ref_col <- paste0("data_event$", nom_col)
+remove_val_nin <- function(data_event, column) {
+  ref_col <- paste0("data_event$", column)
   data_event_del <- data_event
   del_rows <-
     which(ifelse(is.na(eval(parse(text = ref_col))), TRUE,
@@ -229,7 +229,7 @@ remove_error_fecha <- function(data_event,
 #' de un evento o enfermedad
 #' @param format_fecha Un character (cadena de caracteres)
 #' que contiene  el formato deseado de fecha
-#' @param nombres_col Un character (cadena de caracteres) que
+#' @param columns Un character (cadena de caracteres) que
 #' contiene los nombres de la columna a formatear
 #' @return Un data framecon los datos con las fechas formateadas
 #' @examples
@@ -237,13 +237,13 @@ remove_error_fecha <- function(data_event,
 #' data_event <- format_fecha(data_event)
 #' format_fecha(data_event = data_event,
 #'              format_fecha = "%AAAA-%MM-%DD",
-#'              nombres_col = c("ini_sin", "fec_hos"))
+#'              columns = c("ini_sin", "fec_hos"))
 #' @export
 format_fecha <- function(data_event,
                          format_fecha = "%AAAA-%MM-%DD",
-                         nombres_col = c()) {
+                         columns = c()) {
   data_event_limp <- data_event
-  for (name in nombres_col) {
+  for (name in columns) {
     if (!is.null(name)) {
       ref_col <- eval(parse(text = paste0("data_event_limp$", name)))
       ref_col <- as.Date(ref_col, format = format_fecha)
@@ -278,7 +278,7 @@ limpiar_encabezado <- function(data_event) {
 #' de una enfermedad o evento
 #' @param format_fecha Un character (cadena de caracteres) que contiene
 #' el formato deseado de fecha; su valor por defecto es "\%AAAA-\%MM-\%DD"
-#' @param nombre_col Un character (cadena de caracteres) que contiene
+#' @param column Un character (cadena de caracteres) que contiene
 #' el nombre de la columna del conjunto de datos
 #' @param col_comp Un character (cadena de caracteres) que contiene el
 #' nombre de la columna de comparación del conjunto de datos
@@ -289,27 +289,27 @@ limpiar_encabezado <- function(data_event) {
 #' limpiar_fecha_event(data_event = data_event,
 #'                     year = 2020,
 #'                     format_fecha = "%AAAA-%MM-%DD",
-#'                     nombre_col = "ini_sin",
+#'                     column = "ini_sin",
 #'                     col_comp = "fec_hos")
 #' @export
 limpiar_fecha_event <- function(data_event,
                                 year,
                                 format_fecha = "%AAAA-%MM-%DD",
-                                nombre_col = "ini_sin",
+                                column = "ini_sin",
                                 col_comp = NULL) {
   data_event_fecha_ini <- data_event
   if (!is.null(col_comp)) {
     data_event_fecha_ini <-
       remove_error_fecha(data_event_fecha_ini,
-                         nombre_col,
+                         column,
                          col_comp)
   }
   data_event_fecha_ini[order(eval(parse(text =
                                           paste0("data_event_fecha_ini$",
-                                                 nombre_col))),
+                                                 column))),
                              decreasing = TRUE), ]
   data_event_fecha_ini <- data_event_fecha_ini[format(eval(
-    parse(text = paste0("data_event_fecha_ini$", nombre_col))
+    parse(text = paste0("data_event_fecha_ini$", column))
   ), "%Y") == year, ]
   return(data_event_fecha_ini)
 }
@@ -319,7 +319,7 @@ limpiar_fecha_event <- function(data_event,
 #' Función que limpia las edades de los datos de una enfermedad o evento
 #' @param data_event Un data frame que contiene los datos de una
 #' enfermedad o evento
-#' @param nombre_col Un character (cadena de caracteres) con el nombre
+#' @param column Un character (cadena de caracteres) con el nombre
 #' de la columna de los datos que contiene las edades;
 #' su valor por defecto es edad
 #' @return Un data framecon los datos de una enfermedad o evento
@@ -327,11 +327,11 @@ limpiar_fecha_event <- function(data_event,
 #' @examples
 #' data_event <- import_data_event(2020, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
-#' limpiar_edad_event(data_event = data_event, nombre_col = "edad")
+#' limpiar_edad_event(data_event = data_event, column = "edad")
 #' @export
-limpiar_edad_event <- function(data_event, nombre_col = "edad") {
+limpiar_edad_event <- function(data_event, column = "edad") {
   data_event_years <- convert_edad(data_event)
-  data_event_years <- remove_val_nin(data_event_years, nombre_col)
+  data_event_years <- remove_val_nin(data_event_years, column)
 }
 
 #' Limpiar los valores atipicos de los datos
@@ -358,8 +358,8 @@ limpiar_val_atipic <- function(data_event) {
       code <- names(event)
       if (cod_event %in% code) {
         cols <- event[as.character(cod_event)]
-        for (nom_cols in cols) {
-          for (col in nom_cols) {
+        for (columns in cols) {
+          for (col in columns) {
             data_event[eval(parse(text = col))] <- NA
           }
         }
@@ -385,19 +385,19 @@ limpiar_val_atipic <- function(data_event) {
 limpiar_data_sivigila <- function(data_event, year) {
   data_event <- limpiar_encabezado(data_event)
   data_event <- limpiar_edad_event(data_event)
-  nom_cols_fechas <- config::get(file = system.file("extdata",
+  columns_fechas <- config::get(file = system.file("extdata",
                                                     "config.yml",
                                                     package = "sivirep"),
                                  "dates_column_names")
   data_event_limp <- format_fecha(data_event,
-                                  nombres_col = nom_cols_fechas)
+                                  columns = columns_fechas)
   nombre <- unique(data_event$nombre_evento)
   if (length(nombre) == 1 && !stringr::str_detect(nombre, "MORTALIDAD")) {
     data_event_limp <- limpiar_fecha_event(data_event_limp, year,
-                                           nombre_col = nom_cols_fechas[3],
-                                           col_comp = nom_cols_fechas[4])
+                                           column = columns_fechas[3],
+                                           col_comp = columns_fechas[4])
     data_event_limp <- limpiar_fecha_event(data_event_limp, year,
-                                           nombre_col = nom_cols_fechas[2])
+                                           column = columns_fechas[2])
   }
   data_event_limp <- estandarizar_geo_cods(data_event_limp)
   data_event_limp <- convert_edad(data_event_limp,
