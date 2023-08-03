@@ -75,7 +75,7 @@ plot_semanaepi <- function(data,
 #' de una enfermedad o evento
 #' @param data_agrupada Un data frame que contiene los datos de la enfermedad
 #' o evento agrupados por departamento y número de casos
-#' @param col_nombre_lj Un character (cadena de caracteres) que contiene el
+#' @param column_lj Un character (cadena de caracteres) que contiene el
 #' nombre de la columna para unir con el archivo de forma (shape file)
 #' @param fuente_data Un character (cadena de caracteres) que contiene la
 #' leyenda o fuente de información de los datos de la enfermedad o evento
@@ -87,11 +87,11 @@ plot_semanaepi <- function(data,
 #' data_event <- estandarizar_geo_cods(data_event)
 #' data_dpto <- agrupar_dpto(data_event)
 #' plot_map_dpto(data_dpto,
-#'    col_nombre_lj = "id",
+#'    column_lj = "id",
 #'    fuente_data = "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia")
 #' @export
 plot_map_dpto <- function(data_agrupada,
-                          col_nombre_lj = "id",
+                          column_lj = "id",
                           fuente_data = NULL) {
   if (is.null(fuente_data)) {
     fuente_data <- "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
@@ -102,7 +102,7 @@ plot_map_dpto <- function(data_agrupada,
   colnames(shp)[colnames(shp) == "DPTO"] <- "id"
   shp <- ggplot2::fortify(shp, region = "id")
   shp <- shp %>%
-    dplyr::left_join(data_agrupada, by = col_nombre_lj)
+    dplyr::left_join(data_agrupada, by = column_lj)
   shp <- cbind(shp, sf::st_coordinates(sf::st_centroid(shp$geometry)))
   map <- ggplot2::ggplot() +
     ggplot2::geom_sf() +
@@ -120,7 +120,7 @@ plot_map_dpto <- function(data_agrupada,
 #' casos de una enfermedad o evento
 #' @param data_agrupada Un data frame que contiene los datos de la enfermedad
 #' agrupados por departamento y número de casos
-#' @param col_nombre_lj Un character (cadena de caracteres) que contiene el
+#' @param column_lj Un character (cadena de caracteres) que contiene el
 #' nombre de la columna para unir con el archivo de forma (shape file)
 #' @param fuente_data Un character (cadena de caracteres) que contiene la
 #' leyenda o fuente de información de los datos de la enfermedad o evento
@@ -138,13 +138,13 @@ plot_map_dpto <- function(data_agrupada,
 #'                                  nombre_dpto = "Antioquia")
 #' data_espacial_dpto <- agrupar_mun(data_event, dept_nombre = "Antioquia")
 #' plot_map(data_agrupada = data_espacial_dpto,
-#'    col_nombre_lj = "id",
+#'    column_lj = "id",
 #'    fuente_data = "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia",
 #'    dpto = "Antioquia",
 #'    munpio = "Envigado")
 #' @export
 plot_map <- function(data_agrupada,
-                     col_nombre_lj = "id",
+                     column_lj = "id",
                      fuente_data = NULL,
                      dpto = NULL,
                      munpio = NULL) {
@@ -174,7 +174,7 @@ plot_map <- function(data_agrupada,
   }
   polygon_seleccionado <- ggplot2::fortify(polygon_seleccionado, region = "id")
   polygon_seleccionado <- polygon_seleccionado %>%
-    dplyr::left_join(data_agrupada, by = col_nombre_lj)
+    dplyr::left_join(data_agrupada, by = column_lj)
   polygon_seleccionado <-
     cbind(polygon_seleccionado,
           sf::st_coordinates(sf::st_centroid(polygon_seleccionado$geometry)))
@@ -321,7 +321,7 @@ plot_variable <- function(data, var_x, var_y, var_por = NULL,
 #' @param uni_marca Un character (cadena de caracteres) que contiene la unidad
 #' de las marcas del gráfico ("day": día, "month": mes y "year": año);
 #' su valor por defecto es "month"
-#' @param col_nombre Un character (cadena de caracteres) que contiene el
+#' @param column Un character (cadena de caracteres) que contiene el
 #' nombre de la columna en los datos de la enfermedad o evento
 #' agrupados que contiene las fechas de inicio de síntomas; su valor por
 #' defecto es "ini_sin"
@@ -332,24 +332,24 @@ plot_variable <- function(data, var_x, var_y, var_por = NULL,
 #' data_event <- limpiar_encabezado(data_event)
 #' data_agrupada <- agrupar_fecha_inisintomas(
 #'                                      data_event,
-#'                                      col_nombre = "ini_sin",
+#'                                      column = "ini_sin",
 #'                                      tipo = "month")
 #' plot_fecha_inisintomas(data_agrupada = data_agrupada,
-#'                        col_nombre = "ini_sin",
+#'                        column = "ini_sin",
 #'                        uni_marca = "month")
 #' @export
 plot_fecha_inisintomas <- function(data_agrupada,
-                                   col_nombre = "ini_sin",
+                                   column = "ini_sin",
                                    uni_marca = "month") {
   fechas_column_nombres <- config::get(file = system.file("extdata",
                                                           "config.yml",
                                                           package = "sivirep"),
                                        "dates_column_names")
-  if (is.null(col_nombre)) {
-    col_nombre <- fechas_column_nombres[3]
+  if (is.null(column)) {
+    column <- fechas_column_nombres[3]
   }
   plot_casos_inisintomas <- plot_variable(data_agrupada,
-                                          var_x = col_nombre,
+                                          var_x = column,
                                           var_y = "casos",
                                           etiqueta_x =
                                             "\nFecha de inicio de sintomas\n",
@@ -373,7 +373,7 @@ plot_fecha_inisintomas <- function(data_agrupada,
 #' @param uni_marca Un character (cadena de caracteres) que contiene la unidad
 #' de las marcas del gráfico ("day": día, "month": mes y "year": año); su
 #' valor por defecto es "month"
-#' @param col_nombre Un character (cadena de caracteres) que contiene el
+#' @param column Un character (cadena de caracteres) que contiene el
 #' nombre de la columna en los datos de la enfermedad o evento agrupados que
 #' contiene las fechas de notificación; su valor por defecto es "fec_not"
 #' @return Un plot o gráfico de distribución de casos por fecha de notificación
@@ -381,25 +381,25 @@ plot_fecha_inisintomas <- function(data_agrupada,
 #' data_event <- import_data_event(2020, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
 #' data_agrupada <- agrupar_fecha_notifica(data_event,
-#'                                         col_nombre = "fec_not",
+#'                                         column = "fec_not",
 #'                                         tipo = "month")
 #' plot_fecha_notifica(data_agrupada = data_agrupada,
-#'                     col_nombre = "fec_not",
+#'                     column = "fec_not",
 #'                     uni_marca = "month")
 #' @export
 plot_fecha_notifica <- function(data_agrupada,
-                                col_nombre = "fec_not",
+                                column = "fec_not",
                                 uni_marca = "month") {
   fechas_column_nombres <- config::get(file =
                                          system.file("extdata",
                                                      "config.yml",
                                                      package = "sivirep"),
                                        "dates_column_names")
-  if (is.null(col_nombre)) {
-    col_nombre <- fechas_column_nombres[2]
+  if (is.null(column)) {
+    column <- fechas_column_nombres[2]
   }
   plot_casos_fecha_notifica <- plot_variable(data_agrupada,
-                                             var_x = col_nombre,
+                                             var_x = column,
                                              var_y = "casos",
                                              etiqueta_x =
                                                "\nFecha de notificacion\n",
@@ -419,7 +419,7 @@ plot_fecha_notifica <- function(data_agrupada,
 #' Función que genera el gráfico de distribución de casos por sexo
 #' @param data_agrupada Un data fram que contiene los datos de la
 #' enfermedad o evento agrupados
-#' @param col_nombre Un character (cadena de caracteres) con el
+#' @param column Un character (cadena de caracteres) con el
 #' nombre de la columna de los datos agrupados de la enfermedad
 #' o evento que contiene el sexo; su valor por defecto es "sexo"
 #' @param porcentaje Un boolean (TRUE/FALSE) que indica si los datos
@@ -429,18 +429,18 @@ plot_fecha_notifica <- function(data_agrupada,
 #' data_event <- import_data_event(2020, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
 #' data_agrupada <- agrupar_sex(data_event,
-#'                              col_nombre = "sexo",
+#'                              column = "sexo",
 #'                              porcentaje = TRUE)
 #' plot_sex(data_agrupada = data_agrupada,
-#'          col_nombre = "sexo",
+#'          column = "sexo",
 #'          porcentaje = TRUE)
 #' @export
 plot_sex <- function(data_agrupada,
-                     col_nombre = "sexo",
+                     column = "sexo",
                      porcentaje = TRUE) {
-  var_fill <- col_nombre
+  var_fill <- column
   plot_casos_sex <- plot_variable(data_agrupada,
-                                  var_x = col_nombre,
+                                  var_x = column,
                                   var_y = "casos",
                                   var_fill = var_fill,
                                   var_por = "porcentaje",
@@ -461,7 +461,7 @@ plot_sex <- function(data_agrupada,
 #' y semana epidemiológica
 #' @param data_agrupada Un data frame que contiene los datos de la enfermedad
 #' o evento agrupados
-#' @param col_nombres Un array (arreglo) de character (cadena de caracteres) con
+#' @param columns Un array (arreglo) de character (cadena de caracteres) con
 #' los nombres de columna de los datos agrupados de la enfermedad o evento que
 #' contienen el sexo y las semanas epidemiológicas; su valor por defecto es
 #' c("sexo", "semana")
@@ -473,19 +473,19 @@ plot_sex <- function(data_agrupada,
 #' data_event <- import_data_event(2020, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
 #' data_agrupada <- agrupar_sex_semanaepi(data_event,
-#'                                        col_nombres = c("sexo", "semana"),
+#'                                        columns = c("sexo", "semana"),
 #'                                        porcentaje = TRUE)
 #' plot_sex_semanaepi(data_agrupada = data_agrupada,
-#'                    col_nombres = c("sexo", "semana"),
+#'                    columns = c("sexo", "semana"),
 #'                    porcentaje = FALSE)
 #' @export
 plot_sex_semanaepi <- function(data_agrupada,
-                               col_nombres = c("sexo", "semana"),
+                               columns = c("sexo", "semana"),
                                porcentaje = FALSE) {
   plot_casos_sex_semanaepi <- plot_variable(data_agrupada,
-                                            var_x = col_nombres[2],
+                                            var_x = columns[2],
                                             var_y = "casos",
-                                            var_fill = col_nombres[1],
+                                            var_fill = columns[1],
                                             var_por = "porcentaje",
                                             etiqueta_x =
                                               "\nSemana epidemiologica\n",
@@ -507,7 +507,7 @@ plot_sex_semanaepi <- function(data_agrupada,
 #' Función que genera el gráfico de distribución de casos por edad
 #' @param data_agrupada Un data frame que contiene los datos de la enfermedad
 #' o evento agrupados
-#' @param col_nombre Un character (cadena de carácteres) con el nombre de
+#' @param column Un character (cadena de carácteres) con el nombre de
 #' la columna de los datos agrupados de la enfermedad o evento que contiene
 #' las edades; su valor por defecto es "edad"
 #' @param porcentaje Un boolean (TRUE/FALSE) que indica si los datos tienen
@@ -517,17 +517,17 @@ plot_sex_semanaepi <- function(data_agrupada,
 #' data_event <- import_data_event(2020, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
 #' data_agrupada <- agrupar_edad(data_event,
-#'                               col_nombre = "edad",
+#'                               column = "edad",
 #'                               porcentaje = FALSE)
 #' plot_edad(data_agrupada = data_agrupada,
-#'           col_nombre = "edad",
+#'           column = "edad",
 #'           porcentaje = FALSE)
 #' @export
 plot_edad <- function(data_agrupada,
-                      col_nombre = "edad",
+                      column = "edad",
                       porcentaje = FALSE) {
   plot_casos_edad <- plot_variable(data_agrupada,
-                                   var_x = col_nombre,
+                                   var_x = column,
                                    var_y = "casos",
                                    etiqueta_x = "\nEdad\n",
                                    etiqueta_y = "Numero de casos\n",
@@ -544,7 +544,7 @@ plot_edad <- function(data_agrupada,
 #' Función que genera el gráfico de distribución de casos por edad y sexo
 #' @param data_agrupada Un data frame que contiene los datos de la
 #' enfermedad o evento agrupados
-#' @param col_nombres Un array (arreglo) de character (cadena de caracteres) con
+#' @param columns Un array (arreglo) de character (cadena de caracteres) con
 #' los nombres de columna de los datos agrupados de la enfermedad o evento que
 #' contiene las edades y las semanas epidemiológicas; su valor por defecto
 #' es c("edad", "sexo")
@@ -555,19 +555,19 @@ plot_edad <- function(data_agrupada,
 #' data_event <- import_data_event(2020, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
 #' data_agrupada <- agrupar_edad_sex(data_event,
-#'                                   col_nombres = c("edad", "sexo"),
+#'                                   columns = c("edad", "sexo"),
 #'                                   porcentaje = FALSE)
 #' plot_edad_sex(data_agrupada = data_agrupada,
-#'               col_nombres = c("edad", "sexo"),
+#'               columns = c("edad", "sexo"),
 #'               porcentaje = FALSE)
 #' @export
 plot_edad_sex <- function(data_agrupada,
-                          col_nombres = c("edad", "sexo"),
+                          columns = c("edad", "sexo"),
                           porcentaje = FALSE) {
   plot_casos_edad_sexo <- plot_variable(data_agrupada,
-                                        var_x = col_nombres[1],
+                                        var_x = columns[1],
                                         var_y = "casos",
-                                        var_fill = col_nombres[2],
+                                        var_fill = columns[2],
                                         etiqueta_x = "\nEdad\n",
                                         etiqueta_y = "Numero de casos\n",
                                         nombre_escala = "Edad",
@@ -583,7 +583,7 @@ plot_edad_sex <- function(data_agrupada,
 #' Función que genera el gráfico de distribución de casos por población especial
 #' @param data_agrupada Un data frame que contiene los datos de la
 #' enfermedad o evento agrupados
-#' @param col_nombre Un character (cadena de carácteres) con el nombre de
+#' @param column Un character (cadena de carácteres) con el nombre de
 #' la columna de los datos agrupados de la enfermedad o evento que contiene
 #' las poblaciones especiales; su valor por defecto es "poblacion"
 #' @param porcentaje Un boolean (TRUE/FALSE) que indica si los datos tienen
@@ -593,19 +593,19 @@ plot_edad_sex <- function(data_agrupada,
 #' data_event <- import_data_event(2020, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
 #' data_agrupada <- agrupar_pob_especial(data_event,
-#'                          col_nombre = "poblacion",
+#'                          column = "poblacion",
 #'                          porcentaje = TRUE)
 #' plot_pob_especial(data_agrupada = data_agrupada,
-#'                   col_nombre = "poblacion",
+#'                   column = "poblacion",
 #'                   porcentaje = FALSE)
 #' @export
 plot_pob_especial <- function(data_agrupada,
-                              col_nombre = "poblacion",
+                              column = "poblacion",
                               porcentaje = FALSE) {
   plot_casos_especial_pob <- plot_variable(data_agrupada,
-                                           var_x = col_nombre,
+                                           var_x = column,
                                            var_y = "casos",
-                                           var_fill = col_nombre,
+                                           var_fill = column,
                                            etiqueta_x = "Poblacion",
                                            etiqueta_y = "casos",
                                            nombre_escala = "Poblacion",
@@ -622,7 +622,7 @@ plot_pob_especial <- function(data_agrupada,
 #' Función que genera el gráfico de distribución de casos por municipios
 #' @param data_agrupada Un data frame que contiene los datos de la
 #' enfermedad o evento agrupados
-#' @param col_nombre Un character (cadena de carácteres) con el nombre de
+#' @param column Un character (cadena de carácteres) con el nombre de
 #' la columna de los datos agrupados de la enfermedad o evento que contiene
 #' los municipios; su valor por defecto es "nombre"
 #' @param porcentaje Un boolean (TRUE/FALSE) que indica si los datos tienen
@@ -635,14 +635,14 @@ plot_pob_especial <- function(data_agrupada,
 #' data_agrupada <- agrupar_mun(data_event,
 #'                              dept_nombre = "Antioquia")
 #' plot_muns(data_agrupada,
-#'           col_nombre = "nombre",
+#'           column = "nombre",
 #'           porcentaje = FALSE)
 #' @export
 plot_muns <- function(data_agrupada,
-                      col_nombre = "nombre",
+                      column = "nombre",
                       porcentaje = FALSE) {
   plot_casos_muns <- plot_variable(data_agrupada,
-                                   var_x = col_nombre,
+                                   var_x = column,
                                    var_y = "casos",
                                    etiqueta_x = "Municipios",
                                    etiqueta_y = "casos",
