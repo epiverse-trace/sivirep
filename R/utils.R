@@ -84,7 +84,7 @@ obtener_nombres_dptos <- function(data_event) {
 #' Función que obtiene la fila con el mayor número de casos
 #' @param data_event Un data frame que contiene los datos de la
 #' enfermedad o evento
-#' @param col_name Un character (cadena de caracteres) con el
+#' @param column Un character (cadena de caracteres) con el
 #' nombre de la columna de los datos de la enfermedad o evento que
 #' contiene el número de casos
 #' @param porcentaje Un boolean (TRUE/FALSE) que indica si se
@@ -96,22 +96,22 @@ obtener_nombres_dptos <- function(data_event) {
 #' casos_sex <- agrupar_sex(data_event,
 #'                          porcentaje = TRUE)
 #' obtener_fila_mas_casos(data_event = casos_sex,
-#'                        col_name = "casos",
+#'                        column = "casos",
 #'                        porcentaje = TRUE)
 #' @export
 obtener_fila_mas_casos <- function(data_event,
-                                   col_name = "casos",
+                                   column = "casos",
                                    porcentaje = TRUE) {
   data_mas_casos <- data_event[order(eval(parse(text =
                                                   paste0("data_event$",
-                                                         col_name))),
+                                                         column))),
                                      decreasing = TRUE), ]
   data_mas_casos <- data_mas_casos[1, ]
   if (porcentaje) {
     value_per <-
       data_mas_casos$casos[1] / sum(eval(parse(text =
                                                  paste0("data_event$",
-                                                        col_name))))
+                                                        column))))
     data_mas_casos$porcentaje <- round(value_per * 100, 2)
   }
   return(data_mas_casos)
@@ -157,25 +157,25 @@ concatenar_vals_token <- function(vals,
 #'
 #' Función que obtiene las columnas de ocurrencia geográfica de los
 #' datos de la enfermedad o evento
-#' @param code_disease Un numeric (numerico) que contiene el código de la
+#' @param cod_event Un numeric (numerico) que contiene el código de la
 #' enfermedad o evento
 #' @return Un data frame con las columnas de ocurrencia geográfica de los
 #' datos de la enfermedad
 #' @examples
-#' obtener_tip_ocurren_geo(code_disease = 210)
+#' obtener_tip_ocurren_geo(cod_event = 210)
 #' @export
-obtener_tip_ocurren_geo <- function(code_disease) {
+obtener_tip_ocurren_geo <- function(cod_event) {
   geo_occurren <- config::get(file =
                                 system.file("extdata",
                                             "config.yml",
                                             package = "sivirep"),
                               "occurrence_geo_diseases")
   col_ocurren <- c("cod_dpto_o", "cod_mun_o")
-  if (length(grep(code_disease, geo_occurren$cod_dpto_n)) == 1
-      && grep(code_disease, geo_occurren$cod_dpto_n) > 0) {
+  if (length(grep(cod_event, geo_occurren$cod_dpto_n)) == 1
+      && grep(cod_event, geo_occurren$cod_dpto_n) > 0) {
     col_ocurren <- c("cod_dpto_n", "cod_mun_n")
-  } else if (length(grep(code_disease, geo_occurren$cod_dpto_r)) == 1
-             && grep(code_disease, geo_occurren$cod_dpto_r) > 0) {
+  } else if (length(grep(cod_event, geo_occurren$cod_dpto_r)) == 1
+             && grep(cod_event, geo_occurren$cod_dpto_r) > 0) {
     col_ocurren <- c("cod_dpto_r", "cod_mun_r")
   } else {
     col_ocurren <- c("cod_dpto_o", "cod_mun_o")
@@ -219,18 +219,18 @@ obtener_info_depts <- function(dpto = NULL, munpio = NULL) {
 #'
 #' Función que establece los códigos geográficos de los datos de la enfermedad
 #' o evento
-#' @param code_dept Un numeric (numerico) que contiene el código del
+#' @param cod_dept Un numeric (numerico) que contiene el código del
 #' departamento
 #' @param cod_mun Un numeric (numerico) que contiene el código del municipio
 #' @return Un data frame con los códigos geográficos
 #' @examples
-#' modficar_cod_mun(code_dept = 01, cod_mun = "001")
+#' modficar_cod_mun(cod_dept = 01, cod_mun = "001")
 #' @export
-modficar_cod_mun <- function(code_dept, cod_mun) {
+modficar_cod_mun <- function(cod_dept, cod_mun) {
   cod_mun <- as.character(cod_mun)
-  if (substr(code_dept, 1, 1) == "0") {
-    code_dept <- substr(code_dept, 2, 2)
-    cod_mun <- gsub(code_dept, "", cod_mun)
+  if (substr(cod_dept, 1, 1) == "0") {
+    cod_dept <- substr(cod_dept, 2, 2)
+    cod_mun <- gsub(cod_dept, "", cod_mun)
   }
   return(cod_mun)
 }
@@ -255,7 +255,7 @@ obtener_dptos <- function() {
 #' Función que obtiene el nombre del municipio
 #' @param data_geo Un data frame que contiene los códigos
 #' geográficos (departamentos y municipios de Colombia)
-#' @param code_dept Un numeric (numerico) que contiene el código
+#' @param cod_dept Un numeric (numerico) que contiene el código
 #' del departamento
 #' @param cod_mun Un numeric (numerico) que contiene el código
 #' del municipio
@@ -263,15 +263,15 @@ obtener_dptos <- function() {
 #' @examples
 #' data_geo <- import_geo_cods()
 #' obtener_nombres_muns(data_geo,
-#'                      code_dept = "05",
+#'                      cod_dept = "05",
 #'                      cod_mun = "001")
 #' @export
-obtener_nombres_muns <- function(data_geo, code_dept, cod_mun) {
-  if (substr(code_dept, 1, 1) == "0") {
-    code_dept <- substr(code_dept, 2, 2)
-    cod_mun <- paste0(code_dept, cod_mun)
+obtener_nombres_muns <- function(data_geo, cod_dept, cod_mun) {
+  if (substr(cod_dept, 1, 1) == "0") {
+    cod_dept <- substr(cod_dept, 2, 2)
+    cod_mun <- paste0(cod_dept, cod_mun)
   } else {
-    cod_mun <- paste0(code_dept, cod_mun)
+    cod_mun <- paste0(cod_dept, cod_mun)
   }
   data_mun <- dplyr::filter(data_geo,
                             .data$codigo_municipio %in% as.integer(cod_mun))
