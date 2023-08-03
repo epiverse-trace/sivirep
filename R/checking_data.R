@@ -33,9 +33,9 @@ filtrar_event <- function(nombre_event,
 #' Función que filtra los datos de una enfermedad o evento por departamentos
 #' y municipios
 #' @param data_event Un data frame con los datos de una enfermedad o evento
-#' @param nombre_dpto Un character (cadena de caracteres) que contiene
+#' @param dpto Un character (cadena de caracteres) que contiene
 #' el nombre del departamento; valor por defecto NULL
-#' @param nombre_mun Un character (cadena de caracteres) que contiene el
+#' @param munpio Un character (cadena de caracteres) que contiene el
 #' nombre del municipio; su valor por defecto es NULL
 #' @return Un data frame con los datos filtrados con la enfermedad,
 #' departamentos y municipios seleccionados
@@ -44,12 +44,12 @@ filtrar_event <- function(nombre_event,
 #' data_event <- limpiar_encabezado(data_event)
 #' geo_filtro(data_event, nombre_dpto = "ANTIOQUIA")
 #' @export
-geo_filtro <- function(data_event, nombre_dpto = NULL, nombre_mun = NULL) {
+geo_filtro <- function(data_event, dpto = NULL, munpio = NULL) {
   data_dept_filt <- data.frame()
   dept_data <- data.frame()
   cols_ocurren <- c()
-  if (!is.null(nombre_dpto)) {
-    dept_data <- obtener_info_depts(nombre_dpto, nombre_mun)
+  if (!is.null(dpto)) {
+    dept_data <- obtener_info_depts(dpto, munpio)
     dept_data <- dept_data[1, ]
     cols_ocurren <- obtener_tip_ocurren_geo(data_event$cod_eve[1])
   }
@@ -59,7 +59,7 @@ geo_filtro <- function(data_event, nombre_dpto = NULL, nombre_mun = NULL) {
                     data_event[[cols_ocurren[1]]] %in%
                       dept_data$codigo_departamento)
   }
-  if (!is.null(nombre_mun)) {
+  if (!is.null(munpio)) {
     code_mun <- modficar_cod_mun(dept_data$codigo_departamento,
                                  dept_data$codigo_municipio)
     data_dept_filt <-
@@ -156,10 +156,10 @@ agrupar_casos_semanaepi <- function(data_event) {
 #' por nombre de columna(s) y número de casos
 #' @param data_event Un data frame que contiene los datos de
 #' una enfermedad o evento
-#' @param cols_nombres Un character (cadena de caracteres) o
+#' @param columns Un character (cadena de caracteres) o
 #' array (arreglo) de character que contiene el nombre de
 #' la(s) columna(s)
-#' @param agr_porcentaje Un boolean (TRUE o FALSE) que indica si
+#' @param porcentaje Un boolean (TRUE o FALSE) que indica si
 #' es necesario agregar un porcentaje de casos como columna
 #' @return Un data frame con los datos de una enfermedad
 #' o evento agrupados por el nombre de la(s) columna(s) y el
@@ -168,20 +168,20 @@ agrupar_casos_semanaepi <- function(data_event) {
 #' data_event <- import_data_event(2019, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
 #' agrupar_cols_casos(data_event = data_event,
-#'                    cols_nombres = "sexo",
-#'                    agr_porcentaje = TRUE)
+#'                    columns = "sexo",
+#'                    porcentaje = TRUE)
 #' agrupar_cols_casos(data_event = data_event,
-#'                    cols_nombres = c("sexo", "semana"))
+#'                    columns = c("sexo", "semana"))
 #' @export
 agrupar_cols_casos <- function(data_event,
-                               cols_nombres,
-                               agr_porcentaje = FALSE) {
-  cols_nombres <- append(cols_nombres, c("nombre_evento"))
-  print(cols_nombres)
+                               columns,
+                               porcentaje = FALSE) {
+  columns <- append(columns, c("nombre_evento"))
+  print(columns)
   data_event_agrupada <- data_event %>%
-    dplyr::group_by_at(cols_nombres) %>%
+    dplyr::group_by_at(columns) %>%
     dplyr::summarise(casos = dplyr::n(), .groups = "drop")
-  if (agr_porcentaje) {
+  if (porcentaje) {
     data_event_agrupada <-
       data_event_agrupada %>%
       dplyr::mutate(porcentaje =
@@ -198,7 +198,7 @@ agrupar_cols_casos <- function(data_event,
 #' de edad y número de casos
 #' @param data_event Un data frame que contiene los datos de la
 #' enfermedad o evento
-#' @param col_nombre Un character (cadena de caracteres) con
+#' @param column Un character (cadena de caracteres) con
 #' el nombre de la columna de los datos de la enfermedad o evento
 #' que contiene las edades
 #' @param var_a Un character (cadena de caracteres) con
@@ -218,15 +218,15 @@ agrupar_cols_casos <- function(data_event,
 #' data_event <- limpiar_encabezado(data_event)
 #' data_edad <- agrupar_cols_casos(data_event = data_event,
 #'                                 c("edad", "semana"),
-#'                                 agr_porcentaje = TRUE)
+#'                                 porcentaje = TRUE)
 #' agrupar_rango_edad_casos(data_event = data_edad,
-#'                          col_nombre = "edad",
+#'                          column = "edad",
 #'                          min_val = 0,
 #'                          max_val = max(data_edad$edad),
 #'                          paso = 10)
 #' @export
 agrupar_rango_edad_casos <- function(data_event,
-                                     col_nombre,
+                                     column,
                                      var_a = NULL,
                                      min_val,
                                      max_val,
@@ -241,7 +241,7 @@ agrupar_rango_edad_casos <- function(data_event,
       dplyr::group_by_at(c("ranges", var_a)) %>%
       dplyr::summarize(casos = sum(.data$casos), .groups = "drop") %>%
       as.data.frame()
-    names(data_vals_rango)[names(data_vals_rango) == "ranges"] <- col_nombre
+    names(data_vals_rango)[names(data_vals_rango) == "ranges"] <- column
   } else {
     data_vals_rango <- data_event %>%
       dplyr::mutate(ranges = cut(
@@ -251,7 +251,7 @@ agrupar_rango_edad_casos <- function(data_event,
       dplyr::group_by_at("ranges") %>%
       dplyr::summarize(casos = sum(.data$casos), .groups = "drop") %>%
       as.data.frame()
-    names(data_vals_rango)[names(data_vals_rango) == "ranges"] <- col_nombre
+    names(data_vals_rango)[names(data_vals_rango) == "ranges"] <- column
   }
   return(data_vals_rango)
 }
@@ -262,10 +262,10 @@ agrupar_rango_edad_casos <- function(data_event,
 #' por un nombre de columna(s) específico y número de casos
 #' @param data_event Un data frame que contiene los datos
 #' de la enfermedad o evento
-#' @param cols_nombres Un character (cadena de caracteres) o
+#' @param columns Un character (cadena de caracteres) o
 #' array (arreglo) de character que contiene el nombre de
 #' la(s) columna(s) por la(s) que se desea agrupar los datos
-#' @param agr_porcentaje Un boolean (TRUE o FALSE) que indica si
+#' @param porcentaje Un boolean (TRUE o FALSE) que indica si
 #' es necesario agregar un porcentaje de casos como una columna;
 #' su valor por defecto es FALSE
 #' @return Un data frame con los datos de una enfermedad
@@ -274,19 +274,19 @@ agrupar_rango_edad_casos <- function(data_event,
 #' data_event <- import_data_event(2019, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
 #' agrupar_cols_casos(data_event = data_event,
-#'                    cols_nombres = "sexo",
-#'                    agr_porcentaje = TRUE)
+#'                    columns = "sexo",
+#'                    porcentaje = TRUE)
 #' agrupar_cols_casos(data_event = data_event,
-#'                    cols_nombres = c("sexo", "semana"))
+#'                    columns = c("sexo", "semana"))
 #' @export
 agrupar_cols_casos <- function(data_event,
-                               cols_nombres,
-                               agr_porcentaje = FALSE) {
-  cols_nombres <- append(cols_nombres, c("nombre_evento"))
+                               columns,
+                               porcentaje = FALSE) {
+  columns <- append(columns, c("nombre_evento"))
   data_event_agrupada <- data_event %>%
-    dplyr::group_by_at(cols_nombres) %>%
+    dplyr::group_by_at(columns) %>%
     dplyr::summarise(casos = dplyr::n(), .groups = "drop")
-  if (agr_porcentaje) {
+  if (porcentaje) {
     data_event_agrupada <-
       data_event_agrupada %>%
       dplyr::mutate(porcentaje =
@@ -303,7 +303,7 @@ agrupar_cols_casos <- function(data_event,
 #' fecha de inicio de síntomas y número de casos
 #' @param data_event Un data frame que contiene los datos de
 #' la enfermedad o evento
-#' @param col_nombre Un character (cadena de caracteres) con el
+#' @param column Un character (cadena de caracteres) con el
 #' nombre de la columna de los datos de la enfermedad o evento que contiene
 #' las fechas de inicio de síntomas; su valor por defecto es ini_sin
 #' @param tipo Un character (cadena de caracteres) que contiene
@@ -315,24 +315,24 @@ agrupar_cols_casos <- function(data_event,
 #' data_event <- import_data_event(2019, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
 #' agrupar_fecha_inisintomas(data_event = data_event,
-#'                           col_nombre = "ini_sin",
+#'                           column = "ini_sin",
 #'                           tipo = "month")
 #' @export
 agrupar_fecha_inisintomas <- function(data_event,
-                                      col_nombre = "ini_sin",
+                                      column = "ini_sin",
                                       tipo = "month") {
-  fechas_cols_nombres <- config::get(file =
+  fechas_columns <- config::get(file =
                                        system.file("extdata",
                                                    "config.yml",
                                                    package = "sivirep"),
                                      "dates_column_names")
-  if (is.null(col_nombre)) {
-    col_nombre <- fechas_cols_nombres[3]
+  if (is.null(column)) {
+    column <- fechas_columns[3]
   }
   cols_ocurren <- obtener_tip_ocurren_geo(data_event$cod_eve[1])
-  col_nombre <- append(col_nombre, cols_ocurren)
+  column <- append(column, cols_ocurren)
   group_by_onset_symp <- agrupar_cols_casos(data_event,
-                                            cols_nombres = col_nombre)
+                                            columns = column)
   return(group_by_onset_symp)
 }
 
@@ -342,7 +342,7 @@ agrupar_fecha_inisintomas <- function(data_event,
 #' notificación y número de casos
 #' @param data_event Un data frame que contiene los datos de la enfermedad
 #' o evento
-#' @param col_nombre Un character (cadena de caracteres) con el nombre de
+#' @param column Un character (cadena de caracteres) con el nombre de
 #' la columna de los datos de la enfermedad o evento que contiene las
 #' fechas de notificación; su valor por defecto es fec_not
 #' @param tipo Un character (cadena de caracteres) que contiene
@@ -354,24 +354,24 @@ agrupar_fecha_inisintomas <- function(data_event,
 #' data_event <- import_data_event(2019, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
 #' agrupar_fecha_notifica(data_event = data_event,
-#'                        col_nombre = "fec_not",
+#'                        column = "fec_not",
 #'                        tipo = "month")
 #' @export
 agrupar_fecha_notifica <- function(data_event,
-                                   col_nombre = "fec_not",
+                                   column = "fec_not",
                                    tipo = "month") {
-  fechas_cols_nombres <- config::get(file =
+  fechas_columns <- config::get(file =
                                        system.file("extdata",
                                                    "config.yml",
                                                    package = "sivirep"),
                                      "dates_column_names")
-  if (is.null(col_nombre)) {
-    col_nombre <- fechas_cols_nombres[2]
+  if (is.null(column)) {
+    column <- fechas_columns[2]
   }
   cols_ocurrenc <- obtener_tip_ocurren_geo(data_event$cod_eve[1])
-  col_nombre <- append(col_nombre, cols_ocurrenc)
+  column <- append(column, cols_ocurrenc)
   data_agrupada_fecha_not <- agrupar_cols_casos(data_event,
-                                                cols_nombres = col_nombre)
+                                                columns = column)
   return(data_agrupada_fecha_not)
 }
 
@@ -381,7 +381,7 @@ agrupar_fecha_notifica <- function(data_event,
 #' por sexo y número de casos
 #' @param data_event Un data frame que contiene los datos de la enfermedad
 #' o evento
-#' @param col_nombre Un character (cadena de caracteres) con el nombre
+#' @param column Un character (cadena de caracteres) con el nombre
 #' de la columna de los datos de la enfermedad o evento que contiene el sexo;
 #' su valor por defecto es sexo
 #' @param porcentaje Un boolean (TRUE o FALSE) que indica si es necesario
@@ -393,13 +393,13 @@ agrupar_fecha_notifica <- function(data_event,
 #' data_event <- import_data_event(2019, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
 #' agrupar_sex(data_event = data_event,
-#'             col_nombre = "sexo",
+#'             column = "sexo",
 #'             porcentaje = TRUE)
 #' @export
 agrupar_sex <- function(data_event,
-                        col_nombre = "sexo",
+                        column = "sexo",
                         porcentaje = TRUE) {
-  data_event_sex <- agrupar_cols_casos(data_event, col_nombre, porcentaje)
+  data_event_sex <- agrupar_cols_casos(data_event, column, porcentaje)
   return(data_event_sex)
 }
 
@@ -409,7 +409,7 @@ agrupar_sex <- function(data_event,
 #' epidemiológica y número de casos
 #' @param data_event Un data frame que contiene los datos de
 #' la enfermedad o evento
-#' @param col_nombres Un character (cadena de caracteres) o
+#' @param columns Un character (cadena de caracteres) o
 #' array (arreglo) de character que contiene el nombre de
 #' la(s) columna(s) de los datos de la enfermedad o evento
 #' que contienen el sexo y las semanas epidemiológicas; su valor
@@ -423,16 +423,16 @@ agrupar_sex <- function(data_event,
 #' data_event <- import_data_event(2019, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
 #' agrupar_sex_semanaepi(data_event = data_event,
-#'                       col_nombres = c("sexo", "semana"),
+#'                       columns = c("sexo", "semana"),
 #'                       porcentaje = TRUE)
 #' @export
 agrupar_sex_semanaepi <- function(data_event,
-                                  col_nombres = c("sexo", "semana"),
+                                  columns = c("sexo", "semana"),
                                   porcentaje = TRUE) {
   cols_ocurrenc <- obtener_tip_ocurren_geo(data_event$cod_eve[1])
-  col_nombres <- append(col_nombres, cols_ocurrenc)
+  columns <- append(columns, cols_ocurrenc)
   data_event_sex_semanaepi <- agrupar_cols_casos(data_event,
-                                                 col_nombres,
+                                                 columns,
                                                  porcentaje)
   return(data_event_sex_semanaepi)
 }
@@ -443,7 +443,7 @@ agrupar_sex_semanaepi <- function(data_event,
 #' y número de casos
 #' @param data_event Un data frame que contiene los datos de la enfermedad
 #' o evento
-#' @param col_nombre Un character (cadena de caracteres) con el nombre
+#' @param column Un character (cadena de caracteres) con el nombre
 #' de la columna de los datos de la enfermedad o evento que contiene las edades;
 #' su valor por defecto es edad
 #' @param porcentaje Un boolean (TRUE o FALSE) que indica si
@@ -457,24 +457,24 @@ agrupar_sex_semanaepi <- function(data_event,
 #' data_event <- import_data_event(2019, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
 #' agrupar_edad(data_event = data_event,
-#'              col_nombre = "edad",
+#'              column = "edad",
 #'              porcentaje = FALSE)
 #' @export
 agrupar_edad <- function(data_event,
-                         col_nombre = "edad",
+                         column = "edad",
                          porcentaje = FALSE,
                          interval_edad = 10) {
   data_event_edad <- agrupar_cols_casos(data_event,
-                                        col_nombre,
+                                        column,
                                         porcentaje)
   data_event_edad <-
     agrupar_rango_edad_casos(data_event_edad,
-                             col_nombre,
+                             column,
                              min_val = 0,
                              max_val =
                              max(eval(parse(text =
                                               paste0("data_event_edad$",
-                                                     col_nombre)))),
+                                                     column)))),
                              paso = interval_edad)
   return(data_event_edad)
 }
@@ -485,7 +485,7 @@ agrupar_edad <- function(data_event,
 #' sexo y número de casos
 #' @param data_event Un data frame que contiene los datos de la enfermedad
 #' o evento
-#' @param col_nombres Un character (cadena de caracteres) o
+#' @param columns Un character (cadena de caracteres) o
 #' array (arreglo) de character que contiene el nombre de
 #' la(s) columna(s) de los datos de la enfermedad o evento que contienen
 #' las edades y el sexo; su valor por defecto es c("edad", "sexo")
@@ -500,28 +500,28 @@ agrupar_edad <- function(data_event,
 #' data_event <- import_data_event(2019, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
 #' agrupar_edad_sex(data_event = data_event,
-#'                  col_nombres = c("edad", "sexo"),
+#'                  columns = c("edad", "sexo"),
 #'                  porcentaje = TRUE)
 #' @export
 agrupar_edad_sex <- function(data_event,
-                             col_nombres = c("edad", "sexo"),
+                             columns = c("edad", "sexo"),
                              porcentaje = TRUE,
                              interval_edad = 10) {
   cols_ocurrenc <- obtener_tip_ocurren_geo(data_event$cod_eve[1])
-  col_nombres <- append(col_nombres, cols_ocurrenc)
+  columns <- append(columns, cols_ocurrenc)
   data_event_edad_sex <- agrupar_cols_casos(data_event,
-                                            col_nombres,
+                                            columns,
                                             porcentaje)
   data_event_edad_sex <- agrupar_rango_edad_casos(
     data_event_edad_sex,
-    col_nombres[1],
-    col_nombres[2],
+    columns[1],
+    columns[2],
     min_val = 0,
     max_val =
       max(eval(parse(
         text = paste0(
           "data_event_edad_sex$",
-          col_nombres[1]
+          columns[1]
         )
       ))),
     paso = interval_edad
@@ -535,7 +535,7 @@ agrupar_edad_sex <- function(data_event,
 #' especial y casos
 #' @param data_event Un data frame que contiene los datos de la enfermedad
 #' o evento
-#' @param col_nombre Un character (cadena de caracteres) con el nombre de la
+#' @param column Un character (cadena de caracteres) con el nombre de la
 #' columna de los datos de la enfermedad o evento que contiene las poblaciones
 #' especiales; su valor por defecto es poblacion
 #' @param porcentaje Un boolean (TRUE o FALSE) que indica si
@@ -547,14 +547,14 @@ agrupar_edad_sex <- function(data_event,
 #' data_event <- import_data_event(2019, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
 #' agrupar_pob_especial(data_event = data_event,
-#'                      col_nombre = "poblacion",
+#'                      column = "poblacion",
 #'                      porcentaje = TRUE)
 #' @export
 agrupar_pob_especial <- function(data_event,
-                                 col_nombre = "poblacion",
+                                 column = "poblacion",
                                  porcentaje = TRUE) {
   cols_ocurrenc <- obtener_tip_ocurren_geo(data_event$cod_eve[1])
-  col_nombre <- append(col_nombre, cols_ocurrenc)
+  column <- append(column, cols_ocurrenc)
   data_event_especial <- obtener_casos_pob_especial(data_event)
   data_event_especial_agrupada <- data.frame(poblacion =
                                                data_event_especial$poblacion,
@@ -569,7 +569,7 @@ agrupar_pob_especial <- function(data_event,
 #' número de casos
 #' @param data_event Un data frame que contiene los datos de la
 #' enfermedad o evento
-#' @param col_nombre Un character (cadena de caracteres) con el nombre
+#' @param column Un character (cadena de caracteres) con el nombre
 #' de la columna en los datos de la enfermedad o evento que contiene los
 #' códigos de departamento; su valor por defecto es cod_dpto_o
 #' @param porcentaje Un boolean (TRUE o FALSE) que indica si
@@ -581,18 +581,18 @@ agrupar_pob_especial <- function(data_event,
 #' data_event <- import_data_event(2019, "DENGUE")
 #' data_event <- limpiar_encabezado(data_event)
 #' agrupar_dpto(data_event = data_event,
-#'              col_nombre = "cod_dpto_o",
+#'              column = "cod_dpto_o",
 #'              porcentaje = FALSE)
 #' @export
 agrupar_dpto <- function(data_event,
-                         col_nombre = "cod_dpto_o",
+                         column = "cod_dpto_o",
                          porcentaje = FALSE) {
   data_event_cods_dpto <- data_event
-  col_nombre <- obtener_tip_ocurren_geo(data_event_cods_dpto$cod_eve[1])
+  column <- obtener_tip_ocurren_geo(data_event_cods_dpto$cod_eve[1])
   data_event_cods_dpto <- agrupar_cols_casos(data_event_cods_dpto,
-                                             cols_nombres = col_nombre[1])
+                                             columns = column[1])
   colnames(data_event_cods_dpto)[colnames(data_event_cods_dpto) ==
-                                   col_nombre[1]] <- "id"
+                                   column[1]] <- "id"
   data_event_cods_dpto$id <- sapply(data_event_cods_dpto$id,
                                     as.character)
   return(data_event_cods_dpto)
@@ -607,7 +607,7 @@ agrupar_dpto <- function(data_event,
 #' enfermedad o evento
 #' @param dept_nombre Un character (cadena de caracteres) que contiene
 #' el nombre del departamento; su valor por defecto es NULL
-#' @param col_nombre Un character (cadena de caracteres) con el nombre de
+#' @param column Un character (cadena de caracteres) con el nombre de
 #' la columna en los datos de la enfermedad o evento que contiene los códigos
 #' de municipios; su valor por defecto es cod_mun_o
 #' @param porcentaje Un boolean (TRUE o FALSE) que indica si es necesario
@@ -620,19 +620,19 @@ agrupar_dpto <- function(data_event,
 #' data_event <- limpiar_encabezado(data_event)
 #' agrupar_mun(data_event = data_event,
 #'             dept_nombre = "Antioquia",
-#'             col_nombre = "cod_mun_o",
+#'             column = "cod_mun_o",
 #'             porcentaje = FALSE)
 #' @export
 agrupar_mun <- function(data_event,
                         dept_nombre = NULL,
-                        col_nombre = "cod_mun_o",
+                        column = "cod_mun_o",
                         porcentaje = FALSE) {
-  col_nombre <- obtener_tip_ocurren_geo(data_event$cod_eve[1])
+  column <- obtener_tip_ocurren_geo(data_event$cod_eve[1])
   data_event_muns <- data_event
   data_event_muns <- agrupar_cols_casos(data_event_muns,
-                                        cols_nombres = col_nombre[2])
+                                        columns = column[2])
   colnames(data_event_muns)[colnames(data_event_muns) ==
-                              col_nombre[2]] <- "id"
+                              column[2]] <- "id"
   data_event_muns$id <- sapply(data_event_muns$id,
                                as.character)
   dept_data <- obtener_info_depts(dept_nombre)
