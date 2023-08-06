@@ -170,15 +170,16 @@ obtener_tip_ocurren_geo <- function(cod_event) {
                                             "config.yml",
                                             package = "sivirep"),
                               "occurrence_geo_diseases")
-  col_ocurren <- c("cod_dpto_o", "cod_mun_o")
+  col_ocurren <- list()
+  col_ocurren[[cod_event]] <- c("cod_dpto_o", "cod_mun_o")
   if (length(grep(cod_event, geo_occurren$cod_dpto_n)) == 1
       && grep(cod_event, geo_occurren$cod_dpto_n) > 0) {
-    col_ocurren <- c("cod_dpto_n", "cod_mun_n")
+    col_ocurren[[cod_event]] <- c("cod_dpto_n", "cod_mun_n")
   } else if (length(grep(cod_event, geo_occurren$cod_dpto_r)) == 1
              && grep(cod_event, geo_occurren$cod_dpto_r) > 0) {
-    col_ocurren <- c("cod_dpto_r", "cod_mun_r")
+    col_ocurren[[cod_event]] <- c("cod_dpto_r", "cod_mun_r")
   } else {
-    col_ocurren <- c("cod_dpto_o", "cod_mun_o")
+    col_ocurren[[cod_event]] <- c("cod_dpto_o", "cod_mun_o")
   }
   return(col_ocurren)
 }
