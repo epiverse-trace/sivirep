@@ -261,12 +261,12 @@ plot_variable <- function(data, var_x, var_y, var_por = NULL,
   }) + {
     if (is.null(var_fill)) {
       ggplot2::geom_bar(width = ancho_barra, stat = "identity",
-                        position = ggplot2::position_dodge(),
+                        #position = ggplot2::position_dodge(),
                         fill = "#90C73D")
     } else {
       ggplot2::geom_bar(width = ancho_barra,
-                        stat = "identity",
-                        position = ggplot2::position_dodge())
+                        stat = "identity")
+                        #position = ggplot2::position_dodge())
     }
   } +
     ggplot2::labs(x = etiqueta_x, y = etiqueta_y, caption = fuente_data) +
@@ -296,7 +296,7 @@ plot_variable <- function(data, var_x, var_y, var_por = NULL,
       vjust = 1.3,
       color = "black",
       hjust = 0.5,
-      position = ggplot2::position_dodge(0.9),
+      # position = ggplot2::position_dodge(0.9),
       angle = 0,
       size = tam_text,
       )
@@ -613,7 +613,8 @@ plot_pob_especial <- function(data_agrupada,
                                            ancho_barra = 0.5,
                                            tam_text = 3,
                                            most_val = porcentaje) +
-    ggplot2::theme(legend.position = "bottom")
+    ggplot2::theme(legend.position = "bottom") +
+    ggplot2::coord_flip()
   return(plot_casos_especial_pob)
 }
 
