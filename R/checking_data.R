@@ -627,7 +627,14 @@ agrupar_mun <- function(data_event,
                         dept_nombre = NULL,
                         column = "cod_mun_o",
                         porcentaje = FALSE) {
-  column <- obtener_tip_ocurren_geo(data_event$cod_eve[1])
+  cols_geo_ocurrencia <- data.frame()
+  cod_events <- unique(data_event$cod_eve)
+  for (cod in cod_events) {
+    cols_geo_ocurrencia <- append(cols_geo_ocurrencia,
+                                  obtener_tip_ocurren_geo(cod))
+    
+  }
+  
   data_event_muns <- data_event
   data_event_muns <- agrupar_cols_casos(data_event_muns,
                                         columns = column[2])
@@ -646,5 +653,7 @@ agrupar_mun <- function(data_event,
                                                 id))
   }
   data_event_muns$nombre <- nombres_muns
+  data_event_muns <- data_event_muns[order(data_event_muns$casos,
+                                           decreasing = TRUE),]
   return(data_event_muns)
 }
