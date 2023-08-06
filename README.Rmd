@@ -164,7 +164,7 @@ Una vez que hayas decidido la enfermedad y el año de la cual deseas obtener la 
 
 ```{r}
 data_event <-  import_data_event(year = 2020,
-                                 nombre_event = "dengue")
+                                 nombre_event = "DENGUE")
 ```
 
 ##### 💡 Tip 1 - Evita retrasos en el tiempo al importar los datos
