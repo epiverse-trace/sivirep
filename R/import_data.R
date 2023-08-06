@@ -127,6 +127,7 @@ list_events <- function() {
   i <- 2
   name_diseases <- c()
   years_diseases <- c()
+  update_year <- 2021
   children <- children[-base::seq(3, length(children), 3)]
   children_text <- children_text[-base::seq(3, length(children_text), 3)]
   while (i < base::length(children)) {
@@ -134,6 +135,12 @@ list_events <- function() {
     name_diseases <- base::append(name_diseases, disease)
     diseases <- base::which(children_text == disease)
     years <- diseases - 1
+    greater_year_disease <- toString(base::sort(children_text[years],
+                               decreasing = TRUE))
+    greater_year_disease <- substr(greater_year_disease, 1, 4)
+    if (update_year < as.numeric(greater_year_disease)) {
+      update_year <- greater_year_disease
+    }
     years_diseases <-
       base::append(years_diseases,
                    base::toString(base::sort(children_text[years],
@@ -155,6 +162,11 @@ list_events <- function() {
                             aa = years_diseases)
   list_events <- list_events[order(list_events$enfermedad,
                                    decreasing = FALSE), ]
+  
+  warning(paste0("La información de los microdatos del ",
+                 "SIVIGILA se encuentra actualizada hasta el año: ",
+                 update_year))
+  
   return(list_events)
 }
 
@@ -177,13 +189,54 @@ list_events <- function() {
 import_data_event <- function(year,
                               nombre_event,
                               cache = TRUE) {
+  stopifnot("El año debe ser númerico ej. year = 2020" = is.numeric(year))
+  stopifnot(
+    "El nombre de la enfermedad o evento debe ser caracteres ej. nombre_event = 'DENGUE'"
+    = is.character(nombre_event))
+  
   data_event <- data.frame()
   list_events <- list_events()
+  list_events_relacionados <- config::get(file =
+                                            system.file("extdata",
+                                                        "config.yml",
+                                                        package = "sivirep"),
+                                          "related_diseases")
   grupo_events <-
     list_events[which(stringr::str_detect(list_events$enfermedad,
                                           substr(nombre_event,
                                                  1,
                                                  nchar(nombre_event) - 1))), ]
+  
+  stopifnot("La enfermedad o evento no esta disponible para su descarga"
+            = (is.null(grupo_events) || nrow(grupo_events) == 0))
+  
+  stopifnot("El año no esta disponible para su descarga"
+            = stringr::str_detect(grupo_events$aa,
+                                    as.character(year)))
+  
+  if (length(list_events_relacionados) > 0) {
+    events_relacionados <- list_events_relacionados[[nombre_event]]
+    for (event in events_relacionados) {
+      grupo_events_relacionados <- 
+        list_events[which(list_events$enfermedad == event), ]
+      if (is.null(grupo_events) || nrow(grupo_events) == 0) {
+        warning(paste0("La enfermedad o evento relacionado: ",
+                       event,
+                       "no esta disponible para su descarga"))
+      }
+      else if (stringr::str_detect(grupo_events_relacionados$aa,
+                             as.character(year))) {
+        warning(paste0("El año: ", year,
+                       "de la enfermedad o evento relacionado: ",
+                       event,
+                       "no esta disponible para su descarga"))
+      }
+      else {
+        grupo_events <- rbind(grupo_events, grupo_events_relacionados)
+      }
+    }
+  }
+  
   for (event in grupo_events$enfermedad) {
     if (event != "MALARIA") {
       data_url <- get_path_data_disease_year(year, event)
