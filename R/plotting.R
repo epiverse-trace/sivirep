@@ -148,8 +148,19 @@ plot_map <- function(data_agrupada,
                      fuente_data = NULL,
                      dpto = NULL,
                      munpio = NULL) {
+  titulo <- paste0("Departamento de ", dpto)
+  subtitulo <- "Análisis efectuado por geografía de "
+  cols_geo_ocurrencia <- c()
   if (is.null(fuente_data)) {
     fuente_data <- "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
+  }
+  if (!is.null(munpio)) {
+    titulo <- paste0(titulo, " , ", munpio)
+  }
+  nombre_events <- unique(data_agrupada$nombre_evento)[1]
+  cols_geo_ocurrencia <- obtener_tip_ocurren_geo(nombre_event = nombre_events)
+  if (length(cols_geo_ocurrencia) > 1) {
+    subtitulo <- paste0(subtitulo, cols_geo_ocurrencia[3])
   }
   dsn <-  system.file("extdata/depto_adm_shp", "MGN_ANM_MPIOS.shp",
                       package = "sivirep")
@@ -179,12 +190,14 @@ plot_map <- function(data_agrupada,
     cbind(polygon_seleccionado,
           sf::st_coordinates(sf::st_centroid(polygon_seleccionado$geometry)))
   map <- ggplot2::ggplot() +
+    ggplot2::ggtitle(label = titulo, subtitle = subtitulo) +
     ggplot2::geom_sf() +
     ggplot2::geom_sf(data = polygon_seleccionado,
                      ggplot2::aes(fill = .data$casos)) +
-    ggplot2::scale_fill_gradient(low = "white", high = "darkred") +
+    ggplot2::scale_fill_gradient(low = "#ECF0F1", high = "#C0392B") +
     ggplot2::theme_void() +
-    ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5)) +
+    ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5),
+                   plot.subtitle = ggplot2::element_text(hjust = 0.5)) +
     ggplot2::labs(caption = fuente_data, fill = "Casos")
   return(map)
 }

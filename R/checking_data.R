@@ -637,9 +637,9 @@ agrupar_mun <- function(data_event,
   
   data_event_muns <- data_event
   data_event_muns <- agrupar_cols_casos(data_event_muns,
-                                        columns = column[2])
+                                        columns = column)
   colnames(data_event_muns)[colnames(data_event_muns) ==
-                              column[2]] <- "id"
+                              column] <- "id"
   data_event_muns$id <- sapply(data_event_muns$id,
                                as.character)
   dept_data <- obtener_info_depts(dept_nombre)
