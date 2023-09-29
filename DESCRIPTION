@@ -23,7 +23,8 @@ Imports:
     stringr,
     xml2,
     epitrix,
-    sf
+    sf,
+    readxl
 Suggests: 
     knitr,
     rmarkdown

@@ -58,19 +58,32 @@ import_sep_data <- function(path_data) {
   seps <- config::get(file = system.file("extdata", "config.yml",
                                          package = "sivirep"), "data_delim")
   data <- data.frame()
-  if (stringr::str_detect(path_data, ".xls")) {
-    data <- readxl::read_excel(path_data)
-  } else {
-    for (sep in seps) {
-      if (sep %in% strsplit(readLines(path_data, n = 1)[1], split = "")[[1]]) {
-        data <- data.table::fread(path_data, sep = sep)
-        break
+  response <- httr::GET(path_data)
+  if (httr::status_code(response) == 200) {
+    start_file_name <- stringr::str_locate(path_data, "Microdatos/")[2] + 1
+    end_file_name <- stringr::str_locate(path_data, "value")[1] - 5
+    file_name <- stringr::str_sub(path_data, start_file_name, end_file_name)
+    con_file <- file(file_name, "wb")
+    chunk <- httr::content(response, "raw", as = "raw")
+    if (length(chunk) > 0) {
+      writeBin(chunk, con_file)
+    }
+    close(con_file)
+    if (stringr::str_detect(file_name, ".xls")) {
+      data <- readxl::read_excel(file_name)
+    } else {
+      for (sep in seps) {
+        if (sep %in% strsplit(readLines(path_data, n = 1)[1], split = "")[[1]]) {
+          data <- data.table::fread(path_data, sep = sep)
+          break
+        }
+      }
+      if (nrow(data) == 0) {
+        data <- data.table::fread(path_data)
       }
     }
-    if (nrow(data) == 0) {
-      data <- data.table::fread(path_data)
-    }
   }
+  
   return(data)
 }
 

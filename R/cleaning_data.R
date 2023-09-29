@@ -145,6 +145,8 @@ limpiar_cods_dpto <- function(data_event,
 convert_edad <- function(data_event,
                          col_edad = "edad",
                          col_uni_med = "uni_med") {
+  data_event$uni_med <- as.numeric(data_event$uni_med)
+  data_event$edad <- as.numeric(data_event$edad)
   data_event_years <-
     dplyr::mutate(data_event,
                   edad =
@@ -240,13 +242,13 @@ remove_error_fecha <- function(data_event,
 #'              nombres_col = c("ini_sin", "fec_hos"))
 #' @export
 format_fecha <- function(data_event,
-                         format_fecha = "%AAAA-%MM-%DD",
+                         format_fecha = "%Y-%m-%d",
                          nombres_col = c()) {
   data_event_limp <- data_event
   for (name in nombres_col) {
     if (!is.null(name)) {
-      ref_col <- eval(parse(text = paste0("data_event_limp$", name)))
-      ref_col <- as.Date(ref_col, format = format_fecha)
+      data_event_limp[[name]] <- as.Date(data_event[[name]],
+                                         format = format_fecha)
     }
   }
   return(data_event_limp)
@@ -384,7 +386,6 @@ limpiar_val_atipic <- function(data_event) {
 #' @export
 limpiar_data_sivigila <- function(data_event, year) {
   data_event <- limpiar_encabezado(data_event)
-  data_event <- limpiar_edad_event(data_event)
   nom_cols_fechas <- config::get(file = system.file("extdata",
                                                     "config.yml",
                                                     package = "sivirep"),
