@@ -429,8 +429,6 @@ agrupar_sex <- function(data_event,
 agrupar_sex_semanaepi <- function(data_event,
                                   col_nombres = c("sexo", "semana"),
                                   porcentaje = TRUE) {
-  cols_ocurrenc <- obtener_tip_ocurren_geo(data_event$cod_eve[1])
-  col_nombres <- append(col_nombres, cols_ocurrenc)
   data_event_sex_semanaepi <- agrupar_cols_casos(data_event,
                                                  col_nombres,
                                                  porcentaje)
