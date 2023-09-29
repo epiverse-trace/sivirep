@@ -7,7 +7,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+```{r setup_package}
 library(sivirep)
 ```
 
@@ -46,11 +46,20 @@ El objetivo de `sivirep` es proporcionar un conjunto de herramientas para:
 - Estudiantes del área de la salud y epidemiología.
 - Investigadores y analistas de datos a nivel nacional e internacional.
 
+## Instalación
+
+Puedes instalar la versión de desarrollo de `sivirep` desde GitHub con el siguiente comando:
+
+```{r setup_sivirep, eval = FALSE}
+install.packages("pak")
+pak::pak("epiverse-trace/sivirep")
+```
+
 ## Inicio rápido
 
 Puedes revisar las enfermedades y los años disponibles de forma libre utilizando:
 
-```{r}
+```{r list_events}
 lista_eventos <- list_events()
 knitr::kable(lista_eventos)
 ```
@@ -74,9 +83,19 @@ Los contribuyentes al paquete incluyen:
 
 -   [Hugo Gruson](https://github.com/Bisaloo) (contributor)
 
--   Laura Gómez-Bermeo (contributor to documentation)
+-   [Laura Gómez-Bermeo](https://github.com/lgbermeo) (contributor to documentation)
 
--   Miguel Gámez (contributor)
+-   [Miguel Gámez](https://github.com/megamezl) (contributor)
+
+-   Jennifer Méndez-Romero (contributor)
+
+-   Johan Calderón (contributor)
+
+-   Claudia Huguett-Aragón (contributor)
+
+-   Lady Flórez-Tapiero (contributor)
+
+-   Verónica Tangarife-Arredondo (contributor)
 
 ## Código de conducta
 
@@ -89,13 +108,13 @@ Por favor, ten en cuenta que el proyecto `sivirep` se publica con un
 
 Después de la instalación de `sivirep`, puedes comenzar importando el paquete a través del siguiente comando:
 
-```{r}
+```{r import_sivirep}
 library(sivirep)
 ```
 
 Ante de iniciar con el reporte automatizado, revisa la lista de enfermedades disponibles para hacer un reporte con `sivirep` en:
 
-```{r results = 'hide'}
+```{r eventos_disponibles, results = 'hide'}
 list_events()
 ```
 
@@ -137,13 +156,13 @@ La fuente de SIVIGILA proporciona los datos de la lista de casos históricos has
 
 Por favor, verifica las enfermedades y años disponibles utilizando:
 
-```{r results = 'hide'}
+```{r eventos,results = 'hide'}
 lista_eventos <- list_events()
 ```
 
 Una vez que hayas decidido la enfermedad y el año de la cual deseas obtener la información, `import_data_event` es la función que permite la importación de datos desde la fuente de SIVIGILA utilizando un formato parametrizado basado en la enfermedad y el año.
 
-```{r}
+```{r import_data_event}
 data_event <-  import_data_event(year = 2020,
                                  nombre_event = "DENGUE")
 ```
@@ -158,7 +177,7 @@ Los datos de SIVIGILA son una fuente de información oficial altamente confiable
 
 `sivirep` proporciona una función genérica llamada `limpiar_data_sivigila` que envuelve diversas tareas para identificar y corregir errores, inconsistencias y discrepancias en los conjuntos de datos con el fin de mejorar su calidad y precisión. Este proceso puede incluir la eliminación de duplicados, la corrección de errores tipográficos, el reemplazo de valores faltantes y la validación de datos, entre otras tareas, como eliminar fechas improbables, limpiar códigos de geolocalización y estandarizar los nombres de las columnas y las categorías de edad.
 
-```{r}
+```{r limpiar_data_sivigila}
 data_event_limp <- limpiar_data_sivigila(data_event = data_event, year = 2020)
 ```
 
@@ -180,7 +199,7 @@ El usuario puede utilizar estas funciones individualmente o simplemente utilizar
 
 `sivirep` proporciona una función que permite filtrar los datos de enfermedades por departamento o nombre del municipio llamada `geo_filtro`. Esto permite al usuario crear un informe a nivel subnacional, seleccionando casos específicos basados en la ubicación geográfica.
 
-```{r}
+```{r geo_filtro}
 data_event_filtrada <- geo_filtro(data_event = data_event_limp,
                                   nombre_dpto = "Antioquia")
 ``` 
@@ -193,7 +212,7 @@ En `sivirep`, la distribución temporal de casos se define por las variables de 
 
 Para generar la distribución de casos por fecha de inicio de síntomas, es necesario agrupar los datos por estas variables. `sivirep` proporciona una función que permite esta agrupación llamada `agrupar_fecha_inisintomas`, en la cual puedes especificar la unidad de tiempo para agrupar estas fechas. Los valores permitidos para este parámetro son: día y mes.
 
-```{r}
+```{r agrupar_fecha_inicio_sintomas}
 casos_ini_sintomas_dia <- agrupar_fecha_inisintomas(data_event =
                                                       data_event_limp,
                                                     tipo = "day")
@@ -208,7 +227,7 @@ casos_ini_sintomas_mes <- agrupar_fecha_inisintomas(data_event =
 
 El gráfico que permite visualizar esta distribución se debe generar con la función `plot_fecha_inisintomas`. Ten en cuenta que, incluso si has agrupado los datos por día, es posible que prefieras representarlo por mes, como en:
 
-```{r fig.height = 4, fig.width = 7}
+```{r plot_fecha_inicio_sintomas, fig.height = 4, fig.width = 7}
 plot_fecha_inisintomas(data_agrupada = casos_ini_sintomas_dia,
                        uni_marca = "months")
 ```
@@ -217,7 +236,7 @@ plot_fecha_inisintomas(data_agrupada = casos_ini_sintomas_dia,
 
 El proceso para generar la distribución de casos por fecha de notificación consiste en agrupar los datos de enfermedades por esta variable. Puedes utilizar la siguiente función de `sivirep` para hacer esto:
 
-```{r}
+```{r agrupar_fecha_notificacion}
 casos_fecha_notificacion_dia <- agrupar_fecha_notifica(data_event =
                                                          data_event_limp,
                                                        tipo = "day")
@@ -228,7 +247,7 @@ casos_fecha_notificacion_mes <- agrupar_fecha_notifica(data_event =
 
 El gráfico que permite visualizar esta distribución debe generarse con la función `plot_fecha_notifica`. Ten en cuenta que, aunque hayas agrupado los datos por día, es posible que prefieras representarlos por mes, como en:
 
-```{r fig.height = 4, fig.width = 7}
+```{r plot_fecha_notificacion, fig.height = 4, fig.width = 7}
 plot_fecha_notifica(data_agrupada = casos_fecha_notificacion_dia,
                     uni_marca = "months")
 ```
@@ -241,26 +260,26 @@ Cuando se analizan o se informan datos de enfermedades, a menudo es necesario de
 
 `sivirep` proporciona una función que agrega y calcula automáticamente los porcentajes por sexo después del proceso de limpieza.
 
-```{r}
+```{r agrupar_sexo}
 casos_sex <- agrupar_sex(data_event = data_event_limp,
                          porcentaje = TRUE)
 ```
 
 Además, `sivirep` cuenta con una función para generar el gráfico por esta variable llamada `plot_sex`:
 
-```{r fig.height = 4, fig.width = 7}
+```{r plot_sexo, fig.height = 4, fig.width = 7}
 plot_sex(data_agrupada = casos_sex)
 ```
 
 La distribución de casos por sexo y semana epidemiológica se puede generar utilizando la función `agrupar_sex_semanaepi` proporcionada por `sivirep`.
 
-```{r}
+```{r agrupar_sex_semana_epidemiologica}
 casos_sex_semanaepi <- agrupar_sex_semanaepi(data_event = data_event_limp)
 ```
 
 La función de visualización correspondiente es `plot_sex_semanaepi`, que `sivirep` proporciona para mostrar la distribución de casos por sexo y semana epidemiológica. 
 
-```{r fig.height = 4, fig.width = 7}
+```{r plot_sex_semana_epidemiologica, fig.height = 4, fig.width = 7}
 plot_sex_semanaepi(data_agrupada = casos_sex_semanaepi)
 ```
 
@@ -270,13 +289,13 @@ La edad es una variable importante para analizar, ya que es un factor de riesgo 
 
 `sivirep` proporciona una función llamada `agrupar_edad`, que puede agrupar los datos de enfermedades por grupos de edad. De forma predeterminada, esta función produce rangos de edad con intervalos de 10 años. Además, los usuarios pueden personalizar un rango de edad diferente.
 
-```{r}
+```{r agrupar_edad}
 casos_edad <- agrupar_edad(data_event = data_event_limp, interval_edad = 10)
 ```
 
 La función de visualización correspondiente es `plot_edad`.
 
-```{r fig.height = 4, fig.width = 7}
+```{r plot_edad, fig.height = 4, fig.width = 7}
 plot_edad(data_agrupada = casos_edad)
 ```
 
@@ -284,7 +303,7 @@ plot_edad(data_agrupada = casos_edad)
 
 `sivirep` proporciona una función llamada `agrupar_edad_sex`, que puede agrupar los datos de enfermedades por rangos de edad y sexo de forma simultánea y obtener el número de casos y los porcentajes correspondientes. Además, permite personalizar el intervalo de edad.
 
-```{r}
+```{r agrupar_edad_sexo}
 casos_edad_sex <- agrupar_edad_sex(data_event = data_event_limp,
                                    interval_edad = 10)
 
@@ -292,7 +311,7 @@ casos_edad_sex <- agrupar_edad_sex(data_event = data_event_limp,
 
 La función de visualización correspondiente es `plot_edad_sex`.
 
-```{r fig.height = 3, fig.width = 7}
+```{r plot_edad_sexo, fig.height = 3, fig.width = 7}
 plot_edad_sex(data_agrupada = casos_edad_sex)
 ```
 
@@ -302,18 +321,18 @@ Obtener la distribución espacial de los casos es útil para identificar áreas 
 
 En Colombia, existen 32 unidades geográficas administrativas (adm1) llamadas departamentos. `sivirep` proporciona una función llamada `agrupar_mun` que permite obtener un data.frame de casos agrupados por departamento o municipio.
 
-```{r}
+```{r agrupar_municipios}
 dist_esp_dept <- agrupar_mun(data_event = data_event_filtrada,
                              dept_nombre = "Antioquia")
 ```
 
 Actualmente, con la función llamada `plot_map`, el usuario puede generar un mapa estático de Colombia que muestra la distribución de casos por departamentos y municipios.
 
-```{r fig.height = 7, fig.width = 7, results='hide', echo = FALSE}
+```{r plot_mapa, results = 'hide', echo = FALSE}
 mapa <- plot_map(data_agrupada = dist_esp_dept, dpto = "Antioquia")
 ```
 
-```{r fig.height = 7, fig.width = 7}
+```{r mapa, fig.height = 7, fig.width = 7}
 mapa
 ```
 
