@@ -179,6 +179,7 @@ import_data_event <- function(year,
                               cache = TRUE) {
   data_event <- data.frame()
   list_events <- list_events()
+  nombre_event <- stringr::str_to_title(nombre_event)
   grupo_events <-
     list_events[which(stringr::str_detect(list_events$enfermedad,
                                           substr(nombre_event,
