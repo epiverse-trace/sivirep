@@ -58,14 +58,18 @@ import_sep_data <- function(path_data) {
   seps <- config::get(file = system.file("extdata", "config.yml",
                                          package = "sivirep"), "data_delim")
   data <- data.frame()
-  for (sep in seps) {
-    if (sep %in% strsplit(readLines(path_data, n = 1)[1], split = "")[[1]]) {
-      data <- data.table::fread(path_data, sep = sep)
-      break
+  if (stringr::str_detect(path_data, ".xls")) {
+    data <- readxl::read_excel(path_data)
+  } else {
+    for (sep in seps) {
+      if (sep %in% strsplit(readLines(path_data, n = 1)[1], split = "")[[1]]) {
+        data <- data.table::fread(path_data, sep = sep)
+        break
+      }
     }
-  }
-  if (nrow(data) == 0) {
-    data <- data.table::fread(path_data)
+    if (nrow(data) == 0) {
+      data <- data.table::fread(path_data)
+    }
   }
   return(data)
 }
@@ -179,6 +183,7 @@ import_data_event <- function(year,
                               cache = TRUE) {
   data_event <- data.frame()
   list_events <- list_events()
+  nombre_event <- stringr::str_to_title(nombre_event)
   grupo_events <-
     list_events[which(stringr::str_detect(list_events$enfermedad,
                                           substr(nombre_event,
