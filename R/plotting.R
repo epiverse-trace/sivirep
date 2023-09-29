@@ -497,8 +497,7 @@ plot_sex_semanaepi <- function(data_agrupada,
                                             pos_leyenda = "right",
                                             ancho_barra = 0.5,
                                             tam_text = 3,
-                                            most_val = porcentaje) +
-    ggplot2::scale_x_continuous(breaks = seq(1, 52, 4))
+                                            most_val = porcentaje)
   return(plot_casos_sex_semanaepi)
 }
 
