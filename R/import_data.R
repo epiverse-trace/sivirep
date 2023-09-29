@@ -73,7 +73,8 @@ import_sep_data <- function(path_data) {
       data <- readxl::read_excel(file_name)
     } else {
       for (sep in seps) {
-        if (sep %in% strsplit(readLines(path_data, n = 1)[1], split = "")[[1]]) {
+        if (sep %in% strsplit(readLines(path_data, n = 1)[1],
+                              split = "")[[1]]) {
           data <- data.table::fread(path_data, sep = sep)
           break
         }
