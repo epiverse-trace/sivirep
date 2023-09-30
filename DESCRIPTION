@@ -5,7 +5,7 @@ Version: 0.0.2.0
 Authors@R: 
   c(
     person(given = "Geraldine", family = "Gómez Millán", email = "geralidine.gomez@javeriana.edu.co", role = c("aut", "cre", "ctb"),
-        comment = c(ORCID = "https://orcid.org/0009-0007-8701-0568"))
+        comment = c(ORCID = "https://orcid.org/0009-0007-8701-0568")),
     person(given = "Zulma M.", family = "Cucunubá", email = "zulma.cucunuba@javeriana.edu.co", role = c("aut", "cre", "ctb"),
         comment = c(ORCID = "https://orcid.org/0000-0002-8165-3198")),
     person(given = "Hugo", family = "Gruson", email = "hugo.gruson+R@normalesup.org", role = c("ctb"),
@@ -16,7 +16,7 @@ Authors@R:
     person(given = "Jennifer", family = "Méndez-Romero", role = c("ctb")),
     person(given = "Johan", family = "Calderón", role = c("ctb")),
     person(given = "Lady", family = "Flórez-Tapiero", role = c("ctb")),
-    person(given = "Verónica", family = "Tangarife-Arredondo", role = c("ctb")),
+    person(given = "Verónica", family = "Tangarife-Arredondo", role = c("ctb"))
   )
 Description: Provides functions for data wrangling and automated reports 
     from SIVIGILA source.
