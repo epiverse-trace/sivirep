@@ -28,7 +28,7 @@ notificación y número de casos
 }
 \examples{
 data_event <- import_data_event(2019, "DENGUE")
-data_event <- limpiar_encabezado(data_event)
+data_event <- limpiar_data_sivigila(data_event)
 agrupar_fecha_notifica(data_event = data_event,
                        col_nombre = "fec_not",
                        tipo = "month")
