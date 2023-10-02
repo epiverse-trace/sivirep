@@ -116,10 +116,9 @@ obtener_casos_pob_especial <- function(data_event) {
                                    "special_populations_names")
   casos_especiales <- c()
   for (sp in pob_especial) {
-    casos_especiales <- append(casos_especiales, sum(
-      eval(parse(text =
-                   paste0("data_event$", sp)))
-    ))
+    data_event[[sp]] <- as.numeric(data_event[[sp]])
+    casos_especiales <- append(casos_especiales,
+                               sum(data_event[[sp]]))
   }
   data_pob_especial <- data.frame(
     poblacion = pob_especial,
@@ -139,7 +138,7 @@ obtener_casos_pob_especial <- function(data_event) {
 #' evento agrupados por semana epidemiológica y número de casos
 #' @examples
 #' data_event <- import_data_event(2019, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data_event <- limpiar_data_sivigila(data_event)
 #' agrupar_casos_semanaepi(data_event = data_event)
 #' @export
 agrupar_casos_semanaepi <- function(data_event) {
@@ -215,7 +214,7 @@ agrupar_cols_casos <- function(data_event,
 #' agrupados por el rango de edad y número de casos
 #' @examples
 #' data_event <- import_data_event(2019, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data_event <- limpiar_data_sivigila(data_event)
 #' data_edad <- agrupar_cols_casos(data_event = data_event,
 #'                                 c("edad", "semana"),
 #'                                 agr_porcentaje = TRUE)
@@ -313,7 +312,7 @@ agrupar_cols_casos <- function(data_event,
 #' agrupados por fecha de inicio de síntomas y número de casos
 #' @examples
 #' data_event <- import_data_event(2019, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data_event <- limpiar_data_sivigila(data_event)
 #' agrupar_fecha_inisintomas(data_event = data_event,
 #'                           col_nombre = "ini_sin",
 #'                           tipo = "month")
@@ -352,7 +351,7 @@ agrupar_fecha_inisintomas <- function(data_event,
 #' notificación y número de casos
 #' @examples
 #' data_event <- import_data_event(2019, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data_event <- limpiar_data_sivigila(data_event)
 #' agrupar_fecha_notifica(data_event = data_event,
 #'                        col_nombre = "fec_not",
 #'                        tipo = "month")
@@ -453,7 +452,7 @@ agrupar_sex_semanaepi <- function(data_event,
 #' por edad y número de casos
 #' @examples
 #' data_event <- import_data_event(2019, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data_event <- limpiar_data_sivigila(data_event)
 #' agrupar_edad(data_event = data_event,
 #'              col_nombre = "edad",
 #'              porcentaje = FALSE)
@@ -496,7 +495,7 @@ agrupar_edad <- function(data_event,
 #' por edades, sexo y número de casos
 #' @examples
 #' data_event <- import_data_event(2019, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data_event <- limpiar_data_sivigila(data_event)
 #' agrupar_edad_sex(data_event = data_event,
 #'                  col_nombres = c("edad", "sexo"),
 #'                  porcentaje = TRUE)
