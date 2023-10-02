@@ -27,8 +27,9 @@ Función que agrupa los datos por códigos de departamento y
 número de casos
 }
 \examples{
-data_event <- import_data_event(2019, "DENGUE")
-data_event <- limpiar_encabezado(data_event)
+data(dengue2020)
+data_event <- dengue2020
+data_event <- limpiar_data_sivigila(data_event)
 agrupar_dpto(data_event = data_event,
              col_nombre = "cod_dpto_o",
              porcentaje = FALSE)

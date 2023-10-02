@@ -79,8 +79,9 @@ Función que genera un gráfico por cualquier tipo de variable o columna de un
 data frame
 }
 \examples{
-data_event <- import_data_event(2019, "DENGUE")
-data_event <- limpiar_encabezado(data_event)
+data(dengue2020)
+data_event <- dengue2020
+data_event <- limpiar_data_sivigila(data_event)
 cases_sex <- agrupar_sex(data_event,
                          porcentaje = TRUE)
 plot_variable(data = cases_sex,

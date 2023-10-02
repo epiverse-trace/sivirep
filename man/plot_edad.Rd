@@ -25,7 +25,7 @@ Función que genera el gráfico de distribución de casos por edad
 }
 \examples{
 data_event <- import_data_event(2020, "DENGUE")
-data_event <- limpiar_encabezado(data_event)
+data_event <- limpiar_data_sivigila(data_event)
 data_agrupada <- agrupar_edad(data_event,
                               col_nombre = "edad",
                               porcentaje = FALSE)

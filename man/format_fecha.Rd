@@ -4,7 +4,7 @@
 \alias{format_fecha}
 \title{Formatear fechas}
 \usage{
-format_fecha(data_event, format_fecha = "\%AAAA-\%MM-\%DD", nombres_col = c())
+format_fecha(data_event, format_fecha = "\%Y-\%m-\%d", nombres_col = c())
 }
 \arguments{
 \item{data_event}{Un data frame que contiene los datos
