@@ -51,36 +51,37 @@ import_geo_cods <- function(url_data = NULL) {
 #' la URL de los datos de SIVIGILA
 #' @return Un `data.frame` con los datos
 #' @examples
-#' import_sep_data(path_data =
-#' "https://www.datos.gov.co/api/views/qvnt-2igj/rows.csv?accessType=DOWNLOAD")
+#' import_sep_data()
 #' @export
-import_sep_data <- function(path_data) {
+import_sep_data <- function(path_data = NULL) {
   seps <- config::get(file = system.file("extdata", "config.yml",
                                          package = "sivirep"), "data_delim")
   data <- data.frame()
-  response <- httr::GET(path_data)
-  if (httr::status_code(response) == 200) {
-    start_file_name <- stringr::str_locate(path_data, "Microdatos/")[2] + 1
-    end_file_name <- stringr::str_locate(path_data, "value")[1] - 5
-    file_name <- stringr::str_sub(path_data, start_file_name, end_file_name)
-    con_file <- file(file_name, "wb")
-    chunk <- httr::content(response, "raw", as = "raw")
-    if (length(chunk) > 0) {
-      writeBin(chunk, con_file)
-    }
-    close(con_file)
-    if (stringr::str_detect(file_name, ".xls")) {
-      data <- readxl::read_excel(file_name)
-    } else {
-      for (sep in seps) {
-        if (sep %in% strsplit(readLines(path_data, n = 1)[1],
-                              split = "")[[1]]) {
-          data <- data.table::fread(path_data, sep = sep)
-          break
-        }
+  if (!is.null(path_data)) {
+    response <- httr::GET(path_data)
+    if (httr::status_code(response) == 200) {
+      start_file_name <- stringr::str_locate(path_data, "Microdatos/")[2] + 1
+      end_file_name <- stringr::str_locate(path_data, "value")[1] - 5
+      file_name <- stringr::str_sub(path_data, start_file_name, end_file_name)
+      con_file <- file(file_name, "wb")
+      chunk <- httr::content(response, "raw", as = "raw")
+      if (length(chunk) > 0) {
+        writeBin(chunk, con_file)
       }
-      if (nrow(data) == 0) {
-        data <- data.table::fread(path_data)
+      close(con_file)
+      if (stringr::str_detect(file_name, ".xls")) {
+        data <- readxl::read_excel(file_name)
+      } else {
+        for (sep in seps) {
+          if (sep %in% strsplit(readLines(path_data, n = 1)[1],
+                                split = "")[[1]]) {
+            data <- data.table::fread(path_data, sep = sep)
+            break
+          }
+        }
+        if (nrow(data) == 0) {
+          data <- data.table::fread(path_data)
+        }
       }
     }
   }
