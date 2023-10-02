@@ -329,7 +329,7 @@ plot_variable <- function(data, var_x, var_y, var_por = NULL,
 #' de síntomas
 #' @examples
 #' data_event <- import_data_event(2020, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data_event <- limpiar_data_sivigila(data_event)
 #' data_agrupada <- agrupar_fecha_inisintomas(
 #'                                      data_event,
 #'                                      col_nombre = "ini_sin",
@@ -379,7 +379,7 @@ plot_fecha_inisintomas <- function(data_agrupada,
 #' @return Un plot o gráfico de distribución de casos por fecha de notificación
 #' @examples
 #' data_event <- import_data_event(2020, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data_event <- limpiar_data_sivigila(data_event)
 #' data_agrupada <- agrupar_fecha_notifica(data_event,
 #'                                         col_nombre = "fec_not",
 #'                                         tipo = "month")
@@ -514,7 +514,7 @@ plot_sex_semanaepi <- function(data_agrupada,
 #' @return Un plot o gráfico de distribución de casos por edad
 #' @examples
 #' data_event <- import_data_event(2020, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data_event <- limpiar_data_sivigila(data_event)
 #' data_agrupada <- agrupar_edad(data_event,
 #'                               col_nombre = "edad",
 #'                               porcentaje = FALSE)
@@ -552,7 +552,7 @@ plot_edad <- function(data_agrupada,
 #' @return Un plot o gráfico de distribución de casos por edad y sexo
 #' @examples
 #' data_event <- import_data_event(2020, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data_event <- limpiar_data_sivigila(data_event)
 #' data_agrupada <- agrupar_edad_sex(data_event,
 #'                                   col_nombres = c("edad", "sexo"),
 #'                                   porcentaje = FALSE)
