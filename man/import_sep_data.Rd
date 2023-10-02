@@ -4,7 +4,7 @@
 \alias{import_sep_data}
 \title{Importar datos con un separador específico}
 \usage{
-import_sep_data(path_data)
+import_sep_data(path_data = NULL)
 }
 \arguments{
 \item{path_data}{Un character (cadena de caracteres) que contiene
@@ -18,6 +18,5 @@ Función que identifica el separador que tiene
 los datos para tabularla
 }
 \examples{
-import_sep_data(path_data =
-"https://www.datos.gov.co/api/views/qvnt-2igj/rows.csv?accessType=DOWNLOAD")
+import_sep_data()
 }
