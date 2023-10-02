@@ -118,10 +118,9 @@ obtener_casos_pob_especial <- function(data_event) {
                                    "special_populations_names")
   casos_especiales <- c()
   for (sp in pob_especial) {
-    casos_especiales <- append(casos_especiales, sum(
-      eval(parse(text =
-                   paste0("data_event$", sp)))
-    ))
+    data_event[[sp]] <- as.numeric(data_event[[sp]])
+    casos_especiales <- append(casos_especiales,
+                               sum(data_event[[sp]]))
   }
   data_pob_especial <- data.frame(
     poblacion = pob_especial,

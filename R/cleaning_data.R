@@ -242,9 +242,9 @@ remove_error_fecha <- function(data_event,
 #' @return Un data framecon los datos con las fechas formateadas
 #' @examples
 #' data_event <- import_data_event(2020, "DENGUE")
-#' data_event <- format_fecha(data_event)
+#' data_event <- limpiar_data_sivigila(data_event)
 #' format_fecha(data_event = data_event,
-#'              format_fecha = "%AAAA-%MM-%DD",
+#'              format_fecha = "%Y-%m-%d",
 #'              nombres_col = c("ini_sin", "fec_hos"))
 #' @export
 format_fecha <- function(data_event,
@@ -297,13 +297,13 @@ limpiar_encabezado <- function(data_event) {
 #' data_event <- limpiar_data_sivigila(data_event)
 #' limpiar_fecha_event(data_event = data_event,
 #'                     year = 2020,
-#'                     format_fecha = "%AAAA-%MM-%DD",
+#'                     format_fecha = "%Y-%m-%d",
 #'                     nombre_col = "ini_sin",
 #'                     col_comp = "fec_hos")
 #' @export
 limpiar_fecha_event <- function(data_event,
                                 year,
-                                format_fecha = "%AAAA-%MM-%DD",
+                                format_fecha = "%Y-%m-%d",
                                 nombre_col = "ini_sin",
                                 col_comp = NULL) {
   data_event_fecha_ini <- data_event
