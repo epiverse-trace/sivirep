@@ -6,7 +6,7 @@ Authors@R:
   c(
     person(given = "Geraldine", family = "Gómez Millán", email = "geralidine.gomez@javeriana.edu.co", role = c("aut", "cre", "ctb"),
         comment = c(ORCID = "https://orcid.org/0009-0007-8701-0568")),
-    person(given = "Zulma M.", family = "Cucunubá", email = "zulma.cucunuba@javeriana.edu.co", role = c("aut", "cre", "ctb"),
+    person(given = "Zulma M.", family = "Cucunubá", email = "zulma.cucunuba@javeriana.edu.co", role = c("aut", "ctb"),
         comment = c(ORCID = "https://orcid.org/0000-0002-8165-3198")),
     person(given = "Hugo", family = "Gruson", email = "hugo.gruson+R@normalesup.org", role = c("ctb"),
         comment = c(ORCID = "https://orcid.org/0000-0002-4094-1476")),
