@@ -189,16 +189,28 @@ plot_map <- function(data_agrupada,
   polygon_seleccionado <-
     cbind(polygon_seleccionado,
           sf::st_coordinates(sf::st_centroid(polygon_seleccionado$geometry)))
-  map <- ggplot2::ggplot() +
+  polygon_seleccionado$MPIO_CNMBR <- stringr::str_to_title(
+    polygon_seleccionado$MPIO_CNMBR)
+  map <- ggplot2::ggplot(polygon_seleccionado) +
     ggplot2::ggtitle(label = titulo, subtitle = subtitulo) +
     ggplot2::geom_sf() +
-    ggplot2::geom_sf(data = polygon_seleccionado,
-                     ggplot2::aes(fill = .data$casos)) +
-    ggplot2::scale_fill_gradient(low = "#ECF0F1", high = "#C0392B") +
-    ggplot2::theme_void() +
+    ggplot2::geom_sf(ggplot2::aes(fill = .data$casos),
+                     colour = ggplot2::alpha("black", 1/2),
+                     linewidth = 0.1) +
+    ggplot2::geom_sf_label(ggplot2::aes(label = .data$MPIO_CNMBR),
+                           label.padding = ggplot2::unit(1, "mm"),
+                           label.size = ggplot2::unit(0.4, "mm"))
+    # ggplot2::scale_fill_gradient(low = "#ECF0F1", high = "#C0392B") +
+    # ggplot2::scale_fill_distiller(palette = "RdPu",
+                              #    na.value = "#fff7f3",
+                              #    direction = -1)
+    ggplot2::facet_wrap(~.data$nombre_evento) +
+      #ggplot2::theme_void() +
+   
     ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5),
                    plot.subtitle = ggplot2::element_text(hjust = 0.5)) +
-    ggplot2::labs(caption = fuente_data, fill = "Casos")
+    ggplot2::labs(caption = fuente_data, fill = "Casos") 
+    
   return(map)
 }
 
