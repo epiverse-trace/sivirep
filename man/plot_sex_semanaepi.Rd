@@ -32,7 +32,7 @@ y semana epidemiológica
 }
 \examples{
 data_event <- import_data_event(2020, "DENGUE")
-data_event <- limpiar_encabezado(data_event)
+data_event <- limpiar_data_sivigila(data_event, 2020)
 data_agrupada <- agrupar_sex_semanaepi(data_event,
                                        col_nombres = c("sexo", "semana"),
                                        porcentaje = TRUE)

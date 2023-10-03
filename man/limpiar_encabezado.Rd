@@ -19,6 +19,7 @@ Función que limpia las etiquetas del encabezado de los datos
 de una enfermedad o evento
 }
 \examples{
-data_event <- import_data_event(2019, "DENGUE")
+data(dengue2020)
+data_event <- dengue2020
 limpiar_encabezado(data_event = data_event)
 }
