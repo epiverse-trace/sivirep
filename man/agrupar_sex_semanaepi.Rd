@@ -35,7 +35,7 @@ epidemiológica y número de casos
 \examples{
 data(dengue2020)
 data_event <- dengue2020
-data_event <- limpiar_data_sivigila(data_event)
+data_event <- limpiar_data_sivigila(data_event, 2020)
 agrupar_sex_semanaepi(data_event = data_event,
                       col_nombres = c("sexo", "semana"),
                       porcentaje = TRUE)

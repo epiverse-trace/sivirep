@@ -38,7 +38,7 @@ sexo y número de casos
 \examples{
 data(dengue2020)
 data_event <- dengue2020
-data_event <- limpiar_data_sivigila(data_event)
+data_event <- limpiar_data_sivigila(data_event, 2020)
 agrupar_edad_sex(data_event = data_event,
                  col_nombres = c("edad", "sexo"),
                  porcentaje = TRUE)

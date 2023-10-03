@@ -29,7 +29,7 @@ SIVIGILA
 \examples{
 data(dengue2020)
 data_event <- dengue2020
-data_event <- limpiar_data_sivigila(data_event)
+data_event <- limpiar_data_sivigila(data_event, 2020)
 convert_edad(data_event = data_event,
              col_edad = "edad",
              col_uni_med = "uni_med")

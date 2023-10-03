@@ -29,7 +29,7 @@ especial y casos
 \examples{
 data(dengue2020)
 data_event <- dengue2020
-data_event <- limpiar_data_sivigila(data_event)
+data_event <- limpiar_data_sivigila(data_event, 2020)
 agrupar_pob_especial(data_event = data_event,
                      col_nombre = "poblacion",
                      porcentaje = TRUE)

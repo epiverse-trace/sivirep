@@ -23,6 +23,6 @@ Función que limpia las edades de los datos de una enfermedad o evento
 }
 \examples{
 data_event <- import_data_event(2020, "DENGUE")
-data_event <- limpiar_data_sivigila(data_event)
+data_event <- limpiar_data_sivigila(data_event, 2020)
 limpiar_edad_event(data_event = data_event, nombre_col = "edad")
 }

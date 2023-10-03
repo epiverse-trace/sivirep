@@ -21,6 +21,6 @@ de una enfermedad o evento
 \examples{
 data(dengue2020)
 data_event <- dengue2020
-data_event <- limpiar_data_sivigila(data_event)
+data_event <- limpiar_data_sivigila(data_event, 2020)
 estandarizar_geo_cods(data_event = data_event)
 }

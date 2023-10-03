@@ -25,7 +25,7 @@ Función que genera el gráfico de distribución de casos por población especia
 }
 \examples{
 data_event <- import_data_event(2020, "DENGUE")
-data_event <- limpiar_data_sivigila(data_event)
+data_event <- limpiar_data_sivigila(data_event, 2020)
 data_agrupada <- agrupar_pob_especial(data_event,
                          col_nombre = "poblacion",
                          porcentaje = TRUE)

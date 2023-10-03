@@ -16,7 +16,7 @@
 #' @return Un data frame que contiene los meses con mayor número de casos
 #' @examples
 #' data_event <- import_data_event(2020, "DENGUE")
-#' data_event <- limpiar_data_sivigila(data_event)
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' casos_inisintomas <- agrupar_fecha_inisintomas(data_event, tipo = "day")
 #' obtener_meses_mas_casos(data_event= casos_inisintomas,
 #'                         col_fechas = "ini_sin",
@@ -92,7 +92,7 @@ obtener_nombres_dptos <- function(data_event) {
 #' @return Un data frame que contiene la fila con mayor número de casos
 #' @examples
 #' data_event <- import_data_event(2020, "DENGUE")
-#' data_event <- limpiar_data_sivigila(data_event)
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' casos_sex <- agrupar_sex(data_event,
 #'                          porcentaje = TRUE)
 #' obtener_fila_mas_casos(data_event = casos_sex,

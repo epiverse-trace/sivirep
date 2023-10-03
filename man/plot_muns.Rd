@@ -25,7 +25,7 @@ Función que genera el gráfico de distribución de casos por municipios
 }
 \examples{
 data_event <- import_data_event(2020, "DENGUE")
-data_event <- limpiar_data_sivigila(data_event)
+data_event <- limpiar_data_sivigila(data_event, 2020)
 data_event <- estandarizar_geo_cods(data_event)
 data_agrupada <- agrupar_mun(data_event,
                              dept_nombre = "Antioquia")

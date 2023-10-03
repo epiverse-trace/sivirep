@@ -39,7 +39,7 @@ casos de una enfermedad o evento
 \examples{
 data(dengue2020)
 data_event <- dengue2020
-data_event <- limpiar_data_sivigila(data_event)
+data_event <- limpiar_data_sivigila(data_event, 2020)
 data_espacial_dpto <- estandarizar_geo_cods(data_event)
 data_espacial_dpto <- geo_filtro(data_event = data_event,
                                  nombre_dpto = "Antioquia")

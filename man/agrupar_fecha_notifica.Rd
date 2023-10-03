@@ -29,7 +29,7 @@ notificación y número de casos
 \examples{
 data(dengue2020)
 data_event <- dengue2020
-data_event <- limpiar_data_sivigila(data_event)
+data_event <- limpiar_data_sivigila(data_event, 2020)
 agrupar_fecha_notifica(data_event = data_event,
                        col_nombre = "fec_not",
                        tipo = "month")

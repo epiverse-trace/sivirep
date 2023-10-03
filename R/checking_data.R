@@ -42,7 +42,7 @@ filtrar_event <- function(nombre_event,
 #' @examples
 #' data(dengue2020)
 #' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event)
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' geo_filtro(data_event, nombre_dpto = "ANTIOQUIA")
 #' @export
 geo_filtro <- function(data_event, nombre_dpto = NULL, nombre_mun = NULL) {
@@ -104,6 +104,7 @@ obtener_cods_dpto <- function(geo_cods) {
 #' @examples
 #' data(dengue2020)
 #' data_event <- dengue2020
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' obtener_casos_pob_especial(data_event = data_event)
 #' @export
 obtener_casos_pob_especial <- function(data_event) {
@@ -141,7 +142,7 @@ obtener_casos_pob_especial <- function(data_event) {
 #' @examples
 #' data(dengue2020)
 #' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event)
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' agrupar_casos_semanaepi(data_event = data_event)
 #' @export
 agrupar_casos_semanaepi <- function(data_event) {
@@ -169,7 +170,7 @@ agrupar_casos_semanaepi <- function(data_event) {
 #' @examples
 #' data(dengue2020)
 #' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event)
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' agrupar_cols_casos(data_event = data_event,
 #'                    cols_nombres = "sexo",
 #'                    agr_porcentaje = TRUE)
@@ -219,7 +220,7 @@ agrupar_cols_casos <- function(data_event,
 #' @examples
 #' data(dengue2020)
 #' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event)
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' data_edad <- agrupar_cols_casos(data_event = data_event,
 #'                                 c("edad", "semana"),
 #'                                 agr_porcentaje = TRUE)
@@ -277,7 +278,7 @@ agrupar_rango_edad_casos <- function(data_event,
 #' @examples
 #' data(dengue2020)
 #' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event)
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' agrupar_cols_casos(data_event = data_event,
 #'                    cols_nombres = "sexo",
 #'                    agr_porcentaje = TRUE)
@@ -319,7 +320,7 @@ agrupar_cols_casos <- function(data_event,
 #' @examples
 #' data(dengue2020)
 #' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event)
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' agrupar_fecha_inisintomas(data_event = data_event,
 #'                           col_nombre = "ini_sin",
 #'                           tipo = "month")
@@ -359,7 +360,7 @@ agrupar_fecha_inisintomas <- function(data_event,
 #' @examples
 #' data(dengue2020)
 #' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event)
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' agrupar_fecha_notifica(data_event = data_event,
 #'                        col_nombre = "fec_not",
 #'                        tipo = "month")
@@ -399,7 +400,7 @@ agrupar_fecha_notifica <- function(data_event,
 #' @examples
 #' data(dengue2020)
 #' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event)
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' agrupar_sex(data_event = data_event,
 #'             col_nombre = "sexo",
 #'             porcentaje = TRUE)
@@ -430,7 +431,7 @@ agrupar_sex <- function(data_event,
 #' @examples
 #' data(dengue2020)
 #' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event)
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' agrupar_sex_semanaepi(data_event = data_event,
 #'                       col_nombres = c("sexo", "semana"),
 #'                       porcentaje = TRUE)
@@ -463,7 +464,7 @@ agrupar_sex_semanaepi <- function(data_event,
 #' @examples
 #' data(dengue2020)
 #' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event)
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' agrupar_edad(data_event = data_event,
 #'              col_nombre = "edad",
 #'              porcentaje = FALSE)
@@ -507,7 +508,7 @@ agrupar_edad <- function(data_event,
 #' @examples
 #' data(dengue2020)
 #' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event)
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' agrupar_edad_sex(data_event = data_event,
 #'                  col_nombres = c("edad", "sexo"),
 #'                  porcentaje = TRUE)
@@ -555,7 +556,7 @@ agrupar_edad_sex <- function(data_event,
 #' @examples
 #' data(dengue2020)
 #' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event)
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' agrupar_pob_especial(data_event = data_event,
 #'                      col_nombre = "poblacion",
 #'                      porcentaje = TRUE)
@@ -590,7 +591,7 @@ agrupar_pob_especial <- function(data_event,
 #' @examples
 #' data(dengue2020)
 #' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event)
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' agrupar_dpto(data_event = data_event,
 #'              col_nombre = "cod_dpto_o",
 #'              porcentaje = FALSE)
@@ -629,7 +630,7 @@ agrupar_dpto <- function(data_event,
 #' @examples
 #' data(dengue2020)
 #' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event)
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' agrupar_mun(data_event = data_event,
 #'             dept_nombre = "Antioquia",
 #'             col_nombre = "cod_mun_o",

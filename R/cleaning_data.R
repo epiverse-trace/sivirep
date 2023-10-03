@@ -9,7 +9,7 @@
 #' @examples
 #' data(dengue2020)
 #' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event)
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' estandarizar_geo_cods(data_event = data_event)
 #' @export
 estandarizar_geo_cods <- function(data_event) {
@@ -52,7 +52,7 @@ estandarizar_geo_cods <- function(data_event) {
 #' depto_cods <- obtener_cods_dpto(geo_cods)
 #' data(dengue2020)
 #' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event)
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' data_agrupada <- agrupar_cols_casos(data_event,
 #'                                     "cod_dpto_o",
 #'                                     agr_porcentaje = TRUE)
@@ -95,7 +95,7 @@ limpiar_cods_event_dpto <- function(depto_cods,
 #' geo_codes <- import_geo_cods()
 #' data(dengue2020)
 #' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event)
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' limpiar_cods_dpto(data_event = data_event,
 #'                   col_cods_data = "cod_dpto_o",
 #'                   geo_data = geo_codes,
@@ -141,7 +141,7 @@ limpiar_cods_dpto <- function(data_event,
 #' @examples
 #' data(dengue2020)
 #' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event)
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' convert_edad(data_event = data_event,
 #'              col_edad = "edad",
 #'              col_uni_med = "uni_med")
@@ -185,7 +185,7 @@ convert_edad <- function(data_event,
 #' @examples
 #' data(dengue2020)
 #' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event)
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' remove_val_nin(data_event = data_event, nom_col = "edad")
 #' @export
 remove_val_nin <- function(data_event, nom_col) {
@@ -215,7 +215,7 @@ remove_val_nin <- function(data_event, nom_col) {
 #' @examples
 #' data(dengue2020)
 #' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event)
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' remove_error_fecha(data_event = data_event,
 #'                    col_ini = "ini_sin",
 #'                    col_comp = "fec_hos")
@@ -242,7 +242,7 @@ remove_error_fecha <- function(data_event,
 #' @return Un data framecon los datos con las fechas formateadas
 #' @examples
 #' data_event <- import_data_event(2020, "DENGUE")
-#' data_event <- limpiar_data_sivigila(data_event)
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' format_fecha(data_event = data_event,
 #'              format_fecha = "%Y-%m-%d",
 #'              nombres_col = c("ini_sin", "fec_hos"))
@@ -294,7 +294,7 @@ limpiar_encabezado <- function(data_event) {
 #' @return Un data framecon los datos con las fechas limpias
 #' @examples
 #' data_event <- import_data_event(2020, "DENGUE")
-#' data_event <- limpiar_data_sivigila(data_event)
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' limpiar_fecha_event(data_event = data_event,
 #'                     year = 2020,
 #'                     format_fecha = "%Y-%m-%d",
@@ -335,7 +335,7 @@ limpiar_fecha_event <- function(data_event,
 #' con las edades limpias
 #' @examples
 #' data_event <- import_data_event(2020, "DENGUE")
-#' data_event <- limpiar_data_sivigila(data_event)
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' limpiar_edad_event(data_event = data_event, nombre_col = "edad")
 #' @export
 limpiar_edad_event <- function(data_event, nombre_col = "edad") {
