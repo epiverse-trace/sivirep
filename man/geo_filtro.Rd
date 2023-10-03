@@ -26,6 +26,6 @@ y municipios
 \examples{
 data(dengue2020)
 data_event <- dengue2020
-data_event <- limpiar_data_sivigila(data_event)
+data_event <- limpiar_data_sivigila(data_event, 2020)
 geo_filtro(data_event, nombre_dpto = "ANTIOQUIA")
 }

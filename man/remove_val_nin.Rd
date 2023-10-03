@@ -23,6 +23,6 @@ incluyen NA, Infinito o NaN
 \examples{
 data(dengue2020)
 data_event <- dengue2020
-data_event <- limpiar_data_sivigila(data_event)
+data_event <- limpiar_data_sivigila(data_event, 2020)
 remove_val_nin(data_event = data_event, nom_col = "edad")
 }
