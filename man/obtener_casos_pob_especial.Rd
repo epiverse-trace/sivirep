@@ -21,5 +21,6 @@ especial de una enfermedad
 \examples{
 data(dengue2020)
 data_event <- dengue2020
+data_event <- limpiar_data_sivigila(data_event, 2020)
 obtener_casos_pob_especial(data_event = data_event)
 }

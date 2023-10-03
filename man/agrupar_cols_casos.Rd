@@ -38,7 +38,7 @@ por un nombre de columna(s) específico y número de casos
 \examples{
 data(dengue2020)
 data_event <- dengue2020
-data_event <- limpiar_data_sivigila(data_event)
+data_event <- limpiar_data_sivigila(data_event, 2020)
 agrupar_cols_casos(data_event = data_event,
                    cols_nombres = "sexo",
                    agr_porcentaje = TRUE)
@@ -46,7 +46,7 @@ agrupar_cols_casos(data_event = data_event,
                    cols_nombres = c("sexo", "semana"))
 data(dengue2020)
 data_event <- dengue2020
-data_event <- limpiar_data_sivigila(data_event)
+data_event <- limpiar_data_sivigila(data_event, 2020)
 agrupar_cols_casos(data_event = data_event,
                    cols_nombres = "sexo",
                    agr_porcentaje = TRUE)
