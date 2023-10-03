@@ -4,11 +4,14 @@
 \alias{import_sep_data}
 \title{Importar datos con un separador específico}
 \usage{
-import_sep_data(path_data = NULL)
+import_sep_data(path_data = NULL, cache = TRUE)
 }
 \arguments{
 \item{path_data}{Un character (cadena de caracteres) que contiene
 la URL de los datos de SIVIGILA}
+
+\item{cache}{Un boolean (TRUE o FALSE) que indica si los datos descargados
+deben ser almacenados en caché; su valor por defecto es TRUE}
 }
 \value{
 Un `data.frame` con los datos

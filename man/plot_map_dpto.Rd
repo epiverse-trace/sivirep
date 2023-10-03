@@ -25,6 +25,7 @@ Función que genera el mapa por departamento con el número de casos
 de una enfermedad o evento
 }
 \examples{
+\dontrun{
 data(dengue2020)
 data_event <- dengue2020
 data_event <- limpiar_data_sivigila(data_event, 2020)
@@ -33,4 +34,5 @@ data_dpto <- agrupar_dpto(data_event)
 plot_map_dpto(data_dpto,
    col_nombre_lj = "id",
    fuente_data = "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia")
+}
 }
