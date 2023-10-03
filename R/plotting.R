@@ -84,7 +84,7 @@ plot_semanaepi <- function(data,
 #' @examples
 #' data(dengue2020)
 #' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event)
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' data_event <- estandarizar_geo_cods(data_event)
 #' data_dpto <- agrupar_dpto(data_event)
 #' plot_map_dpto(data_dpto,
@@ -134,7 +134,7 @@ plot_map_dpto <- function(data_agrupada,
 #' @examples
 #' data(dengue2020)
 #' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event)
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' data_espacial_dpto <- estandarizar_geo_cods(data_event)
 #' data_espacial_dpto <- geo_filtro(data_event = data_event,
 #'                                  nombre_dpto = "Antioquia")
@@ -230,7 +230,7 @@ plot_map <- function(data_agrupada,
 #' @examples
 #' data(dengue2020)
 #' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event)
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' cases_sex <- agrupar_sex(data_event,
 #'                          porcentaje = TRUE)
 #' plot_variable(data = cases_sex,
@@ -332,7 +332,7 @@ plot_variable <- function(data, var_x, var_y, var_por = NULL,
 #' de síntomas
 #' @examples
 #' data_event <- import_data_event(2020, "DENGUE")
-#' data_event <- limpiar_data_sivigila(data_event)
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' data_agrupada <- agrupar_fecha_inisintomas(
 #'                                      data_event,
 #'                                      col_nombre = "ini_sin",
@@ -382,7 +382,7 @@ plot_fecha_inisintomas <- function(data_agrupada,
 #' @return Un plot o gráfico de distribución de casos por fecha de notificación
 #' @examples
 #' data_event <- import_data_event(2020, "DENGUE")
-#' data_event <- limpiar_data_sivigila(data_event)
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' data_agrupada <- agrupar_fecha_notifica(data_event,
 #'                                         col_nombre = "fec_not",
 #'                                         tipo = "month")
@@ -430,7 +430,7 @@ plot_fecha_notifica <- function(data_agrupada,
 #' @return Un plot o gráfico de distribución de casos por sexo
 #' @examples
 #' data_event <- import_data_event(2020, "DENGUE")
-#' data_event <- limpiar_data_sivigila(data_event)
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' data_agrupada <- agrupar_sex(data_event,
 #'                              col_nombre = "sexo",
 #'                              porcentaje = TRUE)
@@ -474,7 +474,7 @@ plot_sex <- function(data_agrupada,
 #' epidemiológica
 #' @examples
 #' data_event <- import_data_event(2020, "DENGUE")
-#' data_event <- limpiar_data_sivigila(data_event)
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' data_agrupada <- agrupar_sex_semanaepi(data_event,
 #'                                        col_nombres = c("sexo", "semana"),
 #'                                        porcentaje = TRUE)
@@ -517,7 +517,7 @@ plot_sex_semanaepi <- function(data_agrupada,
 #' @return Un plot o gráfico de distribución de casos por edad
 #' @examples
 #' data_event <- import_data_event(2020, "DENGUE")
-#' data_event <- limpiar_data_sivigila(data_event)
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' data_agrupada <- agrupar_edad(data_event,
 #'                               col_nombre = "edad",
 #'                               porcentaje = FALSE)
@@ -555,7 +555,7 @@ plot_edad <- function(data_agrupada,
 #' @return Un plot o gráfico de distribución de casos por edad y sexo
 #' @examples
 #' data_event <- import_data_event(2020, "DENGUE")
-#' data_event <- limpiar_data_sivigila(data_event)
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' data_agrupada <- agrupar_edad_sex(data_event,
 #'                                   col_nombres = c("edad", "sexo"),
 #'                                   porcentaje = FALSE)
@@ -593,7 +593,7 @@ plot_edad_sex <- function(data_agrupada,
 #' @return Un plot o gráfico de distribución de casos por población especial
 #' @examples
 #' data_event <- import_data_event(2020, "DENGUE")
-#' data_event <- limpiar_data_sivigila(data_event)
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' data_agrupada <- agrupar_pob_especial(data_event,
 #'                          col_nombre = "poblacion",
 #'                          porcentaje = TRUE)
@@ -632,7 +632,7 @@ plot_pob_especial <- function(data_agrupada,
 #' @return Un plot o gráfico de distribución de casos por municipios
 #' @examples
 #' data_event <- import_data_event(2020, "DENGUE")
-#' data_event <- limpiar_data_sivigila(data_event)
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' data_event <- estandarizar_geo_cods(data_event)
 #' data_agrupada <- agrupar_mun(data_event,
 #'                              dept_nombre = "Antioquia")

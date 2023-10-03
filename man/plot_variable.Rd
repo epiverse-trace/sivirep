@@ -81,7 +81,7 @@ data frame
 \examples{
 data(dengue2020)
 data_event <- dengue2020
-data_event <- limpiar_data_sivigila(data_event)
+data_event <- limpiar_data_sivigila(data_event, 2020)
 cases_sex <- agrupar_sex(data_event,
                          porcentaje = TRUE)
 plot_variable(data = cases_sex,

@@ -30,7 +30,7 @@ Función que genera el gráfico de distribución de casos por edad y sexo
 }
 \examples{
 data_event <- import_data_event(2020, "DENGUE")
-data_event <- limpiar_data_sivigila(data_event)
+data_event <- limpiar_data_sivigila(data_event, 2020)
 data_agrupada <- agrupar_edad_sex(data_event,
                                   col_nombres = c("edad", "sexo"),
                                   porcentaje = FALSE)
