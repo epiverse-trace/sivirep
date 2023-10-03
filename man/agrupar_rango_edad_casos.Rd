@@ -44,7 +44,8 @@ Función que agrupa los datos de una enfermedad o evento por rango
 de edad y número de casos
 }
 \examples{
-data_event <- import_data_event(2019, "DENGUE")
+data(dengue2020)
+data_event <- dengue2020
 data_event <- limpiar_data_sivigila(data_event)
 data_edad <- agrupar_cols_casos(data_event = data_event,
                                 c("edad", "semana"),

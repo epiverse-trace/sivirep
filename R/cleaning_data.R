@@ -7,8 +7,9 @@
 #' @return Un data frame que contiene los códigos geográficos estandarizados
 #' de los datos de una enfermedad o evento
 #' @examples
-#' data_event <- import_data_event(2019, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data(dengue2020)
+#' data_event <- dengue2020
+#' data_event <- limpiar_data_sivigila(data_event)
 #' estandarizar_geo_cods(data_event = data_event)
 #' @export
 estandarizar_geo_cods <- function(data_event) {
@@ -49,8 +50,9 @@ estandarizar_geo_cods <- function(data_event) {
 #' @examples
 #' geo_cods <- import_geo_cods()
 #' depto_cods <- obtener_cods_dpto(geo_cods)
-#' data_event <- import_data_event(2019, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data(dengue2020)
+#' data_event <- dengue2020
+#' data_event <- limpiar_data_sivigila(data_event)
 #' data_agrupada <- agrupar_cols_casos(data_event,
 #'                                     "cod_dpto_o",
 #'                                     agr_porcentaje = TRUE)
@@ -91,8 +93,9 @@ limpiar_cods_event_dpto <- function(depto_cods,
 #' de los datos de una enfermedad o evento
 #' @examples
 #' geo_codes <- import_geo_cods()
-#' data_event <- import_data_event(2019, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data(dengue2020)
+#' data_event <- dengue2020
+#' data_event <- limpiar_data_sivigila(data_event)
 #' limpiar_cods_dpto(data_event = data_event,
 #'                   col_cods_data = "cod_dpto_o",
 #'                   geo_data = geo_codes,
@@ -136,8 +139,9 @@ limpiar_cods_dpto <- function(data_event,
 #' @return Un data framecon las edades en años según las unidades de medida
 #' del SIVIGILA
 #' @examples
-#' data_event <- import_data_event(2019, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data(dengue2020)
+#' data_event <- dengue2020
+#' data_event <- limpiar_data_sivigila(data_event)
 #' convert_edad(data_event = data_event,
 #'              col_edad = "edad",
 #'              col_uni_med = "uni_med")
@@ -179,8 +183,9 @@ convert_edad <- function(data_event,
 #' nombre de la columna en los datos de una enfermedad o evento a evaluar
 #' @return Los datos limpios sin valores NA, Infinito o NaN
 #' @examples
-#' data_event <- import_data_event(2019, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data(dengue2020)
+#' data_event <- dengue2020
+#' data_event <- limpiar_data_sivigila(data_event)
 #' remove_val_nin(data_event = data_event, nom_col = "edad")
 #' @export
 remove_val_nin <- function(data_event, nom_col) {
@@ -208,8 +213,9 @@ remove_val_nin <- function(data_event, nom_col) {
 #' @return Un data framecon los datos sin las fechas mayores que el
 #' valor de comparación
 #' @examples
-#' data_event <- import_data_event(2019, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data(dengue2020)
+#' data_event <- dengue2020
+#' data_event <- limpiar_data_sivigila(data_event)
 #' remove_error_fecha(data_event = data_event,
 #'                    col_ini = "ini_sin",
 #'                    col_comp = "fec_hos")
@@ -263,7 +269,8 @@ format_fecha <- function(data_event,
 #' @return Un data framecon las etiquetas del encabezado formateadas
 #' con guión bajo (_)
 #' @examples
-#' data_event <- import_data_event(2019, "DENGUE")
+#' data(dengue2020)
+#' data_event <- dengue2020
 #' limpiar_encabezado(data_event = data_event)
 #' @export
 limpiar_encabezado <- function(data_event) {
@@ -328,7 +335,7 @@ limpiar_fecha_event <- function(data_event,
 #' con las edades limpias
 #' @examples
 #' data_event <- import_data_event(2020, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data_event <- limpiar_data_sivigila(data_event)
 #' limpiar_edad_event(data_event = data_event, nombre_col = "edad")
 #' @export
 limpiar_edad_event <- function(data_event, nombre_col = "edad") {

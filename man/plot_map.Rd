@@ -37,8 +37,9 @@ Función que genera el mapa por departamentos o municipios con el número de
 casos de una enfermedad o evento
 }
 \examples{
-data_event <- import_data_event(2019, "DENGUE")
-data_event <- limpiar_encabezado(data_event)
+data(dengue2020)
+data_event <- dengue2020
+data_event <- limpiar_data_sivigila(data_event)
 data_espacial_dpto <- estandarizar_geo_cods(data_event)
 data_espacial_dpto <- geo_filtro(data_event = data_event,
                                  nombre_dpto = "Antioquia")

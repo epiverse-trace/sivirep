@@ -27,8 +27,9 @@ Función que convierte las edades en años según las unidades de medida del
 SIVIGILA
 }
 \examples{
-data_event <- import_data_event(2019, "DENGUE")
-data_event <- limpiar_encabezado(data_event)
+data(dengue2020)
+data_event <- dengue2020
+data_event <- limpiar_data_sivigila(data_event)
 convert_edad(data_event = data_event,
              col_edad = "edad",
              col_uni_med = "uni_med")
