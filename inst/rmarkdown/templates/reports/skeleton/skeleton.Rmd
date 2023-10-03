@@ -14,7 +14,7 @@ header-includes:
 subtitle: (fuente SIVIGILA, Datos libres)
 params:
   nombre_evento:
-    value: "DENGUE"
+    value: "Dengue"
     label: Enfermedad
     input: select
     choices: !r sivirep::list_events()$enfermedad

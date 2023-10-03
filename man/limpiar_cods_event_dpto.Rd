@@ -28,8 +28,9 @@ de una enfermedad o evento
 \examples{
 geo_cods <- import_geo_cods()
 depto_cods <- obtener_cods_dpto(geo_cods)
-data_event <- import_data_event(2019, "DENGUE")
-data_event <- limpiar_encabezado(data_event)
+data(dengue2020)
+data_event <- dengue2020
+data_event <- limpiar_data_sivigila(data_event, 2020)
 data_agrupada <- agrupar_cols_casos(data_event,
                                     "cod_dpto_o",
                                     agr_porcentaje = TRUE)

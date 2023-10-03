@@ -19,6 +19,8 @@ Función que obtiene los casos por tipo de población
 especial de una enfermedad
 }
 \examples{
-data_event <- import_data_event(2019, "DENGUE")
+data(dengue2020)
+data_event <- dengue2020
+data_event <- limpiar_data_sivigila(data_event, 2020)
 obtener_casos_pob_especial(data_event = data_event)
 }

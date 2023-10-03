@@ -33,7 +33,7 @@ por fecha de inicio de síntomas
 }
 \examples{
 data_event <- import_data_event(2020, "DENGUE")
-data_event <- limpiar_encabezado(data_event)
+data_event <- limpiar_data_sivigila(data_event, 2020)
 data_agrupada <- agrupar_fecha_inisintomas(
                                      data_event,
                                      col_nombre = "ini_sin",

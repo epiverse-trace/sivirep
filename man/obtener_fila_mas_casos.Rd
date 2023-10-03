@@ -25,7 +25,7 @@ Función que obtiene la fila con el mayor número de casos
 }
 \examples{
 data_event <- import_data_event(2020, "DENGUE")
-data_event <- limpiar_encabezado(data_event)
+data_event <- limpiar_data_sivigila(data_event, 2020)
 casos_sex <- agrupar_sex(data_event,
                          porcentaje = TRUE)
 obtener_fila_mas_casos(data_event = casos_sex,
