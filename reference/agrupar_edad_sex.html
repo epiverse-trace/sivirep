@@ -97,34 +97,37 @@ por edades, sexo y número de casos</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">data_event</span> <span class="op">&lt;-</span> <span class="fu"><a href="import_data_event.html">import_data_event</a></span><span class="op">(</span><span class="fl">2019</span>, <span class="st">"DENGUE"</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Some columns are type 'integer64' but package bit64 is not installed. Those columns will print as strange looking floating point data. There is no need to reload the data. Simply install.packages('bit64') to obtain the integer64 print method and print the data again.</span>
-<span class="r-in"><span><span class="va">data_event</span> <span class="op">&lt;-</span> <span class="fu"><a href="limpiar_encabezado.html">limpiar_encabezado</a></span><span class="op">(</span><span class="va">data_event</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">dengue2020</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">data_event</span> <span class="op">&lt;-</span> <span class="va">dengue2020</span></span></span>
+<span class="r-in"><span><span class="va">data_event</span> <span class="op">&lt;-</span> <span class="fu"><a href="limpiar_data_sivigila.html">limpiar_data_sivigila</a></span><span class="op">(</span><span class="va">data_event</span>, <span class="fl">2020</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">agrupar_edad_sex</span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_event</span>,</span></span>
 <span class="r-in"><span>                 col_nombres <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"edad"</span>, <span class="st">"sexo"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                 porcentaje <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         edad sexo casos</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     (0,10]    F 26197</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     (0,10]    M 25257</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3    (10,20]    F 15415</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    (10,20]    M 18478</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5    (20,30]    F  6911</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6    (20,30]    M  7552</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7    (30,40]    F  4330</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8    (30,40]    M  4915</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9    (40,50]    F  2534</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10   (40,50]    M  2896</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11   (50,60]    F  2195</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12   (50,60]    M  2084</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13   (60,70]    F  1353</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14   (60,70]    M  1336</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15   (70,80]    F   704</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16   (70,80]    M   760</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17   (80,90]    F   270</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18   (80,90]    M   359</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19  (90,100]    F    46</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20  (90,100]    M    48</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21 (110,120]    F     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     (0,10]    F 11151</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     (0,10]    M 10531</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    (10,20]    F  7987</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    (10,20]    M  9596</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    (20,30]    F  4316</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    (20,30]    M  4361</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7    (30,40]    F  2811</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8    (30,40]    M  2915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9    (40,50]    F  1720</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10   (40,50]    M  1880</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11   (50,60]    F  1538</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12   (50,60]    M  1450</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13   (60,70]    F   947</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14   (60,70]    M   937</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15   (70,80]    F   532</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16   (70,80]    M   578</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17   (80,90]    F   186</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18   (80,90]    M   242</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19  (90,100]    F    28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20  (90,100]    M    31</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21 (100,110]    F     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22 (100,110]    M     2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23      &lt;NA&gt;    F     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24      &lt;NA&gt;    M     1</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -132,7 +135,7 @@ por edades, sexo y número de casos</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Developed by Zulma M. Cucunubá, Geraldine Gómez Millán.</p>
+  <p></p><p>Developed by Geraldine Gómez Millán, Zulma M. Cucunubá.</p>
 </div>
 
 <div class="pkgdown-footer-right">

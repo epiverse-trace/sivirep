@@ -88,140 +88,26 @@ por año desde los microdatos de SIVIGILA</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">import_data_event</span><span class="op">(</span><span class="fl">2018</span>, <span class="st">"DENGUE"</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Some columns are type 'integer64' but package bit64 is not installed. Those columns will print as strange looking floating point data. There is no need to reload the data. Simply install.packages('bit64') to obtain the integer64 print method and print the data again.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Some columns are type 'integer64' but package bit64 is not installed. Those columns will print as strange looking floating point data. There is no need to reload the data. Simply install.packages('bit64') to obtain the integer64 print method and print the data again.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        CONSECUTIVE COD_EVE    FEC_NOT SEMANA  ANO       COD_PRE COD_SUB EDAD</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1:     5622015     210 2018-10-07     40 2018 5.435248e-315      18   40</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     2:     5627187     210 2018-07-17     28 2018 4.496047e-314       1   42</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3:     5592910     210 2018-01-12      2 2018 4.496047e-314       1   24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4:     5583361     210 2018-11-30     47 2018 5.435261e-315       1   18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5:     5623291     210 2018-12-10     49 2018 5.435335e-315       4   64</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ---                                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43648:     5600170     210 2018-05-05     17 2018 4.693715e-314      80    3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43649:     5618830     210 2018-04-21     16 2018 4.693673e-314       1   43</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43650:     5598354     210 2018-11-19     45 2018 4.693673e-314       1   19</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43651:     5592318     210 2018-12-29     50 2018 9.882207e-315      80   25</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43652:     5611985     210 2018-06-14     24 2018 4.693673e-314       1   13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        UNI_MED SEXO COD_PAIS_O COD_DPTO_O COD_MUN_O AREA LOCALIDAD CEN_POBLA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1:       1    F        356          1       356    1  SIN DATO  SIN DATO</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     2:       1    M        604          1       604    2  SIN DATO  SIN DATO</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3:       1    M        604          1       604    2  SIN DATO  SIN DATO</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4:       1    F        484          1       484    1  SIN DATO  SIN DATO</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5:       1    M        484          1       484    2  SIN DATO  SIN DATO</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ---                                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43648:       1    F        170         95         1    1  SIN DATO  SIN DATO</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43649:       1    M        170         95         1    2  SIN DATO  SIN DATO</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43650:       1    M        170         95         1    3  SIN DATO  SIN DATO</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43651:       1    M        170         95         1    3  SIN DATO  SIN DATO</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43652:       1    M        170         95       200    1  SIN DATO  SIN DATO</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        VEREDA BAR_VER OCUPACION TIP_SS COD_ASE PER_ETN GRU_POB GP_DISCAPA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1:     NA      NA      4222      C  EPS008       6      NA          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     2:     NA      NA      9622      S  EPSS41       6      NA          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3:     NA      NA      9997      S  ESS062       1      NA          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4:     NA      NA      9997      C  EPS010       6      NA          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5:     NA      NA      9999      C  EPS016       6      NA          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ---                                                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43648:     NA      NA      9999      C  CCFC24       6      NA          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43649:     NA      NA      4414      C  EPS037       6      NA          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43650:     NA      NA      9994      P  RES003       6      NA          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43651:     NA      NA      9994      S  EPSS33       6      NA          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43652:     NA      NA      9997      S  EPSS41       1      NA          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        GP_DESPLAZ GP_MIGRANT GP_CARCELA GP_GESTAN GP_INDIGEN GP_POBICFB</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1:          2          2          2         2          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     2:          2          2          2         2          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3:          2          2          2         2          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4:          2          2          2         2          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5:          2          2          2         2          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ---                                                                 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43648:          2          2          2         2          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43649:          2          2          2         2          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43650:          2          2          2         2          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43651:          2          2          2         2          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43652:          2          2          2         2          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        GP_MAD_COM GP_DESMOVI GP_PSIQUIA GP_VIC_VIO GP_OTROS COD_DPTO_R</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1:          2          2          2          2        1         11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     2:          2          2          2          2        1         91</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3:          2          2          2          2        1         19</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4:          2          2          2          2        1         11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5:          2          2          2          2        1         11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ---                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43648:          2          2          2          2        1         95</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43649:          2          2          2          2        1          0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43650:          2          2          2          2        1         95</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43651:          2          2          2          2        1         20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43652:          2          2          2          2        1         95</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        COD_MUN_R COD_DPTO_N COD_MUN_N    FEC_CON    INI_SIN TIP_CAS PAC_HOS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1:         1         11     11001 2018-10-07 2018-10-03       3       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     2:         1         91     91001 2018-07-17 2018-07-14       2       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3:         0         91     91001 2018-01-12 2018-01-08       2       2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4:         1         11     11001 2018-11-29 2018-11-22       3       2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5:         1         11     11001 2018-12-10 2018-12-05       3       2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ---                                                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43648:         1         95     95001 2018-05-03 2018-04-28       3       2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43649:         0         95     95001 2018-04-18 2018-04-16       2       2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43650:        15         95     95001 2018-11-17 2018-11-10       2       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43651:         1         20     20001 2018-12-28 2018-12-12       2       2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43652:       200         95     95001 2018-06-14 2018-06-11       2       2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           FEC_HOS CON_FIN FEC_DEF AJUSTE  FECHA_NTO CER_DEF CBMTE FEC_ARC_XL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1: 2018-10-07       1      NA      0 1978-07-27      NA    NA 2019-05-08</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     2: 2018-07-17       1      NA      0 1976-01-03      NA    NA 2019-05-08</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3:       &lt;NA&gt;       1      NA      7 1993-08-20      NA    NA 2019-05-08</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4:       &lt;NA&gt;       1      NA      0 2000-06-29      NA    NA 2019-05-08</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5:       &lt;NA&gt;       1      NA      0 1954-06-09      NA    NA 2019-05-08</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ---                                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43648:       &lt;NA&gt;       1      NA      7 2014-06-16      NA    NA 2019-05-08</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43649:       &lt;NA&gt;       1      NA      7 1974-09-28      NA    NA 2019-05-08</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43650: 2018-11-17       1      NA      0 1998-12-03      NA    NA 2019-05-08</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43651:       &lt;NA&gt;       1      NA      7 1993-08-01      NA    NA 2019-05-08</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43652:       &lt;NA&gt;       1      NA      3 2004-12-05      NA    NA 2019-05-08</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           FEC_AJU FM_FUERZA     FM_UNIDAD FM_GRADO VERSION confirmados</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1: 2018-10-11        NA  0.000000e+00               NA           1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     2: 2018-07-23        NA  0.000000e+00               NA           0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3: 2019-03-13        NA  0.000000e+00               NA           0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4: 2018-11-30        NA  0.000000e+00               NA           1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5: 2018-12-12        NA  0.000000e+00               NA           1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ---                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43648: 2019-03-13        NA  0.000000e+00               NA           1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43649: 2019-03-13        NA  0.000000e+00               NA           0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43650: 2018-11-25        NA  0.000000e+00               NA           0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43651: 2019-03-13         3 1.492335e-314       64      NA           0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43652: 2018-07-16        NA  0.000000e+00               NA           1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        est_f_caso Evento       estado_final_de_caso Departanento_ocurrencia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1:          3 DENGUE Confirmado por laboratorio                EXTERIOR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     2:          2 DENGUE                   Probable                EXTERIOR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3:          2 DENGUE                   Probable                EXTERIOR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4:          3 DENGUE Confirmado por laboratorio                EXTERIOR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5:          3 DENGUE Confirmado por laboratorio                EXTERIOR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ---                                                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43648:          3 DENGUE Confirmado por laboratorio                GUAVIARE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43649:          2 DENGUE                   Probable                GUAVIARE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43650:          2 DENGUE                   Probable                GUAVIARE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43651:          2 DENGUE                   Probable                GUAVIARE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43652:          3 DENGUE Confirmado por laboratorio                GUAVIARE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         Municipio_ocurrencia Departamento_residencia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1:        EXTERIOR_INDIA                  BOGOTA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     2:         EXTERIOR_PERU                AMAZONAS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3:         EXTERIOR_PERU                   CAUCA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4:    EXTERIOR_M\xc9XICO                  BOGOTA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5:    EXTERIOR_M\xc9XICO                  BOGOTA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ---                                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43648: SAN JOSE DEL GUAVIARE                GUAVIARE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43649: SAN JOSE DEL GUAVIARE PROCEDENCIA DESCONOCIDA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43650: SAN JOSE DEL GUAVIARE                GUAVIARE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43651: SAN JOSE DEL GUAVIARE                   CESAR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43652:            MIRAFLORES                GUAVIARE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                  Municipio_residencia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1:                         BOGOTA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     2:                        LETICIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3: * CAUCA. MUNICIPIO DESCONOCIDO</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4:                         BOGOTA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5:                         BOGOTA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ---                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43648:          SAN JOSE DEL GUAVIARE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43649:      * PROCEDENCIA DESCONOCIDA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43650:                        CALAMAR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43651:                     VALLEDUPAR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43652:                     MIRAFLORES</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 44,238 × 74</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    particion      consecutive cod_eve fec_not semana ano   cod_pre cod_sub edad </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Datos_2018_210 5581586     210     2018-0… 07     2018  444300… 01      14   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Datos_2018_210 5581587     210     2018-0… 03     2018  444300… 01      16   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Datos_2018_210 5581588     210     2018-1… 46     2018  505900… 01      15   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Datos_2018_210 5581589     210     2018-0… 22     2018  500010… 01      15   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Datos_2018_210 5581590     210     2018-0… 39     2018  503130… 01      16   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Datos_2018_210 5581591     210     2018-1… 46     2018  505900… 01      28   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Datos_2018_210 5581592     210     2018-0… 10     2018  505900… 01      16   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Datos_2018_210 5581593     210     2018-1… 48     2018  505900… 01      22   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Datos_2018_210 5581594     210     2018-1… 40     2018  500010… 01      18   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Datos_2018_210 5581595     210     2018-0… 12     2018  500010… 01      14   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 44,228 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 65 more variables: uni_med &lt;chr&gt;, nacionalidad &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   nombre_nacionalidad &lt;chr&gt;, sexo &lt;chr&gt;, cod_pais_o &lt;chr&gt;, cod_dpto_o &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   cod_mun_o &lt;chr&gt;, area &lt;chr&gt;, ocupacion &lt;chr&gt;, tip_ss &lt;chr&gt;, cod_ase &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   per_etn &lt;chr&gt;, gru_pob &lt;lgl&gt;, nom_grupo &lt;chr&gt;, estrato &lt;lgl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gp_discapa &lt;chr&gt;, gp_desplaz &lt;chr&gt;, gp_migrant &lt;chr&gt;, gp_carcela &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gp_gestan &lt;chr&gt;, sem_ges &lt;lgl&gt;, gp_indigen &lt;chr&gt;, gp_pobicfb &lt;chr&gt;, …</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -229,7 +115,7 @@ por año desde los microdatos de SIVIGILA</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Developed by Zulma M. Cucunubá, Geraldine Gómez Millán.</p>
+  <p></p><p>Developed by Geraldine Gómez Millán, Zulma M. Cucunubá.</p>
 </div>
 
 <div class="pkgdown-footer-right">

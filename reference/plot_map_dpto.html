@@ -84,23 +84,16 @@ la enfermedad o evento</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">data_event</span> <span class="op">&lt;-</span> <span class="fu"><a href="import_data_event.html">import_data_event</a></span><span class="op">(</span><span class="fl">2019</span>, <span class="st">"DENGUE"</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Some columns are type 'integer64' but package bit64 is not installed. Those columns will print as strange looking floating point data. There is no need to reload the data. Simply install.packages('bit64') to obtain the integer64 print method and print the data again.</span>
-<span class="r-in"><span><span class="va">data_event</span> <span class="op">&lt;-</span> <span class="fu"><a href="limpiar_encabezado.html">limpiar_encabezado</a></span><span class="op">(</span><span class="va">data_event</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">dengue2020</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">data_event</span> <span class="op">&lt;-</span> <span class="va">dengue2020</span></span></span>
+<span class="r-in"><span><span class="va">data_event</span> <span class="op">&lt;-</span> <span class="fu"><a href="limpiar_data_sivigila.html">limpiar_data_sivigila</a></span><span class="op">(</span><span class="va">data_event</span>, <span class="fl">2020</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">data_event</span> <span class="op">&lt;-</span> <span class="fu"><a href="estandarizar_geo_cods.html">estandarizar_geo_cods</a></span><span class="op">(</span><span class="va">data_event</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">data_dpto</span> <span class="op">&lt;-</span> <span class="fu"><a href="agrupar_dpto.html">agrupar_dpto</a></span><span class="op">(</span><span class="va">data_event</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">plot_map_dpto</span><span class="op">(</span><span class="va">data_dpto</span>,</span></span>
 <span class="r-in"><span>   col_nombre_lj <span class="op">=</span> <span class="st">"id"</span>,</span></span>
 <span class="r-in"><span>   fuente_data <span class="op">=</span> <span class="st">"Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Reading layer `depto' from data source </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   `/home/runner/work/_temp/Library/sivirep/extdata/depto_adm_shp/depto.shp' </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   using driver `ESRI Shapefile'</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 33 features and 5 fields</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: MULTIPOLYGON</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 165298.4 ymin: 20565.69 xmax: 1804280 ymax: 1984871</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Projected CRS: Bogota 1975 / Colombia Bogota zone</span>
-<span class="r-plt img"><img src="plot_map_dpto-1.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -108,7 +101,7 @@ la enfermedad o evento</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Developed by Zulma M. Cucunubá, Geraldine Gómez Millán.</p>
+  <p></p><p>Developed by Geraldine Gómez Millán, Zulma M. Cucunubá.</p>
 </div>
 
 <div class="pkgdown-footer-right">

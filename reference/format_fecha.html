@@ -51,7 +51,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">format_fecha</span><span class="op">(</span><span class="va">data_event</span>, format_fecha <span class="op">=</span> <span class="st">"%AAAA-%MM-%DD"</span>, nombres_col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">format_fecha</span><span class="op">(</span><span class="va">data_event</span>, format_fecha <span class="op">=</span> <span class="st">"%Y-%m-%d"</span>, nombres_col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -81,156 +81,30 @@ contiene los nombres de la columna a formatear</p></dd>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">data_event</span> <span class="op">&lt;-</span> <span class="fu"><a href="import_data_event.html">import_data_event</a></span><span class="op">(</span><span class="fl">2020</span>, <span class="st">"DENGUE"</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Some columns are type 'integer64' but package bit64 is not installed. Those columns will print as strange looking floating point data. There is no need to reload the data. Simply install.packages('bit64') to obtain the integer64 print method and print the data again.</span>
-<span class="r-in"><span><span class="va">data_event</span> <span class="op">&lt;-</span> <span class="fu">format_fecha</span><span class="op">(</span><span class="va">data_event</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">data_event</span> <span class="op">&lt;-</span> <span class="fu"><a href="limpiar_data_sivigila.html">limpiar_data_sivigila</a></span><span class="op">(</span><span class="va">data_event</span>, <span class="fl">2020</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">format_fecha</span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_event</span>,</span></span>
-<span class="r-in"><span>             format_fecha <span class="op">=</span> <span class="st">"%AAAA-%MM-%DD"</span>,</span></span>
+<span class="r-in"><span>             format_fecha <span class="op">=</span> <span class="st">"%Y-%m-%d"</span>,</span></span>
 <span class="r-in"><span>             nombres_col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ini_sin"</span>, <span class="st">"fec_hos"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Some columns are type 'integer64' but package bit64 is not installed. Those columns will print as strange looking floating point data. There is no need to reload the data. Simply install.packages('bit64') to obtain the integer64 print method and print the data again.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        CONSECUTIVE COD_EVE    FEC_NOT SEMANA  ANO       COD_PRE COD_SUB EDAD</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1:     7212061     210 2020-04-02     14 2020 3.756927e-314       1   13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     2:     7212037     210 2020-04-06     14 2020 1.351813e-314       1   35</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3:     7212059     210 2020-01-22      4 2020 2.040392e-314       1   29</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4:     7212047     210 2020-09-28     39 2020 2.481346e-314       1    6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5:     7213565     210 2020-09-14     37 2020 1.259317e-314      80    4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ---                                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76415:     7406806     210 2020-02-08      5 2020 3.754984e-314       2   76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76416:     7406810     210 2020-02-24      7 2020 3.754948e-314      30   61</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76417:     7406790     210 2020-12-05     49 2020 2.052892e-314       1   43</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76418:     7406817     210 2020-11-03     45 2020 4.277176e-314       1   35</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76419:     7406816     210 2020-04-16     16 2020 3.770019e-314       1   75</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        UNI_MED NACIONALID NOM_NACIONALIDAD SEXO COD_PAIS_O COD_DPTO_O COD_MUN_O</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1:       1        170         COLOMBIA    F        170         76        41</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     2:       1        170         COLOMBIA    F        170         27       361</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3:       1        170         COLOMBIA    F        170         41       298</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4:       2        170         COLOMBIA    F        170         50       223</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5:       1        170         COLOMBIA    M        170         73       449</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ---                                                                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76415:       1        170         COLOMBIA    M        170         76         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76416:       1        170         COLOMBIA    M        170         76         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76417:       1        170         COLOMBIA    M        170         41       551</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76418:       1        170         COLOMBIA    M        170         86       571</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76419:       1        170         COLOMBIA    M        170         76       306</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        AREA    LOCALIDAD CEN_POBLA      VEREDA        BAR_VER OCUPACION TIP_SS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1:    1 ANSERMANUEVO  SIN DATO    SIN DATO   PUEBLO NUEVO      9997      S</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     2:    1      ISTMINA  SIN DATO    SIN DATO          1E+40      9999      S</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3:    1     SIN DATO  SIN DATO    SIN DATO     SAN FELIPE      9996      S</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4:    1     SIN DATO  SIN DATO    SIN DATO        EL EDEN      9999      S</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5:    1       MELGAR  SIN DATO    SIN DATO     LA SULTANA      9999      P</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ---                                                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76415:    1         CALI  SIN DATO    SIN DATO       SIN DATO      9995      P</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76416:    1     SIN DATO  SIN DATO    SIN DATO 0808 MUNICIPAL      9999      C</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76417:    1     SIN DATO  SIN DATO    SIN DATO       LAURELES      9622      C</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76418:    3     SIN DATO  SIN DATO SANTA LUCIA       SIN DATO      7549      S</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76419:    1     SIN DATO  SIN DATO    SIN DATO         CENTRO      7534      S</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        COD_ASE PER_ETN GRU_POB NOM_GRUPO ESTRATO GP_DISCAPA GP_DESPLAZ</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1:  EPSS16       6      NA                 2          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     2:  ESS076       5      NA                 1          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3:  CCF024       6      NA                NA          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4:  EPSS45       6      NA                 2          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5:  RES003       6      NA                 3          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ---                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76415:  RES001       6      NA                 3          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76416:  EPS018       6      NA                 3          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76417:  EPS005       6      NA                 1          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76418:  EPSI03       5      NA                 1          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76419:  ESS062       6      NA                 1          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        GP_MIGRANT GP_CARCELA GP_GESTAN SEM_GES GP_INDIGEN GP_POBICFB GP_MAD_COM</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1:          2          2         2      NA          2          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     2:          2          2         2      NA          2          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3:          2          2         2      NA          2          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4:          2          2         2      NA          2          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5:          2          2         2      NA          2          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ---                                                                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76415:          2          2         2      NA          2          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76416:          2          2         2      NA          2          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76417:          2          2         2      NA          2          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76418:          2          2         2      NA          2          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76419:          2          2         2      NA          2          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        GP_DESMOVI GP_PSIQUIA GP_VIC_VIO GP_OTROS FUENTE COD_DPTO_R COD_MUN_R</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1:          2          2          2        1      1         76        41</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     2:          2          2          2        1      1         27       361</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3:          2          2          2        1      1         41       298</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4:          2          2          2        1      1         50       223</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5:          2          2          2        1      1         73       449</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ---                                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76415:          2          2          2        1      1         76         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76416:          2          2          2        1      1         76         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76417:          2          2          2        1      1         41       551</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76418:          2          2          2        1      1         86       571</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76419:          2          2          2        1      1         76       306</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        COD_DPTO_N COD_MUN_N    FEC_CON    INI_SIN TIP_CAS PAC_HOS    FEC_HOS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1:         76     76041 2020-04-02 2020-03-29       2       2       &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     2:         27     27361 2020-04-06 2020-04-03       2       2       &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3:         41     41298 2020-01-22 2020-01-19       2       2       &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4:         50     50223 2020-09-28 2020-09-26       2       1 2020-09-28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5:         25     25488 2020-09-14 2020-09-11       2       2       &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ---                                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76415:         76     76001 2020-02-01 2020-01-26       3       2       &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76416:         76     76001 2020-02-19 2020-02-12       2       2       &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76417:         41     41551 2020-12-05 2020-12-04       2       2       &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76418:         86     86571 2020-11-03 2020-11-02       2       2       &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76419:         76     76306 2020-04-16 2020-04-14       2       2       &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        CON_FIN FEC_DEF AJUSTE  FECHA_NTO CER_DEF CBMTE FEC_ARC_XL    FEC_AJU</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1:       1      NA      0 2006-06-20      NA    NA 2021-04-30 2020-04-04</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     2:       1      NA      0 1984-10-28      NA    NA 2021-04-30 2020-04-06</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3:       1      NA      5 1990-02-28      NA    NA 2021-04-30 2020-09-04</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4:       1      NA      0 2020-03-27      NA    NA 2021-04-30 2020-10-05</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5:       1      NA      3 2016-06-15      NA    NA 2021-04-30 2020-10-11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ---                                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76415:       1      NA      0 1943-09-19      NA    NA 2021-04-30 2020-02-09</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76416:       1      NA      0 1958-11-28      NA    NA 2021-04-30 2020-02-24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76417:       1      NA      0 1977-02-19      NA    NA 2021-04-30 2020-12-18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76418:       1      NA      0 1985-09-09      NA    NA 2021-04-30 2020-11-05</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76419:       1      NA      0 1944-09-09      NA    NA 2021-04-30 2020-04-27</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        FM_FUERZA FM_UNIDAD FM_GRADO confirmado va_sispro est_f_caso</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1:        NA         0                   0         1          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     2:        NA         0                   0         1          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3:        NA         0                   1         1          5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4:        NA         0                   0         1          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5:        NA         0                   1         1          3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ---                                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76415:        NA         0                   1         1          3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76416:        NA         0                   0         1          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76417:        NA         0                   0         1          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76418:        NA         0                   0         1          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76419:        NA         0                   0         1          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                               nom_est_f_caso Nombre_evento</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1:                              Probable        DENGUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     2:                              Probable        DENGUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3: Confirmado por Nexo Epidemiol\xf3gico        DENGUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4:                              Probable        DENGUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5:            Confirmado por laboratorio        DENGUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ---                                                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76415:            Confirmado por laboratorio        DENGUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76416:                              Probable        DENGUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76417:                              Probable        DENGUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76418:                              Probable        DENGUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76419:                              Probable        DENGUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        Departamento_Notificacion Municipio_notificacion Departamento_ocurrencia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1:                     VALLE           ANSERMANUEVO                   VALLE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     2:                     CHOCO                ITSMINA                   CHOCO</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3:                     HUILA                 GARZON                   HUILA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4:                      META               CUBARRAL                    META</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5:              CUNDINAMARCA                   NILO                  TOLIMA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ---                                                                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76415:                     VALLE                   CALI                   VALLE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76416:                     VALLE                   CALI                   VALLE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76417:                     HUILA               PITALITO                   HUILA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76418:                  PUTUMAYO          PUERTO GUZMAN                PUTUMAYO</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76419:                     VALLE                GINEBRA                   VALLE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        Municipio_ocurrencia Departamento_residencia Municipio_residencia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1:         ANSERMANUEVO                   VALLE         ANSERMANUEVO</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     2:              ITSMINA                   CHOCO              ITSMINA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     3:               GARZON                   HUILA               GARZON</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     4:             CUBARRAL                    META             CUBARRAL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     5:               MELGAR                  TOLIMA               MELGAR</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ---                                                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76415:                 CALI                   VALLE                 CALI</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76416:                 CALI                   VALLE                 CALI</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76417:             PITALITO                   HUILA             PITALITO</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76418:        PUERTO GUZMAN                PUTUMAYO        PUERTO GUZMAN</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76419:              GINEBRA                   VALLE              GINEBRA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 66,467 × 74</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    particion   consecutive cod_eve fec_not    semana ano   cod_pre cod_sub  edad</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Datos_2020… 7232769     210     2020-02-27 09     2020  680010… 01         15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Datos_2020… 7232770     210     2020-02-08 05     2020  501100… 11          4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Datos_2020… 7232771     210     2020-03-04 09     2020  760010… 11         15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Datos_2020… 7232772     210     2020-01-21 03     2020  200010… 01         10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Datos_2020… 7232773     210     2020-05-19 20     2020  850010… 03         10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Datos_2020… 7232774     210     2020-04-13 15     2020  768950… 01          9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Datos_2020… 7232775     210     2020-03-11 11     2020  760360… 01          2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Datos_2020… 7232776     210     2020-05-05 18     2020  760010… 01          4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Datos_2020… 7232777     210     2020-07-29 31     2020  768950… 01          2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Datos_2020… 7232778     210     2020-06-20 25     2020  762480… 01          5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 66,457 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 65 more variables: uni_med &lt;dbl&gt;, nacionalidad &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   nombre_nacionalidad &lt;chr&gt;, sexo &lt;chr&gt;, cod_pais_o &lt;chr&gt;, cod_dpto_o &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   cod_mun_o &lt;chr&gt;, area &lt;chr&gt;, ocupacion &lt;chr&gt;, tip_ss &lt;chr&gt;, cod_ase &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   per_etn &lt;chr&gt;, gru_pob &lt;lgl&gt;, nom_grupo &lt;chr&gt;, estrato &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gp_discapa &lt;chr&gt;, gp_desplaz &lt;chr&gt;, gp_migrant &lt;chr&gt;, gp_carcela &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gp_gestan &lt;chr&gt;, sem_ges &lt;chr&gt;, gp_indigen &lt;chr&gt;, gp_pobicfb &lt;chr&gt;, …</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -238,7 +112,7 @@ contiene los nombres de la columna a formatear</p></dd>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Developed by Zulma M. Cucunubá, Geraldine Gómez Millán.</p>
+  <p></p><p>Developed by Geraldine Gómez Millán, Zulma M. Cucunubá.</p>
 </div>
 
 <div class="pkgdown-footer-right">

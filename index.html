@@ -68,7 +68,9 @@
   </div>
 </nav><div class="container template-home">
 <div class="row">
-  <main id="main" class="col-md-9"><div class="section level2">
+  <main id="main" class="col-md-9"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">sivirep</span><span class="op">)</span></span></code></pre></div>
+<div class="section level2">
 <h2 id="sivirep-generación-automatizada-de-reportes-a-partir-de-bases-de-datos-de-vigilancia-epidemiológica-">
 <em>sivirep</em>: Generación automatizada de reportes a partir de bases de datos de vigilancia epidemiológica <img src="reference/figures/logo.svg" align="right" width="120"><a class="anchor" aria-label="anchor" href="#sivirep-generaci%C3%B3n-automatizada-de-reportes-a-partir-de-bases-de-datos-de-vigilancia-epidemiol%C3%B3gica-"></a>
 </h2>
@@ -102,295 +104,353 @@
 <h2 id="instalación">Instalación<a class="anchor" aria-label="anchor" href="#instalaci%C3%B3n"></a>
 </h2>
 <p>Puedes instalar la versión de desarrollo de <code>sivirep</code> desde GitHub con el siguiente comando:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
-<span><span class="co"># remotes::install_github("epiverse-trace/sivirep")</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">sivirep</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"pak"</span><span class="op">)</span></span>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"epiverse-trace/sivirep"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="inicio-rápido">Inicio rápido<a class="anchor" aria-label="anchor" href="#inicio-r%C3%A1pido"></a>
 </h2>
 <p>Puedes revisar las enfermedades y los años disponibles de forma libre utilizando:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lista_eventos</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/list_events.html">list_events</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">lista_eventos</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
+<col width="2%">
 <col width="39%">
-<col width="60%">
+<col width="57%">
 </colgroup>
 <thead><tr class="header">
+<th align="left"></th>
 <th align="left">enfermedad</th>
 <th align="left">aa</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">ACCIDENTE OFIDICO</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">1</td>
+<td align="left">Accidente ofídico</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="even">
-<td align="left">AGRESIONES POR ANIMALES POTENCIALMENTE TRANSMISORES DE RABIA</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">2</td>
+<td align="left">Agresiones Por Animales Potencialmente Transmisores De Rabia</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="odd">
-<td align="left">ANOMALIAS CONGENITAS</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">3</td>
+<td align="left">Anomalías congénitas</td>
+<td align="left">2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="even">
-<td align="left">BAJO PESO AL NACER</td>
-<td align="left">2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">4</td>
+<td align="left">Bajo Peso Al Nacer</td>
+<td align="left">2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="odd">
-<td align="left">CÁNCER DE LA MAMA Y CUELLO UTERINO</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2019, 2020, 2021</td>
+<td align="left">5</td>
+<td align="left">Cáncer De La Mama Y Cuello Uterino</td>
+<td align="left">2016, 2017, 2018, 2019, 2020, 2021</td>
 </tr>
 <tr class="even">
-<td align="left">CANCER INFANTIL</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">6</td>
+<td align="left">Cáncer Infantil</td>
+<td align="left">2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="odd">
-<td align="left">CHAGAS</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">7</td>
+<td align="left">Chagas</td>
+<td align="left">2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="even">
-<td align="left">CHIKUNGUNYA</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">8</td>
+<td align="left">Chikunguya</td>
+<td align="left">2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="odd">
-<td align="left">DENGUE</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">9</td>
+<td align="left">Dengue</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="even">
-<td align="left">DENGUE GRAVE</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">10</td>
+<td align="left">Dengue Grave</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="odd">
-<td align="left">DIFTERIA</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2021</td>
+<td align="left">11</td>
+<td align="left">ESI - Irag (Vigilancia Centinela)</td>
+<td align="left">2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="even">
-<td align="left">ENCEFALITIS DEL NILO OCCIDENTAL EN HUMANOS</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017</td>
+<td align="left">12</td>
+<td align="left">Evento Adverso Grave Posterior A La Vacunación</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="odd">
-<td align="left">ENCEFALITIS EQUINA DEL OESTE EN HUMANOS</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017</td>
+<td align="left">13</td>
+<td align="left">Exposición A Flúor</td>
+<td align="left">2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019</td>
 </tr>
 <tr class="even">
-<td align="left">ENCEFALITIS EQUINA VENEZOLANA EN HUMANOS</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017</td>
+<td align="left">14</td>
+<td align="left">Fiebre Amarilla</td>
+<td align="left">2007, 2008, 2009, 2013, 2016, 2018</td>
 </tr>
 <tr class="odd">
-<td align="left">ENDOMETRITIS PUERPERAL</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017</td>
+<td align="left">15</td>
+<td align="left">Fiebre Tifoidea Y Paratifoidea</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="even">
-<td align="left">ENFERMEDADES HUERFANAS - RARAS</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017</td>
+<td align="left">16</td>
+<td align="left">Hepatitis A</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="odd">
-<td align="left">ESI - IRAG (VIGILANCIA CENTINELA)</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">17</td>
+<td align="left">Hepatitis B, C Y Coinfección Hepatitis B Y Delta</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="even">
-<td align="left">EVENTO ADVERSO SEGUIDO A LA VACUNACION</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">18</td>
+<td align="left">Hepatitis C</td>
+<td align="left">2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="odd">
-<td align="left">FIEBRE AMARILLA</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018</td>
+<td align="left">19</td>
+<td align="left">Hipotiroidismo congénito</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="even">
-<td align="left">FIEBRE TIFOIDEA Y PARATIFOIDEA</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">20</td>
+<td align="left">Infección Respiratoria Aguda Grave Irag Inusitada</td>
+<td align="left">2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="odd">
-<td align="left">HEPATITIS A</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">65</td>
+<td align="left">INTENTO DE SUICIDIO</td>
+<td align="left"></td>
 </tr>
 <tr class="even">
-<td align="left">HEPATITIS C</td>
-<td align="left">2018, 2019, 2020, 2021</td>
+<td align="left">21</td>
+<td align="left">Intoxicación Por Gases</td>
+<td align="left">2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="odd">
-<td align="left">HIPOTIROIDISMO CONGENITO</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">22</td>
+<td align="left">Intoxicación Por Medicamentos</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="even">
-<td align="left">INFECCION ASOCIADA A DISPOSITIVOS</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017</td>
+<td align="left">23</td>
+<td align="left">Intoxicación Por Metales Pesados</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="odd">
-<td align="left">INFECCION RESPIRATORIA AGUDA GRAVE IRAG INUSITADA</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">24</td>
+<td align="left">Intoxicación Por Metanol</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="even">
-<td align="left">INTOXICACION POR FARMACOS</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">25</td>
+<td align="left">Intoxicación Por Otras Sustancias químicas</td>
+<td align="left">2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="odd">
-<td align="left">INTOXICACION POR METALES PESADOS</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">26</td>
+<td align="left">Intoxicación Por Plaguicidas</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="even">
-<td align="left">INTOXICACION POR METANOL</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">27</td>
+<td align="left">Intoxicación Por Solventes</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="odd">
-<td align="left">INTOXICACION POR MONOXIDO DE CARBONO Y OTROS GASES</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">28</td>
+<td align="left">Intoxicación Por Sustancias Psicoactivas</td>
+<td align="left">2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="even">
-<td align="left">INTOXICACION POR OTRAS SUSTANCIAS QUIMICAS</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">29</td>
+<td align="left">Leishmaniasis cutánea</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="odd">
-<td align="left">INTOXICACION POR PLAGUICIDAS</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">30</td>
+<td align="left">Leishmaniasis Mucosa</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="even">
-<td align="left">INTOXICACION POR SOLVENTES</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">31</td>
+<td align="left">Leishmaniasis Visceral</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="odd">
-<td align="left">INTOXICACION POR SUSTANCIAS PSICOACTIVAS</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">32</td>
+<td align="left">Lepra</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="even">
-<td align="left">ISO</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017</td>
+<td align="left">33</td>
+<td align="left">Leptospirosis</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="odd">
-<td align="left">LEISHMANIASIS CUTANEA</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">34</td>
+<td align="left">Lesiones Por pólvora Y Explosivos</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014</td>
 </tr>
 <tr class="even">
-<td align="left">LEISHMANIASIS MUCOSA</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">35</td>
+<td align="left">Leucemia Aguda Pediátrica Linfoide</td>
+<td align="left">2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="odd">
-<td align="left">LEISHMANIASIS VISCERAL</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">36</td>
+<td align="left">Leucemia Aguda Pediátrica Mieloide</td>
+<td align="left">2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="even">
-<td align="left">LEPRA</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">64</td>
+<td align="left">MALARIA</td>
+<td align="left"></td>
 </tr>
 <tr class="odd">
-<td align="left">LEPTOSPIROSIS</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">37</td>
+<td align="left">Malaria Asociada (Formas Mixtas)</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="even">
-<td align="left">LEUCEMIA AGUDA PEDIATRICA LINFOIDE</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">38</td>
+<td align="left">Malaria Complicada</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="odd">
-<td align="left">LEUCEMIA AGUDA PEDIATRICA MIELOIDE</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">39</td>
+<td align="left">Malaria Falciparum</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="even">
-<td align="left">MALARIA ASOCIADA (FORMAS MIXTAS)</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">40</td>
+<td align="left">Malaria Vivax</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="odd">
-<td align="left">MALARIA COMPLICADA</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">41</td>
+<td align="left">Meningitis Bacteriana Y Enfermedad Meningocócica</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="even">
-<td align="left">MALARIA FALCIPARUM</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">42</td>
+<td align="left">Meningitis Meningocócica</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="odd">
-<td align="left">MALARIA VIVAX</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">43</td>
+<td align="left">Meningitis Por Haemophilus Influenzae</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="even">
-<td align="left">MENINGITIS OTROS</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017</td>
+<td align="left">44</td>
+<td align="left">Meningitis Por Neumococo</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="odd">
-<td align="left">MENINGITIS MENINGOCÓCICA</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2019, 2020, 2021</td>
+<td align="left">45</td>
+<td align="left">Meningitis Tuberculosa</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="even">
-<td align="left">MENINGITIS POR HAEMOPHILUS INFLUENZAE</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2019, 2020, 2021</td>
+<td align="left">46</td>
+<td align="left">Mortalidad Materna</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="odd">
-<td align="left">MENINGITIS POR NEUMOCOCO</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2019, 2020, 2021</td>
+<td align="left">47</td>
+<td align="left">Mortalidad Perinatal Y Neonatal Tardía</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="even">
-<td align="left">MENINGITIS TUBERCULOSA</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">48</td>
+<td align="left">Mortalidad Por Dengue</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="odd">
-<td align="left">MORBILIDAD MATERNA EXTREMA</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">49</td>
+<td align="left">Mortalidad Por Desnutrición</td>
+<td align="left">2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="even">
-<td align="left">MORBILIDAD POR IRA</td>
-<td align="left">2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">50</td>
+<td align="left">Mortalidad Por Eda 0-4 Años</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="odd">
-<td align="left">MORTALIDAD MATERNA</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">51</td>
+<td align="left">Mortalidad Por Ira</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="even">
-<td align="left">MORTALIDAD PERINATAL Y NEONATAL TARDIA</td>
-<td align="left">2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">52</td>
+<td align="left">Parotiditis</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="odd">
-<td align="left">MORTALIDAD POR DENGUE</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">53</td>
+<td align="left">Rabia Humana</td>
+<td align="left">2007, 2008, 2009, 2010, 2012, 2015, 2016, 2017, 2020</td>
 </tr>
 <tr class="even">
-<td align="left">MORTALIDAD POR DESNUTRICION</td>
-<td align="left">2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">54</td>
+<td align="left">Sarampión</td>
+<td align="left">2011, 2012, 2013, 2015, 2018, 2019, 2020</td>
 </tr>
 <tr class="odd">
-<td align="left">MORTALIDAD POR EDA 0-4 AÑOS</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2019, 2020, 2021</td>
+<td align="left">55</td>
+<td align="left">Tétanos Accidental</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="even">
-<td align="left">MORTALIDAD POR IRA</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">56</td>
+<td align="left">Tétanos Neonatal</td>
+<td align="left">2007, 2008, 2009, 2010, 2012, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="odd">
-<td align="left">MORTALIDAD POR MALARIA</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">57</td>
+<td align="left">Tos Ferina</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="even">
-<td align="left">PARALISIS FLACIDA AGUDA (MENORES DE 15 AÑOS)</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020</td>
+<td align="left">58</td>
+<td align="left">Tracoma</td>
+<td align="left">2017, 2018, 2019, 2022</td>
 </tr>
 <tr class="odd">
-<td align="left">PAROTIDITIS</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">59</td>
+<td align="left">Tuberculosis Extra Pulmonar</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="even">
-<td align="left">RUBEOLA</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017</td>
+<td align="left">60</td>
+<td align="left">Tuberculosis Farmacorresistente</td>
+<td align="left">2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="odd">
-<td align="left">SARAMPION</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020</td>
+<td align="left">61</td>
+<td align="left">Tuberculosis Pulmonar</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="even">
-<td align="left">SINDROME DE RUBEOLA CONGENITA</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017</td>
+<td align="left">62</td>
+<td align="left">Varicela Individual</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="odd">
-<td align="left">TETANOS ACCIDENTAL</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
-</tr>
-<tr class="even">
-<td align="left">TETANOS NEONATAL</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
-</tr>
-<tr class="odd">
-<td align="left">TOS FERINA</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021</td>
+<td align="left">63</td>
+<td align="left">Vigilancia En Salud Pública De La Violencia De Género E Intrafamiliar</td>
+<td align="left">2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 </tbody>
 </table>
@@ -413,8 +473,13 @@
 <li><p><a href="https://github.com/GeraldineGomez" class="external-link">Geraldine Gómez-Millán</a> (author)</p></li>
 <li><p><a href="https://github.com/zmcucunuba" class="external-link">Zulma M. Cucunubá</a> (author)</p></li>
 <li><p><a href="https://github.com/Bisaloo" class="external-link">Hugo Gruson</a> (contributor)</p></li>
-<li><p>Laura Gómez-Bermeo (contributor to documentation)</p></li>
-<li><p>Miguel Gámez (contributor)</p></li>
+<li><p><a href="https://github.com/lgbermeo" class="external-link">Laura Gómez-Bermeo</a> (contributor to documentation)</p></li>
+<li><p><a href="https://github.com/megamezl" class="external-link">Miguel Gámez</a> (contributor)</p></li>
+<li><p>Jennifer Méndez-Romero (contributor)</p></li>
+<li><p>Johan Calderón (contributor)</p></li>
+<li><p>Claudia Huguett-Aragón (contributor)</p></li>
+<li><p>Lady Flórez-Tapiero (contributor)</p></li>
+<li><p>Verónica Tangarife-Arredondo (contributor)</p></li>
 </ul>
 </div>
 <div class="section level2">
@@ -429,10 +494,10 @@
 <h3 id="para-reportes-automatizados">Para reportes automatizados<a class="anchor" aria-label="anchor" href="#para-reportes-automatizados"></a>
 </h3>
 <p>Después de la instalación de <code>sivirep</code>, puedes comenzar importando el paquete a través del siguiente comando:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">sivirep</span><span class="op">)</span></span></code></pre></div>
 <p>Ante de iniciar con el reporte automatizado, revisa la lista de enfermedades disponibles para hacer un reporte con <code>sivirep</code> en:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/list_events.html">list_events</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>Actualmente, <code>sivirep</code> provee una plantilla de reporte llamada <code>Reporte Básico {sivirep}</code>, la cual contiene seis secciones y recibe los siguientes parámetros de entrada: el nombre de la enfermedad, el año, el nombre de departamento (opcional) y nombre del municipio (opcional) para descargar los datos de la fuente de SIVIGILA.</p>
 <p>Para hacer uso de la plantilla del reporte se deben seguir los siguientes pasos:</p>
@@ -465,10 +530,10 @@
 </h3>
 <p>La fuente de SIVIGILA proporciona los datos de la lista de casos históricos hasta el último año epidemiológico cerrado. El cierre de un año epidemiológico generalmente ocurre en abril del siguiente año (por ejemplo, si estás utilizando <code>sivirep</code> en marzo de 2023, es posible que puedas acceder a los datos históricos hasta diciembre de 2021) para la mayoría de las enfermedades, con algunas excepciones.</p>
 <p>Por favor, verifica las enfermedades y años disponibles utilizando:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lista_eventos</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/list_events.html">list_events</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>Una vez que hayas decidido la enfermedad y el año de la cual deseas obtener la información, <code>import_data_event</code> es la función que permite la importación de datos desde la fuente de SIVIGILA utilizando un formato parametrizado basado en la enfermedad y el año.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data_event</span> <span class="op">&lt;-</span>  <span class="fu"><a href="reference/import_data_event.html">import_data_event</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2020</span>,</span>
 <span>                                 nombre_event <span class="op">=</span> <span class="st">"dengue"</span><span class="op">)</span></span></code></pre></div>
 <div class="section level5">
@@ -485,7 +550,7 @@
 </h3>
 <p>Los datos de SIVIGILA son una fuente de información oficial altamente confiable, con certificación ISO de calidad de datos. Sin embargo, a veces puede haber algunos valores atípicos en los datos que requieran una limpieza adicional.</p>
 <p><code>sivirep</code> proporciona una función genérica llamada <code>limpiar_data_sivigila</code> que envuelve diversas tareas para identificar y corregir errores, inconsistencias y discrepancias en los conjuntos de datos con el fin de mejorar su calidad y precisión. Este proceso puede incluir la eliminación de duplicados, la corrección de errores tipográficos, el reemplazo de valores faltantes y la validación de datos, entre otras tareas, como eliminar fechas improbables, limpiar códigos de geolocalización y estandarizar los nombres de las columnas y las categorías de edad.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data_event_limp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/limpiar_data_sivigila.html">limpiar_data_sivigila</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_event</span>, year <span class="op">=</span> <span class="fl">2020</span><span class="op">)</span></span></code></pre></div>
 <p>Las funciones de limpieza dentro de <code>limpiar_data_sivigila</code> se han recopilado y creado en base a la experiencia de epidemiólogos de campo. Estas pueden incluir funciones internas como:</p>
 <ul>
@@ -501,7 +566,7 @@
 <h3 id="id_3-filtrar-casos">3. Filtrar casos<a class="anchor" aria-label="anchor" href="#id_3-filtrar-casos"></a>
 </h3>
 <p><code>sivirep</code> proporciona una función que permite filtrar los datos de enfermedades por departamento o nombre del municipio llamada <code>geo_filtro</code>. Esto permite al usuario crear un informe a nivel subnacional, seleccionando casos específicos basados en la ubicación geográfica.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data_event_filtrada</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_filtro.html">geo_filtro</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_event_limp</span>,</span>
 <span>                                  nombre_dpto <span class="op">=</span> <span class="st">"Antioquia"</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -513,7 +578,7 @@
 <h4 id="id_41-agrupar-los-datos-por-fecha-de-inicio-de-síntomas-en-la-escala-temporal-deseada">4.1. Agrupar los datos por fecha de inicio de síntomas en la escala temporal deseada<a class="anchor" aria-label="anchor" href="#id_41-agrupar-los-datos-por-fecha-de-inicio-de-s%C3%ADntomas-en-la-escala-temporal-deseada"></a>
 </h4>
 <p>Para generar la distribución de casos por fecha de inicio de síntomas, es necesario agrupar los datos por estas variables. <code>sivirep</code> proporciona una función que permite esta agrupación llamada <code>agrupar_fecha_inisintomas</code>, en la cual puedes especificar la unidad de tiempo para agrupar estas fechas. Los valores permitidos para este parámetro son: día y mes.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">casos_ini_sintomas_dia</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/agrupar_fecha_inisintomas.html">agrupar_fecha_inisintomas</a></span><span class="op">(</span>data_event <span class="op">=</span></span>
 <span>                                                      <span class="va">data_event_limp</span>,</span>
 <span>                                                    tipo <span class="op">=</span> <span class="st">"day"</span><span class="op">)</span></span>
@@ -527,17 +592,17 @@
 <li>Al construir una sección del reporte o analizar estos datos, puede ser útil obtener los meses con más casos. En <code>sivirep</code>, puedes utilizar la función <code>obtener_meses_mas_casos</code> para obtener esta información.</li>
 </ul>
 <p>El gráfico que permite visualizar esta distribución se debe generar con la función <code>plot_fecha_inisintomas</code>. Ten en cuenta que, incluso si has agrupado los datos por día, es posible que prefieras representarlo por mes, como en:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/plot_fecha_inisintomas.html">plot_fecha_inisintomas</a></span><span class="op">(</span>data_agrupada <span class="op">=</span> <span class="va">casos_ini_sintomas_dia</span>,</span>
 <span>                       uni_marca <span class="op">=</span> <span class="st">"months"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/unnamed-chunk-11-1.png"><!-- --></p>
+<p><img src="reference/figures/plot_fecha_inicio_sintomas-1.png"><!-- --></p>
 </div>
 </div>
 <div class="section level4">
 <h4 id="id_42-agrupar-los-datos-por-fecha-de-notificación-en-la-escala-temporal-deseada">4.2. Agrupar los datos por fecha de notificación en la escala temporal deseada<a class="anchor" aria-label="anchor" href="#id_42-agrupar-los-datos-por-fecha-de-notificaci%C3%B3n-en-la-escala-temporal-deseada"></a>
 </h4>
 <p>El proceso para generar la distribución de casos por fecha de notificación consiste en agrupar los datos de enfermedades por esta variable. Puedes utilizar la siguiente función de <code>sivirep</code> para hacer esto:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">casos_fecha_notificacion_dia</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/agrupar_fecha_notifica.html">agrupar_fecha_notifica</a></span><span class="op">(</span>data_event <span class="op">=</span></span>
 <span>                                                         <span class="va">data_event_limp</span>,</span>
 <span>                                                       tipo <span class="op">=</span> <span class="st">"day"</span><span class="op">)</span></span>
@@ -545,10 +610,10 @@
 <span>                                                         <span class="va">data_event_limp</span>,</span>
 <span>                                                       tipo <span class="op">=</span> <span class="st">"month"</span><span class="op">)</span></span></code></pre></div>
 <p>El gráfico que permite visualizar esta distribución debe generarse con la función <code>plot_fecha_notifica</code>. Ten en cuenta que, aunque hayas agrupado los datos por día, es posible que prefieras representarlos por mes, como en:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/plot_fecha_notifica.html">plot_fecha_notifica</a></span><span class="op">(</span>data_agrupada <span class="op">=</span> <span class="va">casos_fecha_notificacion_dia</span>,</span>
 <span>                    uni_marca <span class="op">=</span> <span class="st">"months"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/unnamed-chunk-13-1.png"><!-- --></p>
+<p><img src="reference/figures/plot_fecha_notificacion-1.png"><!-- --></p>
 </div>
 </div>
 <div class="section level3">
@@ -560,57 +625,57 @@
 </h3>
 <p>Cuando se analizan o se informan datos de enfermedades, a menudo es necesario determinar la distribución de casos por género o sexo. Sin embargo, la fuente de SIVIGILA solo registra el sexo.</p>
 <p><code>sivirep</code> proporciona una función que agrega y calcula automáticamente los porcentajes por sexo después del proceso de limpieza.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">casos_sex</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/agrupar_sex.html">agrupar_sex</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_event_limp</span>,</span>
 <span>                         porcentaje <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>Además, <code>sivirep</code> cuenta con una función para generar el gráfico por esta variable llamada <code>plot_sex</code>:</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/plot_sex.html">plot_sex</a></span><span class="op">(</span>data_agrupada <span class="op">=</span> <span class="va">casos_sex</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/unnamed-chunk-15-1.png"><!-- --></p>
-<p>La distribución de casos por sexo y semana epidemiológica se puede generar utilizando la función <code>agrupar_sex_semanaepi</code> proporcionada por <code>sivirep</code>.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/plot_sex.html">plot_sex</a></span><span class="op">(</span>data_agrupada <span class="op">=</span> <span class="va">casos_sex</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/plot_sexo-1.png"><!-- --></p>
+<p>La distribución de casos por sexo y semana epidemiológica se puede generar utilizando la función <code>agrupar_sex_semanaepi</code> proporcionada por <code>sivirep</code>.</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">casos_sex_semanaepi</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/agrupar_sex_semanaepi.html">agrupar_sex_semanaepi</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_event_limp</span><span class="op">)</span></span></code></pre></div>
 <p>La función de visualización correspondiente es <code>plot_sex_semanaepi</code>, que <code>sivirep</code> proporciona para mostrar la distribución de casos por sexo y semana epidemiológica.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/plot_sex_semanaepi.html">plot_sex_semanaepi</a></span><span class="op">(</span>data_agrupada <span class="op">=</span> <span class="va">casos_sex_semanaepi</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/unnamed-chunk-17-1.png"><!-- --></p>
+<p><img src="reference/figures/plot_sex_semana_epidemiologica-1.png"><!-- --></p>
 </div>
 <div class="section level3">
 <h3 id="id_52-variable-de-edad">5.2. Variable de edad<a class="anchor" aria-label="anchor" href="#id_52-variable-de-edad"></a>
 </h3>
 <p>La edad es una variable importante para analizar, ya que es un factor de riesgo conocido para muchas enfermedades. Ciertas enfermedades y condiciones tienden a ocurrir con más frecuencia en grupos de edad específicos, y esta distribución puede ayudar a identificar poblaciones con mayor riesgo e implementar estrategias de prevención y control dirigidas.</p>
 <p><code>sivirep</code> proporciona una función llamada <code>agrupar_edad</code>, que puede agrupar los datos de enfermedades por grupos de edad. De forma predeterminada, esta función produce rangos de edad con intervalos de 10 años. Además, los usuarios pueden personalizar un rango de edad diferente.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">casos_edad</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/agrupar_edad.html">agrupar_edad</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_event_limp</span>, interval_edad <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
 <p>La función de visualización correspondiente es <code>plot_edad</code>.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/plot_edad.html">plot_edad</a></span><span class="op">(</span>data_agrupada <span class="op">=</span> <span class="va">casos_edad</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/unnamed-chunk-19-1.png"><!-- --></p>
+<p><img src="reference/figures/plot_edad-1.png"><!-- --></p>
 </div>
 <div class="section level3">
 <h3 id="id_53-edad-y-sexo-simultáneamente">5.3. Edad y sexo simultáneamente<a class="anchor" aria-label="anchor" href="#id_53-edad-y-sexo-simult%C3%A1neamente"></a>
 </h3>
 <p><code>sivirep</code> proporciona una función llamada <code>agrupar_edad_sex</code>, que puede agrupar los datos de enfermedades por rangos de edad y sexo de forma simultánea y obtener el número de casos y los porcentajes correspondientes. Además, permite personalizar el intervalo de edad.</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">casos_edad_sex</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/agrupar_edad_sex.html">agrupar_edad_sex</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_event_limp</span>,</span>
 <span>                                   interval_edad <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
 <p>La función de visualización correspondiente es <code>plot_edad_sex</code>.</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/plot_edad_sex.html">plot_edad_sex</a></span><span class="op">(</span>data_agrupada <span class="op">=</span> <span class="va">casos_edad_sex</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/unnamed-chunk-21-1.png"><!-- --></p>
+<p><img src="reference/figures/plot_edad_sexo-1.png"><!-- --></p>
 </div>
 <div class="section level3">
 <h3 id="id_6-distribución-espacial-de-casos">6. Distribución espacial de casos<a class="anchor" aria-label="anchor" href="#id_6-distribuci%C3%B3n-espacial-de-casos"></a>
 </h3>
 <p>Obtener la distribución espacial de los casos es útil para identificar áreas con una alta concentración de casos, agrupaciones de enfermedades y factores de riesgo ambientales o sociales.</p>
 <p>En Colombia, existen 32 unidades geográficas administrativas (adm1) llamadas departamentos. <code>sivirep</code> proporciona una función llamada <code>agrupar_mun</code> que permite obtener un data.frame de casos agrupados por departamento o municipio.</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dist_esp_dept</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/agrupar_mun.html">agrupar_mun</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_event_filtrada</span>,</span>
 <span>                             dept_nombre <span class="op">=</span> <span class="st">"Antioquia"</span><span class="op">)</span></span></code></pre></div>
 <p>Actualmente, con la función llamada <code>plot_map</code>, el usuario puede generar un mapa estático de Colombia que muestra la distribución de casos por departamentos y municipios.</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mapa</span></span></code></pre></div>
-<p><img src="reference/figures/unnamed-chunk-24-1.png"><!-- --></p>
+<p><img src="reference/figures/mapa-1.png"><!-- --></p>
 <div class="section level5">
 <h5 id="id_-tip-3---obtén-la-fila-con-más-casos">💡 Tip 3 - Obtén la fila con más casos<a class="anchor" aria-label="anchor" href="#id_-tip-3---obt%C3%A9n-la-fila-con-m%C3%A1s-casos"></a>
 </h5>
@@ -650,8 +715,9 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Zulma M. Cucunubá <br><small class="roles"> Author </small>  </li>
-<li>Geraldine Gómez Millán <br><small class="roles"> Author, maintainer </small>  </li>
+<li>Geraldine Gómez Millán <br><small class="roles"> Author, maintainer, contributor </small> <a href="https://orcid.org/https://orcid.org/0009-0007-8701-0568" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Zulma M. Cucunubá <br><small class="roles"> Author, contributor </small> <a href="https://orcid.org/https://orcid.org/0000-0002-8165-3198" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
 
@@ -671,7 +737,7 @@
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by Zulma M. Cucunubá, Geraldine Gómez Millán.</p>
+<p>Developed by Geraldine Gómez Millán, Zulma M. Cucunubá.</p>
 </div>
 
 <div class="pkgdown-footer-right">

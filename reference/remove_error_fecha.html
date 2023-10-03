@@ -83,169 +83,32 @@ valor de comparación</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">data_event</span> <span class="op">&lt;-</span> <span class="fu"><a href="import_data_event.html">import_data_event</a></span><span class="op">(</span><span class="fl">2019</span>, <span class="st">"DENGUE"</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Some columns are type 'integer64' but package bit64 is not installed. Those columns will print as strange looking floating point data. There is no need to reload the data. Simply install.packages('bit64') to obtain the integer64 print method and print the data again.</span>
-<span class="r-in"><span><span class="va">data_event</span> <span class="op">&lt;-</span> <span class="fu"><a href="limpiar_encabezado.html">limpiar_encabezado</a></span><span class="op">(</span><span class="va">data_event</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">dengue2020</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">data_event</span> <span class="op">&lt;-</span> <span class="va">dengue2020</span></span></span>
+<span class="r-in"><span><span class="va">data_event</span> <span class="op">&lt;-</span> <span class="fu"><a href="limpiar_data_sivigila.html">limpiar_data_sivigila</a></span><span class="op">(</span><span class="va">data_event</span>, <span class="fl">2020</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">remove_error_fecha</span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_event</span>,</span></span>
 <span class="r-in"><span>                   col_ini <span class="op">=</span> <span class="st">"ini_sin"</span>,</span></span>
 <span class="r-in"><span>                   col_comp <span class="op">=</span> <span class="st">"fec_hos"</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Some columns are type 'integer64' but package bit64 is not installed. Those columns will print as strange looking floating point data. There is no need to reload the data. Simply install.packages('bit64') to obtain the integer64 print method and print the data again.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         cod_eve    fec_not semana  ano       cod_pre cod_sub edad uni_med</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      1:     210 2019-05-19     20 2019 2.569191e-314       1    4       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      2:     210 2019-09-17     37 2019 2.470625e-314       1   31       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      3:     210 2019-08-30     35 2019 2.590238e-314       1    5       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      4:     210 2019-08-30     35 2019 2.590238e-314       1    5       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      5:     210 2019-09-02     35 2019 2.590238e-314       1    6       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     ---                                                                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123637:     210 2019-12-23     51 2019 8.893713e-315       1    2       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123638:     210 2019-11-01     43 2019 5.435637e-315      80   21       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123639:     210 2019-12-23     51 2019 3.458509e-314       1    2       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123640:     210 2019-10-03     39 2019 3.622440e-314       1   21       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123641:     210 2019-07-05     27 2019 3.619921e-314       1    1       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         nacionalidad nombre_nacionalidad sexo cod_pais_o cod_dpto_o cod_mun_o</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      1:          170            COLOMBIA    F        170         52       427</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      2:          170            COLOMBIA    F        170         50         6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      3:          170            COLOMBIA    F        170         52       427</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      4:          170            COLOMBIA    M        170         52       427</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      5:          170            COLOMBIA    F        170         52       427</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     ---                                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123637:          170            COLOMBIA    F        170         18         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123638:          170            COLOMBIA    F        170         25       488</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123639:          170            COLOMBIA    M        170         70         1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123640:          170            COLOMBIA    F        170         73       319</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123641:          170            COLOMBIA    M        170         73       268</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         area localidad       cen_pobla                       vereda</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      1:    2  SIN DATO DOCE DE OCTUBRE                     SIN DATO</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      2:    1   ACACIAS        SIN DATO                     SIN DATO</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      3:    1     MAGUI        SIN DATO                     SIN DATO</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      4:    1     MAGUI        SIN DATO                     SIN DATO</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      5:    3  SIN DATO        SIN DATO                       PLAYON</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     ---                                                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123637:    1 FLORENCIA        SIN DATO                     SIN DATO</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123638:    1  SIN DATO        SIN DATO                     SIN DATO</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123639:    1  SIN DATO        SIN DATO                     SIN DATO</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123640:    1     GUAMO        SIN DATO                     SIN DATO</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123641:    3  SIN DATO        SIN DATO AGUA BLANCA SEC. DE LA DULCE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                        bar_ver ocupacion tip_ss cod_ase per_etn gru_pob</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      1:               SIN DATO      9997      S  ESS062       5      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      2: PORTALES DE SAN CARLOS      9996      C  EPS013       6      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      3:                PLAYITA      9997      S  ESS118       5      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      4:             EL PARAISO      9999      S  ESS062       5      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      5:               SIN DATO      9997      S  ESS062       5      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     ---                                                                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123637:                 CENTRO      9999      S  EPSS44       6      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123638:               SIN DATO      9997      P  RES003       6      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123639:        SIN INFORMACION      9999      C  EPS002       6      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123640:             LIBERTADOR      9997      C  EPS044       6      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123641:               SIN DATO      9999      C  EPS044       6      NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         nom_grupo estrato gp_discapa gp_desplaz gp_migrant gp_carcela gp_gestan</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      1:                 1          2          2          2          2         2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      2:                 3          2          2          2          2         2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      3:                 1          2          2          2          2         2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      4:                 1          2          2          2          2         2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      5:                 1          2          2          2          2         2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     ---                                                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123637:                NA          2          2          2          2         2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123638:                 3          2          2          2          2         2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123639:                NA          2          2          2          2         2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123640:                 2          2          2          2          2         2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123641:                NA          2          2          2          2         2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         sem_ges gp_indigen gp_pobicfb gp_mad_com gp_desmovi gp_psiquia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      1:      NA          2          2          2          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      2:      NA          2          2          2          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      3:      NA          2          2          2          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      4:      NA          2          2          2          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      5:      NA          2          2          2          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     ---                                                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123637:      NA          2          2          2          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123638:      NA          2          2          2          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123639:      NA          2          2          2          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123640:      NA          2          2          2          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123641:      NA          2          2          2          2          2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         gp_vic_vio gp_otros fuente cod_dpto_r cod_mun_r cod_dpto_n cod_mun_n</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      1:          2        1      1         52       427         52     52001</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      2:          2        1      1         50         6         50     50006</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      3:          2        1      1         52       427         52     52427</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      4:          2        1      1         52       427         52     52427</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      5:          2        1      1         52       427         52     52427</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     ---                                                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123637:          2        1      1         18         1         18     18001</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123638:          2        1      1         11         1         11     11001</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123639:          2        1      1         70         1         70     70001</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123640:          2        1      1         73       319         73     73319</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123641:          2        1      1         73       268         73     73268</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            fec_con    ini_sin tip_cas pac_hos    fec_hos con_fin fec_def ajuste</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      1: 2019-05-18 2019-05-13       2       1 2019-05-18       1    &lt;NA&gt;      3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      2: 2019-09-17 2019-09-14       2       2       &lt;NA&gt;       1    &lt;NA&gt;      7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      3: 2019-08-30 2019-08-28       2       2       &lt;NA&gt;       1    &lt;NA&gt;      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      4: 2019-08-30 2019-08-27       2       2       &lt;NA&gt;       1    &lt;NA&gt;      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      5: 2019-09-02 2019-08-31       2       2       &lt;NA&gt;       1    &lt;NA&gt;      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     ---                                                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123637: 2019-12-21 2019-12-17       2       1 2019-12-21       1    &lt;NA&gt;      3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123638: 2019-10-26 2019-10-24       3       1 2019-10-26       1    &lt;NA&gt;      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123639: 2019-12-23 2019-12-19       2       2       &lt;NA&gt;       1    &lt;NA&gt;      3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123640: 2019-10-03 2019-09-28       2       1 2019-10-03       1    &lt;NA&gt;      0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123641: 2019-07-05 2019-07-02       2       2       &lt;NA&gt;       1    &lt;NA&gt;      7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          fecha_nto cer_def cbmte    fec_aju fm_fuerza     fm_unidad fm_grado</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      1: 2014-09-21      NA       2019-08-02        NA  0.000000e+00         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      2: 1987-11-27      NA       2020-06-17        NA  0.000000e+00         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      3: 2013-09-24      NA       2019-09-02        NA  0.000000e+00         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      4: 2014-06-27      NA       2019-09-02        NA  0.000000e+00         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      5: 2012-10-13      NA       2019-09-04        NA  0.000000e+00         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     ---                                                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123637: 2016-12-28      NA       2020-01-02        NA  0.000000e+00         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123638: 1998-06-27      NA       2019-11-05         3 5.435637e-315      066</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123639: 2017-01-29      NA       2020-01-08        NA  0.000000e+00         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123640: 1998-07-20      NA       2019-10-07        NA  0.000000e+00         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123641: 2017-09-01      NA       2020-06-17        NA  0.000000e+00         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         confirmados estado_final_de_caso             nom_est_f_caso</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      1:           1                    3 Confirmado por laboratorio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      2:           0                    2                   Probable</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      3:           0                    2                   Probable</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      4:           0                    2                   Probable</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      5:           0                    2                   Probable</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     ---                                                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123637:           1                    3 Confirmado por laboratorio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123638:           1                    3 Confirmado por laboratorio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123639:           1                    3 Confirmado por laboratorio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123640:           0                    2                   Probable</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123641:           0                    2                   Probable</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         departamento_ocurrencia municipio_ocurrencia departamento_residencia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      1:               NARI\xd1O        MAGUI (PAYAN)               NARI\xd1O</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      2:                    META              ACACIAS                    META</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      3:               NARI\xd1O        MAGUI (PAYAN)               NARI\xd1O</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      4:               NARI\xd1O        MAGUI (PAYAN)               NARI\xd1O</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      5:               NARI\xd1O        MAGUI (PAYAN)               NARI\xd1O</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     ---                                                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123637:                 CAQUETA            FLORENCIA                 CAQUETA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123638:            CUNDINAMARCA                 NILO                  BOGOTA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123639:                   SUCRE            SINCELEJO                   SUCRE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123640:                  TOLIMA                GUAMO                  TOLIMA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123641:                  TOLIMA              ESPINAL                  TOLIMA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         municipio_residencia nombre_evento departamento_notificacion</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      1:        MAGUI (PAYAN)        DENGUE                 NARI\xd1O</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      2:              ACACIAS        DENGUE                      META</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      3:        MAGUI (PAYAN)        DENGUE                 NARI\xd1O</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      4:        MAGUI (PAYAN)        DENGUE                 NARI\xd1O</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      5:        MAGUI (PAYAN)        DENGUE                 NARI\xd1O</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     ---                                                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123637:            FLORENCIA        DENGUE                   CAQUETA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123638:               BOGOTA        DENGUE                    BOGOTA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123639:            SINCELEJO        DENGUE                     SUCRE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123640:                GUAMO        DENGUE                    TOLIMA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123641:              ESPINAL        DENGUE                    TOLIMA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         municipio_notificacion</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      1:                  PASTO</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      2:                ACACIAS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      3:          MAGUI (PAYAN)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      4:          MAGUI (PAYAN)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      5:          MAGUI (PAYAN)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     ---                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123637:              FLORENCIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123638:                 BOGOTA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123639:              SINCELEJO</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123640:                  GUAMO</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123641:                ESPINAL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 63,742 × 72</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    cod_eve fec_not    semana ano   cod_pre    cod_sub  edad uni_med nacionalidad</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 210     2020-02-27 09     2020  6800104268 01         15       1 170         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 210     2020-02-08 05     2020  5011000634 11          4       1 170         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 210     2020-03-04 09     2020  7600103957 11         15       1 170         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 210     2020-01-21 03     2020  2000100438 01         10       1 170         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 210     2020-05-19 20     2020  8500100001 03         10       1 170         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 210     2020-04-13 15     2020  7689504656 01          9       1 170         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 210     2020-03-11 11     2020  7603601707 01          2       1 170         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 210     2020-05-05 18     2020  7600103359 01          4       1 170         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 210     2020-07-29 31     2020  7689504656 01          2       1 170         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 210     2020-06-20 25     2020  7624804722 01          5       1 170         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 63,732 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 63 more variables: nombre_nacionalidad &lt;chr&gt;, sexo &lt;chr&gt;, cod_pais_o &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   cod_dpto_o &lt;chr&gt;, cod_mun_o &lt;chr&gt;, area &lt;chr&gt;, ocupacion &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   tip_ss &lt;chr&gt;, cod_ase &lt;chr&gt;, per_etn &lt;chr&gt;, gru_pob &lt;lgl&gt;, nom_grupo &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   estrato &lt;chr&gt;, gp_discapa &lt;chr&gt;, gp_desplaz &lt;chr&gt;, gp_migrant &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gp_carcela &lt;chr&gt;, gp_gestan &lt;chr&gt;, sem_ges &lt;chr&gt;, gp_indigen &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gp_pobicfb &lt;chr&gt;, gp_mad_com &lt;chr&gt;, gp_desmovi &lt;chr&gt;, gp_psiquia &lt;chr&gt;, …</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -253,7 +116,7 @@ valor de comparación</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Developed by Zulma M. Cucunubá, Geraldine Gómez Millán.</p>
+  <p></p><p>Developed by Geraldine Gómez Millán, Zulma M. Cucunubá.</p>
 </div>
 
 <div class="pkgdown-footer-right">
