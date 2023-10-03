@@ -101,7 +101,7 @@ obtener_cods_dpto <- function(geo_cods) {
 #' enfermedad o evento
 #' @return Un data frame con los casos por tipo de población especial
 #' de una enfermedad o evento
-#' @examples 
+#' @examples
 #' data(dengue2020)
 #' data_event <- dengue2020
 #' data_event <- limpiar_data_sivigila(data_event, 2020)
