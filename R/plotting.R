@@ -82,6 +82,7 @@ plot_semanaepi <- function(data,
 #' @return Un plot con el mapa por departamento con el número de casos de
 #' la enfermedad o evento
 #' @examples
+#' \dontrun{
 #' data(dengue2020)
 #' data_event <- dengue2020
 #' data_event <- limpiar_data_sivigila(data_event, 2020)
@@ -90,6 +91,7 @@ plot_semanaepi <- function(data,
 #' plot_map_dpto(data_dpto,
 #'    col_nombre_lj = "id",
 #'    fuente_data = "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia")
+#' }
 #' @export
 plot_map_dpto <- function(data_agrupada,
                           col_nombre_lj = "id",
