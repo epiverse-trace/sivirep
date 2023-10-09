@@ -159,11 +159,11 @@ sexo_mayor_casos <- obtener_fila_mas_casos(casos_sex)
 
 sexo_mayor <- c("femenino", porcentaje_femenino)
 sexo_menor <- c("masculino", porcentaje_masculino)
-if (!is.na(porcentaje_femenino) && !is.na(porcentaje_masculino)) {
-  if (porcentaje_femenino < porcentaje_masculino) {
-    sexo_mayor <- c("masculino", porcentaje_masculino)
-    sexo_menor <- c("femenino", porcentaje_femenino)
-  }
+# `isTRUE()` maneja los casos en los que `porcentaje_femenino` o
+# `porcentaje_masculino` son `NA`.
+if (isTRUE(porcentaje_femenino < porcentaje_masculino)) {
+  sexo_mayor <- c("masculino", porcentaje_masculino)
+  sexo_menor <- c("femenino", porcentaje_femenino)
 }
 ```
 
