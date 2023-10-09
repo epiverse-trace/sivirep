@@ -190,11 +190,10 @@ convert_edad <- function(data_event,
 remove_val_nin <- function(data_event, nom_col) {
   ref_col <- paste0("data_event$", nom_col)
   data_event_del <- data_event
-  del_rows <-
-    which(ifelse(is.na(eval(parse(text = ref_col))), TRUE,
-                 ifelse(is.nan(eval(parse(text = ref_col))), TRUE,
-                        is.infinite(eval(parse(text = ref_col))))))
-  if (length(del_rows) > 0) data_event_del <- data_event[-del_rows]
+  del_rows <- is.na(eval(parse(text = ref_col))) |
+    is.nan(eval(parse(text = ref_col))) |
+    is.infinite(eval(parse(text = ref_col)))
+  if (any(del_rows)) data_event_del <- data_event[!del_rows]
   return(data_event_del)
 }
 
