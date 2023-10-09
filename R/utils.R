@@ -237,7 +237,7 @@ obtener_info_depts <- function(dpto = NULL, munpio = NULL) {
 #' @export
 modficar_cod_mun <- function(code_dept, cod_mun) {
   cod_mun <- as.character(cod_mun)
-  if (substr(code_dept, 1, 1) == "0") {
+  if (startsWith(code_dept, "0")) {
     code_dept <- substr(code_dept, 2, 2)
     cod_mun <- gsub(code_dept, "", cod_mun)
   }
@@ -276,7 +276,7 @@ obtener_dptos <- function() {
 #'                      cod_mun = "001")
 #' @export
 obtener_nombres_muns <- function(data_geo, code_dept, cod_mun) {
-  if (substr(code_dept, 1, 1) == "0") {
+  if (startsWith(code_dept, "0")) {
     code_dept <- substr(code_dept, 2, 2)
     cod_mun <- paste0(code_dept, cod_mun)
   } else {

@@ -75,7 +75,7 @@ import_sep_data <- function(path_data = NULL, cache = TRUE) {
         close(con_file)
       }
     }
-    if (stringr::str_detect(file_name, ".xls")) {
+    if (endsWith(file_name, ".xls")) {
       data <- readxl::read_excel(file_path)
     }
   }
