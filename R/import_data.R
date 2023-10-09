@@ -59,8 +59,13 @@ import_sep_data <- function(path_data = NULL, cache = TRUE) {
   data <- data.frame()
   extdata_path <- system.file("extdata", package = "sivirep")
   if (!is.null(path_data)) {
-    start_file_name <- stringr::str_locate(path_data, "Microdatos/")[2] + 1
-    end_file_name <- stringr::str_locate(path_data, "value")[1] - 5
+    start_file_name <- stringr::str_locate(
+      path_data,
+      stringr::fixed("Microdatos/")
+    )[2] + 1
+    end_file_name <- stringr::str_locate(
+      path_data, stringr::fixed("value")
+    )[1] - 5
     file_name <- stringr::str_sub(path_data, start_file_name, end_file_name)
     file_path <- file.path(extdata_path, file_name)
     if (!file.exists(file_path) || !cache) {
@@ -250,6 +255,6 @@ obtener_ruta_descarga <- function(ruta) {
                                                        package = "sivirep"),
                                          "name_file_split"))
   nombre_archivo <- strsplit(nombre_archivo[[1]][2],
-                             "')")[[1]][1] %>% as.character()
+                             "')", fixed = TRUE)[[1]][1] %>% as.character()
   return(nombre_archivo)
 }

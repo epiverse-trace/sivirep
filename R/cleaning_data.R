@@ -18,13 +18,13 @@ estandarizar_geo_cods <- function(data_event) {
                                            package = "sivirep"),
                              "geo_column_names")
   for (column in geo_columns) {
-    if (stringr::str_detect(column, "dpto")) {
+    if (stringr::str_detect(column, stringr::fixed("dpto"))) {
       data_event[[column]] <- formatC(data_event[[column]],
                                       width = 2,
                                       format = "d",
                                       flag = "0")
     }
-    if (stringr::str_detect(column, "mun")) {
+    if (stringr::str_detect(column, stringr::fixed("mun"))) {
       data_event[[column]] <- formatC(data_event[[column]],
                                       width = 3,
                                       format = "d",
@@ -402,7 +402,8 @@ limpiar_data_sivigila <- function(data_event, year) {
   data_event_limp <- format_fecha(data_event,
                                   nombres_col = nom_cols_fechas)
   nombre <- unique(data_event$nombre_evento)
-  if (length(nombre) == 1 && !stringr::str_detect(nombre, "MORTALIDAD")) {
+  if (length(nombre) == 1 &&
+      !stringr::str_detect(nombre, stringr::fixed("MORTALIDAD"))) {
     data_event_limp <- limpiar_fecha_event(data_event_limp, year,
                                            nombre_col = nom_cols_fechas[3],
                                            col_comp = nom_cols_fechas[4])

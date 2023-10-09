@@ -21,8 +21,12 @@ get_path_data_disease_year <- function(year, disease_name) {
   disease_name <- stringr::str_replace_all(string = disease_name,
                                            pattern = " ",
                                            replacement = "%20")
-  query_path <- stringr::str_replace(query_path, "_year_", year)
-  query_path <- stringr::str_replace(query_path, "_disease_", disease_name)
+  query_path <- stringr::str_replace(query_path, stringr::fixed("_year_"), year)
+  query_path <- stringr::str_replace(
+    query_path,
+    stringr::fixed("_disease_"),
+    disease_name
+  )
   query_disease_path <- paste(base_path,
                               paste(microdata_path,
                                     query_path,
@@ -34,7 +38,9 @@ get_path_data_disease_year <- function(year, disease_name) {
   response_document <- xml2::as_xml_document(query_disease_response)
   property_file_ref <- xml2::xml_find_all(response_document, "//d:FileRef")
   disease_file_ref <- xml2::xml_text(property_file_ref)
-  file_path <- stringr::str_replace(file_path, "_filepath_", disease_file_ref)
+  file_path <- stringr::str_replace(
+    file_path, stringr::fixed("_filepath_"), disease_file_ref
+  )
   file_download_path <- paste0(base_path,
                                file_path, file_path_parameters,
                                sep = "")
