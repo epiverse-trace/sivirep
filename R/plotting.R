@@ -28,7 +28,7 @@ plot_map_dpto <- function(data_agrupada,
   if (is.null(fuente_data)) {
     fuente_data <- "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
   }
-  dsn <-  system.file("extdata/depto_adm_shp", "depto.shp",
+  dsn <-  system.file("extdata", "depto_adm_shp", "depto.shp",
                       package = "sivirep")
   shp <- sf::st_read(dsn = dsn)
   colnames(shp)[colnames(shp) == "DPTO"] <- "id"
@@ -100,7 +100,7 @@ plot_map <- function(data_agrupada,
   if (length(cols_geo_ocurrencia) > 1) {
     subtitulo <- paste0(subtitulo, cols_geo_ocurrencia[3])
   }
-  dsn <-  system.file("extdata/depto_adm_shp", "MGN_ANM_MPIOS.shp",
+  dsn <-  system.file("extdata", "depto_adm_shp", "MGN_ANM_MPIOS.shp",
                       package = "sivirep")
   shp <- sf::st_read(dsn = dsn)
   data_dept <- obtener_info_depts(dpto, munpio)
