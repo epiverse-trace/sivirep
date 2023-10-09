@@ -25,11 +25,7 @@ get_path_data_disease_year <- function(year, disease_name) {
     stringr::fixed("_disease_"),
     disease_name
   )
-  query_disease_path <- paste(base_path,
-                              paste(microdata_path,
-                                    query_path,
-                                    sep = ""),
-                              sep = "")
+  query_disease_path <- paste0(base_path, microdata_path, query_path)
   query_disease_request <- httr2::request(query_disease_path)
   query_disease_get <- httr2::req_perform(query_disease_request)
   query_disease_response <- httr2::resp_body_string(query_disease_get)
@@ -39,8 +35,6 @@ get_path_data_disease_year <- function(year, disease_name) {
   file_path <- stringr::str_replace(
     file_path, stringr::fixed("_filepath_"), disease_file_ref
   )
-  file_download_path <- paste0(base_path,
-                               file_path, file_path_parameters,
-                               sep = "")
+  file_download_path <- paste0(base_path, file_path, file_path_parameters)
   return(file_download_path)
 }

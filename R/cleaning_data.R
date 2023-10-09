@@ -112,13 +112,13 @@ limpiar_cods_dpto <- function(data_event,
   col_detps_data <- as.character(col_detps_data)
   col_detps_data[
     nchar(col_detps_data) < 2 & col_detps_data != "1" & col_detps_data != "0" &
-      paste("0", col_detps_data, sep = "") %in% col_detps_geo
-  ] <- paste("0", col_detps_data[
+      paste0("0", col_detps_data) %in% col_detps_geo
+  ] <- paste0("0", col_detps_data[
     nchar(col_detps_data) < 2 & col_detps_data != "1" & col_detps_data != "0" &
-      paste("0", col_detps_data, sep = "") %in% col_detps_geo
-  ], sep = "")
+      paste0("0", col_detps_data) %in% col_detps_geo
+  ])
   col_detps_data[col_detps_data == "1"
-                 & paste("1", col_detps_data, sep = "")
+                 & paste0("1", col_detps_data)
                  %in% col_detps_geo] <- "11"
   return(data_event_clean)
 }
