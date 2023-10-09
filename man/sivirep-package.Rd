@@ -6,16 +6,25 @@
 \alias{sivirep-package}
 \title{sivirep: Data Wrangling and Automated Reports from 'SIVIGILA' source}
 \description{
-\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
-
 Provides functions for data wrangling and automated reports from SIVIGILA source.
 }
 \author{
-\strong{Maintainer}: Geraldine Gómez Millán \email{geralidine.gomez@javeriana.edu.co}
+\strong{Maintainer}: Geraldine Gómez Millán \email{geralidine.gomez@javeriana.edu.co} (\href{https://orcid.org/0009-0007-8701-0568}{ORCID}) [contributor]
 
 Authors:
 \itemize{
-  \item Zulma M. Cucunubá
+  \item Zulma M. Cucunubá \email{zulma.cucunuba@javeriana.edu.co} (\href{https://orcid.org/0000-0002-8165-3198}{ORCID}) [contributor]
+}
+
+Other contributors:
+\itemize{
+  \item Hugo Gruson \email{hugo.gruson+R@normalesup.org} (\href{https://orcid.org/0000-0002-4094-1476}{ORCID}) [contributor]
+  \item Laura Gómez Bermeo \email{gomezblaura@javeriana.edu.co} (\href{https://orcid.org/0000-0003-4028-2893}{ORCID}) [contributor]
+  \item Miguel Gámez [contributor]
+  \item Jennifer Méndez-Romero [contributor]
+  \item Johan Calderón [contributor]
+  \item Lady Flórez-Tapiero [contributor]
+  \item Verónica Tangarife-Arredondo [contributor]
 }
 
 }

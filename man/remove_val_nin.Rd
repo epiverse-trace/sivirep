@@ -21,7 +21,8 @@ Función que elimina filas si los valores de la columna seleccionada
 incluyen NA, Infinito o NaN
 }
 \examples{
-data_event <- import_data_event(2019, "DENGUE")
-data_event <- limpiar_encabezado(data_event)
+data(dengue2020)
+data_event <- dengue2020
+data_event <- limpiar_data_sivigila(data_event, 2020)
 remove_val_nin(data_event = data_event, nom_col = "edad")
 }

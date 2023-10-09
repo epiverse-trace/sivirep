@@ -7,7 +7,7 @@
 limpiar_fecha_event(
   data_event,
   year,
-  format_fecha = "\%AAAA-\%MM-\%DD",
+  format_fecha = "\%Y-\%m-\%d",
   nombre_col = "ini_sin",
   col_comp = NULL
 )
@@ -36,10 +36,10 @@ Función que limpia las fechas de los datos de una enfermedad o evento
 }
 \examples{
 data_event <- import_data_event(2020, "DENGUE")
-data_event <- limpiar_encabezado(data_event)
+data_event <- limpiar_data_sivigila(data_event, 2020)
 limpiar_fecha_event(data_event = data_event,
                     year = 2020,
-                    format_fecha = "\%AAAA-\%MM-\%DD",
+                    format_fecha = "\%Y-\%m-\%d",
                     nombre_col = "ini_sin",
                     col_comp = "fec_hos")
 }
