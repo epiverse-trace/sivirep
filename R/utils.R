@@ -37,10 +37,7 @@ obtener_meses_mas_casos <- function(data_event,
     top <- nrow(data_mas_casos)
   }
   data_mas_casos <- data_mas_casos[1:top, ]
-  data_mas_casos$Meses <-
-    sapply(eval(parse(text = paste0("data_mas_casos$",
-                                    col_fechas))),
-           months)
+  data_mas_casos$Meses <- months(data_mas_casos[[col_fechas]])
   if (concat_vals && length(data_mas_casos$Meses) >= 2) {
     months_concat <-
       concatenar_vals_token(as.character(data_mas_casos$Meses)[1:top])

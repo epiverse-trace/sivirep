@@ -582,8 +582,7 @@ agrupar_dpto <- function(data_event,
                                              cols_nombres = col_nombre[1])
   colnames(data_event_cods_dpto)[colnames(data_event_cods_dpto) ==
                                    col_nombre[1]] <- "id"
-  data_event_cods_dpto$id <- sapply(data_event_cods_dpto$id,
-                                    as.character)
+  data_event_cods_dpto$id <- as.character(data_event_cods_dpto$id)
   return(data_event_cods_dpto)
 }
 
@@ -629,8 +628,7 @@ agrupar_mun <- function(data_event,
                                         cols_nombres = col_nombre[2])
   colnames(data_event_muns)[colnames(data_event_muns) ==
                               col_nombre[2]] <- "id"
-  data_event_muns$id <- sapply(data_event_muns$id,
-                               as.character)
+  data_event_muns$id <- as.character(data_event_muns$id)
   dept_data <- obtener_info_depts(dept_nombre)
   dept_data <- dept_data[1, ]
   nombres_muns <- NULL
