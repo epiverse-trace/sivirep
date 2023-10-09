@@ -48,7 +48,7 @@ filtrar_event <- function(nombre_event,
 geo_filtro <- function(data_event, nombre_dpto = NULL, nombre_mun = NULL) {
   data_dept_filt <- data.frame()
   dept_data <- data.frame()
-  cols_ocurren <- c()
+  cols_ocurren <- NULL
   if (!is.null(nombre_dpto)) {
     dept_data <- obtener_info_depts(nombre_dpto, nombre_mun)
     dept_data <- dept_data[1, ]
@@ -117,7 +117,7 @@ obtener_casos_pob_especial <- function(data_event) {
                                                  "config.yml",
                                                  package = "sivirep"),
                                    "special_populations_names")
-  casos_especiales <- c()
+  casos_especiales <- NULL
   for (sp in pob_especial) {
     data_event[[sp]] <- as.numeric(data_event[[sp]])
     casos_especiales <- append(casos_especiales,
@@ -180,7 +180,7 @@ agrupar_casos_semanaepi <- function(data_event) {
 agrupar_cols_casos <- function(data_event,
                                cols_nombres,
                                agr_porcentaje = FALSE) {
-  cols_nombres <- append(cols_nombres, c("nombre_evento"))
+  cols_nombres <- append(cols_nombres, "nombre_evento")
   print(cols_nombres)
   data_event_agrupada <- data_event %>%
     dplyr::group_by_at(cols_nombres) %>%
@@ -288,7 +288,7 @@ agrupar_rango_edad_casos <- function(data_event,
 agrupar_cols_casos <- function(data_event,
                                cols_nombres,
                                agr_porcentaje = FALSE) {
-  cols_nombres <- append(cols_nombres, c("nombre_evento"))
+  cols_nombres <- append(cols_nombres, "nombre_evento")
   data_event_agrupada <- data_event %>%
     dplyr::group_by_at(cols_nombres) %>%
     dplyr::summarise(casos = dplyr::n(), .groups = "drop")
@@ -633,7 +633,7 @@ agrupar_mun <- function(data_event,
                                as.character)
   dept_data <- obtener_info_depts(dept_nombre)
   dept_data <- dept_data[1, ]
-  nombres_muns <- c()
+  nombres_muns <- NULL
   geo_data <- import_geo_cods()
   for (id in data_event_muns$id) {
     nombres_muns <- append(nombres_muns,

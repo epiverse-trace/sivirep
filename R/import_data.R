@@ -128,8 +128,8 @@ list_events <- function() {
   children <- xml2::xml_children(children)
   children_text <- xml2::xml_text(children)
   i <- 2
-  name_diseases <- c()
-  years_diseases <- c()
+  name_diseases <- NULL
+  years_diseases <- NULL
   children <- children[-base::seq(3, length(children), 3)]
   children_text <- children_text[-base::seq(3, length(children_text), 3)]
   while (i < base::length(children)) {

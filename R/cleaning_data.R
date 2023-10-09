@@ -249,7 +249,7 @@ remove_error_fecha <- function(data_event,
 #' @export
 format_fecha <- function(data_event,
                          format_fecha = "%Y-%m-%d",
-                         nombres_col = c()) {
+                         nombres_col = NULL) {
   data_event_limp <- data_event
   for (name in nombres_col) {
     if (!is.null(name)) {

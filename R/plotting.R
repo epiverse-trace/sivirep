@@ -87,7 +87,7 @@ plot_map <- function(data_agrupada,
             = is.character(col_codigos))
   titulo <- paste0("Departamento de ", dpto)
   subtitulo <- "Analisis efectuado por geografia de "
-  cols_geo_ocurrencia <- c()
+  cols_geo_ocurrencia <- NULL
   data_tabla <- data.frame()
   if (is.null(fuente_data)) {
     fuente_data <- "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
