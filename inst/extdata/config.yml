@@ -1,5 +1,6 @@
 default:
   base_path_microdata: "https://portalsivigila.ins.gov.co/_api/"
+  file_path_microdata: "Web/GetFileByServerRelativeUrl('_filepath_')"
   file_path_parameters_microdata: "/$value?binaryStringResponseBody=true"
   path_microdata: "web/lists/GetByTitle('Microdatos')/"
   query_path_microdata: "items?$select=*,FileRef&$filter=(A_x00f1_o%20eq%20%27_year_%27)and(NombreEvento%20eq%20%27_disease_%27)"
@@ -15,6 +16,7 @@ default:
   age_categorie_labels: [ "<2 años", "2 a 4 años", "5 a 14 años", "15 a 39 años", "40 a 59 años", "60 y más"]
   respiratory_virus_column_names: [ "influenza_a_h1_2009", "influenza_a_h1", "influenza_a_h3", "influenza_b", "metapneumovirus_humano", "rinovirus_enterovirus_humano", "virus_sincitial_respiratorio", "adenovirus"]
   respiratory_virus_names: [ "H1N1 2009", "H1N1", "H3N1", "Influenza B", "Metapneumovirus", "Rinovirus", "VSR", "Adenovirus"]
+  additional_diseases: ["MALARIA", "INTENTO DE SUICIDIO"]
   dates_column_names: ["fecha_nto", "fec_not", "ini_sin", "fec_hos", "fec_def", "fec_con"]
   depto_column_names: ["cod_dpto_o", "cod_dpto_r"]
   geo_column_names: ["cod_dpto_o", "cod_dpto_r", "cod_mun_o", "cod_mun_r", "cod_mpio_o", "cod_mpio_r"]

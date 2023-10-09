@@ -49,23 +49,47 @@ import_geo_cods <- function(url_data = NULL) {
 #' los datos para tabularla
 #' @param path_data Un character (cadena de caracteres) que contiene
 #' la URL de los datos de SIVIGILA
+#' @param cache Un boolean (TRUE o FALSE) que indica si los datos descargados
+#' deben ser almacenados en caché; su valor por defecto es TRUE
 #' @return Un `data.frame` con los datos
 #' @examples
-#' import_sep_data(path_data =
-#' "https://www.datos.gov.co/api/views/qvnt-2igj/rows.csv?accessType=DOWNLOAD")
+#' import_sep_data()
 #' @export
-import_sep_data <- function(path_data) {
+import_sep_data <- function(path_data = NULL, cache = TRUE) {
   seps <- config::get(file = system.file("extdata", "config.yml",
                                          package = "sivirep"), "data_delim")
   data <- data.frame()
-  for (sep in seps) {
-    if (sep %in% strsplit(readLines(path_data, n = 1)[1], split = "")[[1]]) {
-      data <- data.table::fread(path_data, sep = sep)
-      break
+  extdata_path <- system.file("extdata", package = "sivirep")
+  if (!is.null(path_data)) {
+    start_file_name <- stringr::str_locate(path_data, "Microdatos/")[2] + 1
+    end_file_name <- stringr::str_locate(path_data, "value")[1] - 5
+    file_name <- stringr::str_sub(path_data, start_file_name, end_file_name)
+    file_path <- paste0(extdata_path, "/", file_name)
+    if (!file.exists(file_path) || !cache) {
+      response <- httr::GET(path_data)
+      if (httr::status_code(response) == 200) {
+        con_file <- file(file_path, "wb")
+        chunk <- httr::content(response, "raw", as = "raw")
+        if (length(chunk) > 0) {
+          writeBin(chunk, con_file)
+        }
+        close(con_file)
+      }
     }
-  }
-  if (nrow(data) == 0) {
-    data <- data.table::fread(path_data)
+    if (stringr::str_detect(file_name, ".xls")) {
+      data <- readxl::read_excel(file_path)
+    } else {
+      for (sep in seps) {
+        if (sep %in% strsplit(readLines(path_data, n = 1)[1],
+                              split = "")[[1]]) {
+          data <- data.table::fread(path_data, sep = sep)
+          break
+        }
+      }
+      if (nrow(data) == 0) {
+        data <- data.table::fread(path_data)
+      }
+    }
   }
   return(data)
 }
@@ -144,8 +168,17 @@ list_events <- function() {
     children_text <- children_text[-base::which(children_text == disease)]
     i <- i + 2
   }
+  additional_diseases <- config::get(file =
+                                       system.file("extdata",
+                                                   "config.yml",
+                                                   package = "sivirep"),
+                                     "additional_diseases")
+  name_diseases <- base::append(name_diseases, additional_diseases)
+  years_diseases <- base::append(years_diseases, c("", ""))
   list_events <- data.frame(enfermedad = name_diseases,
                             aa = years_diseases)
+  list_events <- list_events[order(list_events$enfermedad,
+                                   decreasing = FALSE), ]
   return(list_events)
 }
 
@@ -168,10 +201,24 @@ list_events <- function() {
 import_data_event <- function(year,
                               nombre_event,
                               cache = TRUE) {
-  data_url <- get_path_data_disease_year(year, nombre_event)
-  event_data <- data.frame()
-  event_data <- import_sep_data(data_url)
-  return(event_data)
+  data_event <- data.frame()
+  list_events <- list_events()
+  nombre_event <- stringr::str_to_title(nombre_event)
+  grupo_events <-
+    list_events[which(stringr::str_detect(list_events$enfermedad,
+                                          substr(nombre_event,
+                                                 1,
+                                                 nchar(nombre_event) - 1))), ]
+  for (event in grupo_events$enfermedad) {
+    if (event != "MALARIA") {
+      data_url <- get_path_data_disease_year(year, event)
+      data_import <- import_sep_data(data_url, cache)
+      data_import <- limpiar_encabezado(data_import)
+      data_import$fec_def <- as.character(data_import$fec_def)
+      data_event <- rbind(data_event, data_import)
+    }
+  }
+  return(data_event)
 }
 
 #' Obtener el nombre del archivo desde una URL

@@ -7,8 +7,9 @@
 #' @return Un data frame que contiene los códigos geográficos estandarizados
 #' de los datos de una enfermedad o evento
 #' @examples
-#' data_event <- import_data_event(2019, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data(dengue2020)
+#' data_event <- dengue2020
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' estandarizar_geo_cods(data_event = data_event)
 #' @export
 estandarizar_geo_cods <- function(data_event) {
@@ -49,8 +50,9 @@ estandarizar_geo_cods <- function(data_event) {
 #' @examples
 #' geo_cods <- import_geo_cods()
 #' depto_cods <- obtener_cods_dpto(geo_cods)
-#' data_event <- import_data_event(2019, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data(dengue2020)
+#' data_event <- dengue2020
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' data_agrupada <- agrupar_cols_casos(data_event,
 #'                                     "cod_dpto_o",
 #'                                     agr_porcentaje = TRUE)
@@ -91,8 +93,9 @@ limpiar_cods_event_dpto <- function(depto_cods,
 #' de los datos de una enfermedad o evento
 #' @examples
 #' geo_codes <- import_geo_cods()
-#' data_event <- import_data_event(2019, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data(dengue2020)
+#' data_event <- dengue2020
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' limpiar_cods_dpto(data_event = data_event,
 #'                   col_cods_data = "cod_dpto_o",
 #'                   geo_data = geo_codes,
@@ -136,8 +139,9 @@ limpiar_cods_dpto <- function(data_event,
 #' @return Un data framecon las edades en años según las unidades de medida
 #' del SIVIGILA
 #' @examples
-#' data_event <- import_data_event(2019, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data(dengue2020)
+#' data_event <- dengue2020
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' convert_edad(data_event = data_event,
 #'              col_edad = "edad",
 #'              col_uni_med = "uni_med")
@@ -145,6 +149,8 @@ limpiar_cods_dpto <- function(data_event,
 convert_edad <- function(data_event,
                          col_edad = "edad",
                          col_uni_med = "uni_med") {
+  data_event$uni_med <- as.numeric(data_event$uni_med)
+  data_event$edad <- as.numeric(data_event$edad)
   data_event_years <-
     dplyr::mutate(data_event,
                   edad =
@@ -177,8 +183,9 @@ convert_edad <- function(data_event,
 #' nombre de la columna en los datos de una enfermedad o evento a evaluar
 #' @return Los datos limpios sin valores NA, Infinito o NaN
 #' @examples
-#' data_event <- import_data_event(2019, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data(dengue2020)
+#' data_event <- dengue2020
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' remove_val_nin(data_event = data_event, nom_col = "edad")
 #' @export
 remove_val_nin <- function(data_event, nom_col) {
@@ -206,8 +213,9 @@ remove_val_nin <- function(data_event, nom_col) {
 #' @return Un data framecon los datos sin las fechas mayores que el
 #' valor de comparación
 #' @examples
-#' data_event <- import_data_event(2019, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data(dengue2020)
+#' data_event <- dengue2020
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' remove_error_fecha(data_event = data_event,
 #'                    col_ini = "ini_sin",
 #'                    col_comp = "fec_hos")
@@ -234,19 +242,19 @@ remove_error_fecha <- function(data_event,
 #' @return Un data framecon los datos con las fechas formateadas
 #' @examples
 #' data_event <- import_data_event(2020, "DENGUE")
-#' data_event <- format_fecha(data_event)
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' format_fecha(data_event = data_event,
-#'              format_fecha = "%AAAA-%MM-%DD",
+#'              format_fecha = "%Y-%m-%d",
 #'              nombres_col = c("ini_sin", "fec_hos"))
 #' @export
 format_fecha <- function(data_event,
-                         format_fecha = "%AAAA-%MM-%DD",
+                         format_fecha = "%Y-%m-%d",
                          nombres_col = c()) {
   data_event_limp <- data_event
   for (name in nombres_col) {
     if (!is.null(name)) {
-      ref_col <- eval(parse(text = paste0("data_event_limp$", name)))
-      ref_col <- as.Date(ref_col, format = format_fecha)
+      data_event_limp[[name]] <- as.Date(data_event[[name]],
+                                         format = format_fecha)
     }
   }
   return(data_event_limp)
@@ -261,7 +269,8 @@ format_fecha <- function(data_event,
 #' @return Un data framecon las etiquetas del encabezado formateadas
 #' con guión bajo (_)
 #' @examples
-#' data_event <- import_data_event(2019, "DENGUE")
+#' data(dengue2020)
+#' data_event <- dengue2020
 #' limpiar_encabezado(data_event = data_event)
 #' @export
 limpiar_encabezado <- function(data_event) {
@@ -285,16 +294,16 @@ limpiar_encabezado <- function(data_event) {
 #' @return Un data framecon los datos con las fechas limpias
 #' @examples
 #' data_event <- import_data_event(2020, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' limpiar_fecha_event(data_event = data_event,
 #'                     year = 2020,
-#'                     format_fecha = "%AAAA-%MM-%DD",
+#'                     format_fecha = "%Y-%m-%d",
 #'                     nombre_col = "ini_sin",
 #'                     col_comp = "fec_hos")
 #' @export
 limpiar_fecha_event <- function(data_event,
                                 year,
-                                format_fecha = "%AAAA-%MM-%DD",
+                                format_fecha = "%Y-%m-%d",
                                 nombre_col = "ini_sin",
                                 col_comp = NULL) {
   data_event_fecha_ini <- data_event
@@ -326,7 +335,7 @@ limpiar_fecha_event <- function(data_event,
 #' con las edades limpias
 #' @examples
 #' data_event <- import_data_event(2020, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' limpiar_edad_event(data_event = data_event, nombre_col = "edad")
 #' @export
 limpiar_edad_event <- function(data_event, nombre_col = "edad") {
@@ -376,7 +385,7 @@ limpiar_val_atipic <- function(data_event) {
 #' una enfermedad o evento
 #' @param year Un numeric (numerico) que contiene el año de los
 #' datos de una enfermedad o evento
-#' @return Un data framecon los datos limpios de la enfermedad o evento
+#' @return Un data frame con los datos limpios de la enfermedad o evento
 #' @examples
 #' year <- 2019
 #' data_event <- import_data_event(year, "DENGUE")
@@ -384,18 +393,20 @@ limpiar_val_atipic <- function(data_event) {
 #' @export
 limpiar_data_sivigila <- function(data_event, year) {
   data_event <- limpiar_encabezado(data_event)
-  data_event <- limpiar_edad_event(data_event)
   nom_cols_fechas <- config::get(file = system.file("extdata",
                                                     "config.yml",
                                                     package = "sivirep"),
                                  "dates_column_names")
   data_event_limp <- format_fecha(data_event,
                                   nombres_col = nom_cols_fechas)
-  data_event_limp <- limpiar_fecha_event(data_event_limp, year,
-                                         nombre_col = nom_cols_fechas[3],
-                                         col_comp = nom_cols_fechas[4])
-  data_event_limp <- limpiar_fecha_event(data_event_limp, year,
-                                         nombre_col = nom_cols_fechas[2])
+  nombre <- unique(data_event$nombre_evento)
+  if (length(nombre) == 1 && !stringr::str_detect(nombre, "MORTALIDAD")) {
+    data_event_limp <- limpiar_fecha_event(data_event_limp, year,
+                                           nombre_col = nom_cols_fechas[3],
+                                           col_comp = nom_cols_fechas[4])
+    data_event_limp <- limpiar_fecha_event(data_event_limp, year,
+                                           nombre_col = nom_cols_fechas[2])
+  }
   data_event_limp <- estandarizar_geo_cods(data_event_limp)
   data_event_limp <- convert_edad(data_event_limp,
                                   col_edad = "edad",

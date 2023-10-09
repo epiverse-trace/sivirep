@@ -26,8 +26,9 @@ valor de comparación
 Función que elimina fechas mayores que el valor de comparación
 }
 \examples{
-data_event <- import_data_event(2019, "DENGUE")
-data_event <- limpiar_encabezado(data_event)
+data(dengue2020)
+data_event <- dengue2020
+data_event <- limpiar_data_sivigila(data_event, 2020)
 remove_error_fecha(data_event = data_event,
                    col_ini = "ini_sin",
                    col_comp = "fec_hos")

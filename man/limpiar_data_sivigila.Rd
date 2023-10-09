@@ -14,7 +14,7 @@ una enfermedad o evento}
 datos de una enfermedad o evento}
 }
 \value{
-Un data framecon los datos limpios de la enfermedad o evento
+Un data frame con los datos limpios de la enfermedad o evento
 }
 \description{
 Función que limpia los datos seleccionados de una enfermedad o evento de

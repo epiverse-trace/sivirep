@@ -40,8 +40,9 @@ filtrar_event <- function(nombre_event,
 #' @return Un data frame con los datos filtrados con la enfermedad,
 #' departamentos y municipios seleccionados
 #' @examples
-#' data_event <- import_data_event(2019, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data(dengue2020)
+#' data_event <- dengue2020
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' geo_filtro(data_event, nombre_dpto = "ANTIOQUIA")
 #' @export
 geo_filtro <- function(data_event, nombre_dpto = NULL, nombre_mun = NULL) {
@@ -101,7 +102,9 @@ obtener_cods_dpto <- function(geo_cods) {
 #' @return Un data frame con los casos por tipo de población especial
 #' de una enfermedad o evento
 #' @examples
-#' data_event <- import_data_event(2019, "DENGUE")
+#' data(dengue2020)
+#' data_event <- dengue2020
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' obtener_casos_pob_especial(data_event = data_event)
 #' @export
 obtener_casos_pob_especial <- function(data_event) {
@@ -116,10 +119,9 @@ obtener_casos_pob_especial <- function(data_event) {
                                    "special_populations_names")
   casos_especiales <- c()
   for (sp in pob_especial) {
-    casos_especiales <- append(casos_especiales, sum(
-      eval(parse(text =
-                   paste0("data_event$", sp)))
-    ))
+    data_event[[sp]] <- as.numeric(data_event[[sp]])
+    casos_especiales <- append(casos_especiales,
+                               sum(data_event[[sp]]))
   }
   data_pob_especial <- data.frame(
     poblacion = pob_especial,
@@ -138,8 +140,9 @@ obtener_casos_pob_especial <- function(data_event) {
 #' @return Un data frame con los datos de una enfermedad o
 #' evento agrupados por semana epidemiológica y número de casos
 #' @examples
-#' data_event <- import_data_event(2019, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data(dengue2020)
+#' data_event <- dengue2020
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' agrupar_casos_semanaepi(data_event = data_event)
 #' @export
 agrupar_casos_semanaepi <- function(data_event) {
@@ -165,8 +168,9 @@ agrupar_casos_semanaepi <- function(data_event) {
 #' o evento agrupados por el nombre de la(s) columna(s) y el
 #' número de casos; su valor por defecto es TRUE
 #' @examples
-#' data_event <- import_data_event(2019, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data(dengue2020)
+#' data_event <- dengue2020
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' agrupar_cols_casos(data_event = data_event,
 #'                    cols_nombres = "sexo",
 #'                    agr_porcentaje = TRUE)
@@ -176,6 +180,8 @@ agrupar_casos_semanaepi <- function(data_event) {
 agrupar_cols_casos <- function(data_event,
                                cols_nombres,
                                agr_porcentaje = FALSE) {
+  cols_nombres <- append(cols_nombres, c("nombre_evento"))
+  print(cols_nombres)
   data_event_agrupada <- data_event %>%
     dplyr::group_by_at(cols_nombres) %>%
     dplyr::summarise(casos = dplyr::n(), .groups = "drop")
@@ -212,8 +218,9 @@ agrupar_cols_casos <- function(data_event,
 #' @return Un data frame con los datos de la enfermedad o evento
 #' agrupados por el rango de edad y número de casos
 #' @examples
-#' data_event <- import_data_event(2019, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data(dengue2020)
+#' data_event <- dengue2020
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' data_edad <- agrupar_cols_casos(data_event = data_event,
 #'                                 c("edad", "semana"),
 #'                                 agr_porcentaje = TRUE)
@@ -269,8 +276,9 @@ agrupar_rango_edad_casos <- function(data_event,
 #' @return Un data frame con los datos de una enfermedad
 #' o evento agrupados por nombre de columna(s) y número de casos
 #' @examples
-#' data_event <- import_data_event(2019, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data(dengue2020)
+#' data_event <- dengue2020
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' agrupar_cols_casos(data_event = data_event,
 #'                    cols_nombres = "sexo",
 #'                    agr_porcentaje = TRUE)
@@ -280,6 +288,7 @@ agrupar_rango_edad_casos <- function(data_event,
 agrupar_cols_casos <- function(data_event,
                                cols_nombres,
                                agr_porcentaje = FALSE) {
+  cols_nombres <- append(cols_nombres, c("nombre_evento"))
   data_event_agrupada <- data_event %>%
     dplyr::group_by_at(cols_nombres) %>%
     dplyr::summarise(casos = dplyr::n(), .groups = "drop")
@@ -309,8 +318,9 @@ agrupar_cols_casos <- function(data_event,
 #' @return Un data frame con los datos de la enfermedad o evento
 #' agrupados por fecha de inicio de síntomas y número de casos
 #' @examples
-#' data_event <- import_data_event(2019, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data(dengue2020)
+#' data_event <- dengue2020
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' agrupar_fecha_inisintomas(data_event = data_event,
 #'                           col_nombre = "ini_sin",
 #'                           tipo = "month")
@@ -348,8 +358,9 @@ agrupar_fecha_inisintomas <- function(data_event,
 #' @return Un data frame con los datos de enfermedades agrupados por fecha de
 #' notificación y número de casos
 #' @examples
-#' data_event <- import_data_event(2019, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data(dengue2020)
+#' data_event <- dengue2020
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' agrupar_fecha_notifica(data_event = data_event,
 #'                        col_nombre = "fec_not",
 #'                        tipo = "month")
@@ -387,8 +398,9 @@ agrupar_fecha_notifica <- function(data_event,
 #' @return Un data frame con los datos de la enfermedad o evento
 #' agrupados por sexo y número de casos
 #' @examples
-#' data_event <- import_data_event(2019, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data(dengue2020)
+#' data_event <- dengue2020
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' agrupar_sex(data_event = data_event,
 #'             col_nombre = "sexo",
 #'             porcentaje = TRUE)
@@ -417,8 +429,9 @@ agrupar_sex <- function(data_event,
 #' @return Un data frame con los datos de la enfermedad o evento
 #' agrupados por sexo, semana epidemiológica y número de casos
 #' @examples
-#' data_event <- import_data_event(2019, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data(dengue2020)
+#' data_event <- dengue2020
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' agrupar_sex_semanaepi(data_event = data_event,
 #'                       col_nombres = c("sexo", "semana"),
 #'                       porcentaje = TRUE)
@@ -426,8 +439,6 @@ agrupar_sex <- function(data_event,
 agrupar_sex_semanaepi <- function(data_event,
                                   col_nombres = c("sexo", "semana"),
                                   porcentaje = TRUE) {
-  cols_ocurrenc <- obtener_tip_ocurren_geo(data_event$cod_eve[1])
-  col_nombres <- append(col_nombres, cols_ocurrenc)
   data_event_sex_semanaepi <- agrupar_cols_casos(data_event,
                                                  col_nombres,
                                                  porcentaje)
@@ -451,8 +462,9 @@ agrupar_sex_semanaepi <- function(data_event,
 #' @return Un data frame con los datos de la enfermedad o evento agrupados
 #' por edad y número de casos
 #' @examples
-#' data_event <- import_data_event(2019, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data(dengue2020)
+#' data_event <- dengue2020
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' agrupar_edad(data_event = data_event,
 #'              col_nombre = "edad",
 #'              porcentaje = FALSE)
@@ -494,8 +506,9 @@ agrupar_edad <- function(data_event,
 #' @return Un data frame con los datos de enfermedades agrupados
 #' por edades, sexo y número de casos
 #' @examples
-#' data_event <- import_data_event(2019, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data(dengue2020)
+#' data_event <- dengue2020
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' agrupar_edad_sex(data_event = data_event,
 #'                  col_nombres = c("edad", "sexo"),
 #'                  porcentaje = TRUE)
@@ -541,8 +554,9 @@ agrupar_edad_sex <- function(data_event,
 #' @return Un data frame con los datos de la enfermedad o evento agrupados
 #' por poblaciones especiales y casos
 #' @examples
-#' data_event <- import_data_event(2019, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data(dengue2020)
+#' data_event <- dengue2020
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' agrupar_pob_especial(data_event = data_event,
 #'                      col_nombre = "poblacion",
 #'                      porcentaje = TRUE)
@@ -575,8 +589,9 @@ agrupar_pob_especial <- function(data_event,
 #' @return Un data frame con los datos de la enfermedad o evento agrupados
 #' por códigos de departamento y número de casos
 #' @examples
-#' data_event <- import_data_event(2019, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data(dengue2020)
+#' data_event <- dengue2020
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' agrupar_dpto(data_event = data_event,
 #'              col_nombre = "cod_dpto_o",
 #'              porcentaje = FALSE)
@@ -613,8 +628,9 @@ agrupar_dpto <- function(data_event,
 #' @return Un data frame con los datos de la enfermedad o evento agrupados
 #' por códigos de municipios y número de casos
 #' @examples
-#' data_event <- import_data_event(2019, "DENGUE")
-#' data_event <- limpiar_encabezado(data_event)
+#' data(dengue2020)
+#' data_event <- dengue2020
+#' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' agrupar_mun(data_event = data_event,
 #'             dept_nombre = "Antioquia",
 #'             col_nombre = "cod_mun_o",
