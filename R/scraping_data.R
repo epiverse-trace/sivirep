@@ -18,9 +18,7 @@ get_path_data_disease_year <- function(year, disease_name) {
   microdata_path <- config::get(file = config_file, "path_microdata")
   query_path <- config::get(file = config_file, "query_path_microdata")
   year <- as.character(year)
-  disease_name <- stringr::str_replace_all(string = disease_name,
-                                           pattern = " ",
-                                           replacement = "%20")
+  disease_name <- URLencode(disease_name)
   query_path <- stringr::str_replace(query_path, stringr::fixed("_year_"), year)
   query_path <- stringr::str_replace(
     query_path,
