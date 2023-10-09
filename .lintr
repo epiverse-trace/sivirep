@@ -6,6 +6,7 @@ linters: all_linters(
     extraction_operator_linter = NULL,
     todo_comment_linter = NULL,
     function_argument_linter = NULL,
+    library_call_linter = NULL,
     indentation_linter = NULL, # unstable as of lintr 3.1.0
     # Use minimum R declared in DESCRIPTION or fall back to current R version.
     # Install etdev package from https://github.com/epiverse-trace/etdev
