@@ -210,14 +210,14 @@ obtener_info_depts <- function(dpto = NULL, munpio = NULL) {
   list_dptos <- unique(data_geo$nombre_departamento)
   list_specific <-
     list_dptos[stringr::str_detect(list_dptos,
-                                   toupper(dpto)) == TRUE]
+                                   toupper(dpto))]
   data_dpto <- dplyr::filter(data_geo, .data$nombre_departamento %in%
                                list_specific)
   if (!is.null(munpio)) {
     list_municipalities <- unique(data_geo$nombre_municipio)
     list_specific <-
       list_municipalities[stringr::str_detect(list_municipalities,
-                                              toupper(munpio)) == TRUE]
+                                              toupper(munpio))]
     data_dpto <- dplyr::filter(data_geo, .data$nombre_municipio %in%
                                  list_specific)
   }

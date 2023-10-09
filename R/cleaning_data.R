@@ -18,13 +18,13 @@ estandarizar_geo_cods <- function(data_event) {
                                            package = "sivirep"),
                              "geo_column_names")
   for (column in geo_columns) {
-    if (stringr::str_detect(column, "dpto") == TRUE) {
+    if (stringr::str_detect(column, "dpto")) {
       data_event[[column]] <- formatC(data_event[[column]],
                                       width = 2,
                                       format = "d",
                                       flag = "0")
     }
-    if (stringr::str_detect(column, "mun") == TRUE) {
+    if (stringr::str_detect(column, "mun")) {
       data_event[[column]] <- formatC(data_event[[column]],
                                       width = 3,
                                       format = "d",

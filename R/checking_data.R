@@ -22,7 +22,7 @@ filtrar_event <- function(nombre_event,
   }
   list_events <- unique(data_sivigila$nombre)
   list_specific <- list_events[stringr::str_detect(list_events,
-                                                   nombre_event) == TRUE]
+                                                   nombre_event)]
   data_fil <- data_sivigila %>%
     dplyr::filter(.data$nombre %in% list_specific)
   return(data_fil)
