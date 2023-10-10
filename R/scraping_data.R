@@ -28,31 +28,13 @@ get_path_data_disease_year <- function(year, disease_name) {
                                     query_path,
                                     sep = ""),
                               sep = "")
-  get_query_disease <- httr::GET(query_disease_path,
-                                 httr::add_headers("Accept" = "*/*"))
-  content_type_response <-
-    stringr::str_split_fixed(httr::headers(get_query_disease)$`content-type`,
-                             pattern = ";",
-                             3)
-  content_type_response <- stringr::str_replace(content_type_response[[1]],
-                                                "atom\\+",
-                                                "")
-  query_disease_content <- httr::content(get_query_disease,
-                                         type = content_type_response,
-                                         encoding = "UTF-8")
-  entry_nodes_disease_content <- xml2::xml_child(query_disease_content, 4)
-  edit_node_disease_content <-
-    xml2::xml_child(entry_nodes_disease_content,
-                    18)
-  properties_node_content <-
-    xml2::xml_child(edit_node_disease_content,
-                    1)
-  file_ref_node_disease_content <-
-    xml2::xml_child(properties_node_content,
-                    17)
-  file_ref_disease_contents <- xml2::xml_contents(file_ref_node_disease_content)
-  file_ref_disease <- xml2::xml_text(file_ref_disease_contents)
-  file_path <- stringr::str_replace(file_path, "_filepath_", file_ref_disease)
+  query_disease_request <- httr2::request(query_disease_path)
+  query_disease_get <- httr2::req_perform(query_disease_request)
+  query_disease_response <- httr2::resp_body_string(query_disease_get)
+  response_document <- xml2::as_xml_document(query_disease_response)
+  property_file_ref <- xml2::xml_find_all(response_document, "//d:FileRef")
+  disease_file_ref <- xml2::xml_text(property_file_ref)
+  file_path <- stringr::str_replace(file_path, "_filepath_", disease_file_ref)
   file_download_path <- paste0(base_path,
                                file_path, file_path_parameters,
                                sep = "")
