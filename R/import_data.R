@@ -56,40 +56,28 @@ import_geo_cods <- function(url_data = NULL) {
 #' import_sep_data()
 #' @export
 import_sep_data <- function(path_data = NULL, cache = TRUE) {
-  seps <- config::get(file = system.file("extdata", "config.yml",
-                                         package = "sivirep"), "data_delim")
   data <- data.frame()
   extdata_path <- system.file("extdata", package = "sivirep")
   if (!is.null(path_data)) {
     start_file_name <- stringr::str_locate(path_data, "Microdatos/")[2] + 1
     end_file_name <- stringr::str_locate(path_data, "value")[1] - 5
     file_name <- stringr::str_sub(path_data, start_file_name, end_file_name)
-    file_path <- paste0(extdata_path, "/", file_name)
+    file_path <- file.path(extdata_path, paste0("h", file_name))
     if (!file.exists(file_path) || !cache) {
-      response <- httr::GET(path_data)
-      if (httr::status_code(response) == 200) {
+      file_request <- httr2::request(path_data)
+      file_response <- httr2::req_perform(file_request)
+      if (httr2::resp_status(file_response) == 200) {
+        file_content <- httr2::resp_body_raw(file_response)
         con_file <- file(file_path, "wb")
-        chunk <- httr::content(response, "raw", as = "raw")
-        if (length(chunk) > 0) {
-          writeBin(chunk, con_file)
+        if (length(file_content) > 0) {
+          writeBin(file_content, con_file)
         }
         close(con_file)
       }
     }
     if (stringr::str_detect(file_name, ".xls")) {
       data <- readxl::read_excel(file_path)
-    } else {
-      for (sep in seps) {
-        if (sep %in% strsplit(readLines(path_data, n = 1)[1],
-                              split = "")[[1]]) {
-          data <- data.table::fread(path_data, sep = sep)
-          break
-        }
-      }
-      if (nrow(data) == 0) {
-        data <- data.table::fread(path_data)
-      }
-    }
+    } 
   }
   return(data)
 }
