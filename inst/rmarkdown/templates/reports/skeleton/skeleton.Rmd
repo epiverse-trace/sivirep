@@ -9,7 +9,9 @@ output:
   word_document: 
     number_sections: true
 header-includes:
-- \usepackage{fancyhdr}
+  - \usepackage{fancyhdr}
+  - \pagestyle{fancy}
+  - \fancyfoot[RO,RE]{\includegraphics[width=1.1cm]{logo.png}}
 subtitle: (fuente SIVIGILA, Datos libres)
 params:
   nombre_evento:
@@ -21,7 +23,7 @@ params:
     value: 2020
     label: Año
   departmento:
-    value: "Chocó" 
+    value: "Antioquia" 
     label: Departamento
     input: select
     choices: !r sivirep::obtener_dptos()
@@ -36,11 +38,20 @@ knitr::opts_chunk$set(include = TRUE,
                       error = FALSE,
                       warning = FALSE,
                       message = FALSE)
+source("C:\\Users\\geral\\Documents\\TRACE\\fixing\\sivirep\\R\\plotting.R")
+source("C:\\Users\\geral\\Documents\\TRACE\\fixing\\sivirep\\R\\utils.R")
 library(sivirep)
 ```
 
 ---
 title: "Reporte Automatizado para `r stringr::str_to_title(params$nombre_evento)`, `r params$departmento` - Colombia `r params$year`"
+---
+
+---
+date: |
+  `r Sys.Date()`\
+  \
+  ![](logo.png){width=1.2cm}
 ---
 
 ```{r import_data, include = FALSE}
@@ -73,9 +84,10 @@ mes_mayor_casos <- obtener_meses_mas_casos(data_event = casos_iniciosin_dia,
 
 Los casos se distribuyen a lo largo de los meses de enero a diciembre de `r params$year`, teniendo un mayor reporte en el mes de `r mes_mayor_casos` tanto por fecha de inicio de síntomas (Ver Figura 1) como por fecha de notificación (Ver Figura 2).
 
-```{r plot_cases_by_onset_symptom_date, fig.height = 5, fig.width = 10, fig.cap = "Distribucion de casos por dia de inicio de sintomas"}
+```{r plot_cases_by_onset_symptom_date, fig.height = 7, fig.width = 11, fig.cap = "Distribucion de casos por dia de inicio de sintomas"}
 plot_fecha_inisintomas(data_agrupada = casos_iniciosin_dia,
-                       uni_marca = "months")
+                       uni_marca = "months",
+                       tipo = "barras")
 ```
 
 ```{r cases_by_onset_notification_date, include = FALSE}
@@ -85,7 +97,7 @@ casos_fecha_notifica_dia <- agrupar_fecha_notifica(data_event_filtrada,
 
 \newpage 
 
-```{r plot_cases_by_onset_notification_date, fig.height = 5, fig.width = 10, fig.cap = "Distribucion de casos por fecha de notificacion"}
+```{r plot_cases_by_onset_notification_date, fig.height = 6, fig.width = 10, fig.cap = "Distribucion de casos por fecha de notificacion"}
 plot_fecha_notifica(data_agrupada = casos_fecha_notifica_dia,
                     uni_marca = "months")
 ```
@@ -110,7 +122,7 @@ if (!is.na(porcentaje_femenino) && !is.na(porcentaje_masculino)) {
 
 En el total de casos para `r params$year` se observa una predominancia del sexo `r sexo_mayor[1]` (`r sexo_mayor[2]`)% respecto al sexo `r sexo_menor[1]` (`r sexo_menor[2]`)% (Ver Figura 3).
 
-```{r distribution_cg_plot, fig.height = 4, fig.width = 9, fig.cap =  "Distribucion de casos por genero"}
+```{r distribution_cg_plot, fig.height = 6, fig.width = 9, fig.cap =  "Distribucion de casos por genero"}
 plot_sex(casos_sex)
 ```
 \newpage
@@ -121,7 +133,7 @@ casos_sex_semanaepi <- agrupar_sex_semanaepi(data_event = data_event_filtrada)
 
 Esta predominancia del reporte de casos del sexo `r sexo_mayor[1]` se mantuvo a lo largo de la mayoria de semanas epidemiológicas (Ver figura 4).
 
-```{r plot_cg_semanaepi, fig.height = 5, fig.width = 11, fig.cap =  "Distribucion de casos por genero y semana epidemiologica"}
+```{r plot_cg_semanaepi, fig.height = 6, fig.width = 11, fig.cap =  "Distribucion de casos por genero y semana epidemiologica"}
 plot_sex_semanaepi(data_agrupada = casos_sex_semanaepi)
 ```
 
@@ -155,6 +167,7 @@ plot_edad_sex(data_agrupada = casos_edad_sex)
 ```{r group_distribution_municipios,  results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
 dist_espacial_dpto <- agrupar_mun(data_event = data_event_filtrada,
                                   dept_nombre = params$departmento)
+dist_espacial_dpto <- dist_espacial_dpto[order(dist_espacial_dpto$casos), ]
 espacial_mayor_casos <- obtener_fila_mas_casos(dist_espacial_dpto)
 ```
 
