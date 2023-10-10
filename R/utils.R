@@ -157,28 +157,32 @@ concatenar_vals_token <- function(vals,
 #'
 #' Función que obtiene las columnas de ocurrencia geográfica de los
 #' datos de la enfermedad o evento
-#' @param code_disease Un numeric (numerico) que contiene el código de la
+#' @param cod_event Un numeric (numerico) que contiene el código de la
 #' enfermedad o evento
 #' @return Un data frame con las columnas de ocurrencia geográfica de los
 #' datos de la enfermedad
 #' @examples
-#' obtener_tip_ocurren_geo(code_disease = 210)
+#' obtener_tip_ocurren_geo(cod_event = 210)
 #' @export
-obtener_tip_ocurren_geo <- function(code_disease) {
+obtener_tip_ocurren_geo <- function(cod_event = NULL, nombre_event = NULL) {
   geo_occurren <- config::get(file =
                                 system.file("extdata",
                                             "config.yml",
                                             package = "sivirep"),
                               "occurrence_geo_diseases")
-  col_ocurren <- c("cod_dpto_o", "cod_mun_o")
-  if (length(grep(code_disease, geo_occurren$cod_dpto_n)) == 1
-      && grep(code_disease, geo_occurren$cod_dpto_n) > 0) {
-    col_ocurren <- c("cod_dpto_n", "cod_mun_n")
-  } else if (length(grep(code_disease, geo_occurren$cod_dpto_r)) == 1
-             && grep(code_disease, geo_occurren$cod_dpto_r) > 0) {
-    col_ocurren <- c("cod_dpto_r", "cod_mun_r")
+  col_ocurren <- c("cod_dpto_o", "cod_mun_o", "ocurrencia")
+  param_busqueda <- cod_event
+  if (!is.null(nombre_event)) {
+    param_busqueda <- nombre_event
+  }
+  if (length(grep(param_busqueda, geo_occurren$cod_dpto_n)) == 1
+      && grep(param_busqueda, geo_occurren$cod_dpto_n) > 0) {
+    col_ocurren <- c("cod_dpto_n", "cod_mun_n", "notificación")
+  } else if (length(grep(param_busqueda, geo_occurren$cod_dpto_r)) == 1
+             && grep(param_busqueda, geo_occurren$cod_dpto_r) > 0) {
+    col_ocurren <- c("cod_dpto_r", "cod_mun_r", "residencia")
   } else {
-    col_ocurren <- c("cod_dpto_o", "cod_mun_o")
+    col_ocurren <- c("cod_dpto_o", "cod_mun_o", "ocurrencia")
   }
   return(col_ocurren)
 }
