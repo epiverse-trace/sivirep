@@ -159,6 +159,8 @@ concatenar_vals_token <- function(vals,
 #' datos de la enfermedad o evento
 #' @param cod_event Un numeric (numerico) que contiene el código de la
 #' enfermedad o evento
+#' @param nombre_event Un character (cadena de caracteres) con el nombre de
+#' la enfermedad o evento
 #' @return Un data frame con las columnas de ocurrencia geográfica de los
 #' datos de la enfermedad
 #' @examples
@@ -177,7 +179,7 @@ obtener_tip_ocurren_geo <- function(cod_event = NULL, nombre_event = NULL) {
   }
   if (length(grep(param_busqueda, geo_occurren$cod_dpto_n)) == 1
       && grep(param_busqueda, geo_occurren$cod_dpto_n) > 0) {
-    col_ocurren <- c("cod_dpto_n", "cod_mun_n", "notificación")
+    col_ocurren <- c("cod_dpto_n", "cod_mun_n", "notificacion")
   } else if (length(grep(param_busqueda, geo_occurren$cod_dpto_r)) == 1
              && grep(param_busqueda, geo_occurren$cod_dpto_r) > 0) {
     col_ocurren <- c("cod_dpto_r", "cod_mun_r", "residencia")
