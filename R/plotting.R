@@ -186,7 +186,8 @@ plot_map <- function(data_agrupada,
 #' @return Un plot o gráfico de la distribución de casos por fecha de inicio
 #' de síntomas
 #' @examples
-#' data_event <- import_data_event(2020, "DENGUE")
+#' data(dengue2020)
+#' data_event <- dengue2020
 #' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' data_agrupada <- agrupar_fecha_inisintomas(
 #'                                      data_event,
@@ -275,7 +276,8 @@ plot_fecha_inisintomas <- function(data_agrupada,
 #' leyenda o fuente de información de los datos; su valor por defecto es NULL
 #' @return Un plot o gráfico de distribución de casos por fecha de notificación
 #' @examples
-#' data_event <- import_data_event(2020, "DENGUE")
+#' data(dengue2020)
+#' data_event <- dengue2020
 #' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' data_agrupada <- agrupar_fecha_notifica(data_event,
 #'                                         col_nombre = "fec_not")
@@ -361,7 +363,8 @@ plot_fecha_notifica <- function(data_agrupada,
 #' leyenda o fuente de información de los datos; su valor por defecto es NULL
 #' @return Un plot o gráfico de distribución de casos por sexo
 #' @examples
-#' data_event <- import_data_event(2020, "DENGUE")
+#' data(dengue2020)
+#' data_event <- dengue2020
 #' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' data_agrupada <- agrupar_sex(data_event,
 #'                              col_nombre = "sexo",
@@ -423,7 +426,8 @@ plot_sex <- function(data_agrupada,
 #' @return Un plot o gráfico de distribución de casos por sexo y semana
 #' epidemiológica
 #' @examples
-#' data_event <- import_data_event(2020, "DENGUE")
+#' data(dengue2020)
+#' data_event <- dengue2020
 #' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' data_agrupada <- agrupar_sex_semanaepi(data_event,
 #'                                        col_nombres = c("sexo", "semana"),
@@ -472,7 +476,8 @@ plot_sex_semanaepi <- function(data_agrupada,
 #' leyenda o fuente de información de los datos; su valor por defecto es NULL
 #' @return Un plot o gráfico de distribución de casos por edad
 #' @examples
-#' data_event <- import_data_event(2020, "DENGUE")
+#' data(dengue2020)
+#' data_event <- dengue2020
 #' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' data_agrupada <- agrupar_edad(data_event,
 #'                               col_nombre = "edad",
@@ -518,7 +523,8 @@ plot_edad <- function(data_agrupada,
 #' leyenda o fuente de información de los datos; su valor por defecto es NULL
 #' @return Un plot o gráfico de distribución de casos por edad y sexo
 #' @examples
-#' data_event <- import_data_event(2020, "DENGUE")
+#' data(dengue2020)
+#' data_event <- dengue2020
 #' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' data_agrupada <- agrupar_edad_sex(data_event,
 #'                                   col_nombres = c("edad", "sexo"),
@@ -564,7 +570,8 @@ plot_edad_sex <- function(data_agrupada,
 #' leyenda o fuente de información de los datos; su valor por defecto es NULL
 #' @return Un plot o gráfico de distribución de casos por municipios
 #' @examples
-#' data_event <- import_data_event(2020, "DENGUE")
+#' data(dengue2020)
+#' data_event <- dengue2020
 #' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' data_event <- estandarizar_geo_cods(data_event)
 #' data_agrupada <- agrupar_mun(data_event,
