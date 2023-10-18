@@ -190,11 +190,10 @@ plot_map <- function(data_agrupada,
 #' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' data_agrupada <- agrupar_fecha_inisintomas(
 #'                                      data_event,
-#'                                      col_nombre = "ini_sin",
-#'                                      tipo = "month")
+#'                                      col_nombre = "ini_sin")
 #' plot_fecha_inisintomas(data_agrupada = data_agrupada,
 #'                        col_nombre = "ini_sin",
-#'                        uni_marca = "month")
+#'                        uni_marca = "semanaepi")
 #' @export
 plot_fecha_inisintomas <- function(data_agrupada,
                                    col_nombre = "ini_sin",
@@ -279,11 +278,10 @@ plot_fecha_inisintomas <- function(data_agrupada,
 #' data_event <- import_data_event(2020, "DENGUE")
 #' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' data_agrupada <- agrupar_fecha_notifica(data_event,
-#'                                         col_nombre = "fec_not",
-#'                                         tipo = "month")
+#'                                         col_nombre = "fec_not")
 #' plot_fecha_notifica(data_agrupada = data_agrupada,
 #'                     col_nombre = "fec_not",
-#'                     uni_marca = "month")
+#'                     uni_marca = "semanaepi")
 #' @export
 plot_fecha_notifica <- function(data_agrupada,
                                 col_nombre = "fec_not",

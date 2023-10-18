@@ -17,7 +17,7 @@
 #' @examples
 #' data_event <- import_data_event(2020, "DENGUE")
 #' data_event <- limpiar_data_sivigila(data_event, 2020)
-#' casos_inisintomas <- agrupar_fecha_inisintomas(data_event, tipo = "day")
+#' casos_inisintomas <- agrupar_fecha_inisintomas(data_event)
 #' obtener_meses_mas_casos(data_event= casos_inisintomas,
 #'                         col_fechas = "ini_sin",
 #'                         col_casos = "casos",
