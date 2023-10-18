@@ -62,7 +62,7 @@ import_sep_data <- function(path_data = NULL, cache = TRUE) {
     start_file_name <- stringr::str_locate(path_data, "Microdatos/")[2] + 1
     end_file_name <- stringr::str_locate(path_data, "value")[1] - 5
     file_name <- stringr::str_sub(path_data, start_file_name, end_file_name)
-    file_path <- file.path(extdata_path, paste0("h", file_name))
+    file_path <- file.path(extdata_path, file_name)
     if (!file.exists(file_path) || !cache) {
       file_request <- httr2::request(path_data)
       file_response <- httr2::req_perform(file_request)
@@ -77,7 +77,7 @@ import_sep_data <- function(path_data = NULL, cache = TRUE) {
     }
     if (stringr::str_detect(file_name, ".xls")) {
       data <- readxl::read_excel(file_path)
-    } 
+    }
   }
   return(data)
 }
@@ -119,18 +119,9 @@ list_events <- function() {
                                                      "config.yml",
                                                      package = "sivirep"),
                                        "query_diseases_by_year_path")
-  query_event_year <- httr::GET(query_event_year_path,
-                                httr::add_headers("Accept" = "*/*"))
-  content_type_response <-
-    stringr::str_split_fixed(httr::headers(query_event_year)$`content-type`,
-                             pattern = ";",
-                             3)
-  content_type_response <-
-    stringr::str_replace(content_type_response[[1]],
-                         "atom\\+", "")
-  query_event_year_content <- httr::content(query_event_year,
-                                            type = content_type_response,
-                                            encoding = "UTF-8")
+  query_event_year <- httr2::request(query_event_year_path)
+  query_event_year_response <- httr2::req_perform(query_event_year)
+  query_event_year_content <- httr2::resp_body_xml(query_event_year_response)
   children <- xml2::xml_children(query_event_year_content)
   children <- xml2::xml_children(children)
   children <- xml2::xml_children(children)
@@ -189,14 +180,47 @@ list_events <- function() {
 import_data_event <- function(year,
                               nombre_event,
                               cache = TRUE) {
+  stopifnot("El parametro year debe ser numerico" = is.numeric(year))
+  stopifnot("El parametro nombre_event debe ser una cadena de caracteres"
+            = is.character(nombre_event))
   data_event <- data.frame()
   list_events <- list_events()
   nombre_event <- stringr::str_to_title(nombre_event)
+  list_events_relacionados <- config::get(file =
+                                            system.file("extdata",
+                                                        "config.yml",
+                                                        package = "sivirep"),
+                                          "related_diseases")
   grupo_events <-
     list_events[which(stringr::str_detect(list_events$enfermedad,
                                           substr(nombre_event,
                                                  1,
                                                  nchar(nombre_event) - 1))), ]
+  stopifnot("La enfermedad o evento no esta disponible para su descarga"
+            = !(is.null(grupo_events) || nrow(grupo_events) == 0))
+  stopifnot("El year no esta disponible para su descarga"
+            = stringr::str_detect(grupo_events$aa,
+                                  as.character(year)))
+  if (length(list_events_relacionados) > 0) {
+    events_relacionados <- list_events_relacionados[[nombre_event]]
+    for (event in events_relacionados) {
+      grupo_events_relacionados <-
+        list_events[which(list_events$enfermedad == event), ]
+      if (is.null(grupo_events) || nrow(grupo_events) == 0) {
+        warning(paste0("La enfermedad o evento relacionado: ",
+                       event,
+                       "no esta disponible para su descarga"))
+      } else if (stringr::str_detect(grupo_events_relacionados$aa,
+                                     as.character(year))) {
+        warning(paste0("El year: ", year,
+                       "de la enfermedad o evento relacionado: ",
+                       event,
+                       "no esta disponible para su descarga"))
+      } else {
+        grupo_events <- rbind(grupo_events, grupo_events_relacionados)
+      }
+    }
+  }
   for (event in grupo_events$enfermedad) {
     if (event != "MALARIA") {
       data_url <- get_path_data_disease_year(year, event)
