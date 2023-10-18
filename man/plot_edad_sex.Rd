@@ -7,7 +7,7 @@
 plot_edad_sex(
   data_agrupada,
   col_nombres = c("edad", "sexo"),
-  porcentaje = FALSE
+  fuente_data = NULL
 )
 }
 \arguments{
@@ -19,8 +19,8 @@ los nombres de columna de los datos agrupados de la enfermedad o evento que
 contiene las edades y las semanas epidemiológicas; su valor por defecto
 es c("edad", "sexo")}
 
-\item{porcentaje}{Un boolean (TRUE/FALSE) que indica si los datos tienen
-porcentajes; su valor por defecto es FALSE}
+\item{fuente_data}{Un character (cadena de caracteres) que contiene la
+leyenda o fuente de información de los datos; su valor por defecto es NULL}
 }
 \value{
 Un plot o gráfico de distribución de casos por edad y sexo
@@ -35,6 +35,5 @@ data_agrupada <- agrupar_edad_sex(data_event,
                                   col_nombres = c("edad", "sexo"),
                                   porcentaje = FALSE)
 plot_edad_sex(data_agrupada = data_agrupada,
-              col_nombres = c("edad", "sexo"),
-              porcentaje = FALSE)
+              col_nombres = c("edad", "sexo"))
 }

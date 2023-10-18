@@ -33,7 +33,11 @@ Imports:
     xml2,
     epitrix,
     sf,
-    readxl
+    readxl,
+    sysfonts,
+    showtext,
+    cowplot,
+    gridExtra
 Suggests: 
     knitr,
     rmarkdown

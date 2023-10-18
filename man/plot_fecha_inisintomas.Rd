@@ -7,7 +7,9 @@
 plot_fecha_inisintomas(
   data_agrupada,
   col_nombre = "ini_sin",
-  uni_marca = "month"
+  uni_marca = "mes",
+  tipo = "barras",
+  fuente_data = NULL
 )
 }
 \arguments{
@@ -20,8 +22,14 @@ agrupados que contiene las fechas de inicio de síntomas; su valor por
 defecto es "ini_sin"}
 
 \item{uni_marca}{Un character (cadena de caracteres) que contiene la unidad
-de las marcas del gráfico ("day": día, "month": mes y "year": año);
-su valor por defecto es "month"}
+de las marcas del gráfico (dia, mes o año);
+su valor por defecto es "meses"}
+
+\item{tipo}{Un character (cadena de caracteres) que contiene el tipo de
+grafico (barras o tendencia); su valor por defecto es "barras"}
+
+\item{fuente_data}{Un character (cadena de caracteres) que contiene la
+leyenda o fuente de información de los datos; su valor por defecto es NULL}
 }
 \value{
 Un plot o gráfico de la distribución de casos por fecha de inicio
@@ -36,9 +44,8 @@ data_event <- import_data_event(2020, "DENGUE")
 data_event <- limpiar_data_sivigila(data_event, 2020)
 data_agrupada <- agrupar_fecha_inisintomas(
                                      data_event,
-                                     col_nombre = "ini_sin",
-                                     tipo = "month")
+                                     col_nombre = "ini_sin")
 plot_fecha_inisintomas(data_agrupada = data_agrupada,
                        col_nombre = "ini_sin",
-                       uni_marca = "month")
+                       uni_marca = "semanaepi")
 }

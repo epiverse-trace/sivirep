@@ -1,0 +1,48 @@
+/* Whole document: */
+body{
+  font-family: 'Montserrat';
+}
+/* Headers */
+h1,h2,h4,h5,h6{
+  font-size: 22pt;
+}
+
+h1 {
+    color: #2274BB;
+    font-weight: 600;
+}
+
+h3 {
+  font-size: 16pt;
+}
+
+.subtitle, .author, .date {
+  font-size: 16pt;
+  color: #2274BB;
+  margin-bottom: -5px;
+}
+
+.date {
+  margin-bottom: -5px;
+}
+
+p {
+  font-size: 14pt;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+#header {    
+  text-align: center;
+  display: none;
+}
+
+.titulo {
+  text-align: center;
+  text-overflow: initial;
+  margin-inline: 114px;
+}
+
+.cover {
+  
+}

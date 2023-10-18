@@ -4,7 +4,7 @@
 \alias{plot_edad}
 \title{Generar gráfico de distribución de casos por edad}
 \usage{
-plot_edad(data_agrupada, col_nombre = "edad", porcentaje = FALSE)
+plot_edad(data_agrupada, col_nombre = "edad", fuente_data = NULL)
 }
 \arguments{
 \item{data_agrupada}{Un data frame que contiene los datos de la enfermedad
@@ -14,8 +14,8 @@ o evento agrupados}
 la columna de los datos agrupados de la enfermedad o evento que contiene
 las edades; su valor por defecto es "edad"}
 
-\item{porcentaje}{Un boolean (TRUE/FALSE) que indica si los datos tienen
-porcentajes; su valor por defecto es FALSE}
+\item{fuente_data}{Un character (cadena de caracteres) que contiene la
+leyenda o fuente de información de los datos; su valor por defecto es NULL}
 }
 \value{
 Un plot o gráfico de distribución de casos por edad
@@ -30,6 +30,5 @@ data_agrupada <- agrupar_edad(data_event,
                               col_nombre = "edad",
                               porcentaje = FALSE)
 plot_edad(data_agrupada = data_agrupada,
-          col_nombre = "edad",
-          porcentaje = FALSE)
+          col_nombre = "edad")
 }

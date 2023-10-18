@@ -1,18 +1,25 @@
 ---
-author: "TRACE-LAC"
-date: "`r Sys.Date()`"
 output:
-  html_document:
-    number_sections: true
   pdf_document: 
     number_sections: true
+  html_document:
+    number_sections: true
+    fig_caption: true
+    css: style.css
   word_document: 
     number_sections: true
 header-includes:
   - \usepackage{fancyhdr}
   - \pagestyle{fancy}
+  - \usepackage[utf8]{inputenc}
+  - \usepackage[spanish]{babel}
   - \fancyfoot[RO,RE]{\includegraphics[width=1.1cm]{logo.png}}
-subtitle: (fuente SIVIGILA, Datos libres)
+  - \usepackage[defaultfam,tabular,lining]{montserrat}
+  - \usepackage{tikz}
+  - \usepackage[absolute,overlay]{textpos}
+papersize: a4
+title: "."
+subtitle: ""
 params:
   nombre_evento:
     value: "Dengue"
@@ -38,21 +45,56 @@ knitr::opts_chunk$set(include = TRUE,
                       error = FALSE,
                       warning = FALSE,
                       message = FALSE)
-source("C:\\Users\\geral\\Documents\\TRACE\\fixing\\sivirep\\R\\plotting.R")
-source("C:\\Users\\geral\\Documents\\TRACE\\fixing\\sivirep\\R\\utils.R")
 library(sivirep)
+sysfonts::font_add_google("Montserrat", "Montserrat")
+showtext::showtext_auto()
 ```
 
----
-title: "Reporte Automatizado para `r stringr::str_to_title(params$nombre_evento)`, `r params$departmento` - Colombia `r params$year`"
----
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,600i,900,900i" rel="stylesheet">
 
----
-date: |
-  `r Sys.Date()`\
-  \
-  ![](logo.png){width=1.2cm}
----
+```{r titulo, include = FALSE, echo = FALSE}
+titulo <- paste0("Reporte Automatizado para ",
+                 stringr::str_to_title(params$nombre_evento), " ",
+                 params$departmento, "- Colombia",
+                 ", ", params$year)
+fuente <- "Fuente SIVIGILA, Datos libres"
+```
+
+\AddToHookNext{shipout/background}{
+   \begin{tikzpicture}[remember picture,overlay]
+   \node[inner sep=0pt] at (current page.center) {
+      \includegraphics[width=8in,height=\paperheight, keepaspectratio]{cover.png}
+   };
+   \end{tikzpicture}
+}
+
+\begin{textblock*}{5cm}(15cm,18cm) % {block width} (coords)
+  \begin{flushright}
+     \Huge{\textbf{`r toupper(params$nombre_evento)` \\ }}
+     \Huge{\textbf{`r params$year`}}
+  \end{flushright}
+\end{textblock*}
+
+
+\newpage
+
+\begin{center}
+  \huge{\textbf{\\ `r titulo`}}
+\end{center}
+
+\begin{center}
+  \large{\textbf{`r fuente` \\[0.4in]}}
+  \includegraphics[width=1in]{logo.png}
+\end{center}
+
+
+````{=html}
+<div class="titulo">
+    <h1>`r titulo`</h1>
+    <h2>`r fuente`</h2>
+</div>
+````
+
 
 ```{r import_data, include = FALSE}
 data_event <-  import_data_event(params$year, params$nombre_evento)
@@ -76,31 +118,28 @@ En este reporte se presenta el comportamiento del `r stringr::str_to_title(param
 # Distribución temporal de los casos
 
 ```{r cases_by_onset_symptom_date, include = FALSE}
-casos_iniciosin_dia <- agrupar_fecha_inisintomas(data_event_filtrada,
-                                                 tipo = "day")
+casos_iniciosin_dia <- agrupar_fecha_inisintomas(data_event_filtrada)
 mes_mayor_casos <- obtener_meses_mas_casos(data_event = casos_iniciosin_dia,
                                            col_fechas = "ini_sin")
 ```
 
 Los casos se distribuyen a lo largo de los meses de enero a diciembre de `r params$year`, teniendo un mayor reporte en el mes de `r mes_mayor_casos` tanto por fecha de inicio de síntomas (Ver Figura 1) como por fecha de notificación (Ver Figura 2).
 
-```{r plot_cases_by_onset_symptom_date, fig.height = 7, fig.width = 11, fig.cap = "Distribucion de casos por dia de inicio de sintomas"}
+```{r plot_cases_by_onset_symptom_date, fig.height = 5, fig.width = 11, fig.cap = "Distribucion de casos por dia de inicio de sintomas"}
 plot_fecha_inisintomas(data_agrupada = casos_iniciosin_dia,
-                       uni_marca = "months",
-                       tipo = "barras")
+                       uni_marca = "semanaepi")
 ```
 
 ```{r cases_by_onset_notification_date, include = FALSE}
-casos_fecha_notifica_dia <- agrupar_fecha_notifica(data_event_filtrada,
-                                                   tipo = "day")
+casos_fecha_notifica_dia <- agrupar_fecha_notifica(data_event_filtrada)
 ```
 
-\newpage 
-
-```{r plot_cases_by_onset_notification_date, fig.height = 6, fig.width = 10, fig.cap = "Distribucion de casos por fecha de notificacion"}
+```{r plot_cases_by_onset_notification_date, fig.height = 5, fig.width = 10, fig.cap = "Distribucion de casos por fecha de notificacion"}
 plot_fecha_notifica(data_agrupada = casos_fecha_notifica_dia,
-                    uni_marca = "months")
+                    uni_marca = "semanaepi")
 ```
+
+\newpage
 
 # Distribución de casos por sexo y semana epidemiológica
 
@@ -122,7 +161,7 @@ if (!is.na(porcentaje_femenino) && !is.na(porcentaje_masculino)) {
 
 En el total de casos para `r params$year` se observa una predominancia del sexo `r sexo_mayor[1]` (`r sexo_mayor[2]`)% respecto al sexo `r sexo_menor[1]` (`r sexo_menor[2]`)% (Ver Figura 3).
 
-```{r distribution_cg_plot, fig.height = 6, fig.width = 9, fig.cap =  "Distribucion de casos por genero"}
+```{r distribution_cg_plot, fig.height = 5, fig.width = 9, fig.cap =  "Distribucion de casos por genero"}
 plot_sex(casos_sex)
 ```
 \newpage
@@ -133,7 +172,7 @@ casos_sex_semanaepi <- agrupar_sex_semanaepi(data_event = data_event_filtrada)
 
 Esta predominancia del reporte de casos del sexo `r sexo_mayor[1]` se mantuvo a lo largo de la mayoria de semanas epidemiológicas (Ver figura 4).
 
-```{r plot_cg_semanaepi, fig.height = 6, fig.width = 11, fig.cap =  "Distribucion de casos por genero y semana epidemiologica"}
+```{r plot_cg_semanaepi, fig.height = 9, fig.width = 11, fig.cap =  "Distribucion de casos por genero y semana epidemiologica"}
 plot_sex_semanaepi(data_agrupada = casos_sex_semanaepi)
 ```
 
@@ -160,8 +199,6 @@ casos_edad_sex <- agrupar_edad_sex(data_event = data_event_filtrada,
 plot_edad_sex(data_agrupada = casos_edad_sex)
 ```
 
-\newpage
-
 # Distribución de casos por municipio
 
 ```{r group_distribution_municipios,  results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
@@ -173,7 +210,7 @@ espacial_mayor_casos <- obtener_fila_mas_casos(dist_espacial_dpto)
 
 Los casos se distribuyen a lo largo de `r nrow(dist_espacial_dpto)` municipios del departamento de `r params$departmento`, teniendo un mayor reporte el municipio de `r stringr::str_to_title(espacial_mayor_casos$nombre)` con `r espacial_mayor_casos$casos` casos (Ver Figura 7).
 
-```{r plot_distribution_municipios, fig.height = 10, fig.width = 10, fig.cap = "Distribucion de casos por municipio"}
+```{r plot_distribution_municipios, fig.height = 15, fig.width = 10, fig.cap = "Distribucion de casos por municipio"}
 plot_spatial <- plot_muns(dist_espacial_dpto)
 plot_spatial
 ```
@@ -187,7 +224,7 @@ mapa <- plot_map(data_agrupada = dist_espacial_dpto,
                  dpto = params$departmento)
 ```
 
-```{r map_distribution_spatial, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, cache = FALSE, results = FALSE, comment = FALSE, fig.height = 10, fig.width = 10, fig.cap =  "Distribucion espacial de casos"}
+```{r map_distribution_spatial, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, cache = FALSE, results = FALSE, comment = FALSE, fig.height = 23, fig.width = 20, fig.cap =  "Distribucion espacial de casos"}
 mapa
 ```
 

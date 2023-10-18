@@ -4,7 +4,12 @@
 \alias{plot_sex}
 \title{Generar gráfico de distribución de casos por sexo}
 \usage{
-plot_sex(data_agrupada, col_nombre = "sexo", porcentaje = TRUE)
+plot_sex(
+  data_agrupada,
+  col_nombre = "sexo",
+  porcentaje = TRUE,
+  fuente_data = NULL
+)
 }
 \arguments{
 \item{data_agrupada}{Un data fram que contiene los datos de la
@@ -16,6 +21,9 @@ o evento que contiene el sexo; su valor por defecto es "sexo"}
 
 \item{porcentaje}{Un boolean (TRUE/FALSE) que indica si los datos
 tienen porcentajes; su valor por defecto es TRUE}
+
+\item{fuente_data}{Un character (cadena de caracteres) que contiene la
+leyenda o fuente de información de los datos; su valor por defecto es NULL}
 }
 \value{
 Un plot o gráfico de distribución de casos por sexo

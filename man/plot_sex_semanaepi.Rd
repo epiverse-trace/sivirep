@@ -7,7 +7,7 @@
 plot_sex_semanaepi(
   data_agrupada,
   col_nombres = c("sexo", "semana"),
-  porcentaje = FALSE
+  fuente_data = NULL
 )
 }
 \arguments{
@@ -19,8 +19,8 @@ los nombres de columna de los datos agrupados de la enfermedad o evento que
 contienen el sexo y las semanas epidemiológicas; su valor por defecto es
 c("sexo", "semana")}
 
-\item{porcentaje}{Un boolean (TRUE/FALSE) que indica si los datos tienen
-porcentajes; su valor por defecto es TRUE}
+\item{fuente_data}{Un character (cadena de caracteres) que contiene la
+leyenda o fuente de información de los datos; su valor por defecto es NULL}
 }
 \value{
 Un plot o gráfico de distribución de casos por sexo y semana
@@ -37,6 +37,5 @@ data_agrupada <- agrupar_sex_semanaepi(data_event,
                                        col_nombres = c("sexo", "semana"),
                                        porcentaje = TRUE)
 plot_sex_semanaepi(data_agrupada = data_agrupada,
-                   col_nombres = c("sexo", "semana"),
-                   porcentaje = FALSE)
+                   col_nombres = c("sexo", "semana"))
 }
