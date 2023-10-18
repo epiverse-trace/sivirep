@@ -103,7 +103,7 @@ knitr::kable(lista_eventos)
 | 18  | Hepatitis C                                                           | 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022                                                 |
 | 19  | Hipotiroidismo congénito                                              | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
 | 20  | Infección Respiratoria Aguda Grave Irag Inusitada                     | 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022                   |
-| 65  | INTENTO DE SUICIDIO                                                   |                                                                                                      |
+| 67  | INTENTO DE SUICIDIO                                                   |                                                                                                      |
 | 21  | Intoxicación Por Gases                                                | 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022                         |
 | 22  | Intoxicación Por Medicamentos                                         | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
 | 23  | Intoxicación Por Metales Pesados                                      | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
@@ -120,7 +120,7 @@ knitr::kable(lista_eventos)
 | 34  | Lesiones Por pólvora Y Explosivos                                     | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014                                                       |
 | 35  | Leucemia Aguda Pediátrica Linfoide                                    | 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022             |
 | 36  | Leucemia Aguda Pediátrica Mieloide                                    | 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022             |
-| 64  | MALARIA                                                               |                                                                                                      |
+| 66  | MALARIA                                                               |                                                                                                      |
 | 37  | Malaria Asociada (Formas Mixtas)                                      | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
 | 38  | Malaria Complicada                                                    | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
 | 39  | Malaria Falciparum                                                    | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
@@ -130,24 +130,26 @@ knitr::kable(lista_eventos)
 | 43  | Meningitis Por Haemophilus Influenzae                                 | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
 | 44  | Meningitis Por Neumococo                                              | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
 | 45  | Meningitis Tuberculosa                                                | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
-| 46  | Mortalidad Materna                                                    | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
-| 47  | Mortalidad Perinatal Y Neonatal Tardía                                | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
-| 48  | Mortalidad Por Dengue                                                 | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
-| 49  | Mortalidad Por Desnutrición                                           | 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022                                           |
-| 50  | Mortalidad Por Eda 0-4 Años                                           | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
-| 51  | Mortalidad Por Ira                                                    | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
-| 52  | Parotiditis                                                           | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
-| 53  | Rabia Humana                                                          | 2007, 2008, 2009, 2010, 2012, 2015, 2016, 2017, 2020                                                 |
-| 54  | Sarampión                                                             | 2011, 2012, 2013, 2015, 2018, 2019, 2020                                                             |
-| 55  | Tétanos Accidental                                                    | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
-| 56  | Tétanos Neonatal                                                      | 2007, 2008, 2009, 2010, 2012, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022                   |
-| 57  | Tos Ferina                                                            | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
-| 58  | Tracoma                                                               | 2017, 2018, 2019, 2022                                                                               |
-| 59  | Tuberculosis Extra Pulmonar                                           | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
-| 60  | Tuberculosis Farmacorresistente                                       | 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022                               |
-| 61  | Tuberculosis Pulmonar                                                 | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
-| 62  | Varicela Individual                                                   | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
-| 63  | Vigilancia En Salud Pública De La Violencia De Género E Intrafamiliar | 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022                                     |
+| 46  | MORBILIDAD POR EDA                                                    | 2013, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022                                                 |
+| 47  | MORBILIDAD POR IRA                                                    | 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022                                     |
+| 48  | Mortalidad Materna                                                    | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
+| 49  | Mortalidad Perinatal Y Neonatal Tardía                                | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
+| 50  | Mortalidad Por Dengue                                                 | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
+| 51  | Mortalidad Por Desnutrición                                           | 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022                                           |
+| 52  | Mortalidad Por Eda 0-4 Años                                           | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
+| 53  | Mortalidad Por Ira                                                    | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
+| 54  | Parotiditis                                                           | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
+| 55  | Rabia Humana                                                          | 2007, 2008, 2009, 2010, 2012, 2015, 2016, 2017, 2020                                                 |
+| 56  | Sarampión                                                             | 2011, 2012, 2013, 2015, 2018, 2019, 2020                                                             |
+| 57  | Tétanos Accidental                                                    | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
+| 58  | Tétanos Neonatal                                                      | 2007, 2008, 2009, 2010, 2012, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022                   |
+| 59  | Tos Ferina                                                            | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
+| 60  | Tracoma                                                               | 2017, 2018, 2019, 2022                                                                               |
+| 61  | Tuberculosis Extra Pulmonar                                           | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
+| 62  | Tuberculosis Farmacorresistente                                       | 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022                               |
+| 63  | Tuberculosis Pulmonar                                                 | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
+| 64  | Varicela Individual                                                   | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
+| 65  | Vigilancia En Salud Pública De La Violencia De Género E Intrafamiliar | 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022                                     |
 
 ## Versiones futuras
 
@@ -288,7 +290,7 @@ parametrizado basado en la enfermedad y el año.
 
 ``` r
 data_event <-  import_data_event(year = 2020,
-                                 nombre_event = "dengue")
+                                 nombre_event = "Dengue")
 ```
 
 ##### 💡 Tip 1 - Evita retrasos en el tiempo al importar los datos
@@ -368,17 +370,11 @@ agrupar los datos y generar los gráficos.
 Para generar la distribución de casos por fecha de inicio de síntomas,
 es necesario agrupar los datos por estas variables. `sivirep`
 proporciona una función que permite esta agrupación llamada
-`agrupar_fecha_inisintomas`, en la cual puedes especificar la unidad de
-tiempo para agrupar estas fechas. Los valores permitidos para este
-parámetro son: día y mes.
+`agrupar_fecha_inisintomas`.
 
 ``` r
-casos_ini_sintomas_dia <- agrupar_fecha_inisintomas(data_event =
-                                                      data_event_limp,
-                                                    tipo = "day")
-casos_ini_sintomas_mes <- agrupar_fecha_inisintomas(data_event =
-                                                      data_event_limp,
-                                                    tipo = "month")
+casos_ini_sintomas <- agrupar_fecha_inisintomas(data_event =
+                                                  data_event_limp)
 ```
 
 ##### 💡 Tip 2 - Obtén los primeros n meses con más casos
@@ -390,11 +386,11 @@ casos_ini_sintomas_mes <- agrupar_fecha_inisintomas(data_event =
 El gráfico que permite visualizar esta distribución se debe generar con
 la función `plot_fecha_inisintomas`. Ten en cuenta que, incluso si has
 agrupado los datos por día, es posible que prefieras representarlo por
-mes, como en:
+semana epidemiológica, como en:
 
 ``` r
-plot_fecha_inisintomas(data_agrupada = casos_ini_sintomas_dia,
-                       uni_marca = "months")
+plot_fecha_inisintomas(data_agrupada = casos_ini_sintomas,
+                       uni_marca = "semanaepi")
 ```
 
 ![](man/figures/plot_fecha_inicio_sintomas-1.png)<!-- -->
@@ -407,22 +403,18 @@ variable. Puedes utilizar la siguiente función de `sivirep` para hacer
 esto:
 
 ``` r
-casos_fecha_notificacion_dia <- agrupar_fecha_notifica(data_event =
-                                                         data_event_limp,
-                                                       tipo = "day")
-casos_fecha_notificacion_mes <- agrupar_fecha_notifica(data_event =
-                                                         data_event_limp,
-                                                       tipo = "month")
+casos_fecha_notificacion <- agrupar_fecha_notifica(data_event =
+                                                     data_event_limp)
 ```
 
 El gráfico que permite visualizar esta distribución debe generarse con
 la función `plot_fecha_notifica`. Ten en cuenta que, aunque hayas
 agrupado los datos por día, es posible que prefieras representarlos por
-mes, como en:
+semana epidemiológica, como en:
 
 ``` r
-plot_fecha_notifica(data_agrupada = casos_fecha_notificacion_dia,
-                    uni_marca = "months")
+plot_fecha_notifica(data_agrupada = casos_fecha_notificacion,
+                    uni_marca = "semanaepi")
 ```
 
 ![](man/figures/plot_fecha_notificacion-1.png)<!-- -->
