@@ -40,7 +40,8 @@ Función que genera el gráfico de distribución de casos
 por fecha de inicio de síntomas
 }
 \examples{
-data_event <- import_data_event(2020, "DENGUE")
+data(dengue2020)
+data_event <- dengue2020
 data_event <- limpiar_data_sivigila(data_event, 2020)
 data_agrupada <- agrupar_fecha_inisintomas(
                                      data_event,

@@ -35,7 +35,8 @@ Un data framecon los datos con las fechas limpias
 Función que limpia las fechas de los datos de una enfermedad o evento
 }
 \examples{
-data_event <- import_data_event(2020, "DENGUE")
+data(dengue2020)
+data_event <- dengue2020
 data_event <- limpiar_data_sivigila(data_event, 2020)
 limpiar_fecha_event(data_event = data_event,
                     year = 2020,

@@ -37,7 +37,8 @@ Un data frame que contiene los meses con mayor número de casos
 Función que obtiene los meses con el mayor número de casos
 }
 \examples{
-data_event <- import_data_event(2020, "DENGUE")
+data(dengue2020)
+data_event <- dengue2020
 data_event <- limpiar_data_sivigila(data_event, 2020)
 casos_inisintomas <- agrupar_fecha_inisintomas(data_event)
 obtener_meses_mas_casos(data_event= casos_inisintomas,

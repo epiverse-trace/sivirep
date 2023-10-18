@@ -24,7 +24,8 @@ Un plot o gráfico de distribución de casos por municipios
 Función que genera el gráfico de distribución de casos por municipios
 }
 \examples{
-data_event <- import_data_event(2020, "DENGUE")
+data(dengue2020)
+data_event <- dengue2020
 data_event <- limpiar_data_sivigila(data_event, 2020)
 data_event <- estandarizar_geo_cods(data_event)
 data_agrupada <- agrupar_mun(data_event,
