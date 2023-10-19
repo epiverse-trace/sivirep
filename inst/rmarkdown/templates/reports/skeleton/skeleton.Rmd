@@ -48,11 +48,6 @@ knitr::opts_chunk$set(include = TRUE,
                       message = FALSE)
 knitr::opts_knit$set(eval.after = "fig.cap")
 library(sivirep)
-library(dplyr)
-source("C:\\Users\\geral\\Documents\\TRACE\\fixing\\sivirep\\R\\plotting.R")
-source("C:\\Users\\geral\\Documents\\TRACE\\fixing\\sivirep\\R\\utils.R")
-source("C:\\Users\\geral\\Documents\\TRACE\\fixing\\sivirep\\R\\checking_data.R")
-source("C:\\Users\\geral\\Documents\\TRACE\\fixing\\sivirep\\R\\theme_sivirep.R")
 sysfonts::font_add_google("Montserrat", "Montserrat")
 showtext::showtext_auto()
 ```
