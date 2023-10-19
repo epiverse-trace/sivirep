@@ -54,7 +54,7 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plot_edad_sex</span><span class="op">(</span></span>
 <span>  <span class="va">data_agrupada</span>,</span>
 <span>  col_nombres <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"edad"</span>, <span class="st">"sexo"</span><span class="op">)</span>,</span>
-<span>  porcentaje <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  fuente_data <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -72,9 +72,9 @@ contiene las edades y las semanas epidemiológicas; su valor por defecto
 es c("edad", "sexo")</p></dd>
 
 
-<dt>porcentaje</dt>
-<dd><p>Un boolean (TRUE/FALSE) que indica si los datos tienen
-porcentajes; su valor por defecto es FALSE</p></dd>
+<dt>fuente_data</dt>
+<dd><p>Un character (cadena de caracteres) que contiene la
+leyenda o fuente de información de los datos; su valor por defecto es NULL</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -86,14 +86,14 @@ porcentajes; su valor por defecto es FALSE</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Ejemplos<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">data_event</span> <span class="op">&lt;-</span> <span class="fu"><a href="import_data_event.html">import_data_event</a></span><span class="op">(</span><span class="fl">2020</span>, <span class="st">"DENGUE"</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">dengue2020</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">data_event</span> <span class="op">&lt;-</span> <span class="va">dengue2020</span></span></span>
 <span class="r-in"><span><span class="va">data_event</span> <span class="op">&lt;-</span> <span class="fu"><a href="limpiar_data_sivigila.html">limpiar_data_sivigila</a></span><span class="op">(</span><span class="va">data_event</span>, <span class="fl">2020</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">data_agrupada</span> <span class="op">&lt;-</span> <span class="fu"><a href="agrupar_edad_sex.html">agrupar_edad_sex</a></span><span class="op">(</span><span class="va">data_event</span>,</span></span>
 <span class="r-in"><span>                                  col_nombres <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"edad"</span>, <span class="st">"sexo"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                                  porcentaje <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">plot_edad_sex</span><span class="op">(</span>data_agrupada <span class="op">=</span> <span class="va">data_agrupada</span>,</span></span>
-<span class="r-in"><span>              col_nombres <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"edad"</span>, <span class="st">"sexo"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>              porcentaje <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span>              col_nombres <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"edad"</span>, <span class="st">"sexo"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plot_edad_sex-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>

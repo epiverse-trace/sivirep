@@ -57,14 +57,19 @@ datos de la enfermedad o evento</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Uso<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">obtener_tip_ocurren_geo</span><span class="op">(</span><span class="va">code_disease</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">obtener_tip_ocurren_geo</span><span class="op">(</span>cod_event <span class="op">=</span> <span class="cn">NULL</span>, nombre_event <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="argumentos">Argumentos<a class="anchor" aria-label="anchor" href="#argumentos"></a></h2>
-    <dl><dt>code_disease</dt>
+    <dl><dt>cod_event</dt>
 <dd><p>Un numeric (numerico) que contiene el código de la
 enfermedad o evento</p></dd>
+
+
+<dt>nombre_event</dt>
+<dd><p>Un character (cadena de caracteres) con el nombre de
+la enfermedad o evento</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -77,8 +82,8 @@ datos de la enfermedad</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Ejemplos<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">obtener_tip_ocurren_geo</span><span class="op">(</span>code_disease <span class="op">=</span> <span class="fl">210</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "cod_dpto_o" "cod_mun_o" </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">obtener_tip_ocurren_geo</span><span class="op">(</span>cod_event <span class="op">=</span> <span class="fl">210</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "cod_dpto_o" "cod_mun_o"  "ocurrencia"</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>En esta página</h2>

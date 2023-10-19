@@ -57,7 +57,9 @@ por fecha de inicio de síntomas</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plot_fecha_inisintomas</span><span class="op">(</span></span>
 <span>  <span class="va">data_agrupada</span>,</span>
 <span>  col_nombre <span class="op">=</span> <span class="st">"ini_sin"</span>,</span>
-<span>  uni_marca <span class="op">=</span> <span class="st">"month"</span></span>
+<span>  uni_marca <span class="op">=</span> <span class="st">"mes"</span>,</span>
+<span>  tipo <span class="op">=</span> <span class="st">"barras"</span>,</span>
+<span>  fuente_data <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -77,8 +79,18 @@ defecto es "ini_sin"</p></dd>
 
 <dt>uni_marca</dt>
 <dd><p>Un character (cadena de caracteres) que contiene la unidad
-de las marcas del gráfico ("day": día, "month": mes y "year": año);
-su valor por defecto es "month"</p></dd>
+de las marcas del gráfico (dia, mes o año);
+su valor por defecto es "meses"</p></dd>
+
+
+<dt>tipo</dt>
+<dd><p>Un character (cadena de caracteres) que contiene el tipo de
+grafico (barras o tendencia); su valor por defecto es "barras"</p></dd>
+
+
+<dt>fuente_data</dt>
+<dd><p>Un character (cadena de caracteres) que contiene la
+leyenda o fuente de información de los datos; su valor por defecto es NULL</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -91,15 +103,15 @@ de síntomas</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Ejemplos<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">data_event</span> <span class="op">&lt;-</span> <span class="fu"><a href="import_data_event.html">import_data_event</a></span><span class="op">(</span><span class="fl">2020</span>, <span class="st">"DENGUE"</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">dengue2020</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">data_event</span> <span class="op">&lt;-</span> <span class="va">dengue2020</span></span></span>
 <span class="r-in"><span><span class="va">data_event</span> <span class="op">&lt;-</span> <span class="fu"><a href="limpiar_data_sivigila.html">limpiar_data_sivigila</a></span><span class="op">(</span><span class="va">data_event</span>, <span class="fl">2020</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">data_agrupada</span> <span class="op">&lt;-</span> <span class="fu"><a href="agrupar_fecha_inisintomas.html">agrupar_fecha_inisintomas</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>                                     <span class="va">data_event</span>,</span></span>
-<span class="r-in"><span>                                     col_nombre <span class="op">=</span> <span class="st">"ini_sin"</span>,</span></span>
-<span class="r-in"><span>                                     tipo <span class="op">=</span> <span class="st">"month"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>                                     col_nombre <span class="op">=</span> <span class="st">"ini_sin"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">plot_fecha_inisintomas</span><span class="op">(</span>data_agrupada <span class="op">=</span> <span class="va">data_agrupada</span>,</span></span>
 <span class="r-in"><span>                       col_nombre <span class="op">=</span> <span class="st">"ini_sin"</span>,</span></span>
-<span class="r-in"><span>                       uni_marca <span class="op">=</span> <span class="st">"month"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>                       uni_marca <span class="op">=</span> <span class="st">"semanaepi"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plot_fecha_inisintomas-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>

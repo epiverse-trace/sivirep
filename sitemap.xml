@@ -136,6 +136,9 @@
     <loc>https://epiverse-trace.github.io/sivirep/reference/obtener_dptos.html</loc>
   </url>
   <url>
+    <loc>https://epiverse-trace.github.io/sivirep/reference/obtener_estetica_escala.html</loc>
+  </url>
+  <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/obtener_fila_mas_casos.html</loc>
   </url>
   <url>
@@ -178,19 +181,10 @@
     <loc>https://epiverse-trace.github.io/sivirep/reference/plot_muns.html</loc>
   </url>
   <url>
-    <loc>https://epiverse-trace.github.io/sivirep/reference/plot_pob_especial.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/sivirep/reference/plot_semanaepi.html</loc>
-  </url>
-  <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/plot_sex.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/plot_sex_semanaepi.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/sivirep/reference/plot_variable.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/remove_error_fecha.html</loc>
@@ -200,5 +194,8 @@
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/sivirep-package.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/sivirep/reference/tema_sivirep.html</loc>
   </url>
 </urlset>

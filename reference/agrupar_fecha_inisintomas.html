@@ -54,7 +54,7 @@ fecha de inicio de síntomas y número de casos</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Uso<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">agrupar_fecha_inisintomas</span><span class="op">(</span><span class="va">data_event</span>, col_nombre <span class="op">=</span> <span class="st">"ini_sin"</span>, tipo <span class="op">=</span> <span class="st">"month"</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">agrupar_fecha_inisintomas</span><span class="op">(</span><span class="va">data_event</span>, col_nombre <span class="op">=</span> <span class="st">"ini_sin"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -68,12 +68,6 @@ la enfermedad o evento</p></dd>
 <dd><p>Un character (cadena de caracteres) con el
 nombre de la columna de los datos de la enfermedad o evento que contiene
 las fechas de inicio de síntomas; su valor por defecto es ini_sin</p></dd>
-
-
-<dt>tipo</dt>
-<dd><p>Un character (cadena de caracteres) que contiene
-la unidad de tiempo (day: día, month: mes, y year: año);
-su valor por defecto es month</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -90,22 +84,21 @@ agrupados por fecha de inicio de síntomas y número de casos</p>
 <span class="r-in"><span><span class="va">data_event</span> <span class="op">&lt;-</span> <span class="va">dengue2020</span></span></span>
 <span class="r-in"><span><span class="va">data_event</span> <span class="op">&lt;-</span> <span class="fu"><a href="limpiar_data_sivigila.html">limpiar_data_sivigila</a></span><span class="op">(</span><span class="va">data_event</span>, <span class="fl">2020</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">agrupar_fecha_inisintomas</span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_event</span>,</span></span>
-<span class="r-in"><span>                          col_nombre <span class="op">=</span> <span class="st">"ini_sin"</span>,</span></span>
-<span class="r-in"><span>                          tipo <span class="op">=</span> <span class="st">"month"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 28,888 × 5</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ini_sin    cod_dpto_o cod_mun_o nombre_evento casos</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2020-01-01 01         076       DENGUE            1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2020-01-01 01         862       DENGUE            1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2020-01-01 05         001       DENGUE            3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2020-01-01 05         042       DENGUE            1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2020-01-01 05         045       DENGUE            2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2020-01-01 05         250       DENGUE            1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2020-01-01 05         360       DENGUE            2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2020-01-01 05         495       DENGUE            1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2020-01-01 05         591       DENGUE            1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2020-01-01 05         659       DENGUE            1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 28,878 more rows</span></span>
+<span class="r-in"><span>                          col_nombre <span class="op">=</span> <span class="st">"ini_sin"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 462 × 4</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    ini_sin    semana nombre_evento casos</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2020-01-01 01     DENGUE          418</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2020-01-02 01     DENGUE          383</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2020-01-03 01     DENGUE          411</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2020-01-03 02     DENGUE            1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2020-01-04 01     DENGUE          402</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2020-01-04 15     DENGUE            1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2020-01-05 02     DENGUE          377</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2020-01-06 02     DENGUE          391</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2020-01-07 02     DENGUE          405</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2020-01-08 02     DENGUE          376</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 452 more rows</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>En esta página</h2>
