@@ -24,7 +24,8 @@ Un data frame que contiene la fila con mayor número de casos
 Función que obtiene la fila con el mayor número de casos
 }
 \examples{
-data_event <- import_data_event(2020, "DENGUE")
+data(dengue2020)
+data_event <- dengue2020
 data_event <- limpiar_data_sivigila(data_event, 2020)
 casos_sex <- agrupar_sex(data_event,
                          porcentaje = TRUE)

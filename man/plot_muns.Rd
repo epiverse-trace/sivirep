@@ -4,7 +4,7 @@
 \alias{plot_muns}
 \title{Generar gráfico de distribución de casos por municipios}
 \usage{
-plot_muns(data_agrupada, col_nombre = "nombre", porcentaje = FALSE)
+plot_muns(data_agrupada, col_nombre = "nombre", fuente_data = NULL)
 }
 \arguments{
 \item{data_agrupada}{Un data frame que contiene los datos de la
@@ -14,8 +14,8 @@ enfermedad o evento agrupados}
 la columna de los datos agrupados de la enfermedad o evento que contiene
 los municipios; su valor por defecto es "nombre"}
 
-\item{porcentaje}{Un boolean (TRUE/FALSE) que indica si los datos tienen
-porcentajes; su valor por defecto es FALSE}
+\item{fuente_data}{Un character (cadena de caracteres) que contiene la
+leyenda o fuente de información de los datos; su valor por defecto es NULL}
 }
 \value{
 Un plot o gráfico de distribución de casos por municipios
@@ -24,12 +24,12 @@ Un plot o gráfico de distribución de casos por municipios
 Función que genera el gráfico de distribución de casos por municipios
 }
 \examples{
-data_event <- import_data_event(2020, "DENGUE")
+data(dengue2020)
+data_event <- dengue2020
 data_event <- limpiar_data_sivigila(data_event, 2020)
 data_event <- estandarizar_geo_cods(data_event)
 data_agrupada <- agrupar_mun(data_event,
                              dept_nombre = "Antioquia")
 plot_muns(data_agrupada,
-          col_nombre = "nombre",
-          porcentaje = FALSE)
+          col_nombre = "nombre")
 }

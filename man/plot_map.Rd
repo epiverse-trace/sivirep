@@ -6,7 +6,7 @@
 \usage{
 plot_map(
   data_agrupada,
-  col_nombre_lj = "id",
+  col_codigos = "id",
   fuente_data = NULL,
   dpto = NULL,
   munpio = NULL
@@ -16,7 +16,7 @@ plot_map(
 \item{data_agrupada}{Un data frame que contiene los datos de la enfermedad
 agrupados por departamento y número de casos}
 
-\item{col_nombre_lj}{Un character (cadena de caracteres) que contiene el
+\item{col_codigos}{Un character (cadena de caracteres) que contiene el
 nombre de la columna para unir con el archivo de forma (shape file)}
 
 \item{fuente_data}{Un character (cadena de caracteres) que contiene la
@@ -45,7 +45,7 @@ data_espacial_dpto <- geo_filtro(data_event = data_event,
                                  nombre_dpto = "Antioquia")
 data_espacial_dpto <- agrupar_mun(data_event, dept_nombre = "Antioquia")
 plot_map(data_agrupada = data_espacial_dpto,
-   col_nombre_lj = "id",
+   col_codigos = "id",
    fuente_data = "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia",
    dpto = "Antioquia",
    munpio = "Envigado")

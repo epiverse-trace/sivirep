@@ -4,7 +4,7 @@
 \alias{agrupar_fecha_notifica}
 \title{Agrupar por fecha de notificación y casos}
 \usage{
-agrupar_fecha_notifica(data_event, col_nombre = "fec_not", tipo = "month")
+agrupar_fecha_notifica(data_event, col_nombre = "fec_not")
 }
 \arguments{
 \item{data_event}{Un data frame que contiene los datos de la enfermedad
@@ -13,10 +13,6 @@ o evento}
 \item{col_nombre}{Un character (cadena de caracteres) con el nombre de
 la columna de los datos de la enfermedad o evento que contiene las
 fechas de notificación; su valor por defecto es fec_not}
-
-\item{tipo}{Un character (cadena de caracteres) que contiene
-la unidad de tiempo (day: día, month: mes, y year: año);
-su valor por defecto es month}
 }
 \value{
 Un data frame con los datos de enfermedades agrupados por fecha de
@@ -31,6 +27,5 @@ data(dengue2020)
 data_event <- dengue2020
 data_event <- limpiar_data_sivigila(data_event, 2020)
 agrupar_fecha_notifica(data_event = data_event,
-                       col_nombre = "fec_not",
-                       tipo = "month")
+                       col_nombre = "fec_not")
 }

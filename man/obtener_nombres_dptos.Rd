@@ -17,5 +17,6 @@ Un data frame con los nombres de los departamentos
 Función que obtiene los nombres de los departamentos
 }
 \examples{
-data_event <- import_data_event(2020, "DENGUE")
+data(dengue2020)
+data_event <- dengue2020
 }

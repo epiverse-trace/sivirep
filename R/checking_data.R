@@ -312,9 +312,6 @@ agrupar_cols_casos <- function(data_event,
 #' @param col_nombre Un character (cadena de caracteres) con el
 #' nombre de la columna de los datos de la enfermedad o evento que contiene
 #' las fechas de inicio de síntomas; su valor por defecto es ini_sin
-#' @param tipo Un character (cadena de caracteres) que contiene
-#' la unidad de tiempo (day: día, month: mes, y year: año);
-#' su valor por defecto es month
 #' @return Un data frame con los datos de la enfermedad o evento
 #' agrupados por fecha de inicio de síntomas y número de casos
 #' @examples
@@ -322,12 +319,10 @@ agrupar_cols_casos <- function(data_event,
 #' data_event <- dengue2020
 #' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' agrupar_fecha_inisintomas(data_event = data_event,
-#'                           col_nombre = "ini_sin",
-#'                           tipo = "month")
+#'                           col_nombre = "ini_sin")
 #' @export
 agrupar_fecha_inisintomas <- function(data_event,
-                                      col_nombre = "ini_sin",
-                                      tipo = "month") {
+                                      col_nombre = "ini_sin") {
   fechas_cols_nombres <- config::get(file =
                                        system.file("extdata",
                                                    "config.yml",
@@ -336,8 +331,7 @@ agrupar_fecha_inisintomas <- function(data_event,
   if (is.null(col_nombre)) {
     col_nombre <- fechas_cols_nombres[3]
   }
-  cols_ocurren <- obtener_tip_ocurren_geo(data_event$cod_eve[1])
-  col_nombre <- append(col_nombre, cols_ocurren)
+  col_nombre <- append(col_nombre, "semana")
   group_by_onset_symp <- agrupar_cols_casos(data_event,
                                             cols_nombres = col_nombre)
   return(group_by_onset_symp)
@@ -352,9 +346,6 @@ agrupar_fecha_inisintomas <- function(data_event,
 #' @param col_nombre Un character (cadena de caracteres) con el nombre de
 #' la columna de los datos de la enfermedad o evento que contiene las
 #' fechas de notificación; su valor por defecto es fec_not
-#' @param tipo Un character (cadena de caracteres) que contiene
-#' la unidad de tiempo (day: día, month: mes, y year: año);
-#' su valor por defecto es month
 #' @return Un data frame con los datos de enfermedades agrupados por fecha de
 #' notificación y número de casos
 #' @examples
@@ -362,12 +353,10 @@ agrupar_fecha_inisintomas <- function(data_event,
 #' data_event <- dengue2020
 #' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' agrupar_fecha_notifica(data_event = data_event,
-#'                        col_nombre = "fec_not",
-#'                        tipo = "month")
+#'                        col_nombre = "fec_not")
 #' @export
 agrupar_fecha_notifica <- function(data_event,
-                                   col_nombre = "fec_not",
-                                   tipo = "month") {
+                                   col_nombre = "fec_not") {
   fechas_cols_nombres <- config::get(file =
                                        system.file("extdata",
                                                    "config.yml",
@@ -376,8 +365,7 @@ agrupar_fecha_notifica <- function(data_event,
   if (is.null(col_nombre)) {
     col_nombre <- fechas_cols_nombres[2]
   }
-  cols_ocurrenc <- obtener_tip_ocurren_geo(data_event$cod_eve[1])
-  col_nombre <- append(col_nombre, cols_ocurrenc)
+  col_nombre <- append(col_nombre, "semana")
   data_agrupada_fecha_not <- agrupar_cols_casos(data_event,
                                                 cols_nombres = col_nombre)
   return(data_agrupada_fecha_not)
@@ -481,9 +469,7 @@ agrupar_edad <- function(data_event,
                              col_nombre,
                              min_val = 0,
                              max_val =
-                             max(eval(parse(text =
-                                              paste0("data_event_edad$",
-                                                     col_nombre)))),
+                             max(data_event_edad[[col_nombre]]),
                              paso = interval_edad)
   return(data_event_edad)
 }
@@ -517,8 +503,6 @@ agrupar_edad_sex <- function(data_event,
                              col_nombres = c("edad", "sexo"),
                              porcentaje = TRUE,
                              interval_edad = 10) {
-  cols_ocurrenc <- obtener_tip_ocurren_geo(data_event$cod_eve[1])
-  col_nombres <- append(col_nombres, cols_ocurrenc)
   data_event_edad_sex <- agrupar_cols_casos(data_event,
                                             col_nombres,
                                             porcentaje)
@@ -528,12 +512,7 @@ agrupar_edad_sex <- function(data_event,
     col_nombres[2],
     min_val = 0,
     max_val =
-      max(eval(parse(
-        text = paste0(
-          "data_event_edad_sex$",
-          col_nombres[1]
-        )
-      ))),
+      max(data_event_edad_sex[[col_nombres[1]]]),
     paso = interval_edad
   )
   return(data_event_edad_sex)
@@ -564,8 +543,6 @@ agrupar_edad_sex <- function(data_event,
 agrupar_pob_especial <- function(data_event,
                                  col_nombre = "poblacion",
                                  porcentaje = TRUE) {
-  cols_ocurrenc <- obtener_tip_ocurren_geo(data_event$cod_eve[1])
-  col_nombre <- append(col_nombre, cols_ocurrenc)
   data_event_especial <- obtener_casos_pob_especial(data_event)
   data_event_especial_agrupada <- data.frame(poblacion =
                                                data_event_especial$poblacion,
@@ -640,6 +617,12 @@ agrupar_mun <- function(data_event,
                         dept_nombre = NULL,
                         col_nombre = "cod_mun_o",
                         porcentaje = FALSE) {
+  cols_geo_ocurrencia <- data.frame()
+  cod_events <- unique(data_event$cod_eve)
+  for (cod in cod_events) {
+    cols_geo_ocurrencia <- append(cols_geo_ocurrencia,
+                                  obtener_tip_ocurren_geo(cod))
+  }
   col_nombre <- obtener_tip_ocurren_geo(data_event$cod_eve[1])
   data_event_muns <- data_event
   data_event_muns <- agrupar_cols_casos(data_event_muns,
@@ -659,5 +642,7 @@ agrupar_mun <- function(data_event,
                                                 id))
   }
   data_event_muns$nombre <- nombres_muns
+  data_event_muns <-  dplyr::arrange(data_event_muns,
+                                     dplyr::desc(.data$casos))
   return(data_event_muns)
 }

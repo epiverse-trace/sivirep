@@ -105,11 +105,10 @@ limpiar_cods_dpto <- function(data_event,
                               col_cods_data,
                               geo_data,
                               col_geo_cods) {
-  col_detps_geo <- eval(parse(text = paste0("geo_data$", col_geo_cods)))
+  col_detps_geo <- geo_data[[col_geo_cods]]
   col_detps_geo <- as.character(col_detps_geo)
   data_event_clean <- data_event
-  col_detps_data <- eval(parse(text =
-                                 paste0("data_event_clean$", col_cods_data)))
+  col_detps_data <- data_event_clean[[col_cods_data]]
   col_detps_data <- as.character(col_detps_data)
   col_detps_data[
     nchar(col_detps_data) < 2 & col_detps_data != "1" & col_detps_data != "0" &
@@ -241,7 +240,8 @@ remove_error_fecha <- function(data_event,
 #' contiene los nombres de la columna a formatear
 #' @return Un data framecon los datos con las fechas formateadas
 #' @examples
-#' data_event <- import_data_event(2020, "DENGUE")
+#' data(dengue2020)
+#' data_event <- dengue2020
 #' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' format_fecha(data_event = data_event,
 #'              format_fecha = "%Y-%m-%d",
@@ -293,7 +293,8 @@ limpiar_encabezado <- function(data_event) {
 #' nombre de la columna de comparación del conjunto de datos
 #' @return Un data framecon los datos con las fechas limpias
 #' @examples
-#' data_event <- import_data_event(2020, "DENGUE")
+#' data(dengue2020)
+#' data_event <- dengue2020
 #' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' limpiar_fecha_event(data_event = data_event,
 #'                     year = 2020,
@@ -313,13 +314,11 @@ limpiar_fecha_event <- function(data_event,
                          nombre_col,
                          col_comp)
   }
-  data_event_fecha_ini[order(eval(parse(text =
-                                          paste0("data_event_fecha_ini$",
-                                                 nombre_col))),
+  data_event_fecha_ini[order(data_event_fecha_ini[[nombre_col]],
                              decreasing = TRUE), ]
-  data_event_fecha_ini <- data_event_fecha_ini[format(eval(
-    parse(text = paste0("data_event_fecha_ini$", nombre_col))
-  ), "%Y") == year, ]
+  data_event_fecha_ini <-
+    data_event_fecha_ini[format(data_event_fecha_ini[[nombre_col]],
+                                "%Y") == year, ]
   return(data_event_fecha_ini)
 }
 
@@ -334,7 +333,8 @@ limpiar_fecha_event <- function(data_event,
 #' @return Un data framecon los datos de una enfermedad o evento
 #' con las edades limpias
 #' @examples
-#' data_event <- import_data_event(2020, "DENGUE")
+#' data(dengue2020)
+#' data_event <- dengue2020
 #' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' limpiar_edad_event(data_event = data_event, nombre_col = "edad")
 #' @export
@@ -352,7 +352,8 @@ limpiar_edad_event <- function(data_event, nombre_col = "edad") {
 #' @return Un data framecon los datos de una enfermedad o
 #' evento con los valores atípicos limpios (NA)
 #' @examples
-#' data_event <- import_data_event(2020, "DENGUE")
+#' data(dengue2020)
+#' data_event <- dengue2020
 #' data_event <- limpiar_encabezado(data_event = data_event)
 #' @export
 limpiar_val_atipic <- function(data_event) {
@@ -387,8 +388,9 @@ limpiar_val_atipic <- function(data_event) {
 #' datos de una enfermedad o evento
 #' @return Un data frame con los datos limpios de la enfermedad o evento
 #' @examples
-#' year <- 2019
-#' data_event <- import_data_event(year, "DENGUE")
+#' year <- 2020
+#' data(dengue2020)
+#' data_event <- dengue2020
 #' limpiar_data_sivigila(data_event = data_event, year = year)
 #' @export
 limpiar_data_sivigila <- function(data_event, year) {

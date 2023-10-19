@@ -177,7 +177,7 @@ Una vez que hayas decidido la enfermedad y el año de la cual deseas obtener la 
 
 ```{r import_data_event}
 data_event <-  import_data_event(year = 2020,
-                                 nombre_event = "dengue")
+                                 nombre_event = "Dengue")
 ```
 
 ##### 💡 Tip 1 - Evita retrasos en el tiempo al importar los datos
@@ -214,7 +214,7 @@ El usuario puede utilizar estas funciones individualmente o simplemente utilizar
 
 ```{r geo_filtro}
 data_event_filtrada <- geo_filtro(data_event = data_event_limp,
-                                  nombre_dpto = "Antioquia")
+                                  nombre_dpto = "Chocó")
 ``` 
 
 ### 4. Distribución temporal de casos
@@ -223,26 +223,22 @@ En `sivirep`, la distribución temporal de casos se define por las variables de 
 
 #### 4.1. Agrupar los datos por fecha de inicio de síntomas en la escala temporal deseada
 
-Para generar la distribución de casos por fecha de inicio de síntomas, es necesario agrupar los datos por estas variables. `sivirep` proporciona una función que permite esta agrupación llamada `agrupar_fecha_inisintomas`, en la cual puedes especificar la unidad de tiempo para agrupar estas fechas. Los valores permitidos para este parámetro son: día y mes.
+Para generar la distribución de casos por fecha de inicio de síntomas, es necesario agrupar los datos por estas variables. `sivirep` proporciona una función que permite esta agrupación llamada `agrupar_fecha_inisintomas`.
 
 ```{r agrupar_fecha_inicio_sintomas}
-casos_ini_sintomas_dia <- agrupar_fecha_inisintomas(data_event =
-                                                      data_event_limp,
-                                                    tipo = "day")
-casos_ini_sintomas_mes <- agrupar_fecha_inisintomas(data_event =
-                                                      data_event_limp,
-                                                    tipo = "month")
+casos_ini_sintomas <- agrupar_fecha_inisintomas(data_event =
+                                                  data_event_limp)
 ```
 
 ##### 💡 Tip 2 - Obtén los primeros n meses con más casos
 
 - Al construir una sección del reporte o analizar estos datos, puede ser útil obtener los meses con más casos. En `sivirep`, puedes utilizar la función `obtener_meses_mas_casos` para obtener esta información.
 
-El gráfico que permite visualizar esta distribución se debe generar con la función `plot_fecha_inisintomas`. Ten en cuenta que, incluso si has agrupado los datos por día, es posible que prefieras representarlo por mes, como en:
+El gráfico que permite visualizar esta distribución se debe generar con la función `plot_fecha_inisintomas`. Ten en cuenta que, incluso si has agrupado los datos por día, es posible que prefieras representarlo por semana epidemiológica, como en:
 
-```{r plot_fecha_inicio_sintomas, fig.height = 4, fig.width = 7}
-plot_fecha_inisintomas(data_agrupada = casos_ini_sintomas_dia,
-                       uni_marca = "months")
+```{r plot_fecha_inicio_sintomas, fig.height = 5, fig.width = 10}
+plot_fecha_inisintomas(data_agrupada = casos_ini_sintomas,
+                       uni_marca = "semanaepi")
 ```
 
 #### 4.2. Agrupar los datos por fecha de notificación en la escala temporal deseada
@@ -250,19 +246,15 @@ plot_fecha_inisintomas(data_agrupada = casos_ini_sintomas_dia,
 El proceso para generar la distribución de casos por fecha de notificación consiste en agrupar los datos de enfermedades por esta variable. Puedes utilizar la siguiente función de `sivirep` para hacer esto:
 
 ```{r agrupar_fecha_notificacion}
-casos_fecha_notificacion_dia <- agrupar_fecha_notifica(data_event =
-                                                         data_event_limp,
-                                                       tipo = "day")
-casos_fecha_notificacion_mes <- agrupar_fecha_notifica(data_event =
-                                                         data_event_limp,
-                                                       tipo = "month")
+casos_fecha_notificacion <- agrupar_fecha_notifica(data_event =
+                                                     data_event_limp)
 ```
 
-El gráfico que permite visualizar esta distribución debe generarse con la función `plot_fecha_notifica`. Ten en cuenta que, aunque hayas agrupado los datos por día, es posible que prefieras representarlos por mes, como en:
+El gráfico que permite visualizar esta distribución debe generarse con la función `plot_fecha_notifica`. Ten en cuenta que, aunque hayas agrupado los datos por día, es posible que prefieras representarlos por semana epidemiológica, como en:
 
-```{r plot_fecha_notificacion, fig.height = 4, fig.width = 7}
-plot_fecha_notifica(data_agrupada = casos_fecha_notificacion_dia,
-                    uni_marca = "months")
+```{r plot_fecha_notificacion, fig.height = 5, fig.width = 10}
+plot_fecha_notifica(data_agrupada = casos_fecha_notificacion,
+                    uni_marca = "semanaepi")
 ```
 
 ### 5. Edad y sexo
@@ -280,7 +272,7 @@ casos_sex <- agrupar_sex(data_event = data_event_limp,
 
 Además, `sivirep` cuenta con una función para generar el gráfico por esta variable llamada `plot_sex`:
 
-```{r plot_sexo, fig.height = 4, fig.width = 7}
+```{r plot_sexo, fig.height = 5, fig.width = 8}
 plot_sex(data_agrupada = casos_sex)
 ```
 
@@ -292,7 +284,7 @@ casos_sex_semanaepi <- agrupar_sex_semanaepi(data_event = data_event_limp)
 
 La función de visualización correspondiente es `plot_sex_semanaepi`, que `sivirep` proporciona para mostrar la distribución de casos por sexo y semana epidemiológica. 
 
-```{r plot_sex_semana_epidemiologica, fig.height = 4, fig.width = 7}
+```{r plot_sex_semana_epidemiologica, fig.height = 9, fig.width = 11}
 plot_sex_semanaepi(data_agrupada = casos_sex_semanaepi)
 ```
 
@@ -308,7 +300,7 @@ casos_edad <- agrupar_edad(data_event = data_event_limp, interval_edad = 10)
 
 La función de visualización correspondiente es `plot_edad`.
 
-```{r plot_edad, fig.height = 4, fig.width = 7}
+```{r plot_edad, fig.height = 3, fig.width = 8}
 plot_edad(data_agrupada = casos_edad)
 ```
 
@@ -324,7 +316,7 @@ casos_edad_sex <- agrupar_edad_sex(data_event = data_event_limp,
 
 La función de visualización correspondiente es `plot_edad_sex`.
 
-```{r plot_edad_sexo, fig.height = 3, fig.width = 7}
+```{r plot_edad_sexo, fig.height = 3, fig.width = 9}
 plot_edad_sex(data_agrupada = casos_edad_sex)
 ```
 
@@ -336,16 +328,16 @@ En Colombia, existen 32 unidades geográficas administrativas (adm1) llamadas de
 
 ```{r agrupar_municipios}
 dist_esp_dept <- agrupar_mun(data_event = data_event_filtrada,
-                             dept_nombre = "Antioquia")
+                             dept_nombre = "Chocó")
 ```
 
 Actualmente, con la función llamada `plot_map`, el usuario puede generar un mapa estático de Colombia que muestra la distribución de casos por departamentos y municipios.
 
 ```{r plot_mapa, results = 'hide', echo = FALSE}
-mapa <- plot_map(data_agrupada = dist_esp_dept, dpto = "Antioquia")
+mapa <- plot_map(data_agrupada = dist_esp_dept, dpto = "Chocó")
 ```
 
-```{r mapa, fig.height = 7, fig.width = 7}
+```{r mapa, fig.height = 14, fig.width = 10}
 mapa
 ```
 

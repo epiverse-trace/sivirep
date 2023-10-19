@@ -1,0 +1,50 @@
+#' Tema \pkg{ggplot2} personalizado para los reportes de \pkg{sivirep}
+#' @return
+#' Un objecto tema de \pkg{ggplot2}
+#' @examples
+#' library(ggplot2)
+#' ggplot(mtcars, ggplot2::aes(wt, mpg)) +
+#'   ggplot2::geom_point() +
+#'   ggplot2::labs(title = "La economia") +
+#'   tema_sivirep()
+#' @export
+tema_sivirep <- function() {
+  sysfonts::font_add_google("Montserrat", "Montserrat")
+  showtext::showtext_auto()
+  tema <- ggplot2::theme_classic() +
+    ggplot2::theme(legend.position = "right",
+                   plot.caption = ggplot2::element_text(size = 8),
+                   text = ggplot2::element_text(family = "Montserrat",
+                                                size = 13),
+                   axis.title = ggplot2::element_text(face = "bold"),
+                   legend.title = ggplot2::element_text(face = "bold"))
+  return(tema)
+}
+
+#' Obtener la estetica de una escala para un grafico de \pkg{sivirep}
+#' Función que genera la estetica de una escala para un grafico de
+#' \pkg{sivirep}
+#' @param escala Un numero (numeric) que indica la cantidad de valores que
+#' contiene la escala
+#' @param nombre Un character (cadena de caracteres) que contiene el nombre
+#' de la escala
+#' @returns
+#' Un objecto scale_fill_manual de \pkg{ggplot2}
+#' @examples
+#' library(ggplot2)
+#'
+#' ggplot(mtcars, ggplot2::aes(wt, mpg)) +
+#'   ggplot2::geom_point() +
+#'   ggplot2::labs(title = "La economia") +
+#'   tema_sivirep()
+#' @export
+obtener_estetica_escala <- function(escala = 0, nombre) {
+  colores <- c("#2274BB", "#5ab4ac", "#d8b365", "#AC6DAD", "#D49392",
+               "#19AFE5", "#87C762", "#9DB2D0")
+  if (escala > 0) {
+    colores <- colores[1:escala]
+    relleno_escala <- ggplot2::scale_fill_manual(values = colores,
+                                                 name = nombre)
+  }
+  return(relleno_escala)
+}
