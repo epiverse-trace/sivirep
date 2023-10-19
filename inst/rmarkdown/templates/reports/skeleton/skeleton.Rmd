@@ -31,7 +31,7 @@ params:
     value: 2020
     label: Año
   departmento:
-    value: "Antioquia" 
+    value: "Chocó" 
     label: Departamento
     input: select
     choices: !r sivirep::obtener_dptos()
@@ -48,6 +48,11 @@ knitr::opts_chunk$set(include = TRUE,
                       message = FALSE)
 knitr::opts_knit$set(eval.after = "fig.cap")
 library(sivirep)
+library(dplyr)
+source("C:\\Users\\geral\\Documents\\TRACE\\fixing\\sivirep\\R\\plotting.R")
+source("C:\\Users\\geral\\Documents\\TRACE\\fixing\\sivirep\\R\\utils.R")
+source("C:\\Users\\geral\\Documents\\TRACE\\fixing\\sivirep\\R\\checking_data.R")
+source("C:\\Users\\geral\\Documents\\TRACE\\fixing\\sivirep\\R\\theme_sivirep.R")
 sysfonts::font_add_google("Montserrat", "Montserrat")
 showtext::showtext_auto()
 ```
@@ -232,7 +237,7 @@ mapa <- plot_map(data_agrupada = dist_espacial_dpto,
                  dpto = params$departmento)
 ```
 
-```{r map_distribution_spatial, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, cache = FALSE, results = FALSE, comment = FALSE, fig.height = 22, fig.width = 18, fig.cap =  "Distribucion espacial de casos"}
+```{r map_distribution_spatial, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, cache = FALSE, results = FALSE, comment = FALSE, fig.height = 16, fig.width = 14, fig.cap =  "Distribucion espacial de casos"}
 mapa
 ```
 
