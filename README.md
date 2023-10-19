@@ -3,11 +3,6 @@
 
 ``` r
 library(sivirep)
-library(dplyr)
-source("C:\\Users\\geral\\Documents\\TRACE\\fixing\\sivirep\\R\\plotting.R")
-source("C:\\Users\\geral\\Documents\\TRACE\\fixing\\sivirep\\R\\utils.R")
-source("C:\\Users\\geral\\Documents\\TRACE\\fixing\\sivirep\\R\\checking_data.R")
-source("C:\\Users\\geral\\Documents\\TRACE\\fixing\\sivirep\\R\\theme_sivirep.R")
 ```
 
 ## *sivirep*: Generación automatizada de reportes a partir de bases de datos de vigilancia epidemiológica <img src="man/figures/logo.svg" align="right" width="120"/>
