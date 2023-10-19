@@ -3,6 +3,11 @@
 
 ``` r
 library(sivirep)
+library(dplyr)
+source("C:\\Users\\geral\\Documents\\TRACE\\fixing\\sivirep\\R\\plotting.R")
+source("C:\\Users\\geral\\Documents\\TRACE\\fixing\\sivirep\\R\\utils.R")
+source("C:\\Users\\geral\\Documents\\TRACE\\fixing\\sivirep\\R\\checking_data.R")
+source("C:\\Users\\geral\\Documents\\TRACE\\fixing\\sivirep\\R\\theme_sivirep.R")
 ```
 
 ## *sivirep*: Generación automatizada de reportes a partir de bases de datos de vigilancia epidemiológica <img src="man/figures/logo.svg" align="right" width="120"/>
@@ -355,7 +360,7 @@ geográfica.
 
 ``` r
 data_event_filtrada <- geo_filtro(data_event = data_event_limp,
-                                  nombre_dpto = "Antioquia")
+                                  nombre_dpto = "Chocó")
 ```
 
 ### 4. Distribución temporal de casos
@@ -522,7 +527,7 @@ departamento o municipio.
 
 ``` r
 dist_esp_dept <- agrupar_mun(data_event = data_event_filtrada,
-                             dept_nombre = "Antioquia")
+                             dept_nombre = "Chocó")
 ```
 
 Actualmente, con la función llamada `plot_map`, el usuario puede generar

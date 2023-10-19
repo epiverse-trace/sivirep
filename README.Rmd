@@ -214,7 +214,7 @@ El usuario puede utilizar estas funciones individualmente o simplemente utilizar
 
 ```{r geo_filtro}
 data_event_filtrada <- geo_filtro(data_event = data_event_limp,
-                                  nombre_dpto = "Antioquia")
+                                  nombre_dpto = "Chocó")
 ``` 
 
 ### 4. Distribución temporal de casos
@@ -236,7 +236,7 @@ casos_ini_sintomas <- agrupar_fecha_inisintomas(data_event =
 
 El gráfico que permite visualizar esta distribución se debe generar con la función `plot_fecha_inisintomas`. Ten en cuenta que, incluso si has agrupado los datos por día, es posible que prefieras representarlo por semana epidemiológica, como en:
 
-```{r plot_fecha_inicio_sintomas, fig.height = 4, fig.width = 7}
+```{r plot_fecha_inicio_sintomas, fig.height = 5, fig.width = 10}
 plot_fecha_inisintomas(data_agrupada = casos_ini_sintomas,
                        uni_marca = "semanaepi")
 ```
@@ -252,7 +252,7 @@ casos_fecha_notificacion <- agrupar_fecha_notifica(data_event =
 
 El gráfico que permite visualizar esta distribución debe generarse con la función `plot_fecha_notifica`. Ten en cuenta que, aunque hayas agrupado los datos por día, es posible que prefieras representarlos por semana epidemiológica, como en:
 
-```{r plot_fecha_notificacion, fig.height = 4, fig.width = 7}
+```{r plot_fecha_notificacion, fig.height = 5, fig.width = 10}
 plot_fecha_notifica(data_agrupada = casos_fecha_notificacion,
                     uni_marca = "semanaepi")
 ```
@@ -272,7 +272,7 @@ casos_sex <- agrupar_sex(data_event = data_event_limp,
 
 Además, `sivirep` cuenta con una función para generar el gráfico por esta variable llamada `plot_sex`:
 
-```{r plot_sexo, fig.height = 5, fig.width = 9}
+```{r plot_sexo, fig.height = 5, fig.width = 8}
 plot_sex(data_agrupada = casos_sex)
 ```
 
@@ -300,7 +300,7 @@ casos_edad <- agrupar_edad(data_event = data_event_limp, interval_edad = 10)
 
 La función de visualización correspondiente es `plot_edad`.
 
-```{r plot_edad, fig.height = 4, fig.width = 7}
+```{r plot_edad, fig.height = 3, fig.width = 8}
 plot_edad(data_agrupada = casos_edad)
 ```
 
@@ -316,7 +316,7 @@ casos_edad_sex <- agrupar_edad_sex(data_event = data_event_limp,
 
 La función de visualización correspondiente es `plot_edad_sex`.
 
-```{r plot_edad_sexo, fig.height = 3, fig.width = 7}
+```{r plot_edad_sexo, fig.height = 3, fig.width = 9}
 plot_edad_sex(data_agrupada = casos_edad_sex)
 ```
 
@@ -328,16 +328,16 @@ En Colombia, existen 32 unidades geográficas administrativas (adm1) llamadas de
 
 ```{r agrupar_municipios}
 dist_esp_dept <- agrupar_mun(data_event = data_event_filtrada,
-                             dept_nombre = "Antioquia")
+                             dept_nombre = "Chocó")
 ```
 
 Actualmente, con la función llamada `plot_map`, el usuario puede generar un mapa estático de Colombia que muestra la distribución de casos por departamentos y municipios.
 
 ```{r plot_mapa, results = 'hide', echo = FALSE}
-mapa <- plot_map(data_agrupada = dist_esp_dept, dpto = "Antioquia")
+mapa <- plot_map(data_agrupada = dist_esp_dept, dpto = "Chocó")
 ```
 
-```{r mapa, fig.height = 23, fig.width = 20}
+```{r mapa, fig.height = 14, fig.width = 10}
 mapa
 ```
 
