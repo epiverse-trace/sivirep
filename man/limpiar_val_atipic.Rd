@@ -19,6 +19,7 @@ Función que limpia los valores atipicos de los datos de una
 enfermedad o evento del SIVIGILA
 }
 \examples{
-data_event <- import_data_event(2020, "DENGUE")
+data(dengue2020)
+data_event <- dengue2020
 data_event <- limpiar_encabezado(data_event = data_event)
 }

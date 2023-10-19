@@ -15,9 +15,10 @@
 #' concatenar los meses como una cadena; su valor por defecto es TRUE
 #' @return Un data frame que contiene los meses con mayor número de casos
 #' @examples
-#' data_event <- import_data_event(2020, "DENGUE")
+#' data(dengue2020)
+#' data_event <- dengue2020
 #' data_event <- limpiar_data_sivigila(data_event, 2020)
-#' casos_inisintomas <- agrupar_fecha_inisintomas(data_event, tipo = "day")
+#' casos_inisintomas <- agrupar_fecha_inisintomas(data_event)
 #' obtener_meses_mas_casos(data_event= casos_inisintomas,
 #'                         col_fechas = "ini_sin",
 #'                         col_casos = "casos",
@@ -55,7 +56,8 @@ obtener_meses_mas_casos <- function(data_event,
 #' la enfermedad o evento
 #' @return Un data frame con los nombres de los departamentos
 #' @examples
-#' data_event <- import_data_event(2020, "DENGUE")
+#' data(dengue2020)
+#' data_event <- dengue2020
 #' @export
 obtener_nombres_dptos <- function(data_event) {
   data_event_dptos <- data_event
@@ -91,7 +93,8 @@ obtener_nombres_dptos <- function(data_event) {
 #' requiere agregar un porcentaje de casos como columna
 #' @return Un data frame que contiene la fila con mayor número de casos
 #' @examples
-#' data_event <- import_data_event(2020, "DENGUE")
+#' data(dengue2020)
+#' data_event <- dengue2020
 #' data_event <- limpiar_data_sivigila(data_event, 2020)
 #' casos_sex <- agrupar_sex(data_event,
 #'                          porcentaje = TRUE)
@@ -157,28 +160,34 @@ concatenar_vals_token <- function(vals,
 #'
 #' Función que obtiene las columnas de ocurrencia geográfica de los
 #' datos de la enfermedad o evento
-#' @param code_disease Un numeric (numerico) que contiene el código de la
+#' @param cod_event Un numeric (numerico) que contiene el código de la
 #' enfermedad o evento
+#' @param nombre_event Un character (cadena de caracteres) con el nombre de
+#' la enfermedad o evento
 #' @return Un data frame con las columnas de ocurrencia geográfica de los
 #' datos de la enfermedad
 #' @examples
-#' obtener_tip_ocurren_geo(code_disease = 210)
+#' obtener_tip_ocurren_geo(cod_event = 210)
 #' @export
-obtener_tip_ocurren_geo <- function(code_disease) {
+obtener_tip_ocurren_geo <- function(cod_event = NULL, nombre_event = NULL) {
   geo_occurren <- config::get(file =
                                 system.file("extdata",
                                             "config.yml",
                                             package = "sivirep"),
                               "occurrence_geo_diseases")
-  col_ocurren <- c("cod_dpto_o", "cod_mun_o")
-  if (length(grep(code_disease, geo_occurren$cod_dpto_n)) == 1
-      && grep(code_disease, geo_occurren$cod_dpto_n) > 0) {
-    col_ocurren <- c("cod_dpto_n", "cod_mun_n")
-  } else if (length(grep(code_disease, geo_occurren$cod_dpto_r)) == 1
-             && grep(code_disease, geo_occurren$cod_dpto_r) > 0) {
-    col_ocurren <- c("cod_dpto_r", "cod_mun_r")
+  col_ocurren <- c("cod_dpto_o", "cod_mun_o", "ocurrencia")
+  param_busqueda <- cod_event
+  if (!is.null(nombre_event)) {
+    param_busqueda <- nombre_event
+  }
+  if (length(grep(param_busqueda, geo_occurren$cod_dpto_n)) == 1
+      && grep(param_busqueda, geo_occurren$cod_dpto_n) > 0) {
+    col_ocurren <- c("cod_dpto_n", "cod_mun_n", "notificacion")
+  } else if (length(grep(param_busqueda, geo_occurren$cod_dpto_r)) == 1
+             && grep(param_busqueda, geo_occurren$cod_dpto_r) > 0) {
+    col_ocurren <- c("cod_dpto_r", "cod_mun_r", "residencia")
   } else {
-    col_ocurren <- c("cod_dpto_o", "cod_mun_o")
+    col_ocurren <- c("cod_dpto_o", "cod_mun_o", "ocurrencia")
   }
   return(col_ocurren)
 }

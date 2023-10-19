@@ -5,11 +5,14 @@
 \title{Obtener columnas de ocurrencia geográfica de los datos de la
 enfermedad o evento}
 \usage{
-obtener_tip_ocurren_geo(code_disease)
+obtener_tip_ocurren_geo(cod_event = NULL, nombre_event = NULL)
 }
 \arguments{
-\item{code_disease}{Un numeric (numerico) que contiene el código de la
+\item{cod_event}{Un numeric (numerico) que contiene el código de la
 enfermedad o evento}
+
+\item{nombre_event}{Un character (cadena de caracteres) con el nombre de
+la enfermedad o evento}
 }
 \value{
 Un data frame con las columnas de ocurrencia geográfica de los
@@ -20,5 +23,5 @@ Función que obtiene las columnas de ocurrencia geográfica de los
 datos de la enfermedad o evento
 }
 \examples{
-obtener_tip_ocurren_geo(code_disease = 210)
+obtener_tip_ocurren_geo(cod_event = 210)
 }

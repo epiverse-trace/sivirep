@@ -21,7 +21,8 @@ Función que limpia los datos seleccionados de una enfermedad o evento de
 la fuente de SIVIGILA
 }
 \examples{
-year <- 2019
-data_event <- import_data_event(year, "DENGUE")
+year <- 2020
+data(dengue2020)
+data_event <- dengue2020
 limpiar_data_sivigila(data_event = data_event, year = year)
 }

@@ -4,7 +4,12 @@
 \alias{plot_fecha_notifica}
 \title{Generar gráfico de distribución de casos por fecha de notificación}
 \usage{
-plot_fecha_notifica(data_agrupada, col_nombre = "fec_not", uni_marca = "month")
+plot_fecha_notifica(
+  data_agrupada,
+  col_nombre = "fec_not",
+  uni_marca = "semanaepi",
+  fuente_data = NULL
+)
 }
 \arguments{
 \item{data_agrupada}{Un data frame que contiene los datos de la
@@ -17,6 +22,9 @@ contiene las fechas de notificación; su valor por defecto es "fec_not"}
 \item{uni_marca}{Un character (cadena de caracteres) que contiene la unidad
 de las marcas del gráfico ("day": día, "month": mes y "year": año); su
 valor por defecto es "month"}
+
+\item{fuente_data}{Un character (cadena de caracteres) que contiene la
+leyenda o fuente de información de los datos; su valor por defecto es NULL}
 }
 \value{
 Un plot o gráfico de distribución de casos por fecha de notificación
@@ -26,12 +34,12 @@ Función que genera el gráfico de distribución de casos por
 fecha de notificación
 }
 \examples{
-data_event <- import_data_event(2020, "DENGUE")
+data(dengue2020)
+data_event <- dengue2020
 data_event <- limpiar_data_sivigila(data_event, 2020)
 data_agrupada <- agrupar_fecha_notifica(data_event,
-                                        col_nombre = "fec_not",
-                                        tipo = "month")
+                                        col_nombre = "fec_not")
 plot_fecha_notifica(data_agrupada = data_agrupada,
                     col_nombre = "fec_not",
-                    uni_marca = "month")
+                    uni_marca = "semanaepi")
 }

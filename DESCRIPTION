@@ -26,15 +26,18 @@ LazyData: true
 RoxygenNote: 7.2.1
 Imports: 
     config,
-    data.table,
     dplyr,
     ggplot2,
-    httr,
+    httr2,
     stringr,
     xml2,
     epitrix,
     sf,
-    readxl
+    readxl,
+    sysfonts,
+    showtext,
+    cowplot,
+    gridExtra
 Suggests: 
     knitr,
     rmarkdown
