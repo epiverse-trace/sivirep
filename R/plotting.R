@@ -459,7 +459,7 @@ plot_sex_semanaepi <- function(data_agrupada,
     obtener_estetica_escala(escala = 2, nombre = "Sexo") +
     tema_sivirep() +
     ggplot2::facet_wrap(facets = ~nombre_evento,
-                        scales = "free",
+                        scales = "free_y",
                         ncol = 1)
   return(plot_casos_sex_semanaepi)
 }
