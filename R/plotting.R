@@ -137,6 +137,7 @@ plot_map <- function(data_agrupada,
   sysfonts::font_add_google("Montserrat", "Montserrat")
   showtext::showtext_auto()
   map <- ggplot2::ggplot(polygon_seleccionado) +
+    ggplot2::ggtitle(label = titulo, subtitle = subtitulo) +
     ggplot2::geom_sf(data = polygon_seleccionado,
                      ggplot2::aes(fill = .data$casos)) +
     ggplot2::geom_sf_text(ggplot2::aes(label = .data$indice),
@@ -145,10 +146,13 @@ plot_map <- function(data_agrupada,
     ggplot2::scale_fill_continuous(low = "#fcebfc", high = "#be0000",
                                    guide = "colorbar", na.value = "white") +
     ggplot2::theme_void() +
-    ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5),
-                   plot.subtitle = ggplot2::element_text(hjust = 0.5),
+    ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5,
+                                                      face = "bold"),
+                   plot.subtitle = ggplot2::element_text(hjust = 0.5,
+                                                         face = "bold"),
                    text = ggplot2::element_text(family = "Montserrat",
-                                                size = 14)) +
+                                                size = 14),
+                   legend.title = ggplot2::element_text(face = "bold")) +
     ggplot2::labs(caption = fuente_data, fill = "Casos")
   tema_tabla <- gridExtra::ttheme_minimal(base_size = 14,
                                           base_family = "Montserrat",
