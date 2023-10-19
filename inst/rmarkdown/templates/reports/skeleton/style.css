@@ -1,14 +1,12 @@
-/* Whole document: */
 body{
   font-family: 'Montserrat';
 }
-/* Headers */
+
 h1,h2,h4,h5,h6{
   font-size: 22pt;
 }
 
 h1 {
-    color: #2274BB;
     font-weight: 600;
 }
 
@@ -18,7 +16,6 @@ h3 {
 
 .subtitle, .author, .date {
   font-size: 16pt;
-  color: #2274BB;
   margin-bottom: -5px;
 }
 
@@ -39,10 +36,48 @@ p {
 
 .titulo {
   text-align: center;
-  text-overflow: initial;
-  margin-inline: 114px;
+  margin-top: 4em;
+  margin-left: 11em;
+  margin-right: 11em;
 }
 
-.cover {
+.fuente {
+  font-weight: 600;
+  margin-top: 0;
+}
+
+.caption {
+  font-size: 12pt;
+  text-align: center;
   
+}
+
+.caratula {
+  background-image: url("cover.png");
+  height: 1300px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: -3em;
+}
+
+.texto-caratula {
+  float: right;
+  margin-top: 56em;
+  margin-right: 2.2em;
+  text-align: right;
+}
+
+.evento, .year {
+  font-weight: 600;
+  color: black;
+  font-size: 30pt;
+}
+
+.evento {
+  margin-bottom: 0;
+}
+
+.year {
+  margin-top: 0;
 }

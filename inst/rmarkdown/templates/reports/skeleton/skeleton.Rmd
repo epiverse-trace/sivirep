@@ -1,11 +1,11 @@
 ---
 output:
+  pdf_document: 
+    number_sections: true
   html_document:
     number_sections: true
     fig_caption: true
     css: style.css
-  pdf_document: 
-    number_sections: true
   word_document: 
     number_sections: true
 header-includes:
@@ -46,6 +46,7 @@ knitr::opts_chunk$set(include = TRUE,
                       error = FALSE,
                       warning = FALSE,
                       message = FALSE)
+knitr::opts_knit$set(eval.after = "fig.cap")
 library(sivirep)
 sysfonts::font_add_google("Montserrat", "Montserrat")
 showtext::showtext_auto()
@@ -90,9 +91,15 @@ fuente <- "Fuente SIVIGILA, Datos libres"
 
 
 ````{=html}
+<div class="caratula">
+    <div class="texto-caratula">
+      <h2 class="evento">`r toupper(params$nombre_evento)`</h2>
+      <h2 class="year">`r params$year`</h2>
+    </div>
+</div>
 <div class="titulo">
     <h1>`r titulo`</h1>
-    <h2>`r fuente`</h2>
+    <h3 class="fuente">`r fuente`</h3>
 </div>
 ````
 
@@ -162,7 +169,7 @@ if (!is.na(porcentaje_femenino) && !is.na(porcentaje_masculino)) {
 
 En el total de casos para `r params$year` se observa una predominancia del sexo `r sexo_mayor[1]` (`r sexo_mayor[2]`)% respecto al sexo `r sexo_menor[1]` (`r sexo_menor[2]`)% (Ver Figura 3).
 
-```{r distribution_cg_plot, fig.height = 5, fig.width = 9, fig.cap =  "Distribucion de casos por genero"}
+```{r distribution_cg_plots, fig.height = 5, fig.width = 8, fig.cap = "Distribucion de casos por sexo"}
 plot_sex(casos_sex)
 ```
 \newpage
@@ -173,7 +180,7 @@ casos_sex_semanaepi <- agrupar_sex_semanaepi(data_event = data_event_filtrada)
 
 Esta predominancia del reporte de casos del sexo `r sexo_mayor[1]` se mantuvo a lo largo de la mayoria de semanas epidemiológicas (Ver figura 4).
 
-```{r plot_cg_semanaepi, fig.height = 9, fig.width = 11, fig.cap =  "Distribucion de casos por genero y semana epidemiologica"}
+```{r plot_cg_semanaepi, fig.height = 9, fig.width = 11, fig.cap =  "Distribucion de casos por sexo y semana epidemiologica"}
 plot_sex_semanaepi(data_agrupada = casos_sex_semanaepi)
 ```
 
@@ -225,7 +232,7 @@ mapa <- plot_map(data_agrupada = dist_espacial_dpto,
                  dpto = params$departmento)
 ```
 
-```{r map_distribution_spatial, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, cache = FALSE, results = FALSE, comment = FALSE, fig.height = 23.5, fig.width = 20, fig.cap =  "Distribucion espacial de casos"}
+```{r map_distribution_spatial, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, cache = FALSE, results = FALSE, comment = FALSE, fig.height = 22, fig.width = 18, fig.cap =  "Distribucion espacial de casos"}
 mapa
 ```
 
