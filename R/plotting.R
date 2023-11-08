@@ -229,9 +229,9 @@ plot_fecha_inisintomas <- function(data_agrupada,
   }
   uni_marca <- switch(
     uni_marca,
-    "mes" = "month",
-    "dia" = "day",
-    "semanaepi" = "semana"
+    mes = "month",
+    dia = "day",
+    semanaepi = "semana"
   )
   if (is.null(col_nombre)) {
     col_nombre <- fechas_column_nombres[3]
@@ -320,9 +320,9 @@ plot_fecha_notifica <- function(data_agrupada,
   }
   uni_marca <- switch(
     uni_marca,
-    "mes" = "month",
-    "dia" = "day",
-    "semanaepi" = "semana"
+    mes = "month",
+    dia = "day",
+    semanaepi = "semana"
   )
   if (is.null(col_nombre)) {
     col_nombre <- fechas_column_nombres[2]
