@@ -185,9 +185,11 @@ list_events <- function() {
 import_data_event <- function(year,
                               nombre_event,
                               cache = TRUE) {
-  stopifnot("El parametro year debe ser numerico" = is.numeric(year))
-  stopifnot("El parametro nombre_event debe ser una cadena de caracteres"
-            = is.character(nombre_event))
+  stopifnot(
+    "El parametro year debe ser numerico" = is.numeric(year),
+     "El parametro nombre_event debe ser una cadena de caracteres"
+            = is.character(nombre_event)
+  )
   data_event <- data.frame()
   list_events <- list_events()
   nombre_event <- stringr::str_to_title(nombre_event)
@@ -201,11 +203,13 @@ import_data_event <- function(year,
                                           substr(nombre_event,
                                                  1,
                                                  nchar(nombre_event) - 1))), ]
-  stopifnot("La enfermedad o evento no esta disponible para su descarga"
-            = !(is.null(grupo_events) || nrow(grupo_events) == 0))
-  stopifnot("El year no esta disponible para su descarga"
+  stopifnot(
+    "La enfermedad o evento no esta disponible para su descarga"
+            = !(is.null(grupo_events) || nrow(grupo_events) == 0),
+    "El year no esta disponible para su descarga"
             = stringr::str_detect(grupo_events$aa,
-                                  as.character(year)))
+                                  as.character(year))
+  )
   if (length(list_events_relacionados) > 0) {
     events_relacionados <- list_events_relacionados[[nombre_event]]
     for (event in events_relacionados) {

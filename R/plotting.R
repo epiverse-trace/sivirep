@@ -81,10 +81,12 @@ plot_map <- function(data_agrupada,
                      fuente_data = NULL,
                      dpto = NULL,
                      munpio = NULL) {
-  stopifnot("El parametro data_agrupada debe ser un data.frame"
-            = is.data.frame(data_agrupada))
-  stopifnot("El parametro col_codigos debe ser un cadena de caracteres"
-            = is.character(col_codigos))
+  stopifnot(
+    "El parametro data_agrupada debe ser un data.frame"
+            = is.data.frame(data_agrupada),
+    "El parametro col_codigos debe ser un cadena de caracteres"
+            = is.character(col_codigos)
+  )
   titulo <- paste0("Departamento de ", dpto)
   subtitulo <- "Analisis efectuado por geografia de "
   cols_geo_ocurrencia <- NULL
@@ -205,14 +207,16 @@ plot_fecha_inisintomas <- function(data_agrupada,
                                    uni_marca = "mes",
                                    tipo = "barras",
                                    fuente_data = NULL) {
-  stopifnot("El parametro data_agrupada debe ser un data.frame"
-            = is.data.frame(data_agrupada))
-  stopifnot("El parametro col_nombre debe ser una cadena de caracteres" =
-              is.character(col_nombre))
-  stopifnot("El parametro uni_marca debe ser una cadena de caracteres" =
-              is.character(uni_marca))
-  stopifnot("Valor invalido para el parametro uni_marca" =
-              uni_marca %in% c("mes", "dia", "semanaepi"))
+  stopifnot(
+    "El parametro data_agrupada debe ser un data.frame"
+            = is.data.frame(data_agrupada),
+    "El parametro col_nombre debe ser una cadena de caracteres" =
+              is.character(col_nombre),
+    "El parametro uni_marca debe ser una cadena de caracteres" =
+              is.character(uni_marca),
+    "Valor invalido para el parametro uni_marca" =
+              uni_marca %in% c("mes", "dia", "semanaepi")
+  )
   fechas_column_nombres <- config::get(file = system.file("extdata",
                                                           "config.yml",
                                                           package = "sivirep"),
@@ -293,14 +297,16 @@ plot_fecha_notifica <- function(data_agrupada,
                                 col_nombre = "fec_not",
                                 uni_marca = "semanaepi",
                                 fuente_data = NULL) {
-  stopifnot("El parametro data_agrupada debe ser un data.frame"
-            = is.data.frame(data_agrupada))
-  stopifnot("El parametro col_nombre debe ser una cadena de caracteres" =
-              is.character(col_nombre))
-  stopifnot("El parametro uni_marca debe ser una cadena de caracteres" =
-              is.character(uni_marca))
-  stopifnot("Valor invalido para el parametro uni_marca" =
-              uni_marca %in% c("mes", "dia", "semanaepi"))
+  stopifnot(
+    "El parametro data_agrupada debe ser un data.frame"
+            = is.data.frame(data_agrupada),
+    "El parametro col_nombre debe ser una cadena de caracteres" =
+              is.character(col_nombre),
+    "El parametro uni_marca debe ser una cadena de caracteres" =
+              is.character(uni_marca),
+    "Valor invalido para el parametro uni_marca" =
+              uni_marca %in% c("mes", "dia", "semanaepi")
+  )
   fechas_column_nombres <- config::get(file =
                                          system.file("extdata",
                                                      "config.yml",
@@ -381,12 +387,14 @@ plot_sex <- function(data_agrupada,
                      col_nombre = "sexo",
                      porcentaje = TRUE,
                      fuente_data = NULL) {
-  stopifnot("El parametro data_agrupada debe ser un data.frame"
-            = is.data.frame(data_agrupada))
-  stopifnot("El parametro col_nombre debe ser una cadena de caracteres" =
-              is.character(col_nombre))
-  stopifnot("El parametro porcentaje debe ser un booleano" =
-              is.logical(porcentaje))
+  stopifnot(
+    "El parametro data_agrupada debe ser un data.frame"
+            = is.data.frame(data_agrupada),
+    "El parametro col_nombre debe ser una cadena de caracteres" =
+              is.character(col_nombre),
+    "El parametro porcentaje debe ser un booleano" =
+              is.logical(porcentaje)
+  )
   if (is.null(fuente_data)) {
     fuente_data <-
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
@@ -442,10 +450,12 @@ plot_sex <- function(data_agrupada,
 plot_sex_semanaepi <- function(data_agrupada,
                                col_nombres = c("sexo", "semana"),
                                fuente_data = NULL) {
-  stopifnot("El parametro data_agrupada debe ser un data.frame"
-            = is.data.frame(data_agrupada))
-  stopifnot("El parametro col_nombres debe ser un arreglo" =
-              is.character(col_nombres))
+  stopifnot(
+    "El parametro data_agrupada debe ser un data.frame"
+            = is.data.frame(data_agrupada),
+    "El parametro col_nombres debe ser un arreglo" =
+              is.character(col_nombres)
+  )
   if (is.null(fuente_data)) {
     fuente_data <-
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
@@ -492,10 +502,12 @@ plot_sex_semanaepi <- function(data_agrupada,
 plot_edad <- function(data_agrupada,
                       col_nombre = "edad",
                       fuente_data = NULL) {
-  stopifnot("El parametro data_agrupada debe ser un data.frame"
-            = is.data.frame(data_agrupada))
-  stopifnot("El parametro col_nombre debe ser una cadena de caracteres"
-            = is.character(col_nombre))
+  stopifnot(
+    "El parametro data_agrupada debe ser un data.frame"
+            = is.data.frame(data_agrupada),
+    "El parametro col_nombre debe ser una cadena de caracteres"
+            = is.character(col_nombre)
+  )
   if (is.null(fuente_data)) {
     fuente_data <-
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
@@ -539,10 +551,12 @@ plot_edad <- function(data_agrupada,
 plot_edad_sex <- function(data_agrupada,
                           col_nombres = c("edad", "sexo"),
                           fuente_data = NULL) {
-  stopifnot("El parametro data_agrupada debe ser un data.frame"
-            = is.data.frame(data_agrupada))
-  stopifnot("El parametro col_nombres debe ser un arreglo"
-            = is.character(col_nombres))
+  stopifnot(
+    "El parametro data_agrupada debe ser un data.frame"
+            = is.data.frame(data_agrupada),
+    "El parametro col_nombres debe ser un arreglo"
+            = is.character(col_nombres)
+  )
   if (is.null(fuente_data)) {
     fuente_data <-
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
@@ -586,10 +600,12 @@ plot_edad_sex <- function(data_agrupada,
 plot_muns <- function(data_agrupada,
                       col_nombre = "nombre",
                       fuente_data = NULL) {
-  stopifnot("El parametro data_agrupada debe ser un data.frame"
-            = is.data.frame(data_agrupada))
-  stopifnot("El parametro col_nombre debe ser una cadena de caracteres"
-            = is.character(col_nombre))
+  stopifnot(
+    "El parametro data_agrupada debe ser un data.frame"
+            = is.data.frame(data_agrupada),
+     "El parametro col_nombre debe ser una cadena de caracteres"
+            = is.character(col_nombre)
+  )
   if (is.null(fuente_data)) {
     fuente_data <-
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
