@@ -216,15 +216,15 @@ import_data_event <- function(year,
       grupo_events_relacionados <-
         list_events[which(list_events$enfermedad == event), ]
       if (is.null(grupo_events) || nrow(grupo_events) == 0) {
-        warning(paste0("La enfermedad o evento relacionado: ",
-                       event,
-                       "no esta disponible para su descarga"))
+        warning("La enfermedad o evento relacionado: ",
+                event,
+                "no esta disponible para su descarga")
       } else if (stringr::str_detect(grupo_events_relacionados$aa,
                                      as.character(year))) {
-        warning(paste0("El year: ", year,
-                       "de la enfermedad o evento relacionado: ",
-                       event,
-                       "no esta disponible para su descarga"))
+        warning("El year: ", year,
+                "de la enfermedad o evento relacionado: ",
+                event,
+                "no esta disponible para su descarga")
       } else {
         grupo_events <- rbind(grupo_events, grupo_events_relacionados)
       }
