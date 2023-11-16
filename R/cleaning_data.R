@@ -289,7 +289,6 @@ limpiar_fecha_event <- function(data_event,
                          col_comp)
   }
   data_event_fecha_ini[order(data_event_fecha_ini[[nombre_col]],
-  data_event_fecha_ini[order(data_event_fecha_ini[[nombre_col]],
                              decreasing = TRUE), ]
   data_event_fecha_ini <-
     data_event_fecha_ini[format(data_event_fecha_ini[[nombre_col]],
