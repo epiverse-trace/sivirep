@@ -16,9 +16,8 @@
 #' @return Un data frame que contiene los meses con mayor número de casos
 #' @examples
 #' data(dengue2020)
-#' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event, 2020)
-#' casos_inisintomas <- agrupar_fecha_inisintomas(data_event)
+#' data_limpia <- limpiar_data_sivigila(dengue2020)
+#' casos_inisintomas <- agrupar_fecha_inisintomas(data_limpia)
 #' obtener_meses_mas_casos(data_event= casos_inisintomas,
 #'                         col_fechas = "ini_sin",
 #'                         col_casos = "casos",
@@ -57,7 +56,6 @@ obtener_meses_mas_casos <- function(data_event,
 #' @return Un data frame con los nombres de los departamentos
 #' @examples
 #' data(dengue2020)
-#' data_event <- dengue2020
 #' @export
 obtener_nombres_dptos <- function(data_event) {
   data_event_dptos <- data_event
@@ -94,9 +92,8 @@ obtener_nombres_dptos <- function(data_event) {
 #' @return Un data frame que contiene la fila con mayor número de casos
 #' @examples
 #' data(dengue2020)
-#' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event, 2020)
-#' casos_sex <- agrupar_sex(data_event,
+#' data_limpia <- limpiar_data_sivigila(dengue2020)
+#' casos_sex <- agrupar_sex(data_event = data_limpia,
 #'                          porcentaje = TRUE)
 #' obtener_fila_mas_casos(data_event = casos_sex,
 #'                        col_name = "casos",
