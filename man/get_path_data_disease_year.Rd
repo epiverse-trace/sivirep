@@ -19,6 +19,4 @@ SIVIGILA source
 Function that gets the path or URL of the SIVIGILA service to
 download the data of a disease for a specific year
 }
-\examples{
-get_path_data_disease_year(year = 2010, disease_name = "DENGUE")
-}
+\keyword{internal}
