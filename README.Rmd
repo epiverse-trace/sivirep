@@ -324,11 +324,11 @@ plot_edad_sex(data_agrupada = casos_edad_sex)
 
 Obtener la distribución espacial de los casos es útil para identificar áreas con una alta concentración de casos, agrupaciones de enfermedades y factores de riesgo ambientales o sociales.
 
-En Colombia, existen 32 unidades geográficas administrativas (adm1) llamadas departamentos. `sivirep` proporciona una función llamada `agrupar_mun` que permite obtener un data.frame de casos agrupados por departamento o municipio.
+En Colombia, existen 32 unidades geográficas administrativas (adm1) llamadas departamentos. `sivirep` proporciona una función llamada `agrupar_mpio` que permite obtener un data.frame de casos agrupados por departamento o municipio.
 
 ```{r agrupar_municipios}
-dist_esp_dept <- agrupar_mun(data_event = data_event_filtrada,
-                             dept_nombre = "Chocó")
+dist_esp_dept <- agrupar_mpio(data_event = data_event_filtrada,
+                             dpto = "Chocó")
 ```
 
 Actualmente, con la función llamada `plot_map`, el usuario puede generar un mapa estático de Colombia que muestra la distribución de casos por departamentos y municipios.
