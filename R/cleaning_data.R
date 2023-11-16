@@ -69,8 +69,10 @@ limpiar_cods_dpto <- function(data_event,
                               geo_data,
                               col_geo_cods) {
   col_detps_geo <- geo_data[[col_geo_cods]]
+  col_detps_geo <- geo_data[[col_geo_cods]]
   col_detps_geo <- as.character(col_detps_geo)
   data_event_clean <- data_event
+  col_detps_data <- data_event_clean[[col_cods_data]]
   col_detps_data <- data_event_clean[[col_cods_data]]
   col_detps_data <- as.character(col_detps_data)
   col_detps_data[
@@ -287,7 +289,11 @@ limpiar_fecha_event <- function(data_event,
                          col_comp)
   }
   data_event_fecha_ini[order(data_event_fecha_ini[[nombre_col]],
+  data_event_fecha_ini[order(data_event_fecha_ini[[nombre_col]],
                              decreasing = TRUE), ]
+  data_event_fecha_ini <-
+    data_event_fecha_ini[format(data_event_fecha_ini[[nombre_col]],
+                                "%Y") == year, ]
   data_event_fecha_ini <-
     data_event_fecha_ini[format(data_event_fecha_ini[[nombre_col]],
                                 "%Y") == year, ]

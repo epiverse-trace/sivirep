@@ -667,5 +667,7 @@ agrupar_mpio <- function(data_event,
   data_event_muns$nombre <- nombres_muns
   data_event_muns <-  dplyr::arrange(data_event_muns,
                                      dplyr::desc(.data$casos))
+  data_event_muns <-  dplyr::arrange(data_event_muns,
+                                     dplyr::desc(.data$casos))
   return(data_event_muns)
 }
