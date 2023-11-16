@@ -45,9 +45,6 @@ list_events <- function() {
   query_event_year <- httr2::request(query_event_year_path)
   query_event_year_response <- httr2::req_perform(query_event_year)
   query_event_year_content <- httr2::resp_body_xml(query_event_year_response)
-  query_event_year <- httr2::request(query_event_year_path)
-  query_event_year_response <- httr2::req_perform(query_event_year)
-  query_event_year_content <- httr2::resp_body_xml(query_event_year_response)
   children <- xml2::xml_children(query_event_year_content)
   children <- xml2::xml_children(children)
   children <- xml2::xml_children(children)
@@ -135,31 +132,6 @@ import_data_event <- function(nombre_event,
                                           substr(nombre_event,
                                                  1,
                                                  nchar(nombre_event) - 1))), ]
-  stopifnot("La enfermedad o evento no esta disponible para su descarga"
-            = !(is.null(grupo_events) || nrow(grupo_events) == 0))
-  stopifnot("El year no esta disponible para su descarga"
-            = stringr::str_detect(grupo_events$aa,
-                                  as.character(year)))
-  if (length(list_events_relacionados) > 0) {
-    events_relacionados <- list_events_relacionados[[nombre_event]]
-    for (event in events_relacionados) {
-      grupo_events_relacionados <-
-        list_events[which(list_events$enfermedad == event), ]
-      if (is.null(grupo_events) || nrow(grupo_events) == 0) {
-        warning(paste0("La enfermedad o evento relacionado: ",
-                       event,
-                       "no esta disponible para su descarga"))
-      } else if (stringr::str_detect(grupo_events_relacionados$aa,
-                                     as.character(year))) {
-        warning(paste0("El year: ", year,
-                       "de la enfermedad o evento relacionado: ",
-                       event,
-                       "no esta disponible para su descarga"))
-      } else {
-        grupo_events <- rbind(grupo_events, grupo_events_relacionados)
-      }
-    }
-  }
   stopifnot("La enfermedad o evento no esta disponible para su descarga"
             = !(is.null(grupo_events) || nrow(grupo_events) == 0))
   stopifnot("El year no esta disponible para su descarga"

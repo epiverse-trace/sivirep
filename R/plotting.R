@@ -5,7 +5,6 @@
 #' @param data_agrupada Un data frame que contiene los datos de la enfermedad
 #' agrupados por departamento y número de casos
 #' @param col_codigos Un character (cadena de caracteres) que contiene el
-#' @param col_codigos Un character (cadena de caracteres) que contiene el
 #' nombre de la columna para unir con el archivo de forma (shape file)
 #' @param fuente_data Un character (cadena de caracteres) que contiene la
 #' leyenda o fuente de información de los datos de la enfermedad o evento
@@ -25,7 +24,6 @@
 #'                                   dpto = "Antioquia")
 #' plot_map(data_agrupada = data_espacial_dpto,
 #'    col_codigos = "id",
-#'    col_codigos = "id",
 #'    fuente_data = "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia",
 #'    dpto = "Antioquia",
 #'    munpio = "Envigado")
@@ -43,24 +41,8 @@ plot_map <- function(data_agrupada,
   subtitulo <- "Analisis efectuado por geografia de "
   cols_geo_ocurrencia <- c()
   data_tabla <- data.frame()
-  stopifnot("El parametro data_agrupada debe ser un data.frame"
-            = is.data.frame(data_agrupada))
-  stopifnot("El parametro col_codigos debe ser un cadena de caracteres"
-            = is.character(col_codigos))
-  titulo <- paste0("Departamento de ", dpto)
-  subtitulo <- "Analisis efectuado por geografia de "
-  cols_geo_ocurrencia <- c()
-  data_tabla <- data.frame()
   if (is.null(fuente_data)) {
     fuente_data <- "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
-  }
-  if (!is.null(munpio)) {
-    titulo <- paste0(titulo, " , ", munpio)
-  }
-  nombre_events <- unique(data_agrupada$nombre_evento)[1]
-  cols_geo_ocurrencia <- obtener_tip_ocurren_geo(nombre_event = nombre_events)
-  if (length(cols_geo_ocurrencia) > 1) {
-    subtitulo <- paste0(subtitulo, cols_geo_ocurrencia[3])
   }
   if (!is.null(munpio)) {
     titulo <- paste0(titulo, " , ", munpio)
@@ -93,23 +75,11 @@ plot_map <- function(data_agrupada,
   }
   polygon_seleccionado <- ggplot2::fortify(polygon_seleccionado, region = "id")
   polygon_seleccionado$indice <- seq_len(nrow(polygon_seleccionado))
-  polygon_seleccionado$indice <- seq_len(nrow(polygon_seleccionado))
   polygon_seleccionado <- polygon_seleccionado %>%
-    dplyr::left_join(data_agrupada, by = col_codigos)
     dplyr::left_join(data_agrupada, by = col_codigos)
   polygon_seleccionado <-
     cbind(polygon_seleccionado,
           sf::st_coordinates(sf::st_centroid(polygon_seleccionado$geometry)))
-  data_tabla <-
-    data.frame(Indice = polygon_seleccionado$indice,
-               Codigo = polygon_seleccionado$id,
-               Municipio = stringr::str_to_title(polygon_seleccionado
-                                                 $MPIO_CNMBR))
-  data_tabla <- data_tabla[order(data_tabla$Indice), ]
-  sysfonts::font_add_google("Montserrat", "Montserrat")
-  showtext::showtext_auto()
-  map <- ggplot2::ggplot(polygon_seleccionado) +
-    ggplot2::ggtitle(label = titulo, subtitle = subtitulo) +
   data_tabla <-
     data.frame(Indice = polygon_seleccionado$indice,
                Codigo = polygon_seleccionado$id,
@@ -127,11 +97,6 @@ plot_map <- function(data_agrupada,
                           fontface = "bold") +
     ggplot2::scale_fill_continuous(low = "#fcebfc", high = "#be0000",
                                    guide = "colorbar", na.value = "white") +
-    ggplot2::geom_sf_text(ggplot2::aes(label = .data$indice),
-                          size = ggplot2::unit(3, "cm"),
-                          fontface = "bold") +
-    ggplot2::scale_fill_continuous(low = "#fcebfc", high = "#be0000",
-                                   guide = "colorbar", na.value = "white") +
     ggplot2::theme_void() +
     ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5,
                                                       face = "bold"),
@@ -140,28 +105,7 @@ plot_map <- function(data_agrupada,
                    text = ggplot2::element_text(family = "Montserrat",
                                                 size = 14),
                    legend.title = ggplot2::element_text(face = "bold")) +
-    ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5,
-                                                      face = "bold"),
-                   plot.subtitle = ggplot2::element_text(hjust = 0.5,
-                                                         face = "bold"),
-                   text = ggplot2::element_text(family = "Montserrat",
-                                                size = 14),
-                   legend.title = ggplot2::element_text(face = "bold")) +
     ggplot2::labs(caption = fuente_data, fill = "Casos")
-  tema_tabla <- gridExtra::ttheme_minimal(base_size = 14,
-                                          base_family = "Montserrat",
-                                          padding = ggplot2::unit(c(1, 1),
-                                                                  "mm"))
-  tabla <- ggplot2::ggplot() + ggplot2::theme_void() +
-    ggplot2::annotation_custom(gridExtra::tableGrob(data_tabla,
-                                                    theme = tema_tabla,
-                                                    rows = NULL))
-  mapa_tabla <- cowplot::plot_grid(map,
-                                   tabla,
-                                   align = "h",
-                                   rel_widths = c(2, 1),
-                                   nrow = 1)
-  return(mapa_tabla)
   tema_tabla <- gridExtra::ttheme_minimal(base_size = 14,
                                           base_family = "Montserrat",
                                           padding = ggplot2::unit(c(1, 1),
@@ -191,10 +135,6 @@ plot_map <- function(data_agrupada,
 #' nombre de la columna en los datos de la enfermedad o evento
 #' agrupados que contiene las fechas de inicio de síntomas; su valor por
 #' defecto es "ini_sin"
-#' @param tipo Un character (cadena de caracteres) que contiene el tipo de
-#' grafico (barras o tendencia); su valor por defecto es "barras"
-#' @param fuente_data Un character (cadena de caracteres) que contiene la
-#' leyenda o fuente de información de los datos; su valor por defecto es NULL
 #' @param tipo Un character (cadena de caracteres) que contiene el tipo de
 #' grafico (barras o tendencia); su valor por defecto es "barras"
 #' @param fuente_data Un character (cadena de caracteres) que contiene la
@@ -272,35 +212,6 @@ plot_fecha_inisintomas <- function(data_agrupada,
                                                  2))
       }
     }
-  if (uni_marca == "semana") {
-    var_x <- "semana"
-    data_agrupada[[var_x]] <- as.numeric(data_agrupada[[var_x]])
-  }
-  etiqueta_x <- paste0("\nFecha de inicio de sintomas por ",
-                       uni_marca,
-                       "\n")
-  plot_casos_inisintomas <-
-    ggplot2::ggplot(data_agrupada) +
-    ggplot2::geom_col(ggplot2::aes(x = .data[[var_x]],
-                                   y = .data[["casos"]],
-                                   fill = .data[["nombre_evento"]]),
-                      alpha = 0.9) +
-    ggplot2::labs(x = etiqueta_x,
-                  y = "Numero de casos\n",
-                  caption = fuente_data) +
-    obtener_estetica_escala(escala = num_eventos, nombre = "Eventos") +
-    tema_sivirep() +
-    ggplot2::theme(legend.position = "bottom") + {
-      if (uni_marca != "semana") {
-        ggplot2::scale_x_date(date_breaks = paste0("1 ",
-                                                   uni_marca),
-                              date_labels = "%b")
-      }else {
-        ggplot2::scale_x_continuous(breaks = seq(1,
-                                                 53,
-                                                 2))
-      }
-    }
   return(plot_casos_inisintomas)
 }
 
@@ -316,8 +227,6 @@ plot_fecha_inisintomas <- function(data_agrupada,
 #' @param nomb_col Un character (cadena de caracteres) que contiene el
 #' nombre de la columna en los datos de la enfermedad o evento agrupados que
 #' contiene las fechas de notificación; su valor por defecto es "fec_not"
-#' @param fuente_data Un character (cadena de caracteres) que contiene la
-#' leyenda o fuente de información de los datos; su valor por defecto es NULL
 #' @param fuente_data Un character (cadena de caracteres) que contiene la
 #' leyenda o fuente de información de los datos; su valor por defecto es NULL
 #' @return Un plot o gráfico de distribución de casos por fecha de notificación
@@ -391,35 +300,6 @@ plot_fecha_notifica <- function(data_agrupada,
                                                  2))
       }
     }
-  if (uni_marca == "semana") {
-    var_x <- "semana"
-    data_agrupada[[var_x]] <- as.numeric(data_agrupada[[var_x]])
-  }
-  etiqueta_x <- paste0("\nFecha de notificacion por ",
-                       uni_marca,
-                       "\n")
-  plot_casos_fecha_notifica <-
-    ggplot2::ggplot(data_agrupada) +
-    ggplot2::geom_col(ggplot2::aes(x = .data[[var_x]],
-                                   y = .data[["casos"]],
-                                   fill = .data[["nombre_evento"]]),
-                      alpha = 0.9) +
-    ggplot2::labs(x = etiqueta_x,
-                  y = "Numero de casos\n",
-                  caption = fuente_data) +
-    obtener_estetica_escala(escala = num_eventos, nombre = "Eventos") +
-    tema_sivirep() +
-    ggplot2::theme(legend.position = "bottom") + {
-      if (uni_marca != "semana") {
-        ggplot2::scale_x_date(date_breaks = paste0("1 ",
-                                                   uni_marca),
-                              date_labels = "%b")
-      } else {
-        ggplot2::scale_x_continuous(breaks = seq(1,
-                                                 53,
-                                                 2))
-      }
-    }
   return(plot_casos_fecha_notifica)
 }
 
@@ -433,8 +313,6 @@ plot_fecha_notifica <- function(data_agrupada,
 #' o evento que contiene el sexo; su valor por defecto es "sexo"
 #' @param porcentaje Un boolean (TRUE/FALSE) que indica si los datos
 #' tienen porcentajes; su valor por defecto es TRUE
-#' @param fuente_data Un character (cadena de caracteres) que contiene la
-#' leyenda o fuente de información de los datos; su valor por defecto es NULL
 #' @param fuente_data Un character (cadena de caracteres) que contiene la
 #' leyenda o fuente de información de los datos; su valor por defecto es NULL
 #' @return Un plot o gráfico de distribución de casos por sexo
@@ -498,8 +376,6 @@ plot_sex <- function(data_agrupada,
 #' c("sexo", "semana")
 #' @param fuente_data Un character (cadena de caracteres) que contiene la
 #' leyenda o fuente de información de los datos; su valor por defecto es NULL
-#' @param fuente_data Un character (cadena de caracteres) que contiene la
-#' leyenda o fuente de información de los datos; su valor por defecto es NULL
 #' @return Un plot o gráfico de distribución de casos por sexo y semana
 #' epidemiológica
 #' @examples
@@ -550,8 +426,6 @@ plot_sex_semanaepi <- function(data_agrupada,
 #' las edades; su valor por defecto es "edad"
 #' @param fuente_data Un character (cadena de caracteres) que contiene la
 #' leyenda o fuente de información de los datos; su valor por defecto es NULL
-#' @param fuente_data Un character (cadena de caracteres) que contiene la
-#' leyenda o fuente de información de los datos; su valor por defecto es NULL
 #' @return Un plot o gráfico de distribución de casos por edad
 #' @examples
 #' data(dengue2020)
@@ -598,8 +472,6 @@ plot_edad <- function(data_agrupada,
 #' es c("edad", "sexo")
 #' @param fuente_data Un character (cadena de caracteres) que contiene la
 #' leyenda o fuente de información de los datos; su valor por defecto es NULL
-#' @param fuente_data Un character (cadena de caracteres) que contiene la
-#' leyenda o fuente de información de los datos; su valor por defecto es NULL
 #' @return Un plot o gráfico de distribución de casos por edad y sexo
 #' @examples
 #' data(dengue2020)
@@ -644,8 +516,6 @@ plot_edad_sex <- function(data_agrupada,
 #' @param nomb_col Un character (cadena de carácteres) con el nombre de
 #' la columna de los datos agrupados de la enfermedad o evento que contiene
 #' los municipios; su valor por defecto es "nombre"
-#' @param fuente_data Un character (cadena de caracteres) que contiene la
-#' leyenda o fuente de información de los datos; su valor por defecto es NULL
 #' @param fuente_data Un character (cadena de caracteres) que contiene la
 #' leyenda o fuente de información de los datos; su valor por defecto es NULL
 #' @return Un plot o gráfico de distribución de casos por municipios

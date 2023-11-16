@@ -69,10 +69,8 @@ limpiar_cods_dpto <- function(data_event,
                               geo_data,
                               col_geo_cods) {
   col_detps_geo <- geo_data[[col_geo_cods]]
-  col_detps_geo <- geo_data[[col_geo_cods]]
   col_detps_geo <- as.character(col_detps_geo)
   data_event_clean <- data_event
-  col_detps_data <- data_event_clean[[col_cods_data]]
   col_detps_data <- data_event_clean[[col_cods_data]]
   col_detps_data <- as.character(col_detps_data)
   col_detps_data[
@@ -117,22 +115,22 @@ convert_edad <- function(data_event,
   data_event_years <-
     dplyr::mutate(data_event,
                   edad =
-                  dplyr::case_when(eval(parse(text = col_uni_med)) == 1 ~
-                                     round(eval(parse(text = col_edad)), 3),
-                                   eval(parse(text = col_uni_med)) == 2 ~
-                                     round((eval(parse(text =
-                                                         col_edad)) / 12), 3),
-                                   eval(parse(text = col_uni_med)) == 3 ~
-                                     round((eval(parse(text =
-                                                         col_edad)) / 876), 3),
-                                   eval(parse(text = col_uni_med)) == 4 ~
-                                     round((eval(parse(text =
-                                                         col_edad)) / 525960),
-                                           3),
-                                   eval(parse(text = col_uni_med)) == 5 ~
-                                     round((eval(parse(text =
-                                                         col_edad)) / 3.156e+7),
-                                           3)))
+                    dplyr::case_when(eval(parse(text = col_uni_med)) == 1 ~
+                                       round(eval(parse(text = col_edad)), 3),
+                                     eval(parse(text = col_uni_med)) == 2 ~
+                                       round((eval(parse(text =
+                                                           col_edad)) / 12), 3),
+                                     eval(parse(text = col_uni_med)) == 3 ~
+                                       round((eval(parse(text =
+                                                           col_edad)) / 876), 3),
+                                     eval(parse(text = col_uni_med)) == 4 ~
+                                       round((eval(parse(text =
+                                                           col_edad)) / 525960),
+                                             3),
+                                     eval(parse(text = col_uni_med)) == 5 ~
+                                       round((eval(parse(text =
+                                                           col_edad)) / 3.156e+7),
+                                             3)))
   return(data_event_years)
 }
 
@@ -290,9 +288,6 @@ limpiar_fecha_event <- function(data_event,
   }
   data_event_fecha_ini[order(data_event_fecha_ini[[nombre_col]],
                              decreasing = TRUE), ]
-  data_event_fecha_ini <-
-    data_event_fecha_ini[format(data_event_fecha_ini[[nombre_col]],
-                                "%Y") == year, ]
   data_event_fecha_ini <-
     data_event_fecha_ini[format(data_event_fecha_ini[[nombre_col]],
                                 "%Y") == year, ]

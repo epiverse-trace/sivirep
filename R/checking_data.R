@@ -191,9 +191,9 @@ agrupar_cols_casos <- function(data_event,
     data_event_agrupada <-
       data_event_agrupada %>%
       dplyr::mutate(porcentaje =
-                    round(data_event_agrupada$casos
-                          / sum(data_event_agrupada$casos) * 100,
-                          1))
+                      round(data_event_agrupada$casos
+                            / sum(data_event_agrupada$casos) * 100,
+                            1))
   }
   return(data_event_agrupada)
 }
@@ -459,7 +459,7 @@ agrupar_edad <- function(data_event,
                              nomb_col,
                              min_val = 0,
                              max_val =
-                             max(data_event_edad[[nomb_col]]),
+                               max(data_event_edad[[nomb_col]]),
                              paso = interval_edad)
   return(data_event_edad)
 }
@@ -665,8 +665,6 @@ agrupar_mpio <- function(data_event,
                                                 id))
   }
   data_event_muns$nombre <- nombres_muns
-  data_event_muns <-  dplyr::arrange(data_event_muns,
-                                     dplyr::desc(.data$casos))
   data_event_muns <-  dplyr::arrange(data_event_muns,
                                      dplyr::desc(.data$casos))
   return(data_event_muns)
