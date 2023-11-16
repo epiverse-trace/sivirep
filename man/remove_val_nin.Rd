@@ -7,10 +7,10 @@
 remove_val_nin(data_event, nom_col)
 }
 \arguments{
-\item{data_event}{Un data frame que contiene los datos de una
+\item{data_event}{Un `data.frame` que contiene los datos de una
 enfermedad o evento}
 
-\item{nom_col}{Un character (cadena de caracteres) que contiene el
+\item{nom_col}{Un `character` (cadena de caracteres) que contiene el
 nombre de la columna en los datos de una enfermedad o evento a evaluar}
 }
 \value{
@@ -22,7 +22,6 @@ incluyen NA, Infinito o NaN
 }
 \examples{
 data(dengue2020)
-data_event <- dengue2020
-data_event <- limpiar_data_sivigila(data_event, 2020)
-remove_val_nin(data_event = data_event, nom_col = "edad")
+data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+remove_val_nin(data_event = data_limpia, nom_col = "edad")
 }

@@ -6,7 +6,7 @@
 \usage{
 plot_sex_semanaepi(
   data_agrupada,
-  col_nombres = c("sexo", "semana"),
+  nomb_cols = c("sexo", "semana"),
   fuente_data = NULL
 )
 }
@@ -14,7 +14,7 @@ plot_sex_semanaepi(
 \item{data_agrupada}{Un data frame que contiene los datos de la enfermedad
 o evento agrupados}
 
-\item{col_nombres}{Un array (arreglo) de character (cadena de caracteres) con
+\item{nomb_cols}{Un array (arreglo) de character (cadena de caracteres) con
 los nombres de columna de los datos agrupados de la enfermedad o evento que
 contienen el sexo y las semanas epidemiológicas; su valor por defecto es
 c("sexo", "semana")}
@@ -32,11 +32,10 @@ y semana epidemiológica
 }
 \examples{
 data(dengue2020)
-data_event <- dengue2020
-data_event <- limpiar_data_sivigila(data_event, 2020)
-data_agrupada <- agrupar_sex_semanaepi(data_event,
-                                       col_nombres = c("sexo", "semana"),
+data_limpia <- limpiar_data_sivigila(dengue2020)
+data_agrupada <- agrupar_sex_semanaepi(data_event = data_limpia,
+                                       nomb_cols = c("sexo", "semana"),
                                        porcentaje = TRUE)
 plot_sex_semanaepi(data_agrupada = data_agrupada,
-                   col_nombres = c("sexo", "semana"))
+                   nomb_cols = c("sexo", "semana"))
 }

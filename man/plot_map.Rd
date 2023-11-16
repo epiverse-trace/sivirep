@@ -38,12 +38,12 @@ casos de una enfermedad o evento
 }
 \examples{
 data(dengue2020)
-data_event <- dengue2020
-data_event <- limpiar_data_sivigila(data_event, 2020)
-data_espacial_dpto <- estandarizar_geo_cods(data_event)
-data_espacial_dpto <- geo_filtro(data_event = data_event,
-                                 nombre_dpto = "Antioquia")
-data_espacial_dpto <- agrupar_mun(data_event, dept_nombre = "Antioquia")
+data_limpia <- limpiar_data_sivigila(dengue2020)
+data_espacial_dpto <- estandarizar_geo_cods(data_limpia)
+data_espacial_dpto <- geo_filtro(data_event = data_limpia,
+                                 dpto = "Antioquia")
+data_espacial_dpto <- agrupar_mpio(data_event = data_limpia,
+                                  dpto = "Antioquia")
 plot_map(data_agrupada = data_espacial_dpto,
    col_codigos = "id",
    fuente_data = "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia",

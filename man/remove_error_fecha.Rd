@@ -7,19 +7,19 @@
 remove_error_fecha(data_event, col_ini = "ini_sin", col_comp = "fec_hos")
 }
 \arguments{
-\item{data_event}{Un data frame que contiene los datos de
+\item{data_event}{Un `data.frame` que contiene los datos de
 una enfermedad o evento}
 
-\item{col_ini}{Un character (cadena de caracteres) que contiene
+\item{col_ini}{Un `character` (cadena de caracteres) que contiene
 el nombre de la columna de la fecha inicial;
 su valor por defecto es ini_sin}
 
-\item{col_comp}{Un character (cadena de caracteres) que contiene el
+\item{col_comp}{Un `character` (cadena de caracteres) que contiene el
 nombre de la columna de la fecha de comparación;
 su valor por defecto es fec_hos}
 }
 \value{
-Un data framecon los datos sin las fechas mayores que el
+Un `data.frame` con los datos sin las fechas mayores que el
 valor de comparación
 }
 \description{
@@ -27,9 +27,8 @@ Función que elimina fechas mayores que el valor de comparación
 }
 \examples{
 data(dengue2020)
-data_event <- dengue2020
-data_event <- limpiar_data_sivigila(data_event, 2020)
-remove_error_fecha(data_event = data_event,
+data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+remove_error_fecha(data_event = data_limpia,
                    col_ini = "ini_sin",
                    col_comp = "fec_hos")
 }
