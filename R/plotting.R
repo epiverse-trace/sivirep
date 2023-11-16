@@ -32,7 +32,6 @@
 #' @export
 plot_map <- function(data_agrupada,
                      col_codigos = "id",
-                     col_codigos = "id",
                      fuente_data = NULL,
                      dpto = NULL,
                      munpio = NULL) {
