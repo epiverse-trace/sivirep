@@ -7,20 +7,19 @@
 obtener_casos_pob_especial(data_event)
 }
 \arguments{
-\item{data_event}{Un data frame que contiene los datos de una
+\item{data_event}{Un `data.frame` que contiene los datos de una
 enfermedad o evento}
 }
 \value{
-Un data frame con los casos por tipo de población especial
+Un `data.frame` con los casos por tipo de población especial
 de una enfermedad o evento
 }
 \description{
 Función que obtiene los casos por tipo de población
-especial de una enfermedad
+especial de una enfermedad o evento
 }
 \examples{
 data(dengue2020)
-data_event <- dengue2020
-data_event <- limpiar_data_sivigila(data_event, 2020)
-obtener_casos_pob_especial(data_event = data_event)
+data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+obtener_casos_pob_especial(data_event = data_limpia)
 }

@@ -7,26 +7,25 @@
 format_fecha(data_event, format_fecha = "\%Y-\%m-\%d", nombres_col = c())
 }
 \arguments{
-\item{data_event}{Un data frame que contiene los datos
+\item{data_event}{Un `data.frame` que contiene los datos
 de un evento o enfermedad}
 
-\item{format_fecha}{Un character (cadena de caracteres)
+\item{format_fecha}{Un `character` (cadena de caracteres)
 que contiene  el formato deseado de fecha}
 
-\item{nombres_col}{Un character (cadena de caracteres) que
+\item{nombres_col}{Un `character` (cadena de caracteres) que
 contiene los nombres de la columna a formatear}
 }
 \value{
-Un data framecon los datos con las fechas formateadas
+Un `data.frame` con los datos con las fechas formateadas
 }
 \description{
 Función que da un formato específico a una fecha
 }
 \examples{
 data(dengue2020)
-data_event <- dengue2020
-data_event <- limpiar_data_sivigila(data_event, 2020)
-format_fecha(data_event = data_event,
+data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+format_fecha(data_event = data_limpia,
              format_fecha = "\%Y-\%m-\%d",
              nombres_col = c("ini_sin", "fec_hos"))
 }
