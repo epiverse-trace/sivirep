@@ -5,16 +5,16 @@
 \title{Importar los datos de una enfermedad o evento por año
 desde los microdatos de SIVIGILA}
 \usage{
-import_data_event(year, nombre_event, cache = TRUE)
+import_data_event(nombre_event, year, cache = TRUE)
 }
 \arguments{
-\item{year}{Un numeric (numerico) con el año deseado para la descarga
-de los datos}
-
-\item{nombre_event}{Un character (cadena de caracteres) con el nombre de
+\item{nombre_event}{Un `character` (cadena de caracteres) con el nombre de
 la enfermedad o evento}
 
-\item{cache}{Un boolean (TRUE o FALSE) que indica si los datos descargados
+\item{year}{Un `numeric` (numerico) con el año deseado para la descarga
+de los datos}
+
+\item{cache}{Un `boolean` (TRUE o FALSE) que indica si los datos descargados
 deben ser almacenados en caché; su valor por defecto es TRUE}
 }
 \value{
@@ -26,5 +26,7 @@ Función que obtiene los datos de una enfermedad por año
 desde los microdatos de SIVIGILA
 }
 \examples{
-import_data_event(2018, "DENGUE")
+import_data_event(nombre_event = "DENGUE",
+                  year = 2020,
+                  cache = TRUE)
 }

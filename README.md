@@ -517,12 +517,12 @@ y factores de riesgo ambientales o sociales.
 
 En Colombia, existen 32 unidades geográficas administrativas (adm1)
 llamadas departamentos. `sivirep` proporciona una función llamada
-`agrupar_mun` que permite obtener un data.frame de casos agrupados por
+`agrupar_mpio` que permite obtener un data.frame de casos agrupados por
 departamento o municipio.
 
 ``` r
-dist_esp_dept <- agrupar_mun(data_event = data_event_filtrada,
-                             dept_nombre = "Chocó")
+dist_esp_dept <- agrupar_mpio(data_event = data_event_filtrada,
+                             dpto = "Chocó")
 ```
 
 Actualmente, con la función llamada `plot_map`, el usuario puede generar

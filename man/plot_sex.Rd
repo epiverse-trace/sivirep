@@ -6,7 +6,7 @@
 \usage{
 plot_sex(
   data_agrupada,
-  col_nombre = "sexo",
+  nomb_col = "sexo",
   porcentaje = TRUE,
   fuente_data = NULL
 )
@@ -15,7 +15,7 @@ plot_sex(
 \item{data_agrupada}{Un data fram que contiene los datos de la
 enfermedad o evento agrupados}
 
-\item{col_nombre}{Un character (cadena de caracteres) con el
+\item{nomb_col}{Un character (cadena de caracteres) con el
 nombre de la columna de los datos agrupados de la enfermedad
 o evento que contiene el sexo; su valor por defecto es "sexo"}
 
@@ -33,12 +33,11 @@ Función que genera el gráfico de distribución de casos por sexo
 }
 \examples{
 data(dengue2020)
-data_event <- dengue2020
-data_event <- limpiar_data_sivigila(data_event, 2020)
-data_agrupada <- agrupar_sex(data_event,
-                             col_nombre = "sexo",
+data_limpia <- limpiar_data_sivigila(dengue2020)
+data_agrupada <- agrupar_sex(data_event = data_limpia,
+                             nomb_col = "sexo",
                              porcentaje = TRUE)
 plot_sex(data_agrupada = data_agrupada,
-         col_nombre = "sexo",
+         nomb_col = "sexo",
          porcentaje = TRUE)
 }

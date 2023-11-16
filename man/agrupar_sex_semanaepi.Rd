@@ -6,26 +6,26 @@
 \usage{
 agrupar_sex_semanaepi(
   data_event,
-  col_nombres = c("sexo", "semana"),
+  nomb_cols = c("sexo", "semana"),
   porcentaje = TRUE
 )
 }
 \arguments{
-\item{data_event}{Un data frame que contiene los datos de
+\item{data_event}{Un `data.frame` que contiene los datos de
 la enfermedad o evento}
 
-\item{col_nombres}{Un character (cadena de caracteres) o
-array (arreglo) de character que contiene el nombre de
+\item{nomb_cols}{Un `character` (cadena de caracteres) o
+`array (arreglo) de character` que contiene el nombre de
 la(s) columna(s) de los datos de la enfermedad o evento
 que contienen el sexo y las semanas epidemiológicas; su valor
 por defecto es `c("sexo", "semana")`}
 
-\item{porcentaje}{Un boolean (TRUE o FALSE) que indica si
+\item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica si
 es necesario agregar un porcentaje de casos como una columna; su
 valor por defecto es `TRUE`}
 }
 \value{
-Un data frame con los datos de la enfermedad o evento
+Un `data.frame` con los datos de la enfermedad o evento
 agrupados por sexo, semana epidemiológica y número de casos
 }
 \description{
@@ -34,9 +34,8 @@ epidemiológica y número de casos
 }
 \examples{
 data(dengue2020)
-data_event <- dengue2020
-data_event <- limpiar_data_sivigila(data_event, 2020)
-agrupar_sex_semanaepi(data_event = data_event,
-                      col_nombres = c("sexo", "semana"),
+data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+agrupar_sex_semanaepi(data_event = data_limpia,
+                      nomb_cols = c("sexo", "semana"),
                       porcentaje = TRUE)
 }

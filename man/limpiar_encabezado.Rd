@@ -7,11 +7,11 @@
 limpiar_encabezado(data_event)
 }
 \arguments{
-\item{data_event}{Un data frame que contiene los datos de una
+\item{data_event}{Un `data.frame` que contiene los datos de una
 enfermedad o evento}
 }
 \value{
-Un data framecon las etiquetas del encabezado formateadas
+Un `data.frame` con las etiquetas del encabezado formateadas
 con guión bajo (_)
 }
 \description{
@@ -20,6 +20,5 @@ de una enfermedad o evento
 }
 \examples{
 data(dengue2020)
-data_event <- dengue2020
-limpiar_encabezado(data_event = data_event)
+limpiar_encabezado(data_event = dengue2020)
 }

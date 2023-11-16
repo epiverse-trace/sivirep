@@ -2,12 +2,12 @@
 output:
   pdf_document: 
     number_sections: true
+  word_document: 
+    number_sections: true
   html_document:
     number_sections: true
     fig_caption: true
     css: style.css
-  word_document: 
-    number_sections: true
 header-includes:
   - \usepackage{fancyhdr}
   - \pagestyle{fancy}
@@ -105,15 +105,17 @@ fuente <- "Fuente SIVIGILA, Datos libres"
 
 
 ```{r import_data, include = FALSE}
-data_event <-  import_data_event(params$year, params$nombre_evento)
+data_event <-  import_data_event(nombre_event = params$nombre_evento,
+                                 year = params$year)
 ```
 
 ```{r clean_data, include = FALSE}
-data_event_limpia <-  limpiar_data_sivigila(data_event, params$year)
+data_event_limpia <-  limpiar_data_sivigila(data_event)
 ```
 
 ```{r filter_data, include = FALSE}
-data_event_filtrada <-  geo_filtro(data_event_limpia, params$departmento)
+data_event_filtrada <-  geo_filtro(data_event_limpia,
+                                   params$departmento)
 ```
 
 ```{=tex}
@@ -127,7 +129,8 @@ En este reporte se presenta el comportamiento del `r stringr::str_to_title(param
 
 ```{r cases_by_onset_symptom_date, include = FALSE}
 casos_iniciosin_dia <- agrupar_fecha_inisintomas(data_event_filtrada)
-mes_mayor_casos <- obtener_meses_mas_casos(data_event = casos_iniciosin_dia,
+mes_mayor_casos <- obtener_meses_mas_casos(data_event =
+                                             casos_iniciosin_dia,
                                            col_fechas = "ini_sin")
 ```
 
@@ -137,6 +140,7 @@ Los casos se distribuyen a lo largo de los meses de enero a diciembre de `r para
 plot_fecha_inisintomas(data_agrupada = casos_iniciosin_dia,
                        uni_marca = "semanaepi")
 ```
+`\@ref(fig:plot_cases_by_onset_symptom_date)`
 
 ```{r cases_by_onset_notification_date, include = FALSE}
 casos_fecha_notifica_dia <- agrupar_fecha_notifica(data_event_filtrada)
@@ -210,8 +214,8 @@ plot_edad_sex(data_agrupada = casos_edad_sex)
 # Distribución de casos por municipio
 
 ```{r group_distribution_municipios,  results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
-dist_espacial_dpto <- agrupar_mun(data_event = data_event_filtrada,
-                                  dept_nombre = params$departmento)
+dist_espacial_dpto <- agrupar_mpio(data_event = data_event_filtrada,
+                                   dpto = params$departmento)
 dist_espacial_dpto <- dist_espacial_dpto[order(dist_espacial_dpto$casos), ]
 espacial_mayor_casos <- obtener_fila_mas_casos(dist_espacial_dpto)
 ```

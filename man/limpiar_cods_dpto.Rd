@@ -8,22 +8,22 @@ de una enfermedad o evento}
 limpiar_cods_dpto(data_event, col_cods_data, geo_data, col_geo_cods)
 }
 \arguments{
-\item{data_event}{Un data frame que contiene los datos de
+\item{data_event}{Un `data.frame` que contiene los datos de
 una enfermedad o evento}
 
-\item{col_cods_data}{Un character (cadena de caracteres) que
+\item{col_cods_data}{Un `character` (cadena de caracteres) que
 contiene el nombre de la columna en los datos
 de una enfermedad o evento que contiene los códigos de departamento}
 
-\item{geo_data}{Datos geográficos que incluyen los códigos de
-departamento}
+\item{geo_data}{Un `data.frame` con los datos geográficos que incluyen
+los códigos de departamento}
 
-\item{col_geo_cods}{Un character (cadena de caracteres) con
+\item{col_geo_cods}{Un `character` (cadena de caracteres) con
 el nombre de la columna en los datos geográficos
 que contiene los códigos de departamento}
 }
 \value{
-Un data framecon los códigos de departamento limpios
+Un `data.frame` con los códigos de departamento limpios
 de los datos de una enfermedad o evento
 }
 \description{
@@ -31,11 +31,10 @@ Función que limpia los códigos de departamento de los datos
 de una enfermedad o evento
 }
 \examples{
-geo_codes <- import_geo_cods()
 data(dengue2020)
-data_event <- dengue2020
-data_event <- limpiar_data_sivigila(data_event, 2020)
-limpiar_cods_dpto(data_event = data_event,
+geo_codes <- import_geo_cods()
+data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+limpiar_cods_dpto(data_event = data_limpia,
                   col_cods_data = "cod_dpto_o",
                   geo_data = geo_codes,
                   col_geo_cods = "codigo_departamento")

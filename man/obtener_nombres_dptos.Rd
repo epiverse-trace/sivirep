@@ -18,5 +18,4 @@ Función que obtiene los nombres de los departamentos
 }
 \examples{
 data(dengue2020)
-data_event <- dengue2020
 }

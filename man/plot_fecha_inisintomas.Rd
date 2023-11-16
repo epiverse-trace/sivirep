@@ -6,7 +6,7 @@
 \usage{
 plot_fecha_inisintomas(
   data_agrupada,
-  col_nombre = "ini_sin",
+  nomb_col = "ini_sin",
   uni_marca = "mes",
   tipo = "barras",
   fuente_data = NULL
@@ -16,7 +16,7 @@ plot_fecha_inisintomas(
 \item{data_agrupada}{Un data frame que contiene los datos de la enfermedad
 o evento agrupados}
 
-\item{col_nombre}{Un character (cadena de caracteres) que contiene el
+\item{nomb_col}{Un character (cadena de caracteres) que contiene el
 nombre de la columna en los datos de la enfermedad o evento
 agrupados que contiene las fechas de inicio de síntomas; su valor por
 defecto es "ini_sin"}
@@ -41,12 +41,11 @@ por fecha de inicio de síntomas
 }
 \examples{
 data(dengue2020)
-data_event <- dengue2020
-data_event <- limpiar_data_sivigila(data_event, 2020)
+data_limpia <- limpiar_data_sivigila(dengue2020)
 data_agrupada <- agrupar_fecha_inisintomas(
-                                     data_event,
-                                     col_nombre = "ini_sin")
+                                     data_event = data_limpia,
+                                     nomb_col = "ini_sin")
 plot_fecha_inisintomas(data_agrupada = data_agrupada,
-                       col_nombre = "ini_sin",
+                       nomb_col = "ini_sin",
                        uni_marca = "semanaepi")
 }
