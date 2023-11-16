@@ -105,15 +105,17 @@ fuente <- "Fuente SIVIGILA, Datos libres"
 
 
 ```{r import_data, include = FALSE}
-data_event <-  import_data_event(params$year, params$nombre_evento)
+data_event <-  import_data_event(data_event = params$nombre_evento,
+                                 year = params$year)
 ```
 
 ```{r clean_data, include = FALSE}
-data_event_limpia <-  limpiar_data_sivigila(data_event, params$year)
+data_event_limpia <-  limpiar_data_sivigila(data_event)
 ```
 
 ```{r filter_data, include = FALSE}
-data_event_filtrada <-  geo_filtro(data_event_limpia, params$departmento)
+data_event_filtrada <-  geo_filtro(data_event_limpia,
+                                   params$departmento)
 ```
 
 ```{=tex}
@@ -127,7 +129,8 @@ En este reporte se presenta el comportamiento del `r stringr::str_to_title(param
 
 ```{r cases_by_onset_symptom_date, include = FALSE}
 casos_iniciosin_dia <- agrupar_fecha_inisintomas(data_event_filtrada)
-mes_mayor_casos <- obtener_meses_mas_casos(data_event = casos_iniciosin_dia,
+mes_mayor_casos <- obtener_meses_mas_casos(data_event =
+                                             casos_iniciosin_dia,
                                            col_fechas = "ini_sin")
 ```
 
