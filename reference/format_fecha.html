@@ -57,17 +57,17 @@
     <div class="section level2">
     <h2 id="argumentos">Argumentos<a class="anchor" aria-label="anchor" href="#argumentos"></a></h2>
     <dl><dt>data_event</dt>
-<dd><p>Un data frame que contiene los datos
+<dd><p>Un `data.frame` que contiene los datos
 de un evento o enfermedad</p></dd>
 
 
 <dt>format_fecha</dt>
-<dd><p>Un character (cadena de caracteres)
+<dd><p>Un `character` (cadena de caracteres)
 que contiene  el formato deseado de fecha</p></dd>
 
 
 <dt>nombres_col</dt>
-<dd><p>Un character (cadena de caracteres) que
+<dd><p>Un `character` (cadena de caracteres) que
 contiene los nombres de la columna a formatear</p></dd>
 
 </dl></div>
@@ -75,15 +75,14 @@ contiene los nombres de la columna a formatear</p></dd>
     <h2 id="valor">Valor<a class="anchor" aria-label="anchor" href="#valor"></a></h2>
     
 
-<p>Un data framecon los datos con las fechas formateadas</p>
+<p>Un `data.frame` con los datos con las fechas formateadas</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Ejemplos<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">dengue2020</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">data_event</span> <span class="op">&lt;-</span> <span class="va">dengue2020</span></span></span>
-<span class="r-in"><span><span class="va">data_event</span> <span class="op">&lt;-</span> <span class="fu"><a href="limpiar_data_sivigila.html">limpiar_data_sivigila</a></span><span class="op">(</span><span class="va">data_event</span>, <span class="fl">2020</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">format_fecha</span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_event</span>,</span></span>
+<span class="r-in"><span><span class="va">data_limpia</span> <span class="op">&lt;-</span> <span class="fu"><a href="limpiar_data_sivigila.html">limpiar_data_sivigila</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">dengue2020</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">format_fecha</span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_limpia</span>,</span></span>
 <span class="r-in"><span>             format_fecha <span class="op">=</span> <span class="st">"%Y-%m-%d"</span>,</span></span>
 <span class="r-in"><span>             nombres_col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ini_sin"</span>, <span class="st">"fec_hos"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 63,742 × 73</span></span>

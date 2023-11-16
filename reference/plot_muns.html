@@ -51,7 +51,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Uso<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plot_muns</span><span class="op">(</span><span class="va">data_agrupada</span>, col_nombre <span class="op">=</span> <span class="st">"nombre"</span>, fuente_data <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plot_muns</span><span class="op">(</span><span class="va">data_agrupada</span>, nomb_col <span class="op">=</span> <span class="st">"nombre"</span>, fuente_data <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -61,7 +61,7 @@
 enfermedad o evento agrupados</p></dd>
 
 
-<dt>col_nombre</dt>
+<dt>nomb_col</dt>
 <dd><p>Un character (cadena de carácteres) con el nombre de
 la columna de los datos agrupados de la enfermedad o evento que contiene
 los municipios; su valor por defecto es "nombre"</p></dd>
@@ -82,13 +82,12 @@ leyenda o fuente de información de los datos; su valor por defecto es NULL</p><
     <div class="section level2">
     <h2 id="ref-examples">Ejemplos<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">dengue2020</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">data_event</span> <span class="op">&lt;-</span> <span class="va">dengue2020</span></span></span>
-<span class="r-in"><span><span class="va">data_event</span> <span class="op">&lt;-</span> <span class="fu"><a href="limpiar_data_sivigila.html">limpiar_data_sivigila</a></span><span class="op">(</span><span class="va">data_event</span>, <span class="fl">2020</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">data_event</span> <span class="op">&lt;-</span> <span class="fu"><a href="estandarizar_geo_cods.html">estandarizar_geo_cods</a></span><span class="op">(</span><span class="va">data_event</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">data_agrupada</span> <span class="op">&lt;-</span> <span class="fu"><a href="agrupar_mun.html">agrupar_mun</a></span><span class="op">(</span><span class="va">data_event</span>,</span></span>
-<span class="r-in"><span>                             dept_nombre <span class="op">=</span> <span class="st">"Antioquia"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">data_limpia</span> <span class="op">&lt;-</span> <span class="fu"><a href="limpiar_data_sivigila.html">limpiar_data_sivigila</a></span><span class="op">(</span><span class="va">dengue2020</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">data_limpia</span> <span class="op">&lt;-</span> <span class="fu"><a href="estandarizar_geo_cods.html">estandarizar_geo_cods</a></span><span class="op">(</span><span class="va">data_limpia</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">data_agrupada</span> <span class="op">&lt;-</span> <span class="fu"><a href="agrupar_mpio.html">agrupar_mpio</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_limpia</span>,</span></span>
+<span class="r-in"><span>                             dpto <span class="op">=</span> <span class="st">"Antioquia"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">plot_muns</span><span class="op">(</span><span class="va">data_agrupada</span>,</span></span>
-<span class="r-in"><span>          col_nombre <span class="op">=</span> <span class="st">"nombre"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>          nomb_col <span class="op">=</span> <span class="st">"nombre"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plot_muns-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>

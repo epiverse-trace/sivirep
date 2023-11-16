@@ -43,7 +43,7 @@
     <loc>https://epiverse-trace.github.io/sivirep/reference/agrupar_fecha_notifica.html</loc>
   </url>
   <url>
-    <loc>https://epiverse-trace.github.io/sivirep/reference/agrupar_mun.html</loc>
+    <loc>https://epiverse-trace.github.io/sivirep/reference/agrupar_mpio.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/agrupar_pob_especial.html</loc>
@@ -70,9 +70,6 @@
     <loc>https://epiverse-trace.github.io/sivirep/reference/estandarizar_geo_cods.html</loc>
   </url>
   <url>
-    <loc>https://epiverse-trace.github.io/sivirep/reference/filtrar_event.html</loc>
-  </url>
-  <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/format_fecha.html</loc>
   </url>
   <url>
@@ -82,13 +79,7 @@
     <loc>https://epiverse-trace.github.io/sivirep/reference/get_path_data_disease_year.html</loc>
   </url>
   <url>
-    <loc>https://epiverse-trace.github.io/sivirep/reference/import_data_canal_endemico.html</loc>
-  </url>
-  <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/import_data_event.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/sivirep/reference/import_data_resumen_sivigila.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/import_geo_cods.html</loc>
@@ -101,9 +92,6 @@
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/limpiar_cods_dpto.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/sivirep/reference/limpiar_cods_event_dpto.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/limpiar_data_sivigila.html</loc>
@@ -173,9 +161,6 @@
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/plot_map.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/sivirep/reference/plot_map_dpto.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/plot_muns.html</loc>

@@ -54,39 +54,38 @@ y municipios</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Uso<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">geo_filtro</span><span class="op">(</span><span class="va">data_event</span>, nombre_dpto <span class="op">=</span> <span class="cn">NULL</span>, nombre_mun <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">geo_filtro</span><span class="op">(</span><span class="va">data_event</span>, dpto <span class="op">=</span> <span class="cn">NULL</span>, mpio <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="argumentos">Argumentos<a class="anchor" aria-label="anchor" href="#argumentos"></a></h2>
     <dl><dt>data_event</dt>
-<dd><p>Un data frame con los datos de una enfermedad o evento</p></dd>
+<dd><p>Un `data.frame` con los datos de una enfermedad o evento</p></dd>
 
 
-<dt>nombre_dpto</dt>
-<dd><p>Un character (cadena de caracteres) que contiene
-el nombre del departamento; valor por defecto NULL</p></dd>
+<dt>dpto</dt>
+<dd><p>Un `character` (cadena de caracteres) que contiene
+el nombre o código del departamento; valor por defecto `NULL`</p></dd>
 
 
-<dt>nombre_mun</dt>
-<dd><p>Un character (cadena de caracteres) que contiene el
-nombre del municipio; su valor por defecto es NULL</p></dd>
+<dt>mpio</dt>
+<dd><p>Un `character` (cadena de caracteres) que contiene el
+nombre o código del municipio; su valor por defecto es `NULL`</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="valor">Valor<a class="anchor" aria-label="anchor" href="#valor"></a></h2>
     
 
-<p>Un data frame con los datos filtrados con la enfermedad,
+<p>Un `data.frame` con los datos filtrados con la enfermedad,
 departamentos y municipios seleccionados</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Ejemplos<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">dengue2020</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">data_event</span> <span class="op">&lt;-</span> <span class="va">dengue2020</span></span></span>
-<span class="r-in"><span><span class="va">data_event</span> <span class="op">&lt;-</span> <span class="fu"><a href="limpiar_data_sivigila.html">limpiar_data_sivigila</a></span><span class="op">(</span><span class="va">data_event</span>, <span class="fl">2020</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">geo_filtro</span><span class="op">(</span><span class="va">data_event</span>, nombre_dpto <span class="op">=</span> <span class="st">"ANTIOQUIA"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">data_limpia</span> <span class="op">&lt;-</span> <span class="fu"><a href="limpiar_data_sivigila.html">limpiar_data_sivigila</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">dengue2020</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">geo_filtro</span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_limpia</span>, dpto <span class="op">=</span> <span class="st">"ANTIOQUIA"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,781 × 73</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    consecutive cod_eve fec_not    semana ano   cod_pre    cod_sub  edad uni_med</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
@@ -101,6 +100,27 @@ departamentos y municipios seleccionados</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 7233591     210     2020-05-09 18     2020  0539005090 01          5       1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 7233637     210     2020-09-10 37     2020  0561502129 01         46       1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1,771 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 64 more variables: nacionalidad &lt;chr&gt;, nombre_nacionalidad &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   sexo &lt;chr&gt;, cod_pais_o &lt;chr&gt;, cod_dpto_o &lt;chr&gt;, cod_mun_o &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   area &lt;chr&gt;, ocupacion &lt;chr&gt;, tip_ss &lt;chr&gt;, cod_ase &lt;chr&gt;, per_etn &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gru_pob &lt;lgl&gt;, nom_grupo &lt;chr&gt;, estrato &lt;chr&gt;, gp_discapa &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gp_desplaz &lt;chr&gt;, gp_migrant &lt;chr&gt;, gp_carcela &lt;chr&gt;, gp_gestan &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   sem_ges &lt;chr&gt;, gp_indigen &lt;chr&gt;, gp_pobicfb &lt;chr&gt;, gp_mad_com &lt;chr&gt;, …</span></span>
+<span class="r-in"><span><span class="fu">geo_filtro</span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_limpia</span>, dpto <span class="op">=</span> <span class="st">"ANTIOQUIA"</span>, mpio <span class="op">=</span> <span class="st">"ENVIGADO"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 23 × 73</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    consecutive cod_eve fec_not    semana ano   cod_pre    cod_sub  edad uni_med</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 7248466     210     2020-01-10 02     2020  0500100302 01         29       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 7226063     210     2020-07-17 29     2020  0526604910 01          9       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 7320529     210     2020-01-17 03     2020  0526605568 10         23       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 7298493     210     2020-08-17 33     2020  0500111746 01         22       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 7294504     210     2020-04-25 16     2020  0526605568 10         32       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 7281492     210     2020-07-03 27     2020  0526604910 01         30       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 7281986     210     2020-07-06 27     2020  0526604910 01         18       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 7375007     210     2020-10-19 42     2020  0500105482 01         12       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 7355822     210     2020-04-08 14     2020  0526605568 10         59       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 7354610     210     2020-02-12 06     2020  0526605568 10         45       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 13 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 64 more variables: nacionalidad &lt;chr&gt;, nombre_nacionalidad &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   sexo &lt;chr&gt;, cod_pais_o &lt;chr&gt;, cod_dpto_o &lt;chr&gt;, cod_mun_o &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   area &lt;chr&gt;, ocupacion &lt;chr&gt;, tip_ss &lt;chr&gt;, cod_ase &lt;chr&gt;, per_etn &lt;chr&gt;,</span></span>

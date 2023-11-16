@@ -57,18 +57,18 @@
     <div class="section level2">
     <h2 id="argumentos">Argumentos<a class="anchor" aria-label="anchor" href="#argumentos"></a></h2>
     <dl><dt>data_event</dt>
-<dd><p>Un data frame que contiene los datos de
+<dd><p>Un `data.frame` que contiene los datos de
 una enfermedad o evento</p></dd>
 
 
 <dt>col_ini</dt>
-<dd><p>Un character (cadena de caracteres) que contiene
+<dd><p>Un `character` (cadena de caracteres) que contiene
 el nombre de la columna de la fecha inicial;
 su valor por defecto es ini_sin</p></dd>
 
 
 <dt>col_comp</dt>
-<dd><p>Un character (cadena de caracteres) que contiene el
+<dd><p>Un `character` (cadena de caracteres) que contiene el
 nombre de la columna de la fecha de comparación;
 su valor por defecto es fec_hos</p></dd>
 
@@ -77,16 +77,15 @@ su valor por defecto es fec_hos</p></dd>
     <h2 id="valor">Valor<a class="anchor" aria-label="anchor" href="#valor"></a></h2>
     
 
-<p>Un data framecon los datos sin las fechas mayores que el
+<p>Un `data.frame` con los datos sin las fechas mayores que el
 valor de comparación</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Ejemplos<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">dengue2020</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">data_event</span> <span class="op">&lt;-</span> <span class="va">dengue2020</span></span></span>
-<span class="r-in"><span><span class="va">data_event</span> <span class="op">&lt;-</span> <span class="fu"><a href="limpiar_data_sivigila.html">limpiar_data_sivigila</a></span><span class="op">(</span><span class="va">data_event</span>, <span class="fl">2020</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">remove_error_fecha</span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_event</span>,</span></span>
+<span class="r-in"><span><span class="va">data_limpia</span> <span class="op">&lt;-</span> <span class="fu"><a href="limpiar_data_sivigila.html">limpiar_data_sivigila</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">dengue2020</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">remove_error_fecha</span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_limpia</span>,</span></span>
 <span class="r-in"><span>                   col_ini <span class="op">=</span> <span class="st">"ini_sin"</span>,</span></span>
 <span class="r-in"><span>                   col_comp <span class="op">=</span> <span class="st">"fec_hos"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 63,742 × 72</span></span>

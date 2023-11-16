@@ -670,10 +670,10 @@
 <h3 id="id_6-distribución-espacial-de-casos">6. Distribución espacial de casos<a class="anchor" aria-label="anchor" href="#id_6-distribuci%C3%B3n-espacial-de-casos"></a>
 </h3>
 <p>Obtener la distribución espacial de los casos es útil para identificar áreas con una alta concentración de casos, agrupaciones de enfermedades y factores de riesgo ambientales o sociales.</p>
-<p>En Colombia, existen 32 unidades geográficas administrativas (adm1) llamadas departamentos. <code>sivirep</code> proporciona una función llamada <code>agrupar_mun</code> que permite obtener un data.frame de casos agrupados por departamento o municipio.</p>
+<p>En Colombia, existen 32 unidades geográficas administrativas (adm1) llamadas departamentos. <code>sivirep</code> proporciona una función llamada <code>agrupar_mpio</code> que permite obtener un data.frame de casos agrupados por departamento o municipio.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">dist_esp_dept</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/agrupar_mun.html">agrupar_mun</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_event_filtrada</span>,</span>
-<span>                             dept_nombre <span class="op">=</span> <span class="st">"Chocó"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">dist_esp_dept</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/agrupar_mpio.html">agrupar_mpio</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_event_filtrada</span>,</span>
+<span>                             dpto <span class="op">=</span> <span class="st">"Chocó"</span><span class="op">)</span></span></code></pre></div>
 <p>Actualmente, con la función llamada <code>plot_map</code>, el usuario puede generar un mapa estático de Colombia que muestra la distribución de casos por departamentos y municipios.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mapa</span></span></code></pre></div>

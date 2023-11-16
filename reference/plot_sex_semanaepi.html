@@ -56,7 +56,7 @@ y semana epidemiológica</p>
     <h2 id="ref-usage">Uso<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plot_sex_semanaepi</span><span class="op">(</span></span>
 <span>  <span class="va">data_agrupada</span>,</span>
-<span>  col_nombres <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sexo"</span>, <span class="st">"semana"</span><span class="op">)</span>,</span>
+<span>  nomb_cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sexo"</span>, <span class="st">"semana"</span><span class="op">)</span>,</span>
 <span>  fuente_data <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -68,7 +68,7 @@ y semana epidemiológica</p>
 o evento agrupados</p></dd>
 
 
-<dt>col_nombres</dt>
+<dt>nomb_cols</dt>
 <dd><p>Un array (arreglo) de character (cadena de caracteres) con
 los nombres de columna de los datos agrupados de la enfermedad o evento que
 contienen el sexo y las semanas epidemiológicas; su valor por defecto es
@@ -91,13 +91,12 @@ epidemiológica</p>
     <div class="section level2">
     <h2 id="ref-examples">Ejemplos<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">dengue2020</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">data_event</span> <span class="op">&lt;-</span> <span class="va">dengue2020</span></span></span>
-<span class="r-in"><span><span class="va">data_event</span> <span class="op">&lt;-</span> <span class="fu"><a href="limpiar_data_sivigila.html">limpiar_data_sivigila</a></span><span class="op">(</span><span class="va">data_event</span>, <span class="fl">2020</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">data_agrupada</span> <span class="op">&lt;-</span> <span class="fu"><a href="agrupar_sex_semanaepi.html">agrupar_sex_semanaepi</a></span><span class="op">(</span><span class="va">data_event</span>,</span></span>
-<span class="r-in"><span>                                       col_nombres <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sexo"</span>, <span class="st">"semana"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span><span class="va">data_limpia</span> <span class="op">&lt;-</span> <span class="fu"><a href="limpiar_data_sivigila.html">limpiar_data_sivigila</a></span><span class="op">(</span><span class="va">dengue2020</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">data_agrupada</span> <span class="op">&lt;-</span> <span class="fu"><a href="agrupar_sex_semanaepi.html">agrupar_sex_semanaepi</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_limpia</span>,</span></span>
+<span class="r-in"><span>                                       nomb_cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sexo"</span>, <span class="st">"semana"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                                       porcentaje <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">plot_sex_semanaepi</span><span class="op">(</span>data_agrupada <span class="op">=</span> <span class="va">data_agrupada</span>,</span></span>
-<span class="r-in"><span>                   col_nombres <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sexo"</span>, <span class="st">"semana"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>                   nomb_cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sexo"</span>, <span class="st">"semana"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plot_sex_semanaepi-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
