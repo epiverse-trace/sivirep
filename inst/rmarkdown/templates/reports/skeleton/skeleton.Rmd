@@ -1,8 +1,8 @@
 ---
 output:
-  word_document: 
-    number_sections: true
   pdf_document: 
+    number_sections: true
+  word_document: 
     number_sections: true
   html_document:
     number_sections: true
@@ -105,7 +105,7 @@ fuente <- "Fuente SIVIGILA, Datos libres"
 
 
 ```{r import_data, include = FALSE}
-data_event <-  import_data_event(data_event = params$nombre_evento,
+data_event <-  import_data_event(nombre_event = params$nombre_evento,
                                  year = params$year)
 ```
 
