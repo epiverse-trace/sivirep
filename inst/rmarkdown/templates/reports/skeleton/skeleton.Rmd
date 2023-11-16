@@ -212,7 +212,7 @@ plot_edad_sex(data_agrupada = casos_edad_sex)
 
 ```{r group_distribution_municipios,  results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
 dist_espacial_dpto <- agrupar_mpio(data_event = data_event_filtrada,
-                                  dpto = params$departmento)
+                                   dpto = params$departmento)
 dist_espacial_dpto <- dist_espacial_dpto[order(dist_espacial_dpto$casos), ]
 espacial_mayor_casos <- obtener_fila_mas_casos(dist_espacial_dpto)
 ```

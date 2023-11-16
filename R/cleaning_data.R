@@ -114,23 +114,29 @@ convert_edad <- function(data_event,
   data_event$edad <- as.numeric(data_event$edad)
   data_event_years <-
     dplyr::mutate(data_event,
-                  edad =
-                    dplyr::case_when(eval(parse(text = col_uni_med)) == 1 ~
-                                       round(eval(parse(text = col_edad)), 3),
-                                     eval(parse(text = col_uni_med)) == 2 ~
-                                       round((eval(parse(text =
-                                                           col_edad)) / 12), 3),
-                                     eval(parse(text = col_uni_med)) == 3 ~
-                                       round((eval(parse(text =
-                                                           col_edad)) / 876), 3),
-                                     eval(parse(text = col_uni_med)) == 4 ~
-                                       round((eval(parse(text =
-                                                           col_edad)) / 525960),
-                                             3),
-                                     eval(parse(text = col_uni_med)) == 5 ~
-                                       round((eval(parse(text =
-                                                           col_edad)) / 3.156e+7),
-                                             3)))
+                  edad = dplyr::case_when(eval(parse(text =
+                                                       col_uni_med)) == 1 ~
+                                            round(eval(parse(text = col_edad)),
+                                                  3),
+                                          eval(parse(text = col_uni_med)) == 2 ~
+                                            round((eval(parse(text =
+                                                                col_edad))
+                                                   / 12),
+                                                  3),
+                                          eval(parse(text = col_uni_med)) == 3 ~
+                                            round((eval(parse(text = col_edad))
+                                                   / 876),
+                                                  3),
+                                          eval(parse(text = col_uni_med)) == 4 ~
+                                            round((eval(parse(text =
+                                                                col_edad))
+                                                   / 525960),
+                                                  3),
+                                          eval(parse(text = col_uni_med)) == 5 ~
+                                            round((eval(parse(text =
+                                                                col_edad))
+                                                   / 3.156e+7),
+                                                  3)))
   return(data_event_years)
 }
 
