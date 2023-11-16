@@ -6,37 +6,37 @@
 \usage{
 agrupar_rango_edad_casos(
   data_event,
-  col_nombre,
-  var_a = NULL,
+  nomb_col,
+  col_adicional = NULL,
   min_val,
   max_val,
   paso
 )
 }
 \arguments{
-\item{data_event}{Un data frame que contiene los datos de la
+\item{data_event}{Un `data.frame` que contiene los datos de la
 enfermedad o evento}
 
-\item{col_nombre}{Un character (cadena de caracteres) con
+\item{nomb_col}{Un `character` (cadena de caracteres) con
 el nombre de la columna de los datos de la enfermedad o evento
 que contiene las edades}
 
-\item{var_a}{Un character (cadena de caracteres) con
+\item{col_adicional}{Un `character` (cadena de caracteres) con
 el nombre adicional de la columna de los datos de la enfermedad
 o evento para agrupar con la edad; su valor por defecto es
-NULL}
+`NULL`}
 
-\item{min_val}{Un numeric (numerico) que contiene el valor mínimo
+\item{min_val}{Un `numeric` (numerico) que contiene el valor mínimo
 de las edades}
 
-\item{max_val}{Un numeric (numerico) que contiene el valor máximo
+\item{max_val}{Un `numeric` (numerico) que contiene el valor máximo
 de las edades}
 
-\item{paso}{Un numeric (numerico) que contiene el valor del paso
+\item{paso}{Un `numeric` (numerico) que contiene el valor del paso
 para generar el rango de edades}
 }
 \value{
-Un data frame con los datos de la enfermedad o evento
+Un `data.frame` con los datos de la enfermedad o evento
 agrupados por el rango de edad y número de casos
 }
 \description{
@@ -45,13 +45,12 @@ de edad y número de casos
 }
 \examples{
 data(dengue2020)
-data_event <- dengue2020
-data_event <- limpiar_data_sivigila(data_event, 2020)
-data_edad <- agrupar_cols_casos(data_event = data_event,
+data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+data_edad <- agrupar_cols_casos(data_event = data_limpia,
                                 c("edad", "semana"),
-                                agr_porcentaje = TRUE)
+                                porcentaje = TRUE)
 agrupar_rango_edad_casos(data_event = data_edad,
-                         col_nombre = "edad",
+                         nomb_col = "edad",
                          min_val = 0,
                          max_val = max(data_edad$edad),
                          paso = 10)

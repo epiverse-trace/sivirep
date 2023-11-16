@@ -4,19 +4,19 @@
 \alias{geo_filtro}
 \title{Filtrar por departamentos y municipios}
 \usage{
-geo_filtro(data_event, nombre_dpto = NULL, nombre_mun = NULL)
+geo_filtro(data_event, dpto = NULL, mpio = NULL)
 }
 \arguments{
-\item{data_event}{Un data frame con los datos de una enfermedad o evento}
+\item{data_event}{Un `data.frame` con los datos de una enfermedad o evento}
 
-\item{nombre_dpto}{Un character (cadena de caracteres) que contiene
-el nombre del departamento; valor por defecto NULL}
+\item{dpto}{Un `character` (cadena de caracteres) que contiene
+el nombre o código del departamento; valor por defecto `NULL`}
 
-\item{nombre_mun}{Un character (cadena de caracteres) que contiene el
-nombre del municipio; su valor por defecto es NULL}
+\item{mpio}{Un `character` (cadena de caracteres) que contiene el
+nombre o código del municipio; su valor por defecto es `NULL`}
 }
 \value{
-Un data frame con los datos filtrados con la enfermedad,
+Un `data.frame` con los datos filtrados con la enfermedad,
 departamentos y municipios seleccionados
 }
 \description{
@@ -25,7 +25,7 @@ y municipios
 }
 \examples{
 data(dengue2020)
-data_event <- dengue2020
-data_event <- limpiar_data_sivigila(data_event, 2020)
-geo_filtro(data_event, nombre_dpto = "ANTIOQUIA")
+data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+geo_filtro(data_event = data_limpia, dpto = "ANTIOQUIA")
+geo_filtro(data_event = data_limpia, dpto = "ANTIOQUIA", mpio = "ENVIGADO")
 }

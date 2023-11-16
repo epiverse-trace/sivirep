@@ -4,22 +4,22 @@
 \alias{agrupar_dpto}
 \title{Agrupar por departamento y casos}
 \usage{
-agrupar_dpto(data_event, col_nombre = "cod_dpto_o", porcentaje = FALSE)
+agrupar_dpto(data_event, nomb_col = "cod_dpto_o", porcentaje = FALSE)
 }
 \arguments{
-\item{data_event}{Un data frame que contiene los datos de la
+\item{data_event}{Un `data.frame` que contiene los datos de la
 enfermedad o evento}
 
-\item{col_nombre}{Un character (cadena de caracteres) con el nombre
+\item{nomb_col}{Un `character` (cadena de caracteres) con el nombre
 de la columna en los datos de la enfermedad o evento que contiene los
-códigos de departamento; su valor por defecto es cod_dpto_o}
+códigos de departamento; su valor por defecto es `"cod_dpto_o"`}
 
-\item{porcentaje}{Un boolean (TRUE o FALSE) que indica si
+\item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica si
 es necesario agregar un porcentaje de casos como una columna; su valor
-por defecto es FALSE}
+por defecto es `FALSE`}
 }
 \value{
-Un data frame con los datos de la enfermedad o evento agrupados
+Un `data.frame` con los datos de la enfermedad o evento agrupados
 por códigos de departamento y número de casos
 }
 \description{
@@ -28,9 +28,8 @@ número de casos
 }
 \examples{
 data(dengue2020)
-data_event <- dengue2020
-data_event <- limpiar_data_sivigila(data_event, 2020)
-agrupar_dpto(data_event = data_event,
-             col_nombre = "cod_dpto_o",
+data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+agrupar_dpto(data_event = data_limpia,
+             nomb_col = "cod_dpto_o",
              porcentaje = FALSE)
 }
