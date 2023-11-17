@@ -10,7 +10,7 @@
 #' leyenda o fuente de información de los datos de la enfermedad o evento
 #' @param dpto Un `character` (cadena de caracteres) que contiene el
 #' nombre del departamento
-#' @param munpio Un `character` (cadena de caracteres) que contiene el
+#' @param mpio Un `character` (cadena de caracteres) que contiene el
 #' nombre del municipio
 #' @return Un `plot` o mapa por departamentos o municipios con el número de
 #' casos de una enfermedad específica
@@ -26,27 +26,30 @@
 #'    col_codigos = "id",
 #'    fuente_data = "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia",
 #'    dpto = "Antioquia",
-#'    munpio = "Envigado")
+#'    mpio = "Envigado")
 #' @export
 plot_map <- function(data_agrupada,
                      col_codigos = "id",
                      fuente_data = NULL,
                      dpto = NULL,
-                     munpio = NULL) {
-  stopifnot("El parametro data_agrupada debe ser un data.frame"
-            = is.data.frame(data_agrupada))
+                     mpio = NULL) {
+  stopifnot("El parametro data_agrupada es obligatorio" =
+              !missing(data_agrupada))
+  stopifnot("El parametro data_agrupada debe ser un data.frame" =
+              is.data.frame(data_agrupada))
+  stopifnot("El parametro data_agrupada no debe estar vacio" =
+              nrow(data_agrupada) > 0)
   stopifnot("El parametro col_codigos debe ser un cadena de caracteres"
             = is.character(col_codigos))
-  titulo <- paste0("Departamento de ", dpto)
+  titulo <- "Colombia"
   subtitulo <- "Analisis efectuado por geografia de "
   cols_geo_ocurrencia <- c()
   data_tabla <- data.frame()
   if (is.null(fuente_data)) {
     fuente_data <- "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
   }
-  if (!is.null(munpio)) {
-    titulo <- paste0(titulo, " , ", munpio)
-  }
+  stopifnot("El parametro fuente_data debe ser un cadena de caracteres"
+            = is.character(fuente_data))
   nombre_events <- unique(data_agrupada$nombre_evento)[1]
   cols_geo_ocurrencia <- obtener_tip_ocurren_geo(nombre_event = nombre_events)
   if (length(cols_geo_ocurrencia) > 1) {
@@ -55,17 +58,23 @@ plot_map <- function(data_agrupada,
   dsn <-  system.file("extdata/depto_adm_shp", "MGN_ANM_MPIOS.shp",
                       package = "sivirep")
   shp <- sf::st_read(dsn = dsn)
-  data_dept <- obtener_info_depts(dpto, munpio)
+  data_dept <- obtener_info_depts(dpto, mpio)
   data_dept <- data_dept[1, ]
   polygon_seleccionado <- shp
   if (!is.null(dpto)) {
+    stopifnot("El parametro dpto debe ser un cadena de caracteres"
+              = is.character(dpto))
+    titulo <- paste0("Departamento de ", dpto)
     polygon_seleccionado <- shp[shp$DPTO_CCDGO ==
                                   data_dept$codigo_departamento, ]
-    if (!is.null(munpio)) {
+    if (!is.null(mpio)) {
+      stopifnot("El parametro mpio debe ser un cadena de caracteres"
+                = is.character(mpio))
       code_mun <- modficar_cod_mun(data_dept$codigo_departamento,
                                    data_dept$codigo_municipio)
       polygon_seleccionado <-
         polygon_seleccionado[polygon_seleccionado$MPIO_CCDGO == code_mun, ]
+      titulo <- paste0(titulo, " , ", mpio)
     }
     colnames(polygon_seleccionado)[colnames(polygon_seleccionado) ==
                                      "MPIO_CCDGO"] <- "id"
@@ -222,14 +231,15 @@ plot_fecha_inisintomas <- function(data_agrupada,
 #' @param data_agrupada Un `data.frame` que contiene los datos de la
 #' enfermedad o evento agrupados
 #' @param uni_marca Un `character` (cadena de caracteres) que contiene la unidad
-#' de las marcas del gráfico (`"dia"`, `"semanaepi"`, `"mes"` y `"año"`; su valor 
-#' por defecto es `"semanaepi"`
+#' de las marcas del gráfico (`"dia"`, `"semanaepi"`, `"mes"` y `"año"`;
+#' su valor por defecto es `"semanaepi"`
 #' @param nomb_col Un `character` (cadena de caracteres) que contiene el
 #' nombre de la columna en los datos de la enfermedad o evento agrupados que
 #' contiene las fechas de notificación; su valor por defecto es `"fec_not"`
 #' @param fuente_data Un `character` (cadena de caracteres) que contiene la
 #' leyenda o fuente de información de los datos; su valor por defecto es `NULL`
-#' @return Un `plot` o gráfico de distribución de casos por fecha de notificación
+#' @return Un `plot` o gráfico de distribución de casos por fecha de
+#' notificación
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(dengue2020)
@@ -243,7 +253,8 @@ plot_fecha_notifica <- function(data_agrupada,
                                 nomb_col = "fec_not",
                                 uni_marca = "semanaepi",
                                 fuente_data = NULL) {
-  stopifnot("El parametro data_agrupada es obligatorio" = !missing(data_agrupada))
+  stopifnot("El parametro data_agrupada es obligatorio" =
+              !missing(data_agrupada))
   stopifnot("El parametro data_agrupada debe ser un data.frame" =
               is.data.frame(data_agrupada))
   stopifnot("El parametro data_agrupada no debe estar vacio" =
