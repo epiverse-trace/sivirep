@@ -1,13 +1,13 @@
 ---
 output:
-  pdf_document: 
-    number_sections: true
-  word_document: 
-    number_sections: true
   html_document:
     number_sections: true
     fig_caption: true
     css: style.css
+  word_document: 
+    number_sections: true
+  pdf_document: 
+    number_sections: true
 header-includes:
   - \usepackage{fancyhdr}
   - \pagestyle{fancy}
@@ -140,7 +140,6 @@ Los casos se distribuyen a lo largo de los meses de enero a diciembre de `r para
 plot_fecha_inisintomas(data_agrupada = casos_iniciosin_dia,
                        uni_marca = "semanaepi")
 ```
-`\@ref(fig:plot_cases_by_onset_symptom_date)`
 
 ```{r cases_by_onset_notification_date, include = FALSE}
 casos_fecha_notifica_dia <- agrupar_fecha_notifica(data_event_filtrada)
