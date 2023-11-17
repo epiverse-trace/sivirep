@@ -12,7 +12,7 @@ plot_sex(
 )
 }
 \arguments{
-\item{data_agrupada}{Un data fram que contiene los datos de la
+\item{data_agrupada}{Un data frame que contiene los datos de la
 enfermedad o evento agrupados}
 
 \item{nomb_col}{Un character (cadena de caracteres) con el

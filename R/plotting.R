@@ -165,7 +165,8 @@ plot_fecha_inisintomas <- function(data_agrupada,
                                    uni_marca = "semanaepi",
                                    tipo = "barras",
                                    fuente_data = NULL) {
-  stopifnot("El parametro data_agrupada es obligatorio" = !missing(data_agrupada))
+  stopifnot("El parametro data_agrupada es obligatorio" =
+              !missing(data_agrupada))
   stopifnot("El parametro data_agrupada debe ser un data.frame" =
               is.data.frame(data_agrupada))
   stopifnot("El parametro data_agrupada no debe estar vacio" =
@@ -237,11 +238,11 @@ plot_fecha_inisintomas <- function(data_agrupada,
 #' @param data_agrupada Un `data.frame` que contiene los datos de la
 #' enfermedad o evento agrupados
 #' @param uni_marca Un `character` (cadena de caracteres) que contiene la unidad
-#' de las marcas del gráfico (`"dia"`, `"semanaepi"`, `"mes"` y `"año"`;
+#' de las marcas del gráfico (`"dia"`, `"semanaepi"`, `"mes"` y `"año"`);
 #' su valor por defecto es `"semanaepi"`
 #' @param nomb_col Un `character` (cadena de caracteres) que contiene el
-#' nombre de la columna en los datos de la enfermedad o evento agrupados que
-#' contiene las fechas de notificación; su valor por defecto es `"fec_not"`
+#' nombre de la columna en los datos de la enfermedad o evento agrupados con
+#' las fechas de notificación; su valor por defecto es `"fec_not"`
 #' @param fuente_data Un `character` (cadena de caracteres) que contiene la
 #' leyenda o fuente de información de los datos; su valor por defecto es `NULL`
 #' @return Un `plot` o gráfico de distribución de casos por fecha de
@@ -329,16 +330,16 @@ plot_fecha_notifica <- function(data_agrupada,
 #' Generar gráfico de distribución de casos por sexo
 #'
 #' Función que genera el gráfico de distribución de casos por sexo
-#' @param data_agrupada Un data fram que contiene los datos de la
+#' @param data_agrupada Un `data.frame` que contiene los datos de la
 #' enfermedad o evento agrupados
-#' @param nomb_col Un character (cadena de caracteres) con el
+#' @param nomb_col Un `character` (cadena de caracteres) con el
 #' nombre de la columna de los datos agrupados de la enfermedad
-#' o evento que contiene el sexo; su valor por defecto es "sexo"
+#' o evento que contiene el sexo; su valor por defecto es `"sexo"`
 #' @param porcentaje Un boolean (TRUE/FALSE) que indica si los datos
-#' tienen porcentajes; su valor por defecto es TRUE
-#' @param fuente_data Un character (cadena de caracteres) que contiene la
-#' leyenda o fuente de información de los datos; su valor por defecto es NULL
-#' @return Un plot o gráfico de distribución de casos por sexo
+#' tienen porcentajes; su valor por defecto es `TRUE`
+#' @param fuente_data Un `character` (cadena de caracteres) que contiene la
+#' leyenda o fuente de información de los datos; su valor por defecto es `NULL`
+#' @return Un `plot` o gráfico de distribución de casos por sexo
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(dengue2020)
@@ -353,8 +354,12 @@ plot_sex <- function(data_agrupada,
                      nomb_col = "sexo",
                      porcentaje = TRUE,
                      fuente_data = NULL) {
-  stopifnot("El parametro data_agrupada debe ser un data.frame"
-            = is.data.frame(data_agrupada))
+  stopifnot("El parametro data_agrupada es obligatorio" =
+              !missing(data_agrupada))
+  stopifnot("El parametro data_agrupada debe ser un data.frame" =
+              is.data.frame(data_agrupada))
+  stopifnot("El parametro data_agrupada no debe estar vacio" =
+              nrow(data_agrupada) > 0)
   stopifnot("El parametro nomb_col debe ser una cadena de caracteres" =
               is.character(nomb_col))
   stopifnot("El parametro porcentaje debe ser un booleano" =
@@ -363,6 +368,8 @@ plot_sex <- function(data_agrupada,
     fuente_data <-
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
   }
+  stopifnot("El parametro fuente_data debe ser un cadena de caracteres"
+            = is.character(fuente_data))
   plot_casos_sex <- ggplot2::ggplot(data_agrupada,
                                     ggplot2::aes(x = .data[[nomb_col]],
                                                  y = .data[["casos"]],

@@ -9,27 +9,27 @@ plot_map(
   col_codigos = "id",
   fuente_data = NULL,
   dpto = NULL,
-  munpio = NULL
+  mpio = NULL
 )
 }
 \arguments{
-\item{data_agrupada}{Un data frame que contiene los datos de la enfermedad
+\item{data_agrupada}{Un `data.frame` que contiene los datos de la enfermedad
 agrupados por departamento y número de casos}
 
-\item{col_codigos}{Un character (cadena de caracteres) que contiene el
+\item{col_codigos}{Un `character` (cadena de caracteres) que contiene el
 nombre de la columna para unir con el archivo de forma (shape file)}
 
-\item{fuente_data}{Un character (cadena de caracteres) que contiene la
+\item{fuente_data}{Un `character` (cadena de caracteres) que contiene la
 leyenda o fuente de información de los datos de la enfermedad o evento}
 
-\item{dpto}{Un character (cadena de caracteres) que contiene el
+\item{dpto}{Un `character` (cadena de caracteres) que contiene el
 nombre del departamento}
 
-\item{munpio}{Un character (cadena de caracteres) que contiene el
+\item{mpio}{Un `character` (cadena de caracteres) que contiene el
 nombre del municipio}
 }
 \value{
-El plot o mapa por departamentos o municipios con el número de
+Un `plot` o mapa por departamentos o municipios con el número de
 casos de una enfermedad específica
 }
 \description{
@@ -48,5 +48,5 @@ plot_map(data_agrupada = data_espacial_dpto,
    col_codigos = "id",
    fuente_data = "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia",
    dpto = "Antioquia",
-   munpio = "Envigado")
+   mpio = "Envigado")
 }
