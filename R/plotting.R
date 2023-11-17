@@ -138,16 +138,16 @@ plot_map <- function(data_agrupada,
 #' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
 #' o evento agrupados
 #' @param uni_marca Un `character` (cadena de caracteres) que contiene la unidad
-#' de las marcas del gráfico (dia, mes o año);
-#' su valor por defecto es "meses"
+#' de las marcas del gráfico (`"dia"`, `"semanaepi"`, `"mes"` o `"año"`);
+#' su valor por defecto es `"semanaepi"`
 #' @param nomb_col Un `character` (cadena de caracteres) que contiene el
 #' nombre de la columna en los datos de la enfermedad o evento
-#' agrupados que contiene las fechas de inicio de síntomas; su valor por
-#' defecto es "ini_sin"
+#' agrupados con las fechas de inicio de síntomas; su valor por
+#' defecto es `"ini_sin"`
 #' @param tipo Un `character` (cadena de caracteres) que contiene el tipo de
-#' grafico (barras o tendencia); su valor por defecto es "barras"
+#' grafico (barras o tendencia); su valor por defecto es `"barras"`
 #' @param fuente_data Un `character` (cadena de caracteres) que contiene la
-#' leyenda o fuente de información de los datos; su valor por defecto es NULL
+#' leyenda o fuente de información de los datos; su valor por defecto es `NULL`
 #' @return Un `plot` o gráfico de la distribución de casos por fecha de inicio
 #' de síntomas
 #' @examples
@@ -162,17 +162,20 @@ plot_map <- function(data_agrupada,
 #' @export
 plot_fecha_inisintomas <- function(data_agrupada,
                                    nomb_col = "ini_sin",
-                                   uni_marca = "mes",
+                                   uni_marca = "semanaepi",
                                    tipo = "barras",
                                    fuente_data = NULL) {
-  stopifnot("El parametro data_agrupada debe ser un data.frame"
-            = is.data.frame(data_agrupada))
+  stopifnot("El parametro data_agrupada es obligatorio" = !missing(data_agrupada))
+  stopifnot("El parametro data_agrupada debe ser un data.frame" =
+              is.data.frame(data_agrupada))
+  stopifnot("El parametro data_agrupada no debe estar vacio" =
+              nrow(data_agrupada) > 0)
   stopifnot("El parametro nomb_col debe ser una cadena de caracteres" =
               is.character(nomb_col))
   stopifnot("El parametro uni_marca debe ser una cadena de caracteres" =
               is.character(uni_marca))
   stopifnot("Valor invalido para el parametro uni_marca" =
-              uni_marca %in% c("mes", "dia", "semanaepi"))
+              uni_marca %in% c("dia", "semanaepi", "mes", "año"))
   fechas_column_nombres <- config::get(file = system.file("extdata",
                                                           "config.yml",
                                                           package = "sivirep"),
@@ -183,11 +186,14 @@ plot_fecha_inisintomas <- function(data_agrupada,
     fuente_data <-
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
   }
+  stopifnot("El parametro fuente_data debe ser un cadena de caracteres"
+            = is.character(fuente_data))
   uni_marca <- switch(
     uni_marca,
     "mes" = "month",
     "dia" = "day",
-    "semanaepi" = "semana"
+    "semanaepi" = "semana",
+    "año" = "year"
   )
   if (is.null(nomb_col)) {
     nomb_col <- fechas_column_nombres[3]
@@ -282,7 +288,8 @@ plot_fecha_notifica <- function(data_agrupada,
     uni_marca,
     "mes" = "month",
     "dia" = "day",
-    "semanaepi" = "semana"
+    "semanaepi" = "semana",
+    "año" = "year"
   )
   if (is.null(nomb_col)) {
     nomb_col <- fechas_column_nombres[2]
