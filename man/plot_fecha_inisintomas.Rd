@@ -22,7 +22,7 @@ agrupados con las fechas de inicio de síntomas; su valor por
 defecto es `"ini_sin"`}
 
 \item{uni_marca}{Un `character` (cadena de caracteres) que contiene la unidad
-de las marcas del gráfico (`"dia"`, `"semanaepi"`, `"mes"` o `"año"`);
+de las marcas del gráfico (`"dia"`, `"semanaepi"` y `"mes"``);
 su valor por defecto es `"semanaepi"`}
 
 \item{tipo}{Un `character` (cadena de caracteres) que contiene el tipo de
