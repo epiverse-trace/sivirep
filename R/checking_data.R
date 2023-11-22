@@ -16,14 +16,14 @@
 #' geo_filtro(data_event = data_limpia, dpto = "ANTIOQUIA", mpio = "ENVIGADO")
 #' @export
 geo_filtro <- function(data_event, dpto = NULL, mpio = NULL) {
-  stopifnot("El parametro data_event es obligatorio" = !missing(data_event))
-  stopifnot("El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event))
-  stopifnot("El parametro data_event no debe estar vacio" =
+  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
+            "El parametro data_event debe ser un data.frame" =
+              is.data.frame(data_event),
+            "El parametro data_event no debe estar vacio" =
               nrow(data_event) > 0)
   data_dept_filt <- data.frame()
   dept_data <- data.frame()
-  cols_ocurren <- c()
+  cols_ocurren <- NULL
   if (!is.null(dpto)) {
     dept_data <- obtener_info_depts(dpto, mpio)
     stopifnot("El departamento o municipio ingresado no existe"
@@ -63,10 +63,10 @@ geo_filtro <- function(data_event, dpto = NULL, mpio = NULL) {
 #' obtener_cods_dpto(geo_cods = geo_cods)
 #' @export
 obtener_cods_dpto <- function(geo_cods) {
-  stopifnot("El parametro geo_cods es obligatorio" = !missing(geo_cods))
-  stopifnot("El parametro geo_cods debe ser un data.frame" =
-              is.data.frame(geo_cods))
-  stopifnot("El parametro geo_cods no debe estar vacio" =
+  stopifnot("El parametro geo_cods es obligatorio" = !missing(geo_cods),
+            "El parametro geo_cods debe ser un data.frame" =
+              is.data.frame(geo_cods),
+            "El parametro geo_cods no debe estar vacio" =
               nrow(geo_cods) > 0)
   data_deptos <- geo_cods %>%
     dplyr::group_by(cod_dep = .data$codigo_departamento,
@@ -91,10 +91,10 @@ obtener_cods_dpto <- function(geo_cods) {
 #' obtener_casos_pob_especial(data_event = data_limpia)
 #' @export
 obtener_casos_pob_especial <- function(data_event) {
-  stopifnot("El parametro data_event es obligatorio" = !missing(data_event))
-  stopifnot("El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event))
-  stopifnot("El parametro data_event no debe estar vacio" =
+  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
+            "El parametro data_event debe ser un data.frame" =
+              is.data.frame(data_event),
+            "El parametro data_event no debe estar vacio" =
               nrow(data_event) > 0)
   pob_especial <- config::get(file = system.file("extdata",
                                                  "config.yml",
@@ -133,10 +133,10 @@ obtener_casos_pob_especial <- function(data_event) {
 #' agrupar_casos_semanaepi(data_event = data_limpia)
 #' @export
 agrupar_casos_semanaepi <- function(data_event) {
-  stopifnot("El parametro data_event es obligatorio" = !missing(data_event))
-  stopifnot("El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event))
-  stopifnot("El parametro data_event no debe estar vacio" =
+  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
+            "El parametro data_event debe ser un data.frame" =
+              is.data.frame(data_event),
+            "El parametro data_event no debe estar vacio" =
               nrow(data_event) > 0)
   data_event_agrupada <- data_event %>%
     dplyr::group_by(.data$semana) %>%
@@ -171,19 +171,20 @@ agrupar_casos_semanaepi <- function(data_event) {
 agrupar_cols_casos <- function(data_event,
                                nomb_cols,
                                porcentaje = FALSE) {
-  stopifnot("El parametro data_event es obligatorio" = !missing(data_event))
-  stopifnot("El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event))
-  stopifnot("El parametro data_event no debe estar vacio" =
-              nrow(data_event) > 0)
-  stopifnot("El parametro nomb_cols es obligatorio"
-            = !missing(nomb_cols))
-  stopifnot("El parametro nomb_cols debe ser una cadena de caracteres 
+  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
+            "El parametro data_event debe ser un data.frame" =
+              is.data.frame(data_event),
+            "El parametro data_event no debe estar vacio" =
+              nrow(data_event) > 0,
+            "El parametro nomb_cols es obligatorio"
+            = !missing(nomb_cols),
+            "El parametro nomb_cols debe ser una cadena de caracteres 
             o un arreglo de cadenas de caracteres "
-            = (is.character(nomb_cols) || is.array(nomb_cols)))
-  stopifnot("El parametro porcentaje debe ser un booleano (TRUE o FALSE)" =
+            = (is.character(nomb_cols) && !is.array(nomb_cols)) ||
+              (!is.character(nomb_cols) && is.array(nomb_cols)),
+            "El parametro porcentaje debe ser un booleano (TRUE o FALSE)" =
               is.logical(porcentaje))
-  nomb_cols <- append(nomb_cols, c("nombre_evento"))
+  nomb_cols <- append(nomb_cols, "nombre_evento")
   data_event_agrupada <- data_event %>%
     dplyr::group_by_at(nomb_cols) %>%
     dplyr::summarise(casos = dplyr::n(), .groups = "drop")
@@ -237,10 +238,10 @@ agrupar_rango_edad_casos <- function(data_event,
                                      min_val,
                                      max_val,
                                      paso) {
-  stopifnot("El parametro data_event es obligatorio" = !missing(data_event))
-  stopifnot("El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event))
-  stopifnot("El parametro data_event no debe estar vacio" =
+  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
+            "El parametro data_event debe ser un data.frame" =
+              is.data.frame(data_event),
+            "El parametro data_event no debe estar vacio" =
               nrow(data_event) > 0)
   data_vals_rango <- data.frame()
   if (is.null(nomb_col) || length(nomb_col) > 0) {
@@ -284,10 +285,10 @@ agrupar_fecha_inisintomas <- function(data_event,
                                                    "config.yml",
                                                    package = "sivirep"),
                                      "dates_column_names")
-  stopifnot("El parametro data_event es obligatorio" = !missing(data_event))
-  stopifnot("El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event))
-  stopifnot("El parametro data_event no debe estar vacio" =
+  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
+            "El parametro data_event debe ser un data.frame" =
+              is.data.frame(data_event),
+            "El parametro data_event no debe estar vacio" =
               nrow(data_event) > 0)
   if (is.null(nomb_col)) {
     nomb_col <- fechas_cols_nombres[3]
@@ -324,10 +325,10 @@ agrupar_fecha_notifica <- function(data_event,
                                                    "config.yml",
                                                    package = "sivirep"),
                                      "dates_column_names")
-  stopifnot("El parametro data_event es obligatorio" = !missing(data_event))
-  stopifnot("El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event))
-  stopifnot("El parametro data_event no debe estar vacio" =
+  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
+            "El parametro data_event debe ser un data.frame" =
+              is.data.frame(data_event),
+            "El parametro data_event no debe estar vacio" =
               nrow(data_event) > 0)
   if (is.null(nomb_col)) {
     nomb_col <- fechas_cols_nombres[2]
@@ -364,12 +365,12 @@ agrupar_fecha_notifica <- function(data_event,
 agrupar_sex <- function(data_event,
                         nomb_col = "sexo",
                         porcentaje = TRUE) {
-  stopifnot("El parametro data_event es obligatorio" = !missing(data_event))
-  stopifnot("El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event))
-  stopifnot("El parametro data_event no debe estar vacio" =
-              nrow(data_event) > 0)
-  stopifnot("El parametro nomb_col debe ser una cadena de caracteres"
+  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
+            "El parametro data_event debe ser un data.frame" =
+              is.data.frame(data_event),
+            "El parametro data_event no debe estar vacio" =
+              nrow(data_event) > 0,
+            "El parametro nomb_col debe ser una cadena de caracteres"
             = is.character(nomb_col))
   data_event_sex <- agrupar_cols_casos(data_event, nomb_col, porcentaje)
   return(data_event_sex)
@@ -401,14 +402,15 @@ agrupar_sex <- function(data_event,
 agrupar_sex_semanaepi <- function(data_event,
                                   nomb_cols = c("sexo", "semana"),
                                   porcentaje = TRUE) {
-  stopifnot("El parametro data_event es obligatorio" = !missing(data_event))
-  stopifnot("El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event))
-  stopifnot("El parametro data_event no debe estar vacio" =
-              nrow(data_event) > 0)
-  stopifnot("El parametro nomb_cols debe ser una cadena de caracteres 
+  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
+            "El parametro data_event debe ser un data.frame" =
+              is.data.frame(data_event),
+            "El parametro data_event no debe estar vacio" =
+              nrow(data_event) > 0,
+            "El parametro nomb_cols debe ser una cadena de caracteres 
             o un arreglo de cadenas de caracteres "
-            = (is.character(nomb_cols) || is.array(nomb_cols)))
+            = (is.character(nomb_cols) && !is.array(nomb_cols)) ||
+              (!is.character(nomb_cols) && is.array(nomb_cols)))
   data_event_sex_semanaepi <- agrupar_cols_casos(data_event,
                                                  nomb_cols,
                                                  porcentaje)
@@ -442,14 +444,14 @@ agrupar_edad <- function(data_event,
                          nomb_col = "edad",
                          porcentaje = FALSE,
                          interval_edad = 10) {
-  stopifnot("El parametro data_event es obligatorio" = !missing(data_event))
-  stopifnot("El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event))
-  stopifnot("El parametro data_event no debe estar vacio" =
-              nrow(data_event) > 0)
-  stopifnot("El parametro nomb_col debe ser una cadena de caracteres"
-            = is.character(nomb_col))
-  stopifnot("El parametro interval_edad debe ser un numero"
+  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
+            "El parametro data_event debe ser un data.frame" =
+              is.data.frame(data_event),
+            "El parametro data_event no debe estar vacio" =
+              nrow(data_event) > 0,
+            "El parametro nomb_col debe ser una cadena de caracteres"
+            = is.character(nomb_col),
+            "El parametro interval_edad debe ser un numero"
             = is.numeric(interval_edad))
   data_event_edad <- agrupar_cols_casos(data_event,
                                         nomb_col,
@@ -492,15 +494,15 @@ agrupar_edad_sex <- function(data_event,
                              nomb_cols = c("edad", "sexo"),
                              porcentaje = TRUE,
                              interval_edad = 10) {
-  stopifnot("El parametro data_event es obligatorio" = !missing(data_event))
-  stopifnot("El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event))
-  stopifnot("El parametro data_event no debe estar vacio" =
-              nrow(data_event) > 0)
-  stopifnot("El parametro nomb_cols debe ser una cadena de caracteres
+  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
+            "El parametro data_event debe ser un data.frame" =
+              is.data.frame(data_event),
+            "El parametro data_event no debe estar vacio" =
+              nrow(data_event) > 0,
+            "El parametro nomb_cols debe ser una cadena de caracteres
             o un arreglo de cadenas de caracteres"
-            = (is.character(nomb_cols) || is.array(nomb_cols)))
-  stopifnot("El parametro porcentaje debe ser un booleano (TRUE o FALSE)" =
+            = (is.character(nomb_cols) || is.array(nomb_cols)),
+            "El parametro porcentaje debe ser un booleano (TRUE o FALSE)" =
               is.logical(porcentaje))
   data_event_edad_sex <- agrupar_cols_casos(data_event,
                                             nomb_cols,
@@ -541,14 +543,14 @@ agrupar_edad_sex <- function(data_event,
 agrupar_pob_especial <- function(data_event,
                                  nomb_col = "poblacion",
                                  porcentaje = TRUE) {
-  stopifnot("El parametro data_event es obligatorio" = !missing(data_event))
-  stopifnot("El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event))
-  stopifnot("El parametro data_event no debe estar vacio" =
-              nrow(data_event) > 0)
-  stopifnot("El parametro nomb_col debe ser una cadena de caracteres"
-            = is.character(nomb_col))
-  stopifnot("El parametro porcentaje debe ser un booleano (TRUE o FALSE)" =
+  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
+            "El parametro data_event debe ser un data.frame" =
+              is.data.frame(data_event),
+            "El parametro data_event no debe estar vacio" =
+              nrow(data_event) > 0,
+            "El parametro nomb_col debe ser una cadena de caracteres"
+            = is.character(nomb_col),
+            "El parametro porcentaje debe ser un booleano (TRUE o FALSE)" =
               is.logical(porcentaje))
   data_event_especial <- obtener_casos_pob_especial(data_event)
   data_event_especial_agrupada <- data.frame(poblacion =
@@ -582,14 +584,14 @@ agrupar_pob_especial <- function(data_event,
 agrupar_dpto <- function(data_event,
                          nomb_col = "cod_dpto_o",
                          porcentaje = FALSE) {
-  stopifnot("El parametro data_event es obligatorio" = !missing(data_event))
-  stopifnot("El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event))
-  stopifnot("El parametro data_event no debe estar vacio" =
-              nrow(data_event) > 0)
-  stopifnot("El parametro nomb_col debe ser una cadena de caracteres"
-            = is.character(nomb_col))
-  stopifnot("El parametro porcentaje debe ser un booleano (TRUE o FALSE)" =
+  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
+            "El parametro data_event debe ser un data.frame" =
+              is.data.frame(data_event),
+            "El parametro data_event no debe estar vacio" =
+              nrow(data_event) > 0,
+            "El parametro nomb_col debe ser una cadena de caracteres"
+            = is.character(nomb_col),
+            "El parametro porcentaje debe ser un booleano (TRUE o FALSE)" =
               is.logical(porcentaje))
   data_event_cods_dpto <- data_event
   nomb_col <- obtener_tip_ocurren_geo(data_event_cods_dpto$cod_eve[1])
@@ -597,8 +599,7 @@ agrupar_dpto <- function(data_event,
                                              nomb_cols = nomb_col[1])
   colnames(data_event_cods_dpto)[colnames(data_event_cods_dpto) ==
                                    nomb_col[1]] <- "id"
-  data_event_cods_dpto$id <- sapply(data_event_cods_dpto$id,
-                                    as.character)
+  data_event_cods_dpto$id <- as.character(data_event_cods_dpto$id)
   return(data_event_cods_dpto)
 }
 
@@ -631,14 +632,14 @@ agrupar_mpio <- function(data_event,
                          dpto = NULL,
                          nomb_col = "cod_mun_o",
                          porcentaje = FALSE) {
-  stopifnot("El parametro data_event es obligatorio" = !missing(data_event))
-  stopifnot("El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event))
-  stopifnot("El parametro data_event no debe estar vacio" =
-              nrow(data_event) > 0)
-  stopifnot("El parametro nomb_col debe ser una cadena de caracteres"
-            = is.character(nomb_col))
-  stopifnot("El parametro porcentaje debe ser un booleano (TRUE o FALSE)" =
+  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
+            "El parametro data_event debe ser un data.frame" =
+              is.data.frame(data_event),
+            "El parametro data_event no debe estar vacio" =
+              nrow(data_event) > 0,
+            "El parametro nomb_col debe ser una cadena de caracteres"
+            = is.character(nomb_col),
+            "El parametro porcentaje debe ser un booleano (TRUE o FALSE)" =
               is.logical(porcentaje))
   cols_geo_ocurrencia <- data.frame()
   cod_events <- unique(data_event$cod_eve)
@@ -652,17 +653,16 @@ agrupar_mpio <- function(data_event,
                                         nomb_cols = nomb_col[2])
   colnames(data_event_muns)[colnames(data_event_muns) ==
                               nomb_col[2]] <- "id"
-  data_event_muns$id <- sapply(data_event_muns$id,
-                               as.character)
+  data_event_muns$id <- as.character(data_event_muns$id)
   dept_data <- obtener_info_depts(dpto)
   dept_data <- dept_data[1, ]
   nombres_muns <- NULL
   geo_data <- import_geo_cods()
   for (id in data_event_muns$id) {
     nombres_muns <- append(nombres_muns,
-                           obtener_nombres_muns(geo_data,
-                                                dept_data$codigo_departamento,
-                                                id))
+                           obtener_nombres_mpios(geo_data,
+                                                 dept_data$codigo_departamento,
+                                                 id))
   }
   data_event_muns$nombre <- nombres_muns
   data_event_muns <-  dplyr::arrange(data_event_muns,
