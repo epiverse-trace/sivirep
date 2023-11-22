@@ -96,6 +96,8 @@ Los contribuyentes al paquete incluyen:
 
 -   [Hugo Gruson](https://github.com/Bisaloo) (contributor)
 
+-   [Andrés Moreno](https://github.com/andresmore) (contributor)
+
 -   [Laura Gómez-Bermeo](https://github.com/lgbermeo) (contributor to documentation)
 
 -   [Miguel Gámez](https://github.com/megamezl) (contributor)
@@ -191,7 +193,7 @@ Los datos de SIVIGILA son una fuente de información oficial altamente confiable
 `sivirep` proporciona una función genérica llamada `limpiar_data_sivigila` que envuelve diversas tareas para identificar y corregir errores, inconsistencias y discrepancias en los conjuntos de datos con el fin de mejorar su calidad y precisión. Este proceso puede incluir la eliminación de duplicados, la corrección de errores tipográficos, el reemplazo de valores faltantes y la validación de datos, entre otras tareas, como eliminar fechas improbables, limpiar códigos de geolocalización y estandarizar los nombres de las columnas y las categorías de edad.
 
 ```{r limpiar_data_sivigila}
-data_event_limp <- limpiar_data_sivigila(data_event = data_event, year = 2020)
+data_event_limp <- limpiar_data_sivigila(data_event = data_event)
 ```
 
 Las funciones de limpieza dentro de `limpiar_data_sivigila` se han recopilado y creado en base a la experiencia de epidemiólogos de campo. Estas pueden incluir funciones internas como:
