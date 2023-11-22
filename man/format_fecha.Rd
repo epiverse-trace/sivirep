@@ -4,7 +4,7 @@
 \alias{format_fecha}
 \title{Formatear fechas}
 \usage{
-format_fecha(data_event, format_fecha = "\%Y-\%m-\%d", nombres_col = c())
+format_fecha(data_event, format_fecha = "\%Y-\%m-\%d", nomb_cols = NULL)
 }
 \arguments{
 \item{data_event}{Un `data.frame` que contiene los datos
@@ -13,8 +13,9 @@ de un evento o enfermedad}
 \item{format_fecha}{Un `character` (cadena de caracteres)
 que contiene  el formato deseado de fecha}
 
-\item{nombres_col}{Un `character` (cadena de caracteres) que
-contiene los nombres de la columna a formatear}
+\item{nomb_cols}{Un `character` (cadena de caracteres) que
+contiene los nombres de la columna a formatear; su valor por defecto
+es `NULL`}
 }
 \value{
 Un `data.frame` con los datos con las fechas formateadas
@@ -27,5 +28,5 @@ data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 format_fecha(data_event = data_limpia,
              format_fecha = "\%Y-\%m-\%d",
-             nombres_col = c("ini_sin", "fec_hos"))
+             nomb_cols = c("ini_sin", "fec_hos"))
 }
