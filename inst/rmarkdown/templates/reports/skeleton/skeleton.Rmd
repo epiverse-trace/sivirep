@@ -162,11 +162,9 @@ sexo_mayor_casos <- obtener_fila_mas_casos(casos_sex)
 
 sexo_mayor <- c("femenino", porcentaje_femenino)
 sexo_menor <- c("masculino", porcentaje_masculino)
-if (!is.na(porcentaje_femenino) && !is.na(porcentaje_masculino)) {
-  if (porcentaje_femenino < porcentaje_masculino) {
-    sexo_mayor <- c("masculino", porcentaje_masculino)
-    sexo_menor <- c("femenino", porcentaje_femenino)
-  }
+if (isTRUE(porcentaje_femenino < porcentaje_masculino)) {
+  sexo_mayor <- c("masculino", porcentaje_masculino)
+  sexo_menor <- c("femenino", porcentaje_femenino)
 }
 ```
 
@@ -222,7 +220,7 @@ espacial_mayor_casos <- obtener_fila_mas_casos(dist_espacial_dpto)
 Los casos se distribuyen a lo largo de `r nrow(dist_espacial_dpto)` municipios del departamento de `r params$departmento`, teniendo un mayor reporte el municipio de `r stringr::str_to_title(espacial_mayor_casos$nombre)` con `r espacial_mayor_casos$casos` casos (Ver Figura 7).
 
 ```{r plot_distribution_municipios, fig.height = 15, fig.width = 10, fig.cap = "Distribucion de casos por municipio"}
-plot_spatial <- plot_muns(dist_espacial_dpto)
+plot_spatial <- plot_mpios(dist_espacial_dpto)
 plot_spatial
 ```
 
