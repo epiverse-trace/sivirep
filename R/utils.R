@@ -169,8 +169,9 @@ concatenar_vals_token <- function(vals,
                                   final_token = "y ") {
   stopifnot("El parametro vals es obligatorio" =
               !missing(vals),
-            "El parametro vals debe ser un arreglo" =
-              is.array(vals),
+            "El parametro vals debe ser una cadena de caracteres o
+            un arreglo de cadenas de caracteres"
+            = is.character(vals),
             "El parametro princ_token debe ser un cadena de caracteres"
             = is.character(princ_token),
             "El parametro final_token debe ser un cadena de caracteres"
@@ -193,7 +194,8 @@ concatenar_vals_token <- function(vals,
 #'
 #' Función que obtiene las columnas de ocurrencia geográfica de los
 #' datos de la enfermedad o evento
-#' @param cod_event Un `numeric` (numerico) que contiene el código de la
+#' @param cod_event Un `numeric` (numerico) o `character`
+#' (cadena de caracteres) que contiene el código de la
 #' enfermedad o evento
 #' @param nombre_event Un `character` (cadena de caracteres) con el nombre de
 #' la enfermedad o evento
@@ -203,22 +205,25 @@ concatenar_vals_token <- function(vals,
 #' obtener_tip_ocurren_geo(cod_event = 210)
 #' @export
 obtener_tip_ocurren_geo <- function(cod_event = NULL, nombre_event = NULL) {
-  stopifnot("El parametro cod_event es obligatorio" =
-              !missing(cod_event),
-            "El parametro cod_event debe ser numerico" =
-              is.numeric(cod_event),
-            "El parametro nombre_event es obligatorio"
-            = !missing(nombre_event),
-            "El parametro nombre_event debe ser un cadena de caracteres"
-            = is.character(nombre_event))
   geo_occurren <- config::get(file =
                                 system.file("extdata",
                                             "config.yml",
                                             package = "sivirep"),
                               "occurrence_geo_diseases")
   col_ocurren <- c("cod_dpto_o", "cod_mun_o", "ocurrencia")
-  param_busqueda <- cod_event
+  param_busqueda <- NULL
+  if (!is.null(cod_event)) {
+      param_busqueda <- cod_event
+      stopifnot("El parametro cod_event es obligatorio" =
+              !missing(cod_event),
+            "El parametro cod_event debe ser una cadena de caracteres o
+            numerico" =
+              (is.numeric(cod_event) && !is.character(cod_event)) ||
+              (!is.numeric(cod_event) && is.character(cod_event)))
+  }
   if (!is.null(nombre_event)) {
+    stopifnot("El parametro nombre_event debe ser un cadena de caracteres"
+            = is.character(nombre_event))
     param_busqueda <- nombre_event
   }
   if (length(grep(param_busqueda, geo_occurren$cod_dpto_n)) == 1
@@ -312,9 +317,11 @@ obtener_dptos <- function() {
 #' Función que obtiene el nombre del municipio
 #' @param data_geo Un `data.frame` que contiene los códigos
 #' geográficos (departamentos y municipios de Colombia)
-#' @param cod_dpto Un `numeric` (numerico) que contiene el código
+#' @param cod_dpto Un `numeric` (numerico) o `character`
+#' (cadena de caracteres) que contiene el código
 #' del departamento
-#' @param cod_mpio Un `numeric` (numerico) que contiene el código
+#' @param cod_mpio Un `numeric` (numerico) o `character`
+#' (cadena de caracteres) que contiene el código
 #' del municipio
 #' @return Un `character` (cadena de caracteres) con el nombre del municipio
 #' @examples
@@ -332,12 +339,16 @@ obtener_nombres_mpios <- function(data_geo, cod_dpto, cod_mpio) {
               nrow(data_geo) > 0,
             "El parametro cod_dpto es obligatorio" =
               !missing(cod_dpto),
-            "El parametro cod_dpto debe ser numerico"
-            = is.numeric(cod_dpto),
+            "El parametro cod_dpto debe ser una cadena de caracteres
+            o numerico" =
+            (is.numeric(cod_dpto) && !is.character(cod_dpto)) ||
+            (!is.numeric(cod_dpto) && is.character(cod_dpto)),
             "El parametro cod_mpio es obligatorio" =
               !missing(cod_mpio),
-            "El parametro cod_mpio debe ser numerico"
-            = is.numeric(cod_mpio))
+            "El parametro cod_mpio debe ser una cadena de caracteres
+            o numerico" =
+            (is.numeric(cod_mpio) && !is.character(cod_mpio)) ||
+            (!is.numeric(cod_mpio) && is.character(cod_mpio)))
   cod_dpto <- as.character(cod_dpto)
   if (startsWith(cod_dpto, "0")) {
     cod_dpto <- substr(cod_dpto, 2, 2)

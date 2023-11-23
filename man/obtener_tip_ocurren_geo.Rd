@@ -8,7 +8,8 @@ enfermedad o evento}
 obtener_tip_ocurren_geo(cod_event = NULL, nombre_event = NULL)
 }
 \arguments{
-\item{cod_event}{Un `numeric` (numerico) que contiene el código de la
+\item{cod_event}{Un `numeric` (numerico) o `character`
+(cadena de caracteres) que contiene el código de la
 enfermedad o evento}
 
 \item{nombre_event}{Un `character` (cadena de caracteres) con el nombre de
