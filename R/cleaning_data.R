@@ -311,8 +311,8 @@ limpiar_encabezado <- function(data_event) {
 #' Función que limpia las fechas de los datos de una enfermedad o evento
 #' @param data_event Un `data.frame` que contiene los datos de
 #' una enfermedad o evento
-#' @param year Un `numeric` (numerico) que contiene el año de los datos
-#' de una enfermedad o evento
+#' @param year Un `numeric` (numerico) o `character` (cadena de caracteres)
+#' que contiene el año de los datos de una enfermedad o evento
 #' @param format_fecha Un `character` (cadena de caracteres) que contiene
 #' el formato deseado de fecha; su valor por defecto es "\%AAAA-\%MM-\%DD"
 #' @param nomb_col Un `character` (cadena de caracteres) que contiene
@@ -340,22 +340,22 @@ limpiar_fecha_event <- function(data_event,
             "El parametro data_event no debe estar vacio" =
               nrow(data_event) > 0,
             "El parametro year es obligatorio" = !missing(year),
-            "El parametro year debe ser numerico" =
-              is.numeric(year),
+            "El parametro year debe ser una cadena de caracteres
+            o numerico" =
+            (is.numeric(year) && !is.character(year)) ||
+            (!is.numeric(year) && is.character(year)),
             "El parametro format_fecha debe ser una cadena de caracteres" =
               is.character(format_fecha),
             "El parametro nomb_col debe ser una cadena de caracteres" =
-              is.character(nomb_col),
-            "El parametro col_comp no debe estar vacio" =
-              is.null(col_comp),
-            "El parametro col_comp debe ser una cadena de caracteres" =
-              is.character(col_comp))
+              is.character(nomb_col))
   data_event_fecha_ini <- data_event
   if (!is.null(col_comp)) {
     data_event_fecha_ini <-
       remove_error_fecha(data_event_fecha_ini,
                          nomb_col,
                          col_comp)
+    stopifnot("El parametro col_comp debe ser una cadena de caracteres" =
+              is.character(col_comp))
   }
   data_event_fecha_ini[order(data_event_fecha_ini[[nomb_col]],
                              decreasing = TRUE), ]

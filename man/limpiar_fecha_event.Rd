@@ -16,8 +16,8 @@ limpiar_fecha_event(
 \item{data_event}{Un `data.frame` que contiene los datos de
 una enfermedad o evento}
 
-\item{year}{Un `numeric` (numerico) que contiene el año de los datos
-de una enfermedad o evento}
+\item{year}{Un `numeric` (numerico) o `character` (cadena de caracteres)
+que contiene el año de los datos de una enfermedad o evento}
 
 \item{format_fecha}{Un `character` (cadena de caracteres) que contiene
 el formato deseado de fecha; su valor por defecto es "\%AAAA-\%MM-\%DD"}
