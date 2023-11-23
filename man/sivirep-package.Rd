@@ -19,12 +19,13 @@ Authors:
 Other contributors:
 \itemize{
   \item Hugo Gruson \email{hugo.gruson+R@normalesup.org} (\href{https://orcid.org/0000-0002-4094-1476}{ORCID}) [contributor]
-  \item Laura GC3mez Bermeo \email{gomezblaura@javeriana.edu.co} (\href{https://orcid.org/0000-0003-4028-2893}{ORCID}) [contributor]
-  \item Miguel GC!mez [contributor]
-  \item Jennifer MC)ndez-Romero [contributor]
-  \item Johan CalderC3n [contributor]
-  \item Lady FlC3rez-Tapiero [contributor]
-  \item VerC3nica Tangarife-Arredondo [contributor]
+  \item Laura Gómez Bermeo \email{gomezblaura@javeriana.edu.co} (\href{https://orcid.org/0000-0003-4028-2893}{ORCID}) [contributor]
+  \item Andrés Moreno \email{ad.morenob@javeriana.edu.co} (\href{https://orcid.org/0000-0001-9266-731X}{ORCID}) [contributor]
+  \item Miguel Gámez [contributor]
+  \item Jennifer Méndez-Romero [contributor]
+  \item Johan Calderón [contributor]
+  \item Lady Flórez-Tapiero [contributor]
+  \item Verónica Tangarife-Arredondo [contributor]
 }
 
 }
