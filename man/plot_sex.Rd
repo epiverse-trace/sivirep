@@ -12,21 +12,21 @@ plot_sex(
 )
 }
 \arguments{
-\item{data_agrupada}{Un data fram que contiene los datos de la
+\item{data_agrupada}{Un `data.frame` que contiene los datos de la
 enfermedad o evento agrupados}
 
-\item{nomb_col}{Un character (cadena de caracteres) con el
+\item{nomb_col}{Un `character` (cadena de caracteres) con el
 nombre de la columna de los datos agrupados de la enfermedad
-o evento que contiene el sexo; su valor por defecto es "sexo"}
+o evento que contiene el sexo; su valor por defecto es `"sexo"`}
 
 \item{porcentaje}{Un boolean (TRUE/FALSE) que indica si los datos
-tienen porcentajes; su valor por defecto es TRUE}
+tienen porcentajes; su valor por defecto es `TRUE`}
 
-\item{fuente_data}{Un character (cadena de caracteres) que contiene la
-leyenda o fuente de información de los datos; su valor por defecto es NULL}
+\item{fuente_data}{Un `character` (cadena de caracteres) que contiene la
+leyenda o fuente de información de los datos; su valor por defecto es `NULL`}
 }
 \value{
-Un plot o gráfico de distribución de casos por sexo
+Un `plot` o gráfico de distribución de casos por sexo
 }
 \description{
 Función que genera el gráfico de distribución de casos por sexo

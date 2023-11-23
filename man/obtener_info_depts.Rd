@@ -4,17 +4,17 @@
 \alias{obtener_info_depts}
 \title{Obtener información geográfica de los datos de la enfermedad o evento}
 \usage{
-obtener_info_depts(dpto = NULL, munpio = NULL)
+obtener_info_depts(dpto = NULL, mpio = NULL)
 }
 \arguments{
-\item{dpto}{Un character (cadena de caracteres) que contiene el nombre
-del departamento; su valor por defecto es NULL}
+\item{dpto}{Un `character` (cadena de caracteres) que contiene el nombre
+del departamento; su valor por defecto es `NULL`}
 
-\item{munpio}{Un character (cadena de caracteres) que contiene los datos del
-municipio; su valor por defecto es NULL}
+\item{mpio}{Un `character` (cadena de caracteres) que contiene los datos del
+municipio; su valor por defecto es `NULL`}
 }
 \value{
-Un data frame con la información geográfica de los datos de
+Un `data.frame` con la información geográfica de los datos de
 la enfermedad o evento
 }
 \description{

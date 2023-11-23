@@ -7,32 +7,32 @@
 plot_fecha_inisintomas(
   data_agrupada,
   nomb_col = "ini_sin",
-  uni_marca = "mes",
+  uni_marca = "semanaepi",
   tipo = "barras",
   fuente_data = NULL
 )
 }
 \arguments{
-\item{data_agrupada}{Un data frame que contiene los datos de la enfermedad
+\item{data_agrupada}{Un `data.frame` que contiene los datos de la enfermedad
 o evento agrupados}
 
-\item{nomb_col}{Un character (cadena de caracteres) que contiene el
+\item{nomb_col}{Un `character` (cadena de caracteres) que contiene el
 nombre de la columna en los datos de la enfermedad o evento
-agrupados que contiene las fechas de inicio de síntomas; su valor por
-defecto es "ini_sin"}
+agrupados con las fechas de inicio de síntomas; su valor por
+defecto es `"ini_sin"`}
 
-\item{uni_marca}{Un character (cadena de caracteres) que contiene la unidad
-de las marcas del gráfico (dia, mes o año);
-su valor por defecto es "meses"}
+\item{uni_marca}{Un `character` (cadena de caracteres) que contiene la unidad
+de las marcas del gráfico (`"dia"`, `"semanaepi"` y `"mes"``);
+su valor por defecto es `"semanaepi"`}
 
-\item{tipo}{Un character (cadena de caracteres) que contiene el tipo de
-grafico (barras o tendencia); su valor por defecto es "barras"}
+\item{tipo}{Un `character` (cadena de caracteres) que contiene el tipo de
+grafico (barras o tendencia); su valor por defecto es `"barras"`}
 
-\item{fuente_data}{Un character (cadena de caracteres) que contiene la
-leyenda o fuente de información de los datos; su valor por defecto es NULL}
+\item{fuente_data}{Un `character` (cadena de caracteres) que contiene la
+leyenda o fuente de información de los datos; su valor por defecto es `NULL`}
 }
 \value{
-Un plot o gráfico de la distribución de casos por fecha de inicio
+Un `plot` o gráfico de la distribución de casos por fecha de inicio
 de síntomas
 }
 \description{
