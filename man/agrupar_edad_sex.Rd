@@ -6,29 +6,29 @@
 \usage{
 agrupar_edad_sex(
   data_event,
-  col_nombres = c("edad", "sexo"),
+  nomb_cols = c("edad", "sexo"),
   porcentaje = TRUE,
   interval_edad = 10
 )
 }
 \arguments{
-\item{data_event}{Un data frame que contiene los datos de la enfermedad
+\item{data_event}{Un `data.frame` que contiene los datos de la enfermedad
 o evento}
 
-\item{col_nombres}{Un character (cadena de caracteres) o
-array (arreglo) de character que contiene el nombre de
+\item{nomb_cols}{Un `character` (cadena de caracteres) o
+`array (arreglo) de character` que contiene el nombre de
 la(s) columna(s) de los datos de la enfermedad o evento que contienen
-las edades y el sexo; su valor por defecto es c("edad", "sexo")}
+las edades y el sexo; su valor por defecto es `c("edad", "sexo")`}
 
-\item{porcentaje}{Un boolean (TRUE o FALSE) que indica si
+\item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica si
 es necesario agregar un porcentaje de casos como una columna; su valor
 por defecto es `TRUE`}
 
-\item{interval_edad}{Un numeric (numerico) que contiene el intervalo del
+\item{interval_edad}{Un `numeric` (numerico) que contiene el intervalo del
 rango de edades; su valor por defeccto es `10`}
 }
 \value{
-Un data frame con los datos de enfermedades agrupados
+Un `data.frame` con los datos de enfermedades agrupados
 por edades, sexo y número de casos
 }
 \description{
@@ -37,9 +37,8 @@ sexo y número de casos
 }
 \examples{
 data(dengue2020)
-data_event <- dengue2020
-data_event <- limpiar_data_sivigila(data_event, 2020)
-agrupar_edad_sex(data_event = data_event,
-                 col_nombres = c("edad", "sexo"),
+data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+agrupar_edad_sex(data_event = data_limpia,
+                 nomb_cols = c("edad", "sexo"),
                  porcentaje = TRUE)
 }

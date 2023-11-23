@@ -20,6 +20,5 @@ enfermedad o evento del SIVIGILA
 }
 \examples{
 data(dengue2020)
-data_event <- dengue2020
-data_event <- limpiar_encabezado(data_event = data_event)
+data_limpia <- limpiar_encabezado(data_event = dengue2020)
 }

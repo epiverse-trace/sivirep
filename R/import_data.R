@@ -1,28 +1,8 @@
-#' Importar datos resumidos del SIVIGILA
-#'
-#' Función que importa datos resumidos de SIVIGILA a través de una URL
-#' @param url_data Un character (cadena de caracteres) que contiene
-#' la URL de los datos de SIVIGILA; su valor por defecto es NULL
-#' @return Un `data.frame` con los datos descargados
-#' @examples
-#' import_data_resumen_sivigila()
-#' @export
-import_data_resumen_sivigila <- function(url_data = NULL) {
-  if (is.null(url_data)) {
-    url_data <- config::get(file =
-                              system.file("extdata", "config.yml",
-                                          package = "sivirep"),
-                            "sivigila_open_data_path")
-  }
-  data <- utils::read.csv(url_data)
-  return(data)
-}
-
 #' Importar datos geográficos de Colombia
 #'
 #' Función que importa los nombres y códigos de los departamentos
 #' y municipios de Colombia a través de una URL
-#' @param url_data Un character (cadena de caracteres) que contiene
+#' @param url_data Un `character` (cadena de caracteres) que contiene
 #' la URL de los datos geográficos; su valor por defecto es NULL
 #' @return Un `data.frame` con los nombres y códigos de los departamentos
 #' y municipios de Colombia
@@ -37,70 +17,13 @@ import_geo_cods <- function(url_data = NULL) {
                                           "config.yml",
                                           package = "sivirep"),
                             "geo_data_path")
+  } else {
+    stopifnot("El parametro url_data debe ser una cadena de caracteres"
+              = is.character(url_data))
   }
   data <- utils::read.csv(url_data)
   names(data) <- epitrix::clean_labels(names(data))
   return(data)
-}
-
-#' Importar datos con un separador específico
-#'
-#' Función que identifica el separador que tiene
-#' los datos para tabularla
-#' @param path_data Un character (cadena de caracteres) que contiene
-#' la URL de los datos de SIVIGILA
-#' @param cache Un boolean (TRUE o FALSE) que indica si los datos descargados
-#' deben ser almacenados en caché; su valor por defecto es TRUE
-#' @return Un `data.frame` con los datos
-#' @examples
-#' import_sep_data()
-#' @export
-import_sep_data <- function(path_data = NULL, cache = TRUE) {
-  data <- data.frame()
-  extdata_path <- system.file("extdata", package = "sivirep")
-  if (!is.null(path_data)) {
-    start_file_name <- stringr::str_locate(path_data, "Microdatos/")[2] + 1
-    end_file_name <- stringr::str_locate(path_data, "value")[1] - 5
-    file_name <- stringr::str_sub(path_data, start_file_name, end_file_name)
-    file_path <- file.path(extdata_path, file_name)
-    if (!file.exists(file_path) || !cache) {
-      file_request <- httr2::request(path_data)
-      file_response <- httr2::req_perform(file_request)
-      if (httr2::resp_status(file_response) == 200) {
-        file_content <- httr2::resp_body_raw(file_response)
-        con_file <- file(file_path, "wb")
-        if (length(file_content) > 0) {
-          writeBin(file_content, con_file)
-        }
-        close(con_file)
-      }
-    }
-    if (stringr::str_detect(file_name, ".xls")) {
-      data <- readxl::read_excel(file_path)
-    }
-  }
-  return(data)
-}
-
-#' Importar datos de una enfermedad o evento para construir
-#' su canal endémico
-#'
-#' Función que importa los datos necesarios de una enfermedad
-#' o evento para construir el canal endémico desde la fuente
-#' de SIVIGILA
-#' @param nombre_event Un character (cadena de caracteres) que
-#' contiene el nombre de la enfermedad o evento
-#' @param year Un numeric (numerico) que contiene el año
-#' de referencia para la descarga de los datos
-#' @return Un `data.frame` con los datos de los últimos cinco años
-#' de una enfermedad
-#' @examples
-#' import_data_canal_endemico(nombre_event = "MALARIA",
-#'                            year = 2020)
-#' @export
-import_data_canal_endemico <- function(nombre_event, year) {
-  event_data <- data.frame()
-  return(event_data)
 }
 
 #' Importar las enfermedades y años disponibles disposibles
@@ -128,8 +51,8 @@ list_events <- function() {
   children <- xml2::xml_children(children)
   children_text <- xml2::xml_text(children)
   i <- 2
-  name_diseases <- c()
-  years_diseases <- c()
+  name_diseases <- NULL
+  years_diseases <- NULL
   children <- children[-base::seq(3, length(children), 3)]
   children_text <- children_text[-base::seq(3, length(children_text), 3)]
   while (i < base::length(children)) {
@@ -152,7 +75,8 @@ list_events <- function() {
                                                    "config.yml",
                                                    package = "sivirep"),
                                      "additional_diseases")
-  name_diseases <- base::append(name_diseases, additional_diseases)
+  name_diseases <- base::append(stringr::str_to_title(name_diseases),
+                                additional_diseases)
   years_diseases <- base::append(years_diseases, c("", ""))
   list_events <- data.frame(enfermedad = name_diseases,
                             aa = years_diseases)
@@ -166,23 +90,30 @@ list_events <- function() {
 #'
 #' Función que obtiene los datos de una enfermedad por año
 #' desde los microdatos de SIVIGILA
-#' @param year Un numeric (numerico) con el año deseado para la descarga
+#' @param year Un `numeric` (numerico) con el año deseado para la descarga
 #' de los datos
-#' @param nombre_event Un character (cadena de caracteres) con el nombre de
+#' @param nombre_event Un `character` (cadena de caracteres) con el nombre de
 #' la enfermedad o evento
-#' @param cache Un boolean (TRUE o FALSE) que indica si los datos descargados
+#' @param cache Un `boolean` (TRUE o FALSE) que indica si los datos descargados
 #' deben ser almacenados en caché; su valor por defecto es TRUE
 #' @return Un `data.frame` con los datos de la enfermedad o evento seleccionado
 #' por año desde los microdatos de SIVIGILA
 #' @examples
-#' import_data_event(2018, "DENGUE")
+#' import_data_event(nombre_event = "DENGUE",
+#'                   year = 2020,
+#'                   cache = TRUE)
 #' @export
-import_data_event <- function(year,
-                              nombre_event,
+import_data_event <- function(nombre_event,
+                              year,
                               cache = TRUE) {
-  stopifnot("El parametro year debe ser numerico" = is.numeric(year))
-  stopifnot("El parametro nombre_event debe ser una cadena de caracteres"
-            = is.character(nombre_event))
+  stopifnot("El parametro year no debe estar vacio" = !missing(year),
+            "El parametro year debe ser numerico" = is.numeric(year),
+            "El parametro nombre_event no debe estar vacio"
+            = !missing(nombre_event),
+            "El parametro nombre_event debe ser una cadena de caracteres"
+            = is.character(nombre_event),
+            "El parametro cache debe ser un booleano"
+            = is.logical(cache))
   data_event <- data.frame()
   list_events <- list_events()
   nombre_event <- stringr::str_to_title(nombre_event)
@@ -191,14 +122,19 @@ import_data_event <- function(year,
                                                         "config.yml",
                                                         package = "sivirep"),
                                           "related_diseases")
+  cols_remover <- config::get(file =
+                                system.file("extdata",
+                                            "config.yml",
+                                            package = "sivirep"),
+                              "cols_remover")
   grupo_events <-
     list_events[which(stringr::str_detect(list_events$enfermedad,
                                           substr(nombre_event,
                                                  1,
                                                  nchar(nombre_event) - 1))), ]
   stopifnot("La enfermedad o evento no esta disponible para su descarga"
-            = !(is.null(grupo_events) || nrow(grupo_events) == 0))
-  stopifnot("El year no esta disponible para su descarga"
+            = !(is.null(grupo_events) || nrow(grupo_events) == 0),
+            "El year no esta disponible para su descarga"
             = stringr::str_detect(grupo_events$aa,
                                   as.character(year)))
   if (length(list_events_relacionados) > 0) {
@@ -207,49 +143,96 @@ import_data_event <- function(year,
       grupo_events_relacionados <-
         list_events[which(list_events$enfermedad == event), ]
       if (is.null(grupo_events) || nrow(grupo_events) == 0) {
-        warning(paste0("La enfermedad o evento relacionado: ",
-                       event,
-                       "no esta disponible para su descarga"))
+        warning("La enfermedad o evento relacionado: ",
+                event,
+                "no esta disponible para su descarga")
       } else if (stringr::str_detect(grupo_events_relacionados$aa,
                                      as.character(year))) {
-        warning(paste0("El year: ", year,
-                       "de la enfermedad o evento relacionado: ",
-                       event,
-                       "no esta disponible para su descarga"))
+        warning("El year: ", year,
+                "de la enfermedad o evento relacionado: ",
+                event,
+                "no esta disponible para su descarga")
       } else {
         grupo_events <- rbind(grupo_events, grupo_events_relacionados)
       }
     }
   }
   for (event in grupo_events$enfermedad) {
-    if (event != "MALARIA") {
+    if (event != "Malaria") {
       data_url <- get_path_data_disease_year(year, event)
       data_import <- import_sep_data(data_url, cache)
       data_import <- limpiar_encabezado(data_import)
       data_import$fec_def <- as.character(data_import$fec_def)
-      data_event <- rbind(data_event, data_import)
+      nombre_cols <- names(data_import)
+      nombre_cols <- nombre_cols[-which(nombre_cols %in% cols_remover)]
+      data_event <- rbind(data_event, data_import[, nombre_cols])
     }
   }
   return(data_event)
 }
 
+#' Importar datos con un separador específico
+#'
+#' Función que identifica el separador que tiene
+#' los datos para tabularla
+#' @param path_data Un `character` (cadena de caracteres) que contiene
+#' la URL de los datos de SIVIGILA
+#' @param cache Un `boolean` (TRUE o FALSE) que indica si los datos descargados
+#' deben ser almacenados en caché; su valor por defecto es TRUE
+#' @return Un `data.frame` con los datos
+#' @keywords internal
+import_sep_data <- function(path_data = NULL, cache = TRUE) {
+  stopifnot("El parametro path_data debe ser una cadena de caracteres" =
+              is.character(path_data),
+            "El parametro cache debe ser un booleano"
+            = is.logical(cache))
+  data <- data.frame()
+  extdata_path <- system.file("extdata", package = "sivirep")
+  if (!is.null(path_data)) {
+    start_file_name <- stringr::str_locate(path_data,
+                                           stringr::fixed("Microdatos/"))[2] + 1
+    end_file_name <- stringr::str_locate(path_data,
+                                         stringr::fixed("value"))[1] - 5
+    file_name <- stringr::str_sub(path_data, start_file_name, end_file_name)
+    file_path <- file.path(extdata_path, file_name)
+    if (!file.exists(file_path) || !cache) {
+      file_request <- httr2::request(path_data)
+      file_response <- httr2::req_perform(file_request)
+      if (httr2::resp_status(file_response) == 200) {
+        file_content <- httr2::resp_body_raw(file_response)
+        con_file <- file(file_path, "wb")
+        if (length(file_content) > 0) {
+          writeBin(file_content, con_file)
+        }
+        close(con_file)
+      }
+    }
+    if (stringr::str_detect(file_name, ".xls")) {
+      data <- readxl::read_excel(file_path)
+    }
+  }
+  return(data)
+}
+
 #' Obtener el nombre del archivo desde una URL
 #'
 #' Función que obtiene el nombre del archivo a descargar desde una URL o ruta
-#' @param ruta Un character (cadena de caracteres) con la ruta o URL
+#' @param ruta Un `character` (cadena de caracteres) con la ruta o URL
 #' de descarga
-#' @return Un character (cadena de caracteres) con el nombre del
+#' @return Un `character` (cadena de caracteres) con el nombre del
 #' archivo a descargar
-#' @examples
-#' obtener_ruta_descarga("DENGUE")
-#' @export
+#' @keywords internal
 obtener_ruta_descarga <- function(ruta) {
+  stopifnot("El parametro ruta no debe estar vacio"
+            = !missing(ruta),
+            "El parametro ruta debe ser una cadena de caracteres"
+            = is.character(ruta))
   nombre_archivo <- strsplit(ruta,
                              config::get(file =
                                            system.file("extdata", "config.yml",
                                                        package = "sivirep"),
                                          "name_file_split"))
   nombre_archivo <- strsplit(nombre_archivo[[1]][2],
-                             "')")[[1]][1] %>% as.character()
+                             "')", fixed = TRUE)[[1]][1] %>% as.character()
   return(nombre_archivo)
 }

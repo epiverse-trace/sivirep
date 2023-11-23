@@ -7,11 +7,11 @@
 obtener_cods_dpto(geo_cods)
 }
 \arguments{
-\item{geo_cods}{Un data frame que contiene los códigos geográficos
+\item{geo_cods}{Un `data.frame` que contiene los códigos geográficos
 (departamentos y municipios de Colombia)}
 }
 \value{
-Un data frame con los datos de los departamentos con
+Un `data.frame` con los datos de los departamentos con
 código y nombre
 }
 \description{

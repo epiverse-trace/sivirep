@@ -4,13 +4,13 @@
 \alias{plot_edad}
 \title{Generar gráfico de distribución de casos por edad}
 \usage{
-plot_edad(data_agrupada, col_nombre = "edad", fuente_data = NULL)
+plot_edad(data_agrupada, nomb_col = "edad", fuente_data = NULL)
 }
 \arguments{
 \item{data_agrupada}{Un data frame que contiene los datos de la enfermedad
 o evento agrupados}
 
-\item{col_nombre}{Un character (cadena de carácteres) con el nombre de
+\item{nomb_col}{Un character (cadena de carácteres) con el nombre de
 la columna de los datos agrupados de la enfermedad o evento que contiene
 las edades; su valor por defecto es "edad"}
 
@@ -25,11 +25,10 @@ Función que genera el gráfico de distribución de casos por edad
 }
 \examples{
 data(dengue2020)
-data_event <- dengue2020
-data_event <- limpiar_data_sivigila(data_event, 2020)
-data_agrupada <- agrupar_edad(data_event,
-                              col_nombre = "edad",
+data_limpia <- limpiar_data_sivigila(dengue2020)
+data_agrupada <- agrupar_edad(data_event = data_limpia,
+                              nomb_col = "edad",
                               porcentaje = FALSE)
 plot_edad(data_agrupada = data_agrupada,
-          col_nombre = "edad")
+          nomb_col = "edad")
 }

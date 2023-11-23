@@ -7,19 +7,19 @@
 convert_edad(data_event, col_edad = "edad", col_uni_med = "uni_med")
 }
 \arguments{
-\item{data_event}{Un data frame que contiene los datos de una
+\item{data_event}{Un `data.frame` que contiene los datos de una
 enfermedad o evento}
 
-\item{col_edad}{Un character (cadena de caracteres) con el nombre
+\item{col_edad}{Un `character` (cadena de caracteres) con el nombre
 de la columna en los datos de una enfermedad o evento que
 contiene las edades; su valor por defecto es edad}
 
-\item{col_uni_med}{Un character (cadena de caracteres) con el nombre
+\item{col_uni_med}{Un `character` (cadena de caracteres) con el nombre
 de la columna en los datos de una enfermedad o evento que contiene
 las unidades de medida; su valor por defecto es uni_med}
 }
 \value{
-Un data framecon las edades en años según las unidades de medida
+Un `data.frame` con las edades en años según las unidades de medida
 del SIVIGILA
 }
 \description{
@@ -28,9 +28,8 @@ SIVIGILA
 }
 \examples{
 data(dengue2020)
-data_event <- dengue2020
-data_event <- limpiar_data_sivigila(data_event, 2020)
-convert_edad(data_event = data_event,
+data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+convert_edad(data_event = data_limpia,
              col_edad = "edad",
              col_uni_med = "uni_med")
 }

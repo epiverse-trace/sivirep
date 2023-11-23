@@ -4,32 +4,31 @@
 \alias{obtener_fila_mas_casos}
 \title{Obtener fila con mayor número de casos}
 \usage{
-obtener_fila_mas_casos(data_event, col_name = "casos", porcentaje = TRUE)
+obtener_fila_mas_casos(data_event, nomb_col = "casos", porcentaje = TRUE)
 }
 \arguments{
-\item{data_event}{Un data frame que contiene los datos de la
+\item{data_event}{Un `data.frame` que contiene los datos de la
 enfermedad o evento}
 
-\item{col_name}{Un character (cadena de caracteres) con el
+\item{nomb_col}{Un `character` (cadena de caracteres) con el
 nombre de la columna de los datos de la enfermedad o evento que
 contiene el número de casos}
 
-\item{porcentaje}{Un boolean (TRUE/FALSE) que indica si se
+\item{porcentaje}{Un `boolean` (TRUE/FALSE) que indica si se
 requiere agregar un porcentaje de casos como columna}
 }
 \value{
-Un data frame que contiene la fila con mayor número de casos
+Un `data.frame` que contiene la fila con mayor número de casos
 }
 \description{
 Función que obtiene la fila con el mayor número de casos
 }
 \examples{
 data(dengue2020)
-data_event <- dengue2020
-data_event <- limpiar_data_sivigila(data_event, 2020)
-casos_sex <- agrupar_sex(data_event,
+data_limpia <- limpiar_data_sivigila(dengue2020)
+casos_sex <- agrupar_sex(data_event = data_limpia,
                          porcentaje = TRUE)
 obtener_fila_mas_casos(data_event = casos_sex,
-                       col_name = "casos",
+                       nomb_col = "casos",
                        porcentaje = TRUE)
 }

@@ -7,7 +7,7 @@
 import_geo_cods(url_data = NULL)
 }
 \arguments{
-\item{url_data}{Un character (cadena de caracteres) que contiene
+\item{url_data}{Un `character` (cadena de caracteres) que contiene
 la URL de los datos geográficos; su valor por defecto es NULL}
 }
 \value{
