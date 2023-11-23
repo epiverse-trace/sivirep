@@ -58,7 +58,7 @@ por fecha de inicio de síntomas</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plot_fecha_inisintomas</span><span class="op">(</span></span>
 <span>  <span class="va">data_agrupada</span>,</span>
 <span>  nomb_col <span class="op">=</span> <span class="st">"ini_sin"</span>,</span>
-<span>  uni_marca <span class="op">=</span> <span class="st">"mes"</span>,</span>
+<span>  uni_marca <span class="op">=</span> <span class="st">"semanaepi"</span>,</span>
 <span>  tipo <span class="op">=</span> <span class="st">"barras"</span>,</span>
 <span>  fuente_data <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -67,38 +67,38 @@ por fecha de inicio de síntomas</p>
     <div class="section level2">
     <h2 id="argumentos">Argumentos<a class="anchor" aria-label="anchor" href="#argumentos"></a></h2>
     <dl><dt>data_agrupada</dt>
-<dd><p>Un data frame que contiene los datos de la enfermedad
+<dd><p>Un `data.frame` que contiene los datos de la enfermedad
 o evento agrupados</p></dd>
 
 
 <dt>nomb_col</dt>
-<dd><p>Un character (cadena de caracteres) que contiene el
+<dd><p>Un `character` (cadena de caracteres) que contiene el
 nombre de la columna en los datos de la enfermedad o evento
-agrupados que contiene las fechas de inicio de síntomas; su valor por
-defecto es "ini_sin"</p></dd>
+agrupados con las fechas de inicio de síntomas; su valor por
+defecto es `"ini_sin"`</p></dd>
 
 
 <dt>uni_marca</dt>
-<dd><p>Un character (cadena de caracteres) que contiene la unidad
-de las marcas del gráfico (dia, mes o año);
-su valor por defecto es "meses"</p></dd>
+<dd><p>Un `character` (cadena de caracteres) que contiene la unidad
+de las marcas del gráfico (`"dia"`, `"semanaepi"` y `"mes"``);
+su valor por defecto es `"semanaepi"`</p></dd>
 
 
 <dt>tipo</dt>
-<dd><p>Un character (cadena de caracteres) que contiene el tipo de
-grafico (barras o tendencia); su valor por defecto es "barras"</p></dd>
+<dd><p>Un `character` (cadena de caracteres) que contiene el tipo de
+grafico (barras o tendencia); su valor por defecto es `"barras"`</p></dd>
 
 
 <dt>fuente_data</dt>
-<dd><p>Un character (cadena de caracteres) que contiene la
-leyenda o fuente de información de los datos; su valor por defecto es NULL</p></dd>
+<dd><p>Un `character` (cadena de caracteres) que contiene la
+leyenda o fuente de información de los datos; su valor por defecto es `NULL`</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="valor">Valor<a class="anchor" aria-label="anchor" href="#valor"></a></h2>
     
 
-<p>Un plot o gráfico de la distribución de casos por fecha de inicio
+<p>Un `plot` o gráfico de la distribución de casos por fecha de inicio
 de síntomas</p>
     </div>
 

@@ -60,34 +60,34 @@ casos de una enfermedad o evento</p>
 <span>  col_codigos <span class="op">=</span> <span class="st">"id"</span>,</span>
 <span>  fuente_data <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  dpto <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  munpio <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  mpio <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="argumentos">Argumentos<a class="anchor" aria-label="anchor" href="#argumentos"></a></h2>
     <dl><dt>data_agrupada</dt>
-<dd><p>Un data frame que contiene los datos de la enfermedad
+<dd><p>Un `data.frame` que contiene los datos de la enfermedad
 agrupados por departamento y número de casos</p></dd>
 
 
 <dt>col_codigos</dt>
-<dd><p>Un character (cadena de caracteres) que contiene el
+<dd><p>Un `character` (cadena de caracteres) que contiene el
 nombre de la columna para unir con el archivo de forma (shape file)</p></dd>
 
 
 <dt>fuente_data</dt>
-<dd><p>Un character (cadena de caracteres) que contiene la
+<dd><p>Un `character` (cadena de caracteres) que contiene la
 leyenda o fuente de información de los datos de la enfermedad o evento</p></dd>
 
 
 <dt>dpto</dt>
-<dd><p>Un character (cadena de caracteres) que contiene el
+<dd><p>Un `character` (cadena de caracteres) que contiene el
 nombre del departamento</p></dd>
 
 
-<dt>munpio</dt>
-<dd><p>Un character (cadena de caracteres) que contiene el
+<dt>mpio</dt>
+<dd><p>Un `character` (cadena de caracteres) que contiene el
 nombre del municipio</p></dd>
 
 </dl></div>
@@ -95,7 +95,7 @@ nombre del municipio</p></dd>
     <h2 id="valor">Valor<a class="anchor" aria-label="anchor" href="#valor"></a></h2>
     
 
-<p>El plot o mapa por departamentos o municipios con el número de
+<p>Un `plot` o mapa por departamentos o municipios con el número de
 casos de una enfermedad específica</p>
     </div>
 
@@ -112,7 +112,7 @@ casos de una enfermedad específica</p>
 <span class="r-in"><span>   col_codigos <span class="op">=</span> <span class="st">"id"</span>,</span></span>
 <span class="r-in"><span>   fuente_data <span class="op">=</span> <span class="st">"Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"</span>,</span></span>
 <span class="r-in"><span>   dpto <span class="op">=</span> <span class="st">"Antioquia"</span>,</span></span>
-<span class="r-in"><span>   munpio <span class="op">=</span> <span class="st">"Envigado"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>   mpio <span class="op">=</span> <span class="st">"Envigado"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Reading layer `MGN_ANM_MPIOS' from data source </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   `/home/runner/work/_temp/Library/sivirep/extdata/depto_adm_shp/MGN_ANM_MPIOS.shp' </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   using driver `ESRI Shapefile'</span>
