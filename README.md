@@ -1,10 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-``` r
-library(sivirep)
-```
-
 ## *sivirep*: Generación automatizada de reportes a partir de bases de datos de vigilancia epidemiológica <img src="man/figures/logo.svg" align="right" width="120"/>
 
 <!-- badges: start -->
@@ -83,17 +79,17 @@ knitr::kable(lista_eventos)
 
 |     | enfermedad                                                            | aa                                                                                                   |
 |:----|:----------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------|
-| 1   | Accidente ofídico                                                     | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
+| 1   | Accidente Ofídico                                                     | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
 | 2   | Agresiones Por Animales Potencialmente Transmisores De Rabia          | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
-| 3   | Anomalías congénitas                                                  | 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022                         |
+| 3   | Anomalías Congénitas                                                  | 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022                         |
 | 4   | Bajo Peso Al Nacer                                                    | 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022                                     |
 | 5   | Cáncer De La Mama Y Cuello Uterino                                    | 2016, 2017, 2018, 2019, 2020, 2021                                                                   |
 | 6   | Cáncer Infantil                                                       | 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022                                                 |
 | 7   | Chagas                                                                | 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022                                     |
 | 8   | Chikunguya                                                            | 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022                                                 |
-| 9   | Dengue                                                                | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
+| 9   | Dengue                                                                | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2015, 2017, 2018, 2019, 2020, 2021, 2022       |
 | 10  | Dengue Grave                                                          | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
-| 11  | ESI - Irag (Vigilancia Centinela)                                     | 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022             |
+| 11  | Esi - Irag (Vigilancia Centinela)                                     | 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022             |
 | 12  | Evento Adverso Grave Posterior A La Vacunación                        | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
 | 13  | Exposición A Flúor                                                    | 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019                                                       |
 | 14  | Fiebre Amarilla                                                       | 2007, 2008, 2009, 2013, 2016, 2018                                                                   |
@@ -101,23 +97,23 @@ knitr::kable(lista_eventos)
 | 16  | Hepatitis A                                                           | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
 | 17  | Hepatitis B, C Y Coinfección Hepatitis B Y Delta                      | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
 | 18  | Hepatitis C                                                           | 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022                                                 |
-| 19  | Hipotiroidismo congénito                                              | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
+| 19  | Hipotiroidismo Congénito                                              | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
 | 20  | Infección Respiratoria Aguda Grave Irag Inusitada                     | 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022                   |
 | 67  | INTENTO DE SUICIDIO                                                   |                                                                                                      |
 | 21  | Intoxicación Por Gases                                                | 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022                         |
 | 22  | Intoxicación Por Medicamentos                                         | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
 | 23  | Intoxicación Por Metales Pesados                                      | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
 | 24  | Intoxicación Por Metanol                                              | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
-| 25  | Intoxicación Por Otras Sustancias químicas                            | 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022                                     |
+| 25  | Intoxicación Por Otras Sustancias Químicas                            | 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022                                     |
 | 26  | Intoxicación Por Plaguicidas                                          | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
 | 27  | Intoxicación Por Solventes                                            | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
 | 28  | Intoxicación Por Sustancias Psicoactivas                              | 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022                         |
-| 29  | Leishmaniasis cutánea                                                 | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
+| 29  | Leishmaniasis Cutánea                                                 | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
 | 30  | Leishmaniasis Mucosa                                                  | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
 | 31  | Leishmaniasis Visceral                                                | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
 | 32  | Lepra                                                                 | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
 | 33  | Leptospirosis                                                         | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
-| 34  | Lesiones Por pólvora Y Explosivos                                     | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014                                                       |
+| 34  | Lesiones Por Pólvora Y Explosivos                                     | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014                                                       |
 | 35  | Leucemia Aguda Pediátrica Linfoide                                    | 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022             |
 | 36  | Leucemia Aguda Pediátrica Mieloide                                    | 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022             |
 | 66  | MALARIA                                                               |                                                                                                      |
@@ -130,8 +126,8 @@ knitr::kable(lista_eventos)
 | 43  | Meningitis Por Haemophilus Influenzae                                 | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
 | 44  | Meningitis Por Neumococo                                              | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
 | 45  | Meningitis Tuberculosa                                                | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
-| 46  | MORBILIDAD POR EDA                                                    | 2013, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022                                                 |
-| 47  | MORBILIDAD POR IRA                                                    | 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022                                     |
+| 46  | Morbilidad Por Eda                                                    | 2013, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022                                                 |
+| 47  | Morbilidad Por Ira                                                    | 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022                                     |
 | 48  | Mortalidad Materna                                                    | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
 | 49  | Mortalidad Perinatal Y Neonatal Tardía                                | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
 | 50  | Mortalidad Por Dengue                                                 | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
@@ -170,6 +166,8 @@ Los contribuyentes al paquete incluyen:
 - [Zulma M. Cucunubá](https://github.com/zmcucunuba) (author)
 
 - [Hugo Gruson](https://github.com/Bisaloo) (contributor)
+
+- [Andrés Moreno](https://github.com/andresmore) (contributor)
 
 - [Laura Gómez-Bermeo](https://github.com/lgbermeo) (contributor to
   documentation)
@@ -320,7 +318,7 @@ códigos de geolocalización y estandarizar los nombres de las columnas y
 las categorías de edad.
 
 ``` r
-data_event_limp <- limpiar_data_sivigila(data_event = data_event, year = 2020)
+data_event_limp <- limpiar_data_sivigila(data_event = data_event)
 ```
 
 Las funciones de limpieza dentro de `limpiar_data_sivigila` se han
@@ -355,7 +353,7 @@ geográfica.
 
 ``` r
 data_event_filtrada <- geo_filtro(data_event = data_event_limp,
-                                  nombre_dpto = "Chocó")
+                                  dpto = "Chocó")
 ```
 
 ### 4. Distribución temporal de casos
@@ -528,6 +526,10 @@ dist_esp_dept <- agrupar_mpio(data_event = data_event_filtrada,
 Actualmente, con la función llamada `plot_map`, el usuario puede generar
 un mapa estático de Colombia que muestra la distribución de casos por
 departamentos y municipios.
+
+``` r
+mapa <- plot_map(data_agrupada = dist_esp_dept, dpto = "Chocó")
+```
 
 ``` r
 mapa
