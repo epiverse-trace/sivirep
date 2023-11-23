@@ -4,13 +4,13 @@
 \alias{limpiar_edad_event}
 \title{Limpiar las edades de los datos de una enfermedad o evento}
 \usage{
-limpiar_edad_event(data_event, nombre_col = "edad")
+limpiar_edad_event(data_event, nomb_col = "edad")
 }
 \arguments{
 \item{data_event}{Un `data.frame` que contiene los datos de una
 enfermedad o evento}
 
-\item{nombre_col}{Un `character` (cadena de caracteres) con el nombre
+\item{nomb_col}{Un `character` (cadena de caracteres) con el nombre
 de la columna de los datos que contiene las edades;
 su valor por defecto es edad}
 }
@@ -24,5 +24,5 @@ Función que limpia las edades de los datos de una enfermedad o evento
 \examples{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
-limpiar_edad_event(data_event = data_limpia, nombre_col = "edad")
+limpiar_edad_event(data_event = data_limpia, nomb_col = "edad")
 }

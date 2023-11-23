@@ -4,13 +4,13 @@
 \alias{remove_val_nin}
 \title{Eliminar valores NIN (NA, Infinito, NaN)}
 \usage{
-remove_val_nin(data_event, nom_col)
+remove_val_nin(data_event, nomb_col)
 }
 \arguments{
 \item{data_event}{Un `data.frame` que contiene los datos de una
 enfermedad o evento}
 
-\item{nom_col}{Un `character` (cadena de caracteres) que contiene el
+\item{nomb_col}{Un `character` (cadena de caracteres) que contiene el
 nombre de la columna en los datos de una enfermedad o evento a evaluar}
 }
 \value{
@@ -23,5 +23,5 @@ incluyen NA, Infinito o NaN
 \examples{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
-remove_val_nin(data_event = data_limpia, nom_col = "edad")
+remove_val_nin(data_event = data_limpia, nomb_col = "edad")
 }

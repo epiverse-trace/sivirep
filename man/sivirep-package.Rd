@@ -20,6 +20,7 @@ Other contributors:
 \itemize{
   \item Hugo Gruson \email{hugo.gruson+R@normalesup.org} (\href{https://orcid.org/0000-0002-4094-1476}{ORCID}) [contributor]
   \item Laura Gómez Bermeo \email{gomezblaura@javeriana.edu.co} (\href{https://orcid.org/0000-0003-4028-2893}{ORCID}) [contributor]
+  \item Andrés Moreno \email{ad.morenob@javeriana.edu.co} (\href{https://orcid.org/0000-0001-9266-731X}{ORCID}) [contributor]
   \item Miguel Gámez [contributor]
   \item Jennifer Méndez-Romero [contributor]
   \item Johan Calderón [contributor]

@@ -12,22 +12,23 @@ plot_fecha_notifica(
 )
 }
 \arguments{
-\item{data_agrupada}{Un data frame que contiene los datos de la
+\item{data_agrupada}{Un `data.frame` que contiene los datos de la
 enfermedad o evento agrupados}
 
-\item{nomb_col}{Un character (cadena de caracteres) que contiene el
-nombre de la columna en los datos de la enfermedad o evento agrupados que
-contiene las fechas de notificación; su valor por defecto es "fec_not"}
+\item{nomb_col}{Un `character` (cadena de caracteres) que contiene el
+nombre de la columna en los datos de la enfermedad o evento agrupados con
+las fechas de notificación; su valor por defecto es `"fec_not"`}
 
-\item{uni_marca}{Un character (cadena de caracteres) que contiene la unidad
-de las marcas del gráfico ("day": día, "month": mes y "year": año); su
-valor por defecto es "month"}
+\item{uni_marca}{Un `character` (cadena de caracteres) que contiene la unidad
+de las marcas del gráfico (`"dia"`, `"semanaepi"`y `"mes"``);
+su valor por defecto es `"semanaepi"`}
 
-\item{fuente_data}{Un character (cadena de caracteres) que contiene la
-leyenda o fuente de información de los datos; su valor por defecto es NULL}
+\item{fuente_data}{Un `character` (cadena de caracteres) que contiene la
+leyenda o fuente de información de los datos; su valor por defecto es `NULL`}
 }
 \value{
-Un plot o gráfico de distribución de casos por fecha de notificación
+Un `plot` o gráfico de distribución de casos por fecha de
+notificación
 }
 \description{
 Función que genera el gráfico de distribución de casos por
