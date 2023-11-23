@@ -4,14 +4,11 @@
 \alias{limpiar_data_sivigila}
 \title{Limpiar datos de SIVIGILA}
 \usage{
-limpiar_data_sivigila(data_event, year)
+limpiar_data_sivigila(data_event)
 }
 \arguments{
 \item{data_event}{Un data frame que contiene los datos de
 una enfermedad o evento}
-
-\item{year}{Un numeric (numerico) que contiene el año de los
-datos de una enfermedad o evento}
 }
 \value{
 Un data frame con los datos limpios de la enfermedad o evento
@@ -21,8 +18,6 @@ Función que limpia los datos seleccionados de una enfermedad o evento de
 la fuente de SIVIGILA
 }
 \examples{
-year <- 2020
 data(dengue2020)
-data_event <- dengue2020
-limpiar_data_sivigila(data_event = data_event, year = year)
+limpiar_data_sivigila(data_event = dengue2020)
 }

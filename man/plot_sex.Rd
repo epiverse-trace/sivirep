@@ -6,39 +6,38 @@
 \usage{
 plot_sex(
   data_agrupada,
-  col_nombre = "sexo",
+  nomb_col = "sexo",
   porcentaje = TRUE,
   fuente_data = NULL
 )
 }
 \arguments{
-\item{data_agrupada}{Un data fram que contiene los datos de la
+\item{data_agrupada}{Un `data.frame` que contiene los datos de la
 enfermedad o evento agrupados}
 
-\item{col_nombre}{Un character (cadena de caracteres) con el
+\item{nomb_col}{Un `character` (cadena de caracteres) con el
 nombre de la columna de los datos agrupados de la enfermedad
-o evento que contiene el sexo; su valor por defecto es "sexo"}
+o evento que contiene el sexo; su valor por defecto es `"sexo"`}
 
 \item{porcentaje}{Un boolean (TRUE/FALSE) que indica si los datos
-tienen porcentajes; su valor por defecto es TRUE}
+tienen porcentajes; su valor por defecto es `TRUE`}
 
-\item{fuente_data}{Un character (cadena de caracteres) que contiene la
-leyenda o fuente de información de los datos; su valor por defecto es NULL}
+\item{fuente_data}{Un `character` (cadena de caracteres) que contiene la
+leyenda o fuente de información de los datos; su valor por defecto es `NULL`}
 }
 \value{
-Un plot o gráfico de distribución de casos por sexo
+Un `plot` o gráfico de distribución de casos por sexo
 }
 \description{
 Función que genera el gráfico de distribución de casos por sexo
 }
 \examples{
 data(dengue2020)
-data_event <- dengue2020
-data_event <- limpiar_data_sivigila(data_event, 2020)
-data_agrupada <- agrupar_sex(data_event,
-                             col_nombre = "sexo",
+data_limpia <- limpiar_data_sivigila(dengue2020)
+data_agrupada <- agrupar_sex(data_event = data_limpia,
+                             nomb_col = "sexo",
                              porcentaje = TRUE)
 plot_sex(data_agrupada = data_agrupada,
-         col_nombre = "sexo",
+         nomb_col = "sexo",
          porcentaje = TRUE)
 }

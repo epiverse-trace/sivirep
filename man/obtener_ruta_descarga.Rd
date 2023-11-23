@@ -7,16 +7,14 @@
 obtener_ruta_descarga(ruta)
 }
 \arguments{
-\item{ruta}{Un character (cadena de caracteres) con la ruta o URL
+\item{ruta}{Un `character` (cadena de caracteres) con la ruta o URL
 de descarga}
 }
 \value{
-Un character (cadena de caracteres) con el nombre del
+Un `character` (cadena de caracteres) con el nombre del
 archivo a descargar
 }
 \description{
 Función que obtiene el nombre del archivo a descargar desde una URL o ruta
 }
-\examples{
-obtener_ruta_descarga("DENGUE")
-}
+\keyword{internal}

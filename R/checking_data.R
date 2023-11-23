@@ -1,56 +1,33 @@
-#' Filtrar por enfermedad o evento
-#'
-#' Función que filtra por nombre de enfermedad o evento
-#' en un conjunto de datos
-#' @param nombre_event Un character (cadena de caracteres) que contiene
-#' el nombre de la enfermedad o evento
-#' @param data_sivigila Un data frame que contiene el conjunto de datos
-#' del SIVIGILA
-#' @return Un data frame con los datos filtrados por la enfermedad o
-#' evento seleccionado
-#' @examples
-#' data_sivigila <- import_data_resumen_sivigila()
-#' data_sivigila <- limpiar_encabezado(data_sivigila)
-#' filtrar_event(nombre_event = "MALAR",
-#'               data_sivigila = data_sivigila)
-#' @export
-filtrar_event <- function(nombre_event,
-                          data_sivigila) {
-  if ("conteo_casos" %in% names(data_sivigila)) {
-    names(data_sivigila)[names(data_sivigila)
-                         == "conteo_casos"] <- "casos"
-  }
-  list_events <- unique(data_sivigila$nombre)
-  list_specific <- list_events[stringr::str_detect(list_events,
-                                                   nombre_event)]
-  data_fil <- data_sivigila %>%
-    dplyr::filter(.data$nombre %in% list_specific)
-  return(data_fil)
-}
-
 #' Filtrar por departamentos y municipios
 #'
 #' Función que filtra los datos de una enfermedad o evento por departamentos
 #' y municipios
-#' @param data_event Un data frame con los datos de una enfermedad o evento
-#' @param nombre_dpto Un character (cadena de caracteres) que contiene
-#' el nombre del departamento; valor por defecto NULL
-#' @param nombre_mun Un character (cadena de caracteres) que contiene el
-#' nombre del municipio; su valor por defecto es NULL
-#' @return Un data frame con los datos filtrados con la enfermedad,
+#' @param data_event Un `data.frame` con los datos de una enfermedad o evento
+#' @param dpto Un `character` (cadena de caracteres) que contiene
+#' el nombre o código del departamento; valor por defecto `NULL`
+#' @param mpio Un `character` (cadena de caracteres) que contiene el
+#' nombre o código del municipio; su valor por defecto es `NULL`
+#' @return Un `data.frame` con los datos filtrados con la enfermedad,
 #' departamentos y municipios seleccionados
 #' @examples
 #' data(dengue2020)
-#' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event, 2020)
-#' geo_filtro(data_event, nombre_dpto = "ANTIOQUIA")
+#' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+#' geo_filtro(data_event = data_limpia, dpto = "ANTIOQUIA")
+#' geo_filtro(data_event = data_limpia, dpto = "ANTIOQUIA", mpio = "ENVIGADO")
 #' @export
-geo_filtro <- function(data_event, nombre_dpto = NULL, nombre_mun = NULL) {
+geo_filtro <- function(data_event, dpto = NULL, mpio = NULL) {
+  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
+            "El parametro data_event debe ser un data.frame" =
+              is.data.frame(data_event),
+            "El parametro data_event no debe estar vacio" =
+              nrow(data_event) > 0)
   data_dept_filt <- data.frame()
   dept_data <- data.frame()
   cols_ocurren <- NULL
-  if (!is.null(nombre_dpto)) {
-    dept_data <- obtener_info_depts(nombre_dpto, nombre_mun)
+  if (!is.null(dpto)) {
+    dept_data <- obtener_info_depts(dpto, mpio)
+    stopifnot("El departamento o municipio ingresado no existe"
+              = nrow(dept_data) > 0)
     dept_data <- dept_data[1, ]
     cols_ocurren <- obtener_tip_ocurren_geo(data_event$cod_eve[1])
   }
@@ -60,7 +37,9 @@ geo_filtro <- function(data_event, nombre_dpto = NULL, nombre_mun = NULL) {
                     data_event[[cols_ocurren[1]]] %in%
                       dept_data$codigo_departamento)
   }
-  if (!is.null(nombre_mun)) {
+  if (!is.null(mpio)) {
+    stopifnot("El parametro mpio debe ser una cadena de caracteres"
+              = is.character(mpio))
     code_mun <- modficar_cod_mun(dept_data$codigo_departamento,
                                  dept_data$codigo_municipio)
     data_dept_filt <-
@@ -75,15 +54,20 @@ geo_filtro <- function(data_event, nombre_dpto = NULL, nombre_mun = NULL) {
 #'
 #' Función que obtiene la lista de departamentos de Colombia con su nombre
 #' y código
-#' @param geo_cods Un data frame que contiene los códigos geográficos
+#' @param geo_cods Un `data.frame` que contiene los códigos geográficos
 #' (departamentos y municipios de Colombia)
-#' @return Un data frame con los datos de los departamentos con
+#' @return Un `data.frame` con los datos de los departamentos con
 #' código y nombre
 #' @examples
 #' geo_cods <- import_geo_cods()
 #' obtener_cods_dpto(geo_cods = geo_cods)
 #' @export
 obtener_cods_dpto <- function(geo_cods) {
+  stopifnot("El parametro geo_cods es obligatorio" = !missing(geo_cods),
+            "El parametro geo_cods debe ser un data.frame" =
+              is.data.frame(geo_cods),
+            "El parametro geo_cods no debe estar vacio" =
+              nrow(geo_cods) > 0)
   data_deptos <- geo_cods %>%
     dplyr::group_by(cod_dep = .data$codigo_departamento,
                     name_dep = .data$nombre_departamento) %>%
@@ -96,18 +80,22 @@ obtener_cods_dpto <- function(geo_cods) {
 #' Obtener población especial y casos
 #'
 #' Función que obtiene los casos por tipo de población
-#' especial de una enfermedad
-#' @param data_event Un data frame que contiene los datos de una
+#' especial de una enfermedad o evento
+#' @param data_event Un `data.frame` que contiene los datos de una
 #' enfermedad o evento
-#' @return Un data frame con los casos por tipo de población especial
+#' @return Un `data.frame` con los casos por tipo de población especial
 #' de una enfermedad o evento
 #' @examples
 #' data(dengue2020)
-#' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event, 2020)
-#' obtener_casos_pob_especial(data_event = data_event)
+#' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+#' obtener_casos_pob_especial(data_event = data_limpia)
 #' @export
 obtener_casos_pob_especial <- function(data_event) {
+  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
+            "El parametro data_event debe ser un data.frame" =
+              is.data.frame(data_event),
+            "El parametro data_event no debe estar vacio" =
+              nrow(data_event) > 0)
   pob_especial <- config::get(file = system.file("extdata",
                                                  "config.yml",
                                                  package = "sivirep"),
@@ -135,17 +123,21 @@ obtener_casos_pob_especial <- function(data_event) {
 #'
 #' Función que agrupa los datos de una enfermedad o evento
 #' por semana epidemiológica y número de casos
-#' @param data_event Un data frame que contiene los datos de
+#' @param data_event Un `data.frame` que contiene los datos de
 #' una enfermedad o evento
-#' @return Un data frame con los datos de una enfermedad o
+#' @return Un `data.frame` con los datos de una enfermedad o
 #' evento agrupados por semana epidemiológica y número de casos
 #' @examples
 #' data(dengue2020)
-#' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event, 2020)
-#' agrupar_casos_semanaepi(data_event = data_event)
+#' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+#' agrupar_casos_semanaepi(data_event = data_limpia)
 #' @export
 agrupar_casos_semanaepi <- function(data_event) {
+  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
+            "El parametro data_event debe ser un data.frame" =
+              is.data.frame(data_event),
+            "El parametro data_event no debe estar vacio" =
+              nrow(data_event) > 0)
   data_event_agrupada <- data_event %>%
     dplyr::group_by(.data$semana) %>%
     dplyr::summarise(casos = sum(.data$uni_med))
@@ -157,35 +149,46 @@ agrupar_casos_semanaepi <- function(data_event) {
 #'
 #' Función que agrupa los datos de una enfermedad o evento
 #' por nombre de columna(s) y número de casos
-#' @param data_event Un data frame que contiene los datos de
+#' @param data_event Un `data.frame` que contiene los datos de
 #' una enfermedad o evento
-#' @param cols_nombres Un character (cadena de caracteres) o
-#' array (arreglo) de character que contiene el nombre de
+#' @param nomb_cols Un `character` (cadena de caracteres) o
+#' `array (arreglo) de character` que contiene el nombre de
 #' la(s) columna(s)
-#' @param agr_porcentaje Un boolean (TRUE o FALSE) que indica si
+#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si
 #' es necesario agregar un porcentaje de casos como columna
-#' @return Un data frame con los datos de una enfermedad
+#' @return Un `data.frame` con los datos de una enfermedad
 #' o evento agrupados por el nombre de la(s) columna(s) y el
-#' número de casos; su valor por defecto es TRUE
+#' número de casos; su valor por defecto es `TRUE`
 #' @examples
 #' data(dengue2020)
-#' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event, 2020)
-#' agrupar_cols_casos(data_event = data_event,
-#'                    cols_nombres = "sexo",
-#'                    agr_porcentaje = TRUE)
-#' agrupar_cols_casos(data_event = data_event,
-#'                    cols_nombres = c("sexo", "semana"))
+#' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+#' agrupar_cols_casos(data_event = data_limpia,
+#'                    nomb_cols = "sexo",
+#'                    porcentaje = TRUE)
+#' agrupar_cols_casos(data_event = data_limpia,
+#'                    nomb_cols = c("sexo", "semana"))
 #' @export
 agrupar_cols_casos <- function(data_event,
-                               cols_nombres,
-                               agr_porcentaje = FALSE) {
-  cols_nombres <- append(cols_nombres, "nombre_evento")
-  print(cols_nombres)
+                               nomb_cols,
+                               porcentaje = FALSE) {
+  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
+            "El parametro data_event debe ser un data.frame" =
+              is.data.frame(data_event),
+            "El parametro data_event no debe estar vacio" =
+              nrow(data_event) > 0,
+            "El parametro nomb_cols es obligatorio"
+            = !missing(nomb_cols),
+            "El parametro nomb_cols debe ser una cadena de caracteres 
+            o un arreglo de cadenas de caracteres "
+            = (is.character(nomb_cols) && !is.array(nomb_cols)) ||
+              (!is.character(nomb_cols) && is.array(nomb_cols)),
+            "El parametro porcentaje debe ser un booleano (TRUE o FALSE)" =
+              is.logical(porcentaje))
+  nomb_cols <- append(nomb_cols, "nombre_evento")
   data_event_agrupada <- data_event %>%
-    dplyr::group_by_at(cols_nombres) %>%
+    dplyr::group_by_at(nomb_cols) %>%
     dplyr::summarise(casos = dplyr::n(), .groups = "drop")
-  if (agr_porcentaje) {
+  if (porcentaje) {
     data_event_agrupada <-
       data_event_agrupada %>%
       dplyr::mutate(porcentaje =
@@ -200,140 +203,101 @@ agrupar_cols_casos <- function(data_event,
 #'
 #' Función que agrupa los datos de una enfermedad o evento por rango
 #' de edad y número de casos
-#' @param data_event Un data frame que contiene los datos de la
+#' @param data_event Un `data.frame` que contiene los datos de la
 #' enfermedad o evento
-#' @param col_nombre Un character (cadena de caracteres) con
+#' @param nomb_col Un `character` (cadena de caracteres) con
 #' el nombre de la columna de los datos de la enfermedad o evento
 #' que contiene las edades
-#' @param var_a Un character (cadena de caracteres) con
+#' @param col_adicional Un `character` (cadena de caracteres) con
 #' el nombre adicional de la columna de los datos de la enfermedad
 #' o evento para agrupar con la edad; su valor por defecto es
-#' NULL
-#' @param min_val Un numeric (numerico) que contiene el valor mínimo
+#' `NULL`
+#' @param min_val Un `numeric` (numerico) que contiene el valor mínimo
 #' de las edades
-#' @param max_val Un numeric (numerico) que contiene el valor máximo
+#' @param max_val Un `numeric` (numerico) que contiene el valor máximo
 #' de las edades
-#' @param paso Un numeric (numerico) que contiene el valor del paso
+#' @param paso Un `numeric` (numerico) que contiene el valor del paso
 #' para generar el rango de edades
-#' @return Un data frame con los datos de la enfermedad o evento
+#' @return Un `data.frame` con los datos de la enfermedad o evento
 #' agrupados por el rango de edad y número de casos
 #' @examples
 #' data(dengue2020)
-#' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event, 2020)
-#' data_edad <- agrupar_cols_casos(data_event = data_event,
+#' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+#' data_edad <- agrupar_cols_casos(data_event = data_limpia,
 #'                                 c("edad", "semana"),
-#'                                 agr_porcentaje = TRUE)
+#'                                 porcentaje = TRUE)
 #' agrupar_rango_edad_casos(data_event = data_edad,
-#'                          col_nombre = "edad",
+#'                          nomb_col = "edad",
 #'                          min_val = 0,
 #'                          max_val = max(data_edad$edad),
 #'                          paso = 10)
 #' @export
 agrupar_rango_edad_casos <- function(data_event,
-                                     col_nombre,
-                                     var_a = NULL,
+                                     nomb_col,
+                                     col_adicional = NULL,
                                      min_val,
                                      max_val,
                                      paso) {
+  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
+            "El parametro data_event debe ser un data.frame" =
+              is.data.frame(data_event),
+            "El parametro data_event no debe estar vacio" =
+              nrow(data_event) > 0)
   data_vals_rango <- data.frame()
-  if (!is.null(var_a) && length(var_a) > 0) {
-    data_vals_rango <- data_event %>%
-      dplyr::mutate(ranges = cut(
-        .data$edad,
-        seq(min_val, max_val, paso)
-      )) %>%
-      dplyr::group_by_at(c("ranges", var_a)) %>%
-      dplyr::summarize(casos = sum(.data$casos), .groups = "drop") %>%
-      as.data.frame()
-    names(data_vals_rango)[names(data_vals_rango) == "ranges"] <- col_nombre
-  } else {
-    data_vals_rango <- data_event %>%
-      dplyr::mutate(ranges = cut(
-        .data$edad,
-        seq(min_val, max_val, paso)
-      )) %>%
-      dplyr::group_by_at("ranges") %>%
-      dplyr::summarize(casos = sum(.data$casos), .groups = "drop") %>%
-      as.data.frame()
-    names(data_vals_rango)[names(data_vals_rango) == "ranges"] <- col_nombre
+  if (is.null(nomb_col) || length(nomb_col) > 0) {
+    nomb_col <- "edad"
   }
+  stopifnot("El parametro nomb_col debe ser una cadena de caracteres"
+            = is.character(nomb_col))
+  data_vals_rango <- data_event %>%
+    dplyr::mutate(ranges = cut(
+      data_event[[nomb_col]],
+      seq(min_val, max_val, paso)
+    )) %>%
+    dplyr::group_by_at(c("ranges", col_adicional)) %>%
+    dplyr::summarize(casos = sum(.data$casos), .groups = "drop") %>%
+    as.data.frame()
+  names(data_vals_rango)[names(data_vals_rango) == "ranges"] <- nomb_col
   return(data_vals_rango)
-}
-
-#' Agrupar por columnas y casos
-#'
-#' Función que agrupa los datos de una enfermedad o evento
-#' por un nombre de columna(s) específico y número de casos
-#' @param data_event Un data frame que contiene los datos
-#' de la enfermedad o evento
-#' @param cols_nombres Un character (cadena de caracteres) o
-#' array (arreglo) de character que contiene el nombre de
-#' la(s) columna(s) por la(s) que se desea agrupar los datos
-#' @param agr_porcentaje Un boolean (TRUE o FALSE) que indica si
-#' es necesario agregar un porcentaje de casos como una columna;
-#' su valor por defecto es FALSE
-#' @return Un data frame con los datos de una enfermedad
-#' o evento agrupados por nombre de columna(s) y número de casos
-#' @examples
-#' data(dengue2020)
-#' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event, 2020)
-#' agrupar_cols_casos(data_event = data_event,
-#'                    cols_nombres = "sexo",
-#'                    agr_porcentaje = TRUE)
-#' agrupar_cols_casos(data_event = data_event,
-#'                    cols_nombres = c("sexo", "semana"))
-#' @export
-agrupar_cols_casos <- function(data_event,
-                               cols_nombres,
-                               agr_porcentaje = FALSE) {
-  cols_nombres <- append(cols_nombres, "nombre_evento")
-  data_event_agrupada <- data_event %>%
-    dplyr::group_by_at(cols_nombres) %>%
-    dplyr::summarise(casos = dplyr::n(), .groups = "drop")
-  if (agr_porcentaje) {
-    data_event_agrupada <-
-      data_event_agrupada %>%
-      dplyr::mutate(porcentaje =
-                    round(data_event_agrupada$casos
-                          / sum(data_event_agrupada$casos) * 100,
-                          1))
-  }
-  return(data_event_agrupada)
 }
 
 #' Agrupar por fecha de inicio de síntomas y casos
 #'
 #' Función que agrupa los datos de una enfermedad o evento por
 #' fecha de inicio de síntomas y número de casos
-#' @param data_event Un data frame que contiene los datos de
+#' @param data_event Un `data.frame` que contiene los datos de
 #' la enfermedad o evento
-#' @param col_nombre Un character (cadena de caracteres) con el
+#' @param nomb_col Un `character` (cadena de caracteres) con el
 #' nombre de la columna de los datos de la enfermedad o evento que contiene
-#' las fechas de inicio de síntomas; su valor por defecto es ini_sin
-#' @return Un data frame con los datos de la enfermedad o evento
+#' las fechas de inicio de síntomas; su valor por defecto es `"ini_sin"`
+#' @return Un `data.frame` con los datos de la enfermedad o evento
 #' agrupados por fecha de inicio de síntomas y número de casos
 #' @examples
 #' data(dengue2020)
-#' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event, 2020)
-#' agrupar_fecha_inisintomas(data_event = data_event,
-#'                           col_nombre = "ini_sin")
+#' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+#' agrupar_fecha_inisintomas(data_event = data_limpia,
+#'                           nomb_col = "ini_sin")
 #' @export
 agrupar_fecha_inisintomas <- function(data_event,
-                                      col_nombre = "ini_sin") {
+                                      nomb_col = "ini_sin") {
   fechas_cols_nombres <- config::get(file =
                                        system.file("extdata",
                                                    "config.yml",
                                                    package = "sivirep"),
                                      "dates_column_names")
-  if (is.null(col_nombre)) {
-    col_nombre <- fechas_cols_nombres[3]
+  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
+            "El parametro data_event debe ser un data.frame" =
+              is.data.frame(data_event),
+            "El parametro data_event no debe estar vacio" =
+              nrow(data_event) > 0)
+  if (is.null(nomb_col)) {
+    nomb_col <- fechas_cols_nombres[3]
   }
-  col_nombre <- append(col_nombre, "semana")
+  stopifnot("El parametro nomb_col debe ser una cadena de caracteres"
+            = is.character(nomb_col))
+  nomb_col <- append(nomb_col, "semana")
   group_by_onset_symp <- agrupar_cols_casos(data_event,
-                                            cols_nombres = col_nombre)
+                                            nomb_cols = nomb_col)
   return(group_by_onset_symp)
 }
 
@@ -341,33 +305,39 @@ agrupar_fecha_inisintomas <- function(data_event,
 #'
 #' Función que agrupa los datos de una enfermedad o evento por fecha de
 #' notificación y número de casos
-#' @param data_event Un data frame que contiene los datos de la enfermedad
+#' @param data_event Un `data.frame` que contiene los datos de la enfermedad
 #' o evento
-#' @param col_nombre Un character (cadena de caracteres) con el nombre de
+#' @param nomb_col Un `character` (cadena de caracteres) con el nombre de
 #' la columna de los datos de la enfermedad o evento que contiene las
-#' fechas de notificación; su valor por defecto es fec_not
-#' @return Un data frame con los datos de enfermedades agrupados por fecha de
+#' fechas de notificación; su valor por defecto es `"fec_not"`
+#' @return Un `data.frame` con los datos de enfermedades agrupados por fecha de
 #' notificación y número de casos
 #' @examples
 #' data(dengue2020)
-#' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event, 2020)
-#' agrupar_fecha_notifica(data_event = data_event,
-#'                        col_nombre = "fec_not")
+#' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+#' agrupar_fecha_notifica(data_event = data_limpia,
+#'                        nomb_col = "fec_not")
 #' @export
 agrupar_fecha_notifica <- function(data_event,
-                                   col_nombre = "fec_not") {
+                                   nomb_col = "fec_not") {
   fechas_cols_nombres <- config::get(file =
                                        system.file("extdata",
                                                    "config.yml",
                                                    package = "sivirep"),
                                      "dates_column_names")
-  if (is.null(col_nombre)) {
-    col_nombre <- fechas_cols_nombres[2]
+  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
+            "El parametro data_event debe ser un data.frame" =
+              is.data.frame(data_event),
+            "El parametro data_event no debe estar vacio" =
+              nrow(data_event) > 0)
+  if (is.null(nomb_col)) {
+    nomb_col <- fechas_cols_nombres[2]
   }
-  col_nombre <- append(col_nombre, "semana")
+  stopifnot("El parametro nomb_col debe ser una cadena de caracteres"
+            = is.character(nomb_col))
+  nomb_col <- append(nomb_col, "semana")
   data_agrupada_fecha_not <- agrupar_cols_casos(data_event,
-                                                cols_nombres = col_nombre)
+                                                nomb_cols = nomb_col)
   return(data_agrupada_fecha_not)
 }
 
@@ -375,28 +345,34 @@ agrupar_fecha_notifica <- function(data_event,
 #'
 #' Función que agrupa los datos de una enfermedad o evento
 #' por sexo y número de casos
-#' @param data_event Un data frame que contiene los datos de la enfermedad
+#' @param data_event Un `data.frame` que contiene los datos de la enfermedad
 #' o evento
-#' @param col_nombre Un character (cadena de caracteres) con el nombre
+#' @param nomb_col Un `character` (cadena de caracteres) con el nombre
 #' de la columna de los datos de la enfermedad o evento que contiene el sexo;
-#' su valor por defecto es sexo
-#' @param porcentaje Un boolean (TRUE o FALSE) que indica si es necesario
+#' su valor por defecto es `"sexo"`
+#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si es necesario
 #' agregar un porcentaje de casos como una columna; su valor por defecto es
-#' TRUE
-#' @return Un data frame con los datos de la enfermedad o evento
+#' `TRUE`
+#' @return Un data.frame con los datos de la enfermedad o evento
 #' agrupados por sexo y número de casos
 #' @examples
 #' data(dengue2020)
-#' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event, 2020)
-#' agrupar_sex(data_event = data_event,
-#'             col_nombre = "sexo",
+#' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+#' agrupar_sex(data_event = data_limpia,
+#'             nomb_col = "sexo",
 #'             porcentaje = TRUE)
 #' @export
 agrupar_sex <- function(data_event,
-                        col_nombre = "sexo",
+                        nomb_col = "sexo",
                         porcentaje = TRUE) {
-  data_event_sex <- agrupar_cols_casos(data_event, col_nombre, porcentaje)
+  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
+            "El parametro data_event debe ser un data.frame" =
+              is.data.frame(data_event),
+            "El parametro data_event no debe estar vacio" =
+              nrow(data_event) > 0,
+            "El parametro nomb_col debe ser una cadena de caracteres"
+            = is.character(nomb_col))
+  data_event_sex <- agrupar_cols_casos(data_event, nomb_col, porcentaje)
   return(data_event_sex)
 }
 
@@ -404,31 +380,39 @@ agrupar_sex <- function(data_event,
 #'
 #' Función que agrupa los datos de enfermedades por sexo, semana
 #' epidemiológica y número de casos
-#' @param data_event Un data frame que contiene los datos de
+#' @param data_event Un `data.frame` que contiene los datos de
 #' la enfermedad o evento
-#' @param col_nombres Un character (cadena de caracteres) o
-#' array (arreglo) de character que contiene el nombre de
+#' @param nomb_cols Un `character` (cadena de caracteres) o
+#' `array (arreglo) de character` que contiene el nombre de
 #' la(s) columna(s) de los datos de la enfermedad o evento
 #' que contienen el sexo y las semanas epidemiológicas; su valor
 #' por defecto es `c("sexo", "semana")`
-#' @param porcentaje Un boolean (TRUE o FALSE) que indica si
+#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si
 #' es necesario agregar un porcentaje de casos como una columna; su
 #' valor por defecto es `TRUE`
-#' @return Un data frame con los datos de la enfermedad o evento
+#' @return Un `data.frame` con los datos de la enfermedad o evento
 #' agrupados por sexo, semana epidemiológica y número de casos
 #' @examples
 #' data(dengue2020)
-#' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event, 2020)
-#' agrupar_sex_semanaepi(data_event = data_event,
-#'                       col_nombres = c("sexo", "semana"),
+#' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+#' agrupar_sex_semanaepi(data_event = data_limpia,
+#'                       nomb_cols = c("sexo", "semana"),
 #'                       porcentaje = TRUE)
 #' @export
 agrupar_sex_semanaepi <- function(data_event,
-                                  col_nombres = c("sexo", "semana"),
+                                  nomb_cols = c("sexo", "semana"),
                                   porcentaje = TRUE) {
+  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
+            "El parametro data_event debe ser un data.frame" =
+              is.data.frame(data_event),
+            "El parametro data_event no debe estar vacio" =
+              nrow(data_event) > 0,
+            "El parametro nomb_cols debe ser una cadena de caracteres 
+            o un arreglo de cadenas de caracteres "
+            = (is.character(nomb_cols) && !is.array(nomb_cols)) ||
+              (!is.character(nomb_cols) && is.array(nomb_cols)))
   data_event_sex_semanaepi <- agrupar_cols_casos(data_event,
-                                                 col_nombres,
+                                                 nomb_cols,
                                                  porcentaje)
   return(data_event_sex_semanaepi)
 }
@@ -437,39 +421,47 @@ agrupar_sex_semanaepi <- function(data_event,
 #'
 #' Función que agrupa los datos de una enfermedad o evento por edad
 #' y número de casos
-#' @param data_event Un data frame que contiene los datos de la enfermedad
+#' @param data_event Un `data.frame` que contiene los datos de la enfermedad
 #' o evento
-#' @param col_nombre Un character (cadena de caracteres) con el nombre
+#' @param nomb_col Un `character` (cadena de caracteres) con el nombre
 #' de la columna de los datos de la enfermedad o evento que contiene las edades;
-#' su valor por defecto es edad
-#' @param porcentaje Un boolean (TRUE o FALSE) que indica si
+#' su valor por defecto es `"edad"`
+#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si
 #' es necesario agregar un porcentaje de casos como una columna; su valor por
 #' defecto es `FALSE`
-#' @param interval_edad Un numeric (numerico) que contiene el intervalo del
-#' rango de edades; su valor por defecto es 10
-#' @return Un data frame con los datos de la enfermedad o evento agrupados
+#' @param interval_edad Un `numeric` (numerico) que contiene el intervalo del
+#' rango de edades; su valor por defecto es `10`
+#' @return Un `data.frame` con los datos de la enfermedad o evento agrupados
 #' por edad y número de casos
 #' @examples
 #' data(dengue2020)
-#' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event, 2020)
-#' agrupar_edad(data_event = data_event,
-#'              col_nombre = "edad",
+#' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+#' agrupar_edad(data_event = data_limpia,
+#'              nomb_col = "edad",
 #'              porcentaje = FALSE)
 #' @export
 agrupar_edad <- function(data_event,
-                         col_nombre = "edad",
+                         nomb_col = "edad",
                          porcentaje = FALSE,
                          interval_edad = 10) {
+  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
+            "El parametro data_event debe ser un data.frame" =
+              is.data.frame(data_event),
+            "El parametro data_event no debe estar vacio" =
+              nrow(data_event) > 0,
+            "El parametro nomb_col debe ser una cadena de caracteres"
+            = is.character(nomb_col),
+            "El parametro interval_edad debe ser un numero"
+            = is.numeric(interval_edad))
   data_event_edad <- agrupar_cols_casos(data_event,
-                                        col_nombre,
+                                        nomb_col,
                                         porcentaje)
   data_event_edad <-
     agrupar_rango_edad_casos(data_event_edad,
-                             col_nombre,
+                             nomb_col,
                              min_val = 0,
                              max_val =
-                             max(data_event_edad[[col_nombre]]),
+                             max(data_event_edad[[nomb_col]]),
                              paso = interval_edad)
   return(data_event_edad)
 }
@@ -478,41 +470,50 @@ agrupar_edad <- function(data_event,
 #'
 #' Función que agrupa los datos de una enfermedad o evento por edades,
 #' sexo y número de casos
-#' @param data_event Un data frame que contiene los datos de la enfermedad
+#' @param data_event Un `data.frame` que contiene los datos de la enfermedad
 #' o evento
-#' @param col_nombres Un character (cadena de caracteres) o
-#' array (arreglo) de character que contiene el nombre de
+#' @param nomb_cols Un `character` (cadena de caracteres) o
+#' `array (arreglo) de character` que contiene el nombre de
 #' la(s) columna(s) de los datos de la enfermedad o evento que contienen
-#' las edades y el sexo; su valor por defecto es c("edad", "sexo")
-#' @param porcentaje Un boolean (TRUE o FALSE) que indica si
+#' las edades y el sexo; su valor por defecto es `c("edad", "sexo")`
+#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si
 #' es necesario agregar un porcentaje de casos como una columna; su valor
 #' por defecto es `TRUE`
-#' @param interval_edad Un numeric (numerico) que contiene el intervalo del
+#' @param interval_edad Un `numeric` (numerico) que contiene el intervalo del
 #' rango de edades; su valor por defeccto es `10`
-#' @return Un data frame con los datos de enfermedades agrupados
+#' @return Un `data.frame` con los datos de enfermedades agrupados
 #' por edades, sexo y número de casos
 #' @examples
 #' data(dengue2020)
-#' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event, 2020)
-#' agrupar_edad_sex(data_event = data_event,
-#'                  col_nombres = c("edad", "sexo"),
+#' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+#' agrupar_edad_sex(data_event = data_limpia,
+#'                  nomb_cols = c("edad", "sexo"),
 #'                  porcentaje = TRUE)
 #' @export
 agrupar_edad_sex <- function(data_event,
-                             col_nombres = c("edad", "sexo"),
+                             nomb_cols = c("edad", "sexo"),
                              porcentaje = TRUE,
                              interval_edad = 10) {
+  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
+            "El parametro data_event debe ser un data.frame" =
+              is.data.frame(data_event),
+            "El parametro data_event no debe estar vacio" =
+              nrow(data_event) > 0,
+            "El parametro nomb_cols debe ser una cadena de caracteres
+            o un arreglo de cadenas de caracteres"
+            = (is.character(nomb_cols) || is.array(nomb_cols)),
+            "El parametro porcentaje debe ser un booleano (TRUE o FALSE)" =
+              is.logical(porcentaje))
   data_event_edad_sex <- agrupar_cols_casos(data_event,
-                                            col_nombres,
+                                            nomb_cols,
                                             porcentaje)
   data_event_edad_sex <- agrupar_rango_edad_casos(
     data_event_edad_sex,
-    col_nombres[1],
-    col_nombres[2],
+    nomb_cols[1],
+    nomb_cols[2],
     min_val = 0,
     max_val =
-      max(data_event_edad_sex[[col_nombres[1]]]),
+      max(data_event_edad_sex[[nomb_cols[1]]]),
     paso = interval_edad
   )
   return(data_event_edad_sex)
@@ -522,27 +523,35 @@ agrupar_edad_sex <- function(data_event,
 #'
 #' Función que agrupa los datos de la enfermedad o evento por población
 #' especial y casos
-#' @param data_event Un data frame que contiene los datos de la enfermedad
+#' @param data_event Un `data.frame` que contiene los datos de la enfermedad
 #' o evento
-#' @param col_nombre Un character (cadena de caracteres) con el nombre de la
+#' @param nomb_col Un `character` (cadena de caracteres) con el nombre de la
 #' columna de los datos de la enfermedad o evento que contiene las poblaciones
-#' especiales; su valor por defecto es poblacion
-#' @param porcentaje Un boolean (TRUE o FALSE) que indica si
+#' especiales; su valor por defecto es `"poblacion"`
+#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si
 #' es necesario agregar un porcentaje de casos como una columna; su valor
 #' por defecto es `TRUE`
-#' @return Un data frame con los datos de la enfermedad o evento agrupados
+#' @return Un `data.frame` con los datos de la enfermedad o evento agrupados
 #' por poblaciones especiales y casos
 #' @examples
 #' data(dengue2020)
-#' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event, 2020)
-#' agrupar_pob_especial(data_event = data_event,
-#'                      col_nombre = "poblacion",
+#' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+#' agrupar_pob_especial(data_event = data_limpia,
+#'                      nomb_col = "poblacion",
 #'                      porcentaje = TRUE)
 #' @export
 agrupar_pob_especial <- function(data_event,
-                                 col_nombre = "poblacion",
+                                 nomb_col = "poblacion",
                                  porcentaje = TRUE) {
+  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
+            "El parametro data_event debe ser un data.frame" =
+              is.data.frame(data_event),
+            "El parametro data_event no debe estar vacio" =
+              nrow(data_event) > 0,
+            "El parametro nomb_col debe ser una cadena de caracteres"
+            = is.character(nomb_col),
+            "El parametro porcentaje debe ser un booleano (TRUE o FALSE)" =
+              is.logical(porcentaje))
   data_event_especial <- obtener_casos_pob_especial(data_event)
   data_event_especial_agrupada <- data.frame(poblacion =
                                                data_event_especial$poblacion,
@@ -555,33 +564,41 @@ agrupar_pob_especial <- function(data_event,
 #'
 #' Función que agrupa los datos por códigos de departamento y
 #' número de casos
-#' @param data_event Un data frame que contiene los datos de la
+#' @param data_event Un `data.frame` que contiene los datos de la
 #' enfermedad o evento
-#' @param col_nombre Un character (cadena de caracteres) con el nombre
+#' @param nomb_col Un `character` (cadena de caracteres) con el nombre
 #' de la columna en los datos de la enfermedad o evento que contiene los
-#' códigos de departamento; su valor por defecto es cod_dpto_o
-#' @param porcentaje Un boolean (TRUE o FALSE) que indica si
+#' códigos de departamento; su valor por defecto es `"cod_dpto_o"`
+#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si
 #' es necesario agregar un porcentaje de casos como una columna; su valor
-#' por defecto es FALSE
-#' @return Un data frame con los datos de la enfermedad o evento agrupados
+#' por defecto es `FALSE`
+#' @return Un `data.frame` con los datos de la enfermedad o evento agrupados
 #' por códigos de departamento y número de casos
 #' @examples
 #' data(dengue2020)
-#' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event, 2020)
-#' agrupar_dpto(data_event = data_event,
-#'              col_nombre = "cod_dpto_o",
+#' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+#' agrupar_dpto(data_event = data_limpia,
+#'              nomb_col = "cod_dpto_o",
 #'              porcentaje = FALSE)
 #' @export
 agrupar_dpto <- function(data_event,
-                         col_nombre = "cod_dpto_o",
+                         nomb_col = "cod_dpto_o",
                          porcentaje = FALSE) {
+  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
+            "El parametro data_event debe ser un data.frame" =
+              is.data.frame(data_event),
+            "El parametro data_event no debe estar vacio" =
+              nrow(data_event) > 0,
+            "El parametro nomb_col debe ser una cadena de caracteres"
+            = is.character(nomb_col),
+            "El parametro porcentaje debe ser un booleano (TRUE o FALSE)" =
+              is.logical(porcentaje))
   data_event_cods_dpto <- data_event
-  col_nombre <- obtener_tip_ocurren_geo(data_event_cods_dpto$cod_eve[1])
+  nomb_col <- obtener_tip_ocurren_geo(data_event_cods_dpto$cod_eve[1])
   data_event_cods_dpto <- agrupar_cols_casos(data_event_cods_dpto,
-                                             cols_nombres = col_nombre[1])
+                                             nomb_cols = nomb_col[1])
   colnames(data_event_cods_dpto)[colnames(data_event_cods_dpto) ==
-                                   col_nombre[1]] <- "id"
+                                   nomb_col[1]] <- "id"
   data_event_cods_dpto$id <- as.character(data_event_cods_dpto$id)
   return(data_event_cods_dpto)
 }
@@ -591,53 +608,61 @@ agrupar_dpto <- function(data_event,
 #'
 #' Función que agrupa los datos de una enfermedad o evento por código
 #' de municipios y número de casos
-#' @param data_event Un data frame que contiene los datos de la
+#' @param data_event Un `data.frame` que contiene los datos de la
 #' enfermedad o evento
-#' @param dept_nombre Un character (cadena de caracteres) que contiene
-#' el nombre del departamento; su valor por defecto es NULL
-#' @param col_nombre Un character (cadena de caracteres) con el nombre de
+#' @param dpto Un `character` (cadena de caracteres) que contiene
+#' el nombre del departamento; su valor por defecto es `NULL`
+#' @param nomb_col Un `character` (cadena de caracteres) con el nombre de
 #' la columna en los datos de la enfermedad o evento que contiene los códigos
-#' de municipios; su valor por defecto es cod_mun_o
-#' @param porcentaje Un boolean (TRUE o FALSE) que indica si es necesario
+#' de municipios; su valor por defecto es `"cod_mun_o"`
+#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si es necesario
 #' agregar un porcentaje de casos como una columna; su valor por
-#' defecto es FALSE
-#' @return Un data frame con los datos de la enfermedad o evento agrupados
+#' defecto es `FALSE`
+#' @return Un `data.frame` con los datos de la enfermedad o evento agrupados
 #' por códigos de municipios y número de casos
 #' @examples
 #' data(dengue2020)
-#' data_event <- dengue2020
-#' data_event <- limpiar_data_sivigila(data_event, 2020)
-#' agrupar_mun(data_event = data_event,
-#'             dept_nombre = "Antioquia",
-#'             col_nombre = "cod_mun_o",
-#'             porcentaje = FALSE)
+#' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+#' agrupar_mpio(data_event = data_limpia,
+#'              dpto = "Antioquia",
+#'              nomb_col = "cod_mun_o",
+#'              porcentaje = FALSE)
 #' @export
-agrupar_mun <- function(data_event,
-                        dept_nombre = NULL,
-                        col_nombre = "cod_mun_o",
-                        porcentaje = FALSE) {
+agrupar_mpio <- function(data_event,
+                         dpto = NULL,
+                         nomb_col = "cod_mun_o",
+                         porcentaje = FALSE) {
+  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
+            "El parametro data_event debe ser un data.frame" =
+              is.data.frame(data_event),
+            "El parametro data_event no debe estar vacio" =
+              nrow(data_event) > 0,
+            "El parametro nomb_col debe ser una cadena de caracteres"
+            = is.character(nomb_col),
+            "El parametro porcentaje debe ser un booleano (TRUE o FALSE)" =
+              is.logical(porcentaje))
   cols_geo_ocurrencia <- data.frame()
   cod_events <- unique(data_event$cod_eve)
   for (cod in cod_events) {
     cols_geo_ocurrencia <- append(cols_geo_ocurrencia,
                                   obtener_tip_ocurren_geo(cod))
   }
-  col_nombre <- obtener_tip_ocurren_geo(data_event$cod_eve[1])
+  nomb_col <- obtener_tip_ocurren_geo(data_event$cod_eve[1])
   data_event_muns <- data_event
   data_event_muns <- agrupar_cols_casos(data_event_muns,
-                                        cols_nombres = col_nombre[2])
+                                        nomb_cols = nomb_col[2])
   colnames(data_event_muns)[colnames(data_event_muns) ==
-                              col_nombre[2]] <- "id"
+                              nomb_col[2]] <- "id"
   data_event_muns$id <- as.character(data_event_muns$id)
-  dept_data <- obtener_info_depts(dept_nombre)
+  dept_data <- obtener_info_depts(dpto)
   dept_data <- dept_data[1, ]
   nombres_muns <- NULL
   geo_data <- import_geo_cods()
   for (id in data_event_muns$id) {
     nombres_muns <- append(nombres_muns,
-                           obtener_nombres_muns(geo_data,
-                                                dept_data$codigo_departamento,
-                                                id))
+                           obtener_nombres_mpios(geo_data,
+                                                 dept_data$codigo_departamento,
+                                                 id))
   }
   data_event_muns$nombre <- nombres_muns
   data_event_muns <-  dplyr::arrange(data_event_muns,

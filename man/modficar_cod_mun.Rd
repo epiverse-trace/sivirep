@@ -4,21 +4,21 @@
 \alias{modficar_cod_mun}
 \title{Establecer códigos geográficos de los datos de la enfermedad o evento}
 \usage{
-modficar_cod_mun(code_dept, cod_mun)
+modficar_cod_mun(cod_dpto, cod_mpio)
 }
 \arguments{
-\item{code_dept}{Un numeric (numerico) que contiene el código del
+\item{cod_dpto}{Un `numeric` (numerico) que contiene el código del
 departamento}
 
-\item{cod_mun}{Un numeric (numerico) que contiene el código del municipio}
+\item{cod_mpio}{Un `numeric` (numerico) que contiene el código del municipio}
 }
 \value{
-Un data frame con los códigos geográficos
+Un `data.frame` con los códigos geográficos
 }
 \description{
 Función que establece los códigos geográficos de los datos de la enfermedad
 o evento
 }
 \examples{
-modficar_cod_mun(code_dept = 01, cod_mun = "001")
+modficar_cod_mun(cod_dpto = 01, cod_mpio = "001")
 }

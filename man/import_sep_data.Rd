@@ -7,10 +7,10 @@
 import_sep_data(path_data = NULL, cache = TRUE)
 }
 \arguments{
-\item{path_data}{Un character (cadena de caracteres) que contiene
+\item{path_data}{Un `character` (cadena de caracteres) que contiene
 la URL de los datos de SIVIGILA}
 
-\item{cache}{Un boolean (TRUE o FALSE) que indica si los datos descargados
+\item{cache}{Un `boolean` (TRUE o FALSE) que indica si los datos descargados
 deben ser almacenados en caché; su valor por defecto es TRUE}
 }
 \value{
@@ -20,6 +20,4 @@ Un `data.frame` con los datos
 Función que identifica el separador que tiene
 los datos para tabularla
 }
-\examples{
-import_sep_data()
-}
+\keyword{internal}

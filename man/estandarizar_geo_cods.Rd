@@ -7,11 +7,11 @@
 estandarizar_geo_cods(data_event)
 }
 \arguments{
-\item{data_event}{Un data frame que contiene los datos de una
+\item{data_event}{Un `data.frame` que contiene los datos de una
 enfermedad o evento}
 }
 \value{
-Un data frame que contiene los códigos geográficos estandarizados
+Un `data.frame` que contiene los códigos geográficos estandarizados
 de los datos de una enfermedad o evento
 }
 \description{
@@ -20,7 +20,6 @@ de una enfermedad o evento
 }
 \examples{
 data(dengue2020)
-data_event <- dengue2020
-data_event <- limpiar_data_sivigila(data_event, 2020)
-estandarizar_geo_cods(data_event = data_event)
+data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+estandarizar_geo_cods(data_event = data_limpia)
 }

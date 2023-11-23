@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup_package}
+```{r setup_package, include = FALSE}
 library(sivirep)
 ```
 
@@ -163,8 +163,8 @@ lista_eventos <- list_events()
 Una vez que hayas decidido la enfermedad y el año de la cual deseas obtener la información, `import_data_event` es la función que permite la importación de datos desde la fuente de SIVIGILA utilizando un formato parametrizado basado en la enfermedad y el año.
 
 ```{r import_data_event}
-data_event <-  import_data_event(year = 2020,
-                                 nombre_event = "Dengue")
+data_event <-  import_data_event(nombre_event = "Dengue",
+                                 year = 2020)
 ```
 
 ##### 💡 Tip 1 - Evita retrasos en el tiempo al importar los datos
@@ -178,7 +178,7 @@ Los datos de SIVIGILA son una fuente de información oficial altamente confiable
 `sivirep` proporciona una función genérica llamada `limpiar_data_sivigila` que envuelve diversas tareas para identificar y corregir errores, inconsistencias y discrepancias en los conjuntos de datos con el fin de mejorar su calidad y precisión. Este proceso puede incluir la eliminación de duplicados, la corrección de errores tipográficos, el reemplazo de valores faltantes y la validación de datos, entre otras tareas, como eliminar fechas improbables, limpiar códigos de geolocalización y estandarizar los nombres de las columnas y las categorías de edad.
 
 ```{r limpiar_data_sivigila}
-data_event_limp <- limpiar_data_sivigila(data_event = data_event, year = 2020)
+data_event_limp <- limpiar_data_sivigila(data_event = data_event)
 ```
 
 Las funciones de limpieza dentro de `limpiar_data_sivigila` se han recopilado y creado en base a la experiencia de epidemiólogos de campo. Estas pueden incluir funciones internas como:
@@ -201,7 +201,7 @@ El usuario puede utilizar estas funciones individualmente o simplemente utilizar
 
 ```{r geo_filtro}
 data_event_filtrada <- geo_filtro(data_event = data_event_limp,
-                                  nombre_dpto = "Chocó")
+                                  dpto = "Chocó")
 ``` 
 
 ### 4. Distribución temporal de casos
@@ -311,11 +311,11 @@ plot_edad_sex(data_agrupada = casos_edad_sex)
 
 Obtener la distribución espacial de los casos es útil para identificar áreas con una alta concentración de casos, agrupaciones de enfermedades y factores de riesgo ambientales o sociales.
 
-En Colombia, existen 32 unidades geográficas administrativas (adm1) llamadas departamentos. `sivirep` proporciona una función llamada `agrupar_mun` que permite obtener un data.frame de casos agrupados por departamento o municipio.
+En Colombia, existen 32 unidades geográficas administrativas (adm1) llamadas departamentos. `sivirep` proporciona una función llamada `agrupar_mpio` que permite obtener un data.frame de casos agrupados por departamento o municipio.
 
 ```{r agrupar_municipios}
-dist_esp_dept <- agrupar_mun(data_event = data_event_filtrada,
-                             dept_nombre = "Chocó")
+dist_esp_dept <- agrupar_mpio(data_event = data_event_filtrada,
+                              dpto = "Chocó")
 ```
 
 Actualmente, con la función llamada `plot_map`, el usuario puede generar un mapa estático de Colombia que muestra la distribución de casos por departamentos y municipios.
