@@ -83,6 +83,9 @@ plot_map <- function(data_agrupada,
     colnames(polygon_seleccionado)[colnames(polygon_seleccionado) ==
                                      "DPTO_CCDGO"] <- "id"
   }
+  data_agrupada <- data_agrupada %>%
+    group_by_at(c("id", "nombre")) %>%
+    dplyr::summarise(casos = sum(.data$casos), .groups = "drop")
   polygon_seleccionado <- ggplot2::fortify(polygon_seleccionado, region = "id")
   polygon_seleccionado$indice <- seq_len(nrow(polygon_seleccionado))
   polygon_seleccionado <- polygon_seleccionado %>%
