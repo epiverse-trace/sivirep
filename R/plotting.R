@@ -1,3 +1,5 @@
+#' Generar mapa por departamento
+#'
 #' Función que genera el mapa por departamentos o municipios con el número de
 #' casos de una enfermedad o evento
 #' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
