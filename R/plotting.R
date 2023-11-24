@@ -1,5 +1,3 @@
-#' Generar mapa por departamento
-#'
 #' Función que genera el mapa por departamentos o municipios con el número de
 #' casos de una enfermedad o evento
 #' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
@@ -55,8 +53,9 @@ plot_map <- function(data_agrupada,
   if (length(cols_geo_ocurrencia) > 1) {
     subtitulo <- paste0(subtitulo, cols_geo_ocurrencia[3])
   }
-  dsn <-  system.file("extdata", "depto_adm_shp",
-                      "MGN_ANM_MPIOS.shp",
+  config_file <- system.file("extdata", "config.yml", package = "sivirep")
+  base_path <- config::get(file = config_file, "map_shape_file")
+  dsn <-  system.file(base_path,
                       package = "sivirep")
   shp <- sf::st_read(dsn = dsn)
   data_dept <- obtener_info_depts(dpto, mpio)

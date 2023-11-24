@@ -2,7 +2,8 @@
 % Please edit documentation in R/plotting.R
 \name{plot_map}
 \alias{plot_map}
-\title{Generar mapa por departamento}
+\title{Función que genera el mapa por departamentos o municipios con el número de
+casos de una enfermedad o evento}
 \usage{
 plot_map(
   data_agrupada,
