@@ -9,11 +9,11 @@
 Provides functions for data wrangling and automated reports from SIVIGILA source.
 }
 \author{
-\strong{Maintainer}: Geraldine GC3mez MillC!n \email{geralidine.gomez@javeriana.edu.co} (\href{https://orcid.org/0009-0007-8701-0568}{ORCID}) [contributor]
+\strong{Maintainer}: Geraldine Gómez Millán \email{geralidine.gomez@javeriana.edu.co} (\href{https://orcid.org/0009-0007-8701-0568}{ORCID}) [contributor]
 
 Authors:
 \itemize{
-  \item Zulma M. CucunubC! \email{zulma.cucunuba@javeriana.edu.co} (\href{https://orcid.org/0000-0002-8165-3198}{ORCID}) [contributor]
+  \item Zulma M. Cucunubá \email{zulma.cucunuba@javeriana.edu.co} (\href{https://orcid.org/0000-0002-8165-3198}{ORCID}) [contributor]
 }
 
 Other contributors:

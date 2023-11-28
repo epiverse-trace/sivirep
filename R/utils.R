@@ -228,12 +228,15 @@ obtener_tip_ocurren_geo <- function(cod_event = NULL, nombre_event = NULL) {
   }
   if (length(grep(param_busqueda, geo_occurren$cod_dpto_n)) == 1
       && grep(param_busqueda, geo_occurren$cod_dpto_n) > 0) {
-    col_ocurren <- c("cod_dpto_n", "cod_mun_n", "notificacion")
+    col_ocurren <- c("cod_dpto_n", "departamento_notificacion",
+                     "cod_mun_n", "municipio_notificacion", "notificacion")
   } else if (length(grep(param_busqueda, geo_occurren$cod_dpto_r)) == 1
              && grep(param_busqueda, geo_occurren$cod_dpto_r) > 0) {
-    col_ocurren <- c("cod_dpto_r", "cod_mun_r", "residencia")
+    col_ocurren <- c("cod_dpto_r", "departamento_residencia",
+                     "cod_mun_r", "municipio_residencia", "residencia")
   } else {
-    col_ocurren <- c("cod_dpto_o", "cod_mun_o", "ocurrencia")
+    col_ocurren <- c("cod_dpto_o", "departamento_ocurrencia",
+                     "cod_mun_o", "municipio_ocurrencia", "ocurrencia")
   }
   return(col_ocurren)
 }
@@ -257,19 +260,24 @@ obtener_info_depts <- function(dpto = NULL, mpio = NULL) {
             "El parametro dpto debe ser una cadena de caracteres" =
               is.character(dpto))
   data_geo <- import_geo_cods()
+  data_geo$nombre_departamento <-
+    epitrix::clean_labels(data_geo$nombre_departamento)
+  data_geo$nombre_municipio <-
+    epitrix::clean_labels(data_geo$nombre_municipio)
+  dpto <- epitrix::clean_labels(dpto)
   list_dptos <- unique(data_geo$nombre_departamento)
   list_specific <-
-    list_dptos[stringr::str_detect(list_dptos,
-                                   toupper(dpto))]
+    list_dptos[stringr::str_detect(list_dptos, dpto)]
   data_dpto <- dplyr::filter(data_geo, .data$nombre_departamento %in%
                                list_specific)
   if (!is.null(mpio)) {
     stopifnot("El parametro mpio debe ser una cadena de caracteres"
               = is.character(mpio))
+    mpio <- epitrix::clean_labels(mpio)
     list_municipalities <- unique(data_geo$nombre_municipio)
     list_specific <-
       list_municipalities[stringr::str_detect(list_municipalities,
-                                              toupper(mpio))]
+                                              mpio)]
     data_dpto <- dplyr::filter(data_geo, .data$nombre_municipio %in%
                                  list_specific)
   }
