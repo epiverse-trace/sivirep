@@ -186,7 +186,7 @@ plot_map <- function(data_agrupada,
 #' agrupados con las fechas de inicio de síntomas; su valor por
 #' defecto es `"ini_sin"`
 #' @param tipo Un `character` (cadena de caracteres) que contiene el tipo de
-#' grafico (barras o tendencia); su valor por defecto es `"barras"`
+#' grafico (`"barras"` o `"tendencia"`); su valor por defecto es `"barras"`
 #' @param fuente_data Un `character` (cadena de caracteres) que contiene la
 #' leyenda o fuente de información de los datos; su valor por defecto es `NULL`
 #' @return Un `plot` o gráfico de la distribución de casos por fecha de inicio
@@ -217,13 +217,18 @@ plot_fecha_inisintomas <- function(data_agrupada,
             "El parametro uni_marca debe ser una cadena de caracteres" =
               is.character(uni_marca),
             "Valor invalido para el parametro uni_marca" =
-              uni_marca %in% c("dia", "semanaepi", "mes"))
+              uni_marca %in% c("dia", "semanaepi", "mes"),
+            "El parametro tipo debe ser una cadena de caracteres" =
+              is.character(tipo),
+            "Valor invalido para el parametro tipo" =
+              tipo %in% c("barras", "tendencia"))
   fechas_column_nombres <- config::get(file = system.file("extdata",
                                                           "config.yml",
                                                           package = "sivirep"),
                                        "dates_column_names")
   var_x <- nomb_col
   num_eventos <- length(unique(data_agrupada[["nombre_evento"]]))
+  data_plot <- data_agrupada
   if (is.null(fuente_data)) {
     fuente_data <-
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
@@ -241,17 +246,28 @@ plot_fecha_inisintomas <- function(data_agrupada,
   }
   if (uni_marca == "semana") {
     var_x <- "semana"
-    data_agrupada[[var_x]] <- as.numeric(data_agrupada[[var_x]])
+    data_plot[[var_x]] <- as.numeric(data_agrupada[[var_x]])
+  }
+  if (tipo == "tendencia" && uni_marca != "day") {
+    data_plot <- data_plot %>% dplyr::group_by_at(c(var_x,
+                                                    "nombre_evento")) %>%
+      dplyr::summarise(casos = sum(.data$casos), .groups = "drop")
   }
   etiqueta_x <- paste0("\nFecha de inicio de sintomas por ",
                        uni_marca,
                        "\n")
   plot_casos_inisintomas <-
-    ggplot2::ggplot(data_agrupada) +
-    ggplot2::geom_col(ggplot2::aes(x = .data[[var_x]],
-                                   y = .data[["casos"]],
-                                   fill = .data[["nombre_evento"]]),
-                      alpha = 0.9) +
+    ggplot2::ggplot(data_plot,
+                    ggplot2::aes(x = .data[[var_x]],
+                                 y = .data[["casos"]],
+                                 fill = .data[["nombre_evento"]])) + {
+      if (tipo == "tendencia") {
+        ggplot2::geom_line(linewidth = 1,
+                           color = "#FDDA0D")
+      } else {
+        ggplot2::geom_col(alpha = 0.9)
+      }
+    } +
     ggplot2::labs(x = etiqueta_x,
                   y = "Numero de casos\n",
                   caption = fuente_data) +
@@ -262,7 +278,7 @@ plot_fecha_inisintomas <- function(data_agrupada,
         ggplot2::scale_x_date(date_breaks = paste0("1 ",
                                                    uni_marca),
                               date_labels = "%b")
-      }else {
+      } else {
         ggplot2::scale_x_continuous(breaks = seq(1,
                                                  53,
                                                  2))
@@ -285,6 +301,8 @@ plot_fecha_inisintomas <- function(data_agrupada,
 #' las fechas de notificación; su valor por defecto es `"fec_not"`
 #' @param fuente_data Un `character` (cadena de caracteres) que contiene la
 #' leyenda o fuente de información de los datos; su valor por defecto es `NULL`
+#' @param tipo Un `character` (cadena de caracteres) que contiene el tipo de
+#' grafico (`"barras"` o `"tendencia"`); su valor por defecto es `"barras"`
 #' @return Un `plot` o gráfico de distribución de casos por fecha de
 #' notificación
 #' @examples
@@ -299,7 +317,8 @@ plot_fecha_inisintomas <- function(data_agrupada,
 plot_fecha_notifica <- function(data_agrupada,
                                 nomb_col = "fec_not",
                                 uni_marca = "semanaepi",
-                                fuente_data = NULL) {
+                                fuente_data = NULL,
+                                tipo = "barras") {
   stopifnot("El parametro data_agrupada es obligatorio" =
               !missing(data_agrupada),
             "El parametro data_agrupada debe ser un data.frame" =
@@ -311,7 +330,11 @@ plot_fecha_notifica <- function(data_agrupada,
             "El parametro uni_marca debe ser una cadena de caracteres" =
               is.character(uni_marca),
             "Valor invalido para el parametro uni_marca" =
-              uni_marca %in% c("dia", "semanaepi", "mes"))
+              uni_marca %in% c("dia", "semanaepi", "mes"),
+            "El parametro tipo debe ser una cadena de caracteres" =
+              is.character(tipo),
+            "Valor invalido para el parametro tipo" =
+              tipo %in% c("barras", "tendencia"))
   fechas_column_nombres <- config::get(file =
                                          system.file("extdata",
                                                      "config.yml",
@@ -319,6 +342,7 @@ plot_fecha_notifica <- function(data_agrupada,
                                        "dates_column_names")
   var_x <- nomb_col
   num_eventos <- length(unique(data_agrupada[["nombre_evento"]]))
+  data_plot <- data_agrupada
   if (is.null(fuente_data)) {
     fuente_data <-
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
@@ -336,17 +360,28 @@ plot_fecha_notifica <- function(data_agrupada,
   }
   if (uni_marca == "semana") {
     var_x <- "semana"
-    data_agrupada[[var_x]] <- as.numeric(data_agrupada[[var_x]])
+    data_plot[[var_x]] <- as.numeric(data_agrupada[[var_x]])
+  }
+  if (tipo == "tendencia" && uni_marca != "day") {
+    data_plot <- data_plot %>% dplyr::group_by_at(c(var_x,
+                                                  "nombre_evento")) %>%
+      dplyr::summarise(casos = sum(.data$casos), .groups = "drop")
   }
   etiqueta_x <- paste0("\nFecha de notificacion por ",
                        uni_marca,
                        "\n")
   plot_casos_fecha_notifica <-
-    ggplot2::ggplot(data_agrupada) +
-    ggplot2::geom_col(ggplot2::aes(x = .data[[var_x]],
-                                   y = .data[["casos"]],
-                                   fill = .data[["nombre_evento"]]),
-                      alpha = 0.9) +
+    ggplot2::ggplot(data_plot,
+                    ggplot2::aes(x = .data[[var_x]],
+                                 y = .data[["casos"]],
+                                 fill = .data[["nombre_evento"]])) + {
+      if (tipo == "tendencia") {
+          ggplot2::geom_line(linewidth = 1,
+                             color = "#FDDA0D")
+      } else {
+          ggplot2::geom_col(alpha = 0.9)
+      }
+    } +
     ggplot2::labs(x = etiqueta_x,
                   y = "Numero de casos\n",
                   caption = fuente_data) +
@@ -437,15 +472,15 @@ plot_sex <- function(data_agrupada,
 #'
 #' Función que genera el gráfico de distribución de casos por sexo
 #' y semana epidemiológica
-#' @param data_agrupada Un data frame que contiene los datos de la enfermedad
+#' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
 #' o evento agrupados
-#' @param nomb_cols Un array (arreglo) de character (cadena de caracteres) con
+#' @param nomb_cols Un `array` (arreglo) de `character` (cadena de caracteres) con
 #' los nombres de columna de los datos agrupados de la enfermedad o evento que
 #' contienen el sexo y las semanas epidemiológicas; su valor por defecto es
-#' c("sexo", "semana")
-#' @param fuente_data Un character (cadena de caracteres) que contiene la
-#' leyenda o fuente de información de los datos; su valor por defecto es NULL
-#' @return Un plot o gráfico de distribución de casos por sexo y semana
+#' `c("sexo", "semana")`
+#' @param fuente_data Un `character` (cadena de caracteres) que contiene la
+#' leyenda o fuente de información de los datos; su valor por defecto es `NULL`
+#' @return Un `plot` o gráfico de distribución de casos por sexo y semana
 #' epidemiológica
 #' @examples
 #' data(dengue2020)
@@ -488,14 +523,14 @@ plot_sex_semanaepi <- function(data_agrupada,
 #' Generar gráfico de distribución de casos por edad
 #'
 #' Función que genera el gráfico de distribución de casos por edad
-#' @param data_agrupada Un data frame que contiene los datos de la enfermedad
+#' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
 #' o evento agrupados
-#' @param nomb_col Un character (cadena de carácteres) con el nombre de
+#' @param nomb_col Un `character` (cadena de carácteres) con el nombre de
 #' la columna de los datos agrupados de la enfermedad o evento que contiene
-#' las edades; su valor por defecto es "edad"
-#' @param fuente_data Un character (cadena de caracteres) que contiene la
-#' leyenda o fuente de información de los datos; su valor por defecto es NULL
-#' @return Un plot o gráfico de distribución de casos por edad
+#' las edades; su valor por defecto es `"edad"`
+#' @param fuente_data Un `character` (cadena de caracteres) que contiene la
+#' leyenda o fuente de información de los datos; su valor por defecto es `NULL`
+#' @return Un `plot` o gráfico de distribución de casos por edad
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(dengue2020)
@@ -533,15 +568,15 @@ plot_edad <- function(data_agrupada,
 #' Generar gráfico de distribución de casos por edad y sexo
 #'
 #' Función que genera el gráfico de distribución de casos por edad y sexo
-#' @param data_agrupada Un data frame que contiene los datos de la
+#' @param data_agrupada Un `data.frame` que contiene los datos de la
 #' enfermedad o evento agrupados
-#' @param nomb_cols Un array (arreglo) de character (cadena de caracteres) con
-#' los nombres de columna de los datos agrupados de la enfermedad o evento que
-#' contiene las edades y las semanas epidemiológicas; su valor por defecto
-#' es c("edad", "sexo")
-#' @param fuente_data Un character (cadena de caracteres) que contiene la
-#' leyenda o fuente de información de los datos; su valor por defecto es NULL
-#' @return Un plot o gráfico de distribución de casos por edad y sexo
+#' @param nomb_cols Un `array` (arreglo) de `character` (cadena de caracteres) con
+#' los nombres de las columnas de los datos agrupados de la enfermedad o evento que
+#' contienen las edades y las semanas epidemiológicas; su valor por defecto
+#' es `c("edad", "sexo")`
+#' @param fuente_data Un `character` (cadena de caracteres) que contiene la
+#' leyenda o fuente de información de los datos; su valor por defecto es `NULL`
+#' @return Un `plot` o gráfico de distribución de casos por edad y sexo
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(dengue2020)
