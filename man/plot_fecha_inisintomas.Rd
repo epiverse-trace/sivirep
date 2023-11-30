@@ -26,7 +26,7 @@ de las marcas del gráfico (`"dia"`, `"semanaepi"` y `"mes"``);
 su valor por defecto es `"semanaepi"`}
 
 \item{tipo}{Un `character` (cadena de caracteres) que contiene el tipo de
-grafico (barras o tendencia); su valor por defecto es `"barras"`}
+grafico (`"barras"` o `"tendencia"`); su valor por defecto es `"barras"`}
 
 \item{fuente_data}{Un `character` (cadena de caracteres) que contiene la
 leyenda o fuente de información de los datos; su valor por defecto es `NULL`}
