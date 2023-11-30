@@ -7,18 +7,18 @@
 plot_edad(data_agrupada, nomb_col = "edad", fuente_data = NULL)
 }
 \arguments{
-\item{data_agrupada}{Un data frame que contiene los datos de la enfermedad
+\item{data_agrupada}{Un `data.frame` que contiene los datos de la enfermedad
 o evento agrupados}
 
-\item{nomb_col}{Un character (cadena de carácteres) con el nombre de
+\item{nomb_col}{Un `character` (cadena de carácteres) con el nombre de
 la columna de los datos agrupados de la enfermedad o evento que contiene
-las edades; su valor por defecto es "edad"}
+las edades; su valor por defecto es `"edad"`}
 
-\item{fuente_data}{Un character (cadena de caracteres) que contiene la
-leyenda o fuente de información de los datos; su valor por defecto es NULL}
+\item{fuente_data}{Un `character` (cadena de caracteres) que contiene la
+leyenda o fuente de información de los datos; su valor por defecto es `NULL`}
 }
 \value{
-Un plot o gráfico de distribución de casos por edad
+Un `plot` o gráfico de distribución de casos por edad
 }
 \description{
 Función que genera el gráfico de distribución de casos por edad
