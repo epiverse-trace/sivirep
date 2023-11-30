@@ -635,9 +635,7 @@ plot_mpios <- function(data_agrupada,
                        nomb_col = NULL,
                        fuente_data = NULL) {
   stopifnot("El parametro data_agrupada debe ser un data.frame"
-            = is.data.frame(data_agrupada),
-            "El parametro nomb_col debe ser una cadena de caracteres"
-            = is.character(nomb_col))
+            = is.data.frame(data_agrupada))
   if (is.null(fuente_data)) {
     fuente_data <-
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
@@ -647,6 +645,9 @@ plot_mpios <- function(data_agrupada,
     if (length(cols_geo_ocurrencia) > 1) {
       nomb_col <- cols_geo_ocurrencia[4]
     }
+  } else {
+    stopifnot("El parametro nomb_col debe ser una cadena de caracteres"
+              = is.character(nomb_col))
   }
   num_eventos <- length(unique(data_agrupada[["nombre_evento"]]))
   plot_casos_muns <-
