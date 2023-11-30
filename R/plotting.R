@@ -93,7 +93,6 @@ plot_map <- function(data_agrupada,
       colnames(polygon_seleccionado)[colnames(polygon_seleccionado) ==
                                        "DPTO_CCDGO"] <- "id"
     }
-    
   } else {
     colnames(polygon_seleccionado)[colnames(polygon_seleccionado) ==
                                      "DPTO_CCDGO"] <- "id"
@@ -615,14 +614,14 @@ plot_edad_sex <- function(data_agrupada,
 #' Generar gráfico de distribución de casos por municipios
 #'
 #' Función que genera el gráfico de distribución de casos por municipios
-#' @param data_agrupada Un data frame que contiene los datos de la
+#' @param data_agrupada Un `data.frame` que contiene los datos de la
 #' enfermedad o evento agrupados
-#' @param nomb_col Un character (cadena de carácteres) con el nombre de
+#' @param nomb_col Un `character` (cadena de carácteres) con el nombre de
 #' la columna de los datos agrupados de la enfermedad o evento que contiene
-#' los municipios; su valor por defecto es "nombre"
-#' @param fuente_data Un character (cadena de caracteres) que contiene la
-#' leyenda o fuente de información de los datos; su valor por defecto es NULL
-#' @return Un plot o gráfico de distribución de casos por municipios
+#' los municipios; su valor por defecto es `NULL`
+#' @param fuente_data Un `character` (cadena de caracteres) que contiene la
+#' leyenda o fuente de información de los datos; su valor por defecto es `NULL`
+#' @return Un `plot` o gráfico de distribución de casos por municipios
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(dengue2020)
@@ -630,10 +629,10 @@ plot_edad_sex <- function(data_agrupada,
 #' data_agrupada <- agrupar_mpio(data_event = data_limpia,
 #'                               dpto = "Antioquia")
 #' plot_mpios(data_agrupada,
-#'            nomb_col = "nombre")
+#'            nomb_col = "municipio_ocurrencia")
 #' @export
 plot_mpios <- function(data_agrupada,
-                       nomb_col = "nombre",
+                       nomb_col = NULL,
                        fuente_data = NULL) {
   stopifnot("El parametro data_agrupada debe ser un data.frame"
             = is.data.frame(data_agrupada),
@@ -642,6 +641,12 @@ plot_mpios <- function(data_agrupada,
   if (is.null(fuente_data)) {
     fuente_data <-
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
+  }
+  if (is.null(nomb_col)) {
+    cols_geo_ocurrencia <- obtener_tip_ocurren_geo(nombre_event = .data[["nombre_evento"]][1])
+    if (length(cols_geo_ocurrencia) > 1) {
+      nomb_col <- cols_geo_ocurrencia[4]
+    }
   }
   num_eventos <- length(unique(data_agrupada[["nombre_evento"]]))
   plot_casos_muns <-
