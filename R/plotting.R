@@ -156,7 +156,6 @@ plot_map <- function(data_agrupada,
                    legend.title = ggplot2::element_text(face = "bold")) +
     ggplot2::labs(caption = fuente_data, fill = "Casos")
   tema_tabla <- gridExtra::ttheme_minimal(base_size = 14,
-                                          base_family = "Montserrat",
                                           padding = ggplot2::unit(c(1, 1),
                                                                   "mm"))
   tabla <- ggplot2::ggplot() + ggplot2::theme_void() +
@@ -473,9 +472,9 @@ plot_sex <- function(data_agrupada,
 #' y semana epidemiológica
 #' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
 #' o evento agrupados
-#' @param nomb_cols Un `array` (arreglo) de `character` (cadena de caracteres) con
-#' los nombres de columna de los datos agrupados de la enfermedad o evento que
-#' contienen el sexo y las semanas epidemiológicas; su valor por defecto es
+#' @param nomb_cols Un `array` (arreglo) de `character` (cadena de caracteres)
+#' con los nombres de columna de los datos agrupados de la enfermedad o evento
+#' que contienen el sexo y las semanas epidemiológicas; su valor por defecto es
 #' `c("sexo", "semana")`
 #' @param fuente_data Un `character` (cadena de caracteres) que contiene la
 #' leyenda o fuente de información de los datos; su valor por defecto es `NULL`
@@ -569,10 +568,10 @@ plot_edad <- function(data_agrupada,
 #' Función que genera el gráfico de distribución de casos por edad y sexo
 #' @param data_agrupada Un `data.frame` que contiene los datos de la
 #' enfermedad o evento agrupados
-#' @param nomb_cols Un `array` (arreglo) de `character` (cadena de caracteres) con
-#' los nombres de las columnas de los datos agrupados de la enfermedad o evento que
-#' contienen las edades y las semanas epidemiológicas; su valor por defecto
-#' es `c("edad", "sexo")`
+#' @param nomb_cols Un `array` (arreglo) de `character` (cadena de caracteres)
+#' con los nombres de las columnas de los datos agrupados de la enfermedad o
+#' evento que contienen las edades y las semanas epidemiológicas; su valor
+#' por defecto es `c("edad", "sexo")`
 #' @param fuente_data Un `character` (cadena de caracteres) que contiene la
 #' leyenda o fuente de información de los datos; su valor por defecto es `NULL`
 #' @return Un `plot` o gráfico de distribución de casos por edad y sexo
@@ -641,7 +640,8 @@ plot_mpios <- function(data_agrupada,
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
   }
   if (is.null(nomb_col)) {
-    cols_geo_ocurrencia <- obtener_tip_ocurren_geo(nombre_event = .data[["nombre_evento"]][1])
+    cols_geo_ocurrencia <-
+      obtener_tip_ocurren_geo(nombre_event = .data[["nombre_evento"]][1])
     if (length(cols_geo_ocurrencia) > 1) {
       nomb_col <- cols_geo_ocurrencia[4]
     }
