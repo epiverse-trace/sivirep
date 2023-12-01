@@ -82,10 +82,10 @@ plot_map <- function(data_agrupada,
   shp <- sf::st_read(dsn = dsn, quiet = TRUE)
   polygon_seleccionado <- shp
   if (!is.null(dpto)) {
-    data_dept <- obtener_info_depts(dpto, mpio)
-    data_dept <- data_dept[1, ]
     stopifnot("El parametro dpto debe ser un cadena de caracteres"
               = is.character(dpto))
+    data_dept <- obtener_info_depts(dpto, mpio)
+    data_dept <- data_dept[1, ]
     titulo <- paste0("Departamento de ", stringr::str_to_title(dpto))
     polygon_seleccionado <- shp[shp$DPTO_CCDGO ==
                                   data_dept$codigo_departamento, ]
