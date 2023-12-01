@@ -295,12 +295,14 @@ obtener_info_depts <- function(dpto = NULL, mpio = NULL) {
 modficar_cod_mun <- function(cod_dpto, cod_mpio, tam = 0) {
   cod_mpio <- as.character(cod_mpio)
   cod_dpto <- as.character(cod_dpto)
-  if (startsWith(cod_dpto, "0")) {
+  if (substr(cod_dpto, 1, 1) == "0" && tam > 3) {
     cod_dpto <- substr(cod_dpto, 2, 2)
     cod_mpio <- gsub(cod_dpto, "", cod_mpio)
   }
-  if (tam == 3) {
-    cod_mpio <- substr(cod_mpio, 3, 5)
+  if (tam == 3 && nchar(cod_mpio) == 4) {
+    cod_mpio <- substr(cod_mpio, nchar(cod_mpio) - 2, 5)
+  } else if (tam == 3 && nchar(cod_mpio) > 4) {
+      cod_mpio <- substr(cod_mpio, nchar(cod_mpio) - 3, 5)
   }
   return(cod_mpio)
 }
