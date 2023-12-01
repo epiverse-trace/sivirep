@@ -4,7 +4,7 @@
 \alias{modficar_cod_mun}
 \title{Establecer códigos geográficos de los datos de la enfermedad o evento}
 \usage{
-modficar_cod_mun(cod_dpto, cod_mpio, tam)
+modficar_cod_mun(cod_dpto, cod_mpio, tam = 0)
 }
 \arguments{
 \item{cod_dpto}{Un `numeric` (numerico) que contiene el código del
