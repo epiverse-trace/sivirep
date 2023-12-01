@@ -2,28 +2,37 @@
 #'
 #' Función que importa los nombres y códigos de los departamentos
 #' y municipios de Colombia a través de una URL
-#' @param url_data Un `character` (cadena de caracteres) que contiene
-#' la URL de los datos geográficos; su valor por defecto es NULL
+#' @param descargar Un `boolean` (TRUE o FALSE) que indica si los datos
+#' se deben descargar desde la API de datos abiertos; su valor por
+#' defecto es `FALSE`
 #' @return Un `data.frame` con los nombres y códigos de los departamentos
 #' y municipios de Colombia
 #' @examples
-#' import_geo_cods(url_data =
-#' "https://www.datos.gov.co/api/views/gdxc-w37w/rows.csv?accessType=DOWNLOAD")
+#' import_geo_cods(descargar = FALSE)
 #' @export
-import_geo_cods <- function(url_data = NULL) {
-  if (is.null(url_data)) {
-    url_data <- config::get(file =
+import_geo_cods <- function(descargar = FALSE) {
+  data_geo <- NULL
+  if (descargar) {
+    path_data <- config::get(file =
                               system.file("extdata",
                                           "config.yml",
                                           package = "sivirep"),
                             "geo_data_path")
+    data_geo <- utils::read.csv(path_data)
+    names(data_geo) <- epitrix::clean_labels(names(data_geo))
   } else {
-    stopifnot("El parametro url_data debe ser una cadena de caracteres"
-              = is.character(url_data))
+    stopifnot("El parametro descargar debe ser un booleano"
+              = is.logical(descargar))
+    path_data <- config::get(file =
+                              system.file("extdata",
+                                          "config.yml",
+                                          package = "sivirep"),
+                            "divipola_data_path")
+    archivo_geo <- system.file(path_data,
+                               package = "sivirep")
+    data_geo <- readxl::read_excel(archivo_geo)
   }
-  data <- utils::read.csv(url_data)
-  names(data) <- epitrix::clean_labels(names(data))
-  return(data)
+  return(data_geo)
 }
 
 #' Importar las enfermedades y años disponibles disposibles
