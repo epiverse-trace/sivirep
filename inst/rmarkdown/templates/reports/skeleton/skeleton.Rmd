@@ -4,9 +4,9 @@ output:
     number_sections: true
     fig_caption: true
     css: style.css
-  word_document: 
-    number_sections: true
   pdf_document: 
+    number_sections: true
+  word_document: 
     number_sections: true
 header-includes:
   - \usepackage{fancyhdr}
@@ -232,8 +232,7 @@ plot_spatial
 # Distribución espacial de casos
 
 ```{r plot_distribution_spatial, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
-mapa <- plot_map(data_agrupada = dist_espacial_dpto,
-                 dpto = params$departmento)
+mapa <- plot_map(data_agrupada = dist_espacial_dpto)
 ```
 
 ```{r map_distribution_spatial, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, cache = FALSE, results = FALSE, comment = FALSE, fig.height = 16, fig.width = 14, fig.cap =  "Distribucion espacial de casos"}
