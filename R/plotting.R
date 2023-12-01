@@ -641,7 +641,8 @@ plot_mpios <- function(data_agrupada,
   }
   if (is.null(nomb_col)) {
     cols_geo_ocurrencia <-
-      obtener_tip_ocurren_geo(nombre_event = .data[["nombre_evento"]][1])
+      obtener_tip_ocurren_geo(nombre_event =
+                                data_agrupada[["nombre_evento"]][1])
     if (length(cols_geo_ocurrencia) > 1) {
       nomb_col <- cols_geo_ocurrencia[4]
     }
