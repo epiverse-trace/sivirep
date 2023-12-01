@@ -40,12 +40,16 @@ geo_filtro <- function(data_event, dpto = NULL, mpio = NULL) {
   if (!is.null(mpio)) {
     stopifnot("El parametro mpio debe ser una cadena de caracteres"
               = is.character(mpio))
+    tam <- nchar(data_dept_filt[[cols_ocurren[3]]][1])
     cod_mun <- modficar_cod_mun(dept_data$codigo_departamento,
-                                 dept_data$codigo_municipio)
+                                dept_data$codigo_municipio,
+                                tam)
+    data_dept_filt[[cols_ocurren[3]]] <-
+      as.character(data_dept_filt[[cols_ocurren[3]]])
     data_dept_filt <-
       dplyr::filter(data_dept_filt,
                     data_dept_filt[[cols_ocurren[3]]] %in%
-                      as.integer(cod_mun))
+                      as.character(cod_mun))
   }
   return(data_dept_filt)
 }
