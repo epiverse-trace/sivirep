@@ -92,9 +92,6 @@ plot_map <- function(data_agrupada,
     if (!is.null(mpio)) {
       stopifnot("El parametro mpio debe ser un cadena de caracteres"
                 = is.character(mpio))
-      code_mun <- modficar_cod_mun(data_dept$codigo_departamento,
-                                   data_dept$codigo_municipio,
-                                   tam = 3)
       polygon_seleccionado <-
         polygon_seleccionado[polygon_seleccionado$MPIO_CCDGO == code_mun, ]
       titulo <- paste0(titulo, " , ", mpio)
