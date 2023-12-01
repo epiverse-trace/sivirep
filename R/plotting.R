@@ -58,7 +58,7 @@ plot_map <- function(data_agrupada,
   base_path <- config::get(file = config_file, "map_shape_file")
   dsn <-  system.file(base_path,
                       package = "sivirep")
-  shp <- sf::st_read(dsn = dsn)
+  shp <- sf::st_read(dsn = dsn, quiet = TRUE)
   polygon_seleccionado <- shp
   if (is.null(dpto)) {
     nomb_cols <- colnames(data_agrupada)
@@ -87,12 +87,9 @@ plot_map <- function(data_agrupada,
       polygon_seleccionado <-
         polygon_seleccionado[polygon_seleccionado$MPIO_CCDGO == code_mun, ]
       titulo <- paste0(titulo, " , ", mpio)
-      colnames(polygon_seleccionado)[colnames(polygon_seleccionado) ==
-                                       "MPIO_CCDGO"] <- "id"
-    } else {
-      colnames(polygon_seleccionado)[colnames(polygon_seleccionado) ==
-                                       "DPTO_CCDGO"] <- "id"
     }
+    colnames(polygon_seleccionado)[colnames(polygon_seleccionado) ==
+                                     "MPIO_CCDGO"] <- "id"
   } else {
     colnames(polygon_seleccionado)[colnames(polygon_seleccionado) ==
                                      "DPTO_CCDGO"] <- "id"
@@ -151,8 +148,7 @@ plot_map <- function(data_agrupada,
                                                       face = "bold"),
                    plot.subtitle = ggplot2::element_text(hjust = 0.5,
                                                          face = "bold"),
-                   text = ggplot2::element_text(family = "Montserrat",
-                                                size = 14),
+                   text = ggplot2::element_text(size = 14),
                    legend.title = ggplot2::element_text(face = "bold")) +
     ggplot2::labs(caption = fuente_data, fill = "Casos")
   tema_tabla <- gridExtra::ttheme_minimal(base_size = 14,
