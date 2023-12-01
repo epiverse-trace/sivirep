@@ -650,34 +650,23 @@ agrupar_mpio <- function(data_event,
   data_event_muns <- data_event
   dept_data <- NULL
   if (!is.null(dpto)) {
-    aux_dpto <- unique(data_event_muns[[nomb_col[4]]])
+    aux_dpto <- unique(data_event_muns[[nomb_col[2]]])
     if (length(aux_dpto) > 1) {
       data_event_muns <- geo_filtro(data_event, dpto)
     }
-    dept_data <- obtener_info_depts(dpto)
   } else {
-    dpto <- unique(data_event_muns[[nomb_col[4]]])
-    if (length(dpto) == 1) {
-      dept_data <- obtener_info_depts(dpto)
-    } else {
+    dpto <- unique(data_event_muns[[nomb_col[2]]])
+    if (length(dpto) != 1) {
       stopifnot("Debe ingresar el nombre o codigo del departamento" =
                 length(dpto) == 1)
     }
   }
+  dept_data <- obtener_info_depts(dpto)
   data_event_muns <- agrupar_cols_casos(data_event_muns,
                                         nomb_cols = nomb_col[1:4])
   data_event_muns[[nomb_col[1]]] <- as.character(data_event_muns[[nomb_col[1]]])
   data_event_muns[[nomb_col[3]]] <- as.character(data_event_muns[[nomb_col[3]]])
   dept_data <- dept_data[1, ]
-  nombres_muns <- NULL
-  geo_data <- import_geo_cods()
-  for (cod in data_event_muns[[nomb_col[3]]]) {
-    nombres_muns <- append(nombres_muns,
-                           obtener_nombres_mpios(geo_data,
-                                                 dept_data$codigo_departamento,
-                                                 cod))
-  }
-  data_event_muns$nombre_divipola <- nombres_muns
   data_event_muns <-  dplyr::arrange(data_event_muns,
                                      dplyr::desc(.data$casos))
   return(data_event_muns)
