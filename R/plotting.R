@@ -44,6 +44,7 @@ plot_map <- function(data_agrupada,
   subtitulo <- "Analisis efectuado por geografia de "
   cols_geo_ocurrencia <- NULL
   data_tabla <- data.frame()
+  nombres_col <- NULL
   if (is.null(fuente_data)) {
     fuente_data <- "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
   }
@@ -56,21 +57,30 @@ plot_map <- function(data_agrupada,
   }
   config_file <- system.file("extdata", "config.yml", package = "sivirep")
   base_path <- config::get(file = config_file, "map_shape_file")
-  dsn <-  system.file(base_path,
-                      package = "sivirep")
-  shp <- sf::st_read(dsn = dsn, quiet = TRUE)
-  polygon_seleccionado <- shp
   if (is.null(dpto)) {
     nomb_cols <- colnames(data_agrupada)
     pos_col_dpto <- which(stringr::str_detect(nomb_cols,
                                               stringr::fixed("departamento")))
+    pos_col_mpio <- which(stringr::str_detect(nomb_cols,
+                                              stringr::fixed("municipio")))
     if (length(pos_col_dpto) > 0) {
       aux_dpto <- unique(data_agrupada[[nomb_cols[pos_col_dpto]]])
+      aux_mpio <- unique(data_agrupada[[nomb_cols[pos_col_mpio]]])
       if (length(aux_dpto) == 1) {
         dpto <- aux_dpto
       }
+      else {
+        base_path <- config::get(file = config_file, "dpto_shape_file")
+      }
+      if (length(aux_mpio) == 1) {
+        mpio <- aux_mpio
+      }
     }
   }
+  dsn <-  system.file(base_path,
+                      package = "sivirep")
+  shp <- sf::st_read(dsn = dsn, quiet = TRUE)
+  polygon_seleccionado <- shp
   if (!is.null(dpto)) {
     data_dept <- obtener_info_depts(dpto, mpio)
     data_dept <- data_dept[1, ]
@@ -83,7 +93,8 @@ plot_map <- function(data_agrupada,
       stopifnot("El parametro mpio debe ser un cadena de caracteres"
                 = is.character(mpio))
       code_mun <- modficar_cod_mun(data_dept$codigo_departamento,
-                                   data_dept$codigo_municipio)
+                                   data_dept$codigo_municipio,
+                                   tam = 3)
       polygon_seleccionado <-
         polygon_seleccionado[polygon_seleccionado$MPIO_CCDGO == code_mun, ]
       titulo <- paste0(titulo, " , ", mpio)
@@ -92,7 +103,7 @@ plot_map <- function(data_agrupada,
                                      "MPIO_CCDGO"] <- "id"
   } else {
     colnames(polygon_seleccionado)[colnames(polygon_seleccionado) ==
-                                     "DPTO_CCDGO"] <- "id"
+                                     "DPTO"] <- "id"
   }
   if (!is.null(col_codigos)) {
     colnames(data_agrupada)[colnames(data_agrupada) ==
@@ -100,11 +111,13 @@ plot_map <- function(data_agrupada,
   } else {
     pos_col <- NULL
     if (is.null(dpto)) {
-      pos_col <- which(stringr::str_detect(colnames(data_agrupada),
-                                           stringr::fixed("cod_dpto")))
+      pos_col <- which(colnames(data_agrupada) %in%
+                         cols_geo_ocurrencia[1])
+      nombres_col <- cols_geo_ocurrencia[2]
     } else {
-      pos_col <- which(stringr::str_detect(colnames(data_agrupada),
-                                           stringr::fixed("cod_mun")))
+      pos_col <- which(colnames(data_agrupada) %in%
+                         cols_geo_ocurrencia[3])
+      nombres_col <- cols_geo_ocurrencia[4]
     }
     if (length(pos_col) == 1) {
       colnames(data_agrupada)[pos_col] <- "id"
@@ -117,7 +130,7 @@ plot_map <- function(data_agrupada,
     }
   }
   data_agrupada <- data_agrupada %>%
-    group_by_at("id") %>%
+    group_by_at(c("id", nombres_col)) %>%
     dplyr::summarise(casos = sum(.data$casos), .groups = "drop")
   polygon_seleccionado <- ggplot2::fortify(polygon_seleccionado, region = "id")
   polygon_seleccionado$indice <- seq_len(nrow(polygon_seleccionado))
@@ -126,11 +139,19 @@ plot_map <- function(data_agrupada,
   polygon_seleccionado <-
     cbind(polygon_seleccionado,
           sf::st_coordinates(sf::st_centroid(polygon_seleccionado$geometry)))
-  data_tabla <-
-    data.frame(Indice = polygon_seleccionado$indice,
-               Codigo = polygon_seleccionado$id,
-               Municipio = stringr::str_to_title(polygon_seleccionado
-                                                 $MPIO_CNMBR))
+  if (!is.null(dpto)) {
+    data_tabla <-
+      data.frame(Indice = polygon_seleccionado$indice,
+                 Codigo = polygon_seleccionado$id,
+                 Municipio = stringr::str_to_title(polygon_seleccionado
+                                                   $MPIO_CNMBR))
+  } else {
+    data_tabla <-
+      data.frame(Indice = 1:length(data_agrupada$id),
+                 Codigo = data_agrupada$id,
+                 Departamento =
+                   stringr::str_to_title(data_agrupada[[nombres_col]]))
+  }
   data_tabla <- data_tabla[order(data_tabla$Indice), ]
   sysfonts::font_add_google("Montserrat", "Montserrat")
   showtext::showtext_auto()
@@ -604,6 +625,64 @@ plot_edad_sex <- function(data_agrupada,
     obtener_estetica_escala(escala = 2, nombre = "Sexo") +
     tema_sivirep()
   return(plot_casos_edad_sexo)
+}
+
+#' Generar gráfico de distribución de casos por departamentos
+#'
+#' Función que genera el gráfico de distribución de casos por departamentos
+#' @param data_agrupada Un `data.frame` que contiene los datos de la
+#' enfermedad o evento agrupados
+#' @param nomb_col Un `character` (cadena de carácteres) con el nombre de
+#' la columna de los datos agrupados de la enfermedad o evento que contiene
+#' los departamentos; su valor por defecto es `NULL`
+#' @param fuente_data Un `character` (cadena de caracteres) que contiene la
+#' leyenda o fuente de información de los datos; su valor por defecto es `NULL`
+#' @return Un `plot` o gráfico de distribución de casos por departamentos
+#' @examples
+#' data(dengue2020)
+#' data_limpia <- limpiar_data_sivigila(dengue2020)
+#' data_limpia <- estandarizar_geo_cods(data_limpia)
+#' data_agrupada <- agrupar_mpio(data_event = data_limpia,
+#'                               dpto = "Antioquia")
+#' plot_dptos(data_agrupada,
+#'            nomb_col = "departamento_ocurrencia")
+#' @export
+plot_dptos <- function(data_agrupada,
+                       nomb_col = NULL,
+                       fuente_data = NULL) {
+  stopifnot("El parametro data_agrupada debe ser un data.frame"
+            = is.data.frame(data_agrupada))
+  if (is.null(fuente_data)) {
+    fuente_data <-
+      "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
+  }
+  if (is.null(nomb_col)) {
+    cols_geo_ocurrencia <-
+      obtener_tip_ocurren_geo(nombre_event =
+                                data_agrupada[["nombre_evento"]][1])
+    if (length(cols_geo_ocurrencia) > 1) {
+      nomb_col <- cols_geo_ocurrencia[2]
+    }
+  } else {
+    stopifnot("El parametro nomb_col debe ser una cadena de caracteres"
+              = is.character(nomb_col))
+  }
+  num_eventos <- length(unique(data_agrupada[["nombre_evento"]]))
+  plot_casos_dptos <-
+    ggplot2::ggplot(data_agrupada,
+                    ggplot2::aes(x = .data[[nomb_col]],
+                                 y = .data[["casos"]],
+                                 fill = .data[["nombre_evento"]])) +
+    ggplot2::geom_bar(width = 0.5,
+                      stat = "identity") +
+    ggplot2::labs(x = "\nDepartamento\n", y = "Numero de casos\n",
+                  caption = fuente_data) +
+    ggplot2::theme_classic() +
+    obtener_estetica_escala(escala = num_eventos, nombre = "Eventos") +
+    tema_sivirep() +
+    ggplot2::theme(legend.position = "bottom") +
+    ggplot2::coord_flip()
+  return(plot_casos_dptos)
 }
 
 #' Generar gráfico de distribución de casos por municipios
