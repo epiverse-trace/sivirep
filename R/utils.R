@@ -260,10 +260,6 @@ obtener_info_depts <- function(dpto = NULL, mpio = NULL) {
             "El parametro dpto debe ser una cadena de caracteres" =
               is.character(dpto))
   data_geo <- import_geo_cods()
-  data_geo$nombre_departamento <-
-    epitrix::clean_labels(data_geo$nombre_departamento)
-  data_geo$nombre_municipio <-
-    epitrix::clean_labels(data_geo$nombre_municipio)
   dpto <- epitrix::clean_labels(dpto)
   list_dptos <- unique(data_geo$nombre_departamento)
   list_specific <-
@@ -291,16 +287,20 @@ obtener_info_depts <- function(dpto = NULL, mpio = NULL) {
 #' @param cod_dpto Un `numeric` (numerico) que contiene el código del
 #' departamento
 #' @param cod_mpio Un `numeric` (numerico) que contiene el código del municipio
+#' @param tam Un `numeric` (numerico) que contiene el tamaño de los códigos
 #' @return Un `data.frame` con los códigos geográficos
 #' @examples
 #' modficar_cod_mun(cod_dpto = 01, cod_mpio = "001")
 #' @export
-modficar_cod_mun <- function(cod_dpto, cod_mpio) {
+modficar_cod_mun <- function(cod_dpto, cod_mpio, tam = 0) {
   cod_mpio <- as.character(cod_mpio)
   cod_dpto <- as.character(cod_dpto)
   if (startsWith(cod_dpto, "0")) {
     cod_dpto <- substr(cod_dpto, 2, 2)
     cod_mpio <- gsub(cod_dpto, "", cod_mpio)
+  }
+  if (tam == 3) {
+    cod_mpio <- substr(cod_mpio, 3, 5)
   }
   return(cod_mpio)
 }
