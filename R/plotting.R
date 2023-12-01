@@ -18,7 +18,7 @@
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(dengue2020)
 #' data_espacial_dpto <- estandarizar_geo_cods(data_limpia)
-#' data_filtrada <- geo_filtro(data_event = data_limpia,
+#' data_filtrada <- geo_filtro(data_event = data_espacial_dpto,
 #'                             dpto = "Antioquia",
 #'                             mpio = "Envigado")
 #' data_espacial_dpto <- agrupar_mpio(data_event = data_filtrada,
@@ -89,11 +89,13 @@ plot_map <- function(data_agrupada,
     titulo <- paste0("Departamento de ", stringr::str_to_title(dpto))
     polygon_seleccionado <- shp[shp$DPTO_CCDGO ==
                                   data_dept$codigo_departamento, ]
+    polygon_seleccionado$MPIO_CCDGO <- paste0(polygon_seleccionado$DPTO_CCDGO,
+                                              polygon_seleccionado$MPIO_CCDGO)
     if (!is.null(mpio)) {
       stopifnot("El parametro mpio debe ser un cadena de caracteres"
                 = is.character(mpio))
       polygon_seleccionado <-
-        polygon_seleccionado[polygon_seleccionado$MPIO_CCDGO == code_mun, ]
+        polygon_seleccionado[polygon_seleccionado$MPIO_CCDGO == data_dept$codigo_municipio, ]
       titulo <- paste0(titulo, " , ", mpio)
     }
     colnames(polygon_seleccionado)[colnames(polygon_seleccionado) ==
