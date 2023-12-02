@@ -260,13 +260,14 @@ obtener_info_depts <- function(dpto = NULL, mpio = NULL) {
             "El parametro dpto debe ser una cadena de caracteres" =
               is.character(dpto))
   data_geo <- import_geo_cods()
-  dpto <- epitrix::clean_labels(dpto)
+  dpto <- estandarizar_texto(dpto)
   list_dptos <- unique(data_geo$nombre_departamento)
   list_specific <-
     list_dptos[stringr::str_detect(list_dptos, dpto)]
   data_dpto <- dplyr::filter(data_geo, .data$nombre_departamento %in%
                                list_specific)
   if (!is.null(mpio)) {
+    mpio <- estandarizar_texto(mpio)
     stopifnot("El parametro mpio debe ser una cadena de caracteres"
               = is.character(mpio))
     mpio <- epitrix::clean_labels(mpio)
@@ -343,4 +344,24 @@ obtener_nombres_mpios <- function(data_geo, cod_dpto, cod_mpio) {
                             .data$codigo_municipio %in% as.integer(cod_mpio))
   data_mpio <- data_mpio[1, ]
   return(data_mpio$nombre_municipio)
+}
+
+#' Estandarizar un texto con tíldes
+#'
+#' Función que estandariza un texto que contiene tíldes
+#' @param text Un `character` (cadena de caracteres) que contiene
+#' un texto con tíldes
+#' @return Un `character` (cadena de caracteres) con el texto sin
+#' tíldes
+#' @examples
+#' estandarizar_texto(texto = "MEDELLÍN")
+#' @export
+estandarizar_texto <- function(text) {
+  text <- tolower(text)
+  text <- gsub("á", "a",
+               gsub("é", "e",
+                    gsub("í", "i",
+                         gsub("ó", "o",
+                              gsub("ú", "u", text)))))
+  return(text)
 }
