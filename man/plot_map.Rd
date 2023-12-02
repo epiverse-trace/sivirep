@@ -43,7 +43,7 @@ casos de una enfermedad o evento
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(dengue2020)
 data_espacial_dpto <- estandarizar_geo_cods(data_limpia)
-data_filtrada <- geo_filtro(data_event = data_limpia,
+data_filtrada <- geo_filtro(data_event = data_espacial_dpto,
                             dpto = "Antioquia",
                             mpio = "Envigado")
 data_espacial_dpto <- agrupar_mpio(data_event = data_filtrada,
