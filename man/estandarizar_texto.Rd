@@ -18,5 +18,5 @@ tíldes
 Función que estandariza un texto que contiene tíldes
 }
 \examples{
-estandarizar_texto(texto = "MEDELLÍN")
+estandarizar_texto(text = "MEDELLÍN")
 }

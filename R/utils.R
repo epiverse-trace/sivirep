@@ -354,7 +354,7 @@ obtener_nombres_mpios <- function(data_geo, cod_dpto, cod_mpio) {
 #' @return Un `character` (cadena de caracteres) con el texto sin
 #' tíldes
 #' @examples
-#' estandarizar_texto(texto = "MEDELLÍN")
+#' estandarizar_texto(text = "MEDELLÍN")
 #' @export
 estandarizar_texto <- function(text) {
   text <- tolower(text)
