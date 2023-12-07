@@ -86,7 +86,7 @@ list_events <- function() {
                                      "additional_diseases")
   name_diseases <- base::append(stringr::str_to_title(name_diseases),
                                 additional_diseases)
-  years_diseases <- base::append(years_diseases, c("", ""))
+  years_diseases <- base::append(years_diseases, c("", "", ""))
   list_events <- data.frame(enfermedad = name_diseases,
                             aa = years_diseases)
   list_events <- list_events[order(list_events$enfermedad,
