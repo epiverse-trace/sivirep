@@ -131,6 +131,8 @@ import_data_event <- function(nombre_event,
                                                         "config.yml",
                                                         package = "sivirep"),
                                           "related_diseases")
+  list_events_relacionados <- lapply(list_events_relacionados,
+                                     stringr::str_to_title)
   cols_remover <- config::get(file =
                                 system.file("extdata",
                                             "config.yml",
@@ -141,11 +143,6 @@ import_data_event <- function(nombre_event,
                                           substr(nombre_event,
                                                  1,
                                                  nchar(nombre_event) - 1))), ]
-  stopifnot("La enfermedad o evento no esta disponible para su descarga"
-            = !(is.null(grupo_events) || nrow(grupo_events) == 0),
-            "El year no esta disponible para su descarga"
-            = stringr::str_detect(grupo_events$aa,
-                                  as.character(year)))
   if (length(list_events_relacionados) > 0) {
     events_relacionados <- list_events_relacionados[[nombre_event]]
     for (event in events_relacionados) {
