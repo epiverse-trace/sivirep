@@ -20,7 +20,7 @@ default:
   additional_diseases: ["Malaria", "Intento De Suicidio"]
   dates_column_names: ["fecha_nto", "fec_not", "ini_sin", "fec_hos", "fec_def", "fec_con"]
   depto_column_names: ["cod_dpto_o", "cod_dpto_r"]
-  geo_column_names: ["cod_dpto_o", "cod_dpto_r", "cod_mun_o", "cod_mun_r", "cod_mpio_o", "cod_mpio_r"]
+  geo_column_names: ["cod_dpto_o", "cod_dpto_r", "cod_dpto_n", "cod_mun_o", "cod_mun_r", "cod_mun_n"]
   occurrence_geo_diseases:
     cod_dpto_n: [{ 351 : "ENDOMETRITIS PUERPERAL" }, { 357 : "INFECCION ASOCIADA A DISPOSITIVOS" }]
     cod_dpto_r: [{ 110 : "BAJO PESO AL NACER" }, { 100 :  "CANCER DE LA MAMA Y CUELLO UTERINO" }, { 459 :  "CANCER INFANTIL" }, { 342 :  "ENFERMEDADES HUERFANAS - RARAS" }, { 549 :  "MORBILIDAD MATERNA EXTREMA" }, { 550 :  "MORTALIDAD MATERNA" }, { 560 :  "MORTALIDAD PERINATAL Y NEONATAL TARDIA" }, { 112 :  "MORTALIDAD POR DESNUTRICION"}, { 450 :  "LEPRA"}, { 330 :  "HEPATITIS A"}, { 720 : "SINDROME DE RUBEOLA CONGENITA"}]
