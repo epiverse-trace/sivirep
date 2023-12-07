@@ -68,8 +68,7 @@ plot_map <- function(data_agrupada,
       aux_mpio <- unique(data_agrupada[[nomb_cols[pos_col_mpio]]])
       if (length(aux_dpto) == 1) {
         dpto <- aux_dpto
-      }
-      else {
+      } else {
         base_path <- config::get(file = config_file, "dpto_shape_file")
       }
       if (length(aux_mpio) == 1) {
@@ -95,7 +94,8 @@ plot_map <- function(data_agrupada,
       stopifnot("El parametro mpio debe ser un cadena de caracteres"
                 = is.character(mpio))
       polygon_seleccionado <-
-        polygon_seleccionado[polygon_seleccionado$MPIO_CCDGO == data_dept$codigo_municipio, ]
+        polygon_seleccionado[polygon_seleccionado$MPIO_CCDGO ==
+                               data_dept$codigo_municipio, ]
       titulo <- paste0(titulo, " , ", mpio)
     }
     colnames(polygon_seleccionado)[colnames(polygon_seleccionado) ==
@@ -142,11 +142,11 @@ plot_map <- function(data_agrupada,
     data_tabla <-
       data.frame(Indice = polygon_seleccionado$indice,
                  Codigo = polygon_seleccionado$id,
-                 Municipio = stringr::str_to_title(polygon_seleccionado
-                                                   $MPIO_CNMBR))
+                 Municipio =
+                   stringr::str_to_title(polygon_seleccionado$MPIO_CNMBR))
   } else {
     data_tabla <-
-      data.frame(Indice = 1:length(data_agrupada$id),
+      data.frame(Indice = seq_along(length(data_agrupada$id)),
                  Codigo = data_agrupada$id,
                  Departamento =
                    stringr::str_to_title(data_agrupada[[nombres_col]]))
