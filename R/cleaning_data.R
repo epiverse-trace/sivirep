@@ -35,8 +35,10 @@ estandarizar_geo_cods <- function(data_event) {
                                       flag = "0")
       col_dpto <- stringr::str_replace(column, stringr::fixed("_mun_"),
                                        "_dpto_")
-      data_event[[column]] <- paste0(data_event[[col_dpto]],
-                                     data_event[[column]])
+      if (max(nchar(data_event[[column]])) == 3) {
+        data_event[[column]] <- paste0(data_event[[col_dpto]],
+                                       data_event[[column]])
+      }
     }
   }
   return(data_event)
