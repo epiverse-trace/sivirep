@@ -31,7 +31,7 @@ params:
     value: 2020
     label: Año
   departmento:
-    value: "Chocó" 
+    value: "Choco" 
     label: Departamento
     input: select
     choices: !r sivirep::obtener_dptos()
