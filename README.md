@@ -353,7 +353,7 @@ geográfica.
 
 ``` r
 data_event_filtrada <- geo_filtro(data_event = data_event_limp,
-                                  dpto = "Chocó")
+                                  dpto = "Choco")
 ```
 
 ### 4. Distribución temporal de casos
@@ -520,7 +520,7 @@ departamento o municipio.
 
 ``` r
 dist_esp_dept <- agrupar_mpio(data_event = data_event_filtrada,
-                             dpto = "Chocó")
+                             dpto = "Choco")
 ```
 
 Actualmente, con la función llamada `plot_map`, el usuario puede generar
@@ -528,7 +528,7 @@ un mapa estático de Colombia que muestra la distribución de casos por
 departamentos y municipios.
 
 ``` r
-mapa <- plot_map(data_agrupada = dist_esp_dept, dpto = "Chocó")
+mapa <- plot_map(data_agrupada = dist_esp_dept, dpto = "Choco")
 ```
 
 ``` r
