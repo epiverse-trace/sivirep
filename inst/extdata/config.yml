@@ -18,6 +18,7 @@ default:
   respiratory_virus_column_names: [ "influenza_a_h1_2009", "influenza_a_h1", "influenza_a_h3", "influenza_b", "metapneumovirus_humano", "rinovirus_enterovirus_humano", "virus_sincitial_respiratorio", "adenovirus"]
   respiratory_virus_names: [ "H1N1 2009", "H1N1", "H3N1", "Influenza B", "Metapneumovirus", "Rinovirus", "VSR", "Adenovirus"]
   additional_diseases: ["Malaria", "Intento De Suicidio"]
+  related_diseases: {"MORTALIDAD MATERNA": "MORBILIDAD MATERNA EXTREMA"}
   dates_column_names: ["fecha_nto", "fec_not", "ini_sin", "fec_hos", "fec_def", "fec_con"]
   depto_column_names: ["cod_dpto_o", "cod_dpto_r"]
   geo_column_names: ["cod_dpto_o", "cod_dpto_r", "cod_dpto_n", "cod_mun_o", "cod_mun_r", "cod_mun_n"]
