@@ -64,8 +64,14 @@ plot_map <- function(data_agrupada,
     pos_col_mpio <- which(stringr::str_detect(nomb_cols,
                                               stringr::fixed("municipio")))
     if (length(pos_col_dpto) > 0) {
-      aux_dpto <- unique(data_agrupada[[nomb_cols[pos_col_dpto]]])
-      aux_mpio <- unique(data_agrupada[[nomb_cols[pos_col_mpio]]])
+      aux_dpto <- NULL
+      aux_mpio <- NULL
+      if (length(pos_col_dpto) > 0) {
+        aux_dpto <- unique(data_agrupada[[nomb_cols[pos_col_dpto]]])
+      }
+      if (length(pos_col_mpio) > 0) {
+        aux_mpio <- unique(data_agrupada[[nomb_cols[pos_col_mpio]]])
+      }
       if (length(aux_dpto) == 1) {
         dpto <- aux_dpto
       } else {
