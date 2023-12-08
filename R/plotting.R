@@ -277,6 +277,10 @@ plot_fecha_inisintomas <- function(data_agrupada,
   etiqueta_x <- paste0("\nFecha de inicio de sintomas por ",
                        uni_marca,
                        "\n")
+  pos_leyenda <- ggplot2::theme(legend.position = "right")
+  if (num_eventos > 3) {
+    pos_leyenda <- ggplot2::theme(legend.position = "bottom")
+  }
   plot_casos_inisintomas <-
     ggplot2::ggplot(data_plot,
                     ggplot2::aes(x = .data[[var_x]],
@@ -294,7 +298,7 @@ plot_fecha_inisintomas <- function(data_agrupada,
                   caption = fuente_data) +
     obtener_estetica_escala(escala = num_eventos, nombre = "Eventos") +
     tema_sivirep() +
-    ggplot2::theme(legend.position = "bottom") + {
+    pos_leyenda + {
       if (uni_marca != "semana") {
         ggplot2::scale_x_date(date_breaks = paste0("1 ",
                                                    uni_marca),
@@ -391,6 +395,10 @@ plot_fecha_notifica <- function(data_agrupada,
   etiqueta_x <- paste0("\nFecha de notificacion por ",
                        uni_marca,
                        "\n")
+  pos_leyenda <- ggplot2::theme(legend.position = "right")
+  if (num_eventos > 3) {
+    pos_leyenda <- ggplot2::theme(legend.position = "bottom")
+  }
   plot_casos_fecha_notifica <-
     ggplot2::ggplot(data_plot,
                     ggplot2::aes(x = .data[[var_x]],
@@ -408,7 +416,7 @@ plot_fecha_notifica <- function(data_agrupada,
                   caption = fuente_data) +
     obtener_estetica_escala(escala = num_eventos, nombre = "Eventos") +
     tema_sivirep() +
-    ggplot2::theme(legend.position = "bottom") + {
+    pos_leyenda + {
       if (uni_marca != "semana") {
         ggplot2::scale_x_date(date_breaks = paste0("1 ",
                                                    uni_marca),
@@ -674,6 +682,10 @@ plot_dptos <- function(data_agrupada,
               = is.character(nomb_col))
   }
   num_eventos <- length(unique(data_agrupada[["nombre_evento"]]))
+  pos_leyenda <- ggplot2::theme(legend.position = "right")
+  if (num_eventos > 3) {
+    pos_leyenda <- ggplot2::theme(legend.position = "bottom")
+  }
   plot_casos_dptos <-
     ggplot2::ggplot(data_agrupada,
                     ggplot2::aes(x = .data[[nomb_col]],
@@ -686,7 +698,7 @@ plot_dptos <- function(data_agrupada,
     ggplot2::theme_classic() +
     obtener_estetica_escala(escala = num_eventos, nombre = "Eventos") +
     tema_sivirep() +
-    ggplot2::theme(legend.position = "bottom") +
+    pos_leyenda +
     ggplot2::coord_flip()
   return(plot_casos_dptos)
 }
@@ -732,6 +744,10 @@ plot_mpios <- function(data_agrupada,
               = is.character(nomb_col))
   }
   num_eventos <- length(unique(data_agrupada[["nombre_evento"]]))
+  pos_leyenda <- ggplot2::theme(legend.position = "right")
+  if (num_eventos > 3) {
+    pos_leyenda <- ggplot2::theme(legend.position = "bottom")
+  }
   plot_casos_muns <-
     ggplot2::ggplot(data_agrupada,
                     ggplot2::aes(x = .data[[nomb_col]],
@@ -744,7 +760,7 @@ plot_mpios <- function(data_agrupada,
     ggplot2::theme_classic() +
     obtener_estetica_escala(escala = num_eventos, nombre = "Eventos") +
     tema_sivirep() +
-    ggplot2::theme(legend.position = "bottom") +
+    pos_leyenda +
     ggplot2::coord_flip()
   return(plot_casos_muns)
 }
