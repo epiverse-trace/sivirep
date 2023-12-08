@@ -37,7 +37,7 @@
     <a href="#main" class="visually-hidden-focusable">Ir al contenido</a>
     
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
+    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark"><div class="container">
     
     <a href="https://epiverse-trace.github.io/" class="external-link"><img src="logo_white.svg" id="logo" alt="Epiverse-TRACE"></a>
     <a class="navbar-brand me-2" href="index.html">sivirep</a>
@@ -578,7 +578,7 @@
 <p><code>sivirep</code> proporciona una función que permite filtrar los datos de enfermedades por departamento o nombre del municipio llamada <code>geo_filtro</code>. Esto permite al usuario crear un informe a nivel subnacional, seleccionando casos específicos basados en la ubicación geográfica.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data_event_filtrada</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geo_filtro.html">geo_filtro</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_event_limp</span>,</span>
-<span>                                  dpto <span class="op">=</span> <span class="st">"Chocó"</span><span class="op">)</span></span></code></pre></div>
+<span>                                  dpto <span class="op">=</span> <span class="st">"Choco"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="id_4-distribución-temporal-de-casos">4. Distribución temporal de casos<a class="anchor" aria-label="anchor" href="#id_4-distribuci%C3%B3n-temporal-de-casos"></a>
@@ -673,10 +673,10 @@
 <p>En Colombia, existen 32 unidades geográficas administrativas (adm1) llamadas departamentos. <code>sivirep</code> proporciona una función llamada <code>agrupar_mpio</code> que permite obtener un data.frame de casos agrupados por departamento o municipio.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dist_esp_dept</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/agrupar_mpio.html">agrupar_mpio</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_event_filtrada</span>,</span>
-<span>                             dpto <span class="op">=</span> <span class="st">"Chocó"</span><span class="op">)</span></span></code></pre></div>
+<span>                             dpto <span class="op">=</span> <span class="st">"Choco"</span><span class="op">)</span></span></code></pre></div>
 <p>Actualmente, con la función llamada <code>plot_map</code>, el usuario puede generar un mapa estático de Colombia que muestra la distribución de casos por departamentos y municipios.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mapa</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/plot_map.html">plot_map</a></span><span class="op">(</span>data_agrupada <span class="op">=</span> <span class="va">dist_esp_dept</span>, dpto <span class="op">=</span> <span class="st">"Chocó"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">mapa</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/plot_map.html">plot_map</a></span><span class="op">(</span>data_agrupada <span class="op">=</span> <span class="va">dist_esp_dept</span>, dpto <span class="op">=</span> <span class="st">"Choco"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mapa</span></span></code></pre></div>
 <p><img src="reference/figures/mapa-1.png"><!-- --></p>

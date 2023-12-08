@@ -14,7 +14,7 @@ o evento"><meta property="og:image" content="https://epiverse-trace.github.io/si
     <a href="#main" class="visually-hidden-focusable">Ir al contenido</a>
     
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
+    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark"><div class="container">
     
     <a href="https://epiverse-trace.github.io/" class="external-link"><img src="../logo_white.svg" id="logo" alt="Epiverse-TRACE"></a>
     <a class="navbar-brand me-2" href="../index.html">sivirep</a>
@@ -81,258 +81,21 @@ la enfermedad o evento</p>
     <div class="section level2">
     <h2 id="ref-examples">Ejemplos<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">obtener_info_depts</span><span class="op">(</span>dpto <span class="op">=</span> <span class="st">"ANTIOQUIA"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     codigo_departamento codigo_municipio nombre_departamento</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                    05             5001           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                    05             5002           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                    05             5004           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                    05             5021           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                    05             5030           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                    05             5031           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7                    05             5034           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8                    05             5036           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9                    05             5038           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10                   05             5040           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11                   05             5042           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12                   05             5044           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13                   05             5045           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14                   05             5051           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15                   05             5055           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16                   05             5059           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17                   05             5079           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18                   05             5086           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19                   05             5088           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20                   05             5091           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21                   05             5093           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22                   05             5101           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23                   05             5107           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24                   05             5113           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25                   05             5120           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26                   05             5125           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27                   05             5129           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28                   05             5134           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29                   05             5138           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30                   05             5142           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31                   05             5145           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32                   05             5147           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 33                   05             5148           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 34                   05             5150           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35                   05             5154           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 36                   05             5172           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 37                   05             5190           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 38                   05             5197           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 39                   05             5206           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 40                   05             5209           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 41                   05             5212           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 42                   05             5234           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43                   05             5237           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 44                   05             5240           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 45                   05             5250           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 46                   05             5264           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 47                   05             5266           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 48                   05             5282           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 49                   05             5284           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 50                   05             5306           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 51                   05             5308           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 52                   05             5310           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 53                   05             5313           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 54                   05             5315           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 55                   05             5318           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 56                   05             5321           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 57                   05             5347           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 58                   05             5353           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 59                   05             5360           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 60                   05             5361           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 61                   05             5364           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 62                   05             5368           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 63                   05             5376           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 64                   05             5380           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 65                   05             5390           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 66                   05             5400           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 67                   05             5411           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 68                   05             5425           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 69                   05             5440           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 70                   05             5467           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 71                   05             5475           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 72                   05             5480           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 73                   05             5483           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 74                   05             5490           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 75                   05             5495           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76                   05             5501           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 77                   05             5541           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 78                   05             5543           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 79                   05             5576           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 80                   05             5579           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 81                   05             5585           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 82                   05             5591           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 83                   05             5604           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 84                   05             5607           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 85                   05             5615           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 86                   05             5628           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 87                   05             5631           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 88                   05             5642           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 89                   05             5647           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 90                   05             5649           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 91                   05             5652           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 92                   05             5656           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 93                   05             5658           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 94                   05             5659           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 95                   05             5660           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 96                   05             5664           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 97                   05             5665           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 98                   05             5667           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 99                   05             5670           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 100                  05             5674           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 101                  05             5679           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 102                  05             5686           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 103                  05             5690           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 104                  05             5697           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 105                  05             5736           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 106                  05             5756           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 107                  05             5761           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 108                  05             5789           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 109                  05             5790           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 110                  05             5792           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 111                  05             5809           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 112                  05             5819           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 113                  05             5837           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 114                  05             5842           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 115                  05             5847           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 116                  05             5854           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 117                  05             5856           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 118                  05             5858           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 119                  05             5861           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 120                  05             5873           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 121                  05             5885           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 122                  05             5887           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123                  05             5890           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 124                  05             5893           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 125                  05             5895           ANTIOQUIA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              nombre_municipio tipo_municipio_isla_area_no_municipalizada</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                    MEDELLÍN                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                   ABEJORRAL                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                    ABRIAQUÍ                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                  ALEJANDRÍA                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                       AMAGÁ                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                      AMALFI                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7                       ANDES                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8                 ANGELÓPOLIS                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9                   ANGOSTURA                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10                      ANORÍ                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11      SANTA FÉ DE ANTIOQUIA                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12                       ANZÁ                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13                   APARTADÓ                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14                  ARBOLETES                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15                    ARGELIA                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16                    ARMENIA                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17                    BARBOSA                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18                    BELMIRA                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19                      BELLO                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20                    BETANIA                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21                    BETULIA                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22             CIUDAD BOLÍVAR                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23                    BRICEÑO                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24                   BURITICÁ                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25                    CÁCERES                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26                    CAICEDO                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27                     CALDAS                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28                 CAMPAMENTO                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29                CAÑASGORDAS                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30                   CARACOLÍ                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31                  CARAMANTA                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32                     CAREPA                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 33       EL CARMEN DE VIBORAL                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 34                   CAROLINA                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35                   CAUCASIA                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 36                  CHIGORODÓ                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 37                   CISNEROS                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 38                    COCORNÁ                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 39                 CONCEPCIÓN                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 40                  CONCORDIA                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 41                 COPACABANA                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 42                    DABEIBA                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43                  DONMATÍAS                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 44                    EBÉJICO                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 45                   EL BAGRE                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 46                 ENTRERRÍOS                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 47                   ENVIGADO                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 48                   FREDONIA                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 49                   FRONTINO                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 50                    GIRALDO                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 51                  GIRARDOTA                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 52                GÓMEZ PLATA                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 53                    GRANADA                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 54                  GUADALUPE                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 55                     GUARNE                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 56                    GUATAPÉ                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 57                  HELICONIA                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 58                   HISPANIA                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 59                     ITAGÜÍ                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 60                    ITUANGO                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 61                     JARDÍN                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 62                     JERICÓ                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 63                    LA CEJA                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 64                LA ESTRELLA                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 65                 LA PINTADA                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 66                   LA UNIÓN                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 67                   LIBORINA                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 68                      MACEO                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 69                  MARINILLA                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 70                 MONTEBELLO                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 71                    MURINDÓ                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 72                     MUTATÁ                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 73                     NARIÑO                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 74                    NECOCLÍ                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 75                      NECHÍ                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76                      OLAYA                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 77                      PEÑOL                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 78                      PEQUE                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 79                PUEBLORRICO                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 80              PUERTO BERRÍO                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 81                PUERTO NARE                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 82             PUERTO TRIUNFO                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 83                   REMEDIOS                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 84                     RETIRO                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 85                   RIONEGRO                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 86                SABANALARGA                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 87                   SABANETA                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 88                     SALGAR                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 89     SAN ANDRÉS DE CUERQUÍA                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 90                 SAN CARLOS                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 91              SAN FRANCISCO                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 92               SAN JERÓNIMO                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 93     SAN JOSÉ DE LA MONTAÑA                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 94          SAN JUAN DE URABÁ                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 95                   SAN LUIS                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 96  SAN PEDRO DE LOS MILAGROS                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 97         SAN PEDRO DE URABÁ                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 98                 SAN RAFAEL                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 99                  SAN ROQUE                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 100        SAN VICENTE FERRER                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 101             SANTA BÁRBARA                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 102        SANTA ROSA DE OSOS                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 103             SANTO DOMINGO                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 104              EL SANTUARIO                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 105                   SEGOVIA                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 106                    SONSÓN                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 107                  SOPETRÁN                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 108                   TÁMESIS                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 109                    TARAZÁ                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 110                     TARSO                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 111                  TITIRIBÍ                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 112                    TOLEDO                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 113                     TURBO                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 114                   URAMITA                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 115                     URRAO                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 116                  VALDIVIA                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 117                VALPARAÍSO                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 118                   VEGACHÍ                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 119                   VENECIA                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 120          VIGÍA DEL FUERTE                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 121                      YALÍ                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 122                   YARUMAL                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123                   YOLOMBÓ                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 124                     YONDÓ                                  Municipio</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 125                  ZARAGOZA                                  Municipio</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 125 × 5</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    codigo_departamento codigo_municipio nombre_departamento nombre_municipio</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 05                  05001            antioquia           medellin        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 05                  05002            antioquia           abejorral       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 05                  05004            antioquia           abriaqui        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 05                  05021            antioquia           alejandria      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 05                  05030            antioquia           amaga           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 05                  05031            antioquia           amalfi          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 05                  05034            antioquia           andes           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 05                  05036            antioquia           angelopolis     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 05                  05038            antioquia           angostura       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 05                  05040            antioquia           anori           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 115 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: tipo_municipio_isla_area_no_municipalizada &lt;chr&gt;</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>En esta página</h2>

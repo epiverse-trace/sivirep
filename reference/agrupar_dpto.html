@@ -14,7 +14,7 @@ número de casos"><meta property="og:image" content="https://epiverse-trace.gith
     <a href="#main" class="visually-hidden-focusable">Ir al contenido</a>
     
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
+    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark"><div class="container">
     
     <a href="https://epiverse-trace.github.io/" class="external-link"><img src="../logo_white.svg" id="logo" alt="Epiverse-TRACE"></a>
     <a class="navbar-brand me-2" href="../index.html">sivirep</a>
@@ -92,19 +92,19 @@ por códigos de departamento y número de casos</p>
 <span class="r-in"><span><span class="fu">agrupar_dpto</span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_limpia</span>,</span></span>
 <span class="r-in"><span>             nomb_col <span class="op">=</span> <span class="st">"cod_dpto_o"</span>,</span></span>
 <span class="r-in"><span>             porcentaje <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 33 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    id    nombre_evento casos</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 01    DENGUE          157</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 05    DENGUE         <span style="text-decoration: underline;">1</span>781</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 08    DENGUE         <span style="text-decoration: underline;">2</span>079</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 13    DENGUE         <span style="text-decoration: underline;">1</span>981</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 15    DENGUE          435</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 17    DENGUE          423</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 18    DENGUE         <span style="text-decoration: underline;">1</span>505</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 19    DENGUE         <span style="text-decoration: underline;">1</span>063</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 20    DENGUE         <span style="text-decoration: underline;">1</span>816</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 23    DENGUE         <span style="text-decoration: underline;">1</span>376</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 33 × 4</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    cod_dpto_o departamento_ocurrencia nombre_evento casos</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 01         EXTERIOR                DENGUE          157</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 05         ANTIOQUIA               DENGUE         <span style="text-decoration: underline;">1</span>781</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 08         ATLANTICO               DENGUE         <span style="text-decoration: underline;">2</span>079</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 13         BOLIVAR                 DENGUE         <span style="text-decoration: underline;">1</span>981</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 15         BOYACA                  DENGUE          435</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 17         CALDAS                  DENGUE          423</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 18         CAQUETA                 DENGUE         <span style="text-decoration: underline;">1</span>505</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 19         CAUCA                   DENGUE         <span style="text-decoration: underline;">1</span>063</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 20         CESAR                   DENGUE         <span style="text-decoration: underline;">1</span>816</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 23         CORDOBA                 DENGUE         <span style="text-decoration: underline;">1</span>376</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 23 more rows</span></span>
 </code></pre></div>
     </div>

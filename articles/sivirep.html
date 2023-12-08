@@ -35,7 +35,7 @@
     <a href="#main" class="visually-hidden-focusable">Ir al contenido</a>
     
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
+    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark"><div class="container">
     
     <a href="https://epiverse-trace.github.io/" class="external-link"><img src="../logo_white.svg" id="logo" alt="Epiverse-TRACE"></a>
     <a class="navbar-brand me-2" href="../index.html">sivirep</a>
@@ -554,6 +554,11 @@ Intrafamiliar</td>
 <td align="left">2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020,
 2021, 2022</td>
 </tr>
+<tr class="even">
+<td align="left">68</td>
+<td align="left">Zika</td>
+<td align="left"></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -744,7 +749,7 @@ nivel subnacional, seleccionando casos específicos basados en la
 ubicación geográfica.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data_event_filtrada</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geo_filtro.html">geo_filtro</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_event_limp</span>,</span>
-<span>                                  dpto <span class="op">=</span> <span class="st">"Chocó"</span><span class="op">)</span></span></code></pre></div>
+<span>                                  dpto <span class="op">=</span> <span class="st">"Choco"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="distribución-temporal-de-casos">4. Distribución temporal de casos<a class="anchor" aria-label="anchor" href="#distribuci%C3%B3n-temporal-de-casos"></a>
@@ -891,7 +896,7 @@ llamada <code>agrupar_mpio</code> que permite obtener un data.frame de
 casos agrupados por departamento o municipio.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dist_esp_dept</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/agrupar_mpio.html">agrupar_mpio</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_event_filtrada</span>,</span>
-<span>                              dpto <span class="op">=</span> <span class="st">"Chocó"</span><span class="op">)</span></span></code></pre></div>
+<span>                              dpto <span class="op">=</span> <span class="st">"Choco"</span><span class="op">)</span></span></code></pre></div>
 <p>Actualmente, con la función llamada <code>plot_map</code>, el usuario
 puede generar un mapa estático de Colombia que muestra la distribución
 de casos por departamentos y municipios.</p>

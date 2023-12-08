@@ -67,6 +67,9 @@
     <loc>https://epiverse-trace.github.io/sivirep/reference/dengue2020.html</loc>
   </url>
   <url>
+    <loc>https://epiverse-trace.github.io/sivirep/reference/divipoladata.html</loc>
+  </url>
+  <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/estandarizar_geo_cods.html</loc>
   </url>
   <url>
@@ -112,9 +115,6 @@
     <loc>https://epiverse-trace.github.io/sivirep/reference/list_events.html</loc>
   </url>
   <url>
-    <loc>https://epiverse-trace.github.io/sivirep/reference/modficar_cod_mun.html</loc>
-  </url>
-  <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/obtener_casos_pob_especial.html</loc>
   </url>
   <url>
@@ -146,6 +146,9 @@
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/obtener_tip_ocurren_geo.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/sivirep/reference/plot_dptos.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/plot_edad.html</loc>
