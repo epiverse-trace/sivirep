@@ -13,6 +13,7 @@ tema_sivirep <- function() {
   showtext::showtext_auto()
   tema <- ggplot2::theme_classic() +
     ggplot2::theme(legend.position = "right",
+                   legend.direction = "vertical",
                    plot.caption = ggplot2::element_text(size = 8),
                    text = ggplot2::element_text(family = "Montserrat",
                                                 size = 13),
