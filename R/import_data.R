@@ -2,28 +2,37 @@
 #'
 #' Función que importa los nombres y códigos de los departamentos
 #' y municipios de Colombia a través de una URL
-#' @param url_data Un `character` (cadena de caracteres) que contiene
-#' la URL de los datos geográficos; su valor por defecto es NULL
+#' @param descargar Un `boolean` (TRUE o FALSE) que indica si los datos
+#' se deben descargar desde la API de datos abiertos; su valor por
+#' defecto es `FALSE`
 #' @return Un `data.frame` con los nombres y códigos de los departamentos
 #' y municipios de Colombia
 #' @examples
-#' import_geo_cods(url_data =
-#' "https://www.datos.gov.co/api/views/gdxc-w37w/rows.csv?accessType=DOWNLOAD")
+#' import_geo_cods(descargar = FALSE)
 #' @export
-import_geo_cods <- function(url_data = NULL) {
-  if (is.null(url_data)) {
-    url_data <- config::get(file =
+import_geo_cods <- function(descargar = FALSE) {
+  data_geo <- NULL
+  if (descargar) {
+    path_data <- config::get(file =
                               system.file("extdata",
                                           "config.yml",
                                           package = "sivirep"),
                             "geo_data_path")
+    data_geo <- utils::read.csv(path_data)
+    names(data_geo) <- epitrix::clean_labels(names(data_geo))
   } else {
-    stopifnot("El parametro url_data debe ser una cadena de caracteres"
-              = is.character(url_data))
+    stopifnot("El parametro descargar debe ser un booleano"
+              = is.logical(descargar))
+    path_data <- config::get(file =
+                              system.file("extdata",
+                                          "config.yml",
+                                          package = "sivirep"),
+                            "divipola_data_path")
+    archivo_geo <- system.file(path_data,
+                               package = "sivirep")
+    data_geo <- readxl::read_excel(archivo_geo)
   }
-  data <- utils::read.csv(url_data)
-  names(data) <- epitrix::clean_labels(names(data))
-  return(data)
+  return(data_geo)
 }
 
 #' Importar las enfermedades y años disponibles disposibles
@@ -77,7 +86,7 @@ list_events <- function() {
                                      "additional_diseases")
   name_diseases <- base::append(stringr::str_to_title(name_diseases),
                                 additional_diseases)
-  years_diseases <- base::append(years_diseases, c("", ""))
+  years_diseases <- base::append(years_diseases, c("", "", ""))
   list_events <- data.frame(enfermedad = name_diseases,
                             aa = years_diseases)
   list_events <- list_events[order(list_events$enfermedad,
@@ -122,6 +131,8 @@ import_data_event <- function(nombre_event,
                                                         "config.yml",
                                                         package = "sivirep"),
                                           "related_diseases")
+  list_events_relacionados <- lapply(list_events_relacionados,
+                                     stringr::str_to_title)
   cols_remover <- config::get(file =
                                 system.file("extdata",
                                             "config.yml",
@@ -132,11 +143,6 @@ import_data_event <- function(nombre_event,
                                           substr(nombre_event,
                                                  1,
                                                  nchar(nombre_event) - 1))), ]
-  stopifnot("La enfermedad o evento no esta disponible para su descarga"
-            = !(is.null(grupo_events) || nrow(grupo_events) == 0),
-            "El year no esta disponible para su descarga"
-            = stringr::str_detect(grupo_events$aa,
-                                  as.character(year)))
   if (length(list_events_relacionados) > 0) {
     events_relacionados <- list_events_relacionados[[nombre_event]]
     for (event in events_relacionados) {

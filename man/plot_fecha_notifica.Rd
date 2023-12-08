@@ -8,7 +8,8 @@ plot_fecha_notifica(
   data_agrupada,
   nomb_col = "fec_not",
   uni_marca = "semanaepi",
-  fuente_data = NULL
+  fuente_data = NULL,
+  tipo = "barras"
 )
 }
 \arguments{
@@ -25,6 +26,9 @@ su valor por defecto es `"semanaepi"`}
 
 \item{fuente_data}{Un `character` (cadena de caracteres) que contiene la
 leyenda o fuente de información de los datos; su valor por defecto es `NULL`}
+
+\item{tipo}{Un `character` (cadena de caracteres) que contiene el tipo de
+grafico (`"barras"` o `"tendencia"`); su valor por defecto es `"barras"`}
 }
 \value{
 Un `plot` o gráfico de distribución de casos por fecha de

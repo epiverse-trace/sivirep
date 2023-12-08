@@ -40,12 +40,12 @@ geo_filtro <- function(data_event, dpto = NULL, mpio = NULL) {
   if (!is.null(mpio)) {
     stopifnot("El parametro mpio debe ser una cadena de caracteres"
               = is.character(mpio))
-    code_mun <- modficar_cod_mun(dept_data$codigo_departamento,
-                                 dept_data$codigo_municipio)
+    data_dept_filt[[cols_ocurren[3]]] <-
+      as.character(data_dept_filt[[cols_ocurren[3]]])
     data_dept_filt <-
       dplyr::filter(data_dept_filt,
-                    data_dept_filt[[cols_ocurren[2]]] %in%
-                      as.integer(code_mun))
+                    data_dept_filt[[cols_ocurren[3]]] %in%
+                      as.character(dept_data$codigo_municipio))
   }
   return(data_dept_filt)
 }
@@ -596,10 +596,9 @@ agrupar_dpto <- function(data_event,
   data_event_cods_dpto <- data_event
   nomb_col <- obtener_tip_ocurren_geo(data_event_cods_dpto$cod_eve[1])
   data_event_cods_dpto <- agrupar_cols_casos(data_event_cods_dpto,
-                                             nomb_cols = nomb_col[1])
-  colnames(data_event_cods_dpto)[colnames(data_event_cods_dpto) ==
-                                   nomb_col[1]] <- "id"
-  data_event_cods_dpto$id <- as.character(data_event_cods_dpto$id)
+                                             nomb_cols = nomb_col[1:2])
+  data_event_cods_dpto[[nomb_col[1]]] <-
+    as.character(data_event_cods_dpto[[nomb_col[1]]])
   return(data_event_cods_dpto)
 }
 
@@ -649,22 +648,25 @@ agrupar_mpio <- function(data_event,
   }
   nomb_col <- obtener_tip_ocurren_geo(data_event$cod_eve[1])
   data_event_muns <- data_event
-  data_event_muns <- agrupar_cols_casos(data_event_muns,
-                                        nomb_cols = nomb_col[2])
-  colnames(data_event_muns)[colnames(data_event_muns) ==
-                              nomb_col[2]] <- "id"
-  data_event_muns$id <- as.character(data_event_muns$id)
-  dept_data <- obtener_info_depts(dpto)
-  dept_data <- dept_data[1, ]
-  nombres_muns <- NULL
-  geo_data <- import_geo_cods()
-  for (id in data_event_muns$id) {
-    nombres_muns <- append(nombres_muns,
-                           obtener_nombres_mpios(geo_data,
-                                                 dept_data$codigo_departamento,
-                                                 id))
+  dept_data <- NULL
+  if (!is.null(dpto)) {
+    aux_dpto <- unique(data_event_muns[[nomb_col[2]]])
+    if (length(aux_dpto) > 1) {
+      data_event_muns <- geo_filtro(data_event, dpto)
+    }
+  } else {
+    dpto <- unique(data_event_muns[[nomb_col[2]]])
+    if (length(dpto) != 1) {
+      stopifnot("Debe ingresar el nombre o codigo del departamento" =
+                length(dpto) == 1)
+    }
   }
-  data_event_muns$nombre <- nombres_muns
+  dept_data <- obtener_info_depts(dpto)
+  data_event_muns <- agrupar_cols_casos(data_event_muns,
+                                        nomb_cols = nomb_col[1:4])
+  data_event_muns[[nomb_col[1]]] <- as.character(data_event_muns[[nomb_col[1]]])
+  data_event_muns[[nomb_col[3]]] <- as.character(data_event_muns[[nomb_col[3]]])
+  dept_data <- dept_data[1, ]
   data_event_muns <-  dplyr::arrange(data_event_muns,
                                      dplyr::desc(.data$casos))
   return(data_event_muns)
