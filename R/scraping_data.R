@@ -30,6 +30,11 @@ get_path_data_disease_year <- function(year, disease_name) {
   response_document <- xml2::as_xml_document(query_disease_response)
   property_file_ref <- xml2::xml_find_all(response_document, "//d:FileRef")
   disease_file_ref <- xml2::xml_text(property_file_ref)
+  if (length(disease_file_ref) >= 2) {
+    disease_file_ref <- disease_file_ref[
+      which(stringr::str_detect(disease_file_ref,
+                                stringr::fixed(year)))]
+  }
   file_path <- stringr::str_replace(file_path,
                                     stringr::fixed("_filepath_"),
                                     disease_file_ref)
