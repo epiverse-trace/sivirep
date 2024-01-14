@@ -1,11 +1,11 @@
 ---
 output:
-  pdf_document: 
-    number_sections: true
   html_document:
     number_sections: true
     fig_caption: true
     css: style.css
+  pdf_document: 
+    number_sections: true
   word_document: 
     number_sections: true
 header-includes:
@@ -38,6 +38,9 @@ params:
   municipio:
     value: ""
     label: Municipio
+editor_options: 
+  markdown: 
+    wrap: sentence
 ---
 
 ```{r setup, echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
@@ -62,6 +65,7 @@ titulo <- paste0("Reporte Automatizado para ",
 fuente <- "Fuente SIVIGILA, Datos libres"
 ```
 
+```{=tex}
 \AddToHookNext{shipout/background}{
    \begin{tikzpicture}[remember picture,overlay]
    \node[inner sep=0pt] at (current page.center) {
@@ -69,28 +73,29 @@ fuente <- "Fuente SIVIGILA, Datos libres"
    };
    \end{tikzpicture}
 }
-
+```
+```{=tex}
 \begin{textblock*}{5cm}(15cm,18cm) % {block width} (coords)
   \begin{flushright}
      \Huge{\textbf{`r toupper(params$nombre_evento)` \\ }}
      \Huge{\textbf{`r params$year`}}
   \end{flushright}
 \end{textblock*}
-
-
+```
 \newpage
 
+```{=tex}
 \begin{center}
   \huge{\textbf{\\ `r titulo`}}
 \end{center}
-
+```
+```{=tex}
 \begin{center}
   \large{\textbf{`r fuente` \\[0.4in]}}
   \includegraphics[width=1in]{logo.png}
 \end{center}
-
-
-````{=html}
+```
+```{=html}
 <div class="caratula">
     <div class="texto-caratula">
       <h2 class="evento">`r toupper(params$nombre_evento)`</h2>
@@ -101,9 +106,7 @@ fuente <- "Fuente SIVIGILA, Datos libres"
     <h1>`r titulo`</h1>
     <h3 class="fuente">`r fuente`</h3>
 </div>
-````
-
-
+```
 ```{r import_data, include = FALSE}
 data_event <-  import_data_event(nombre_event = params$nombre_evento,
                                  year = params$year)
@@ -122,7 +125,6 @@ data_event_filtrada <-  geo_filtro(data_event = data_event_limpia,
 \pagenumbering{gobble}
 \pagenumbering{arabic}
 ```
-
 En este reporte se presenta el comportamiento del `r stringr::str_to_title(params$nombre_evento)` durante el año `r params$year` para Colombia con base en la fuente de datos SIVIGILA de acceso libre. En total en Colombia durante `r params$year` se reportaron `r nrow(data_event)` casos en todo el territorio nacional, en el departamento del `r params$departmento` se reportaron `r nrow(data_event_filtrada)` casos.
 
 # Distribución temporal de los casos
@@ -175,6 +177,7 @@ En el total de casos para `r params$year` se observa una predominancia del sexo 
 ```{r distribution_cg_plots, fig.height = 5, fig.width = 8, fig.cap = "Distribucion de casos por sexo"}
 plot_sex(data_agrupada = casos_sex)
 ```
+
 \newpage
 
 ```{r distribution_cg_semanaepi, include = FALSE}
@@ -248,3 +251,14 @@ b.  Los casos totales reportados de `r stringr::str_to_title(params$nombre_event
 c.  El mes de `r mes_mayor_casos` tuvo el mayor reporte.
 d.  El reporte de casos de `r stringr::str_to_title(params$nombre_evento)` a lo largo de `r params$year` predominó en la población de `r age_most_cases$edad` años.
 e.  El reporte de casos de `r stringr::str_to_title(params$nombre_evento)` predominó a lo largo del año en el sexo `r sexo_mayor[1]`.
+
+# Sugerencias
+
+Se recomienda ampliar o incluir los siguientes componentes, según el contexto, objetivo, alcance y las dimensiones que apliquen al reporte:
+a.  Identificar factores socioeconómicos que pueden influir en la propagación de la enfermedad o evento.
+b.  Evaluar la capacidad de respuesta del sistema de salud en diferentes niveles administrativos.
+c.  Identificar condiciones ambientales que pueden influir en la propagación de la enfermedad.
+d.  Analizar la relación entre variables climáticas y la ocurrencia de casos.
+e.  Evaluar la presencia de vectores o reservorios específicos en la región.
+f.  Analizar comparativamente la situación municipal, departamental o nacional.
+g.  Sugerir acciones de salud pública para mitigar la enfermedad.
