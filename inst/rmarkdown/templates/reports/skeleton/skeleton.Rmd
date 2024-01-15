@@ -53,7 +53,11 @@ params:
   age_sex_distribution:
     value: TRUE
     input: checkbox
-    label: Distribución de casos por edad y sexo
+    label: Distribucion de casos por edad y sexo
+  mpio_distribution:
+    value: TRUE
+    input: checkbox
+    label: Distribucion de casos por municipio
 editor_options: 
   markdown: 
     wrap: sentence
@@ -229,7 +233,7 @@ casos_edad_sex <- agrupar_edad_sex(data_event = data_event_filtrada,
 plot_edad_sex(data_agrupada = casos_edad_sex)
 ```
 
-# Distribución de casos por municipio
+`r if(params$mpio_distribution) {"# Distribución de casos por municipio"}`
 
 ```{r group_distribution_municipios,  results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
 dist_espacial_dpto <- agrupar_mpio(data_event = data_event_filtrada,
@@ -239,9 +243,9 @@ espacial_mayor_casos <- obtener_fila_mas_casos(data_event =
                                                  dist_espacial_dpto)
 ```
 
-Los casos se distribuyen a lo largo de `r nrow(dist_espacial_dpto)` municipios del departamento de `r params$departmento`, teniendo un mayor reporte el municipio de `r stringr::str_to_title(espacial_mayor_casos$nombre)` con `r espacial_mayor_casos$casos` casos (Ver Figura 7).
+`r if(params$mpio_distribution) {paste0("Los casos se distribuyen a lo largo de ", nrow(dist_espacial_dpto), " municipios del departamento de ", params$departmento, " teniendo un mayor reporte el municipio de ", stringr::str_to_title(espacial_mayor_casos$nombre), " con ", espacial_mayor_casos$casos, " casos (Ver Figura 7).")}`
 
-```{r plot_distribution_municipios, fig.height = 15, fig.width = 10, fig.cap = "Distribucion de casos por municipio"}
+```{r plot_distribution_municipios, fig.height = 15, fig.width = 10, fig.cap = "Distribucion de casos por municipio", include = params$mpio_distribution}
 plot_spatial <- plot_mpios(data_agrupada = dist_espacial_dpto)
 plot_spatial
 ```
