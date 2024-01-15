@@ -58,6 +58,10 @@ params:
     value: TRUE
     input: checkbox
     label: Distribucion de casos por municipio
+  spatial_distribution:
+    value: TRUE
+    input: checkbox
+    label: Distribución espacial de casos
 editor_options: 
   markdown: 
     wrap: sentence
@@ -252,13 +256,13 @@ plot_spatial
 
 \newpage
 
-# Distribución espacial de casos
+`r if(params$spatial_distribution) {"# Distribución espacial de casos"}`
 
 ```{r plot_distribution_spatial, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
 mapa <- plot_map(data_agrupada = dist_espacial_dpto)
 ```
 
-```{r map_distribution_spatial, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, cache = FALSE, results = FALSE, comment = FALSE, fig.height = 16, fig.width = 14, fig.cap =  "Distribucion espacial de casos"}
+```{r map_distribution_spatial, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, cache = FALSE, results = FALSE, comment = FALSE, fig.height = 16, fig.width = 14, fig.cap =  "Distribucion espacial de casos", include = params$spatial_distribution}
 mapa
 ```
 
