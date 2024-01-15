@@ -48,3 +48,5 @@ Config/Needs/website:
     epiverse-trace/epiversetheme
 VignetteBuilder: knitr
 Language: spa
+URL: https://github.com/epiverse-trace/sivirep
+BugReports: https://github.com/epiverse-trace/sivirep/issues
