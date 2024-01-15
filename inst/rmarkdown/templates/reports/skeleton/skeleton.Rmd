@@ -46,6 +46,10 @@ params:
     value: TRUE
     input: checkbox
     label: Distribucion de casos por sexo y semana epidemiológica
+  age_distribution:
+    value: TRUE
+    input: checkbox
+    label: Distribucion de casos por edad
 editor_options: 
   markdown: 
     wrap: sentence
@@ -198,7 +202,6 @@ casos_sex_semanaepi <- agrupar_sex_semanaepi(data_event = data_event_filtrada)
 plot_sex_semanaepi(data_agrupada = casos_sex_semanaepi)
 ```
 
-# Distribución de casos por edad
 `r if (params$age_distribution) {"# Distribución de casos por edad"}`
 
 ```{r distribution_age_d, include = FALSE}
