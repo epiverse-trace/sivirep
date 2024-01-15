@@ -50,6 +50,10 @@ params:
     value: TRUE
     input: checkbox
     label: Distribucion de casos por edad
+  age_sex_distribution:
+    value: TRUE
+    input: checkbox
+    label: Distribución de casos por edad y sexo
 editor_options: 
   markdown: 
     wrap: sentence
@@ -217,9 +221,9 @@ plot_edad(data_agrupada = casos_edad)
 
 \newpage
 
-# Distribución de casos por edad y sexo
+`r if(params$age_sex_distribution) {"# Distribución de casos por edad y sexo"}`
 
-```{r distribution_age_anger, fig.height = 3, fig.width = 9, fig.cap =  "Distribucion de casos por edad y genero"}
+```{r distribution_age_anger, fig.height = 3, fig.width = 9, fig.cap =  "Distribucion de casos por edad y genero", include = params$age_sex_distribution}
 casos_edad_sex <- agrupar_edad_sex(data_event = data_event_filtrada,
                                    interval_edad = 10)
 plot_edad_sex(data_agrupada = casos_edad_sex)
