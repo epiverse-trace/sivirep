@@ -62,6 +62,10 @@ params:
     value: TRUE
     input: checkbox
     label: Distribución espacial de casos
+  suggestions:
+    value: TRUE
+    input: checkbox
+    label: Sugerencias  
 editor_options: 
   markdown: 
     wrap: sentence
@@ -276,6 +280,7 @@ c.  El mes de `r mes_mayor_casos` tuvo el mayor reporte.
 d.  El reporte de casos de `r stringr::str_to_title(params$nombre_evento)` a lo largo de `r params$year` predominó en la población de `r age_most_cases$edad` años.
 e.  El reporte de casos de `r stringr::str_to_title(params$nombre_evento)` predominó a lo largo del año en el sexo `r sexo_mayor[1]`.
 
+`r if(params$suggestions) {"
 # Sugerencias
 
 Se recomienda ampliar o incluir los siguientes componentes, según el contexto, objetivo, alcance y las dimensiones que apliquen al reporte:
@@ -286,4 +291,4 @@ c.  Identificar condiciones ambientales que pueden influir en la propagación de
 d.  Analizar la relación entre variables climáticas y la ocurrencia de casos.
 e.  Evaluar la presencia de vectores o reservorios específicos en la región.
 f.  Analizar comparativamente la situación municipal, departamental o nacional.
-g.  Sugerir acciones de salud pública para mitigar la enfermedad.
+g.  Sugerir acciones de salud pública para mitigar la enfermedad."}`
