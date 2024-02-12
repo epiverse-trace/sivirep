@@ -171,6 +171,15 @@ import_data_event <- function(nombre_event,
       data_import$fec_def <- as.character(data_import$fec_def)
       nombre_cols <- names(data_import)
       nombre_cols <- nombre_cols[-which(nombre_cols %in% cols_remover)]
+      index_cols_eve <- which(stringr::str_detect(nombre_cols,
+                                                  stringr::fixed("cod_eve_"))
+                              %in% TRUE)
+      if (!identical(index_cols_eve,
+                     integer(0))) {
+        names(data_import)[index_cols_eve[1]] <- "cod_eve"
+        nombre_cols[index_cols_eve[1]] <- "cod_eve"
+        nombre_cols <- nombre_cols[-(2:length(index_cols_eve))]
+      }
       data_event <- rbind(data_event, data_import[, nombre_cols])
     }
   }
@@ -214,7 +223,8 @@ import_sep_data <- function(path_data = NULL, cache = TRUE) {
       }
     }
     if (stringr::str_detect(file_name, ".xls")) {
-      data <- readxl::read_excel(file_path)
+      data <- readxl::read_excel(file_path,
+                                 col_types = "text")
     }
   }
   return(data)
