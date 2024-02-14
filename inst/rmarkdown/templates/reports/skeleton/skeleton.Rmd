@@ -1,11 +1,11 @@
 ---
 output:
-  pdf_document: 
-    number_sections: true
   html_document:
     number_sections: true
     fig_caption: true
     css: style.css
+  pdf_document: 
+    number_sections: true
   word_document: 
     number_sections: true
 header-includes:
@@ -38,6 +38,30 @@ params:
   municipio:
     value: ""
     label: Municipio
+  temporal_distribution:
+    value: TRUE
+    input: checkbox
+    label: Distribucion temporal de los casos
+  epi_sex_distribution:
+    value: TRUE
+    input: checkbox
+    label: Distribucion de casos por sexo y semana epidemiológica
+  age_distribution:
+    value: TRUE
+    input: checkbox
+    label: Distribucion de casos por edad
+  age_sex_distribution:
+    value: TRUE
+    input: checkbox
+    label: Distribucion de casos por edad y sexo
+  mpio_distribution:
+    value: TRUE
+    input: checkbox
+    label: Distribucion de casos por municipio
+  spatial_distribution:
+    value: TRUE
+    input: checkbox
+    label: Distribución espacial de casos
 editor_options: 
   markdown: 
     wrap: sentence
@@ -107,6 +131,7 @@ fuente <- "Fuente SIVIGILA, Datos libres"
     <h3 class="fuente">`r fuente`</h3>
 </div>
 ```
+
 ```{r import_data, include = FALSE}
 data_event <-  import_data_event(nombre_event = params$nombre_evento,
                                  year = params$year)
@@ -127,8 +152,7 @@ data_event_filtrada <-  geo_filtro(data_event = data_event_limpia,
 ```
 En este reporte se presenta el comportamiento del `r stringr::str_to_title(params$nombre_evento)` durante el año `r params$year` para Colombia con base en la fuente de datos SIVIGILA de acceso libre. En total en Colombia durante `r params$year` se reportaron `r nrow(data_event)` casos en todo el territorio nacional, en el departamento del `r params$departmento` se reportaron `r nrow(data_event_filtrada)` casos.
 
-# Distribución temporal de los casos
-
+`r if (params$temporal_distribution) {"# Distribución temporal de los casos"}`
 ```{r cases_by_onset_symptom_date, include = FALSE}
 casos_iniciosin_dia <- agrupar_fecha_inisintomas(data_event =
                                                    data_event_filtrada)
@@ -137,9 +161,9 @@ mes_mayor_casos <- obtener_meses_mas_casos(data_event =
                                            col_fechas = "ini_sin")
 ```
 
-Los casos se distribuyen a lo largo de los meses de enero a diciembre de `r params$year`, teniendo un mayor reporte en el mes de `r mes_mayor_casos` tanto por fecha de inicio de síntomas (Ver Figura 1) como por fecha de notificación (Ver Figura 2).
+`r if (params$temporal_distribution) {paste0("Los casos se distribuyen a lo largo de los meses de enero a diciembre de ", params$year, " teniendo un mayor reporte en el mes de ", mes_mayor_casos$Meses, " tanto por fecha de inicio de síntomas (Ver Figura 1) como por fecha de notificación (Ver Figura 2).")}`
 
-```{r plot_cases_by_onset_symptom_date, fig.height = 5, fig.width = 11, fig.cap = "Distribucion de casos por dia de inicio de sintomas"}
+```{r plot_cases_by_onset_symptom_date, fig.height = 5, fig.width = 11, fig.cap = "Distribucion de casos por dia de inicio de sintomas", include = params$temporal_distribution, eval = params$temporal_distribution}
 plot_fecha_inisintomas(data_agrupada = casos_iniciosin_dia,
                        uni_marca = "semanaepi")
 ```
@@ -149,14 +173,14 @@ casos_fecha_notifica_dia <- agrupar_fecha_notifica(data_event =
                                                      data_event_filtrada)
 ```
 
-```{r plot_cases_by_onset_notification_date, fig.height = 5, fig.width = 10, fig.cap = "Distribucion de casos por fecha de notificacion"}
+```{r plot_cases_by_onset_notification_date, fig.height = 5, fig.width = 10, fig.cap = "Distribucion de casos por fecha de notificacion", include = params$temporal_distribution, eval = params$temporal_distribution}
 plot_fecha_notifica(data_agrupada = casos_fecha_notifica_dia,
                     uni_marca = "semanaepi")
 ```
 
 \newpage
 
-# Distribución de casos por sexo y semana epidemiológica
+`r if (params$epi_sex_distribution) {"# Distribución de casos por sexo y semana epidemiológica"}`
 
 ```{r distribution_cg, include = FALSE}
 casos_sex <- agrupar_sex(data_event = data_event_filtrada)
@@ -172,9 +196,9 @@ if (isTRUE(porcentaje_femenino < porcentaje_masculino)) {
 }
 ```
 
-En el total de casos para `r params$year` se observa una predominancia del sexo `r sexo_mayor[1]` (`r sexo_mayor[2]`)% respecto al sexo `r sexo_menor[1]` (`r sexo_menor[2]`)% (Ver Figura 3).
+`r if (params$epi_sex_distribution) {paste0("En el total de casos para ",  params$year, " se observa una predominancia del sexo ", sexo_mayor[1],  " (", sexo_mayor[2], ")% respecto al sexo ", sexo_menor[1], " (", sexo_menor[2], ")% (Ver Figura 3).")}`
 
-```{r distribution_cg_plots, fig.height = 5, fig.width = 8, fig.cap = "Distribucion de casos por sexo"}
+```{r distribution_cg_plots, fig.height = 5, fig.width = 8, fig.cap = "Distribucion de casos por sexo", include = params$epi_sex_distribution}
 plot_sex(data_agrupada = casos_sex)
 ```
 
@@ -184,36 +208,36 @@ plot_sex(data_agrupada = casos_sex)
 casos_sex_semanaepi <- agrupar_sex_semanaepi(data_event = data_event_filtrada)
 ```
 
-Esta predominancia del reporte de casos del sexo `r sexo_mayor[1]` se mantuvo a lo largo de la mayoria de semanas epidemiológicas (Ver figura 4).
+`r if (params$epi_sex_distribution) {paste0("Esta predominancia del reporte de casos del sexo ", sexo_mayor[1], " se mantuvo a lo largo de la mayoria de semanas epidemiológicas (Ver figura 4).")}`
 
-```{r plot_cg_semanaepi, fig.height = 9, fig.width = 11, fig.cap =  "Distribucion de casos por sexo y semana epidemiologica"}
+```{r plot_cg_semanaepi, fig.height = 9, fig.width = 11, fig.cap =  "Distribucion de casos por sexo y semana epidemiologica", include = params$epi_sex_distribution}
 plot_sex_semanaepi(data_agrupada = casos_sex_semanaepi)
 ```
 
-# Distribución de casos por edad
+`r if (params$age_distribution) {"# Distribución de casos por edad"}`
 
 ```{r distribution_age_d, include = FALSE}
 casos_edad <- agrupar_edad(data_event = data_event_filtrada, interval_edad = 10)
 age_most_cases <- obtener_fila_mas_casos(data_event = casos_edad)
 ```
 
-La distribución de los casos por grupos etarios muestra una tendencia decreciente a medida que se avanza en la edad. La población de `r age_most_cases$edad` años representó el `r  age_most_cases$porcentaje` % de todos los casos de `r stringr::str_to_title(params$nombre_evento)` (Ver figura 5).
+`r if (params$age_distribution) {paste0("La distribución de los casos por grupos etarios muestra una tendencia decreciente a medida que se avanza en la edad. La población de ", age_most_cases$edad, " años representó el ",  age_most_cases$porcentaje, " % de todos los casos de ", stringr::str_to_title(params$nombre_evento), " (Ver figura 5).")}`
 
-```{r distribution_age, fig.height = 3, fig.width = 8, fig.cap =  "Distribucion de casos por edad"}
+```{r distribution_age, fig.height = 3, fig.width = 8, fig.cap =  "Distribucion de casos por edad", include = params$age_distribution}
 plot_edad(data_agrupada = casos_edad)
 ```
 
 \newpage
 
-# Distribución de casos por edad y sexo
+`r if(params$age_sex_distribution) {"# Distribución de casos por edad y sexo"}`
 
-```{r distribution_age_anger, fig.height = 3, fig.width = 9, fig.cap =  "Distribucion de casos por edad y genero"}
+```{r distribution_age_anger, fig.height = 3, fig.width = 9, fig.cap =  "Distribucion de casos por edad y genero", include = params$age_sex_distribution}
 casos_edad_sex <- agrupar_edad_sex(data_event = data_event_filtrada,
                                    interval_edad = 10)
 plot_edad_sex(data_agrupada = casos_edad_sex)
 ```
 
-# Distribución de casos por municipio
+`r if(params$mpio_distribution) {"# Distribución de casos por municipio"}`
 
 ```{r group_distribution_municipios,  results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
 dist_espacial_dpto <- agrupar_mpio(data_event = data_event_filtrada,
@@ -223,22 +247,22 @@ espacial_mayor_casos <- obtener_fila_mas_casos(data_event =
                                                  dist_espacial_dpto)
 ```
 
-Los casos se distribuyen a lo largo de `r nrow(dist_espacial_dpto)` municipios del departamento de `r params$departmento`, teniendo un mayor reporte el municipio de `r stringr::str_to_title(espacial_mayor_casos$nombre)` con `r espacial_mayor_casos$casos` casos (Ver Figura 7).
+`r if(params$mpio_distribution) {paste0("Los casos se distribuyen a lo largo de ", nrow(dist_espacial_dpto), " municipios del departamento de ", params$departmento, " teniendo un mayor reporte el municipio de ", stringr::str_to_title(espacial_mayor_casos$nombre), " con ", espacial_mayor_casos$casos, " casos (Ver Figura 7).")}`
 
-```{r plot_distribution_municipios, fig.height = 15, fig.width = 10, fig.cap = "Distribucion de casos por municipio"}
+```{r plot_distribution_municipios, fig.height = 15, fig.width = 10, fig.cap = "Distribucion de casos por municipio", include = params$mpio_distribution}
 plot_spatial <- plot_mpios(data_agrupada = dist_espacial_dpto)
 plot_spatial
 ```
 
 \newpage
 
-# Distribución espacial de casos
+`r if(params$spatial_distribution) {"# Distribución espacial de casos"}`
 
 ```{r plot_distribution_spatial, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
 mapa <- plot_map(data_agrupada = dist_espacial_dpto)
 ```
 
-```{r map_distribution_spatial, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, cache = FALSE, results = FALSE, comment = FALSE, fig.height = 16, fig.width = 14, fig.cap =  "Distribucion espacial de casos"}
+```{r map_distribution_spatial, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, cache = FALSE, results = FALSE, comment = FALSE, fig.height = 16, fig.width = 14, fig.cap =  "Distribucion espacial de casos", include = params$spatial_distribution}
 mapa
 ```
 
@@ -255,6 +279,7 @@ e.  El reporte de casos de `r stringr::str_to_title(params$nombre_evento)` predo
 # Sugerencias
 
 Se recomienda ampliar o incluir los siguientes componentes, según el contexto, objetivo, alcance y las dimensiones que apliquen al reporte:
+
 a.  Identificar factores socioeconómicos que pueden influir en la propagación de la enfermedad o evento.
 b.  Evaluar la capacidad de respuesta del sistema de salud en diferentes niveles administrativos.
 c.  Identificar condiciones ambientales que pueden influir en la propagación de la enfermedad.
