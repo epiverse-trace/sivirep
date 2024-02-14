@@ -671,3 +671,69 @@ agrupar_mpio <- function(data_event,
                                      dplyr::desc(.data$casos))
   return(data_event_muns)
 }
+
+
+#' Agrupar por área geográfica
+#'
+#' Función que agrupa los datos de una enfermedad o evento por área
+#' geográfica a nivel departamental o municipal
+#' @param data_event Un `data.frame` que contiene los datos de la
+#' enfermedad o evento
+#' @param dpto Un `character` (cadena de caracteres) que contiene
+#' el nombre del departamento; su valor por defecto es `NULL`; si se ingresa
+#' un valor en este parámetro se procederá agrupar los datos
+#' por los municipios del departamento y sus áreas geográficas; si no se
+#' ingresa un valor en este parámetro validará si los datos ya están
+#' filtrados por algún departamento, si no lo están generará la agrupación
+#' por departamento
+#' @param nomb_col Un `character` (cadena de caracteres) con el nombre de
+#' la columna en los datos de la enfermedad o evento que contiene los códigos
+#' de municipios; su valor por defecto es `"cod_mun_o"`
+#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si es necesario
+#' agregar un porcentaje de casos como una columna; su valor por
+#' defecto es `FALSE`
+#' @return Un `data.frame` con los datos de la enfermedad o evento agrupados
+#' por códigos de municipios y número de casos
+#' @examples
+#' data(dengue2020)
+#' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+#' agrupar_area_geo(data_event = data_limpia,
+#'                  dpto = "Antioquia",
+#'                  nomb_col = "area",
+#'                  porcentaje = FALSE)
+#' @export
+agrupar_area_geo <- function(data_event,
+                             dpto = NULL,
+                             nomb_col = "area",
+                             porcentaje = FALSE) {
+  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
+            "El parametro data_event debe ser un data.frame" =
+              is.data.frame(data_event),
+            "El parametro data_event no debe estar vacio" =
+              nrow(data_event) > 0,
+            "El parametro nomb_col debe ser una cadena de caracteres"
+            = is.character(nomb_col),
+            "El parametro porcentaje debe ser un booleano (TRUE o FALSE)" =
+              is.logical(porcentaje))
+  nomb_col <- append(nomb_col,
+                     obtener_tip_ocurren_geo(data_event$cod_eve[1])[1:4])
+  data_event_area <- data_event
+  if (!is.null(dpto)) {
+      aux_dpto <- unique(data_event_area[[nomb_col[2]]])
+      if (length(aux_dpto) > 1) {
+        data_event_area <- geo_filtro(data_event, dpto)
+      }
+      data_event_area <- agrupar_cols_casos(data_event_area,
+                                            nomb_col)
+  } else {
+    dpto <- unique(data_event_area[[nomb_col[3]]])
+    if (length(dpto) != 1) {
+      nomb_col <- nomb_col[1:3]
+    }
+    data_event_area <- agrupar_cols_casos(data_event_area,
+                                          nomb_col)
+  }
+  data_event_area <- dplyr::arrange(data_event_area,
+                                    dplyr::desc(.data$casos))
+  return(data_event_area)
+}
