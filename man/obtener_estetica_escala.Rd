@@ -6,7 +6,7 @@
 Función que genera la estetica de una escala para un grafico de
 \pkg{sivirep}}
 \usage{
-obtener_estetica_escala(escala = 0, nombre)
+obtener_estetica_escala(escala = 0, nombre, etiquetas = NULL)
 }
 \arguments{
 \item{escala}{Un numero (numeric) que indica la cantidad de valores que
@@ -14,6 +14,9 @@ contiene la escala}
 
 \item{nombre}{Un character (cadena de caracteres) que contiene el nombre
 de la escala}
+
+\item{etiquetas}{Un character (cadena de caracteres) que contiene las
+etiquetas de la escala}
 }
 \value{
 Un objecto scale_fill_manual de \pkg{ggplot2}
