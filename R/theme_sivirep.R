@@ -29,6 +29,8 @@ tema_sivirep <- function() {
 #' contiene la escala
 #' @param nombre Un character (cadena de caracteres) que contiene el nombre
 #' de la escala
+#' @param etiquetas Un character (cadena de caracteres) que contiene las
+#' etiquetas de la escala
 #' @returns
 #' Un objecto scale_fill_manual de \pkg{ggplot2}
 #' @examples
@@ -39,13 +41,17 @@ tema_sivirep <- function() {
 #'   ggplot2::labs(title = "La economia") +
 #'   tema_sivirep()
 #' @export
-obtener_estetica_escala <- function(escala = 0, nombre) {
+obtener_estetica_escala <- function(escala = 0, nombre,
+                                    etiquetas = NULL) {
   colores <- c("#2274BB", "#5ab4ac", "#d8b365", "#AC6DAD", "#D49392",
                "#19AFE5", "#87C762", "#9DB2D0")
   colores <- colores[1:escala]
   if (escala > 0) {
     relleno_escala <- ggplot2::scale_fill_manual(values = colores,
                                                  name = nombre)
+    if (!is.null(etiquetas)) {
+      relleno_escala$labels <- etiquetas
+    }
   }
   return(relleno_escala)
 }
