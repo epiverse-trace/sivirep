@@ -686,17 +686,19 @@ plot_dptos <- function(data_agrupada,
   if (num_eventos > 3) {
     pos_leyenda <- ggplot2::theme(legend.position = "bottom")
   }
+  data_agrupada <- data_agrupada %>%
+    group_by_at(nomb_col) %>%
+    dplyr::summarise(casos = sum(.data[["casos"]]), .groups = "drop")
   plot_casos_dptos <-
     ggplot2::ggplot(data_agrupada,
                     ggplot2::aes(x = .data[[nomb_col]],
-                                 y = .data[["casos"]],
-                                 fill = .data[["nombre_evento"]])) +
+                                 y = .data[["casos"]])) +
     ggplot2::geom_bar(width = 0.5,
-                      stat = "identity") +
+                      stat = "identity",
+                      fill = "#2274BB") +
     ggplot2::labs(x = "\nDepartamento\n", y = "Numero de casos\n",
                   caption = fuente_data) +
     ggplot2::theme_classic() +
-    obtener_estetica_escala(escala = num_eventos, nombre = "Eventos") +
     tema_sivirep() +
     pos_leyenda +
     ggplot2::coord_flip()
@@ -748,17 +750,20 @@ plot_mpios <- function(data_agrupada,
   if (num_eventos > 3) {
     pos_leyenda <- ggplot2::theme(legend.position = "bottom")
   }
+  data_agrupada <- data_agrupada %>%
+    group_by_at(nomb_col) %>%
+    dplyr::summarise(casos = sum(.data[["casos"]]), .groups = "drop")
   plot_casos_muns <-
     ggplot2::ggplot(data_agrupada,
-                    ggplot2::aes(x = .data[[nomb_col]],
-                                 y = .data[["casos"]],
-                                 fill = .data[["nombre_evento"]])) +
+                    ggplot2::aes(x = reorder(.data[[nomb_col]],
+                                             .data[["casos"]]),
+                                 y = .data[["casos"]])) +
     ggplot2::geom_bar(width = 0.5,
-                      stat = "identity") +
+                      stat = "identity",
+                      fill = "#2274BB") +
     ggplot2::labs(x = "\nMunicipio\n", y = "Numero de casos\n",
                   caption = fuente_data) +
     ggplot2::theme_classic() +
-    obtener_estetica_escala(escala = num_eventos, nombre = "Eventos") +
     tema_sivirep() +
     pos_leyenda +
     ggplot2::coord_flip()
