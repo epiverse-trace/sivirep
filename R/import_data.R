@@ -151,13 +151,13 @@ import_data_event <- function(nombre_event,
       if (is.null(grupo_events) || nrow(grupo_events) == 0) {
         warning("La enfermedad o evento relacionado: ",
                 event,
-                "no esta disponible para su descarga")
+                "no esta disponible para su descarga", call. = FALSE)
       } else if (stringr::str_detect(grupo_events_relacionados$aa,
                                      as.character(year))) {
         warning("El year: ", year,
                 "de la enfermedad o evento relacionado: ",
                 event,
-                "no esta disponible para su descarga")
+                "no esta disponible para su descarga", call. = FALSE)
       } else {
         grupo_events <- rbind(grupo_events, grupo_events_relacionados)
       }
@@ -171,8 +171,7 @@ import_data_event <- function(nombre_event,
       data_import$fec_def <- as.character(data_import$fec_def)
       nombre_cols <- names(data_import)
       index_cols_eve <- which(stringr::str_detect(nombre_cols,
-                                                  stringr::fixed("cod_eve_"))
-                              %in% TRUE)
+                                                  stringr::fixed("cod_eve_")))
       if (!identical(index_cols_eve,
                      integer(0))) {
           names(data_import)[index_cols_eve[1]] <- "cod_eve"

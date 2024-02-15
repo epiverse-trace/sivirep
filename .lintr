@@ -1,10 +1,17 @@
 linters: all_linters(
     packages = c("lintr", "etdev"),
     object_name_linter = NULL,
-    undesirable_function_linter = NULL,
     implicit_integer_linter = NULL,
     extraction_operator_linter = NULL,
     todo_comment_linter = NULL,
+    library_call_linter = NULL,
+    undesirable_function_linter(
+      modify_defaults(
+        default_undesirable_functions,
+        citEntry = "use the more modern bibentry() function",
+        library = NULL # too many false positive in too many files
+      )
+    ),
     function_argument_linter = NULL,
     indentation_linter = NULL, # unstable as of lintr 3.1.0
     # Use minimum R declared in DESCRIPTION or fall back to current R version.
@@ -12,9 +19,20 @@ linters: all_linters(
     backport_linter(if (length(x <- etdev::extract_min_r_version())) x else getRversion())
   )
 exclusions: list(
-    "tests/testthat.R" = list(unused_import_linter = Inf),
+    "tests/testthat.R" = list(
+      unused_import_linter = Inf
+    ),
+    "tests" = list(
+      undesirable_function_linter = Inf
+    ),
     "data-raw" = list(
       missing_package_linter = Inf,
       namespace_linter = Inf
-    )
+    ),
+    # RcppExports.R is auto-generated and will not pass many linters. In
+    # particular, it can create very long lines.
+    "R/RcppExports.R",
+    # R/stanmodels.R is auto-generated and will not pass many linters. In
+    # particular, it uses `sapply()`.
+    "R/stanmodels.R"
   )
