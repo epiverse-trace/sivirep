@@ -62,6 +62,10 @@ params:
     value: TRUE
     input: checkbox
     label: Distribución espacial de casos
+  areas_distribution:
+    value: TRUE
+    input: checkbox
+    label: Distribucion de casos por área geográfica
 editor_options: 
   markdown: 
     wrap: sentence
@@ -267,6 +271,18 @@ mapa
 ```
 
 \newpage
+
+`r if(params$mpio_distribution) {"# Distribución de casos por área geográfica"}`
+
+```{r group_distribution_areas,  results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
+dist_areas_geo <- agrupar_area_geo(data_event = data_event_filtrada)
+```
+
+```{r plot_distribution_areas, fig.height = 15, fig.width = 10, fig.cap = "Distribucion de casos por área geográfica", include = params$areas_distribution}
+plot_areas_geo <- plot_area_geo(data_agrupada = dist_areas_geo)
+plot_areas_geo
+```
+
 
 # Conclusiones
 
