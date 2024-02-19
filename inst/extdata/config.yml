@@ -31,3 +31,4 @@ default:
   map_shape_file: "extdata/depto_adm_shp_simp/municipios_simplified_.001.shp"
   divipola_data_path: "extdata/divipola_data.xlsx"
   dpto_shape_file: "extdata/depto_adm_shp_simp/depto.shp"
+  labels_geo_areas: ["Cabecera municipal", "Centro poblado", "Rural disperso"]
