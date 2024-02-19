@@ -26,8 +26,8 @@ Función que genera el gráfico de casos por área geográfica
 \examples{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(dengue2020)
-agrupar_area_geo(data_event = data_limpia,
-                 dpto = "Antioquia")
+data_agrupada <- agrupar_area_geo(data_event = data_limpia,
+                                  dpto = "Antioquia")
 plot_area_geo(data_agrupada,
               nomb_col = "area")
 }
