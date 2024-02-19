@@ -769,3 +769,70 @@ plot_mpios <- function(data_agrupada,
     ggplot2::coord_flip()
   return(plot_casos_muns)
 }
+
+
+#' Generar gráfico de distribución de casos por área geográfica
+#'
+#' Función que genera el gráfico de casos por área geográfica
+#' @param data_agrupada Un `data.frame` que contiene los datos de la
+#' enfermedad o evento agrupados
+#' @param nomb_col Un `character` (cadena de carácteres) con el nombre de
+#' la columna de los datos agrupados de la enfermedad o evento por
+#' departamentos o municipios; su valor por defecto es `"area"`
+#' @param fuente_data Un `character` (cadena de caracteres) que contiene la
+#' leyenda o fuente de información de los datos; su valor por defecto es `NULL`
+#' @return Un `plot` o gráfico de distribución de casos por área geográfica
+#' @examples
+#' data(dengue2020)
+#' data_limpia <- limpiar_data_sivigila(dengue2020)
+#' data_agrupada <- agrupar_area_geo(data_event = data_limpia,
+#'                                   dpto = "Antioquia")
+#' plot_area_geo(data_agrupada,
+#'               nomb_col = "area")
+#' @export
+plot_area_geo <- function(data_agrupada,
+                          nomb_col = "area",
+                          fuente_data = NULL) {
+  stopifnot("El parametro data_agrupada debe ser un data.frame"
+            = is.data.frame(data_agrupada),
+            "El parametro nomb_col debe ser una cadena de caracteres"
+            = is.character(nomb_col))
+  if (is.null(fuente_data)) {
+    fuente_data <-
+      "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
+  }
+  cols_geo_ocurrencia <-
+    obtener_tip_ocurren_geo(nombre_event =
+                              data_agrupada[["nombre_evento"]][1])
+  etiquetas_areas <- config::get(file =
+                                   system.file("extdata",
+                                               "config.yml",
+                                               package = "sivirep"),
+                           "labels_geo_areas")
+  if (length(cols_geo_ocurrencia) > 1) {
+      if (length(names(data_agrupada)) > 5) {
+        nomb_col <- append(nomb_col, cols_geo_ocurrencia[4])
+      } else {
+        nomb_col <- append(nomb_col, cols_geo_ocurrencia[2])
+      }
+  }
+  pos_leyenda <- ggplot2::theme(legend.position = "right")
+  data_agrupada_area <- data_agrupada %>%
+    group_by_at(nomb_col) %>%
+    dplyr::summarise(casos = sum(.data[["casos"]]), .groups = "drop")
+  plot_casos_area <-
+    ggplot2::ggplot(data_agrupada_area,
+                    ggplot2::aes(x = .data[[nomb_col[2]]],
+                                 y = .data[["casos"]],
+                                 fill = .data[[nomb_col[1]]])) +
+    ggplot2::geom_bar(position = "dodge", stat = "identity") +
+    ggplot2::labs(x = "\nDepartamento\n", y = "Numero de casos\n",
+                  caption = fuente_data) +
+    ggplot2::theme_classic() +
+    obtener_estetica_escala(escala = 3, nombre = "Area\n",
+                            etiquetas = etiquetas_areas) +
+    tema_sivirep() +
+    pos_leyenda +
+    ggplot2::coord_flip()
+  return(plot_casos_area)
+}
