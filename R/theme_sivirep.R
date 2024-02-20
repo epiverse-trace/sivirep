@@ -42,8 +42,8 @@ tema_sivirep <- function() {
 obtener_estetica_escala <- function(escala = 0, nombre) {
   colores <- c("#2274BB", "#5ab4ac", "#d8b365", "#AC6DAD", "#D49392",
                "#19AFE5", "#87C762", "#9DB2D0")
+  colores <- colores[1:escala]
   if (escala > 0) {
-    colores <- colores[1:escala]
     relleno_escala <- ggplot2::scale_fill_manual(values = colores,
                                                  name = nombre)
   }
