@@ -737,3 +737,31 @@ agrupar_area_geo <- function(data_event,
                                     dplyr::desc(.data$casos))
   return(data_event_area)
 }
+
+#' Agrupar por tipo de enfermedad o evento
+#'
+#' Función que agrupa los casos por tipo de enfermedad o evento
+#' @param data_event Un `data.frame` que contiene los datos de la
+#' enfermedad o evento
+#' @param nomb_col Un `character` (cadena de caracteres) con el nombre de
+#' la columna en los datos de la enfermedad o evento que contiene los códigos
+#' de los eventos; su valor por defecto es `"cod_eve"`
+#' @return Un `data.frame` con los datos de la enfermedad o evento agrupados
+#' por sus tipos
+#' @examples
+#' data(dengue2020)
+#' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+#' agrupar_casos_eventos(data_event = data_limpia,
+#'                       nomb_col = "cod_eve")
+#' @export
+agrupar_casos_eventos <- function(data_event, nomb_col = "cod_eve") {
+  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
+            "El parametro data_event debe ser un data.frame" =
+              is.data.frame(data_event),
+            "El parametro data_event no debe estar vacio" =
+              nrow(data_event) > 0,
+            "El parametro nomb_col debe ser una cadena de caracteres"
+            = is.character(nomb_col))
+  data_event_tipos <- agrupar_cols_casos(data_event, nomb_cols = nomb_col)
+  return(data_event_tipos)
+}

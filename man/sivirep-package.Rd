@@ -8,6 +8,15 @@
 \description{
 Provides functions for data wrangling and automated reports from SIVIGILA source.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://epiverse-trace.github.io/sivirep}
+  \item \url{https://github.com/epiverse-trace/sivirep}
+  \item Report bugs at \url{https://github.com/epiverse-trace/sivirep/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Geraldine Gómez Millán \email{geralidine.gomez@javeriana.edu.co} (\href{https://orcid.org/0009-0007-8701-0568}{ORCID}) [contributor]
 
