@@ -755,8 +755,8 @@ plot_mpios <- function(data_agrupada,
     dplyr::summarise(casos = sum(.data[["casos"]]), .groups = "drop")
   plot_casos_muns <-
     ggplot2::ggplot(data_agrupada,
-                    ggplot2::aes(x = reorder(.data[[nomb_col]],
-                                             .data[["casos"]]),
+                    ggplot2::aes(x = stats::reorder(.data[[nomb_col]],
+                                                    .data[["casos"]]),
                                  y = .data[["casos"]])) +
     ggplot2::geom_bar(width = 0.5,
                       stat = "identity",
