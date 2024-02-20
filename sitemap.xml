@@ -22,6 +22,9 @@
     <loc>https://epiverse-trace.github.io/sivirep/index.html</loc>
   </url>
   <url>
+    <loc>https://epiverse-trace.github.io/sivirep/reference/agrupar_area_geo.html</loc>
+  </url>
+  <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/agrupar_casos_semanaepi.html</loc>
   </url>
   <url>
@@ -146,6 +149,9 @@
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/obtener_tip_ocurren_geo.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/sivirep/reference/plot_area_geo.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/plot_dptos.html</loc>

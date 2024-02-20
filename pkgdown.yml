@@ -3,7 +3,7 @@ pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   sivirep: sivirep.html
-last_built: 2024-02-20T08:15Z
+last_built: 2024-02-20T18:21Z
 urls:
   reference: https://epiverse-trace.github.io/sivirep/reference
   article: https://epiverse-trace.github.io/sivirep/articles
