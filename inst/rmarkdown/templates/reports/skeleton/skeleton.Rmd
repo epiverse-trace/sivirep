@@ -38,6 +38,10 @@ params:
   municipio:
     value: ""
     label: Municipio
+  types_distribution:
+    value: TRUE
+    input: checkbox
+    label: Distribucion de casos por tipo
   temporal_distribution:
     value: TRUE
     input: checkbox
@@ -155,6 +159,21 @@ data_event_filtrada <-  geo_filtro(data_event = data_event_limpia,
 \pagenumbering{arabic}
 ```
 En este reporte se presenta el comportamiento del `r stringr::str_to_title(params$nombre_evento)` durante el año `r params$year` para Colombia con base en la fuente de datos SIVIGILA de acceso libre. En total en Colombia durante `r params$year` se reportaron `r nrow(data_event)` casos en todo el territorio nacional, en el departamento del `r params$departmento` se reportaron `r nrow(data_event_filtrada)` casos.
+
+```{r message = FALSE, warning = FALSE, include = FALSE}
+cantidad_eventos <- length(unique(data_event_filtrada$cod_eve))
+condicion_eventos <- params$types_distribution || cantidad_eventos > 1
+```
+
+`r if (condicion_eventos) {"# Distribución de casos por tipo"}`
+```{r total_cases, include = condicion_eventos}
+total_casos_eventos <- agrupar_casos_eventos(data_event = data_event_filtrada,
+                                             nomb_col = "cod_eve")
+total_casos_eventos$nombre_evento <-
+  stringr::str_to_title(total_casos_eventos$nombre_evento)
+knitr::kable(total_casos_eventos, col.names = c("Codigo", "Tipo", "Casos"))
+```
+
 
 `r if (params$temporal_distribution) {"# Distribución temporal de los casos"}`
 ```{r cases_by_onset_symptom_date, include = FALSE}
