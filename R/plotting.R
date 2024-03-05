@@ -858,7 +858,7 @@ plot_tabla_tipos_event <- function(data_agrupada,
                               col.names = c("Codigo ",
                                             "Tipo ", "Casos"),
                               align = "c",
-                              caption = "Distribución de casos por evento") %>%
+                              caption = "Distribucion de casos por evento") %>%
     kableExtra::row_spec(0, color = "white", background = "#2274BB") %>%
     kableExtra::kable_styling(full_width = FALSE,
                               latex_options = "HOLD_position")
