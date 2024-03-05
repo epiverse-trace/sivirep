@@ -13,8 +13,6 @@ header-includes:
   - \pagestyle{fancy}
   - \usepackage[utf8]{inputenc}
   - \usepackage[spanish]{babel}
-  - \fancyfoot[RO,RE]{\includegraphics[width=1.1cm]{logo.png}}
-  - \usepackage{floatrow}
   - \fancyfoot[R]{\includegraphics[width=1.1cm]{logo.png}}
   - \usepackage[defaultfam,tabular,lining]{montserrat}
   - \usepackage{tikz}
