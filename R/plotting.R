@@ -771,7 +771,6 @@ plot_mpios <- function(data_agrupada,
   return(plot_casos_muns)
 }
 
-
 #' Generar gráfico de distribución de casos por área geográfica
 #'
 #' Función que genera el gráfico de casos por área geográfica
@@ -836,4 +835,32 @@ plot_area_geo <- function(data_agrupada,
     pos_leyenda +
     ggplot2::coord_flip()
   return(plot_casos_area)
+}
+
+
+#' Generar tabla con la distribución de casos por tipo de
+#' enfermedad o evento
+#'
+#' Función que genera el la tabla con la distribución de casos por
+#' tipo de enfermedad o evento
+#' @param data_agrupada Un `data.frame` que contiene los datos de la
+#' enfermedad o evento agrupados
+#' @param nomb_col Un `character` (cadena de carácteres) con el nombre de
+#' la columna de los datos agrupados de la enfermedad o evento por
+#' tipo; su valor por defecto es `"nombre_evento"`
+#' @return Una `kable` (tabla gráfica) con la distribución de casos
+#' por tipo de enfermedad o evento
+plot_tabla_tipos_event <- function(data_agrupada,
+                                   nomb_col = "nombre_evento") {
+  data_agrupada[["nombre_evento"]] <-
+    stringr::str_to_title(data_agrupada[["nombre_evento"]])
+  tabla_tipos <- knitr::kable(data_agrupada,
+                              col.names = c("Codigo ",
+                                            "Tipo ", "Casos"),
+                              align = "c",
+                              caption = "Distribución de casos por evento") %>%
+    kableExtra::row_spec(0, color = "white", background = "#2274BB") %>%
+    kableExtra::kable_styling(full_width = FALSE,
+                              latex_options = "HOLD_position")
+  return(tabla_tipos)
 }
