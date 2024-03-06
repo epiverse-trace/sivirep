@@ -39,7 +39,8 @@ Imports:
     sysfonts,
     showtext,
     cowplot,
-    gridExtra
+    gridExtra,
+    kableExtra
 Suggests: 
     knitr,
     rmarkdown
