@@ -162,15 +162,10 @@ data_event_filtrada <-  geo_filtro(data_event = data_event_limpia,
 
 En este reporte se presenta el comportamiento del `r stringr::str_to_title(params$nombre_evento)` durante el año `r params$year` para Colombia con base en la fuente de datos SIVIGILA de acceso libre. En total en Colombia durante `r params$year` se reportaron `r nrow(data_event)` casos en todo el territorio nacional, en el departamento del `r params$departmento` se reportaron `r nrow(data_event_filtrada)` casos.
 
-```{r con_events, message = FALSE, warning = FALSE, include = FALSE}
-cantidad_eventos <- length(unique(data_event_filtrada$cod_eve))
-condicion_eventos <- params$types_distribution || cantidad_eventos > 1
-```
-
 # Distribución de casos
 
 La distribución de casos por tipo es la siguiente:
-```{r total_cases, include = condicion_eventos, echo = FALSE, error = FALSE, fig.height=5, fig.width = 10, warning = FALSE, include = TRUE, message = FALSE, fig.pos = "H"}
+```{r total_cases, echo = FALSE, error = FALSE, fig.height=5, fig.width = 10, warning = FALSE, include = TRUE, message = FALSE, fig.pos = "H"}
 total_casos_eventos <- agrupar_casos_eventos(data_event = data_event_filtrada,
                            nomb_col = "cod_eve")
 plot_tabla_tipos_event(total_casos_eventos)
