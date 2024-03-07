@@ -25,6 +25,9 @@
     <loc>https://epiverse-trace.github.io/sivirep/reference/agrupar_area_geo.html</loc>
   </url>
   <url>
+    <loc>https://epiverse-trace.github.io/sivirep/reference/agrupar_casos_eventos.html</loc>
+  </url>
+  <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/agrupar_casos_semanaepi.html</loc>
   </url>
   <url>
@@ -179,6 +182,9 @@
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/plot_sex_semanaepi.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/sivirep/reference/plot_tabla_tipos_event.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/remove_error_fecha.html</loc>
