@@ -99,7 +99,7 @@ list_events <- function() {
 #'
 #' Función que obtiene los datos de una enfermedad por año
 #' desde los microdatos de SIVIGILA
-#' @param year Un `numeric` (numerico) con el año deseado para la descarga
+#' @param years Un `numeric` (numerico) con el año deseado para la descarga
 #' de los datos
 #' @param nombre_event Un `character` (cadena de caracteres) con el nombre de
 #' la enfermedad o evento
@@ -109,14 +109,14 @@ list_events <- function() {
 #' por año desde los microdatos de SIVIGILA
 #' @examples
 #' import_data_event(nombre_event = "DENGUE",
-#'                   year = 2020,
+#'                   years = 2020,
 #'                   cache = TRUE)
 #' @export
 import_data_event <- function(nombre_event,
-                              year,
+                              years,
                               cache = TRUE) {
-  stopifnot("El parametro year no debe estar vacio" = !missing(year),
-            "El parametro year debe ser numerico" = is.numeric(year),
+  stopifnot("El parametro years no debe estar vacio" = !missing(years),
+            "El parametro years debe ser numerico" = is.numeric(years),
             "El parametro nombre_event no debe estar vacio"
             = !missing(nombre_event),
             "El parametro nombre_event debe ser una cadena de caracteres"
