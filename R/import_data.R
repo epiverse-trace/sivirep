@@ -124,56 +124,12 @@ import_data_event <- function(nombre_event,
             "El parametro cache debe ser un booleano"
             = is.logical(cache))
   data_event <- data.frame()
-  list_events <- list_events()
   nombre_event <- stringr::str_to_title(nombre_event)
-  list_events_relacionados <- config::get(file =
-                                            system.file("extdata",
-                                                        "config.yml",
-                                                        package = "sivirep"),
-                                          "related_diseases")
-  list_events_relacionados <- lapply(list_events_relacionados,
-                                     stringr::str_to_title)
   cols_remover <- config::get(file =
                                 system.file("extdata",
                                             "config.yml",
                                             package = "sivirep"),
                               "cols_remover")
-  grupo_events <-
-    list_events[which(stringr::str_detect(list_events$enfermedad,
-                                          substr(nombre_event,
-                                                 1,
-                                                 nchar(nombre_event) - 1))), ]
-  if (length(list_events_relacionados) > 0) {
-    events_relacionados <- list_events_relacionados[[nombre_event]]
-    for (event in events_relacionados) {
-      grupo_events_relacionados <-
-        list_events[which(list_events$enfermedad == event), ]
-      if (is.null(grupo_events) || nrow(grupo_events) == 0) {
-        warning("La enfermedad o evento relacionado: ",
-                event,
-                "no esta disponible para su descarga", call. = FALSE)
-      } else if (stringr::str_detect(grupo_events_relacionados$aa,
-                                     as.character(year))) {
-        warning("El year: ", year,
-                "de la enfermedad o evento relacionado: ",
-                event,
-                "no esta disponible para su descarga", call. = FALSE)
-      } else {
-        grupo_events <- rbind(grupo_events, grupo_events_relacionados)
-      }
-    }
-  }
-  for (event in grupo_events$enfermedad) {
-    if (event != "Malaria") {
-      data_url <- get_path_data_disease_year(year, event)
-      data_import <- import_sep_data(data_url, cache)
-      data_import <- limpiar_encabezado(data_import)
-      data_import$fec_def <- as.character(data_import$fec_def)
-      nombre_cols <- names(data_import)
-      index_cols_eve <- which(stringr::str_detect(nombre_cols,
-                                                  stringr::fixed("cod_eve_")))
-      if (!identical(index_cols_eve,
-                     integer(0))) {
           names(data_import)[index_cols_eve[1]] <- "cod_eve"
           index_cols_eve[1] <- index_cols_eve[-1]
           data_import <-
