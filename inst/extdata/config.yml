@@ -7,7 +7,7 @@ default:
   query_diseases_by_year_path: "https://portalsivigila.ins.gov.co/_api/web/lists/GetByTitle('Microdatos')/items?$select=Evento,A_x00f1_o,NombreEvento&$orderby=NombreEvento%20asc&$top=1000"
   name_file_split: "/Microdatos/"
   data_delim: ["|", "," , ";", ":", "-"]
-  cols_remover: ["particion", "consecutive"]
+  cols_remover: ["particion", "consecutive", "consecutive2", "separacion"]
   special_populations_cols: ["gp_discapa","gp_desplaz","gp_migrant","gp_carcela","gp_gestan","gp_indigen","gp_pobicfb","gp_mad_com","gp_desmovi","gp_psiquia","gp_vic_vio","gp_otros"]
   special_populations_names: ["Discapacitados","Desplazados","Migrantes","Carcelarios","Gestantes","Indigenas","ICBF","Madres comunitarias","Desmovilizados","Pob. Centros psiquiatricos","Victimas de violencia armada","Otros"]
   sivigila_open_data_path: "https://www.datos.gov.co/api/views/qvnt-2igj/rows.csv?accessType=DOWNLOAD"
