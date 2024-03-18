@@ -345,3 +345,53 @@ obtener_nombres_mpios <- function(data_geo, cod_dpto, cod_mpio) {
   data_mpio <- data_mpio[1, ]
   return(data_mpio$nombre_municipio)
 }
+
+#' Obtener los eventos relacionados
+#'
+#' Función que obtiene los eventos relacionados o tipos de un evento
+#' principal
+#' @param years Un `numeric` (numerico) el año  o años deseados para
+#' la descarga de los datos
+#' @param nombre_event Un `character` (cadena de caracteres) con el
+#' nombre de la enfermedad o evento
+#' @return Un `array` con los eventos relacionados por año desde
+#' los microdatos de SIVIGILA
+#' @keywords internal
+obtener_eventos_relacionados <- function(nombre_event, years) {
+  list_events <- list_events()
+  grupo_events <-
+    list_events[which(stringr::str_detect(list_events$enfermedad,
+                                          substr(nombre_event,
+                                                 1,
+                                                 nchar(nombre_event) - 1))), ]
+  list_events_relacionados <- config::get(file =
+                                            system.file("extdata",
+                                                        "config.yml",
+                                                        package = "sivirep"),
+                                          "related_diseases")
+  list_events_relacionados <- lapply(list_events_relacionados,
+                                     stringr::str_to_title)
+  if (length(list_events_relacionados) > 0) {
+    events_relacionados <- list_events_relacionados[[nombre_event]]
+    for (year in years) {
+      for (event in events_relacionados) {
+        grupo_events_relacionados <-
+          list_events[which(list_events$enfermedad == event), ]
+        if (is.null(grupo_events) || nrow(grupo_events) == 0) {
+          warning("La enfermedad o evento relacionado: ",
+                  event,
+                  "no esta disponible para su descarga", call. = FALSE)
+        } else if (stringr::str_detect(grupo_events_relacionados$aa,
+                                       as.character(year))) {
+          warning("El year: ", year,
+                  "de la enfermedad o evento relacionado: ",
+                  event,
+                  "no esta disponible para su descarga", call. = FALSE)
+        } else {
+          grupo_events <- rbind(grupo_events, grupo_events_relacionados)
+        }
+      }
+    }
+  }
+  return(grupo_events)
+}
