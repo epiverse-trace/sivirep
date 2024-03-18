@@ -130,6 +130,7 @@ import_data_event <- function(nombre_event,
                                             "config.yml",
                                             package = "sivirep"),
                               "cols_remover")
+  grupo_events <- obtener_eventos_relacionados(nombre_event, years)
           names(data_import)[index_cols_eve[1]] <- "cod_eve"
           index_cols_eve[1] <- index_cols_eve[-1]
           data_import <-
