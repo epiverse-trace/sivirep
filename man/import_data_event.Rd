@@ -5,13 +5,13 @@
 \title{Importar los datos de una enfermedad o evento por año
 desde los microdatos de SIVIGILA}
 \usage{
-import_data_event(nombre_event, year, cache = TRUE)
+import_data_event(nombre_event, years, cache = TRUE)
 }
 \arguments{
 \item{nombre_event}{Un `character` (cadena de caracteres) con el nombre de
 la enfermedad o evento}
 
-\item{year}{Un `numeric` (numerico) con el año deseado para la descarga
+\item{years}{Un `numeric` (numerico) con el año deseado para la descarga
 de los datos}
 
 \item{cache}{Un `boolean` (TRUE o FALSE) que indica si los datos descargados
@@ -27,6 +27,16 @@ desde los microdatos de SIVIGILA
 }
 \examples{
 import_data_event(nombre_event = "DENGUE",
-                  year = 2020,
+                  years = 2020,
                   cache = TRUE)
+\dontrun{
+import_data_event(nombre_event = "DENGUE",
+                  years = c(2019, 2020),
+                  cache = TRUE)
+}
+\dontrun{
+import_data_event(nombre_event = "DENGUE",
+                  years = seq(2007, 2020),
+                  cache = TRUE)
+}
 }
