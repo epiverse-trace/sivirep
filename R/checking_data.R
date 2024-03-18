@@ -765,3 +765,33 @@ agrupar_casos_eventos <- function(data_event, nomb_col = "cod_eve") {
   data_event_tipos <- agrupar_cols_casos(data_event, nomb_cols = nomb_col)
   return(data_event_tipos)
 }
+
+#' Agrupar por tipo de enfermedad o evento
+#'
+#' Función que agrupa los casos por los años de una enfermedad o evento
+#' @param data_event Un `data.frame` que contiene los datos de la
+#' enfermedad o evento
+#' @param nomb_col Un `character` (cadena de caracteres) con el nombre de
+#' la columna en los datos de la enfermedad o evento que contiene los años
+#' del evento; su valor por defecto es `"ano"`
+#' @return Un `data.frame` con los datos de la enfermedad o evento agrupados
+#' por sus años
+#' @examples
+#' data(dengue2020)
+#' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+#' agrupar_years(data_event = data_limpia,
+#'               nomb_col = "ano")
+#' @export
+agrupar_years <- function(data_event, nomb_col = "ano") {
+  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
+            "El parametro data_event debe ser un data.frame" =
+              is.data.frame(data_event),
+            "El parametro data_event no debe estar vacio" =
+              nrow(data_event) > 0,
+            "El parametro nomb_col debe ser una cadena de caracteres"
+            = is.character(nomb_col))
+  data_event_year <- agrupar_cols_casos(data_event,
+                                        nomb_cols = c(nomb_col,
+                                                      "cod_eve"))
+  return(data_event_year)
+}
