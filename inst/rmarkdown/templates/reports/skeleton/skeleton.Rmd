@@ -18,6 +18,7 @@ header-includes:
   - \usepackage{tikz}
   - \usepackage[absolute,overlay]{textpos}
   - \definecolor{colortitle}{HTML}{0CC0DF}
+  - \usepackage{caption}
   - \captionsetup[table]{position=above,name=Tabla}
 papersize: a4
 title: \textcolor{colortitle}{.}
@@ -147,7 +148,7 @@ data_event <-  import_data_event(nombre_event = params$nombre_evento,
 ```
 
 ```{r clean_data, include = FALSE}
-data_event_limpia <-  limpiar_data_sivigila(data_event)
+data_event_limpia <- limpiar_data_sivigila(data_event)
 ```
 
 ```{r filter_data, include = FALSE}
@@ -165,13 +166,30 @@ En este reporte se presenta el comportamiento del `r stringr::str_to_title(param
 # Distribución de casos
 
 La distribución de casos por tipo es la siguiente:
-```{r total_cases, echo = FALSE, error = FALSE, fig.height=5, fig.width = 10, warning = FALSE, include = TRUE, message = FALSE, fig.pos = "H"}
+```{r total_cases, echo = FALSE, error = FALSE, fig.height=5, fig.width = 10, warning = FALSE, include = TRUE, message = FALSE, fig.pos = "H"} 
 total_casos_eventos <- agrupar_casos_eventos(data_event = data_event_filtrada,
                            nomb_col = "cod_eve")
 plot_tabla_tipos_event(total_casos_eventos)
 ```
 
+Durante el período comprendido entre el año `r (params$year - 5)` y `r params$year`, se observó la siguiente distribución de casos:
+
+```{r cases_by_years, echo = FALSE, error = FALSE, fig.height=5, fig.width = 10, warning = FALSE, include = TRUE, message = FALSE}
+data_event_years <- import_data_event(nombre_event = params$nombre_evento,
+                                      years = seq(params$year - 5,
+                                                   params$year))
+data_years_limpia <- limpiar_data_sivigila(data_event_years)
+data_years_filtrada <- geo_filtro(data_event = data_years_limpia,
+                                  dpto = params$departmento)
+casos_years <- agrupar_years(data_event = data_years_filtrada)
+```
+
+```{r plot_cases_by_years, fig.height = 5, fig.width = 11, fig.cap = "Distribucion de casos en los últimos 5 años"}
+plot_years(casos_years)
+```
+
 `r if (params$temporal_distribution) {"# Distribución temporal de los casos"}`
+
 ```{r cases_by_onset_symptom_date, include = FALSE}
 casos_iniciosin_dia <- agrupar_fecha_inisintomas(data_event =
                                                    data_event_filtrada)
@@ -230,9 +248,11 @@ casos_sex_semanaepi <- agrupar_sex_semanaepi(data_event = data_event_filtrada)
 
 `r if (params$epi_sex_distribution) {paste0("Esta predominancia del reporte de casos del sexo ", sexo_mayor[1], " se mantuvo a lo largo de la mayoria de semanas epidemiológicas (Ver figura 4). ")}`
 
-```{r plot_cg_semanaepi, fig.height = 8, fig.width = 12, fig.cap =  "Distribucion de casos por sexo y semana epidemiologica", include = params$epi_sex_distribution, fig.pos = "H"}
+```{r plot_cg_semanaepi, fig.height = 6, fig.width = 10, fig.cap =  "Distribucion de casos por sexo y semana epidemiologica", include = params$epi_sex_distribution, fig.pos = "H"}
 plot_sex_semanaepi(data_agrupada = casos_sex_semanaepi)
 ```
+
+\newpage
 
 `r if (params$age_distribution) {"# Distribución de casos por edad"}`
 
