@@ -131,14 +131,27 @@ import_data_event <- function(nombre_event,
                                             package = "sivirep"),
                               "cols_remover")
   grupo_events <- obtener_eventos_relacionados(nombre_event, years)
+  for (year in years) {
+    for (event in grupo_events$enfermedad) {
+      if (event != "Malaria") {
+        data_url <- get_path_data_disease_year(year, event)
+        data_import <- import_sep_data(data_url, cache)
+        data_import <- limpiar_encabezado(data_import)
+        data_import$fec_def <- as.character(data_import$fec_def)
+        nombre_cols <- names(data_import)
+        index_cols_eve <- which(stringr::str_detect(nombre_cols,
+                                                    stringr::fixed("cod_eve_")))
+        if (!identical(index_cols_eve,
+                       integer(0))) {
           names(data_import)[index_cols_eve[1]] <- "cod_eve"
           index_cols_eve[1] <- index_cols_eve[-1]
           data_import <-
             data_import[, -index_cols_eve]
           nombre_cols <- names(data_import)
+        }
+        nombre_cols <- nombre_cols[-which(nombre_cols %in% cols_remover)]
+        data_event <- rbind(data_event, data_import[, nombre_cols])
       }
-      nombre_cols <- nombre_cols[-which(nombre_cols %in% cols_remover)]
-      data_event <- rbind(data_event, data_import[, nombre_cols])
     }
   }
   return(data_event)
