@@ -795,6 +795,51 @@ agrupar_years <- function(data_event, nomb_col = "ano") {
                                                       "cod_eve"))
   return(data_event_year)
 }
+
+#' Agrupar por la clasificacion inicial del caso
+#'
+#' Función que agrupa los casos por la clasificacion inicial del caso
+#' @param data_event Un `data.frame` que contiene los datos de la
+#' enfermedad o evento
+#' @param nomb_cols Un `character` (cadena de caracteres) con el nombre de
+#' las columna(s) en los datos de la enfermedad o evento que contiene la
+#' clasificacion inicial del caso; su valor por defecto es `"tip_cas"`
+#' @return Un `data.frame` con los datos de la enfermedad o evento agrupados
+#' por la clasificacion inicial del caso y/u otras variables como años
+#' @examples
+#' data(dengue2020)
+#' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+#' agrupar_tipo_caso(data_event = data_limpia,
+#'                   nomb_cols = "tip_cas")
+#' @export
+agrupar_tipo_caso <- function(data_event, nomb_cols = "tip_cas") {
+  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
+            "El parametro data_event debe ser un data.frame" =
+              is.data.frame(data_event),
+            "El parametro data_event no debe estar vacio" =
+              nrow(data_event) > 0,
+            "El parametro nomb_col debe ser una cadena de caracteres"
+            = is.character(nomb_cols))
+  if (length(nomb_cols) == 1) {
+   nomb_cols <- c(nomb_cols, "cod_eve")
+  }
+  etiquetas <- c("Sospechoso",
+                 "Probable",
+                 "Confirmado por laboratorio",
+                 "Confirmado por clinica",
+                 "Confirmado por nexo epidemiologico")
+  etiquetas <- config::get(file =
+                             system.file("extdata",
+                                         "config.yml",
+                                         package = "sivirep"),
+                           "labels_cas_tip")
+  data_event_tipo <- agrupar_cols_casos(data_event,
+                                        nomb_cols = nomb_cols)
+  data_event_tipo <- data_event_tipo %>%
+    dplyr::mutate(nombre_tip_cas =
+                    etiquetas[as.numeric(.data[[nomb_cols[1]]])])
+  return(data_event_tipo)
+}
 #' Agrupar por la pertenencia etnica
 #'
 #' Función que agrupa los casos por la pertenencia etnica

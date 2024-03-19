@@ -850,6 +850,7 @@ plot_area_geo <- function(data_agrupada,
 #' tipo; su valor por defecto es `"nombre_evento"`
 #' @return Una `kable` (tabla gráfica) con la distribución de casos
 #' por tipo de enfermedad o evento
+#' @export
 plot_tabla_tipos_event <- function(data_agrupada,
                                    nomb_col = "nombre_evento") {
   data_agrupada[["nombre_evento"]] <-
@@ -905,6 +906,131 @@ plot_years <- function(data_agrupada,
                   caption = fuente_data) +
     ggplot2::theme_classic() +
     obtener_estetica_escala(escala = eventos, nombre = "Eventos\n") +
+    tema_sivirep() +
+    ggplot2::theme(legend.position = "right")
+  return(plot_casos_years)
+}
+
+
+#' Generar gráfico de distribución de casos por la clasificacion inicial
+#' del caso
+#'
+#' Función que genera el gráfico por la clasificación inicial de los
+#' casos
+#' @param data_agrupada Un `data.frame` que contiene los datos de la
+#' enfermedad o evento agrupados por la clasificación inicial
+#' @param nomb_col Un `character` (cadena de carácteres) con el nombre de
+#' la columna de los datos agrupados de la enfermedad o evento por la
+#' clasificación inicial; su valor por defecto es `"tip_cas"`
+#' @param fuente_data Un `character` (cadena de caracteres) que contiene la
+#' leyenda o fuente de información de los datos; su valor por defecto es `NULL`
+#' @return Un `plot` o gráfico de distribución de casos por la clasificación
+#' inicial
+#' @examples
+#' data(dengue2020)
+#' data_limpia <- limpiar_data_sivigila(dengue2020)
+#' data_agrupada <- agrupar_tipo_caso(data_event = data_limpia)
+#' plot_tipo_caso(data_agrupada,
+#'                nomb_col = "tip_cas")
+#' @export
+plot_tipo_caso <- function(data_agrupada,
+                           nomb_col = "tip_cas",
+                           fuente_data = NULL) {
+  stopifnot("El parametro data_agrupada debe ser un data.frame"
+            = is.data.frame(data_agrupada),
+            "El parametro nomb_col debe ser una cadena de caracteres"
+            = is.character(nomb_col))
+  if (is.null(fuente_data)) {
+    fuente_data <-
+      "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
+  }
+  nomb_col <- c(nomb_col, "nombre_evento")
+  etiquetas <- config::get(file =
+                             system.file("extdata",
+                                         "config.yml",
+                                         package = "sivirep"),
+                           "labels_cas_tip")
+  clasificacion <- unique(data_agrupada[[nomb_col[1]]])
+  escala <- length(clasificacion)
+  etiquetas <- etiquetas[as.character(clasificacion)]
+  etiquetas <- unlist(etiquetas)
+  plot_casos_years <-
+    ggplot2::ggplot(data_agrupada,
+                    ggplot2::aes(x = .data[[nomb_col[1]]],
+                                 y = .data[["casos"]],
+                                 fill = .data[[nomb_col[2]]])) +
+    ggplot2::geom_bar(position = "dodge", stat = "identity") +
+    ggplot2::labs(x = "\nClasificacion del caso\n", y = "Numero de casos\n",
+                  caption = fuente_data) +
+    ggplot2::theme_classic() +
+    obtener_estetica_escala(escala = escala, nombre = "Eventos\n") +
+    ggplot2::scale_x_discrete(labels = etiquetas)
+    tema_sivirep() +
+    ggplot2::theme(legend.position = "right")
+  return(plot_casos_years)
+}
+
+#' Generar gráfico de distribución de casos por la clasificacion inicial
+#' del caso y los años seleccionados
+#'
+#' Función que genera el gráfico por la clasificación inicial de los
+#' casos y los años seleccionados
+#' @param data_agrupada Un `data.frame` que contiene los datos de la
+#' enfermedad o evento agrupados por la clasificación inicial y los años
+#' @param col_tipo Un `character` (cadena de carácteres) con el nombre de
+#' la columna de los datos agrupados de la enfermedad o evento por la
+#' clasificación inicial; su valor por defecto es `"tip_cas"`
+#' @param col_year Un `character` (cadena de carácteres) con el nombre de
+#' la columna de los datos agrupados de la enfermedad o evento por el año;
+#' su valor por defecto es `"ano"`
+#' @param fuente_data Un `character` (cadena de caracteres) que contiene la
+#' leyenda o fuente de información de los datos; su valor por defecto es `NULL`
+#' @return Un `plot` o gráfico de distribución de casos por la clasificación
+#' inicial y los años seleccionados
+#' @examples
+#' data(dengue2020)
+#' data_limpia <- limpiar_data_sivigila(dengue2020)
+#' data_agrupada <- agrupar_tipo_caso(data_event = data_limpia,
+#' nomb_cols = c("tip_cas", "ano"))
+#' plot_tipo_caso_years(data_agrupada,
+#'                      col_tipo = "tip_cas",
+#'                      col_year = "ano")
+#' @export
+plot_tipo_caso_years <- function(data_agrupada,
+                                 col_tipo = "tip_cas",
+                                 col_year = "ano",
+                                 fuente_data = NULL) {
+  stopifnot("El parametro data_agrupada debe ser un data.frame"
+            = is.data.frame(data_agrupada),
+            "El parametro col_tipo debe ser una cadena de caracteres"
+            = is.character(col_tipo),
+            "El parametro col_year debe ser una cadena de caracteres"
+            = is.character(col_year))
+  if (is.null(fuente_data)) {
+    fuente_data <-
+      "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
+  }
+  etiquetas <- config::get(file =
+                             system.file("extdata",
+                                         "config.yml",
+                                         package = "sivirep"),
+                           "labels_cas_tip")
+  clasificacion <- unique(data_agrupada[[col_tipo]])
+  escala <- length(unique(data_agrupada[[col_tipo]]))
+  etiquetas <- etiquetas[as.character(clasificacion)]
+  etiquetas <- unlist(etiquetas)
+  plot_casos_years <-
+    ggplot2::ggplot(data_agrupada,
+                    ggplot2::aes(x = .data[[col_year]],
+                                 y = .data[["casos"]],
+                                 fill = .data[[col_tipo]])) +
+    ggplot2::geom_bar(position = "dodge", stat = "identity") +
+    ggplot2::labs(x = "\nYear\n", y = "Numero de casos\n",
+                  caption = fuente_data) +
+    ggplot2::theme_classic() +
+    obtener_estetica_escala(escala = escala,
+                            nombre = "Clasificacion del caso\n",
+                            etiquetas = etiquetas) +
     tema_sivirep() +
     ggplot2::theme(legend.position = "right")
   return(plot_casos_years)
