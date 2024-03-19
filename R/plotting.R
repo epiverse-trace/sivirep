@@ -901,7 +901,7 @@ plot_years <- function(data_agrupada,
                                  y = .data[["casos"]],
                                  fill = .data[["nombre_evento"]])) +
     ggplot2::geom_bar(position = "dodge", stat = "identity") +
-    ggplot2::labs(x = "\nAño\n", y = "Numero de casos\n",
+    ggplot2::labs(x = "\nYear\n", y = "Numero de casos\n",
                   caption = fuente_data) +
     ggplot2::theme_classic() +
     obtener_estetica_escala(escala = eventos, nombre = "Eventos\n") +
