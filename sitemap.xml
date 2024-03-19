@@ -64,6 +64,9 @@
     <loc>https://epiverse-trace.github.io/sivirep/reference/agrupar_sex_semanaepi.html</loc>
   </url>
   <url>
+    <loc>https://epiverse-trace.github.io/sivirep/reference/agrupar_years.html</loc>
+  </url>
+  <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/concatenar_vals_token.html</loc>
   </url>
   <url>
@@ -133,6 +136,9 @@
     <loc>https://epiverse-trace.github.io/sivirep/reference/obtener_estetica_escala.html</loc>
   </url>
   <url>
+    <loc>https://epiverse-trace.github.io/sivirep/reference/obtener_eventos_relacionados.html</loc>
+  </url>
+  <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/obtener_fila_mas_casos.html</loc>
   </url>
   <url>
@@ -185,6 +191,9 @@
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/plot_tabla_tipos_event.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/sivirep/reference/plot_years.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/remove_error_fecha.html</loc>
