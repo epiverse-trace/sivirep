@@ -29,7 +29,7 @@ casos
 \examples{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(dengue2020)
-data_agrupada <- agrupar_years(data_event = data_limpia)
+data_agrupada <- agrupar_tipo_caso(data_event = data_limpia)
 plot_tipo_caso(data_agrupada,
-               nomb_col = "ano")
+               nomb_col = "tip_cas")
 }
