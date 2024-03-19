@@ -52,6 +52,9 @@
     <loc>https://epiverse-trace.github.io/sivirep/reference/agrupar_mpio.html</loc>
   </url>
   <url>
+    <loc>https://epiverse-trace.github.io/sivirep/reference/agrupar_per_etn.html</loc>
+  </url>
+  <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/agrupar_pob_especial.html</loc>
   </url>
   <url>
@@ -185,6 +188,9 @@
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/plot_mpios.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/sivirep/reference/plot_per_etn.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/plot_sex.html</loc>
