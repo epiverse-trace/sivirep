@@ -865,7 +865,6 @@ plot_tabla_tipos_event <- function(data_agrupada,
   return(tabla_tipos)
 }
 
-
 #' Generar gráfico de distribución de casos por año
 #'
 #' Función que genera el gráfico de casos por año

@@ -166,6 +166,7 @@ En este reporte se presenta el comportamiento del `r stringr::str_to_title(param
 # Distribución de casos
 
 La distribución de casos por tipo es la siguiente:
+
 ```{r total_cases, echo = FALSE, error = FALSE, fig.height=5, fig.width = 10, warning = FALSE, include = TRUE, message = FALSE, fig.pos = "H"} 
 total_casos_eventos <- agrupar_casos_eventos(data_event = data_event_filtrada,
                            nomb_col = "cod_eve")
