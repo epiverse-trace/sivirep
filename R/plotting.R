@@ -851,6 +851,7 @@ plot_area_geo <- function(data_agrupada,
 #' @return Una `kable` (tabla gráfica) con la distribución de casos
 #' por tipo de enfermedad o evento
 #' @export
+#' @export
 plot_tabla_tipos_event <- function(data_agrupada,
                                    nomb_col = "nombre_evento") {
   data_agrupada[["nombre_evento"]] <-
