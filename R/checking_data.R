@@ -795,3 +795,43 @@ agrupar_years <- function(data_event, nomb_col = "ano") {
                                                       "cod_eve"))
   return(data_event_year)
 }
+#' Agrupar por la pertenencia etnica
+#'
+#' Función que agrupa los casos por la pertenencia etnica
+#' @param data_event Un `data.frame` que contiene los datos de la
+#' enfermedad o evento
+#' @param nomb_cols Un `character` (cadena de caracteres) con el nombre de
+#' las columna(s) en los datos de la enfermedad o evento que contiene la
+#' pertenencia etnica; su valor por defecto es `"per_etn"`
+#' @return Un `data.frame` con los datos de la enfermedad o evento agrupados
+#' por la pertenencia etnica
+#' @examples
+#' data(dengue2020)
+#' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+#' agrupar_per_etn(data_event = data_limpia,
+#'                 nomb_cols = "per_etn")
+#' @export
+agrupar_per_etn <- function(data_event, nomb_cols = "per_etn") {
+  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
+            "El parametro data_event debe ser un data.frame" =
+              is.data.frame(data_event),
+            "El parametro data_event no debe estar vacio" =
+              nrow(data_event) > 0,
+            "El parametro nomb_col debe ser una cadena de caracteres"
+            = is.character(nomb_cols))
+  if (length(nomb_cols) == 1) {
+    nomb_cols <- c(nomb_cols, "cod_eve")
+  }
+  etiquetas <- c("1" = "Indigena",
+                 "2" = "ROM/Gitano",
+                 "3" = "Raizal",
+                 "4" = "Palenquero",
+                 "5" = "Negro/Mulato/Afrocolombiano",
+                 "6" = "Otro")
+  data_event_tipo <- agrupar_cols_casos(data_event,
+                                        nomb_cols = nomb_cols)
+  data_event_tipo <- data_event_tipo %>%
+    dplyr::mutate(nombre_per_etn =
+                    etiquetas[as.numeric(.data[[nomb_cols[1]]])])
+  return(data_event_tipo)
+}
