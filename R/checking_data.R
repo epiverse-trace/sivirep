@@ -828,6 +828,11 @@ agrupar_tipo_caso <- function(data_event, nomb_cols = "tip_cas") {
                  "Confirmado por laboratorio",
                  "Confirmado por clinica",
                  "Confirmado por nexo epidemiologico")
+  etiquetas <- config::get(file =
+                             system.file("extdata",
+                                         "config.yml",
+                                         package = "sivirep"),
+                           "labels_cas_tip")
   data_event_tipo <- agrupar_cols_casos(data_event,
                                         nomb_cols = nomb_cols)
   data_event_tipo <- data_event_tipo %>%
@@ -835,4 +840,3 @@ agrupar_tipo_caso <- function(data_event, nomb_cols = "tip_cas") {
                     etiquetas[as.numeric(.data[[nomb_cols[1]]])])
   return(data_event_tipo)
 }
-
