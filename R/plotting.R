@@ -944,14 +944,15 @@ plot_tipo_caso <- function(data_agrupada,
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
   }
   nomb_col <- c(nomb_col, "nombre_evento")
-  etiquetas <- c("1" = "Sospechoso",
-                 "2" = "Probable",
-                 "3" = "Confirmado por laboratorio",
-                 "4" = "Confirmado por clinica",
-                 "5" = "Confirmado por nexo epidemiologico")
+  etiquetas <- config::get(file =
+                             system.file("extdata",
+                                         "config.yml",
+                                         package = "sivirep"),
+                           "labels_cas_tip")
   clasificacion <- unique(data_agrupada[[nomb_col[1]]])
   escala <- length(clasificacion)
-  etiquetas <- etiquetas[as.numeric(clasificacion)]
+  etiquetas <- etiquetas[as.character(clasificacion)]
+  etiquetas <- unlist(etiquetas)
   plot_casos_years <-
     ggplot2::ggplot(data_agrupada,
                     ggplot2::aes(x = .data[[nomb_col[1]]],
@@ -1008,14 +1009,15 @@ plot_tipo_caso_years <- function(data_agrupada,
     fuente_data <-
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
   }
-  etiquetas <- c("1" = "Sospechoso",
-                 "2" = "Probable",
-                 "3" = "Confirmado por laboratorio",
-                 "4" = "Confirmado por clinica",
-                 "5" = "Confirmado por nexo epidemiologico")
+  etiquetas <- config::get(file =
+                             system.file("extdata",
+                                         "config.yml",
+                                         package = "sivirep"),
+                           "labels_cas_tip")
   clasificacion <- unique(data_agrupada[[col_tipo]])
   escala <- length(unique(data_agrupada[[col_tipo]]))
-  etiquetas <- etiquetas[as.numeric(clasificacion)]
+  etiquetas <- etiquetas[as.character(clasificacion)]
+  etiquetas <- unlist(etiquetas)
   plot_casos_years <-
     ggplot2::ggplot(data_agrupada,
                     ggplot2::aes(x = .data[[col_year]],
@@ -1032,4 +1034,3 @@ plot_tipo_caso_years <- function(data_agrupada,
     ggplot2::theme(legend.position = "right")
   return(plot_casos_years)
 }
-
