@@ -18,23 +18,23 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Geraldine GC3mez MillC!n \email{geralidine.gomez@javeriana.edu.co} (\href{https://orcid.org/0009-0007-8701-0568}{ORCID}) [contributor]
+\strong{Maintainer}: Geraldine Gómez Millán \email{geralidine.gomez@javeriana.edu.co} (\href{https://orcid.org/0009-0007-8701-0568}{ORCID}) [contributor]
 
 Authors:
 \itemize{
-  \item Zulma M. CucunubC! \email{zulma.cucunuba@javeriana.edu.co} (\href{https://orcid.org/0000-0002-8165-3198}{ORCID}) [contributor]
+  \item Zulma M. Cucunubá \email{zulma.cucunuba@javeriana.edu.co} (\href{https://orcid.org/0000-0002-8165-3198}{ORCID}) [contributor]
 }
 
 Other contributors:
 \itemize{
   \item Hugo Gruson \email{hugo.gruson+R@normalesup.org} (\href{https://orcid.org/0000-0002-4094-1476}{ORCID}) [contributor]
-  \item Laura GC3mez Bermeo \email{gomezblaura@javeriana.edu.co} (\href{https://orcid.org/0000-0003-4028-2893}{ORCID}) [contributor]
-  \item AndrC)s Moreno \email{ad.morenob@javeriana.edu.co} (\href{https://orcid.org/0000-0001-9266-731X}{ORCID}) [contributor]
-  \item Miguel GC!mez [contributor]
-  \item Jennifer MC)ndez-Romero [contributor]
-  \item Johan CalderC3n [contributor]
-  \item Lady FlC3rez-Tapiero [contributor]
-  \item VerC3nica Tangarife-Arredondo [contributor]
+  \item Laura Gómez Bermeo \email{gomezblaura@javeriana.edu.co} (\href{https://orcid.org/0000-0003-4028-2893}{ORCID}) [contributor]
+  \item Andrés Moreno \email{ad.morenob@javeriana.edu.co} (\href{https://orcid.org/0000-0001-9266-731X}{ORCID}) [contributor]
+  \item Miguel Gámez [contributor]
+  \item Jennifer Méndez-Romero [contributor]
+  \item Johan Calderón [contributor]
+  \item Lady Flórez-Tapiero [contributor]
+  \item Verónica Tangarife-Arredondo [contributor]
 }
 
 }
