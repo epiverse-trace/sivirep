@@ -32,3 +32,4 @@ default:
   divipola_data_path: "extdata/divipola_data.xlsx"
   dpto_shape_file: "extdata/depto_adm_shp_simp/depto.shp"
   labels_geo_areas: ["Cabecera municipal", "Centro poblado", "Rural disperso"]
+  labels_cas_tip: {"1": "Sospechoso", "2": "Probable", "3": "Confirmado por laboratorio", "4": "Confirmado por clinica", "5": "Confirmado por nexo epidemiologico"}
