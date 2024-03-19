@@ -909,3 +909,61 @@ plot_years <- function(data_agrupada,
     ggplot2::theme(legend.position = "right")
   return(plot_casos_years)
 }
+
+
+#' Generar gráfico de distribución de casos por la clasificacion inicial
+#' del caso
+#'
+#' Función que genera el gráfico por la clasificación inicial de los
+#' casos
+#' @param data_agrupada Un `data.frame` que contiene los datos de la
+#' enfermedad o evento agrupados por la clasificación inicial
+#' @param nomb_col Un `character` (cadena de carácteres) con el nombre de
+#' la columna de los datos agrupados de la enfermedad o evento por la
+#' clasificación inicial; su valor por defecto es `"tip_cas"`
+#' @param fuente_data Un `character` (cadena de caracteres) que contiene la
+#' leyenda o fuente de información de los datos; su valor por defecto es `NULL`
+#' @return Un `plot` o gráfico de distribución de casos por la clasificación
+#' inicial
+#' @examples
+#' data(dengue2020)
+#' data_limpia <- limpiar_data_sivigila(dengue2020)
+#' data_agrupada <- agrupar_years(data_event = data_limpia)
+#' plot_tipo_caso(data_agrupada,
+#'                nomb_col = "ano")
+#' @export
+plot_tipo_caso <- function(data_agrupada,
+                           nomb_col = "tip_cas",
+                           fuente_data = NULL) {
+  stopifnot("El parametro data_agrupada debe ser un data.frame"
+            = is.data.frame(data_agrupada),
+            "El parametro nomb_col debe ser una cadena de caracteres"
+            = is.character(nomb_col))
+  if (is.null(fuente_data)) {
+    fuente_data <-
+      "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
+  }
+  nomb_col <- c(nomb_col, "nombre_evento")
+  etiquetas <- c("1" = "Sospechoso",
+                 "2" = "Probable",
+                 "3" = "Confirmado por laboratorio",
+                 "4" = "Confirmado por clinica",
+                 "5" = "Confirmado por nexo epidemiologico")
+  clasificacion <- unique(data_agrupada[[nomb_col[1]]])
+  escala <- length(clasificacion)
+  etiquetas <- etiquetas[as.numeric(clasificacion)]
+  plot_casos_years <-
+    ggplot2::ggplot(data_agrupada,
+                    ggplot2::aes(x = .data[[nomb_col[1]]],
+                                 y = .data[["casos"]],
+                                 fill = .data[[nomb_col[2]]])) +
+    ggplot2::geom_bar(position = "dodge", stat = "identity") +
+    ggplot2::labs(x = "\nClasificacion del caso\n", y = "Numero de casos\n",
+                  caption = fuente_data) +
+    ggplot2::theme_classic() +
+    obtener_estetica_escala(escala = escala, nombre = "Eventos\n") +
+    ggplot2::scale_x_discrete(labels = etiquetas)
+    tema_sivirep() +
+    ggplot2::theme(legend.position = "right")
+  return(plot_casos_years)
+}
