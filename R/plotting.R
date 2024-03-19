@@ -909,3 +909,58 @@ plot_years <- function(data_agrupada,
     ggplot2::theme(legend.position = "right")
   return(plot_casos_years)
 }
+#' Generar gráfico de distribución de casos por la pertenencia etnica
+#'
+#' Función que genera el gráfico por la pertenencia etnica
+#' @param data_agrupada Un `data.frame` que contiene los datos de la
+#' enfermedad o evento agrupados por la la pertenencia etnica
+#' @param nomb_cols Un `character` (cadena de carácteres) con el nombre de
+#' la columna de los datos agrupados de la enfermedad o evento por la
+#' la pertenencia etnica; su valor por defecto es `"per_etn"`
+#' @param fuente_data Un `character` (cadena de caracteres) que contiene la
+#' leyenda o fuente de información de los datos; su valor por defecto es `NULL`
+#' @return Un `plot` o gráfico de distribución de casos por la clasificación
+#' inicial y los años seleccionados
+#' @examples
+#' data(dengue2020)
+#' data_limpia <- limpiar_data_sivigila(dengue2020)
+#' data_agrupada <- agrupar_per_etn(data_event = data_limpia)
+#' plot_per_etn(data_agrupada,
+#'              nomb_cols = "per_etn")
+#' @export
+plot_per_etn <- function(data_agrupada,
+                         nomb_cols = "per_etn",
+                         fuente_data = NULL) {
+  stopifnot("El parametro data_agrupada debe ser un data.frame"
+            = is.data.frame(data_agrupada),
+            "El parametro nomb_col debe ser una cadena de caracteres"
+            = is.character(nomb_cols))
+  if (is.null(fuente_data)) {
+    fuente_data <-
+      "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
+  }
+  nomb_cols <- c(nomb_cols, "nombre_evento")
+  escala <- length(unique(data_agrupada[["nombre_evento"]]))
+  etiquetas <- c("1" = "Indigena",
+                 "2" = "ROM/Gitano",
+                 "3" = "Raizal",
+                 "4" = "Palenquero",
+                 "5" = "Negro/Mulato/Afrocolombiano",
+                 "6" = "Otro")
+  grupos <- unique(data_agrupada[[nomb_cols[1]]])
+  etiquetas <- etiquetas[as.numeric(grupos)]
+  plot_casos_years <-
+    ggplot2::ggplot(data_agrupada,
+                    ggplot2::aes(x = .data[[nomb_cols[1]]],
+                                 y = .data[["casos"]],
+                                 fill = .data[[nomb_cols[2]]])) +
+    ggplot2::geom_bar(position = "dodge", stat = "identity") +
+    ggplot2::labs(x = "\nPertenencia etnica\n", y = "Numero de casos\n",
+                  caption = fuente_data) +
+    ggplot2::theme_classic() +
+    obtener_estetica_escala(escala = escala, nombre = "Eventos\n") +
+    ggplot2::scale_x_discrete(labels = etiquetas)
+    tema_sivirep() +
+    ggplot2::theme(legend.position = "right")
+  return(plot_casos_years)
+}
