@@ -1068,14 +1068,14 @@ plot_per_etn <- function(data_agrupada,
   }
   nomb_cols <- c(nomb_cols, "nombre_evento")
   escala <- length(unique(data_agrupada[["nombre_evento"]]))
-  etiquetas <- c("1" = "Indigena",
-                 "2" = "ROM/Gitano",
-                 "3" = "Raizal",
-                 "4" = "Palenquero",
-                 "5" = "Negro/Mulato/Afrocolombiano",
-                 "6" = "Otro")
+  etiquetas <- config::get(file =
+                             system.file("extdata",
+                                         "config.yml",
+                                         package = "sivirep"),
+                           "labels_cas_tip")
   grupos <- unique(data_agrupada[[nomb_cols[1]]])
-  etiquetas <- etiquetas[as.numeric(grupos)]
+  etiquetas <- etiquetas[as.character(grupos)]
+  etiquetas <- unlist(etiquetas)
   plot_casos_years <-
     ggplot2::ggplot(data_agrupada,
                     ggplot2::aes(x = .data[[nomb_cols[1]]],
