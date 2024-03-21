@@ -867,16 +867,16 @@ agrupar_per_etn <- function(data_event, nomb_cols = "per_etn") {
   if (length(nomb_cols) == 1) {
     nomb_cols <- c(nomb_cols, "cod_eve")
   }
-  etiquetas <- c("1" = "Indigena",
-                 "2" = "ROM/Gitano",
-                 "3" = "Raizal",
-                 "4" = "Palenquero",
-                 "5" = "Negro/Mulato/Afrocolombiano",
-                 "6" = "Otro")
+  etiquetas <- config::get(file =
+                             system.file("extdata",
+                                         "config.yml",
+                                         package = "sivirep"),
+                           "labels_cas_tip")
+  etiquetas <- unlist(etiquetas)
   data_event_tipo <- agrupar_cols_casos(data_event,
                                         nomb_cols = nomb_cols)
   data_event_tipo <- data_event_tipo %>%
     dplyr::mutate(nombre_per_etn =
-                    etiquetas[as.numeric(.data[[nomb_cols[1]]])])
+                    etiquetas[as.character(.data[[nomb_cols[1]]])])
   return(data_event_tipo)
 }
