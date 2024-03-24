@@ -5,15 +5,24 @@
 \alias{divipoladata}
 \title{Códigos e información geografica del DIVIPOLA en sivirep}
 \format{
-An object of class \code{"cross"}; see \code{\link[qtl]{read.cross}}.
+## `divipoladata`
+A `<data.frame>` con 1121 filas and 5 columnas:
+\describe{
+  \item{codigo_departamento}{Codigo de los departamentos}
+  \item{codigo_municipio}{Codigo de los municipios}
+  \item{nombre_departamento}{Nombre de los departamentos}
+  \item{nombre_municipio}{Nombre de los municipios}
+  \item{tipo_municipio_isla_area_no_municipalizada}
+  {Tipo de municipio, isla o area no municipalizada}
+}
 }
 \usage{
-divipoladata
+data(divipoladata)
 }
 \description{
-Data from API de Datos Abiertos de Colombia
+Datos obtenidos de la API de Datos Abiertos de Colombia.
 }
 \examples{
-divipoladata
+data(divipoladata)
 }
 \keyword{datasets}
