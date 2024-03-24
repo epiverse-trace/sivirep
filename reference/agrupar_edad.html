@@ -64,8 +64,8 @@ y número de casos</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">agrupar_edad</span><span class="op">(</span></span>
 <span>  <span class="va">data_event</span>,</span>
 <span>  nomb_col <span class="op">=</span> <span class="st">"edad"</span>,</span>
-<span>  porcentaje <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  interval_edad <span class="op">=</span> <span class="fl">10</span></span>
+<span>  interval_edad <span class="op">=</span> <span class="fl">10</span>,</span>
+<span>  porcentaje <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -82,15 +82,15 @@ de la columna de los datos de la enfermedad o evento que contiene las edades;
 su valor por defecto es `"edad"`</p></dd>
 
 
-<dt>porcentaje</dt>
-<dd><p>Un `boolean` (TRUE o FALSE) que indica si
-es necesario agregar un porcentaje de casos como una columna; su valor por
-defecto es `FALSE`</p></dd>
-
-
 <dt>interval_edad</dt>
 <dd><p>Un `numeric` (numerico) que contiene el intervalo del
 rango de edades; su valor por defecto es `10`</p></dd>
+
+
+<dt>porcentaje</dt>
+<dd><p>Un `boolean` (TRUE o FALSE) que indica si
+se debe agregar el porcentaje de casos como columna; su valor
+por defecto es `FALSE`</p></dd>
 
 </dl></div>
     <div class="section level2">

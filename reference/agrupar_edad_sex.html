@@ -85,7 +85,7 @@ las edades y el sexo; su valor por defecto es `c("edad", "sexo")`</p></dd>
 
 <dt>porcentaje</dt>
 <dd><p>Un `boolean` (TRUE o FALSE) que indica si
-es necesario agregar un porcentaje de casos como una columna; su valor
+se debe agregar el porcentaje de casos como columna; su valor
 por defecto es `TRUE`</p></dd>
 
 
@@ -109,31 +109,31 @@ por edades, sexo y número de casos</p>
 <span class="r-in"><span><span class="fu">agrupar_edad_sex</span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_limpia</span>,</span></span>
 <span class="r-in"><span>                 nomb_cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"edad"</span>, <span class="st">"sexo"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                 porcentaje <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         edad sexo casos</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     (0,10]    F 11151</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     (0,10]    M 10531</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3    (10,20]    F  7987</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    (10,20]    M  9596</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5    (20,30]    F  4316</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6    (20,30]    M  4361</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7    (30,40]    F  2811</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8    (30,40]    M  2915</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9    (40,50]    F  1720</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10   (40,50]    M  1880</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11   (50,60]    F  1538</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12   (50,60]    M  1450</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13   (60,70]    F   947</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14   (60,70]    M   937</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15   (70,80]    F   532</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16   (70,80]    M   578</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17   (80,90]    F   186</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18   (80,90]    M   242</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19  (90,100]    F    28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20  (90,100]    M    31</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21 (100,110]    F     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22 (100,110]    M     2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23      &lt;NA&gt;    F     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24      &lt;NA&gt;    M     1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         edad sexo casos porcentaje</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1     (0,10]    F 11151     17.494</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2     (0,10]    M 10531     16.521</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    (10,20]    F  7987     12.530</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    (10,20]    M  9596     15.054</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    (20,30]    F  4316      6.771</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6    (20,30]    M  4361      6.842</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7    (30,40]    F  2811      4.410</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8    (30,40]    M  2915      4.573</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9    (40,50]    F  1720      2.698</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10   (40,50]    M  1880      2.949</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11   (50,60]    F  1538      2.413</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12   (50,60]    M  1450      2.275</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13   (60,70]    F   947      1.486</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14   (60,70]    M   937      1.470</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15   (70,80]    F   532      0.835</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16   (70,80]    M   578      0.907</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17   (80,90]    F   186      0.292</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18   (80,90]    M   242      0.380</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19  (90,100]    F    28      0.044</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20  (90,100]    M    31      0.049</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21 (100,110]    F     1      0.002</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22 (100,110]    M     2      0.003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23      &lt;NA&gt;    F     1      0.002</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24      &lt;NA&gt;    M     1      0.002</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>En esta página</h2>
