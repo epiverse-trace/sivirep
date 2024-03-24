@@ -3,17 +3,23 @@
 #' Función que filtra los datos de una enfermedad o evento por departamentos
 #' y municipios
 #' @param data_event Un `data.frame` con los datos de una enfermedad o evento
-#' @param dpto Un `character` (cadena de caracteres) que contiene
-#' el nombre o código del departamento; valor por defecto `NULL`
-#' @param mpio Un `character` (cadena de caracteres) que contiene el
-#' nombre o código del municipio; su valor por defecto es `NULL`
+#' @param dpto Un `character` (cadena de caracteres) o `numeric` (numerico)
+#' que contiene el nombre o código del departamento; valor por defecto `NULL`
+#' @param mpio Un `character` (cadena de caracteres) o `numeric` (numerico)
+#' que contiene el nombre o código del municipio;
+#' su valor por defecto es `NULL`
 #' @return Un `data.frame` con los datos filtrados con la enfermedad,
 #' departamentos y municipios seleccionados
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 #' geo_filtro(data_event = data_limpia, dpto = "ANTIOQUIA")
-#' geo_filtro(data_event = data_limpia, dpto = "ANTIOQUIA", mpio = "ENVIGADO")
+#' geo_filtro(data_event = data_limpia, dpto = "ANTIOQUIA", mpio = "MEDELLIN")
+#' geo_filtro(data_event = data_limpia, dpto = "05")
+#' geo_filtro(data_event = data_limpia, dpto = "05", mpio = "05001")
+#' geo_filtro(data_event = data_limpia, dpto = 05, mpio = 05001)
+#' geo_filtro(data_event = data_limpia, dpto = 05, mpio = 001)
+#' geo_filtro(data_event = data_limpia, dpto = "bogota dc", mpio = "bogota dc")
 #' @export
 geo_filtro <- function(data_event, dpto = NULL, mpio = NULL) {
   stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
@@ -38,8 +44,9 @@ geo_filtro <- function(data_event, dpto = NULL, mpio = NULL) {
                       dept_data$codigo_departamento)
   }
   if (!is.null(mpio)) {
-    stopifnot("El parametro mpio debe ser una cadena de caracteres"
-              = is.character(mpio))
+    stopifnot("El parametro mpio debe ser una cadena de caracteres o un
+              numero"
+              = is.character(mpio) | is.numeric(mpio))
     data_dept_filt[[cols_ocurren[3]]] <-
       as.character(data_dept_filt[[cols_ocurren[3]]])
     data_dept_filt <-
@@ -609,8 +616,8 @@ agrupar_dpto <- function(data_event,
 #' de municipios y número de casos
 #' @param data_event Un `data.frame` que contiene los datos de la
 #' enfermedad o evento
-#' @param dpto Un `character` (cadena de caracteres) que contiene
-#' el nombre del departamento; su valor por defecto es `NULL`
+#' @param dpto Un `character` (cadena de caracteres) o `numeric` (numerico)
+#' que contiene el nombre del departamento; su valor por defecto es `NULL`
 #' @param nomb_col Un `character` (cadena de caracteres) con el nombre de
 #' la columna en los datos de la enfermedad o evento que contiene los códigos
 #' de municipios; su valor por defecto es `"cod_mun_o"`
@@ -623,7 +630,15 @@ agrupar_dpto <- function(data_event,
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 #' agrupar_mpio(data_event = data_limpia,
-#'              dpto = "Antioquia",
+#'              dpto = "ANTIOQUIA",
+#'              nomb_col = "cod_mun_o",
+#'              porcentaje = FALSE)
+#' agrupar_mpio(data_event = data_limpia,
+#'              dpto = "05",
+#'              nomb_col = "cod_mun_o",
+#'              porcentaje = FALSE)
+#' agrupar_mpio(data_event = data_limpia,
+#'              dpto = 05,
 #'              nomb_col = "cod_mun_o",
 #'              porcentaje = FALSE)
 #' @export
@@ -650,12 +665,12 @@ agrupar_mpio <- function(data_event,
   data_event_muns <- data_event
   dept_data <- NULL
   if (!is.null(dpto)) {
-    aux_dpto <- unique(data_event_muns[[nomb_col[2]]])
+    aux_dpto <- unique(data_event_muns[[nomb_col[1]]])
     if (length(aux_dpto) > 1) {
       data_event_muns <- geo_filtro(data_event, dpto)
     }
   } else {
-    dpto <- unique(data_event_muns[[nomb_col[2]]])
+    dpto <- unique(data_event_muns[[nomb_col[1]]])
     if (length(dpto) != 1) {
       stopifnot("Debe ingresar el nombre o codigo del departamento" =
                 length(dpto) == 1)

@@ -15,8 +15,8 @@ agrupar_mpio(
 \item{data_event}{Un `data.frame` que contiene los datos de la
 enfermedad o evento}
 
-\item{dpto}{Un `character` (cadena de caracteres) que contiene
-el nombre del departamento; su valor por defecto es `NULL`}
+\item{dpto}{Un `character` (cadena de caracteres) o `numeric` (numerico)
+que contiene el nombre del departamento; su valor por defecto es `NULL`}
 
 \item{nomb_col}{Un `character` (cadena de caracteres) con el nombre de
 la columna en los datos de la enfermedad o evento que contiene los códigos
@@ -38,7 +38,15 @@ de municipios y número de casos
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 agrupar_mpio(data_event = data_limpia,
-             dpto = "Antioquia",
+             dpto = "ANTIOQUIA",
+             nomb_col = "cod_mun_o",
+             porcentaje = FALSE)
+agrupar_mpio(data_event = data_limpia,
+             dpto = "05",
+             nomb_col = "cod_mun_o",
+             porcentaje = FALSE)
+agrupar_mpio(data_event = data_limpia,
+             dpto = 05,
              nomb_col = "cod_mun_o",
              porcentaje = FALSE)
 }

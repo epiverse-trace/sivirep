@@ -9,11 +9,12 @@ geo_filtro(data_event, dpto = NULL, mpio = NULL)
 \arguments{
 \item{data_event}{Un `data.frame` con los datos de una enfermedad o evento}
 
-\item{dpto}{Un `character` (cadena de caracteres) que contiene
-el nombre o código del departamento; valor por defecto `NULL`}
+\item{dpto}{Un `character` (cadena de caracteres) o `numeric` (numerico)
+que contiene el nombre o código del departamento; valor por defecto `NULL`}
 
-\item{mpio}{Un `character` (cadena de caracteres) que contiene el
-nombre o código del municipio; su valor por defecto es `NULL`}
+\item{mpio}{Un `character` (cadena de caracteres) o `numeric` (numerico)
+que contiene el nombre o código del municipio;
+su valor por defecto es `NULL`}
 }
 \value{
 Un `data.frame` con los datos filtrados con la enfermedad,
@@ -27,5 +28,10 @@ y municipios
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 geo_filtro(data_event = data_limpia, dpto = "ANTIOQUIA")
-geo_filtro(data_event = data_limpia, dpto = "ANTIOQUIA", mpio = "ENVIGADO")
+geo_filtro(data_event = data_limpia, dpto = "ANTIOQUIA", mpio = "MEDELLIN")
+geo_filtro(data_event = data_limpia, dpto = "05")
+geo_filtro(data_event = data_limpia, dpto = "05", mpio = "05001")
+geo_filtro(data_event = data_limpia, dpto = 05, mpio = 05001)
+geo_filtro(data_event = data_limpia, dpto = 05, mpio = 001)
+geo_filtro(data_event = data_limpia, dpto = "bogota dc", mpio = "bogota dc")
 }

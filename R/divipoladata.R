@@ -1,15 +1,22 @@
 #' Códigos e información geografica del DIVIPOLA en sivirep
 #'
-#' Data from API de Datos Abiertos de Colombia
+#' Datos obtenidos de la API de Datos Abiertos de Colombia.
 #'
 #' @docType data
 #'
-#' @usage divipoladata
+#' @usage data(divipoladata)
 #'
-#' @format An object of class \code{"cross"}; see \code{\link[qtl]{read.cross}}.
-#'
+#' @format ## `divipoladata`
+#' A `<data.frame>` con 1121 filas and 5 columnas:
+#' \describe{
+#'   \item{codigo_departamento}{Codigo de los departamentos}
+#'   \item{codigo_municipio}{Codigo de los municipios}
+#'   \item{nombre_departamento}{Nombre de los departamentos}
+#'   \item{nombre_municipio}{Nombre de los municipios}
+#'   \item{tipo_municipio_isla_area_no_municipalizada}{Tipo}
+#' }
 #' @keywords datasets
 #'
 #' @examples
-#' divipoladata
+#' data(divipoladata)
 "divipoladata"

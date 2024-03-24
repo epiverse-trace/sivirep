@@ -12,6 +12,8 @@
 #' @export
 import_geo_cods <- function(descargar = FALSE) {
   data_geo <- NULL
+  stopifnot("El parametro descargar debe ser un booleano"
+            = is.logical(descargar))
   if (descargar) {
     path_data <- config::get(file =
                               system.file("extdata",
@@ -21,16 +23,12 @@ import_geo_cods <- function(descargar = FALSE) {
     data_geo <- utils::read.csv(path_data)
     names(data_geo) <- epitrix::clean_labels(names(data_geo))
   } else {
-    stopifnot("El parametro descargar debe ser un booleano"
-              = is.logical(descargar))
-    path_data <- config::get(file =
-                              system.file("extdata",
-                                          "config.yml",
-                                          package = "sivirep"),
-                            "divipola_data_path")
-    archivo_geo <- system.file(path_data,
-                               package = "sivirep")
-    data_geo <- readxl::read_excel(archivo_geo)
+    divipoladata <- NULL
+    extdata_path <- system.file("extdata", package = "sivirep")
+    config_file <- system.file("extdata", "config.yml", package = "sivirep")
+    path_data <- config::get(file = config_file, "divipola_data_path")
+    load(file.path(extdata_path, path_data))
+    data_geo <- divipoladata
   }
   return(data_geo)
 }
