@@ -258,25 +258,74 @@ obtener_info_depts <- function(dpto = NULL, mpio = NULL) {
   stopifnot("El parametro dpto es obligatorio" =
               !missing(dpto),
             "El parametro dpto debe ser una cadena de caracteres" =
-              is.character(dpto))
+              is.character(dpto) || is.numeric(dpto))
   data_geo <- import_geo_cods()
-  dpto <-  tolower(dpto)
-  list_dptos <- unique(data_geo$nombre_departamento)
+  data_dpto <- NULL
+  dpto_busqueda <- dpto
+  col_dpto <- "nombre_departamento"
+  if (is.numeric(dpto_busqueda) ||
+      !is.na(suppressWarnings(as.numeric(dpto_busqueda)))) {
+    col_dpto <- "codigo_departamento"
+    dpto_busqueda <- formatC(dpto_busqueda,
+                             width = 2,
+                             format = "d",
+                             flag = "0")
+  }
+  list_dptos <- unique(data_geo[[col_dpto]])
+  dpto_busqueda <-  tolower(dpto_busqueda)
+  dpto_busqueda <- epitrix::clean_labels(dpto_busqueda)
   list_specific <-
-    list_dptos[stringr::str_detect(list_dptos, dpto)]
-  data_dpto <- dplyr::filter(data_geo, .data$nombre_departamento %in%
-                               list_specific)
-  if (!is.null(mpio)) {
-    mpio <-  tolower(mpio)
-    stopifnot("El parametro mpio debe ser una cadena de caracteres"
-              = is.character(mpio))
-    mpio <- epitrix::clean_labels(mpio)
-    list_municipalities <- unique(data_geo$nombre_municipio)
-    list_specific <-
-      list_municipalities[stringr::str_detect(list_municipalities,
-                                              mpio)]
-    data_dpto <- dplyr::filter(data_geo, .data$nombre_municipio %in%
+      list_dptos[stringr::str_detect(list_dptos, dpto_busqueda)]
+  if (length(list_specific) > 1) {
+    warning("Dos o mas departamentos coinciden con el nombre o ",
+            "codigo ingresado: ",
+            dpto, " se tomara el valor de la primera coincidencia ",
+            "encontrada")
+    data_dpto <- dplyr::filter(data_geo,
+                               .data[[col_dpto]] == dpto_busqueda)
+  } else {
+    data_dpto <- dplyr::filter(data_geo, .data[[col_dpto]] %in%
                                  list_specific)
+  }
+  if (!is.null(mpio)) {
+    stopifnot("El parametro mpio debe ser una cadena de caracteres o un
+              numero"
+              = is.character(mpio) || is.numeric(mpio))
+    mpio_busqueda <- mpio
+    col_mpio <- "nombre_municipio"
+    if (is.numeric(mpio_busqueda) ||
+        !is.na(suppressWarnings(as.numeric(mpio_busqueda)))) {
+      col_mpio <- "codigo_municipio"
+      mpio_busqueda <- formatC(mpio_busqueda,
+                               width = 3,
+                               format = "d",
+                               flag = "0")
+      stopifnot("El codigo del municipio debe tener maximo 5 digitos" =
+                  nchar(mpio_busqueda) <= 5)
+      if (nchar(mpio_busqueda) == 4) {
+        mpio_busqueda <- paste0("0", mpio_busqueda)
+      }
+    }
+    if (nchar(mpio_busqueda) == 3) {
+      mpio_busqueda <- paste0(dpto_busqueda, mpio_busqueda)
+    }
+    mpio_busqueda <- tolower(mpio_busqueda)
+    mpio_busqueda <- epitrix::clean_labels(mpio_busqueda)
+    data_dpto <-
+      data_dpto[which(stringr::str_detect(data_dpto[[col_mpio]],
+                                        mpio_busqueda)), ]
+    data_mpio <- dplyr::filter(data_dpto,
+                               data_dpto[[col_mpio]] == mpio_busqueda)
+    if (nrow(data_mpio) == 1) {
+        data_dpto <- data_mpio
+    }
+    if (nrow(data_dpto) > 1) {
+      warning("Dos o mas municipios coinciden con el nombre o ",
+              "codigo ingresado: ",
+              mpio, " se tomara el valor de la primera coincidencia ",
+              "encontrada")
+      data_dpto <- data_dpto[1, ]
+    }
   }
   return(data_dpto)
 }
