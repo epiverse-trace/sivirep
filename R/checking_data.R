@@ -652,12 +652,12 @@ agrupar_mpio <- function(data_event,
   data_event_muns <- data_event
   dept_data <- NULL
   if (!is.null(dpto)) {
-    aux_dpto <- unique(data_event_muns[[nomb_col[2]]])
+    aux_dpto <- unique(data_event_muns[[nomb_col[1]]])
     if (length(aux_dpto) > 1) {
       data_event_muns <- geo_filtro(data_event, dpto)
     }
   } else {
-    dpto <- unique(data_event_muns[[nomb_col[2]]])
+    dpto <- unique(data_event_muns[[nomb_col[1]]])
     if (length(dpto) != 1) {
       stopifnot("Debe ingresar el nombre o codigo del departamento" =
                 length(dpto) == 1)
