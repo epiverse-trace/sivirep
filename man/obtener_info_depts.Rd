@@ -23,4 +23,10 @@ o evento
 }
 \examples{
 obtener_info_depts(dpto = "ANTIOQUIA")
+obtener_info_depts(dpto = "ANTIOQUIA", mpio = "MEDELLIN")
+obtener_info_depts(dpto = "05")
+obtener_info_depts(dpto = "05", mpio = "05001")
+obtener_info_depts(dpto = 05, mpio = 05001)
+obtener_info_depts(dpto = 05, mpio = 001)
+obtener_info_depts(dpto = "bogota dc", mpio = "bogota dc")
 }

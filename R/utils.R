@@ -253,6 +253,12 @@ obtener_tip_ocurren_geo <- function(cod_event = NULL, nombre_event = NULL) {
 #' la enfermedad o evento
 #' @examples
 #' obtener_info_depts(dpto = "ANTIOQUIA")
+#' obtener_info_depts(dpto = "ANTIOQUIA", mpio = "MEDELLIN")
+#' obtener_info_depts(dpto = "05")
+#' obtener_info_depts(dpto = "05", mpio = "05001")
+#' obtener_info_depts(dpto = 05, mpio = 05001)
+#' obtener_info_depts(dpto = 05, mpio = 001)
+#' obtener_info_depts(dpto = "bogota dc", mpio = "bogota dc")
 #' @export
 obtener_info_depts <- function(dpto = NULL, mpio = NULL) {
   stopifnot("El parametro dpto es obligatorio" =
