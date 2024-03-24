@@ -23,6 +23,7 @@ import_geo_cods <- function(descargar = FALSE) {
     data_geo <- utils::read.csv(path_data)
     names(data_geo) <- epitrix::clean_labels(names(data_geo))
   } else {
+    divipoladata <- NULL
     extdata_path <- system.file("extdata", package = "sivirep")
     config_file <- system.file("extdata", "config.yml", package = "sivirep")
     path_data <- config::get(file = config_file, "divipola_data_path")
