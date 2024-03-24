@@ -15,8 +15,8 @@ agrupar_mpio(
 \item{data_event}{Un `data.frame` que contiene los datos de la
 enfermedad o evento}
 
-\item{dpto}{Un `character` (cadena de caracteres) que contiene
-el nombre del departamento; su valor por defecto es `NULL`}
+\item{dpto}{Un `character` (cadena de caracteres) o `numeric` (numerico)
+que contiene el nombre del departamento; su valor por defecto es `NULL`}
 
 \item{nomb_col}{Un `character` (cadena de caracteres) con el nombre de
 la columna en los datos de la enfermedad o evento que contiene los códigos

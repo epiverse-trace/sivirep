@@ -611,8 +611,8 @@ agrupar_dpto <- function(data_event,
 #' de municipios y número de casos
 #' @param data_event Un `data.frame` que contiene los datos de la
 #' enfermedad o evento
-#' @param dpto Un `character` (cadena de caracteres) que contiene
-#' el nombre del departamento; su valor por defecto es `NULL`
+#' @param dpto Un `character` (cadena de caracteres) o `numeric` (numerico)
+#' que contiene el nombre del departamento; su valor por defecto es `NULL`
 #' @param nomb_col Un `character` (cadena de caracteres) con el nombre de
 #' la columna en los datos de la enfermedad o evento que contiene los códigos
 #' de municipios; su valor por defecto es `"cod_mun_o"`
