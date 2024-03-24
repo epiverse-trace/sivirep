@@ -21,7 +21,7 @@ la(s) columna(s) de los datos de la enfermedad o evento que contienen
 las edades y el sexo; su valor por defecto es `c("edad", "sexo")`}
 
 \item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica si
-es necesario agregar un porcentaje de casos como una columna; su valor
+se debe agregar el porcentaje de casos como columna; su valor
 por defecto es `TRUE`}
 
 \item{interval_edad}{Un `numeric` (numerico) que contiene el intervalo del
