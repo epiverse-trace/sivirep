@@ -7,8 +7,8 @@
 agrupar_edad(
   data_event,
   nomb_col = "edad",
-  porcentaje = FALSE,
-  interval_edad = 10
+  interval_edad = 10,
+  porcentaje = FALSE
 )
 }
 \arguments{
@@ -19,12 +19,12 @@ o evento}
 de la columna de los datos de la enfermedad o evento que contiene las edades;
 su valor por defecto es `"edad"`}
 
-\item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica si
-es necesario agregar un porcentaje de casos como una columna; su valor por
-defecto es `FALSE`}
-
 \item{interval_edad}{Un `numeric` (numerico) que contiene el intervalo del
 rango de edades; su valor por defecto es `10`}
+
+\item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica si
+se debe agregar el porcentaje de casos como columna; su valor
+por defecto es `FALSE`}
 }
 \value{
 Un `data.frame` con los datos de la enfermedad o evento agrupados
