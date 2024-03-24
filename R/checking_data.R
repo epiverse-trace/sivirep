@@ -3,10 +3,11 @@
 #' Función que filtra los datos de una enfermedad o evento por departamentos
 #' y municipios
 #' @param data_event Un `data.frame` con los datos de una enfermedad o evento
-#' @param dpto Un `character` (cadena de caracteres) que contiene
-#' el nombre o código del departamento; valor por defecto `NULL`
-#' @param mpio Un `character` (cadena de caracteres) que contiene el
-#' nombre o código del municipio; su valor por defecto es `NULL`
+#' @param dpto Un `character` (cadena de caracteres) o `numeric` (numerico)
+#' que contiene el nombre o código del departamento; valor por defecto `NULL`
+#' @param mpio Un `character` (cadena de caracteres) o `numeric` (numerico)
+#' que contiene el nombre o código del municipio;
+#' su valor por defecto es `NULL`
 #' @return Un `data.frame` con los datos filtrados con la enfermedad,
 #' departamentos y municipios seleccionados
 #' @examples
@@ -38,8 +39,9 @@ geo_filtro <- function(data_event, dpto = NULL, mpio = NULL) {
                       dept_data$codigo_departamento)
   }
   if (!is.null(mpio)) {
-    stopifnot("El parametro mpio debe ser una cadena de caracteres"
-              = is.character(mpio))
+    stopifnot("El parametro mpio debe ser una cadena de caracteres o un
+              numero"
+              = is.character(mpio) | is.numeric(mpio))
     data_dept_filt[[cols_ocurren[3]]] <-
       as.character(data_dept_filt[[cols_ocurren[3]]])
     data_dept_filt <-
