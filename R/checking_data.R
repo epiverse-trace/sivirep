@@ -460,8 +460,8 @@ agrupar_sex_semanaepi <- function(data_event,
 #' @export
 agrupar_edad <- function(data_event,
                          nomb_col = "edad",
-                         porcentaje = FALSE,
-                         interval_edad = 10) {
+                         interval_edad = 10,
+                         porcentaje = FALSE) {
   stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
             "El parametro data_event debe ser un data.frame" =
               is.data.frame(data_event),
@@ -472,15 +472,15 @@ agrupar_edad <- function(data_event,
             "El parametro interval_edad debe ser un numero"
             = is.numeric(interval_edad))
   data_event_edad <- agrupar_cols_casos(data_event,
-                                        nomb_col,
-                                        porcentaje)
+                                        nomb_col)
   data_event_edad <-
     agrupar_rango_edad_casos(data_event_edad,
                              nomb_col,
                              min_val = 0,
                              max_val =
                              max(data_event_edad[[nomb_col]]),
-                             paso = interval_edad)
+                             paso = interval_edad,
+                             porcentaje = porcentaje)
   return(data_event_edad)
 }
 
