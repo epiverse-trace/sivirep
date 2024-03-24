@@ -67,13 +67,13 @@ o evento</p>
     <div class="section level2">
     <h2 id="argumentos">Argumentos<a class="anchor" aria-label="anchor" href="#argumentos"></a></h2>
     <dl><dt>dpto</dt>
-<dd><p>Un `character` (cadena de caracteres) que contiene el nombre
-del departamento; su valor por defecto es `NULL`</p></dd>
+<dd><p>Un `character` (cadena de caracteres) o `numeric` (numerico)
+que contiene el nombre del departamento; su valor por defecto es `NULL`</p></dd>
 
 
 <dt>mpio</dt>
-<dd><p>Un `character` (cadena de caracteres) que contiene los datos del
-municipio; su valor por defecto es `NULL`</p></dd>
+<dd><p>Un `character` (cadena de caracteres) o `numeric` (numerico)
+que contiene los datos del municipio; su valor por defecto es `NULL`</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -101,6 +101,52 @@ la enfermedad o evento</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 05                  05038            antioquia           angostura       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 05                  05040            antioquia           anori           </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 115 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: tipo_municipio_isla_area_no_municipalizada &lt;chr&gt;</span></span>
+<span class="r-in"><span><span class="fu">obtener_info_depts</span><span class="op">(</span>dpto <span class="op">=</span> <span class="st">"ANTIOQUIA"</span>, mpio <span class="op">=</span> <span class="st">"MEDELLIN"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 5</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   codigo_departamento codigo_municipio nombre_departamento nombre_municipio</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 05                  05001            antioquia           medellin        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: tipo_municipio_isla_area_no_municipalizada &lt;chr&gt;</span></span>
+<span class="r-in"><span><span class="fu">obtener_info_depts</span><span class="op">(</span>dpto <span class="op">=</span> <span class="st">"05"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 125 × 5</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    codigo_departamento codigo_municipio nombre_departamento nombre_municipio</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 05                  05001            antioquia           medellin        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 05                  05002            antioquia           abejorral       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 05                  05004            antioquia           abriaqui        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 05                  05021            antioquia           alejandria      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 05                  05030            antioquia           amaga           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 05                  05031            antioquia           amalfi          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 05                  05034            antioquia           andes           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 05                  05036            antioquia           angelopolis     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 05                  05038            antioquia           angostura       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 05                  05040            antioquia           anori           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 115 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: tipo_municipio_isla_area_no_municipalizada &lt;chr&gt;</span></span>
+<span class="r-in"><span><span class="fu">obtener_info_depts</span><span class="op">(</span>dpto <span class="op">=</span> <span class="st">"05"</span>, mpio <span class="op">=</span> <span class="st">"05001"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 5</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   codigo_departamento codigo_municipio nombre_departamento nombre_municipio</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 05                  05001            antioquia           medellin        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: tipo_municipio_isla_area_no_municipalizada &lt;chr&gt;</span></span>
+<span class="r-in"><span><span class="fu">obtener_info_depts</span><span class="op">(</span>dpto <span class="op">=</span> <span class="fl">05</span>, mpio <span class="op">=</span> <span class="fl">05001</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 5</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   codigo_departamento codigo_municipio nombre_departamento nombre_municipio</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 05                  05001            antioquia           medellin        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: tipo_municipio_isla_area_no_municipalizada &lt;chr&gt;</span></span>
+<span class="r-in"><span><span class="fu">obtener_info_depts</span><span class="op">(</span>dpto <span class="op">=</span> <span class="fl">05</span>, mpio <span class="op">=</span> <span class="fl">001</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 5</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   codigo_departamento codigo_municipio nombre_departamento nombre_municipio</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 05                  05001            antioquia           medellin        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: tipo_municipio_isla_area_no_municipalizada &lt;chr&gt;</span></span>
+<span class="r-in"><span><span class="fu">obtener_info_depts</span><span class="op">(</span>dpto <span class="op">=</span> <span class="st">"bogota dc"</span>, mpio <span class="op">=</span> <span class="st">"bogota dc"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 5</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   codigo_departamento codigo_municipio nombre_departamento nombre_municipio</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 11                  11001            bogota_dc           bogota_dc       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: tipo_municipio_isla_area_no_municipalizada &lt;chr&gt;</span></span>
 </code></pre></div>
     </div>
