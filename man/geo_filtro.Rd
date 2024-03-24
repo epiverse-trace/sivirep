@@ -28,5 +28,10 @@ y municipios
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 geo_filtro(data_event = data_limpia, dpto = "ANTIOQUIA")
-geo_filtro(data_event = data_limpia, dpto = "ANTIOQUIA", mpio = "ENVIGADO")
+geo_filtro(data_event = data_limpia, dpto = "ANTIOQUIA", mpio = "MEDELLIN")
+geo_filtro(data_event = data_limpia, dpto = "05")
+geo_filtro(data_event = data_limpia, dpto = "05", mpio = "05001")
+geo_filtro(data_event = data_limpia, dpto = 05, mpio = 05001)
+geo_filtro(data_event = data_limpia, dpto = 05, mpio = 001)
+geo_filtro(data_event = data_limpia, dpto = "bogota dc", mpio = "bogota dc")
 }
