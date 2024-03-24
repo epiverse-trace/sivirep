@@ -38,7 +38,15 @@ de municipios y número de casos
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 agrupar_mpio(data_event = data_limpia,
-             dpto = "Antioquia",
+             dpto = "ANTIOQUIA",
+             nomb_col = "cod_mun_o",
+             porcentaje = FALSE)
+agrupar_mpio(data_event = data_limpia,
+             dpto = "05",
+             nomb_col = "cod_mun_o",
+             porcentaje = FALSE)
+agrupar_mpio(data_event = data_limpia,
+             dpto = 05,
              nomb_col = "cod_mun_o",
              porcentaje = FALSE)
 }
