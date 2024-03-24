@@ -12,8 +12,7 @@ A `<data.frame>` con 1121 filas and 5 columnas:
   \item{codigo_municipio}{Codigo de los municipios}
   \item{nombre_departamento}{Nombre de los departamentos}
   \item{nombre_municipio}{Nombre de los municipios}
-  \item{tipo_municipio_isla_area_no_municipalizada}
-  {Tipo de municipio, isla o area no municipalizada}
+  \item{tipo_municipio_isla_area_no_municipalizada}{Tipo}
 }
 }
 \usage{
