@@ -225,6 +225,9 @@ agrupar_cols_casos <- function(data_event,
 #' de las edades
 #' @param paso Un `numeric` (numerico) que contiene el valor del paso
 #' para generar el rango de edades
+#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si
+#' se debe agregar el porcentaje de casos como columna; su valor
+#' por defecto es `TRUE`
 #' @return Un `data.frame` con los datos de la enfermedad o evento
 #' agrupados por el rango de edad y número de casos
 #' @examples
@@ -237,14 +240,16 @@ agrupar_cols_casos <- function(data_event,
 #'                          nomb_col = "edad",
 #'                          min_val = 0,
 #'                          max_val = max(data_edad$edad),
-#'                          paso = 10)
+#'                          paso = 10,
+#'                          porcentaje = TRUE)
 #' @export
 agrupar_rango_edad_casos <- function(data_event,
                                      nomb_col,
                                      col_adicional = NULL,
                                      min_val,
                                      max_val,
-                                     paso) {
+                                     paso,
+                                     porcentaje = TRUE) {
   stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
             "El parametro data_event debe ser un data.frame" =
               is.data.frame(data_event),
@@ -256,14 +261,20 @@ agrupar_rango_edad_casos <- function(data_event,
   }
   stopifnot("El parametro nomb_col debe ser una cadena de caracteres"
             = is.character(nomb_col))
+  total_casos <- sum(data_event$casos)
   data_vals_rango <- data_event %>%
     dplyr::mutate(ranges = cut(
       data_event[[nomb_col]],
       seq(min_val, max_val, paso)
     )) %>%
     dplyr::group_by_at(c("ranges", col_adicional)) %>%
-    dplyr::summarize(casos = sum(.data$casos), .groups = "drop") %>%
+    dplyr::summarize(casos = sum(.data$casos),
+                     .groups = "drop") %>%
     as.data.frame()
+  if (porcentaje) {
+    data_vals_rango <- data_vals_rango %>%
+      mutate(porcentaje =  round(.data$casos / total_casos * 100, 3))
+  }
   names(data_vals_rango)[names(data_vals_rango) == "ranges"] <- nomb_col
   return(data_vals_rango)
 }

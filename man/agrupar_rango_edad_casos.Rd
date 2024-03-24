@@ -10,7 +10,8 @@ agrupar_rango_edad_casos(
   col_adicional = NULL,
   min_val,
   max_val,
-  paso
+  paso,
+  porcentaje = TRUE
 )
 }
 \arguments{
@@ -34,6 +35,10 @@ de las edades}
 
 \item{paso}{Un `numeric` (numerico) que contiene el valor del paso
 para generar el rango de edades}
+
+\item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica si
+se debe agregar el porcentaje de casos como columna; su valor
+por defecto es `TRUE`}
 }
 \value{
 Un `data.frame` con los datos de la enfermedad o evento
@@ -53,5 +58,6 @@ agrupar_rango_edad_casos(data_event = data_edad,
                          nomb_col = "edad",
                          min_val = 0,
                          max_val = max(data_edad$edad),
-                         paso = 10)
+                         paso = 10,
+                         porcentaje = TRUE)
 }
