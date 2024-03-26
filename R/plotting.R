@@ -782,9 +782,9 @@ plot_mpios <- function(data_agrupada,
 #' Función que genera el gráfico de casos por área geográfica
 #' @param data_agrupada Un `data.frame` que contiene los datos de la
 #' enfermedad o evento agrupados
-#' @param nomb_col Un `character` (cadena de carácteres) con el nombre de
-#' la columna de los datos agrupados de la enfermedad o evento por
-#' departamentos o municipios; su valor por defecto es `"area"`
+#' @param col_area Un `character` (cadena de carácteres) con el nombre de
+#' la columna con el área geografica en los datos agrupados de la enfermedad
+#' o evento; su valor por defecto es `"area"`
 #' @param fuente_data Un `character` (cadena de caracteres) que contiene la
 #' leyenda o fuente de información de los datos; su valor por defecto es `NULL`
 #' @return Un `plot` o gráfico de distribución de casos por área geográfica
@@ -794,14 +794,13 @@ plot_mpios <- function(data_agrupada,
 #' data_agrupada <- agrupar_area_geo(data_event = data_limpia,
 #'                                   dpto = "Antioquia")
 #' plot_area_geo(data_agrupada,
-#'               nomb_col = "area")
+#'               col_area = "area")
 #' @export
 plot_area_geo <- function(data_agrupada,
                           col_area = "area",
                           fuente_data = NULL) {
   stopifnot("El parametro data_agrupada debe ser un data.frame"
             = is.data.frame(data_agrupada),
-            "El parametro nomb_col debe ser una cadena de caracteres"
             "El parametro col_area debe ser una cadena de caracteres"
             = is.character(col_area))
   if (is.null(fuente_data)) {
