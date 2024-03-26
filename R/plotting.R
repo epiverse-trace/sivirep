@@ -797,12 +797,13 @@ plot_mpios <- function(data_agrupada,
 #'               nomb_col = "area")
 #' @export
 plot_area_geo <- function(data_agrupada,
-                          nomb_col = "area",
+                          col_area = "area",
                           fuente_data = NULL) {
   stopifnot("El parametro data_agrupada debe ser un data.frame"
             = is.data.frame(data_agrupada),
             "El parametro nomb_col debe ser una cadena de caracteres"
-            = is.character(nomb_col))
+            "El parametro col_area debe ser una cadena de caracteres"
+            = is.character(col_area))
   if (is.null(fuente_data)) {
     fuente_data <-
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
@@ -825,22 +826,23 @@ plot_area_geo <- function(data_agrupada,
                                                  "config.yml",
                                                  package = "sivirep"),
                                    "label_geo_area")
+  nomb_cols <- NULL
   if (length(cols_geo_ocurrencia) > 1) {
       if (length(names(data_agrupada)) > 5) {
-        nomb_col <- append(nomb_col, cols_geo_ocurrencia[4])
+        nomb_cols <- append(col_area, cols_geo_ocurrencia[4])
       } else {
-        nomb_col <- append(nomb_col, cols_geo_ocurrencia[2])
+        nomb_cols <- append(col_area, cols_geo_ocurrencia[2])
       }
   }
   pos_leyenda <- ggplot2::theme(legend.position = "right")
   data_agrupada_area <- data_agrupada %>%
-    group_by_at(nomb_col) %>%
+    group_by_at(nomb_cols) %>%
     dplyr::summarise(casos = sum(.data[["casos"]]), .groups = "drop")
   plot_casos_area <-
     ggplot2::ggplot(data_agrupada_area,
-                    ggplot2::aes(x = .data[[nomb_col[2]]],
+                    ggplot2::aes(x = .data[[nomb_cols[2]]],
                                  y = .data[["casos"]],
-                                 fill = .data[[nomb_col[1]]])) +
+                                 fill = .data[[nomb_cols[1]]])) +
     ggplot2::geom_bar(position = "dodge", stat = "identity") +
     ggplot2::labs(x = "\nDepartamento\n",
                   y = paste0(etiqueta_casos, "\n"),
