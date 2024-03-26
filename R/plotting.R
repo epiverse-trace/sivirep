@@ -862,11 +862,22 @@ plot_tabla_tipos_event <- function(data_agrupada,
                                    nomb_col = "nombre_evento") {
   data_agrupada[["nombre_evento"]] <-
     stringr::str_to_title(data_agrupada[["nombre_evento"]])
+                                   col_event = "nombre_evento") {
+  etiqueta_cod <- config::get(file =
+                              system.file("extdata",
+                                          "config.yml",
+                                          package = "sivirep"),
+                              "label_code")
+  caption_tabla <- config::get(file =
+                                 system.file("extdata",
+                                             "config.yml",
+                                             package = "sivirep"),
+                               "caption_table_events")
   tabla_tipos <- knitr::kable(data_agrupada,
-                              col.names = c("Codigo ",
-                                            "Tipo ", "Casos"),
+                              col.names = c(etiqueta_cod,
+                                            "Evento", "Casos"),
                               align = "c",
-                              caption = "Distribucion de casos por evento") %>%
+                              caption = caption_tabla) %>%
     kableExtra::row_spec(0, color = "white", background = "#2274BB") %>%
     kableExtra::kable_styling(full_width = FALSE,
                               latex_options = "HOLD_position")
