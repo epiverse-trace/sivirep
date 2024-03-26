@@ -570,19 +570,19 @@ plot_sex_semanaepi <- function(data_agrupada,
 #'           nomb_col = "edad")
 #' @export
 plot_edad <- function(data_agrupada,
-                      nomb_col = "edad",
+                      col_edad = "edad",
                       fuente_data = NULL) {
   stopifnot("El parametro data_agrupada debe ser un data.frame"
             = is.data.frame(data_agrupada),
-            "El parametro nomb_col debe ser una cadena de caracteres"
-            = is.character(nomb_col))
+            "El parametro col_edad debe ser una cadena de caracteres"
+            = is.character(col_edad))
   if (is.null(fuente_data)) {
     fuente_data <-
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
   }
   plot_casos_edad <-
     ggplot2::ggplot(data_agrupada,
-                    ggplot2::aes(x = .data[[nomb_col]],
+                    ggplot2::aes(x = .data[[col_edad]],
                                  y = .data[["casos"]])) +
     ggplot2::geom_bar(width = 0.7,
                       stat = "identity",
