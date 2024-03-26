@@ -19,7 +19,7 @@ enfermedad o evento agrupados}
 columna que contiene el sexo en los datos agrupados de la enfermedad o
 evento; su valor por defecto es `"sexo"`}
 
-\item{porcentaje}{Un boolean (TRUE/FALSE) que indica si los datos
+\item{porcentaje}{Un `boolean` (TRUE/FALSE) que indica si los datos
 tienen porcentajes; su valor por defecto es `TRUE`}
 
 \item{fuente_data}{Un `character` (cadena de caracteres) que contiene la
