@@ -815,6 +815,11 @@ plot_area_geo <- function(data_agrupada,
                                                "config.yml",
                                                package = "sivirep"),
                            "labels_geo_areas")
+  etiqueta_geo_area <- config::get(file =
+                                     system.file("extdata",
+                                                 "config.yml",
+                                                 package = "sivirep"),
+                                   "label_geo_area")
   if (length(cols_geo_ocurrencia) > 1) {
       if (length(names(data_agrupada)) > 5) {
         nomb_col <- append(nomb_col, cols_geo_ocurrencia[4])
@@ -835,7 +840,8 @@ plot_area_geo <- function(data_agrupada,
     ggplot2::labs(x = "\nDepartamento\n", y = "Numero de casos\n",
                   caption = fuente_data) +
     ggplot2::theme_classic() +
-    obtener_estetica_escala(escala = 3, nombre = "Area\n",
+    obtener_estetica_escala(escala = 3,
+                            nombre = paste0(etiqueta_geo_area, "\n"),
                             etiquetas = etiquetas_areas) +
     tema_sivirep() +
     pos_leyenda +
