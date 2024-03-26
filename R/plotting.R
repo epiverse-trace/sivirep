@@ -983,13 +983,14 @@ plot_tipo_caso <- function(data_agrupada,
 #' Función que genera el gráfico por la clasificación inicial de los
 #' casos y los años seleccionados
 #' @param data_agrupada Un `data.frame` que contiene los datos de la
-#' enfermedad o evento agrupados por la clasificación inicial y los años
+#' enfermedad o evento, agrupados por la clasificación inicial y los años
+#' seleccionados
 #' @param col_tipo Un `character` (cadena de carácteres) con el nombre de
-#' la columna de los datos agrupados de la enfermedad o evento por la
-#' clasificación inicial; su valor por defecto es `"tip_cas"`
+#' la columna que contiene la clasificación inicial del caso en los datos
+#' agrupados de la enfermedad o evento; su valor por defecto es `"tip_cas"`
 #' @param col_year Un `character` (cadena de carácteres) con el nombre de
-#' la columna de los datos agrupados de la enfermedad o evento por el año;
-#' su valor por defecto es `"ano"`
+#' la columna que contiene el año en los datos agrupados de la enfermedad
+#' o evento; su valor por defecto es `"ano"`
 #' @param fuente_data Un `character` (cadena de caracteres) que contiene la
 #' leyenda o fuente de información de los datos; su valor por defecto es `NULL`
 #' @return Un `plot` o gráfico de distribución de casos por la clasificación
