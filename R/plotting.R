@@ -435,9 +435,9 @@ plot_fecha_notifica <- function(data_agrupada,
 #' Función que genera el gráfico de distribución de casos por sexo
 #' @param data_agrupada Un `data.frame` que contiene los datos de la
 #' enfermedad o evento agrupados
-#' @param nomb_col Un `character` (cadena de caracteres) con el
-#' nombre de la columna de los datos agrupados de la enfermedad
-#' o evento que contiene el sexo; su valor por defecto es `"sexo"`
+#' @param col_sex Un `character` (cadena de caracteres) con el nombre de la
+#' columna que contiene el sexo en los datos agrupados de la enfermedad o
+#' evento; su valor por defecto es `"sexo"`
 #' @param porcentaje Un boolean (TRUE/FALSE) que indica si los datos
 #' tienen porcentajes; su valor por defecto es `TRUE`
 #' @param fuente_data Un `character` (cadena de caracteres) que contiene la
@@ -447,10 +447,9 @@ plot_fecha_notifica <- function(data_agrupada,
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(dengue2020)
 #' data_agrupada <- agrupar_sex(data_event = data_limpia,
-#'                              nomb_col = "sexo",
 #'                              porcentaje = TRUE)
 #' plot_sex(data_agrupada = data_agrupada,
-#'          nomb_col = "sexo",
+#'          col_sex = "sexo",
 #'          porcentaje = TRUE)
 #' @export
 plot_sex <- function(data_agrupada,
