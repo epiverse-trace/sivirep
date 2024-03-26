@@ -454,7 +454,7 @@ plot_fecha_notifica <- function(data_agrupada,
 #'          porcentaje = TRUE)
 #' @export
 plot_sex <- function(data_agrupada,
-                     nomb_col = "sexo",
+                     col_sex = "sexo",
                      porcentaje = TRUE,
                      fuente_data = NULL) {
   stopifnot("El parametro data_agrupada es obligatorio" =
@@ -463,8 +463,8 @@ plot_sex <- function(data_agrupada,
               is.data.frame(data_agrupada),
             "El parametro data_agrupada no debe estar vacio" =
               nrow(data_agrupada) > 0,
-            "El parametro nomb_col debe ser una cadena de caracteres" =
-              is.character(nomb_col),
+            "El parametro col_sex debe ser una cadena de caracteres" =
+              is.character(col_sex),
             "El parametro porcentaje debe ser un booleano" =
               is.logical(porcentaje))
   if (is.null(fuente_data)) {
@@ -474,9 +474,9 @@ plot_sex <- function(data_agrupada,
   stopifnot("El parametro fuente_data debe ser un cadena de caracteres"
             = is.character(fuente_data))
   plot_casos_sex <- ggplot2::ggplot(data_agrupada,
-                                    ggplot2::aes(x = .data[[nomb_col]],
+                                    ggplot2::aes(x = .data[[col_sex]],
                                                  y = .data[["casos"]],
-                                                 fill = .data[[nomb_col]])) +
+                                                 fill = .data[[col_sex]])) +
     ggplot2::geom_bar(width = 0.5,
                       stat = "identity") +
     ggplot2::labs(x = "\nSexo\n", y = "Numero de casos\n",
