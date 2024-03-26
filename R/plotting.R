@@ -391,9 +391,12 @@ plot_fecha_notifica <- function(data_agrupada,
                                                   "nombre_evento")) %>%
       dplyr::summarise(casos = sum(.data$casos), .groups = "drop")
   }
-  etiqueta_x <- paste0("\nFecha de notificacion por ",
-                       uni_marca,
-                       "\n")
+  etiqueta_fecha <- config::get(file =
+                                  system.file("extdata",
+                                              "config.yml",
+                                              package = "sivirep"),
+                                "label_date_not")
+  etiqueta_x <- paste0("\n", etiqueta_fecha, " por ", uni_marca, "\n")
   pos_leyenda <- ggplot2::theme(legend.position = "right")
   if (num_eventos > 3) {
     pos_leyenda <- ggplot2::theme(legend.position = "bottom")
