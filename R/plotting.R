@@ -815,6 +815,11 @@ plot_area_geo <- function(data_agrupada,
                                                "config.yml",
                                                package = "sivirep"),
                            "labels_geo_areas")
+  etiqueta_casos <- config::get(file =
+                                  system.file("extdata",
+                                              "config.yml",
+                                              package = "sivirep"),
+                                "label_cases")
   etiqueta_geo_area <- config::get(file =
                                      system.file("extdata",
                                                  "config.yml",
@@ -837,7 +842,8 @@ plot_area_geo <- function(data_agrupada,
                                  y = .data[["casos"]],
                                  fill = .data[[nomb_col[1]]])) +
     ggplot2::geom_bar(position = "dodge", stat = "identity") +
-    ggplot2::labs(x = "\nDepartamento\n", y = "Numero de casos\n",
+    ggplot2::labs(x = "\nDepartamento\n",
+                  y = paste0(etiqueta_casos, "\n"),
                   caption = fuente_data) +
     ggplot2::theme_classic() +
     obtener_estetica_escala(escala = 3,
