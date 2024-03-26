@@ -534,6 +534,11 @@ plot_sex_semanaepi <- function(data_agrupada,
     fuente_data <-
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
   }
+  etiqueta_episemana <- config::get(file =
+                                  system.file("extdata",
+                                              "config.yml",
+                                              package = "sivirep"),
+                                "label_epiweek")
   plot_casos_sex_semanaepi <-
     ggplot2::ggplot(data_agrupada,
                     ggplot2::aes(x = .data[[col_semanaepi]],
