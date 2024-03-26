@@ -733,7 +733,7 @@ plot_dptos <- function(data_agrupada,
 #'            nomb_col = "municipio_ocurrencia")
 #' @export
 plot_mpios <- function(data_agrupada,
-                       nomb_col = NULL,
+                       col_mpios = NULL,
                        fuente_data = NULL) {
   stopifnot("El parametro data_agrupada debe ser un data.frame"
             = is.data.frame(data_agrupada))
@@ -741,16 +741,16 @@ plot_mpios <- function(data_agrupada,
     fuente_data <-
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
   }
-  if (is.null(nomb_col)) {
+  if (is.null(col_mpios)) {
     cols_geo_ocurrencia <-
       obtener_tip_ocurren_geo(nombre_event =
                                 data_agrupada[["nombre_evento"]][1])
     if (length(cols_geo_ocurrencia) > 1) {
-      nomb_col <- cols_geo_ocurrencia[4]
+      col_mpios <- cols_geo_ocurrencia[4]
     }
   } else {
-    stopifnot("El parametro nomb_col debe ser una cadena de caracteres"
-              = is.character(nomb_col))
+    stopifnot("El parametro col_mpios debe ser una cadena de caracteres"
+              = is.character(col_mpios))
   }
   etiqueta_casos <- config::get(file =
                                   system.file("extdata",
@@ -763,11 +763,11 @@ plot_mpios <- function(data_agrupada,
     pos_leyenda <- ggplot2::theme(legend.position = "bottom")
   }
   data_agrupada <- data_agrupada %>%
-    group_by_at(nomb_col) %>%
+    group_by_at(col_mpios) %>%
     dplyr::summarise(casos = sum(.data[["casos"]]), .groups = "drop")
   plot_casos_muns <-
     ggplot2::ggplot(data_agrupada,
-                    ggplot2::aes(x = stats::reorder(.data[[nomb_col]],
+                    ggplot2::aes(x = stats::reorder(.data[[col_mpios]],
                                                     .data[["casos"]]),
                                  y = .data[["casos"]])) +
     ggplot2::geom_bar(width = 0.5,
