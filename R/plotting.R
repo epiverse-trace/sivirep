@@ -1062,17 +1062,17 @@ plot_tipo_caso_years <- function(data_agrupada,
 #'              nomb_cols = "per_etn")
 #' @export
 plot_per_etn <- function(data_agrupada,
-                         nomb_cols = "per_etn",
+                         col_etn = "per_etn",
                          fuente_data = NULL) {
   stopifnot("El parametro data_agrupada debe ser un data.frame"
             = is.data.frame(data_agrupada),
             "El parametro nomb_col debe ser una cadena de caracteres"
-            = is.character(nomb_cols))
+            = is.character(col_etn))
   if (is.null(fuente_data)) {
     fuente_data <-
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
   }
-  nomb_cols <- c(nomb_cols, "nombre_evento")
+  nomb_cols <- c(col_etn, "nombre_evento")
   escala <- length(unique(data_agrupada[["nombre_evento"]]))
   etiquetas <- config::get(file =
                              system.file("extdata",
