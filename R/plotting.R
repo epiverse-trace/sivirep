@@ -554,20 +554,19 @@ plot_sex_semanaepi <- function(data_agrupada,
 #' Función que genera el gráfico de distribución de casos por edad
 #' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
 #' o evento agrupados
-#' @param nomb_col Un `character` (cadena de carácteres) con el nombre de
-#' la columna de los datos agrupados de la enfermedad o evento que contiene
-#' las edades; su valor por defecto es `"edad"`
+#' @param col_edad Un `character` (cadena de carácteres) con el nombre de
+#' la columna que contiene las edades en los datos agrupados de la enfermedad o
+#' evento; su valor por defecto es `"edad"`
 #' @param fuente_data Un `character` (cadena de caracteres) que contiene la
 #' leyenda o fuente de información de los datos; su valor por defecto es `NULL`
 #' @return Un `plot` o gráfico de distribución de casos por edad
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(dengue2020)
-#' data_agrupada <- agrupar_edad(data_event = data_limpia,
-#'                               nomb_col = "edad",
-#'                               porcentaje = FALSE)
+#' data_agrupada <- agrupar_edad(data_event = data_limpia)
 #' plot_edad(data_agrupada = data_agrupada,
-#'           nomb_col = "edad")
+#'           col_edad = "edad"
+#'           fuente = "SIVIGILA")
 #' @export
 plot_edad <- function(data_agrupada,
                       col_edad = "edad",
