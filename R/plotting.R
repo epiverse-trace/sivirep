@@ -717,9 +717,9 @@ plot_dptos <- function(data_agrupada,
 #' Función que genera el gráfico de distribución de casos por municipios
 #' @param data_agrupada Un `data.frame` que contiene los datos de la
 #' enfermedad o evento agrupados
-#' @param nomb_col Un `character` (cadena de carácteres) con el nombre de
-#' la columna de los datos agrupados de la enfermedad o evento que contiene
-#' los municipios; su valor por defecto es `NULL`
+#' @param col_mpios Un `character` (cadena de carácteres) con el nombre de
+#' la columna que contiene los municipios en los datos agrupados de la
+#' enfermedad o evento; su valor por defecto es `NULL`
 #' @param fuente_data Un `character` (cadena de caracteres) que contiene la
 #' leyenda o fuente de información de los datos; su valor por defecto es `NULL`
 #' @return Un `plot` o gráfico de distribución de casos por municipios
@@ -730,7 +730,7 @@ plot_dptos <- function(data_agrupada,
 #' data_agrupada <- agrupar_mpio(data_event = data_limpia,
 #'                               dpto = "Antioquia")
 #' plot_mpios(data_agrupada,
-#'            nomb_col = "municipio_ocurrencia")
+#'            col_mpios = "municipio_ocurrencia")
 #' @export
 plot_mpios <- function(data_agrupada,
                        col_mpios = NULL,
