@@ -503,11 +503,12 @@ plot_sex <- function(data_agrupada,
 #' y semana epidemiológica
 #' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
 #' o evento agrupados
-#' @param col_sexo Un `character` (cadena de caracteres) con el nombre de la
-#' columna que contiene el sexo; su valor por defecto es `"sexo"`
+#' @param col_sex Un `character` (cadena de caracteres) con el nombre de la
+#' columna que contiene el sexo en los datos agrupados de la enfermedad o
+#' evento; su valor por defecto es `"sexo"`
 #' @param col_semanaepi Un `character` (cadena de caracteres) con el nombre de
-#' la columna que contiene las semanas epidemiológicas; su valor por defecto es
-#' `"semana"`
+#' la columna que contiene las semanas epidemiológicas en los datos agrupados
+#' de la enfermedad o evento; su valor por defecto es `"semana"`
 #' @param fuente_data Un `character` (cadena de caracteres) que contiene la
 #' leyenda o fuente de información de los datos; su valor por defecto es `NULL`
 #' @return Un `plot` o gráfico de distribución de casos por sexo y semana
@@ -517,7 +518,7 @@ plot_sex <- function(data_agrupada,
 #' data_limpia <- limpiar_data_sivigila(dengue2020)
 #' data_agrupada <- agrupar_sex_semanaepi(data_event = data_limpia)
 #' plot_sex_semanaepi(data_agrupada = data_agrupada,
-#'                    col_sexo = "sexo",
+#'                    col_sex = "sexo",
 #'                    col_semanaepi = "semana")
 #' @export
 plot_sex_semanaepi <- function(data_agrupada,
