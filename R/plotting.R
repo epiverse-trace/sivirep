@@ -472,13 +472,18 @@ plot_sex <- function(data_agrupada,
   }
   stopifnot("El parametro fuente_data debe ser un cadena de caracteres"
             = is.character(fuente_data))
+  etiqueta_casos <- config::get(file =
+                                  system.file("extdata",
+                                              "config.yml",
+                                              package = "sivirep"),
+                                "label_cases")
   plot_casos_sex <- ggplot2::ggplot(data_agrupada,
                                     ggplot2::aes(x = .data[[col_sex]],
                                                  y = .data[["casos"]],
                                                  fill = .data[[col_sex]])) +
     ggplot2::geom_bar(width = 0.5,
                       stat = "identity") +
-    ggplot2::labs(x = "\nSexo\n", y = "Numero de casos\n",
+    ggplot2::labs(x = "\nSexo\n", y = paste0(etiqueta_casos, "\n"),
                   caption = fuente_data) +
     ggplot2::theme_classic() +
     ggplot2::geom_text(ggplot2::aes(label = paste0(.data[["casos"]],
