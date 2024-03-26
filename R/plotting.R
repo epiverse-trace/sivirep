@@ -721,7 +721,7 @@ plot_dptos <- function(data_agrupada,
 #'
 #' Función que genera el gráfico de distribución de casos por municipios
 #' @param data_agrupada Un `data.frame` que contiene los datos de la
-#' enfermedad o evento agrupados
+#' enfermedad o evento agrupados por municipios
 #' @param col_mpios Un `character` (cadena de carácteres) con el nombre de
 #' la columna que contiene los municipios en los datos agrupados de la
 #' enfermedad o evento; su valor por defecto es `NULL`
