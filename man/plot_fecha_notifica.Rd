@@ -6,7 +6,7 @@
 \usage{
 plot_fecha_notifica(
   data_agrupada,
-  nomb_col = "fec_not",
+  col_fecha = "fec_not",
   uni_marca = "semanaepi",
   fuente_data = NULL,
   tipo = "barras"
@@ -15,10 +15,6 @@ plot_fecha_notifica(
 \arguments{
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la
 enfermedad o evento agrupados}
-
-\item{nomb_col}{Un `character` (cadena de caracteres) que contiene el
-nombre de la columna en los datos de la enfermedad o evento agrupados con
-las fechas de notificación; su valor por defecto es `"fec_not"`}
 
 \item{uni_marca}{Un `character` (cadena de caracteres) que contiene la unidad
 de las marcas del gráfico (`"dia"`, `"semanaepi"`y `"mes"``);
@@ -29,6 +25,10 @@ leyenda o fuente de información de los datos; su valor por defecto es `NULL`}
 
 \item{tipo}{Un `character` (cadena de caracteres) que contiene el tipo de
 grafico (`"barras"` o `"tendencia"`); su valor por defecto es `"barras"`}
+
+\item{nomb_col}{Un `character` (cadena de caracteres) que contiene el
+nombre de la columna con las fechas de notificación en los datos de la
+enfermedad o evento agrupados; su valor por defecto es `"fec_not"`}
 }
 \value{
 Un `plot` o gráfico de distribución de casos por fecha de
@@ -41,9 +41,8 @@ fecha de notificación
 \examples{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(dengue2020)
-data_agrupada <- agrupar_fecha_notifica(data_event = data_limpia,
-                                        nomb_col = "fec_not")
+data_agrupada <- agrupar_fecha_notifica(data_event = data_limpia)
 plot_fecha_notifica(data_agrupada = data_agrupada,
-                    nomb_col = "fec_not",
+                    col_fecha = "fec_not",
                     uni_marca = "semanaepi")
 }
