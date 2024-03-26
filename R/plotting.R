@@ -611,9 +611,7 @@ plot_edad <- function(data_agrupada,
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(dengue2020)
-#' data_agrupada <- agrupar_edad_sex(data_event = data_limpia,
-#'                                   nomb_cols = c("edad", "sexo"),
-#'                                   porcentaje = FALSE)
+#' data_agrupada <- agrupar_edad_sex(data_event = data_limpia)
 #' plot_edad_sex(data_agrupada = data_agrupada,
 #'               col_edad = "edad",
 #'               col_sex = "sexo")
@@ -632,6 +630,11 @@ plot_edad_sex <- function(data_agrupada,
     fuente_data <-
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
   }
+  etiqueta_casos <- config::get(file =
+                                  system.file("extdata",
+                                              "config.yml",
+                                              package = "sivirep"),
+                                "label_cases")
   plot_casos_edad_sexo <-
     ggplot2::ggplot(data_agrupada,
                     ggplot2::aes(x = .data[[col_edad]],
@@ -639,7 +642,7 @@ plot_edad_sex <- function(data_agrupada,
                                  fill = .data[[col_sex]])) +
     ggplot2::geom_bar(width = 0.7,
                       stat = "identity") +
-    ggplot2::labs(x = "\nEdad\n", y = "Numero de casos\n",
+    ggplot2::labs(x = "\nEdad\n", y = paste0(etiqueta_casos, "\n"),
                   caption = fuente_data) +
     ggplot2::theme_classic() +
     obtener_estetica_escala(escala = 2, nombre = "Sexo") +
