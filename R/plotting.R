@@ -922,13 +922,14 @@ plot_years <- function(data_agrupada,
 #' Generar gráfico de distribución de casos por la clasificacion inicial
 #' del caso
 #'
-#' Función que genera el gráfico por la clasificación inicial de los
-#' casos
+#' Función que genera el gráfico de distribución por la clasificación
+#' inicial de los casos
 #' @param data_agrupada Un `data.frame` que contiene los datos de la
-#' enfermedad o evento agrupados por la clasificación inicial
-#' @param nomb_col Un `character` (cadena de carácteres) con el nombre de
-#' la columna de los datos agrupados de la enfermedad o evento por la
-#' clasificación inicial; su valor por defecto es `"tip_cas"`
+#' enfermedad o evento agrupados por la clasificación inicial de los casos
+#' @param col_tipo Un `character` (cadena de carácteres) con el nombre de
+#' la columna que contiene la clasificación inicial de los casos en los
+#' datos agrupados de la enfermedad o evento; su valor por defecto es
+#' `"tip_cas"`
 #' @param fuente_data Un `character` (cadena de caracteres) que contiene la
 #' leyenda o fuente de información de los datos; su valor por defecto es `NULL`
 #' @return Un `plot` o gráfico de distribución de casos por la clasificación
@@ -938,34 +939,34 @@ plot_years <- function(data_agrupada,
 #' data_limpia <- limpiar_data_sivigila(dengue2020)
 #' data_agrupada <- agrupar_tipo_caso(data_event = data_limpia)
 #' plot_tipo_caso(data_agrupada,
-#'                nomb_col = "tip_cas")
+#'                col_tipo = "tip_cas")
 #' @export
 plot_tipo_caso <- function(data_agrupada,
-                           nomb_col = "tip_cas",
+                           col_tipo = "tip_cas",
                            fuente_data = NULL) {
   stopifnot("El parametro data_agrupada debe ser un data.frame"
             = is.data.frame(data_agrupada),
-            "El parametro nomb_col debe ser una cadena de caracteres"
-            = is.character(nomb_col))
+            "El parametro col_tipo debe ser una cadena de caracteres"
+            = is.character(col_tipo))
   if (is.null(fuente_data)) {
     fuente_data <-
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
   }
-  nomb_col <- c(nomb_col, "nombre_evento")
+  nomb_cols <- c(col_tipo, "nombre_evento")
   etiquetas <- config::get(file =
                              system.file("extdata",
                                          "config.yml",
                                          package = "sivirep"),
                            "labels_cas_tip")
-  clasificacion <- unique(data_agrupada[[nomb_col[1]]])
+  clasificacion <- unique(data_agrupada[[nomb_cols[1]]])
   escala <- length(clasificacion)
   etiquetas <- etiquetas[as.character(clasificacion)]
   etiquetas <- unlist(etiquetas)
   plot_casos_years <-
     ggplot2::ggplot(data_agrupada,
-                    ggplot2::aes(x = .data[[nomb_col[1]]],
+                    ggplot2::aes(x = .data[[nomb_cols[1]]],
                                  y = .data[["casos"]],
-                                 fill = .data[[nomb_col[2]]])) +
+                                 fill = .data[[nomb_cols[2]]])) +
     ggplot2::geom_bar(position = "dodge", stat = "identity") +
     ggplot2::labs(x = "\nClasificacion del caso\n", y = "Numero de casos\n",
                   caption = fuente_data) +
@@ -1069,7 +1070,7 @@ plot_per_etn <- function(data_agrupada,
                          fuente_data = NULL) {
   stopifnot("El parametro data_agrupada debe ser un data.frame"
             = is.data.frame(data_agrupada),
-            "El parametro nomb_col debe ser una cadena de caracteres"
+            "El parametro col_etn debe ser una cadena de caracteres"
             = is.character(col_etn))
   if (is.null(fuente_data)) {
     fuente_data <-
