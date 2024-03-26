@@ -4,15 +4,15 @@
 \alias{plot_dptos}
 \title{Generar gráfico de distribución de casos por departamentos}
 \usage{
-plot_dptos(data_agrupada, nomb_col = NULL, fuente_data = NULL)
+plot_dptos(data_agrupada, col_dptos = NULL, fuente_data = NULL)
 }
 \arguments{
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la
-enfermedad o evento agrupados}
+enfermedad o evento agrupados por departamentos}
 
-\item{nomb_col}{Un `character` (cadena de carácteres) con el nombre de
-la columna de los datos agrupados de la enfermedad o evento que contiene
-los departamentos; su valor por defecto es `NULL`}
+\item{col_dptos}{Un `character` (cadena de carácteres) con el nombre de
+la columna que contiene los departamenos en los datos agrupados de la
+enfermedad o evento; su valor por defecto es `NULL`}
 
 \item{fuente_data}{Un `character` (cadena de caracteres) que contiene la
 leyenda o fuente de información de los datos; su valor por defecto es `NULL`}
@@ -27,8 +27,7 @@ Función que genera el gráfico de distribución de casos por departamentos
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(dengue2020)
 data_limpia <- estandarizar_geo_cods(data_limpia)
-data_agrupada <- agrupar_mpio(data_event = data_limpia,
-                              dpto = "Antioquia")
+data_agrupada <- agrupar_dpto(data_event = data_limpia)
 plot_dptos(data_agrupada,
-           nomb_col = "departamento_ocurrencia")
+           col_dptos = "departamento_ocurrencia")
 }
