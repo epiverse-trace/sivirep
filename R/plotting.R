@@ -820,7 +820,7 @@ plot_area_geo <- function(data_agrupada,
                                               "config.yml",
                                               package = "sivirep"),
                                 "label_cases")
-  etiqueta_geo_area <- config::get(file =
+  etiqueta_area_geo <- config::get(file =
                                      system.file("extdata",
                                                  "config.yml",
                                                  package = "sivirep"),
@@ -847,7 +847,7 @@ plot_area_geo <- function(data_agrupada,
                   caption = fuente_data) +
     ggplot2::theme_classic() +
     obtener_estetica_escala(escala = 3,
-                            nombre = paste0(etiqueta_geo_area, "\n"),
+                            nombre = paste0(etiqueta_area_geo, "\n"),
                             etiquetas = etiquetas_areas) +
     tema_sivirep() +
     pos_leyenda +
