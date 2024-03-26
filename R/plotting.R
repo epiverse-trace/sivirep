@@ -397,6 +397,11 @@ plot_fecha_notifica <- function(data_agrupada,
                                               package = "sivirep"),
                                 "label_date_not")
   etiqueta_x <- paste0("\n", etiqueta_fecha, " por ", uni_marca, "\n")
+  etiqueta_casos <- config::get(file =
+                                  system.file("extdata",
+                                              "config.yml",
+                                              package = "sivirep"),
+                                "label_cases")
   pos_leyenda <- ggplot2::theme(legend.position = "right")
   if (num_eventos > 3) {
     pos_leyenda <- ggplot2::theme(legend.position = "bottom")
@@ -414,7 +419,7 @@ plot_fecha_notifica <- function(data_agrupada,
       }
     } +
     ggplot2::labs(x = etiqueta_x,
-                  y = "Numero de casos\n",
+                  y = paste0(etiqueta_casos, "\n"),
                   caption = fuente_data) +
     obtener_estetica_escala(escala = num_eventos, nombre = "Eventos") +
     tema_sivirep() +
