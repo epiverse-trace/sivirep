@@ -438,7 +438,7 @@ plot_fecha_notifica <- function(data_agrupada,
 #' @param col_sex Un `character` (cadena de caracteres) con el nombre de la
 #' columna que contiene el sexo en los datos agrupados de la enfermedad o
 #' evento; su valor por defecto es `"sexo"`
-#' @param porcentaje Un boolean (TRUE/FALSE) que indica si los datos
+#' @param porcentaje Un `boolean` (TRUE/FALSE) que indica si los datos
 #' tienen porcentajes; su valor por defecto es `TRUE`
 #' @param fuente_data Un `character` (cadena de caracteres) que contiene la
 #' leyenda o fuente de información de los datos; su valor por defecto es `NULL`
