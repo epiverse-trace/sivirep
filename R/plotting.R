@@ -552,8 +552,9 @@ plot_sex_semanaepi <- function(data_agrupada,
                                  fill = .data[[col_sex]])) +
     ggplot2::geom_bar(width = 0.5,
                       stat = "identity") +
-    ggplot2::labs(x = "\nSemana epidemiologica\n", y = "Numero de casos\n",
-                  caption = fuente_data) +
+    ggplot2::labs(x = paste0("\n", etiqueta_episemana, "\n"),
+                  y = paste0(etiqueta_casos, "\n"),
+                  caption = fuente_data) + {
     ggplot2::theme_classic() +
     obtener_estetica_escala(escala = 2, nombre = "Sexo") +
     tema_sivirep() +
