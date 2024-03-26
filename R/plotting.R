@@ -843,20 +843,25 @@ plot_area_geo <- function(data_agrupada,
   return(plot_casos_area)
 }
 
-
 #' Generar tabla con la distribución de casos por tipo de
 #' enfermedad o evento
 #'
-#' Función que genera el la tabla con la distribución de casos por
+#' Función que genera la tabla con la distribución de casos por
 #' tipo de enfermedad o evento
 #' @param data_agrupada Un `data.frame` que contiene los datos de la
-#' enfermedad o evento agrupados
-#' @param nomb_col Un `character` (cadena de carácteres) con el nombre de
-#' la columna de los datos agrupados de la enfermedad o evento por
-#' tipo; su valor por defecto es `"nombre_evento"`
+#' enfermedad o evento agrupados por tipo
+#' @param col_event Un `character` (cadena de carácteres) con el nombre de
+#' la columna que contiene el tipo de evento en los datos agrupados de
+#' la enfermedad o evento; su valor por defecto es `"nombre_evento"`
 #' @return Una `kable` (tabla gráfica) con la distribución de casos
 #' por tipo de enfermedad o evento
-#' @export
+#' @examples
+#' data(dengue2020)
+#' data_limpia <- limpiar_data_sivigila(dengue2020)
+#' data_agrupada <- agrupar_casos_eventos(data_event = data_limpia,
+#'                                        nomb_col = "cod_eve")
+#' plot_tabla_tipos_event(data_agrupada,
+#'                        col_event = "nombre_evento")
 #' @export
 plot_tabla_tipos_event <- function(data_agrupada,
                                    col_event = "nombre_evento") {
