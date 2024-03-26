@@ -237,10 +237,8 @@ remove_error_fecha <- function(data_event,
               is.character(col_ini),
             "El parametro col_comp debe ser una cadena de caracteres" =
               is.character(col_comp))
-  ref_col_ini <- paste0("data_event$", col_ini)
-  ref_col_comp <- paste0("data_event$", col_comp)
-  del_rows <- which(ref_col_comp <= ref_col_ini)
-  data_event_del <- data_event[-del_rows]
+  del_rows <- which(data_event[[col_comp]] <= data_event[[col_ini]])
+  data_event_del <- data_event[-del_rows, ]
   return(data_event_del)
 }
 
