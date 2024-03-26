@@ -521,13 +521,13 @@ plot_sex <- function(data_agrupada,
 #'                    col_semanaepi = "semana")
 #' @export
 plot_sex_semanaepi <- function(data_agrupada,
-                               col_sexo = "sexo",
+                               col_sex = "sexo",
                                col_semanaepi = "semana",
                                fuente_data = NULL) {
   stopifnot("El parametro data_agrupada debe ser un data.frame"
             = is.data.frame(data_agrupada),
             "El parametro col_sexo debe ser una cadena de caracteres" =
-              is.character(col_sexo),
+              is.character(col_sex),
             "El parametro col_semanaepi debe ser una cadena de caracteres" =
               is.character(col_semanaepi))
   if (is.null(fuente_data)) {
@@ -548,7 +548,7 @@ plot_sex_semanaepi <- function(data_agrupada,
     ggplot2::ggplot(data_agrupada,
                     ggplot2::aes(x = .data[[col_semanaepi]],
                                  y = .data[["casos"]],
-                                 fill = .data[[col_sexo]])) +
+                                 fill = .data[[col_sex]])) +
     ggplot2::geom_bar(width = 0.5,
                       stat = "identity") +
     ggplot2::labs(x = "\nSemana epidemiologica\n", y = "Numero de casos\n",
