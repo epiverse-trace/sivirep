@@ -4,15 +4,15 @@
 \alias{plot_mpios}
 \title{Generar gráfico de distribución de casos por municipios}
 \usage{
-plot_mpios(data_agrupada, nomb_col = NULL, fuente_data = NULL)
+plot_mpios(data_agrupada, col_mpios = NULL, fuente_data = NULL)
 }
 \arguments{
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la
 enfermedad o evento agrupados}
 
-\item{nomb_col}{Un `character` (cadena de carácteres) con el nombre de
-la columna de los datos agrupados de la enfermedad o evento que contiene
-los municipios; su valor por defecto es `NULL`}
+\item{col_mpios}{Un `character` (cadena de carácteres) con el nombre de
+la columna que contiene los municipios en los datos agrupados de la
+enfermedad o evento; su valor por defecto es `NULL`}
 
 \item{fuente_data}{Un `character` (cadena de caracteres) que contiene la
 leyenda o fuente de información de los datos; su valor por defecto es `NULL`}
@@ -30,5 +30,5 @@ data_limpia <- estandarizar_geo_cods(data_limpia)
 data_agrupada <- agrupar_mpio(data_event = data_limpia,
                               dpto = "Antioquia")
 plot_mpios(data_agrupada,
-           nomb_col = "municipio_ocurrencia")
+           col_mpios = "municipio_ocurrencia")
 }
