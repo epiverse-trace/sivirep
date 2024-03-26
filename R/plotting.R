@@ -898,6 +898,18 @@ plot_years <- function(data_agrupada,
             = is.data.frame(data_agrupada),
             "El parametro nomb_col debe ser una cadena de caracteres"
             = is.character(nomb_col))
+            "El parametro col_year debe ser una cadena de caracteres"
+            = is.character(col_year))
+  etiqueta_year <- config::get(file =
+                             system.file("extdata",
+                                         "config.yml",
+                                         package = "sivirep"),
+                             "label_year")
+  etiqueta_casos <- config::get(file =
+                                 system.file("extdata",
+                                             "config.yml",
+                                             package = "sivirep"),
+                               "label_cases")
   if (is.null(fuente_data)) {
     fuente_data <-
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
@@ -905,11 +917,12 @@ plot_years <- function(data_agrupada,
   eventos <- length(unique(data_agrupada[["nombre_evento"]]))
   plot_casos_years <-
     ggplot2::ggplot(data_agrupada,
-                    ggplot2::aes(x = .data[[nomb_col]],
+                    ggplot2::aes(x = .data[[col_year]],
                                  y = .data[["casos"]],
                                  fill = .data[["nombre_evento"]])) +
     ggplot2::geom_bar(position = "dodge", stat = "identity") +
-    ggplot2::labs(x = "\nYear\n", y = "Numero de casos\n",
+    ggplot2::labs(x = paste0("\n", etiqueta_year, "\n"),
+                  y = paste0(etiqueta_casos, "\n"),
                   caption = fuente_data) +
     ggplot2::theme_classic() +
     obtener_estetica_escala(escala = eventos, nombre = "Eventos\n") +
@@ -917,7 +930,6 @@ plot_years <- function(data_agrupada,
     ggplot2::theme(legend.position = "right")
   return(plot_casos_years)
 }
-
 
 #' Generar gráfico de distribución de casos por la clasificacion inicial
 #' del caso
