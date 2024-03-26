@@ -859,9 +859,6 @@ plot_area_geo <- function(data_agrupada,
 #' @export
 #' @export
 plot_tabla_tipos_event <- function(data_agrupada,
-                                   nomb_col = "nombre_evento") {
-  data_agrupada[["nombre_evento"]] <-
-    stringr::str_to_title(data_agrupada[["nombre_evento"]])
                                    col_event = "nombre_evento") {
   etiqueta_cod <- config::get(file =
                               system.file("extdata",
@@ -873,6 +870,8 @@ plot_tabla_tipos_event <- function(data_agrupada,
                                              "config.yml",
                                              package = "sivirep"),
                                "caption_table_events")
+  data_agrupada[[col_event]] <-
+    stringr::str_to_title(data_agrupada[[col_event]])
   tabla_tipos <- knitr::kable(data_agrupada,
                               col.names = c(etiqueta_cod,
                                             "Evento", "Casos"),
