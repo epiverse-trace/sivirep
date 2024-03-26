@@ -892,12 +892,10 @@ plot_tabla_tipos_event <- function(data_agrupada,
 #'            nomb_col = "ano")
 #' @export
 plot_years <- function(data_agrupada,
-                       nomb_col = "ano",
+                       col_year = "ano",
                        fuente_data = NULL) {
   stopifnot("El parametro data_agrupada debe ser un data.frame"
             = is.data.frame(data_agrupada),
-            "El parametro nomb_col debe ser una cadena de caracteres"
-            = is.character(nomb_col))
             "El parametro col_year debe ser una cadena de caracteres"
             = is.character(col_year))
   etiqueta_year <- config::get(file =
