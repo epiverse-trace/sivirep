@@ -668,7 +668,7 @@ plot_edad_sex <- function(data_agrupada,
 #'            nomb_col = "departamento_ocurrencia")
 #' @export
 plot_dptos <- function(data_agrupada,
-                       nomb_col = NULL,
+                       col_dptos = NULL,
                        fuente_data = NULL) {
   stopifnot("El parametro data_agrupada debe ser un data.frame"
             = is.data.frame(data_agrupada))
@@ -676,16 +676,16 @@ plot_dptos <- function(data_agrupada,
     fuente_data <-
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
   }
-  if (is.null(nomb_col)) {
+  if (is.null(col_dptos)) {
     cols_geo_ocurrencia <-
       obtener_tip_ocurren_geo(nombre_event =
                                 data_agrupada[["nombre_evento"]][1])
     if (length(cols_geo_ocurrencia) > 1) {
-      nomb_col <- cols_geo_ocurrencia[2]
+      col_dptos <- cols_geo_ocurrencia[2]
     }
   } else {
-    stopifnot("El parametro nomb_col debe ser una cadena de caracteres"
-              = is.character(nomb_col))
+    stopifnot("El parametro col_dptos debe ser una cadena de caracteres"
+              = is.character(col_dptos))
   }
   etiqueta_casos <- config::get(file =
                                   system.file("extdata",
@@ -698,11 +698,11 @@ plot_dptos <- function(data_agrupada,
     pos_leyenda <- ggplot2::theme(legend.position = "bottom")
   }
   data_agrupada <- data_agrupada %>%
-    group_by_at(nomb_col) %>%
+    group_by_at(col_dptos) %>%
     dplyr::summarise(casos = sum(.data[["casos"]]), .groups = "drop")
   plot_casos_dptos <-
     ggplot2::ggplot(data_agrupada,
-                    ggplot2::aes(x = stats::reorder(.data[[nomb_col]],
+                    ggplot2::aes(x = stats::reorder(.data[[col_dptos]],
                                                     .data[["casos"]]),
                                  y = .data[["casos"]])) +
     ggplot2::geom_bar(width = 0.5,
