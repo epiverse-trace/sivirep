@@ -599,10 +599,12 @@ plot_edad <- function(data_agrupada,
 #' Función que genera el gráfico de distribución de casos por edad y sexo
 #' @param data_agrupada Un `data.frame` que contiene los datos de la
 #' enfermedad o evento agrupados
-#' @param nomb_cols Un `array` (arreglo) de `character` (cadena de caracteres)
-#' con los nombres de las columnas de los datos agrupados de la enfermedad o
-#' evento que contienen las edades y las semanas epidemiológicas; su valor
-#' por defecto es `c("edad", "sexo")`
+#' @param col_edad Un `character` (cadena de caracteres) con el nombre de la
+#' columna que contiene las edades en los datos agrupados de la enfermdedad o
+#' evento; su valor por defecto es `"edad`
+#' @param col_sex Un `character` (cadena de caracteres) con el nombre de la
+#' columna que contiene el sexo en los datos agrupados de la enfermdedad o
+#' evento; su valor por defecto es `"sexo`
 #' @param fuente_data Un `character` (cadena de caracteres) que contiene la
 #' leyenda o fuente de información de los datos; su valor por defecto es `NULL`
 #' @return Un `plot` o gráfico de distribución de casos por edad y sexo
@@ -613,7 +615,8 @@ plot_edad <- function(data_agrupada,
 #'                                   nomb_cols = c("edad", "sexo"),
 #'                                   porcentaje = FALSE)
 #' plot_edad_sex(data_agrupada = data_agrupada,
-#'               nomb_cols = c("edad", "sexo"))
+#'               col_edad = "edad",
+#'               col_sex = "sexo")
 #' @export
 plot_edad_sex <- function(data_agrupada,
                           col_edad = "edad",

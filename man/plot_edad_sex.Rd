@@ -4,16 +4,24 @@
 \alias{plot_edad_sex}
 \title{Generar gráfico de distribución de casos por edad y sexo}
 \usage{
-plot_edad_sex(data_agrupada, nomb_cols = c("edad", "sexo"), fuente_data = NULL)
+plot_edad_sex(
+  data_agrupada,
+  col_edad = "edad",
+  col_sex = "sexo",
+  fuente_data = NULL
+)
 }
 \arguments{
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la
 enfermedad o evento agrupados}
 
-\item{nomb_cols}{Un `array` (arreglo) de `character` (cadena de caracteres)
-con los nombres de las columnas de los datos agrupados de la enfermedad o
-evento que contienen las edades y las semanas epidemiológicas; su valor
-por defecto es `c("edad", "sexo")`}
+\item{col_edad}{Un `character` (cadena de caracteres) con el nombre de la
+columna que contiene las edades en los datos agrupados de la enfermdedad o
+evento; su valor por defecto es `"edad`}
+
+\item{col_sex}{Un `character` (cadena de caracteres) con el nombre de la
+columna que contiene el sexo en los datos agrupados de la enfermdedad o
+evento; su valor por defecto es `"sexo`}
 
 \item{fuente_data}{Un `character` (cadena de caracteres) que contiene la
 leyenda o fuente de información de los datos; su valor por defecto es `NULL`}
@@ -31,5 +39,6 @@ data_agrupada <- agrupar_edad_sex(data_event = data_limpia,
                                   nomb_cols = c("edad", "sexo"),
                                   porcentaje = FALSE)
 plot_edad_sex(data_agrupada = data_agrupada,
-              nomb_cols = c("edad", "sexo"))
+              col_edad = "edad",
+              col_sex = "sexo")
 }
