@@ -687,6 +687,11 @@ plot_dptos <- function(data_agrupada,
     stopifnot("El parametro nomb_col debe ser una cadena de caracteres"
               = is.character(nomb_col))
   }
+  etiqueta_casos <- config::get(file =
+                                  system.file("extdata",
+                                              "config.yml",
+                                              package = "sivirep"),
+                                "label_cases")
   num_eventos <- length(unique(data_agrupada[["nombre_evento"]]))
   pos_leyenda <- ggplot2::theme(legend.position = "right")
   if (num_eventos > 3) {
@@ -703,7 +708,8 @@ plot_dptos <- function(data_agrupada,
     ggplot2::geom_bar(width = 0.5,
                       stat = "identity",
                       fill = "#2274BB") +
-    ggplot2::labs(x = "\nDepartamento\n", y = "Numero de casos\n",
+    ggplot2::labs(x = "\nDepartamento\n",
+                  y = paste0(etiqueta_casos, "\n"),
                   caption = fuente_data) +
     ggplot2::theme_classic() +
     tema_sivirep() +
