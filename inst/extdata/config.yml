@@ -38,3 +38,4 @@ default:
   label_cases: "Número de casos"
   label_code: "Código"
   caption_table_events: "Distribución de casos por evento"
+  label_geo_area: "Área geográfica"
