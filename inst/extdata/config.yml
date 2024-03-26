@@ -36,3 +36,5 @@ default:
   labels_per_etn: {"1": "Indigena", "2": "ROM/Gitano", "3": "Raizal", "4": "Palenquero", "5": "Negro/Mulato/Afrocolombiano", "6": "Otro"}
   label_year: "Año"
   label_cases: "Número de casos"
+  label_code: "Código"
+  caption_table_events: "Distribución de casos por evento"
