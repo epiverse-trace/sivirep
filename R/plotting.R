@@ -521,21 +521,24 @@ plot_sex <- function(data_agrupada,
 #'                    nomb_cols = c("sexo", "semana"))
 #' @export
 plot_sex_semanaepi <- function(data_agrupada,
-                               nomb_cols = c("sexo", "semana"),
+                               col_sexo = "sexo",
+                               col_semanaepi = "semana",
                                fuente_data = NULL) {
   stopifnot("El parametro data_agrupada debe ser un data.frame"
             = is.data.frame(data_agrupada),
-            "El parametro nomb_cols debe ser un arreglo" =
-              is.character(nomb_cols))
+            "El parametro col_sexo debe ser una cadena de caracteres" =
+              is.character(col_sexo),
+            "El parametro col_semanaepi debe ser una cadena de caracteres" =
+              is.character(col_semanaepi))
   if (is.null(fuente_data)) {
     fuente_data <-
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
   }
   plot_casos_sex_semanaepi <-
     ggplot2::ggplot(data_agrupada,
-                    ggplot2::aes(x = .data[[nomb_cols[2]]],
+                    ggplot2::aes(x = .data[[col_semanaepi]],
                                  y = .data[["casos"]],
-                                 fill = .data[[nomb_cols[1]]])) +
+                                 fill = .data[[col_sexo]])) +
     ggplot2::geom_bar(width = 0.5,
                       stat = "identity") +
     ggplot2::labs(x = "\nSemana epidemiologica\n", y = "Numero de casos\n",
