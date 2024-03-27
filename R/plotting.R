@@ -41,7 +41,11 @@ plot_map <- function(data_agrupada,
             "El parametro data_agrupada no debe estar vacio" =
               nrow(data_agrupada) > 0)
   titulo <- "Colombia"
-  subtitulo <- "Analisis efectuado por geografia de "
+  subtitulo <-  config::get(file =
+                              system.file("extdata",
+                                          "config.yml",
+                                          package = "sivirep"),
+                            "label_geo_analysis")
   cols_geo_ocurrencia <- NULL
   data_tabla <- data.frame()
   nombres_col <- NULL
