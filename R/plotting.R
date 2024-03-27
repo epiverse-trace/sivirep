@@ -202,12 +202,11 @@ plot_map <- function(data_agrupada,
 #' @param uni_marca Un `character` (cadena de caracteres) que contiene la unidad
 #' de las marcas del gráfico (`"dia"`, `"semanaepi"` y `"mes"``);
 #' su valor por defecto es `"semanaepi"`
-#' @param nomb_col Un `character` (cadena de caracteres) que contiene el
-#' nombre de la columna en los datos de la enfermedad o evento
-#' agrupados con las fechas de inicio de síntomas; su valor por
-#' defecto es `"ini_sin"`
+#' @param col_fecha Un `character` (cadena de caracteres) que contiene el
+#' nombre de la columna con las fechas de notificación en los datos de la
+#' enfermedad o evento agrupados; su valor por defecto es `"ini_sin"`
 #' @param tipo Un `character` (cadena de caracteres) que contiene el tipo de
-#' grafico (`"barras"` o `"tendencia"`); su valor por defecto es `"barras"`
+#' gráfico (`"barras"` o `"tendencia"`); su valor por defecto es `"barras"`
 #' @param fuente_data Un `character` (cadena de caracteres) que contiene la
 #' leyenda o fuente de información de los datos; su valor por defecto es `NULL`
 #' @return Un `plot` o gráfico de la distribución de casos por fecha de inicio
@@ -216,10 +215,9 @@ plot_map <- function(data_agrupada,
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(dengue2020)
 #' data_agrupada <- agrupar_fecha_inisintomas(
-#'                                      data_event = data_limpia,
-#'                                      nomb_col = "ini_sin")
+#'                                      data_event = data_limpia)
 #' plot_fecha_inisintomas(data_agrupada = data_agrupada,
-#'                        nomb_col = "ini_sin",
+#'                        col_fecha = "ini_sin",
 #'                        uni_marca = "semanaepi")
 #' @export
 plot_fecha_inisintomas <- function(data_agrupada,
