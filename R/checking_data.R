@@ -509,7 +509,8 @@ agrupar_edad <- function(data_event,
 #'                  porcentaje = TRUE)
 #' @export
 agrupar_edad_sex <- function(data_event,
-                             nomb_cols = c("edad", "sexo"),
+                             col_edad = "edad",
+                             col_sex = "sexo",
                              porcentaje = TRUE,
                              interval_edad = 10) {
   stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
@@ -517,11 +518,13 @@ agrupar_edad_sex <- function(data_event,
               is.data.frame(data_event),
             "El parametro data_event no debe estar vacio" =
               nrow(data_event) > 0,
-            "El parametro nomb_cols debe ser una cadena de caracteres
-            o un arreglo de cadenas de caracteres"
-            = (is.character(nomb_cols) || is.array(nomb_cols)),
+            "El parametro col_edad debe ser una cadena de caracteres"
+            = is.character(col_edad),
+            "El parametro col_sex debe ser una cadena de caracteres"
+            = is.character(col_sex),
             "El parametro porcentaje debe ser un booleano (TRUE o FALSE)" =
               is.logical(porcentaje))
+  nomb_cols <- c(col_edad, col_sex)
   data_event_edad_sex <- agrupar_cols_casos(data_event,
                                             nomb_cols,
                                             porcentaje)
