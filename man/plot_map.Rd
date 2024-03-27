@@ -43,14 +43,23 @@ casos de una enfermedad o evento
 \examples{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(dengue2020)
-data_espacial_dpto <- estandarizar_geo_cods(data_limpia)
-data_filtrada <- geo_filtro(data_event = data_espacial_dpto,
-                            dpto = "Antioquia",
-                            mpio = "Envigado")
-data_espacial_dpto <- agrupar_mpio(data_event = data_filtrada,
-                                   dpto = "Antioquia")
+data_estandar <- estandarizar_geo_cods(data_limpia)
+# Mapa por departamentos
+data_espacial <- agrupar_dpto(data_event = data_estandar)
+plot_map(data_agrupada = data_espacial)
+# Mapa por municipios de un departamento especifico
+data_filtrada_dpto <- geo_filtro(data_event = data_estandar,
+                                 dpto = "Cundinamarca")
+data_espacial_dpto <- agrupar_mpio(data_event = data_filtrada_dpto)
 plot_map(data_agrupada = data_espacial_dpto,
-   col_codigos = "cod_mun_o",
-   dpto = "Antioquia",
-   mpio = "Envigado")
+         col_codigos = "cod_mun_o")
+# Mapa por municipio especifico
+data_filtrada_mpio <- geo_filtro(data_event = data_estandar,
+                                 dpto = "Antioquia",
+                                 mpio = "Envigado")
+data_espacial_mpio <- agrupar_mpio(data_event = data_filtrada_mpio)
+plot_map(data_agrupada = data_espacial_mpio,
+         col_codigos = "cod_mun_o",
+         dpto = "Antioquia",
+         mpio = "Envigado")
 }
