@@ -223,7 +223,7 @@ plot_map <- function(data_agrupada,
 #'                        uni_marca = "semanaepi")
 #' @export
 plot_fecha_inisintomas <- function(data_agrupada,
-                                   nomb_col = "ini_sin",
+                                   col_fecha = "ini_sin",
                                    uni_marca = "semanaepi",
                                    tipo = "barras",
                                    fuente_data = NULL) {
@@ -233,8 +233,8 @@ plot_fecha_inisintomas <- function(data_agrupada,
               is.data.frame(data_agrupada),
             "El parametro data_agrupada no debe estar vacio" =
               nrow(data_agrupada) > 0,
-            "El parametro nomb_col debe ser una cadena de caracteres" =
-              is.character(nomb_col),
+            "El parametro col_fecha debe ser una cadena de caracteres" =
+              is.character(col_fecha),
             "El parametro uni_marca debe ser una cadena de caracteres" =
               is.character(uni_marca),
             "Valor invalido para el parametro uni_marca" =
@@ -247,7 +247,7 @@ plot_fecha_inisintomas <- function(data_agrupada,
                                                           "config.yml",
                                                           package = "sivirep"),
                                        "dates_column_names")
-  var_x <- nomb_col
+  var_x <- col_fecha
   num_eventos <- length(unique(data_agrupada[["nombre_evento"]]))
   data_plot <- data_agrupada
   if (is.null(fuente_data)) {
@@ -262,8 +262,8 @@ plot_fecha_inisintomas <- function(data_agrupada,
     dia = "day",
     semanaepi = "semana"
   )
-  if (is.null(nomb_col)) {
-    nomb_col <- fechas_column_nombres[3]
+  if (is.null(col_fecha)) {
+    col_fecha <- fechas_column_nombres[3]
   }
   if (uni_marca == "semana") {
     var_x <- "semana"
