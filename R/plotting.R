@@ -1157,8 +1157,7 @@ plot_tipo_caso_years <- function(data_agrupada,
 #' data_limpia <- limpiar_data_sivigila(dengue2020)
 #' data_agrupada <- agrupar_per_etn(data_event = data_limpia)
 #' plot_per_etn(data_agrupada,
-#'              col_etn = "per_etn",
-#'              fuente_data = "Fuente: SIVIGILA")
+#'              col_etn = "per_etn")
 #' @export
 plot_per_etn <- function(data_agrupada,
                          col_etn = "per_etn",
