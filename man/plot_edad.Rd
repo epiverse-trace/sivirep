@@ -28,6 +28,5 @@ data(dengue2020)
 data_limpia <- limpiar_data_sivigila(dengue2020)
 data_agrupada <- agrupar_edad(data_event = data_limpia)
 plot_edad(data_agrupada = data_agrupada,
-          col_edad = "edad"
-          fuente = "SIVIGILA")
+          col_edad = "edad")
 }
