@@ -18,8 +18,9 @@ plot_map(
 agrupados por departamento y número de casos}
 
 \item{col_codigos}{Un `character` (cadena de caracteres) que contiene el
-nombre de la columna para unir con el archivo de forma (shape file);
-su valor por defecto `NULL`}
+nombre de la columna con los códigos de los departamentos o municipios, se
+utilizan para obtener los poligonos de las áreas geográficas del archivo
+geoespacial o de figuras (Shapefile); su valor por defecto `NULL`}
 
 \item{fuente_data}{Un `character` (cadena de caracteres) que contiene la
 leyenda o fuente de información de los datos de la enfermedad o evento;
@@ -50,7 +51,6 @@ data_espacial_dpto <- agrupar_mpio(data_event = data_filtrada,
                                    dpto = "Antioquia")
 plot_map(data_agrupada = data_espacial_dpto,
    col_codigos = "cod_mun_o",
-   fuente_data = "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia",
    dpto = "Antioquia",
    mpio = "Envigado")
 }
