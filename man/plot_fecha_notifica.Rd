@@ -16,6 +16,10 @@ plot_fecha_notifica(
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la
 enfermedad o evento agrupados}
 
+\item{col_fecha}{Un `character` (cadena de caracteres) que contiene el
+nombre de la columna con las fechas de notificación en los datos de la
+enfermedad o evento agrupados; su valor por defecto es `"fec_not"`}
+
 \item{uni_marca}{Un `character` (cadena de caracteres) que contiene la unidad
 de las marcas del gráfico (`"dia"`, `"semanaepi"`y `"mes"``);
 su valor por defecto es `"semanaepi"`}
@@ -25,10 +29,6 @@ leyenda o fuente de información de los datos; su valor por defecto es `NULL`}
 
 \item{tipo}{Un `character` (cadena de caracteres) que contiene el tipo de
 grafico (`"barras"` o `"tendencia"`); su valor por defecto es `"barras"`}
-
-\item{nomb_col}{Un `character` (cadena de caracteres) que contiene el
-nombre de la columna con las fechas de notificación en los datos de la
-enfermedad o evento agrupados; su valor por defecto es `"fec_not"`}
 }
 \value{
 Un `plot` o gráfico de distribución de casos por fecha de

@@ -321,7 +321,7 @@ plot_fecha_inisintomas <- function(data_agrupada,
 #' @param uni_marca Un `character` (cadena de caracteres) que contiene la unidad
 #' de las marcas del gráfico (`"dia"`, `"semanaepi"`y `"mes"``);
 #' su valor por defecto es `"semanaepi"`
-#' @param nomb_col Un `character` (cadena de caracteres) que contiene el
+#' @param col_fecha Un `character` (cadena de caracteres) que contiene el
 #' nombre de la columna con las fechas de notificación en los datos de la
 #' enfermedad o evento agrupados; su valor por defecto es `"fec_not"`
 #' @param fuente_data Un `character` (cadena de caracteres) que contiene la
