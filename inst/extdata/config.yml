@@ -42,3 +42,4 @@ default:
   label_epiweek: "Semana epidemiológica"
   label_date_not: "Fecha de notificación"
   label_date_ini: "Fecha de inicio de síntomas"
+  label_geo_analysis: "Análisis efectuado por geografia de "
