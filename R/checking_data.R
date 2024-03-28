@@ -776,15 +776,15 @@ agrupar_area_geo <- function(data_event,
 #' Función que agrupa los casos por tipo de enfermedad o evento
 #' @param data_event Un `data.frame` que contiene los datos de la
 #' enfermedad o evento
-#' @param nomb_col Un `character` (cadena de caracteres) con el nombre de
-#' la columna en los datos de la enfermedad o evento que contiene los códigos
-#' de los eventos; su valor por defecto es `"cod_eve"`
+#' @param col_event Un `character` (cadena de caracteres) con el nombre de
+#' la columna que contiene los códigos de los eventos o de las enfermedades
+#' en los datos; su valor por defecto es `"cod_eve"`
 #' @return Un `data.frame` con los datos de la enfermedad o evento agrupados
 #' por sus tipos
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
-#'                       nomb_col = "cod_eve")
+#' agrupar_eventos(data_event = data_limpia,
 #'                 col_event = "cod_eve")
 #' @export
 agrupar_eventos <- function(data_event, col_event = "cod_eve") {
