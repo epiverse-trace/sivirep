@@ -815,16 +815,16 @@ agrupar_casos_eventos <- function(data_event, nomb_col = "cod_eve") {
 #' agrupar_years(data_event = data_limpia,
 #'               nomb_col = "ano")
 #' @export
-agrupar_years <- function(data_event, nomb_col = "ano") {
+agrupar_years <- function(data_event, col_year = "ano") {
   stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
             "El parametro data_event debe ser un data.frame" =
               is.data.frame(data_event),
             "El parametro data_event no debe estar vacio" =
               nrow(data_event) > 0,
-            "El parametro nomb_col debe ser una cadena de caracteres"
-            = is.character(nomb_col))
+            "El parametro col_year debe ser una cadena de caracteres"
+            = is.character(col_year))
   data_event_year <- agrupar_cols_casos(data_event,
-                                        nomb_cols = c(nomb_col,
+                                        nomb_cols = c(col_year,
                                                       "cod_eve"))
   return(data_event_year)
 }
