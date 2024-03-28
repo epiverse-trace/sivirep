@@ -873,21 +873,21 @@ agrupar_tipo_caso <- function(data_event, nomb_cols = "tip_cas") {
                     etiquetas[as.numeric(.data[[nomb_cols[1]]])])
   return(data_event_tipo)
 }
-#' Agrupar por la pertenencia etnica
+#' Agrupar por la pertenencia étnica
 #'
-#' Función que agrupa los casos por la pertenencia etnica
+#' Función que agrupa los casos por la pertenencia étnica
 #' @param data_event Un `data.frame` que contiene los datos de la
 #' enfermedad o evento
-#' @param nomb_cols Un `character` (cadena de caracteres) con el nombre de
-#' las columna(s) en los datos de la enfermedad o evento que contiene la
-#' pertenencia etnica; su valor por defecto es `"per_etn"`
+#' @param cols_etn Un `character` (cadena de caracteres) con el nombre de
+#' las columna(s) que contiene(n) la pertenencia étnica en los datos de la
+#' enfermedad o evento; su valor por defecto es `"per_etn"`
 #' @return Un `data.frame` con los datos de la enfermedad o evento agrupados
-#' por la pertenencia etnica
+#' por la pertenencia étnica
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 #' agrupar_per_etn(data_event = data_limpia,
-#'                 nomb_cols = "per_etn")
+#'                 cols_etn = "per_etn")
 #' @export
 agrupar_per_etn <- function(data_event, cols_etn = "per_etn") {
   stopifnot("El parametro data_event es obligatorio" = !missing(data_event),

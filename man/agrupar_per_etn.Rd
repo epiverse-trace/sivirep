@@ -2,28 +2,28 @@
 % Please edit documentation in R/checking_data.R
 \name{agrupar_per_etn}
 \alias{agrupar_per_etn}
-\title{Agrupar por la pertenencia etnica}
+\title{Agrupar por la pertenencia étnica}
 \usage{
-agrupar_per_etn(data_event, nomb_cols = "per_etn")
+agrupar_per_etn(data_event, cols_etn = "per_etn")
 }
 \arguments{
 \item{data_event}{Un `data.frame` que contiene los datos de la
 enfermedad o evento}
 
-\item{nomb_cols}{Un `character` (cadena de caracteres) con el nombre de
-las columna(s) en los datos de la enfermedad o evento que contiene la
-pertenencia etnica; su valor por defecto es `"per_etn"`}
+\item{cols_etn}{Un `character` (cadena de caracteres) con el nombre de
+las columna(s) que contiene(n) la pertenencia étnica en los datos de la
+enfermedad o evento; su valor por defecto es `"per_etn"`}
 }
 \value{
 Un `data.frame` con los datos de la enfermedad o evento agrupados
-por la pertenencia etnica
+por la pertenencia étnica
 }
 \description{
-Función que agrupa los casos por la pertenencia etnica
+Función que agrupa los casos por la pertenencia étnica
 }
 \examples{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 agrupar_per_etn(data_event = data_limpia,
-                nomb_cols = "per_etn")
+                cols_etn = "per_etn")
 }
