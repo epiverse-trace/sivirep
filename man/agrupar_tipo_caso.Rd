@@ -2,28 +2,28 @@
 % Please edit documentation in R/checking_data.R
 \name{agrupar_tipo_caso}
 \alias{agrupar_tipo_caso}
-\title{Agrupar por la clasificacion inicial del caso}
+\title{Agrupar por la clasificación inicial del caso}
 \usage{
-agrupar_tipo_caso(data_event, nomb_cols = "tip_cas")
+agrupar_tipo_caso(data_event, cols_tipo = "tip_cas")
 }
 \arguments{
 \item{data_event}{Un `data.frame` que contiene los datos de la
 enfermedad o evento}
 
-\item{nomb_cols}{Un `character` (cadena de caracteres) con el nombre de
-las columna(s) en los datos de la enfermedad o evento que contiene la
-clasificacion inicial del caso; su valor por defecto es `"tip_cas"`}
+\item{cols_tipo}{Un `character` (cadena de caracteres) con el nombre de
+las columna(s) que contiene la clasificación inicial del caso en los datos
+de la enfermedad o evento; su valor por defecto es `"tip_cas"`}
 }
 \value{
 Un `data.frame` con los datos de la enfermedad o evento agrupados
-por la clasificacion inicial del caso y/u otras variables como años
+por la clasificación inicial del caso y/u otras variables como los años
 }
 \description{
-Función que agrupa los casos por la clasificacion inicial del caso
+Función que agrupa los casos por la clasificación inicial del caso
 }
 \examples{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 agrupar_tipo_caso(data_event = data_limpia,
-                  nomb_cols = "tip_cas")
+                  cols_tipo = "tip_cas")
 }
