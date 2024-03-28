@@ -845,34 +845,30 @@ agrupar_years <- function(data_event, nomb_col = "ano") {
 #' agrupar_tipo_caso(data_event = data_limpia,
 #'                   nomb_cols = "tip_cas")
 #' @export
-agrupar_tipo_caso <- function(data_event, nomb_cols = "tip_cas") {
+agrupar_tipo_caso <- function(data_event, cols_tipo = "tip_cas") {
   stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
             "El parametro data_event debe ser un data.frame" =
               is.data.frame(data_event),
             "El parametro data_event no debe estar vacio" =
               nrow(data_event) > 0,
-            "El parametro nomb_col debe ser una cadena de caracteres"
-            = is.character(nomb_cols))
-  if (length(nomb_cols) == 1) {
-   nomb_cols <- c(nomb_cols, "cod_eve")
+            "El parametro cols_tipo debe ser una cadena de caracteres"
+            = is.character(cols_tipo))
+  if (length(cols_tipo) == 1) {
+   cols_tipo <- c(cols_tipo, "cod_eve")
   }
-  etiquetas <- c("Sospechoso",
-                 "Probable",
-                 "Confirmado por laboratorio",
-                 "Confirmado por clinica",
-                 "Confirmado por nexo epidemiologico")
   etiquetas <- config::get(file =
                              system.file("extdata",
                                          "config.yml",
                                          package = "sivirep"),
                            "labels_cas_tip")
   data_event_tipo <- agrupar_cols_casos(data_event,
-                                        nomb_cols = nomb_cols)
+                                        nomb_cols = cols_tipo)
   data_event_tipo <- data_event_tipo %>%
     dplyr::mutate(nombre_tip_cas =
-                    etiquetas[as.numeric(.data[[nomb_cols[1]]])])
+                    etiquetas[as.numeric(.data[[cols_tipo[1]]])])
   return(data_event_tipo)
 }
+
 #' Agrupar por la pertenencia étnica
 #'
 #' Función que agrupa los casos por la pertenencia étnica
