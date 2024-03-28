@@ -889,16 +889,16 @@ agrupar_tipo_caso <- function(data_event, nomb_cols = "tip_cas") {
 #' agrupar_per_etn(data_event = data_limpia,
 #'                 nomb_cols = "per_etn")
 #' @export
-agrupar_per_etn <- function(data_event, nomb_cols = "per_etn") {
+agrupar_per_etn <- function(data_event, cols_etn = "per_etn") {
   stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
             "El parametro data_event debe ser un data.frame" =
               is.data.frame(data_event),
             "El parametro data_event no debe estar vacio" =
               nrow(data_event) > 0,
-            "El parametro nomb_col debe ser una cadena de caracteres"
-            = is.character(nomb_cols))
-  if (length(nomb_cols) == 1) {
-    nomb_cols <- c(nomb_cols, "cod_eve")
+            "El parametro cols_etn debe ser una cadena de caracteres"
+            = is.character(cols_etn))
+  if (length(cols_etn) == 1) {
+    cols_etn <- c(cols_etn, "cod_eve")
   }
   etiquetas <- config::get(file =
                              system.file("extdata",
@@ -907,9 +907,9 @@ agrupar_per_etn <- function(data_event, nomb_cols = "per_etn") {
                            "labels_cas_tip")
   etiquetas <- unlist(etiquetas)
   data_event_tipo <- agrupar_cols_casos(data_event,
-                                        nomb_cols = nomb_cols)
+                                        nomb_cols = cols_etn)
   data_event_tipo <- data_event_tipo %>%
     dplyr::mutate(nombre_per_etn =
-                    etiquetas[as.character(.data[[nomb_cols[1]]])])
+                    etiquetas[as.character(.data[[cols_etn[1]]])])
   return(data_event_tipo)
 }
