@@ -2,17 +2,17 @@
 % Please edit documentation in R/checking_data.R
 \name{agrupar_years}
 \alias{agrupar_years}
-\title{Agrupar por tipo de enfermedad o evento}
+\title{Agrupar por los años de una enfermedad o evento}
 \usage{
-agrupar_years(data_event, nomb_col = "ano")
+agrupar_years(data_event, col_year = "ano")
 }
 \arguments{
 \item{data_event}{Un `data.frame` que contiene los datos de la
 enfermedad o evento}
 
-\item{nomb_col}{Un `character` (cadena de caracteres) con el nombre de
-la columna en los datos de la enfermedad o evento que contiene los años
-del evento; su valor por defecto es `"ano"`}
+\item{col_year}{Un `character` (cadena de caracteres) con el nombre de
+la columna que contiene los años en los datos de la enfermedad o evento;
+su valor por defecto es `"ano"`}
 }
 \value{
 Un `data.frame` con los datos de la enfermedad o evento agrupados
@@ -25,5 +25,5 @@ Función que agrupa los casos por los años de una enfermedad o evento
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 agrupar_years(data_event = data_limpia,
-              nomb_col = "ano")
+              col_year = "ano")
 }
