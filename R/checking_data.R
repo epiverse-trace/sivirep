@@ -799,21 +799,21 @@ agrupar_casos_eventos <- function(data_event, nomb_col = "cod_eve") {
   return(data_event_tipos)
 }
 
-#' Agrupar por tipo de enfermedad o evento
+#' Agrupar por los años de una enfermedad o evento
 #'
 #' Función que agrupa los casos por los años de una enfermedad o evento
 #' @param data_event Un `data.frame` que contiene los datos de la
 #' enfermedad o evento
-#' @param nomb_col Un `character` (cadena de caracteres) con el nombre de
-#' la columna en los datos de la enfermedad o evento que contiene los años
-#' del evento; su valor por defecto es `"ano"`
+#' @param col_year Un `character` (cadena de caracteres) con el nombre de
+#' la columna que contiene los años en los datos de la enfermedad o evento;
+#' su valor por defecto es `"ano"`
 #' @return Un `data.frame` con los datos de la enfermedad o evento agrupados
 #' por sus años
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 #' agrupar_years(data_event = data_limpia,
-#'               nomb_col = "ano")
+#'               col_year = "ano")
 #' @export
 agrupar_years <- function(data_event, col_year = "ano") {
   stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
