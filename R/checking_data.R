@@ -784,18 +784,18 @@ agrupar_area_geo <- function(data_event,
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
-#' agrupar_casos_eventos(data_event = data_limpia,
 #'                       nomb_col = "cod_eve")
+#'                 col_event = "cod_eve")
 #' @export
-agrupar_casos_eventos <- function(data_event, nomb_col = "cod_eve") {
+agrupar_eventos <- function(data_event, col_event = "cod_eve") {
   stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
             "El parametro data_event debe ser un data.frame" =
               is.data.frame(data_event),
             "El parametro data_event no debe estar vacio" =
               nrow(data_event) > 0,
-            "El parametro nomb_col debe ser una cadena de caracteres"
-            = is.character(nomb_col))
-  data_event_tipos <- agrupar_cols_casos(data_event, nomb_cols = nomb_col)
+            "El parametro col_event debe ser una cadena de caracteres"
+            = is.character(col_event))
+  data_event_tipos <- agrupar_cols_casos(data_event, nomb_cols = col_event)
   return(data_event_tipos)
 }
 
