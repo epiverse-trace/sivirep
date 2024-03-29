@@ -7,7 +7,7 @@
 agrupar_area_geo(
   data_event,
   dpto = NULL,
-  nomb_col = "area",
+  col_area = "area",
   porcentaje = FALSE
 )
 }
@@ -17,18 +17,18 @@ enfermedad o evento}
 
 \item{dpto}{Un `character` (cadena de caracteres) que contiene
 el nombre del departamento; su valor por defecto es `NULL`; si se ingresa
-un valor en este parámetro se procederá agrupar los datos
-por los municipios del departamento y sus áreas geográficas; si no se
+un valor en este parámetro se procederá agrupar los datos por los
+municipios del departamento y sus áreas geográficas; si no se
 ingresa un valor en este parámetro validará si los datos ya están
 filtrados por algún departamento, si no lo están generará la agrupación
 por departamento}
 
-\item{nomb_col}{Un `character` (cadena de caracteres) con el nombre de
-la columna en los datos de la enfermedad o evento que contiene los códigos
-de municipios; su valor por defecto es `"cod_mun_o"`}
+\item{col_area}{Un `character` (cadena de caracteres) con el nombre de
+la columna que contiene las áreas geográficas en los datos de la enfermedad
+o evento; su valor por defecto es `"cod_mun_o"`}
 
-\item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica si es necesario
-agregar un porcentaje de casos como una columna; su valor por
+\item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica si se debe
+agregar una columna con el porcentaje de casos; su valor por
 defecto es `FALSE`}
 }
 \value{
@@ -44,6 +44,6 @@ data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 agrupar_area_geo(data_event = data_limpia,
                  dpto = "Antioquia",
-                 nomb_col = "area",
+                 col_area = "area",
                  porcentaje = FALSE)
 }

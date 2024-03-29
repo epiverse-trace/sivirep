@@ -714,16 +714,16 @@ agrupar_mpio <- function(data_event,
 #' enfermedad o evento
 #' @param dpto Un `character` (cadena de caracteres) que contiene
 #' el nombre del departamento; su valor por defecto es `NULL`; si se ingresa
-#' un valor en este parámetro se procederá agrupar los datos
-#' por los municipios del departamento y sus áreas geográficas; si no se
+#' un valor en este parámetro se procederá agrupar los datos por los
+#' municipios del departamento y sus áreas geográficas; si no se
 #' ingresa un valor en este parámetro validará si los datos ya están
 #' filtrados por algún departamento, si no lo están generará la agrupación
 #' por departamento
-#' @param nomb_col Un `character` (cadena de caracteres) con el nombre de
-#' la columna en los datos de la enfermedad o evento que contiene los códigos
-#' de municipios; su valor por defecto es `"cod_mun_o"`
-#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si es necesario
-#' agregar un porcentaje de casos como una columna; su valor por
+#' @param col_area Un `character` (cadena de caracteres) con el nombre de
+#' la columna que contiene las áreas geográficas en los datos de la enfermedad
+#' o evento; su valor por defecto es `"cod_mun_o"`
+#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si se debe
+#' agregar una columna con el porcentaje de casos; su valor por
 #' defecto es `FALSE`
 #' @return Un `data.frame` con los datos de la enfermedad o evento agrupados
 #' por códigos de municipios y número de casos
