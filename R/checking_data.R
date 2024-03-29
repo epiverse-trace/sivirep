@@ -732,39 +732,39 @@ agrupar_mpio <- function(data_event,
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 #' agrupar_area_geo(data_event = data_limpia,
 #'                  dpto = "Antioquia",
-#'                  nomb_col = "area",
+#'                  col_area = "area",
 #'                  porcentaje = FALSE)
 #' @export
 agrupar_area_geo <- function(data_event,
                              dpto = NULL,
-                             nomb_col = "area",
+                             col_area = "area",
                              porcentaje = FALSE) {
   stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
             "El parametro data_event debe ser un data.frame" =
               is.data.frame(data_event),
             "El parametro data_event no debe estar vacio" =
               nrow(data_event) > 0,
-            "El parametro nomb_col debe ser una cadena de caracteres"
-            = is.character(nomb_col),
+            "El parametro col_area debe ser una cadena de caracteres"
+            = is.character(col_area),
             "El parametro porcentaje debe ser un booleano (TRUE o FALSE)" =
               is.logical(porcentaje))
-  nomb_col <- append(nomb_col,
+  nomb_cols <- append(col_area,
                      obtener_tip_ocurren_geo(data_event$cod_eve[1])[1:4])
   data_event_area <- data_event
   if (!is.null(dpto)) {
-      aux_dpto <- unique(data_event_area[[nomb_col[2]]])
+      aux_dpto <- unique(data_event_area[[nomb_cols[2]]])
       if (length(aux_dpto) > 1) {
         data_event_area <- geo_filtro(data_event, dpto)
       }
       data_event_area <- agrupar_cols_casos(data_event_area,
-                                            nomb_col)
+                                            nomb_cols)
   } else {
-    dpto <- unique(data_event_area[[nomb_col[3]]])
+    dpto <- unique(data_event_area[[nomb_cols[3]]])
     if (length(dpto) != 1) {
-      nomb_col <- nomb_col[1:3]
+      nomb_cols <- nomb_cols[1:3]
     }
     data_event_area <- agrupar_cols_casos(data_event_area,
-                                          nomb_col)
+                                          nomb_cols)
   }
   data_event_area <- dplyr::arrange(data_event_area,
                                     dplyr::desc(.data$casos))
