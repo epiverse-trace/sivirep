@@ -662,15 +662,15 @@ agrupar_dpto <- function(data_event,
 #' @export
 agrupar_mpio <- function(data_event,
                          dpto = NULL,
-                         nomb_col = "cod_mun_o",
+                         col_mpio = "cod_mun_o",
                          porcentaje = FALSE) {
   stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
             "El parametro data_event debe ser un data.frame" =
               is.data.frame(data_event),
             "El parametro data_event no debe estar vacio" =
               nrow(data_event) > 0,
-            "El parametro nomb_col debe ser una cadena de caracteres"
-            = is.character(nomb_col),
+            "El parametro col_mpio debe ser una cadena de caracteres"
+            = is.character(col_mpio),
             "El parametro porcentaje debe ser un booleano (TRUE o FALSE)" =
               is.logical(porcentaje))
   cols_geo_ocurrencia <- data.frame()
@@ -679,16 +679,16 @@ agrupar_mpio <- function(data_event,
     cols_geo_ocurrencia <- append(cols_geo_ocurrencia,
                                   obtener_tip_ocurren_geo(cod))
   }
-  nomb_col <- obtener_tip_ocurren_geo(data_event$cod_eve[1])
+  nomb_cols <- obtener_tip_ocurren_geo(data_event$cod_eve[1])
   data_event_muns <- data_event
   dept_data <- NULL
   if (!is.null(dpto)) {
-    aux_dpto <- unique(data_event_muns[[nomb_col[1]]])
+    aux_dpto <- unique(data_event_muns[[nomb_cols[1]]])
     if (length(aux_dpto) > 1) {
       data_event_muns <- geo_filtro(data_event, dpto)
     }
   } else {
-    dpto <- unique(data_event_muns[[nomb_col[1]]])
+    dpto <- unique(data_event_muns[[nomb_cols[1]]])
     if (length(dpto) != 1) {
       stopifnot("Debe ingresar el nombre o codigo del departamento" =
                 length(dpto) == 1)
