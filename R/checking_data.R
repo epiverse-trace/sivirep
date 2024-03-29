@@ -636,7 +636,7 @@ agrupar_dpto <- function(data_event,
 #' enfermedad o evento
 #' @param dpto Un `character` (cadena de caracteres) o `numeric` (numerico)
 #' que contiene el nombre del departamento; su valor por defecto es `NULL`
-#' @param nomb_col Un `character` (cadena de caracteres) con el nombre de
+#' @param col_mpio Un `character` (cadena de caracteres) con el nombre de
 #' la columna en los datos de la enfermedad o evento que contiene los códigos
 #' de municipios; su valor por defecto es `"cod_mun_o"`
 #' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si es necesario
@@ -649,15 +649,15 @@ agrupar_dpto <- function(data_event,
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 #' agrupar_mpio(data_event = data_limpia,
 #'              dpto = "ANTIOQUIA",
-#'              nomb_col = "cod_mun_o",
+#'              col_mpio = "cod_mun_o",
 #'              porcentaje = FALSE)
 #' agrupar_mpio(data_event = data_limpia,
 #'              dpto = "05",
-#'              nomb_col = "cod_mun_o",
+#'              col_mpio = "cod_mun_o",
 #'              porcentaje = FALSE)
 #' agrupar_mpio(data_event = data_limpia,
 #'              dpto = 05,
-#'              nomb_col = "cod_mun_o",
+#'              col_mpio = "cod_mun_o",
 #'              porcentaje = FALSE)
 #' @export
 agrupar_mpio <- function(data_event,
@@ -696,15 +696,16 @@ agrupar_mpio <- function(data_event,
   }
   dept_data <- obtener_info_depts(dpto)
   data_event_muns <- agrupar_cols_casos(data_event_muns,
-                                        nomb_cols = nomb_col[1:4])
-  data_event_muns[[nomb_col[1]]] <- as.character(data_event_muns[[nomb_col[1]]])
-  data_event_muns[[nomb_col[3]]] <- as.character(data_event_muns[[nomb_col[3]]])
+                                        nomb_cols = nomb_cols[1:4])
+  data_event_muns[[nomb_cols[1]]] <-
+    as.character(data_event_muns[[nomb_cols[1]]])
+  data_event_muns[[nomb_cols[3]]] <-
+    as.character(data_event_muns[[nomb_cols[3]]])
   dept_data <- dept_data[1, ]
   data_event_muns <-  dplyr::arrange(data_event_muns,
                                      dplyr::desc(.data$casos))
   return(data_event_muns)
 }
-
 
 #' Agrupar por área geográfica
 #'
