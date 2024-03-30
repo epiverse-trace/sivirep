@@ -314,7 +314,9 @@ agrupar_fecha_inisintomas <- function(data_event,
   stopifnot("El parametro col_fecha debe ser una cadena de caracteres"
             = is.character(col_fecha))
   nomb_cols <- append(col_fecha, "semana")
+  data_agrupada_fecha_ini <- agrupar_cols_casos(data_event,
                                                 nomb_cols = nomb_cols)
+  return(data_agrupada_fecha_ini)
 }
 
 #' Agrupar por fecha de notificación y casos
