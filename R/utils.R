@@ -492,3 +492,4 @@ obtener_casos_pob_especial <- function(data_event) {
   )
   return(data_pob_especial)
 }
+
