@@ -6,7 +6,7 @@
 \usage{
 agrupar_sex_semanaepi(
   data_event,
-  nomb_cols = c("sexo", "semana"),
+  cols_sex = c("sexo", "semana"),
   porcentaje = TRUE
 )
 }
@@ -14,15 +14,14 @@ agrupar_sex_semanaepi(
 \item{data_event}{Un `data.frame` que contiene los datos de
 la enfermedad o evento}
 
-\item{nomb_cols}{Un `character` (cadena de caracteres) o
-`array (arreglo) de character` que contiene el nombre de
-la(s) columna(s) de los datos de la enfermedad o evento
-que contienen el sexo y las semanas epidemiológicas; su valor
-por defecto es `c("sexo", "semana")`}
+\item{cols_sex}{Un `character` (cadena de caracteres) o
+`array (arreglo) de character` con el nombre de la(s)
+columna(s) que contienen el sexo y las semanas
+epidemiológicas; su valor por defecto es `c("sexo", "semana")`}
 
-\item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica si
-es necesario agregar un porcentaje de casos como una columna; su
-valor por defecto es `TRUE`}
+\item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica si se debe
+agregar una columna con el porcentaje de casos; su valor por
+defecto es `FALSE`}
 }
 \value{
 Un `data.frame` con los datos de la enfermedad o evento
@@ -36,6 +35,6 @@ epidemiológica y número de casos
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 agrupar_sex_semanaepi(data_event = data_limpia,
-                      nomb_cols = c("sexo", "semana"),
+                      cols_sex = c("sexo", "semana"),
                       porcentaje = TRUE)
 }
