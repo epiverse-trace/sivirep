@@ -67,9 +67,9 @@ geo_filtro <- function(data_event, dpto = NULL, mpio = NULL) {
 #' código y nombre
 #' @examples
 #' geo_cods <- import_geo_cods()
-#' obtener_cods_dpto(geo_cods = geo_cods)
+#' listar_dptos(geo_cods = geo_cods)
 #' @export
-obtener_cods_dpto <- function(geo_cods) {
+listar_dptos <- function(geo_cods) {
   stopifnot("El parametro geo_cods es obligatorio" = !missing(geo_cods),
             "El parametro geo_cods debe ser un data.frame" =
               is.data.frame(geo_cods),
