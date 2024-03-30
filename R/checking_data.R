@@ -622,6 +622,7 @@ agrupar_dpto <- function(data_event,
   nomb_cols <- obtener_tip_ocurren_geo(data_event_cods_dpto$cod_eve[1])
   data_event_cods_dpto <- agrupar_cols_casos(data_event_cods_dpto,
                                              nomb_cols = nomb_cols[1:2],
+                                             porcentaje = porcentaje)
   data_event_cods_dpto[[nomb_cols[1]]] <-
     as.character(data_event_cods_dpto[[nomb_cols[1]]])
   return(data_event_cods_dpto)
