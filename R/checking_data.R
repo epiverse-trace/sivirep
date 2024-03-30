@@ -154,7 +154,7 @@ agrupar_semanaepi <- function(data_event,
   data_event_agrupada <- data_event %>%
     dplyr::group_by_at(col_semanaepi) %>%
     dplyr::summarise(casos = sum(.data$uni_med))
-  data_event_agrupada <- data_event_agrupada[1:52, ]
+  data_event_agrupada <- data_event_agrupada[1:53, ]
   return(data_event_agrupada)
 }
 
