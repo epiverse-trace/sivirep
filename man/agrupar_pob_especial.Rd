@@ -4,19 +4,19 @@
 \alias{agrupar_pob_especial}
 \title{Agrupar por población especial y casos}
 \usage{
-agrupar_pob_especial(data_event, nomb_col = "poblacion", porcentaje = TRUE)
+agrupar_pob_especial(data_event, col_pob = "poblacion", porcentaje = TRUE)
 }
 \arguments{
 \item{data_event}{Un `data.frame` que contiene los datos de la enfermedad
 o evento}
 
-\item{nomb_col}{Un `character` (cadena de caracteres) con el nombre de la
-columna de los datos de la enfermedad o evento que contiene las poblaciones
-especiales; su valor por defecto es `"poblacion"`}
+\item{col_pob}{Un `character` (cadena de caracteres) con el nombre de la
+columna que contiene las poblaciones especiales en los datos de la
+enfermedad o evento; su valor por defecto es `"poblacion"`}
 
-\item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica si
-es necesario agregar un porcentaje de casos como una columna; su valor
-por defecto es `TRUE`}
+\item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica si se debe
+agregar una columna con el porcentaje de casos; su valor por
+defecto es `FALSE`}
 }
 \value{
 Un `data.frame` con los datos de la enfermedad o evento agrupados
@@ -30,6 +30,6 @@ especial y casos
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 agrupar_pob_especial(data_event = data_limpia,
-                     nomb_col = "poblacion",
+                     col_pob = "poblacion",
                      porcentaje = TRUE)
 }
