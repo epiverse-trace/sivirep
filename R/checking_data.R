@@ -529,15 +529,15 @@ agrupar_edad_sex <- function(data_event,
 #'                      porcentaje = TRUE)
 #' @export
 agrupar_pob_especial <- function(data_event,
-                                 nomb_col = "poblacion",
+                                 col_pob = "poblacion",
                                  porcentaje = TRUE) {
   stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
             "El parametro data_event debe ser un data.frame" =
               is.data.frame(data_event),
             "El parametro data_event no debe estar vacio" =
               nrow(data_event) > 0,
-            "El parametro nomb_col debe ser una cadena de caracteres"
-            = is.character(nomb_col),
+            "El parametro col_pob debe ser una cadena de caracteres"
+            = is.character(col_pob),
             "El parametro porcentaje debe ser un booleano (TRUE o FALSE)" =
               is.logical(porcentaje))
   data_event_especial <- obtener_casos_pob_especial(data_event)
