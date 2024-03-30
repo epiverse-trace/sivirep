@@ -19,7 +19,7 @@ o evento}
 de la columna que contiene las edades en los datos de la enfermedad o
 evento; su valor por defecto es `"edad"`}
 
-\item{interval_edad}{Un `numeric` (numerico) que contiene el intervalo del
+\item{interval_edad}{Un `numeric` (numérico) que contiene el intervalo del
 rango de edades; su valor por defecto es `10`}
 
 \item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica si se debe
