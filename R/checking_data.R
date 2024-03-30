@@ -496,9 +496,9 @@ agrupar_edad <- function(data_event,
 #' @param col_sex Un `character` (cadena de caracteres) con el nombre de la
 #' columna que contiene el sexo en los datos de la enfermdedad o evento;
 #' su valor por defecto es `"sexo`
-#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si
-#' se debe agregar el porcentaje de casos como columna; su valor
-#' por defecto es `TRUE`
+#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si se debe
+#' agregar una columna con el porcentaje de casos; su valor por
+#' defecto es `FALSE`
 #' @param interval_edad Un `numeric` (numerico) que contiene el intervalo del
 #' rango de edades; su valor por defeccto es `10`
 #' @return Un `data.frame` con los datos de enfermedades agrupados
