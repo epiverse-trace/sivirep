@@ -513,19 +513,19 @@ agrupar_edad_sex <- function(data_event,
 #' especial y casos
 #' @param data_event Un `data.frame` que contiene los datos de la enfermedad
 #' o evento
-#' @param nomb_col Un `character` (cadena de caracteres) con el nombre de la
-#' columna de los datos de la enfermedad o evento que contiene las poblaciones
-#' especiales; su valor por defecto es `"poblacion"`
-#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si
-#' es necesario agregar un porcentaje de casos como una columna; su valor
-#' por defecto es `TRUE`
+#' @param col_pob Un `character` (cadena de caracteres) con el nombre de la
+#' columna que contiene las poblaciones especiales en los datos de la
+#' enfermedad o evento; su valor por defecto es `"poblacion"`
+#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si se debe
+#' agregar una columna con el porcentaje de casos; su valor por
+#' defecto es `FALSE`
 #' @return Un `data.frame` con los datos de la enfermedad o evento agrupados
 #' por poblaciones especiales y casos
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 #' agrupar_pob_especial(data_event = data_limpia,
-#'                      nomb_col = "poblacion",
+#'                      col_pob = "poblacion",
 #'                      porcentaje = TRUE)
 #' @export
 agrupar_pob_especial <- function(data_event,
