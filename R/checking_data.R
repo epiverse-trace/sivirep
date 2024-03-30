@@ -365,8 +365,8 @@ agrupar_fecha_notifica <- function(data_event,
 #' por sexo y número de casos
 #' @param data_event Un `data.frame` que contiene los datos de la enfermedad
 #' o evento
-#' @param nomb_col Un `character` (cadena de caracteres) con el nombre
-#' de la columna de los datos de la enfermedad o evento que contiene el sexo;
+#' @param col_sex Un `character` (cadena de caracteres) con el nombre
+#' de la columna que contiene el sexo en los datos de la enfermedad o evento;
 #' su valor por defecto es `"sexo"`
 #' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si es necesario
 #' agregar un porcentaje de casos como una columna; su valor por defecto es
@@ -377,7 +377,7 @@ agrupar_fecha_notifica <- function(data_event,
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 #' agrupar_sex(data_event = data_limpia,
-#'             nomb_col = "sexo",
+#'             col_sex = "sexo",
 #'             porcentaje = TRUE)
 #' @export
 agrupar_sex <- function(data_event,

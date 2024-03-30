@@ -4,19 +4,19 @@
 \alias{agrupar_sex}
 \title{Agrupar por sexo y casos}
 \usage{
-agrupar_sex(data_event, nomb_col = "sexo", porcentaje = TRUE)
+agrupar_sex(data_event, col_sex = "sexo", porcentaje = TRUE)
 }
 \arguments{
 \item{data_event}{Un `data.frame` que contiene los datos de la enfermedad
 o evento}
 
-\item{nomb_col}{Un `character` (cadena de caracteres) con el nombre
-de la columna de los datos de la enfermedad o evento que contiene el sexo;
+\item{col_sex}{Un `character` (cadena de caracteres) con el nombre
+de la columna que contiene el sexo en los datos de la enfermedad o evento;
 su valor por defecto es `"sexo"`}
 
-\item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica si es necesario
-agregar un porcentaje de casos como una columna; su valor por defecto es
-`TRUE`}
+\item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica si se debe
+agregar una columna con el porcentaje de casos; su valor por
+defecto es `TRUE`}
 }
 \value{
 Un data.frame con los datos de la enfermedad o evento
@@ -30,6 +30,6 @@ por sexo y número de casos
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 agrupar_sex(data_event = data_limpia,
-            nomb_col = "sexo",
+            col_sex = "sexo",
             porcentaje = TRUE)
 }
