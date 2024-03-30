@@ -932,8 +932,8 @@ plot_area_geo <- function(data_agrupada,
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(dengue2020)
-#' data_agrupada <- agrupar_casos_eventos(data_event = data_limpia,
-#'                                        nomb_col = "cod_eve")
+#' data_agrupada <- agrupar_eventos(data_event = data_limpia,
+#'                                  col_event = "cod_eve")
 #' plot_tabla_tipos_event(data_agrupada,
 #'                        col_event = "nombre_evento")
 #' @export
@@ -1151,6 +1151,7 @@ plot_tipo_caso_years <- function(data_agrupada,
     ggplot2::theme(legend.position = "right")
   return(plot_casos_years)
 }
+
 #' Generar gráfico de distribución de casos por la pertenencia étnica
 #'
 #' Función que genera el gráfico de la distribución de casos por la
