@@ -472,13 +472,13 @@ agrupar_edad <- function(data_event,
   data_event_edad <- agrupar_cols_casos(data_event,
                                         col_edad)
   data_event_edad <-
-    agrupar_rango_edad_casos(data_event_edad,
-                             col_edad,
-                             min_val = 0,
-                             max_val =
-                             max(data_event_edad[[col_edad]]),
-                             paso = interval_edad,
-                             porcentaje = porcentaje)
+    agrupar_rango_edad(data_event_edad,
+                       col_edad,
+                       min_val = 0,
+                       max_val =
+                         max(data_event_edad[[col_edad]]),
+                       paso = interval_edad,
+                       porcentaje = porcentaje)
   return(data_event_edad)
 }
 
@@ -529,7 +529,7 @@ agrupar_edad_sex <- function(data_event,
   data_event_edad_sex <- agrupar_cols_casos(data_event,
                                             nomb_cols,
                                             porcentaje)
-  data_event_edad_sex <- agrupar_rango_edad_casos(
+  data_event_edad_sex <- agrupar_rango_edad(
     data_event_edad_sex,
     nomb_cols[1],
     nomb_cols[2],
