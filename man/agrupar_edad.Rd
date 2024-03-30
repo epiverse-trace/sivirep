@@ -6,7 +6,7 @@
 \usage{
 agrupar_edad(
   data_event,
-  nomb_col = "edad",
+  col_edad = "edad",
   interval_edad = 10,
   porcentaje = FALSE
 )
@@ -15,16 +15,16 @@ agrupar_edad(
 \item{data_event}{Un `data.frame` que contiene los datos de la enfermedad
 o evento}
 
-\item{nomb_col}{Un `character` (cadena de caracteres) con el nombre
-de la columna de los datos de la enfermedad o evento que contiene las edades;
-su valor por defecto es `"edad"`}
+\item{col_edad}{Un `character` (cadena de caracteres) con el nombre
+de la columna que contiene las edades en los datos de la enfermedad o
+evento; su valor por defecto es `"edad"`}
 
 \item{interval_edad}{Un `numeric` (numerico) que contiene el intervalo del
 rango de edades; su valor por defecto es `10`}
 
-\item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica si
-se debe agregar el porcentaje de casos como columna; su valor
-por defecto es `FALSE`}
+\item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica si se debe
+agregar una columna con el porcentaje de casos; su valor por
+defecto es `FALSE`}
 }
 \value{
 Un `data.frame` con los datos de la enfermedad o evento agrupados
@@ -38,6 +38,6 @@ y número de casos
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 agrupar_edad(data_event = data_limpia,
-             nomb_col = "edad",
+             col_edad = "edad",
              porcentaje = FALSE)
 }

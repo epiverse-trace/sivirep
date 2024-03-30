@@ -441,12 +441,12 @@ agrupar_sex_semanaepi <- function(data_event,
 #' y número de casos
 #' @param data_event Un `data.frame` que contiene los datos de la enfermedad
 #' o evento
-#' @param nomb_col Un `character` (cadena de caracteres) con el nombre
-#' de la columna de los datos de la enfermedad o evento que contiene las edades;
-#' su valor por defecto es `"edad"`
-#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si
-#' se debe agregar el porcentaje de casos como columna; su valor
-#' por defecto es `FALSE`
+#' @param col_edad Un `character` (cadena de caracteres) con el nombre
+#' de la columna que contiene las edades en los datos de la enfermedad o
+#' evento; su valor por defecto es `"edad"`
+#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si se debe
+#' agregar una columna con el porcentaje de casos; su valor por
+#' defecto es `FALSE`
 #' @param interval_edad Un `numeric` (numerico) que contiene el intervalo del
 #' rango de edades; su valor por defecto es `10`
 #' @return Un `data.frame` con los datos de la enfermedad o evento agrupados
@@ -455,7 +455,7 @@ agrupar_sex_semanaepi <- function(data_event,
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 #' agrupar_edad(data_event = data_limpia,
-#'              nomb_col = "edad",
+#'              col_edad = "edad",
 #'              porcentaje = FALSE)
 #' @export
 agrupar_edad <- function(data_event,
