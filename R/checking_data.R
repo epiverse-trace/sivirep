@@ -244,27 +244,27 @@ agrupar_cols_casos <- function(data_event,
 #'                          porcentaje = TRUE)
 #' @export
 agrupar_rango_edad_casos <- function(data_event,
-                                     nomb_col,
-                                     col_adicional = NULL,
-                                     min_val,
-                                     max_val,
-                                     paso,
-                                     porcentaje = TRUE) {
+                               col_edad,
+                               col_adicional = NULL,
+                               min_val,
+                               max_val,
+                               paso,
+                               porcentaje = TRUE) {
   stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
             "El parametro data_event debe ser un data.frame" =
               is.data.frame(data_event),
             "El parametro data_event no debe estar vacio" =
               nrow(data_event) > 0)
   data_vals_rango <- data.frame()
-  if (is.null(nomb_col) || length(nomb_col) > 0) {
-    nomb_col <- "edad"
+  if (is.null(col_edad) || length(col_edad) > 0) {
+    col_edad <- "edad"
   }
-  stopifnot("El parametro nomb_col debe ser una cadena de caracteres"
-            = is.character(nomb_col))
+  stopifnot("El parametro col_edad debe ser una cadena de caracteres"
+            = is.character(col_edad))
   total_casos <- sum(data_event$casos)
   data_vals_rango <- data_event %>%
     dplyr::mutate(ranges = cut(
-      data_event[[nomb_col]],
+      data_event[[col_edad]],
       seq(min_val, max_val, paso)
     )) %>%
     dplyr::group_by_at(c("ranges", col_adicional)) %>%
@@ -275,7 +275,7 @@ agrupar_rango_edad_casos <- function(data_event,
     data_vals_rango <- data_vals_rango %>%
       mutate(porcentaje =  round(.data$casos / total_casos * 100, 3))
   }
-  names(data_vals_rango)[names(data_vals_rango) == "ranges"] <- nomb_col
+  names(data_vals_rango)[names(data_vals_rango) == "ranges"] <- col_edad
   return(data_vals_rango)
 }
 
