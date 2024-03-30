@@ -137,9 +137,9 @@ obtener_casos_pob_especial <- function(data_event) {
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
-#' agrupar_casos_semanaepi(data_event = data_limpia)
+#' agrupar_semanaepi(data_event = data_limpia,
 #' @export
-agrupar_casos_semanaepi <- function(data_event) {
+agrupar_semanaepi <- function(data_event,
                               col_semanaepi = "semana") {
   stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
             "El parametro data_event debe ser un data.frame" =
