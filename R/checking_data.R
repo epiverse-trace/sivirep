@@ -285,7 +285,7 @@ agrupar_rango_edad_casos <- function(data_event,
 #' fecha de inicio de síntomas y número de casos
 #' @param data_event Un `data.frame` que contiene los datos de
 #' la enfermedad o evento
-#' @param nomb_col Un `character` (cadena de caracteres) con el
+#' @param col_fecha Un `character` (cadena de caracteres) con el
 #' nombre de la columna de los datos de la enfermedad o evento que contiene
 #' las fechas de inicio de síntomas; su valor por defecto es `"ini_sin"`
 #' @return Un `data.frame` con los datos de la enfermedad o evento
@@ -294,7 +294,7 @@ agrupar_rango_edad_casos <- function(data_event,
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 #' agrupar_fecha_inisintomas(data_event = data_limpia,
-#'                           nomb_col = "ini_sin")
+#'                           col_fecha = "ini_sin")
 #' @export
 agrupar_fecha_inisintomas <- function(data_event,
                                       col_fecha = "ini_sin") {

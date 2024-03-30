@@ -4,13 +4,13 @@
 \alias{agrupar_fecha_inisintomas}
 \title{Agrupar por fecha de inicio de síntomas y casos}
 \usage{
-agrupar_fecha_inisintomas(data_event, nomb_col = "ini_sin")
+agrupar_fecha_inisintomas(data_event, col_fecha = "ini_sin")
 }
 \arguments{
 \item{data_event}{Un `data.frame` que contiene los datos de
 la enfermedad o evento}
 
-\item{nomb_col}{Un `character` (cadena de caracteres) con el
+\item{col_fecha}{Un `character` (cadena de caracteres) con el
 nombre de la columna de los datos de la enfermedad o evento que contiene
 las fechas de inicio de síntomas; su valor por defecto es `"ini_sin"`}
 }
@@ -26,5 +26,5 @@ fecha de inicio de síntomas y número de casos
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 agrupar_fecha_inisintomas(data_event = data_limpia,
-                          nomb_col = "ini_sin")
+                          col_fecha = "ini_sin")
 }
