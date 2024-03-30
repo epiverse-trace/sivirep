@@ -26,13 +26,13 @@ la enfermedad o evento}
 el nombre de la columna adicional para agrupar con las edades en
 los datos de la enfermedad o evento; su valor por defecto es `NULL`}
 
-\item{min_val}{Un `numeric` (numerico) que contiene la edad mínima
+\item{min_val}{Un `numeric` (numérico) que contiene la edad mínima
 con la que debe iniciar el rango de edades}
 
-\item{max_val}{Un `numeric` (numerico) que contiene la edad máxima
+\item{max_val}{Un `numeric` (numérico) que contiene la edad máxima
 con la que debe finalizar el rango de edades}
 
-\item{paso}{Un `numeric` (numerico) que contiene el valor del paso
+\item{paso}{Un `numeric` (numérico) que contiene el valor del paso
 para generar el rango de edades}
 
 \item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica si se debe

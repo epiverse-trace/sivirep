@@ -17,19 +17,19 @@ agrupar_edad_sex(
 o evento}
 
 \item{col_edad}{Un `character` (cadena de caracteres) con el nombre de la
-columna que contiene las edades en los datos de la enfermdedad o evento;
+columna que contiene las edades en los datos de la enfermedad o evento;
 su valor por defecto es `"edad`}
 
 \item{col_sex}{Un `character` (cadena de caracteres) con el nombre de la
-columna que contiene el sexo en los datos de la enfermdedad o evento;
+columna que contiene el sexo en los datos de la enfermedad o evento;
 su valor por defecto es `"sexo`}
 
 \item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica si se debe
 agregar una columna con el porcentaje de casos; su valor por
 defecto es `TRUE`}
 
-\item{interval_edad}{Un `numeric` (numerico) que contiene el intervalo del
-rango de edades; su valor por defeccto es `10`}
+\item{interval_edad}{Un `numeric` (numérico) que contiene el intervalo del
+rango de edades; su valor por defecto es `10`}
 }
 \value{
 Un `data.frame` con los datos de enfermedades agrupados

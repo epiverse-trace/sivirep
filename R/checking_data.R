@@ -3,9 +3,9 @@
 #' Función que filtra los datos de una enfermedad o evento por departamentos
 #' y municipios
 #' @param data_event Un `data.frame` con los datos de una enfermedad o evento
-#' @param dpto Un `character` (cadena de caracteres) o `numeric` (numerico)
+#' @param dpto Un `character` (cadena de caracteres) o `numeric` (numérico)
 #' que contiene el nombre o código del departamento; valor por defecto `NULL`
-#' @param mpio Un `character` (cadena de caracteres) o `numeric` (numerico)
+#' @param mpio Un `character` (cadena de caracteres) o `numeric` (numérico)
 #' que contiene el nombre o código del municipio; su valor por defecto
 #' es `NULL`
 #' @return Un `data.frame` con los datos filtrados con la enfermedad,
@@ -183,11 +183,11 @@ agrupar_cols_casos <- function(data_event,
 #' @param col_adicional Un `character` (cadena de caracteres) con
 #' el nombre de la columna adicional para agrupar con las edades en
 #' los datos de la enfermedad o evento; su valor por defecto es `NULL`
-#' @param min_val Un `numeric` (numerico) que contiene la edad mínima
+#' @param min_val Un `numeric` (numérico) que contiene la edad mínima
 #' con la que debe iniciar el rango de edades
-#' @param max_val Un `numeric` (numerico) que contiene la edad máxima
+#' @param max_val Un `numeric` (numérico) que contiene la edad máxima
 #' con la que debe finalizar el rango de edades
-#' @param paso Un `numeric` (numerico) que contiene el valor del paso
+#' @param paso Un `numeric` (numérico) que contiene el valor del paso
 #' para generar el rango de edades
 #' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si se debe
 #' agregar una columna con el porcentaje de casos; su valor por
@@ -410,7 +410,7 @@ agrupar_sex_semanaepi <- function(data_event,
 #' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si se debe
 #' agregar una columna con el porcentaje de casos; su valor por
 #' defecto es `FALSE`
-#' @param interval_edad Un `numeric` (numerico) que contiene el intervalo del
+#' @param interval_edad Un `numeric` (numérico) que contiene el intervalo del
 #' rango de edades; su valor por defecto es `10`
 #' @return Un `data.frame` con los datos de la enfermedad o evento agrupados
 #' por edad y número de casos
@@ -454,16 +454,16 @@ agrupar_edad <- function(data_event,
 #' @param data_event Un `data.frame` que contiene los datos de la enfermedad
 #' o evento
 #' @param col_edad Un `character` (cadena de caracteres) con el nombre de la
-#' columna que contiene las edades en los datos de la enfermdedad o evento;
+#' columna que contiene las edades en los datos de la enfermedad o evento;
 #' su valor por defecto es `"edad`
 #' @param col_sex Un `character` (cadena de caracteres) con el nombre de la
-#' columna que contiene el sexo en los datos de la enfermdedad o evento;
+#' columna que contiene el sexo en los datos de la enfermedad o evento;
 #' su valor por defecto es `"sexo`
 #' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si se debe
 #' agregar una columna con el porcentaje de casos; su valor por
 #' defecto es `TRUE`
-#' @param interval_edad Un `numeric` (numerico) que contiene el intervalo del
-#' rango de edades; su valor por defeccto es `10`
+#' @param interval_edad Un `numeric` (numérico) que contiene el intervalo del
+#' rango de edades; su valor por defecto es `10`
 #' @return Un `data.frame` con los datos de enfermedades agrupados
 #' por edades, sexo y número de casos
 #' @examples
@@ -597,7 +597,7 @@ agrupar_dpto <- function(data_event,
 #' de municipios y número de casos
 #' @param data_event Un `data.frame` que contiene los datos de la
 #' enfermedad o evento
-#' @param dpto Un `character` (cadena de caracteres) o `numeric` (numerico)
+#' @param dpto Un `character` (cadena de caracteres) o `numeric` (numérico)
 #' que contiene el nombre del departamento; su valor por defecto es `NULL`
 #' @param col_mpio Un `character` (cadena de caracteres) con el nombre de
 #' la columna que contiene los códigos de los municipios en los datos de la
