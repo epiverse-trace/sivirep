@@ -243,7 +243,7 @@ agrupar_cols_casos <- function(data_event,
 #'                          paso = 10,
 #'                          porcentaje = TRUE)
 #' @export
-agrupar_rango_edad_casos <- function(data_event,
+agrupar_rango_edad <- function(data_event,
                                col_edad,
                                col_adicional = NULL,
                                min_val,
