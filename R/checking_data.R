@@ -140,13 +140,14 @@ obtener_casos_pob_especial <- function(data_event) {
 #' agrupar_casos_semanaepi(data_event = data_limpia)
 #' @export
 agrupar_casos_semanaepi <- function(data_event) {
+                              col_semanaepi = "semana") {
   stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
             "El parametro data_event debe ser un data.frame" =
               is.data.frame(data_event),
             "El parametro data_event no debe estar vacio" =
               nrow(data_event) > 0)
   data_event_agrupada <- data_event %>%
-    dplyr::group_by(.data$semana) %>%
+    dplyr::group_by_at(col_semanaepi) %>%
     dplyr::summarise(casos = sum(.data$uni_med))
   data_event_agrupada <- data_event_agrupada[1:52, ]
   return(data_event_agrupada)
