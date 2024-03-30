@@ -591,19 +591,19 @@ agrupar_pob_especial <- function(data_event,
 #' número de casos
 #' @param data_event Un `data.frame` que contiene los datos de la
 #' enfermedad o evento
-#' @param nomb_col Un `character` (cadena de caracteres) con el nombre
-#' de la columna en los datos de la enfermedad o evento que contiene los
-#' códigos de departamento; su valor por defecto es `"cod_dpto_o"`
-#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si
-#' es necesario agregar un porcentaje de casos como una columna; su valor
-#' por defecto es `FALSE`
+#' @param col_dpto Un `character` (cadena de caracteres) con el nombre
+#' de la columna que contiene los códigos de los departamentos en los
+#' datos de la enfermedad o evento; su valor por defecto es `"cod_dpto_o"`
+#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si se debe
+#' agregar una columna con el porcentaje de casos; su valor por
+#' defecto es `FALSE`
 #' @return Un `data.frame` con los datos de la enfermedad o evento agrupados
 #' por códigos de departamento y número de casos
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 #' agrupar_dpto(data_event = data_limpia,
-#'              nomb_col = "cod_dpto_o",
+#'              col_dpto = "cod_dpto_o",
 #'              porcentaje = FALSE)
 #' @export
 agrupar_dpto <- function(data_event,
