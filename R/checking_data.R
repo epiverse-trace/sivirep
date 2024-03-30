@@ -325,16 +325,16 @@ agrupar_fecha_inisintomas <- function(data_event,
 #' notificación y número de casos
 #' @param data_event Un `data.frame` que contiene los datos de la enfermedad
 #' o evento
-#' @param nomb_col Un `character` (cadena de caracteres) con el nombre de
-#' la columna de los datos de la enfermedad o evento que contiene las
-#' fechas de notificación; su valor por defecto es `"fec_not"`
+#' @param col_fecha Un `character` (cadena de caracteres) con el nombre de
+#' la columna que contiene las fechas de notificación en los datos de la
+#' enfermedad o evento; su valor por defecto es `"fec_not"`
 #' @return Un `data.frame` con los datos de enfermedades agrupados por fecha de
 #' notificación y número de casos
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 #' agrupar_fecha_notifica(data_event = data_limpia,
-#'                        nomb_col = "fec_not")
+#'                        col_fecha = "fec_not")
 #' @export
 agrupar_fecha_notifica <- function(data_event,
                                    col_fecha = "fec_not") {
