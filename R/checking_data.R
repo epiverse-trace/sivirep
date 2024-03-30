@@ -212,22 +212,21 @@ agrupar_cols_casos <- function(data_event,
 #' de edad y número de casos
 #' @param data_event Un `data.frame` que contiene los datos de la
 #' enfermedad o evento
-#' @param nomb_col Un `character` (cadena de caracteres) con
-#' el nombre de la columna de los datos de la enfermedad o evento
-#' que contiene las edades
+#' @param col_edad Un `character` (cadena de caracteres) con
+#' el nombre de la columna que contiene las edades en los datos de
+#' la enfermedad o evento
 #' @param col_adicional Un `character` (cadena de caracteres) con
-#' el nombre adicional de la columna de los datos de la enfermedad
-#' o evento para agrupar con la edad; su valor por defecto es
-#' `NULL`
-#' @param min_val Un `numeric` (numerico) que contiene el valor mínimo
-#' de las edades
-#' @param max_val Un `numeric` (numerico) que contiene el valor máximo
-#' de las edades
+#' el nombre de la columna adicional para agrupar con las edades en
+#' los datos de la enfermedad o evento; su valor por defecto es `NULL`
+#' @param min_val Un `numeric` (numerico) que contiene la edad mínima
+#' con la que debe iniciar el rango de edades
+#' @param max_val Un `numeric` (numerico) que contiene la edad máxima
+#' con la que debe finalizar el rango de edades
 #' @param paso Un `numeric` (numerico) que contiene el valor del paso
 #' para generar el rango de edades
-#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si
-#' se debe agregar el porcentaje de casos como columna; su valor
-#' por defecto es `TRUE`
+#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si se debe
+#' agregar una columna con el porcentaje de casos; su valor por
+#' defecto es `TRUE`
 #' @return Un `data.frame` con los datos de la enfermedad o evento
 #' agrupados por el rango de edad y número de casos
 #' @examples
@@ -236,12 +235,12 @@ agrupar_cols_casos <- function(data_event,
 #' data_edad <- agrupar_cols_casos(data_event = data_limpia,
 #'                                 c("edad", "semana"),
 #'                                 porcentaje = TRUE)
-#' agrupar_rango_edad_casos(data_event = data_edad,
-#'                          nomb_col = "edad",
-#'                          min_val = 0,
-#'                          max_val = max(data_edad$edad),
-#'                          paso = 10,
-#'                          porcentaje = TRUE)
+#' agrupar_rango_edad(data_event = data_edad,
+#'                    col_edad = "edad",
+#'                    min_val = 0,
+#'                    max_val = max(data_edad$edad),
+#'                    paso = 10,
+#'                    porcentaje = TRUE)
 #' @export
 agrupar_rango_edad <- function(data_event,
                                col_edad,
