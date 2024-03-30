@@ -127,6 +127,7 @@ obtener_casos_pob_especial <- function(data_event) {
 }
 
 #' Agrupar por semana y casos
+#' Agrupar por semana epidemiológica y casos
 #'
 #' Función que agrupa los datos de una enfermedad o evento
 #' por semana epidemiológica y número de casos
