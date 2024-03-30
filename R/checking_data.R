@@ -368,9 +368,9 @@ agrupar_fecha_notifica <- function(data_event,
 #' @param col_sex Un `character` (cadena de caracteres) con el nombre
 #' de la columna que contiene el sexo en los datos de la enfermedad o evento;
 #' su valor por defecto es `"sexo"`
-#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si es necesario
-#' agregar un porcentaje de casos como una columna; su valor por defecto es
-#' `TRUE`
+#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si se debe
+#' agregar una columna con el porcentaje de casos; su valor por
+#' defecto es `TRUE`
 #' @return Un data.frame con los datos de la enfermedad o evento
 #' agrupados por sexo y número de casos
 #' @examples
@@ -406,7 +406,7 @@ agrupar_sex <- function(data_event,
 #' epidemiológicas; su valor por defecto es `c("sexo", "semana")`
 #' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si se debe
 #' agregar una columna con el porcentaje de casos; su valor por
-#' defecto es `FALSE`
+#' defecto es `TRUE`
 #' @return Un `data.frame` con los datos de la enfermedad o evento
 #' agrupados por sexo, semana epidemiológica y número de casos
 #' @examples
@@ -497,7 +497,7 @@ agrupar_edad <- function(data_event,
 #' su valor por defecto es `"sexo`
 #' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si se debe
 #' agregar una columna con el porcentaje de casos; su valor por
-#' defecto es `FALSE`
+#' defecto es `TRUE`
 #' @param interval_edad Un `numeric` (numerico) que contiene el intervalo del
 #' rango de edades; su valor por defeccto es `10`
 #' @return Un `data.frame` con los datos de enfermedades agrupados

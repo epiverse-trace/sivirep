@@ -21,7 +21,7 @@ epidemiológicas; su valor por defecto es `c("sexo", "semana")`}
 
 \item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica si se debe
 agregar una columna con el porcentaje de casos; su valor por
-defecto es `FALSE`}
+defecto es `TRUE`}
 }
 \value{
 Un `data.frame` con los datos de la enfermedad o evento

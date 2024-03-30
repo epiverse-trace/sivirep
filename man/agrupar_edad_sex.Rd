@@ -26,7 +26,7 @@ su valor por defecto es `"sexo`}
 
 \item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica si se debe
 agregar una columna con el porcentaje de casos; su valor por
-defecto es `FALSE`}
+defecto es `TRUE`}
 
 \item{interval_edad}{Un `numeric` (numerico) que contiene el intervalo del
 rango de edades; su valor por defeccto es `10`}
