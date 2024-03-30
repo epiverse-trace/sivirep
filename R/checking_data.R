@@ -381,16 +381,16 @@ agrupar_fecha_notifica <- function(data_event,
 #'             porcentaje = TRUE)
 #' @export
 agrupar_sex <- function(data_event,
-                        nomb_col = "sexo",
+                        col_sex = "sexo",
                         porcentaje = TRUE) {
   stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
             "El parametro data_event debe ser un data.frame" =
               is.data.frame(data_event),
             "El parametro data_event no debe estar vacio" =
               nrow(data_event) > 0,
-            "El parametro nomb_col debe ser una cadena de caracteres"
-            = is.character(nomb_col))
-  data_event_sex <- agrupar_cols_casos(data_event, nomb_col, porcentaje)
+            "El parametro col_sex debe ser una cadena de caracteres"
+            = is.character(col_sex))
+  data_event_sex <- agrupar_cols_casos(data_event, col_sex, porcentaje)
   return(data_event_sex)
 }
 
