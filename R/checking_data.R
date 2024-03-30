@@ -607,23 +607,23 @@ agrupar_pob_especial <- function(data_event,
 #'              porcentaje = FALSE)
 #' @export
 agrupar_dpto <- function(data_event,
-                         nomb_col = "cod_dpto_o",
+                         col_dpto = "cod_dpto_o",
                          porcentaje = FALSE) {
   stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
             "El parametro data_event debe ser un data.frame" =
               is.data.frame(data_event),
             "El parametro data_event no debe estar vacio" =
               nrow(data_event) > 0,
-            "El parametro nomb_col debe ser una cadena de caracteres"
-            = is.character(nomb_col),
+            "El parametro col_dpto debe ser una cadena de caracteres"
+            = is.character(col_dpto),
             "El parametro porcentaje debe ser un booleano (TRUE o FALSE)" =
               is.logical(porcentaje))
   data_event_cods_dpto <- data_event
-  nomb_col <- obtener_tip_ocurren_geo(data_event_cods_dpto$cod_eve[1])
+  nomb_cols <- obtener_tip_ocurren_geo(data_event_cods_dpto$cod_eve[1])
   data_event_cods_dpto <- agrupar_cols_casos(data_event_cods_dpto,
-                                             nomb_cols = nomb_col[1:2])
-  data_event_cods_dpto[[nomb_col[1]]] <-
-    as.character(data_event_cods_dpto[[nomb_col[1]]])
+                                             nomb_cols = nomb_cols[1:2],
+  data_event_cods_dpto[[nomb_cols[1]]] <-
+    as.character(data_event_cods_dpto[[nomb_cols[1]]])
   return(data_event_cods_dpto)
 }
 
