@@ -404,6 +404,9 @@ agrupar_sex <- function(data_event,
 #' `array (arreglo) de character` con el nombre de la(s)
 #' columna(s) que contienen el sexo y las semanas
 #' epidemiológicas; su valor por defecto es `c("sexo", "semana")`
+#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si se debe
+#' agregar una columna con el porcentaje de casos; su valor por
+#' defecto es `FALSE`
 #' @return Un `data.frame` con los datos de la enfermedad o evento
 #' agrupados por sexo, semana epidemiológica y número de casos
 #' @examples
