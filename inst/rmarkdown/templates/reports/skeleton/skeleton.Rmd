@@ -169,7 +169,7 @@ La distribución de casos por tipo es la siguiente:
 
 ```{r total_cases, echo = FALSE, error = FALSE, fig.height=5, fig.width = 10, warning = FALSE, include = TRUE, message = FALSE, fig.pos = "H"} 
 total_casos_eventos <- agrupar_eventos(data_event = data_event_filtrada,
-                                       nomb_col = "cod_eve")
+                                       col_event = "cod_eve")
 plot_tabla_tipos_event(total_casos_eventos)
 ```
 
