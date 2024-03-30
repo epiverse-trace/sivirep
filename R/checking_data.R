@@ -337,7 +337,7 @@ agrupar_fecha_inisintomas <- function(data_event,
 #'                        nomb_col = "fec_not")
 #' @export
 agrupar_fecha_notifica <- function(data_event,
-                                   nomb_col = "fec_not") {
+                                   col_fecha = "fec_not") {
   fechas_cols_nombres <- config::get(file =
                                        system.file("extdata",
                                                    "config.yml",
@@ -348,14 +348,14 @@ agrupar_fecha_notifica <- function(data_event,
               is.data.frame(data_event),
             "El parametro data_event no debe estar vacio" =
               nrow(data_event) > 0)
-  if (is.null(nomb_col)) {
-    nomb_col <- fechas_cols_nombres[2]
+  if (is.null(col_fecha)) {
+    col_fecha <- fechas_cols_nombres[2]
   }
-  stopifnot("El parametro nomb_col debe ser una cadena de caracteres"
-            = is.character(nomb_col))
-  nomb_col <- append(nomb_col, "semana")
+  stopifnot("El parametro col_fecha debe ser una cadena de caracteres"
+            = is.character(col_fecha))
+  nomb_cols <- append(col_fecha, "semana")
   data_agrupada_fecha_not <- agrupar_cols_casos(data_event,
-                                                nomb_cols = nomb_col)
+                                                nomb_cols = nomb_cols)
   return(data_agrupada_fecha_not)
 }
 
