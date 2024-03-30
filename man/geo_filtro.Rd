@@ -13,8 +13,8 @@ geo_filtro(data_event, dpto = NULL, mpio = NULL)
 que contiene el nombre o código del departamento; valor por defecto `NULL`}
 
 \item{mpio}{Un `character` (cadena de caracteres) o `numeric` (numerico)
-que contiene el nombre o código del municipio;
-su valor por defecto es `NULL`}
+que contiene el nombre o código del municipio; su valor por defecto
+es `NULL`}
 }
 \value{
 Un `data.frame` con los datos filtrados con la enfermedad,

@@ -6,8 +6,8 @@
 #' @param dpto Un `character` (cadena de caracteres) o `numeric` (numerico)
 #' que contiene el nombre o código del departamento; valor por defecto `NULL`
 #' @param mpio Un `character` (cadena de caracteres) o `numeric` (numerico)
-#' que contiene el nombre o código del municipio;
-#' su valor por defecto es `NULL`
+#' que contiene el nombre o código del municipio; su valor por defecto
+#' es `NULL`
 #' @return Un `data.frame` con los datos filtrados con la enfermedad,
 #' departamentos y municipios seleccionados
 #' @examples
