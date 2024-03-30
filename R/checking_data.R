@@ -695,7 +695,8 @@ agrupar_mpio <- function(data_event,
   }
   dept_data <- obtener_info_depts(dpto)
   data_event_muns <- agrupar_cols_casos(data_event_muns,
-                                        nomb_cols = nomb_cols[1:4])
+                                        nomb_cols = nomb_cols[1:4],
+                                        porcentaje = porcentaje)
   data_event_muns[[nomb_cols[1]]] <-
     as.character(data_event_muns[[nomb_cols[1]]])
   data_event_muns[[nomb_cols[3]]] <-
