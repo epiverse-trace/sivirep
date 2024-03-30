@@ -57,12 +57,12 @@ geo_filtro <- function(data_event, dpto = NULL, mpio = NULL) {
   return(data_dept_filt)
 }
 
-#' Obtener códigos de departamentos
+#' Listar códigos de departamentos
 #'
-#' Función que obtiene la lista de departamentos de Colombia con su nombre
-#' y código
-#' @param geo_cods Un `data.frame` que contiene los códigos geográficos
-#' (departamentos y municipios de Colombia)
+#' Función que lista los departamentos de Colombia con su nombre y
+#' código
+#' @param geo_cods Un `data.frame` que contiene la información geográfica
+#' (departamentos y municipios de Colombia) con sus códigos
 #' @return Un `data.frame` con los datos de los departamentos con
 #' código y nombre
 #' @examples
