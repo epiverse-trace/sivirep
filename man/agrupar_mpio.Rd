@@ -19,11 +19,11 @@ enfermedad o evento}
 que contiene el nombre del departamento; su valor por defecto es `NULL`}
 
 \item{col_mpio}{Un `character` (cadena de caracteres) con el nombre de
-la columna en los datos de la enfermedad o evento que contiene los códigos
-de municipios; su valor por defecto es `"cod_mun_o"`}
+la columna que contiene los códigos de los municipios en los datos de la
+enfermedad o evento; su valor por defecto es `"cod_mun_o"`}
 
-\item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica si es necesario
-agregar un porcentaje de casos como una columna; su valor por
+\item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica si se debe
+agregar una columna con el porcentaje de casos; su valor por
 defecto es `FALSE`}
 }
 \value{
@@ -48,5 +48,5 @@ agrupar_mpio(data_event = data_limpia,
 agrupar_mpio(data_event = data_limpia,
              dpto = 05,
              col_mpio = "cod_mun_o",
-             porcentaje = FALSE)
+             porcentaje = TRUE)
 }
