@@ -297,7 +297,7 @@ agrupar_rango_edad_casos <- function(data_event,
 #'                           nomb_col = "ini_sin")
 #' @export
 agrupar_fecha_inisintomas <- function(data_event,
-                                      nomb_col = "ini_sin") {
+                                      col_fecha = "ini_sin") {
   fechas_cols_nombres <- config::get(file =
                                        system.file("extdata",
                                                    "config.yml",
@@ -308,15 +308,13 @@ agrupar_fecha_inisintomas <- function(data_event,
               is.data.frame(data_event),
             "El parametro data_event no debe estar vacio" =
               nrow(data_event) > 0)
-  if (is.null(nomb_col)) {
-    nomb_col <- fechas_cols_nombres[3]
+  if (is.null(col_fecha)) {
+    col_fecha <- fechas_cols_nombres[3]
   }
-  stopifnot("El parametro nomb_col debe ser una cadena de caracteres"
-            = is.character(nomb_col))
-  nomb_col <- append(nomb_col, "semana")
-  group_by_onset_symp <- agrupar_cols_casos(data_event,
-                                            nomb_cols = nomb_col)
-  return(group_by_onset_symp)
+  stopifnot("El parametro col_fecha debe ser una cadena de caracteres"
+            = is.character(col_fecha))
+  nomb_cols <- append(col_fecha, "semana")
+                                                nomb_cols = nomb_cols)
 }
 
 #' Agrupar por fecha de notificación y casos
