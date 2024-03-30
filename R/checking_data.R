@@ -160,12 +160,13 @@ agrupar_casos_semanaepi <- function(data_event) {
 #' una enfermedad o evento
 #' @param nomb_cols Un `character` (cadena de caracteres) o
 #' `array (arreglo) de character` que contiene el nombre de
-#' la(s) columna(s)
-#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si
-#' es necesario agregar un porcentaje de casos como columna
+#' la(s) columna(s) en los datos de la enfermedad o evento
+#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica
+#' si se debe agregar una columna con el porcentaje de casos;
+#' su valor por defecto es `FALSE`
 #' @return Un `data.frame` con los datos de una enfermedad
 #' o evento agrupados por el nombre de la(s) columna(s) y el
-#' número de casos; su valor por defecto es `TRUE`
+#' número de casos
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
