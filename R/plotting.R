@@ -191,7 +191,6 @@ plot_map <- function(data_agrupada,
                    legend.title = ggplot2::element_text(face = "bold")) +
     ggplot2::labs(caption = fuente_data, fill = "Casos")
   tema_tabla <- gridExtra::ttheme_minimal(base_size = 14,
-                                          base_family = "Arial",
                                           padding = ggplot2::unit(c(1, 1),
                                                                   "mm"))
   tabla <- ggplot2::ggplot() + ggplot2::theme_void() +
