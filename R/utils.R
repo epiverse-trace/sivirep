@@ -213,17 +213,17 @@ obtener_tip_ocurren_geo <- function(cod_event = NULL, nombre_event = NULL) {
   col_ocurren <- c("cod_dpto_o", "cod_mun_o", "ocurrencia")
   param_busqueda <- NULL
   if (!is.null(cod_event)) {
-      param_busqueda <- cod_event
-      stopifnot("El parametro cod_event es obligatorio" =
-              !missing(cod_event),
-            "El parametro cod_event debe ser una cadena de caracteres o
+    param_busqueda <- cod_event
+    stopifnot("El parametro cod_event es obligatorio" =
+                !missing(cod_event),
+              "El parametro cod_event debe ser una cadena de caracteres o
             numerico" =
-              (is.numeric(cod_event) && !is.character(cod_event)) ||
-              (!is.numeric(cod_event) && is.character(cod_event)))
+                (is.numeric(cod_event) && !is.character(cod_event)) ||
+                (!is.numeric(cod_event) && is.character(cod_event)))
   }
   if (!is.null(nombre_event)) {
     stopifnot("El parametro nombre_event debe ser un cadena de caracteres"
-            = is.character(nombre_event))
+              = is.character(nombre_event))
     param_busqueda <- nombre_event
   }
   if (length(grep(param_busqueda, geo_occurren$cod_dpto_n)) == 1
@@ -281,7 +281,7 @@ obtener_info_depts <- function(dpto = NULL, mpio = NULL) {
   dpto_busqueda <-  tolower(dpto_busqueda)
   dpto_busqueda <- epitrix::clean_labels(dpto_busqueda)
   list_specific <-
-      list_dptos[stringr::str_detect(list_dptos, dpto_busqueda)]
+    list_dptos[stringr::str_detect(list_dptos, dpto_busqueda)]
   if (length(list_specific) > 1) {
     warning("Dos o mas departamentos coinciden con el nombre o ",
             "codigo ingresado: ",
@@ -319,11 +319,11 @@ obtener_info_depts <- function(dpto = NULL, mpio = NULL) {
     mpio_busqueda <- epitrix::clean_labels(mpio_busqueda)
     data_dpto <-
       data_dpto[which(stringr::str_detect(data_dpto[[col_mpio]],
-                                        mpio_busqueda)), ]
+                                          mpio_busqueda)), ]
     data_mpio <- dplyr::filter(data_dpto,
                                data_dpto[[col_mpio]] == mpio_busqueda)
     if (nrow(data_mpio) == 1) {
-        data_dpto <- data_mpio
+      data_dpto <- data_mpio
     }
     if (nrow(data_dpto) > 1) {
       warning("Dos o mas municipios coinciden con el nombre o ",
@@ -380,14 +380,14 @@ obtener_nombres_mpios <- function(data_geo, cod_dpto, cod_mpio) {
               !missing(cod_dpto),
             "El parametro cod_dpto debe ser una cadena de caracteres
             o numerico" =
-            (is.numeric(cod_dpto) && !is.character(cod_dpto)) ||
-            (!is.numeric(cod_dpto) && is.character(cod_dpto)),
+              (is.numeric(cod_dpto) && !is.character(cod_dpto)) ||
+              (!is.numeric(cod_dpto) && is.character(cod_dpto)),
             "El parametro cod_mpio es obligatorio" =
               !missing(cod_mpio),
             "El parametro cod_mpio debe ser una cadena de caracteres
             o numerico" =
-            (is.numeric(cod_mpio) && !is.character(cod_mpio)) ||
-            (!is.numeric(cod_mpio) && is.character(cod_mpio)))
+              (is.numeric(cod_mpio) && !is.character(cod_mpio)) ||
+              (!is.numeric(cod_mpio) && is.character(cod_mpio)))
   cod_dpto <- as.character(cod_dpto)
   if (startsWith(cod_dpto, "0")) {
     cod_dpto <- substr(cod_dpto, 2, 2)
@@ -396,7 +396,7 @@ obtener_nombres_mpios <- function(data_geo, cod_dpto, cod_mpio) {
     cod_mpio <- paste0(cod_dpto, cod_mpio)
   }
   data_mpio <- dplyr::filter(data_geo,
-                            .data$codigo_municipio %in% as.integer(cod_mpio))
+                             .data$codigo_municipio %in% as.integer(cod_mpio))
   data_mpio <- data_mpio[1, ]
   return(data_mpio$nombre_municipio)
 }
