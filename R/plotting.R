@@ -1073,7 +1073,7 @@ plot_tipo_caso <- function(data_agrupada,
                                          package = "sivirep"),
                            "labels_cas_tip")
   clasificacion <- unique(data_agrupada[[nomb_cols[1]]])
-  escala <- length(clasificacion)
+  escala <- length(unique(data_agrupada[[nomb_cols[2]]]))
   etiquetas <- etiquetas[as.character(clasificacion)]
   etiquetas <- unlist(etiquetas)
   plot_casos_years <-
