@@ -1,11 +1,11 @@
 #' Estandarizar códigos geográficos de los datos de una enfermedad o evento
 #'
 #' Función que estandariza los códigos geográficos de los datos
-#' de una enfermedad o evento
+#' de una enfermedad o evento según la codificación del DIVIPOLA
 #' @param data_event Un `data.frame` que contiene los datos de una
 #' enfermedad o evento
 #' @return Un `data.frame` que contiene los códigos geográficos estandarizados
-#' de los datos de una enfermedad o evento
+#' de los datos de una enfermedad o evento según la codificación del DIVIPOLA
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
@@ -63,11 +63,11 @@ estandarizar_geo_cods <- function(data_event) {
 #' de los datos de una enfermedad o evento
 #' @examples
 #' data(dengue2020)
-#' geo_codes <- import_geo_cods()
+#' geo_cods <- import_geo_cods()
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 #' limpiar_cods_dpto(data_event = data_limpia,
 #'                   col_cods_data = "cod_dpto_o",
-#'                   geo_data = geo_codes,
+#'                   geo_data = geo_cods,
 #'                   col_geo_cods = "codigo_departamento")
 #' @export
 limpiar_cods_dpto <- function(data_event,
