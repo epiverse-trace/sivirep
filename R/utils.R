@@ -364,6 +364,48 @@ obtener_nombres_mpios <- function(data_geo, cod_dpto, cod_mpio) {
   return(data_mpio$nombre_municipio)
 }
 
+#' Formatear código geográfico
+#'
+#' Función que da el formato deseado a un código geográfico
+#' @param cod_geo Un `numeric` (numerico) o `character`
+#' (cadena de caracteres) que contiene el código
+#' geográfico
+#' @param etiqueta Un `character` (cadena de caracteres) con el nombre
+#' de la etiqueta de la validación relacionada a la longitud máxima del
+#' código geográfico; se refiere al tipo de división geográfica ("municipio",
+#' "departamento")
+#' @param digitos Un `numeric` (numerico) que contiende el número de digitos
+#' que debe tener individualmente el código geográfico
+#' @param tam Un `numeric` (numerico) que contiende el tamaño o la longitud
+#' máxima que debe tener el código geográfico
+#' @return Un `character` (cadena de caracteres) con el código geográfico
+#' formateado
+#' @examples
+#' format_cod_geo(cod_geo = cod_dpto, etiqueta = "departamento",
+#'                digitos = 2, tam = 2)
+#' format_cod_geo(cod_geo = cod_mpio, etiqueta = "municipio",
+#'                digitos = 3, tam = 5)
+#' @keywords internal
+format_cod_geo <- function(cod_geo, etiqueta, digitos, tam) {
+  cod_format <- NULL
+  if (is.numeric(cod_geo) ||
+      !is.na(suppressWarnings(as.numeric(cod_geo)))) {
+    cod_format <- formatC(cod_geo,
+                          width = digitos,
+                          format = "d",
+                          flag = "0")
+    etiqueta <- paste0("El codigo del ", etiqueta,
+                       " debe tener maximo ", tam, " digitos")
+    if (nchar(cod_geo) > tam) {
+      stop(etiqueta)
+    }
+    if (nchar(cod_format) == tam - 1) {
+      cod_format <- paste0("0", cod_format)
+    }
+  }
+  return(cod_format)
+}
+
 #' Obtener los eventos relacionados
 #'
 #' Función que obtiene los eventos relacionados o tipos de un evento
