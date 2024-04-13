@@ -314,9 +314,47 @@ obtener_dptos <- function() {
   return(dptos)
 }
 
-#' Obtener nombre del municipio en Colombia
+#' Obtener el nombre de un departamento de Colombia
 #'
-#' Función que obtiene el nombre del municipio
+#' Función que obtiene el nombre de un departamento de Colombia a
+#' partir de su código geográfico
+#' @param data_geo Un `data.frame` que contiene los códigos
+#' geográficos (departamentos y municipios de Colombia)
+#' @param cod_dpto Un `numeric` (numerico) o `character`
+#' (cadena de caracteres) que contiene el código
+#' del departamento
+#' @return Un `character` (cadena de caracteres) con el nombre del
+#' departamento
+#' @examples
+#' data_geo <- import_geo_cods()
+#' obtener_nombre_dpto(data_geo,
+#'                     cod_dpto = "05")
+#' obtener_nombre_dpto(data_geo,
+#'                     cod_dpto = 05)
+#' obtener_nombre_dpto(data_geo,
+#'                     cod_dpto = 5)
+#' @export
+obtener_nombre_dpto <- function(data_geo, cod_dpto) {
+  stopifnot("El parametro data_geo es obligatorio" =
+              !missing(data_geo),
+            "El parametro data_geo debe ser un data.frame" =
+              is.data.frame(data_geo),
+            "El parametro data_geo no debe estar vacio" =
+              nrow(data_geo) > 0,
+            "El parametro cod_dpto es obligatorio" =
+              !missing(cod_dpto),
+            "El parametro cod_dpto debe ser una cadena de caracteres
+             o numerico" =
+              (is.numeric(cod_dpto) && !is.character(cod_dpto)) ||
+              (!is.numeric(cod_dpto) && is.character(cod_dpto)))
+  cod_dpto <- format_cod_geo(cod_geo = cod_dpto, etiqueta = "departamento",
+                             digitos = 2, tam = 2)
+  data_dpto <- dplyr::filter(data_geo,
+                               .data$codigo_departamento %in% cod_dpto)
+  data_dpto <- data_dpto[1, ]
+  return(data_dpto$nombre_departamento)
+}
+
 #' @param data_geo Un `data.frame` que contiene los códigos
 #' geográficos (departamentos y municipios de Colombia)
 #' @param cod_dpto Un `numeric` (numerico) o `character`
