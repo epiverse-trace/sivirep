@@ -165,7 +165,7 @@ plot_map <- function(data_agrupada,
                    stringr::str_to_title(polygon_seleccionado$MPIO_CNMBR))
   } else {
     data_tabla <-
-      data.frame(Indice = seq_along(length(data_agrupada$id)),
+      data.frame(Indice = seq_along(data_agrupada$id),
                  Codigo = data_agrupada$id,
                  Departamento =
                    stringr::str_to_title(data_agrupada[[nombres_col]]))
