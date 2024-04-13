@@ -60,43 +60,6 @@ obtener_meses_mas_casos <- function(data_event,
   return(data_mas_casos)
 }
 
-#' Obtener nombres de departamentos
-#'
-#' Función que obtiene los nombres de los departamentos
-#' @param data_event Un `data.frame` que contiene los datos de
-#' la enfermedad o evento
-#' @return Un `data.frame` con los nombres de los departamentos
-#' @examples
-#' data(dengue2020)
-#' @export
-obtener_nombres_dptos <- function(data_event) {
-  stopifnot("El parametro data_event es obligatorio" =
-              !missing(data_event),
-            "El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event),
-            "El parametro data_agrupada no debe estar vacio" =
-              nrow(data_event) > 0)
-  data_event_dptos <- data_event
-  data_event_dptos$codigo <- data_event$id
-  geo_country_data <- import_geo_cods()
-  deptos_data <- data.frame(
-    id = geo_country_data$c_digo_departamento,
-    nombre = geo_country_data$nombre_departamento
-  )
-  i <- 1
-  for (code in deptos_data$id) {
-    data_event_dptos$id[data_event_dptos$id == code] <-
-      deptos_data$nombre[i]
-    i <- i + 1
-  }
-  colnames(data_event_dptos)[colnames(data_event_dptos) == "id"] <-
-    "nombre"
-  data_event_dptos <- data_event_dptos[order(data_event_dptos$nombre,
-                                             decreasing = FALSE), ]
-  data_event_dptos <- data_event_dptos[5:nrow(data_event_dptos), ]
-  return(data_event_dptos)
-}
-
 #' Obtener fila con mayor número de casos
 #'
 #' Función que obtiene la fila con el mayor número de casos
