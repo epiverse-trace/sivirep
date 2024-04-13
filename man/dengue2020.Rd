@@ -3,17 +3,18 @@
 \docType{data}
 \name{dengue2020}
 \alias{dengue2020}
-\title{Datos Dengue 2020 en sivirep}
+\title{Datos Dengue 2020 del SIVIGILA en sivirep}
 \format{
-An object of class \code{"cross"}; see \code{\link[qtl]{read.cross}}.
+
 }
 \usage{
-dengue2020
+data(dengue2020)
 }
 \description{
-Data from
+Datos obtenidos del SIVIGILA
+(Sistema de Vigilancia en Salud Pública de Colombia)
 }
 \examples{
-dengue2020
+data(dengue2020)
 }
 \keyword{datasets}
