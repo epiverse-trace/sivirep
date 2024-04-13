@@ -36,3 +36,4 @@ concatenar_vals_token(vals = c("enero", "febrero", "marzo"),
                       princ_token = ", ",
                       final_token = "y ")
 }
+\keyword{internal}

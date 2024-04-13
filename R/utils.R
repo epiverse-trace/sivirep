@@ -162,7 +162,7 @@ obtener_fila_mas_casos <- function(data_event,
 #'                       longitud = 3,
 #'                       princ_token = ", ",
 #'                       final_token = "y ")
-#' @export
+#' @keywords internal
 concatenar_vals_token <- function(vals,
                                   longitud = 3,
                                   princ_token = ", ",
