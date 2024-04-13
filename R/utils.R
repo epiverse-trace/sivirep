@@ -355,6 +355,10 @@ obtener_nombre_dpto <- function(data_geo, cod_dpto) {
   return(data_dpto$nombre_departamento)
 }
 
+#' Obtener el nombre de un departamento o municipio de Colombia
+#'
+#' Función que obtiene el nombre de un municipio de Colombi a
+#' partir de su código geográfico
 #' @param data_geo Un `data.frame` que contiene los códigos
 #' geográficos (departamentos y municipios de Colombia)
 #' @param cod_dpto Un `numeric` (numerico) o `character`
@@ -366,9 +370,15 @@ obtener_nombre_dpto <- function(data_geo, cod_dpto) {
 #' @return Un `character` (cadena de caracteres) con el nombre del municipio
 #' @examples
 #' data_geo <- import_geo_cods()
-#' obtener_nombres_mpios(data_geo,
-#'                       cod_dpto = "05",
-#'                       cod_mpio = "001")
+#' obtener_nombre_mpio(data_geo,
+#'                     cod_dpto = "05",
+#'                     cod_mpio = "001")
+#' obtener_nombre_mpio(data_geo,
+#'                     cod_dpto = 05,
+#'                     cod_mpio = 001)
+#' obtener_nombre_mpio(data_geo,
+#'                     cod_dpto = 5,
+#'                     cod_mpio = 1)
 #' @export
 obtener_nombre_mpio <- function(data_geo, cod_dpto, cod_mpio) {
   stopifnot("El parametro data_geo es obligatorio" =
