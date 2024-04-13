@@ -248,7 +248,7 @@ remove_error_fecha <- function(data_event,
 #' @param data_event Un `data.frame` que contiene los datos
 #' de un evento o enfermedad
 #' @param format_fecha Un `character` (cadena de caracteres)
-#' que contiene  el formato deseado de fecha
+#' que contiene  el formato deseado de la fecha
 #' @param nomb_cols Un `character` (cadena de caracteres) que
 #' contiene los nombres de la columna a formatear; su valor por defecto
 #' es `NULL`
