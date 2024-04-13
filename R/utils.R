@@ -235,10 +235,9 @@ obtener_info_depts <- function(dpto = NULL, mpio = NULL) {
   if (is.numeric(dpto_busqueda) ||
       !is.na(suppressWarnings(as.numeric(dpto_busqueda)))) {
     col_dpto <- "codigo_departamento"
-    dpto_busqueda <- formatC(dpto_busqueda,
-                             width = 2,
-                             format = "d",
-                             flag = "0")
+    dpto_busqueda <- format_cod_geo(cod_geo = dpto_busqueda,
+                                    etiqueta = "departamento",
+                                    digitos = 2, tam = 2)
   }
   list_dptos <- unique(data_geo[[col_dpto]])
   dpto_busqueda <-  tolower(dpto_busqueda)
@@ -265,15 +264,9 @@ obtener_info_depts <- function(dpto = NULL, mpio = NULL) {
     if (is.numeric(mpio_busqueda) ||
         !is.na(suppressWarnings(as.numeric(mpio_busqueda)))) {
       col_mpio <- "codigo_municipio"
-      mpio_busqueda <- formatC(mpio_busqueda,
-                               width = 3,
-                               format = "d",
-                               flag = "0")
-      stopifnot("El codigo del municipio debe tener maximo 5 digitos" =
-                  nchar(mpio_busqueda) <= 5)
-      if (nchar(mpio_busqueda) == 4) {
-        mpio_busqueda <- paste0("0", mpio_busqueda)
-      }
+      mpio_busqueda <- format_cod_geo(cod_geo = mpio_busqueda,
+                                      etiqueta = "municipio",
+                                      digitos = 3, tam = 5)
     }
     if (nchar(mpio_busqueda) == 3) {
       mpio_busqueda <- paste0(dpto_busqueda, mpio_busqueda)
