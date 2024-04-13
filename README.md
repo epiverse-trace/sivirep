@@ -318,7 +318,7 @@ códigos de geolocalización y estandarizar los nombres de las columnas y
 las categorías de edad.
 
 ``` r
-data_event_limp <- limpiar_data_sivigila(data_event = data_event)
+data_limpia <- limpiar_data_sivigila(data_event = data_event)
 ```
 
 Las funciones de limpieza dentro de `limpiar_data_sivigila` se han
@@ -352,7 +352,7 @@ subnacional, seleccionando casos específicos basados en la ubicación
 geográfica.
 
 ``` r
-data_event_filtrada <- geo_filtro(data_event = data_event_limp,
+data_event_filtrada <- geo_filtro(data_event = data_limpia,
                                   dpto = "Choco")
 ```
 
@@ -372,7 +372,7 @@ proporciona una función que permite esta agrupación llamada
 
 ``` r
 casos_ini_sintomas <- agrupar_fecha_inisintomas(data_event =
-                                                  data_event_limp)
+                                                  data_limpia)
 ```
 
 ##### 💡 Tip 2 - Obtén los primeros n meses con más casos
@@ -402,7 +402,7 @@ esto:
 
 ``` r
 casos_fecha_notificacion <- agrupar_fecha_notifica(data_event =
-                                                     data_event_limp)
+                                                     data_limpia)
 ```
 
 El gráfico que permite visualizar esta distribución debe generarse con
@@ -429,7 +429,7 @@ embargo, la fuente de SIVIGILA solo registra el sexo.
 los porcentajes por sexo después del proceso de limpieza.
 
 ``` r
-casos_sex <- agrupar_sex(data_event = data_event_limp,
+casos_sex <- agrupar_sex(data_event = data_limpia,
                          porcentaje = TRUE)
 ```
 
@@ -447,7 +447,7 @@ generar utilizando la función `agrupar_sex_semanaepi` proporcionada por
 `sivirep`.
 
 ``` r
-casos_sex_semanaepi <- agrupar_sex_semanaepi(data_event = data_event_limp)
+casos_sex_semanaepi <- agrupar_sex_semanaepi(data_event = data_limpia)
 ```
 
 La función de visualización correspondiente es `plot_sex_semanaepi`, que
@@ -476,7 +476,7 @@ años. Además, los usuarios pueden personalizar un rango de edad
 diferente.
 
 ``` r
-casos_edad <- agrupar_edad(data_event = data_event_limp, interval_edad = 10)
+casos_edad <- agrupar_edad(data_event = data_limpia, interval_edad = 10)
 ```
 
 La función de visualización correspondiente es `plot_edad`.
@@ -495,7 +495,7 @@ simultánea y obtener el número de casos y los porcentajes
 correspondientes. Además, permite personalizar el intervalo de edad.
 
 ``` r
-casos_edad_sex <- agrupar_edad_sex(data_event = data_event_limp,
+casos_edad_sex <- agrupar_edad_sex(data_event = data_limpia,
                                    interval_edad = 10)
 ```
 

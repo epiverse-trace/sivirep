@@ -148,11 +148,11 @@ data_event <-  import_data_event(nombre_event = params$nombre_evento,
 ```
 
 ```{r clean_data, include = FALSE}
-data_event_limpia <- limpiar_data_sivigila(data_event)
+data_limpia <- limpiar_data_sivigila(data_event)
 ```
 
 ```{r filter_data, include = FALSE}
-data_event_filtrada <-  geo_filtro(data_event = data_event_limpia,
+data_event_filtrada <-  geo_filtro(data_event = data_limpia,
                                    dpto = params$departmento)
 ```
 

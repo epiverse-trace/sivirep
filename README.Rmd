@@ -193,7 +193,7 @@ Los datos de SIVIGILA son una fuente de información oficial altamente confiable
 `sivirep` proporciona una función genérica llamada `limpiar_data_sivigila` que envuelve diversas tareas para identificar y corregir errores, inconsistencias y discrepancias en los conjuntos de datos con el fin de mejorar su calidad y precisión. Este proceso puede incluir la eliminación de duplicados, la corrección de errores tipográficos, el reemplazo de valores faltantes y la validación de datos, entre otras tareas, como eliminar fechas improbables, limpiar códigos de geolocalización y estandarizar los nombres de las columnas y las categorías de edad.
 
 ```{r limpiar_data_sivigila}
-data_event_limp <- limpiar_data_sivigila(data_event = data_event)
+data_event <- limpiar_data_sivigila(data_event = data_event)
 ```
 
 Las funciones de limpieza dentro de `limpiar_data_sivigila` se han recopilado y creado en base a la experiencia de epidemiólogos de campo. Estas pueden incluir funciones internas como:
@@ -215,7 +215,7 @@ El usuario puede utilizar estas funciones individualmente o simplemente utilizar
 `sivirep` proporciona una función que permite filtrar los datos de enfermedades por departamento o nombre del municipio llamada `geo_filtro`. Esto permite al usuario crear un informe a nivel subnacional, seleccionando casos específicos basados en la ubicación geográfica.
 
 ```{r geo_filtro}
-data_event_filtrada <- geo_filtro(data_event = data_event_limp,
+data_event_filtrada <- geo_filtro(data_event = data_event,
                                   dpto = "Choco")
 ``` 
 
@@ -229,7 +229,7 @@ Para generar la distribución de casos por fecha de inicio de síntomas, es nece
 
 ```{r agrupar_fecha_inicio_sintomas}
 casos_ini_sintomas <- agrupar_fecha_inisintomas(data_event =
-                                                  data_event_limp)
+                                                  data_event)
 ```
 
 ##### 💡 Tip 2 - Obtén los primeros n meses con más casos
@@ -249,7 +249,7 @@ El proceso para generar la distribución de casos por fecha de notificación con
 
 ```{r agrupar_fecha_notificacion}
 casos_fecha_notificacion <- agrupar_fecha_notifica(data_event =
-                                                     data_event_limp)
+                                                     data_event)
 ```
 
 El gráfico que permite visualizar esta distribución debe generarse con la función `plot_fecha_notifica`. Ten en cuenta que, aunque hayas agrupado los datos por día, es posible que prefieras representarlos por semana epidemiológica, como en:
@@ -268,7 +268,7 @@ Cuando se analizan o se informan datos de enfermedades, a menudo es necesario de
 `sivirep` proporciona una función que agrega y calcula automáticamente los porcentajes por sexo después del proceso de limpieza.
 
 ```{r agrupar_sexo}
-casos_sex <- agrupar_sex(data_event = data_event_limp,
+casos_sex <- agrupar_sex(data_event = data_event,
                          porcentaje = TRUE)
 ```
 
@@ -281,7 +281,7 @@ plot_sex(data_agrupada = casos_sex)
 La distribución de casos por sexo y semana epidemiológica se puede generar utilizando la función `agrupar_sex_semanaepi` proporcionada por `sivirep`.
 
 ```{r agrupar_sex_semana_epidemiologica}
-casos_sex_semanaepi <- agrupar_sex_semanaepi(data_event = data_event_limp)
+casos_sex_semanaepi <- agrupar_sex_semanaepi(data_event = data_event)
 ```
 
 La función de visualización correspondiente es `plot_sex_semanaepi`, que `sivirep` proporciona para mostrar la distribución de casos por sexo y semana epidemiológica. 
@@ -297,7 +297,7 @@ La edad es una variable importante para analizar, ya que es un factor de riesgo 
 `sivirep` proporciona una función llamada `agrupar_edad`, que puede agrupar los datos de enfermedades por grupos de edad. De forma predeterminada, esta función produce rangos de edad con intervalos de 10 años. Además, los usuarios pueden personalizar un rango de edad diferente.
 
 ```{r agrupar_edad}
-casos_edad <- agrupar_edad(data_event = data_event_limp, interval_edad = 10)
+casos_edad <- agrupar_edad(data_event = data_event, interval_edad = 10)
 ```
 
 La función de visualización correspondiente es `plot_edad`.
@@ -311,7 +311,7 @@ plot_edad(data_agrupada = casos_edad)
 `sivirep` proporciona una función llamada `agrupar_edad_sex`, que puede agrupar los datos de enfermedades por rangos de edad y sexo de forma simultánea y obtener el número de casos y los porcentajes correspondientes. Además, permite personalizar el intervalo de edad.
 
 ```{r agrupar_edad_sexo}
-casos_edad_sex <- agrupar_edad_sex(data_event = data_event_limp,
+casos_edad_sex <- agrupar_edad_sex(data_event = data_event,
                                    interval_edad = 10)
 
 ```
