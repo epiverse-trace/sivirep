@@ -374,7 +374,15 @@ limpiar_fecha_event <- function(data_event,
 
 #' Limpiar las edades de los datos de una enfermedad o evento
 #'
-#' Función que limpia las edades de los datos de una enfermedad o evento
+#' Función que limpia y estandariza las edades de los datos de una
+#' enfermedad o evento, conviertiendolas en años, según la clasificación
+#' del Instituto Nacional de Salud:
+#' No aplica = 0
+#' Años = 1
+#' Meses = 2
+#' Días = 3
+#' Horas = 4
+#' Minutos = 5
 #' @param data_event Un `data.frame` que contiene los datos de una
 #' enfermedad o evento
 #' @param nomb_col Un `character` (cadena de caracteres) con el nombre
