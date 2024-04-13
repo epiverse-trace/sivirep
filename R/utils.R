@@ -370,7 +370,7 @@ obtener_nombre_dpto <- function(data_geo, cod_dpto) {
 #'                       cod_dpto = "05",
 #'                       cod_mpio = "001")
 #' @export
-obtener_nombres_mpios <- function(data_geo, cod_dpto, cod_mpio) {
+obtener_nombre_mpio <- function(data_geo, cod_dpto, cod_mpio) {
   stopifnot("El parametro data_geo es obligatorio" =
               !missing(data_geo),
             "El parametro data_geo debe ser un data.frame" =
@@ -380,24 +380,22 @@ obtener_nombres_mpios <- function(data_geo, cod_dpto, cod_mpio) {
             "El parametro cod_dpto es obligatorio" =
               !missing(cod_dpto),
             "El parametro cod_dpto debe ser una cadena de caracteres
-            o numerico" =
+             o numerico" =
             (is.numeric(cod_dpto) && !is.character(cod_dpto)) ||
             (!is.numeric(cod_dpto) && is.character(cod_dpto)),
             "El parametro cod_mpio es obligatorio" =
-              !missing(cod_mpio),
-            "El parametro cod_mpio debe ser una cadena de caracteres
+              !missing(cod_dpto),
+            "El parametro cod_mpio debe ser una cadena de caracteres 
             o numerico" =
-            (is.numeric(cod_mpio) && !is.character(cod_mpio)) ||
-            (!is.numeric(cod_mpio) && is.character(cod_mpio)))
-  cod_dpto <- as.character(cod_dpto)
-  if (startsWith(cod_dpto, "0")) {
-    cod_dpto <- substr(cod_dpto, 2, 2)
-    cod_mpio <- paste0(cod_dpto, cod_mpio)
-  } else {
-    cod_mpio <- paste0(cod_dpto, cod_mpio)
-  }
+              (is.numeric(cod_mpio) && !is.character(cod_mpio)) ||
+              (!is.numeric(cod_mpio) && is.character(cod_mpio)))
+  cod_dpto <- format_cod_geo(cod_geo = cod_dpto, etiqueta = "departamento",
+                             digitos = 2, tam = 2)
+  cod_mpio <- format_cod_geo(cod_geo = cod_mpio, etiqueta = "municipio",
+                             digitos = 3, tam = 5)
+  cod_mpio <- paste0(cod_dpto, cod_mpio)
   data_mpio <- dplyr::filter(data_geo,
-                            .data$codigo_municipio %in% as.integer(cod_mpio))
+                               .data$codigo_municipio %in% cod_mpio)
   data_mpio <- data_mpio[1, ]
   return(data_mpio$nombre_municipio)
 }
