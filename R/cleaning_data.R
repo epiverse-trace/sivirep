@@ -259,7 +259,7 @@ remove_error_fecha <- function(data_event,
 #' format_fecha(data_event = data_limpia,
 #'              format_fecha = "%Y-%m-%d",
 #'              nomb_cols = c("ini_sin", "fec_hos"))
-#' @export
+#' @keywords internal
 format_fecha <- function(data_event,
                          format_fecha = "%Y-%m-%d",
                          nomb_cols = NULL) {

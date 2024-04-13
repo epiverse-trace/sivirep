@@ -11,7 +11,7 @@ format_fecha(data_event, format_fecha = "\%Y-\%m-\%d", nomb_cols = NULL)
 de un evento o enfermedad}
 
 \item{format_fecha}{Un `character` (cadena de caracteres)
-que contiene  el formato deseado de fecha}
+que contiene  el formato deseado de la fecha}
 
 \item{nomb_cols}{Un `character` (cadena de caracteres) que
 contiene los nombres de la columna a formatear; su valor por defecto
@@ -30,3 +30,4 @@ format_fecha(data_event = data_limpia,
              format_fecha = "\%Y-\%m-\%d",
              nomb_cols = c("ini_sin", "fec_hos"))
 }
+\keyword{internal}
