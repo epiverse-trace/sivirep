@@ -50,6 +50,8 @@ para:
 3)  Proporcionar retroalimentación sobre el sistema de vigilancia al
     proveedor de la fuente de datos.
 
+`sivirep` esta desarrollado por la Pontificia Universidad Javeriana como parte de la iniciativa Epiverse-TRACE.
+
 ## Potenciales usuarios
 
 - Profesionales de salud pública y de epidemiología de campo que
