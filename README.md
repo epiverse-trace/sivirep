@@ -50,7 +50,9 @@ para:
 3)  Proporcionar retroalimentación sobre el sistema de vigilancia al
     proveedor de la fuente de datos.
 
-`sivirep` esta desarrollado por la Pontificia Universidad Javeriana como parte de la iniciativa Epiverse-TRACE.
+`sivirep` esta desarrollado por la [Pontificia Universidad
+Javeriana](https://www.javeriana.edu.co/inicio) como parte de la iniciativa [Epiverse
+Initiative](https://data.org/initiatives/epiverse/)..
 
 ## Potenciales usuarios
 
