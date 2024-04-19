@@ -328,7 +328,7 @@ plot_spatial
 `r if(params$spatial_distribution) {"# Distribución espacial de casos"}`
 
 ```{r plot_distribution_spatial, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
-mapa <- plot_map(data_agrupada = dist_espacial_dpto)
+mapa <- plot_map(data_agrupada = dist_espacial_dpto, col_distribucion = "casos")
 ```
 
 ```{r map_distribution_spatial, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, cache = FALSE, results = FALSE, comment = FALSE, fig.height = 16, fig.width = 14, fig.cap =  "Distribucion espacial de casos", include = params$spatial_distribution}
