@@ -877,3 +877,100 @@ agrupar_per_etn <- function(data_event, cols_etn = "per_etn") {
                     etiquetas[as.character(.data[[cols_etn[1]]])])
   return(data_event_tipo)
 }
+
+#' Calcular incidencia
+#'
+#' Función que calcula la incidencia de una enfermedad o evento para todo
+#' Colombia, departamento o municipio
+#' @param data_incidencia Un `data.frame` que contiene la proyecciones
+#' poblaciones del DANE
+#' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
+#' agrupados por departamento o municipio y número de casos
+#' @param years Un `numeric` (numerico) con el año que se debe tomar de las
+#' proyecciones poblacionales
+#' @param dpto Un `character` (cadena de caracteres) o `numeric` (numérico)
+#' que contiene el código o nombre del departamento; su valor por
+#' defecto es `NULL`
+#' @param mpio Un `character` (cadena de caracteres) o `numeric` (numérico)
+#' que contiene el código o nombre del municipio; su valor por defecto es `NULL`
+#' @return Un `numeric` con el calculo de la incidencia para todo Colombia, un
+#' departamento o municipio
+#' @examples
+#' \dontrun{
+#' data(dengue2020)
+#' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+#' proyecciones <- import_data_inicidencia()
+#' proyecciones_limpias <- limpiar_data_incidencia(data_incidencia =
+#'                                                  proyecciones)
+#' data_agrupada_mpios <- agrupar_mpio(data_limpia, dpto = "Antioquia")
+#' calcular_incidencia(data_incidencia = proyecciones_limpias,
+#'                     data_agrupada = data_agrupada_mpios,
+#'                     dpto = "05",
+#'                     year = 2020)
+#' calcular_incidencia(data_incidencia = proyecciones_limpias,
+#'                     data_agrupada = data_agrupada_mpios,
+#'                     dpto = "05",
+#'                     mpio = "05001"
+#'                     year = 2020)
+#' data_agrupada_dptos <- agrupar_dpto(data_limpia)
+#' calcular_incidencia(data_incidencia = proyecciones_limpias,
+#'                     data_agrupada = data_agrupada_dptos,
+#'                     year = 2020)
+#' }
+#' @export
+calcular_incidencia <- function(data_incidencia, data_agrupada, year,
+                                dpto = NULL, mpio = NULL) {
+  poblacion <- NULL
+  total_casos <- NULL
+  nomb_cols <- obtener_tip_ocurren_geo(data_agrupada$nombre_evento[1])
+  if (is.null(dpto) &&
+      nomb_cols[1] %in% colnames(data_agrupada) &&
+      !is.na(unique(
+        nomb_cols[data_agrupada[[nomb_cols[1]]]]))) {
+    dpto <- data_agrupada[[nomb_cols[1]]][1]
+    if (is.null(mpio) &&
+        nomb_cols[3] %in% colnames(data_agrupada) &&
+        !is.na(unique(
+          nomb_cols[data_agrupada[[nomb_cols[3]]]]))) {
+      mpio <- data_agrupada[[nomb_cols[3]]][1]
+    }
+  }
+  if (!is.null(dpto)) {
+    poblacion <- dplyr::filter(data_incidencia,
+                               .data$area_geografica == "Total",
+                               .data$dp == dpto, .data$ano == 2020)
+    if (!is.null(mpio)) {
+      poblacion <- poblacion[poblacion$mpio == mpio, ]
+      total_mpio <- data_agrupada[data_agrupada[[nomb_cols[3]]] == mpio, ]
+      total_casos <- total_mpio$casos
+    } else {
+      total_dpto <- data_agrupada[data_agrupada[[nomb_cols[1]]] == dpto, ]
+      total_casos <- total_dpto$casos
+    }
+  } else {
+    poblacion <- dplyr::filter(data_incidencia,
+                               .data$area_geografica == "Total",
+                               .data$ano == year)
+    total_casos <- sum(data_agrupada$casos)
+  }
+  total_poblacion <- sum(poblacion$total)
+  ruta_base <- config::get(file =
+                             system.file("extdata",
+                                         "config.yml",
+                                         package = "sivirep"),
+                           "incidence_events_path")
+  archivo_condiciones <-  system.file(ruta_base, package = "sivirep")
+  incidencia_events <- readxl::read_excel(archivo_condiciones,
+                                          col_types = c("numeric", "text",
+                                                        "text", "text"))
+  vals_event <- incidencia_events[incidencia_events$cod_eve == as.numeric(
+    data_agrupada$cod_eve[1]), ]
+  vals_event$coeficiente <- as.integer(vals_event$coeficiente)
+  print(total_casos)
+  print(total_poblacion)
+  print(as.integer(vals_event$coeficiente))
+  incidencia <- round((total_casos / total_poblacion) * vals_event$coeficiente,
+                      3)
+  return(incidencia)
+}
+
