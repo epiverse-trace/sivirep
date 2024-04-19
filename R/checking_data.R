@@ -643,16 +643,17 @@ agrupar_mpio <- function(data_event,
     cols_geo_ocurrencia <- append(cols_geo_ocurrencia,
                                   obtener_tip_ocurren_geo(cod))
   }
-  nomb_cols <- obtener_tip_ocurren_geo(data_event$cod_eve[1])
+  nomb_cols <- append("cod_eve",
+                      obtener_tip_ocurren_geo(data_event$cod_eve[1]))
   data_event_muns <- data_event
   dept_data <- NULL
   if (!is.null(dpto)) {
-    aux_dpto <- unique(data_event_muns[[nomb_cols[1]]])
+    aux_dpto <- unique(data_event_muns[[nomb_cols[2]]])
     if (length(aux_dpto) > 1) {
       data_event_muns <- geo_filtro(data_event, dpto)
     }
   } else {
-    dpto <- unique(data_event_muns[[nomb_cols[1]]])
+    dpto <- unique(data_event_muns[[nomb_cols[2]]])
     if (length(dpto) != 1) {
       stopifnot("Debe ingresar el nombre o codigo del departamento" =
                 length(dpto) == 1)
@@ -660,12 +661,12 @@ agrupar_mpio <- function(data_event,
   }
   dept_data <- obtener_info_depts(dpto)
   data_event_muns <- agrupar_cols_casos(data_event_muns,
-                                        nomb_cols = nomb_cols[1:4],
+                                        nomb_cols = nomb_cols[1:5],
                                         porcentaje = porcentaje)
-  data_event_muns[[nomb_cols[1]]] <-
-    as.character(data_event_muns[[nomb_cols[1]]])
-  data_event_muns[[nomb_cols[3]]] <-
-    as.character(data_event_muns[[nomb_cols[3]]])
+  data_event_muns[[nomb_cols[2]]] <-
+    as.character(data_event_muns[[nomb_cols[2]]])
+  data_event_muns[[nomb_cols[4]]] <-
+    as.character(data_event_muns[[nomb_cols[4]]])
   dept_data <- dept_data[1, ]
   data_event_muns <-  dplyr::arrange(data_event_muns,
                                      dplyr::desc(.data$casos))
@@ -715,7 +716,8 @@ agrupar_area_geo <- function(data_event,
             "El parametro porcentaje debe ser un booleano (TRUE o FALSE)" =
               is.logical(porcentaje))
   nomb_cols <- append(col_area,
-                     obtener_tip_ocurren_geo(data_event$cod_eve[1])[1:4])
+                     obtener_tip_ocurren_geo(data_event$cod_eve[1])[1:4],
+                     "cod_eve")
   data_event_area <- data_event
   if (!is.null(dpto)) {
       aux_dpto <- unique(data_event_area[[nomb_cols[2]]])
