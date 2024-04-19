@@ -3,10 +3,11 @@
 \name{plot_map}
 \alias{plot_map}
 \title{Función que genera el mapa por departamentos o municipios con el número de
-casos de una enfermedad o evento}
+casos o la incidencia de una enfermedad o evento}
 \usage{
 plot_map(
   data_agrupada,
+  col_distribucion = "incidencia",
   col_codigos = NULL,
   fuente_data = NULL,
   dpto = NULL,
@@ -16,6 +17,10 @@ plot_map(
 \arguments{
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la enfermedad
 agrupados por departamento y número de casos}
+
+\item{col_distribucion}{Un `character` (cadena de caracteres) que contiene el
+nombre de la columna que tiene los valores de la distribución, por número de 
+casos o incidencia; su valor por defecto es `"incidencia"`}
 
 \item{col_codigos}{Un `character` (cadena de caracteres) que contiene el
 nombre de la columna con los códigos de los departamentos o municipios, se
@@ -34,11 +39,11 @@ nombre del municipio; su valor por defecto `NULL`}
 }
 \value{
 Un `plot` o mapa por departamentos o municipios con el número de
-casos de una enfermedad específica
+casos o incidencia de una enfermedad específica
 }
 \description{
 Función que genera el mapa por departamentos o municipios con el número de
-casos de una enfermedad o evento
+casos o la incidencia de una enfermedad o evento
 }
 \examples{
 data(dengue2020)
