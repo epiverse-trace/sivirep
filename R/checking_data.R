@@ -974,3 +974,65 @@ calcular_incidencia <- function(data_incidencia, data_agrupada, year,
   return(incidencia)
 }
 
+#' Calcular incidencia
+#'
+#' Función que calcula la incidencia de una enfermedad o evento para todos los
+#' departamentos de Colombia o los municipios de un departamento
+#' @param data_incidencia Un `data.frame` que contiene la proyecciones
+#' poblaciones del DANE
+#' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
+#' agrupados por departamento o municipio y número de casos
+#' @param years Un `numeric` (numerico) con el año que se debe tomar de las
+#' proyecciones poblacionales
+#' @return Un `data.frame` con el calculo de la incidencia para todos los
+#' departamentos de Colombia o los municipios de un departamento
+#' @examples
+#' \dontrun{
+#' data(dengue2020)
+#' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+#' proyecciones <- import_data_inicidencia()
+#' proyecciones_limpias <- limpiar_data_incidencia(data_incidencia =
+#'                                                  proyecciones)
+#' data_agrupada_mpios <- agrupar_mpio(data_limpia, dpto = "Antioquia")
+#' calcular_geo_incidencia(data_incidencia = proyecciones_limpias,
+#'                         data_agrupada = data_agrupada_mpios,
+#'                         year = 2020)
+#' data_agrupada_dptos <- agrupar_dpto(data_limpia)
+#' calcular_geo_incidencia(data_incidencia = proyecciones_limpias,
+#'                         data_agrupada = data_agrupada_dptos,
+#'                         year = 2020)
+#' }
+#' @export
+calcular_geo_incidencia <- function(data_incidencia,
+                                    data_agrupada,
+                                    year) {
+  data_geo_inicidencia <- NULL
+  nomb_cols <- obtener_tip_ocurren_geo(data_agrupada$nombre_evento[1])
+  if (nomb_cols[1] %in% colnames(data_agrupada) &&
+      !(nomb_cols[3] %in% colnames(data_agrupada))) {
+    incidencia_dptos <- NULL
+    for (dpto in data_agrupada[[nomb_cols[1]]]) {
+      print(data_agrupada$nombre_evento[1])
+      incidencia <- calcular_incidencia(data_incidencia = data_incidencia,
+                                        data_agrupada = data_agrupada,
+                                        dpto = dpto,
+                                        year = year)
+      incidencia_dptos <- append(incidencia_dptos, incidencia)
+    }
+    geo_incidencia <- data.frame(incidencia = incidencia_dptos)
+    data_geo_inicidencia <- cbind(data_agrupada, geo_incidencia)
+  } else if (nomb_cols[3] %in% colnames(data_agrupada)) {
+    incidencia_mpios <- NULL
+    for (mpio in data_agrupada[[nomb_cols[3]]]) {
+      incidencia <- calcular_incidencia(data_incidencia = data_incidencia,
+                                        data_agrupada = data_agrupada,
+                                        dpto = data_agrupada[[nomb_cols[1]]][1],
+                                        mpio = mpio,
+                                        year = year)
+      incidencia_mpios <- append(incidencia_mpios, incidencia)
+    }
+    geo_incidencia <- data.frame(incidencia = incidencia_mpios)
+    data_geo_inicidencia <- cbind(data_agrupada, geo_incidencia)
+  }
+  return(data_geo_inicidencia)
+}
