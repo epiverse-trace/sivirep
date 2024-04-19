@@ -43,3 +43,5 @@ default:
   label_date_not: "Fecha de notificación"
   label_date_ini: "Fecha de inicio de síntomas"
   label_geo_analysis: "Análisis efectuado por geografia de "
+  incidence_data_paths: [{"url": "https://www.dane.gov.co/files/censo2018/proyecciones-de-poblacion/Municipal/DCD-area-sexo-edad-proypoblacion-Mun-2005-2019.xlsx","skip":11,"year":2020},{"url": "https://www.dane.gov.co/files/censo2018/proyecciones-de-poblacion/Municipal/DCD-area-sexo-edad-proypoblacion-Mun-2020-2035-ActPostCOVID-19.xlsx", "skip":8, "year":2035}]
+  incidence_events_path: "extdata/incidencia_events.xlsx"
