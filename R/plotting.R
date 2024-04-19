@@ -1,7 +1,10 @@
 #' Función que genera el mapa por departamentos o municipios con el número de
-#' casos de una enfermedad o evento
+#' casos o la incidencia de una enfermedad o evento
 #' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
 #' agrupados por departamento y número de casos
+#' @param col_distribucion Un `character` (cadena de caracteres) que contiene el
+#' nombre de la columna que tiene los valores de la distribución, por número de 
+#' casos o incidencia; su valor por defecto es `"incidencia"`
 #' @param col_codigos Un `character` (cadena de caracteres) que contiene el
 #' nombre de la columna con los códigos de los departamentos o municipios, se
 #' utilizan para obtener los poligonos de las áreas geográficas del archivo
@@ -14,7 +17,7 @@
 #' @param mpio Un `character` (cadena de caracteres) que contiene el
 #' nombre del municipio; su valor por defecto `NULL`
 #' @return Un `plot` o mapa por departamentos o municipios con el número de
-#' casos de una enfermedad específica
+#' casos o incidencia de una enfermedad específica
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(dengue2020)
@@ -39,6 +42,7 @@
 #'          mpio = "Envigado")
 #' @export
 plot_map <- function(data_agrupada,
+                     col_distribucion = "incidencia",
                      col_codigos = NULL,
                      fuente_data = NULL,
                      dpto = NULL,
@@ -149,7 +153,7 @@ plot_map <- function(data_agrupada,
   }
   data_agrupada <- data_agrupada %>%
     group_by_at(c("id", nombres_col)) %>%
-    dplyr::summarise(casos = sum(.data$casos), .groups = "drop")
+    dplyr::summarise(casos = sum(.data[[col_distribucion]]), .groups = "drop")
   polygon_seleccionado <- ggplot2::fortify(polygon_seleccionado, region = "id")
   polygon_seleccionado$indice <- seq_len(nrow(polygon_seleccionado))
   polygon_seleccionado <- polygon_seleccionado %>%
@@ -190,8 +194,9 @@ plot_map <- function(data_agrupada,
                    text = ggplot2::element_text(size = 14),
                    legend.title = ggplot2::element_text(face = "bold")) +
     ggplot2::labs(caption = fuente_data, fill = "Casos")
+  relleno <- 1
   tema_tabla <- gridExtra::ttheme_minimal(base_size = 14,
-                                          padding = ggplot2::unit(c(1, 1),
+                                          padding = ggplot2::unit(c(5, relleno),
                                                                   "mm"))
   tabla <- ggplot2::ggplot() + ggplot2::theme_void() +
     ggplot2::annotation_custom(gridExtra::tableGrob(data_tabla,
