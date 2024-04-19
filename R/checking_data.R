@@ -582,12 +582,13 @@ agrupar_dpto <- function(data_event,
             "El parametro porcentaje debe ser un booleano (TRUE o FALSE)" =
               is.logical(porcentaje))
   data_event_cods_dpto <- data_event
-  nomb_cols <- obtener_tip_ocurren_geo(data_event_cods_dpto$cod_eve[1])
+  nomb_cols <- append("cod_eve",
+                      obtener_tip_ocurren_geo(data_event_cods_dpto$cod_eve[1]))
   data_event_cods_dpto <- agrupar_cols_casos(data_event_cods_dpto,
-                                             nomb_cols = nomb_cols[1:2],
+                                             nomb_cols = nomb_cols[1:3],
                                              porcentaje = porcentaje)
-  data_event_cods_dpto[[nomb_cols[1]]] <-
-    as.character(data_event_cods_dpto[[nomb_cols[1]]])
+  data_event_cods_dpto[[nomb_cols[2]]] <-
+    as.character(data_event_cods_dpto[[nomb_cols[2]]])
   return(data_event_cods_dpto)
 }
 
