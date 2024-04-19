@@ -40,7 +40,8 @@ Imports:
     showtext,
     cowplot,
     gridExtra,
-    kableExtra
+    kableExtra,
+    tidyr
 Suggests: 
     knitr,
     rmarkdown
