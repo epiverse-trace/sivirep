@@ -1043,7 +1043,7 @@ calcular_incidencia_geo <- function(data_incidencia,
       incidencia_dptos <- append(incidencia_dptos, incidencia)
     }
     geo_incidencia <- data.frame(incidencia = incidencia_dptos)
-    data_geo_inicidencia <- cbind(data_agrupada, geo_incidencia)
+    data_geo_incidencia <- cbind(data_agrupada, geo_incidencia)
   } else if (nomb_cols[3] %in% colnames(data_agrupada)) {
     incidencia_mpios <- NULL
     for (mpio in data_agrupada[[nomb_cols[3]]]) {
@@ -1055,7 +1055,10 @@ calcular_incidencia_geo <- function(data_incidencia,
       incidencia_mpios <- append(incidencia_mpios, incidencia)
     }
     geo_incidencia <- data.frame(incidencia = incidencia_mpios)
-    data_geo_inicidencia <- cbind(data_agrupada, geo_incidencia)
+    data_geo_incidencia <- cbind(data_agrupada, geo_incidencia)
+  }
+  return(data_geo_incidencia)
+}
   }
   return(data_geo_inicidencia)
 }
