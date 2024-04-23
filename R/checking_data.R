@@ -915,6 +915,21 @@ agrupar_per_etn <- function(data_event, cols_etn = "per_etn") {
 #' @export
 calcular_incidencia <- function(data_incidencia, data_agrupada, year,
                                 dpto = NULL, mpio = NULL) {
+                                dpto = NULL, mpio = NULL,
+                                sex = NULL) {
+  stopifnot("El parametro data_incidencia es obligatorio" =
+              !missing(data_incidencia),
+            "El parametro data_incidencia debe ser un data.frame" =
+              is.data.frame(data_incidencia),
+            "El parametro data_incidencia no debe estar vacio" =
+              nrow(data_incidencia) > 0,
+            "El parametro data_agrupada es obligatorio" =
+              !missing(data_agrupada),
+            "El parametro data_agrupada debe ser un data.frame" =
+              is.data.frame(data_agrupada),
+            "El parametro data_agrupada no debe estar vacio" =
+              nrow(data_agrupada) > 0,
+            "El parametro year es obligatorio" = !missing(year))
   poblacion <- NULL
   total_casos <- NULL
   nomb_cols <- obtener_tip_ocurren_geo(data_agrupada$nombre_evento[1])
