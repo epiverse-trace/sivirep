@@ -349,7 +349,7 @@ cond_incidencia <-
   obtener_cond_inciden_event(cod_eve = dist_espacial_dpto$cod_eve[1])
 ```
 
-La incidencia para el departamento de `r params$departamento` es: `r incidencia_dpto` por  `r cond_incidencia$coeficiente` habitantes.
+La incidencia para el departamento de `r params$departmento` es: `r incidencia_dpto` por  `r cond_incidencia$coeficiente` habitantes.
 
 ## Incidencia por sexo
 
@@ -387,7 +387,7 @@ plot_tabla_incidencia_geo(dist_espacial_dpto)
 mapa <- plot_map(data_agrupada = dist_espacial_dpto)
 ```
 
-```{r map_distribution_spatial, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, cache = FALSE, results = FALSE, comment = FALSE, fig.height = 16, fig.width = 14, fig.cap =  "Distribucion espacial de casos", include = params$spatial_distribution}
+```{r map_distribution_spatial, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, cache = FALSE, results = FALSE, comment = FALSE, fig.height = 16, fig.width = 14, fig.cap = "Incidencia según distribución geográfica", include = params$spatial_distribution}
 mapa
 ```
 
