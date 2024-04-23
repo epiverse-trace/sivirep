@@ -242,30 +242,23 @@ obtener_ruta_descarga <- function(ruta) {
 #' @export
 import_data_incidencia <- function() {
   proyecciones <- NULL
-  ruta_data <- config::get(file =
+  proyecs_2005_2035 <- NULL
+  url_proyecs <- config::get(file =
                              system.file("extdata",
                                          "config.yml",
                                          package = "sivirep"),
-                           "incidence_data_paths")
-  for (ruta_inciden in ruta_data) {
-    extdata_path <- system.file("extdata", package = "sivirep")
-    ruta_archivo <- file.path(extdata_path, paste0("proyecciones",
-                                                ruta_inciden$year))
-    solicitud_archivo <- httr2::request(ruta_inciden$url)
-    respuesta_archivo <- httr2::req_perform(solicitud_archivo)
-    if (httr2::resp_status(respuesta_archivo) == 200) {
-      conten_archivo <- httr2::resp_body_raw(respuesta_archivo)
-      con_archivo <- file(ruta_archivo, "wb")
-      if (length(conten_archivo) > 0) {
-        writeBin(conten_archivo, con_archivo)
-      }
-      close(con_archivo)
-    }
-    proyecciones <- readxl::read_excel(ruta_archivo, skip = ruta_inciden$skip)
-    if (ruta_inciden$year == 2035) {
-      proyecciones <- dplyr::rename(proyecciones, total_general = .data$Total)
-    }
-    proyecciones <- rbind(proyecciones, proyecciones)
+                            "projections_path")
+  nomb_proyecs <- config::get(file =
+                                system.file("extdata",
+                                            "config.yml",
+                                            package = "sivirep"),
+                              "projections_file_name")
+  ruta_extdata <- system.file("extdata", package = "sivirep")
+  ruta_proyecs <- file.path(ruta_extdata, nomb_proyecs)
+  if (!file.exists(ruta_proyecs)) {
+    utils::download.file(url_proyecs, ruta_proyecs)
   }
+  load(ruta_proyecs)
+  proyecciones <- proyecs_2005_2035
   return(proyecciones)
 }
