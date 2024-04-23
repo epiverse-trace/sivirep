@@ -896,21 +896,19 @@ agrupar_per_etn <- function(data_event, cols_etn = "per_etn") {
 #' \dontrun{
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
-#' proyecciones <- import_data_inicidencia()
-#' proyecciones_limpias <- limpiar_data_incidencia(data_incidencia =
-#'                                                  proyecciones)
+#' proyecciones <- import_data_incidencia()
 #' data_agrupada_mpios <- agrupar_mpio(data_limpia, dpto = "Antioquia")
-#' calcular_incidencia(data_incidencia = proyecciones_limpias,
+#' calcular_incidencia(data_incidencia = proyecciones,
 #'                     data_agrupada = data_agrupada_mpios,
 #'                     dpto = "05",
 #'                     year = 2020)
-#' calcular_incidencia(data_incidencia = proyecciones_limpias,
+#' calcular_incidencia(data_incidencia = proyecciones,
 #'                     data_agrupada = data_agrupada_mpios,
-#'                     dpto = "05",
-#'                     mpio = "05001"
+#'                     dpto = "Antioquia",
+#'                     mpio = "05001",
 #'                     year = 2020)
 #' data_agrupada_dptos <- agrupar_dpto(data_limpia)
-#' calcular_incidencia(data_incidencia = proyecciones_limpias,
+#' calcular_incidencia(data_incidencia = proyecciones,
 #'                     data_agrupada = data_agrupada_dptos,
 #'                     year = 2020)
 #' }
