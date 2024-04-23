@@ -80,12 +80,21 @@ plot_map <- function(data_agrupada,
   if (is.null(fuente_data)) {
     fuente_data <- "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
   }
+  etiqueta_relleno <- "Casos"
   stopifnot("El parametro fuente_data debe ser un cadena de caracteres"
             = is.character(fuente_data))
   nombre_events <- unique(data_agrupada$nombre_evento)[1]
   cols_geo_ocurrencia <- obtener_tip_ocurren_geo(nombre_event = nombre_events)
   if (length(cols_geo_ocurrencia) > 1) {
     subtitulo <- paste0(subtitulo, cols_geo_ocurrencia[5])
+  }
+  if (col_distribucion == "incidencia") {
+    etiqueta_relleno <- "Incidencia"
+    cond_incidencia <-
+      obtener_cond_inciden_event(cod_eve = data_agrupada$cod_eve[1])
+    etiqueta_relleno <- paste0(etiqueta_relleno, " por \n",
+                               cond_incidencia$coeficiente,
+                               " habitantes")
   }
   config_file <- system.file("extdata", "config.yml", package = "sivirep")
   base_path <- config::get(file = config_file, "map_shape_file")
@@ -208,7 +217,7 @@ plot_map <- function(data_agrupada,
                                                          face = "bold"),
                    text = ggplot2::element_text(size = 14),
                    legend.title = ggplot2::element_text(face = "bold")) +
-    ggplot2::labs(caption = fuente_data, fill = "Casos")
+    ggplot2::labs(caption = fuente_data, fill = etiqueta_relleno)
   relleno <- 1
   tema_tabla <- gridExtra::ttheme_minimal(base_size = 14,
                                           padding = ggplot2::unit(c(5, relleno),
