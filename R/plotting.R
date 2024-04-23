@@ -1292,6 +1292,10 @@ plot_per_etn <- function(data_agrupada,
 #' @export
 plot_tabla_incidencia_geo <- function(data_agrupada,
                                       col_geo = NULL) {
+  stopifnot("El parametro data_agrupada debe ser un data.frame"
+            = is.data.frame(data_agrupada),
+            "El parametro col_geo debe ser una cadena de caracteres"
+            = is.character(col_geo))
   nomb_cols <- obtener_tip_ocurren_geo(data_agrupada$nombre_evento[1])
   geo_etiqueta <- "Departamento"
   if (is.null(col_geo)) {
