@@ -46,7 +46,7 @@
 #' # Mapa con la incidencia por municipios de un departamento especifico
 #' \dontrun{
 #' proyecciones <- import_data_incidencia()
-#' incidencia_dpto <- 
+#' incidencia_dpto <-
 #'     calcular_incidencia_geo(data_incidencia = proyecciones,
 #'                             data_agrupada = data_espacial_dpto,
 #'                             year = 2020)
