@@ -1194,6 +1194,21 @@ plot_tipo_caso_years <- function(data_agrupada,
                                          "config.yml",
                                          package = "sivirep"),
                            "labels_cas_tip")
+  etiqueta_year <- config::get(file =
+                                 system.file("extdata",
+                                             "config.yml",
+                                             package = "sivirep"),
+                               "label_year")
+  etiqueta_casos <- config::get(file =
+                                  system.file("extdata",
+                                              "config.yml",
+                                              package = "sivirep"),
+                                "label_cases")
+  etiqueta_tipo <- config::get(file =
+                                 system.file("extdata",
+                                             "config.yml",
+                                             package = "sivirep"),
+                               "label_type_case")
   clasificacion <- unique(data_agrupada[[col_tipo]])
   escala <- length(unique(data_agrupada[[col_tipo]]))
   etiquetas <- etiquetas[as.character(clasificacion)]
@@ -1204,11 +1219,12 @@ plot_tipo_caso_years <- function(data_agrupada,
                                  y = .data[["casos"]],
                                  fill = .data[[col_tipo]])) +
     ggplot2::geom_bar(stat = "identity") +
-    ggplot2::labs(x = "\nYear\n", y = "Numero de casos\n",
+    ggplot2::labs(x = paste0("\n", etiqueta_year, "\n"),
+                  y = paste0(etiqueta_casos, "\n"),
                   caption = fuente_data) +
     ggplot2::theme_classic() +
     obtener_estetica_escala(escala = escala,
-                            nombre = "Clasificacion del caso\n",
+                            nombre = paste0(etiqueta_tipo, "\n"),
                             etiquetas = etiquetas) +
     tema_sivirep() +
     ggplot2::theme(legend.position = "right")
