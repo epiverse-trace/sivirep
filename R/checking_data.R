@@ -914,7 +914,6 @@ agrupar_per_etn <- function(data_event, cols_etn = "per_etn") {
 #' }
 #' @export
 calcular_incidencia <- function(data_incidencia, data_agrupada, year,
-                                dpto = NULL, mpio = NULL) {
                                 dpto = NULL, mpio = NULL,
                                 sex = NULL) {
   stopifnot("El parametro data_incidencia es obligatorio" =
