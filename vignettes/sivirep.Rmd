@@ -321,7 +321,8 @@ dist_esp_dept <- agrupar_mpio(data_event = data_event_filtrada,
 Actualmente, con la función llamada `plot_map`, el usuario puede generar un mapa estático de Colombia que muestra la distribución de casos por departamentos y municipios.
 
 ```{r plot_mapa, results = 'hide', echo = FALSE}
-mapa <- plot_map(data_agrupada = dist_esp_dept, dpto = "Choco")
+mapa <- plot_map(data_agrupada = dist_esp_dept, dpto = "Choco",
+                 col_distribucion = "casos")
 ```
 
 ```{r mapa, fig.height = 14, fig.width = 10}
