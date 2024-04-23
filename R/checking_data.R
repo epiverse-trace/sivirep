@@ -955,18 +955,7 @@ calcular_incidencia <- function(data_incidencia, data_agrupada, year,
                                .data$ano == year)
     total_casos <- sum(data_agrupada$casos)
   }
-  total_poblacion <- sum(poblacion$total)
-  ruta_base <- config::get(file =
-                             system.file("extdata",
-                                         "config.yml",
-                                         package = "sivirep"),
-                           "incidence_events_path")
-  archivo_condiciones <-  system.file(ruta_base, package = "sivirep")
-  incidencia_events <- readxl::read_excel(archivo_condiciones,
-                                          col_types = c("numeric", "text",
-                                                        "text", "text"))
-  vals_event <- incidencia_events[incidencia_events$cod_eve == as.numeric(
-    data_agrupada$cod_eve[1]), ]
+  vals_event <- obtener_cond_inciden_event(cod_eve = data_agrupada$cod_eve[1])
   vals_event$coeficiente <- as.integer(vals_event$coeficiente)
   print(total_casos)
   print(total_poblacion)
