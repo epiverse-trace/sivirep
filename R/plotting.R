@@ -77,10 +77,8 @@ plot_map <- function(data_agrupada,
   cols_geo_ocurrencia <- NULL
   data_tabla <- data.frame()
   nombres_col <- NULL
-  if (is.null(fuente_data)) {
-    fuente_data <- "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
-  }
   etiqueta_relleno <- "Casos"
+  fuente_data <- "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
   stopifnot("El parametro fuente_data debe ser un cadena de caracteres"
             = is.character(fuente_data))
   nombre_events <- unique(data_agrupada$nombre_evento)[1]
