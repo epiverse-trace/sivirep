@@ -9,8 +9,6 @@ output:
   word_document: 
     number_sections: true
 header-includes:
-  - \usepackage{fancyhdr}
-  - \pagestyle{fancy}
   - \usepackage[utf8]{inputenc}
   - \usepackage[spanish]{babel}
   - \fancyfoot[R]{\includegraphics[width=1.1cm]{logo.png}}
@@ -349,7 +347,11 @@ incidencias_sex <- calcular_incidencia_sex(data_incidencia = proyecciones,
                                            year = params$year)
 ```
 
-```{r distribution_cg_plots, fig.height = 4, fig.width = 8, fig.cap = "Distribucion de casos por sexo", include = params$epi_sex_distribution}
+```{r table_sex_incidence, echo = FALSE, error = FALSE, fig.height=5, fig.width = 10, warning = FALSE, include = TRUE, message = FALSE, fig.pos = "H"} 
+plot_tabla_incidencia_sex(incidencias_sex)
+```
+
+```{r sex_incidence_plot, fig.height = 4, fig.width = 8, fig.cap = "Incidencia por sexo", include = params$epi_sex_distribution}
 plot_sex(data_agrupada = incidencias_sex,
          col_distribucion = "incidencia")
 ```
