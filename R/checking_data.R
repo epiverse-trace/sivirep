@@ -1016,7 +1016,20 @@ calcular_incidencia <- function(data_incidencia, data_agrupada, year,
 calcular_incidencia_geo <- function(data_incidencia,
                                     data_agrupada,
                                     year) {
-  data_geo_inicidencia <- NULL
+  stopifnot("El parametro data_incidencia es obligatorio" =
+              !missing(data_incidencia),
+            "El parametro data_incidencia debe ser un data.frame" =
+              is.data.frame(data_incidencia),
+            "El parametro data_incidencia no debe estar vacio" =
+              nrow(data_incidencia) > 0,
+            "El parametro data_agrupada es obligatorio" =
+              !missing(data_agrupada),
+            "El parametro data_agrupada debe ser un data.frame" =
+              is.data.frame(data_agrupada),
+            "El parametro data_agrupada no debe estar vacio" =
+              nrow(data_agrupada) > 0,
+            "El parametro year es obligatorio" = !missing(year))
+  data_geo_incidencia <- NULL
   nomb_cols <- obtener_tip_ocurren_geo(data_agrupada$nombre_evento[1])
   if (nomb_cols[1] %in% colnames(data_agrupada) &&
       !(nomb_cols[3] %in% colnames(data_agrupada))) {
