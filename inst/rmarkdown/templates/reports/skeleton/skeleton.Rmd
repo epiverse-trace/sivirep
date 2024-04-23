@@ -45,23 +45,23 @@ params:
   temporal_distribution:
     value: TRUE
     input: checkbox
-    label: Distribucion temporal de los casos
+    label: Distribución temporal de los casos
   epi_sex_distribution:
     value: TRUE
     input: checkbox
-    label: Distribucion de casos por sexo y semana epidemiológica
+    label: Distribución de casos por sexo y semana epidemiológica
   age_distribution:
     value: TRUE
     input: checkbox
-    label: Distribucion de casos por edad
+    label: Distribución de casos por edad
   age_sex_distribution:
     value: TRUE
     input: checkbox
-    label: Distribucion de casos por edad y sexo
+    label: Distribución de casos por edad y sexo
   mpio_distribution:
     value: TRUE
     input: checkbox
-    label: Distribucion de casos por municipio
+    label: Distribución de casos por municipio
   spatial_distribution:
     value: TRUE
     input: checkbox
@@ -69,7 +69,7 @@ params:
   areas_distribution:
     value: TRUE
     input: checkbox
-    label: Distribucion de casos por área geográfica
+    label: Distribución de casos por área geográfica
 editor_options: 
   markdown: 
     wrap: sentence
