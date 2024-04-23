@@ -1340,20 +1340,20 @@ plot_tabla_incidencia_geo <- function(data_agrupada,
                                             package = "sivirep"),
                               "label_code")
   if (is.null(col_geo)) {
-    col_geo <- nomb_cols[2]
+    col_geo <- nomb_cols[1:2]
   }
   if (nomb_cols[3] %in% colnames(data_agrupada) &&
       length(unique(data_agrupada[[nomb_cols[1]]])) == 1) {
-    geo_etiqueta <- "Municipio"
-    col_geo <- nomb_cols[4]
+    etiqueta_geo <- "Municipio"
+    col_geo <- nomb_cols[3:4]
   }
   caption_tabla <- config::get(file =
                                  system.file("extdata",
                                              "config.yml",
                                              package = "sivirep"),
                                "caption_geo_incidence")
-  data_agrupada[[col_geo]] <-
-    stringr::str_to_title(data_agrupada[[col_geo]])
+  data_agrupada[[col_geo[2]]] <-
+    stringr::str_to_title(data_agrupada[[col_geo[2]]])
   data_tabla <- data_agrupada %>%
     group_by_at(c(col_geo, "incidencia")) %>%
     dplyr::summarise(incidencia = sum(.data[["incidencia"]]),
@@ -1369,7 +1369,7 @@ plot_tabla_incidencia_geo <- function(data_agrupada,
     kableExtra::row_spec(0, color = "white", background = "#2274BB") %>%
     kableExtra::kable_styling(full_width = FALSE,
                               latex_options = "HOLD_position")
-  return(tabla_tipos)
+  return(tabla_geo)
 }
 
 #' Generar tabla con la incidencia por sexo
