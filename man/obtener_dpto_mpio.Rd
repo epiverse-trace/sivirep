@@ -30,11 +30,4 @@ estructura `list("dpto" = "05", "mpio" = "05001")`
 Función que obtiene los códigos geográficos de un departamento y municipio
 dadas unas condiciones
 }
-\examples{
-data(dengue2020)
-data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
-data_agrupada <- agrupar_mpio(data_limpia, dpto = "Antioquia")
-nomb_cols <- obtener_tip_ocurren_geo(data_agrupada$nombre_evento[1])
-obtener_dpto_mpio(data_agrupada, nomb_cols)
-}
 \keyword{internal}

@@ -509,12 +509,6 @@ obtener_casos_pob_especial <- function(data_event) {
 #' que contiene el código o nombre del municipio; su valor por defecto es `NULL`
 #' @return Una `list` (lista) con el departamento y municipio con la siguiente
 #' estructura `list("dpto" = "05", "mpio" = "05001")`
-#' @examples
-#' data(dengue2020)
-#' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
-#' data_agrupada_mpios <- agrupar_mpio(data_limpia, dpto = "Antioquia")
-#' nomb_cols <- obtener_tip_ocurren_geo(data_agrupada$nombre_evento[1])
-#' obtener_dpto_mpio <- function(data_agrupada, nomb_cols)
 #' @keywords internal
 obtener_dpto_mpio <- function(data_agrupada, nomb_cols,
                               dpto = NULL, mpio = NULL) {
@@ -536,3 +530,10 @@ obtener_dpto_mpio <- function(data_agrupada, nomb_cols,
     if (is.null(mpio) &&
         nomb_cols[3] %in% colnames(data_agrupada) &&
         !is.na(unique(
+          nomb_cols[data_agrupada[[nomb_cols[3]]]]))) {
+      mpio <- data_agrupada[[nomb_cols[3]]][1]
+    }
+    unidades_geo <- list("dpto" = dpto, "mpio" = mpio)
+  }
+  return(unidades_geo)
+}
