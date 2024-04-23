@@ -156,7 +156,7 @@ agrupar_cols_casos <- function(data_event,
               (!is.character(nomb_cols) && is.array(nomb_cols)),
             "El parametro porcentaje debe ser un booleano (TRUE o FALSE)" =
               is.logical(porcentaje))
-  nomb_cols <- append(nomb_cols, "nombre_evento")
+  nomb_cols <- append(nomb_cols, c("cod_eve", "nombre_evento", "ano"))
   data_event_agrupada <- data_event %>%
     dplyr::group_by_at(nomb_cols) %>%
     dplyr::summarise(casos = dplyr::n(), .groups = "drop")
