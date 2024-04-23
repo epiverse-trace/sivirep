@@ -635,7 +635,10 @@ plot_sex_semanaepi <- function(data_agrupada,
     tema_sivirep() +
     ggplot2::facet_wrap(facets = ~nombre_evento,
                         scales = "free_y",
-                        ncol = 1)
+                        ncol = 1) +
+    ggplot2::theme(axis.text.x = ggplot2::element_text(
+      angle = 45,
+      hjust = 1))
   return(plot_casos_sex_semanaepi)
 }
 
