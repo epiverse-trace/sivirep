@@ -1258,3 +1258,59 @@ plot_per_etn <- function(data_agrupada,
     ggplot2::theme(legend.position = "right")
   return(plot_casos_years)
 }
+
+#' Generar tabla con la incidencia
+#'
+#' Función que genera la tabla con la incidencia según
+#' distribución geográfica
+#' @param data_agrupada Un `data.frame` que contiene los datos de la
+#' enfermedad o evento agrupados por departamento o municipio
+#' @param col_geo Un `character` (cadena de carácteres) con el nombre de
+#' la columna que contiene los nombres de los departamentos o municipios
+#' en los datos agrupados de la enfermedad o evento; su valor por
+#' defecto es `"municipio_ocurrencia"`
+#' @return Una `kable` (tabla gráfica) con la incidencia según
+#' distribución geográfica
+#' @examples
+#' \dontrun{
+#' data(dengue2020)
+#' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+#' proyecciones <- import_data_incidencia()
+#' data_agrupada <- agrupar_mpio(data_limpia, dpto = "Antioquia")
+#' calcular_geo_incidencia(data_incidencia = proyecciones,
+#'                         data_agrupada = data_agrupada_mpios,
+#'                         year = 2020)
+#  plot_tabla_incidencia_geo(data_agrupada,
+#'                          col_geo = "municipio_ocurrencia")
+#' }
+#' @export
+plot_tabla_incidencia_geo <- function(data_agrupada,
+                                      col_geo = NULL) {
+  nomb_cols <- obtener_tip_ocurren_geo(data_agrupada$nombre_evento[1])
+  geo_etiqueta <- "Departamento"
+  if (is.null(col_geo)) {
+    col_geo <- nomb_cols[2]
+    if (nomb_cols[2] %in% colnames(data_agrupada) &&
+        length(unique(data_agrupada[[nomb_cols[1]]])) == 1) {
+      geo_etiqueta <- "Municipio"
+      col_geo <- nomb_cols[4]
+    }
+  }
+  caption_tabla <- config::get(file =
+                                 system.file("extdata",
+                                             "config.yml",
+                                             package = "sivirep"),
+                               "caption_geo_incidence")
+  data_agrupada[[col_geo]] <-
+    stringr::str_to_title(data_agrupada[[col_geo]])
+  data_tabla <- data.frame(data_agrupada[[col_geo]],
+                           data_agrupada[["incidencia"]])
+  tabla_tipos <- knitr::kable(data_tabla,
+                              col.names = c(geo_etiqueta, "Incidencia"),
+                              align = "c",
+                              caption = caption_tabla) %>%
+    kableExtra::row_spec(0, color = "white", background = "#2274BB") %>%
+    kableExtra::kable_styling(full_width = FALSE,
+                              latex_options = "HOLD_position")
+  return(tabla_tipos)
+}
