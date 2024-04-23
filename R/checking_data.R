@@ -890,8 +890,10 @@ agrupar_per_etn <- function(data_event, cols_etn = "per_etn") {
 #' defecto es `NULL`
 #' @param mpio Un `character` (cadena de caracteres) o `numeric` (numérico)
 #' que contiene el código o nombre del municipio; su valor por defecto es `NULL`
+#' @param sex Un `character` (cadena de caracteres) que contiene el sexo`"F"`
+#' para Femenino y `"M"` Masculino; su valor por defecto es `NULL`
 #' @return Un `numeric` con el calculo de la incidencia para todo Colombia, un
-#' departamento o municipio
+#' departamento, municipio o sexo especifico
 #' @examples
 #' \dontrun{
 #' data(dengue2020)
@@ -931,6 +933,8 @@ calcular_incidencia <- function(data_incidencia, data_agrupada, year,
             "El parametro year es obligatorio" = !missing(year))
   poblacion <- NULL
   total_casos <- NULL
+  total_poblacion <- NULL
+  incidencia <- 0
   nomb_cols <- obtener_tip_ocurren_geo(data_agrupada$nombre_evento[1])
   unidades_geo <- obtener_dpto_mpio(data_agrupada = data_agrupada,
                                     nomb_cols = nomb_cols,
@@ -943,11 +947,19 @@ calcular_incidencia <- function(data_incidencia, data_agrupada, year,
                                .data$dp == dpto, .data$ano == 2020)
     if (!is.null(mpio)) {
       poblacion <- poblacion[poblacion$mpio == mpio, ]
-      total_mpio <- data_agrupada[data_agrupada[[nomb_cols[3]]] == mpio, ]
-      total_casos <- total_mpio$casos
+      if (is.null(sex)) {
+        total_mpio <- data_agrupada[data_agrupada[[nomb_cols[3]]] == mpio, ]
+        total_casos <- sum(total_mpio$casos)
+      } else {
+        total_casos <- sum(data_agrupada$casos)
+      }
     } else {
-      total_dpto <- data_agrupada[data_agrupada[[nomb_cols[1]]] == dpto, ]
-      total_casos <- total_dpto$casos
+      if (is.null(sex)) {
+        total_dpto <- data_agrupada[data_agrupada[[nomb_cols[1]]] == dpto, ]
+        total_casos <- sum(total_dpto$casos)
+      } else {
+        total_casos <- sum(data_agrupada$casos)
+      }
     }
   } else {
     poblacion <- dplyr::filter(data_incidencia,
@@ -955,13 +967,22 @@ calcular_incidencia <- function(data_incidencia, data_agrupada, year,
                                .data$ano == year)
     total_casos <- sum(data_agrupada$casos)
   }
+  if (!is.null(sex)) {
+    if (sex == "F") {
+      total_poblacion <- sum(poblacion$mujeres)
+    } else {
+      total_poblacion <- sum(poblacion$hombres)
+    }
+  } else {
+    total_poblacion <- sum(poblacion$total)
+  }
   vals_event <- obtener_cond_inciden_event(cod_eve = data_agrupada$cod_eve[1])
   vals_event$coeficiente <- as.integer(vals_event$coeficiente)
-  print(total_casos)
-  print(total_poblacion)
-  print(as.integer(vals_event$coeficiente))
-  incidencia <- round((total_casos / total_poblacion) * vals_event$coeficiente,
-                      3)
+  if (total_poblacion > 0) {
+    incidencia <- round((total_casos / total_poblacion) *
+                          vals_event$coeficiente,
+                        2)
+  }
   return(incidencia)
 }
 
