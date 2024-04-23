@@ -4,7 +4,7 @@
 \alias{plot_tabla_incidencia_sex}
 \title{Generar tabla con la incidencia por sexo}
 \usage{
-plot_tabla_incidencia_sex(data_agrupada, col_sex = NULL)
+plot_tabla_incidencia_sex(data_agrupada, col_sex = "sexo")
 }
 \arguments{
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la
