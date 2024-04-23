@@ -36,6 +36,7 @@ default:
   labels_per_etn: {"1": "Indigena", "2": "ROM/Gitano", "3": "Raizal", "4": "Palenquero", "5": "Negro/Mulato/Afrocolombiano", "6": "Otro"}
   label_year: "Año"
   label_cases: "Número de casos"
+  label_incidence: "Incidencia"
   label_code: "Código"
   caption_table_events: "Distribución de casos por evento"
   label_geo_area: "Área geográfica"
@@ -46,3 +47,4 @@ default:
   projections_path: "https://raw.githubusercontent.com/TRACE-LAC/sivirep_incidence/main/data/proyecs_2005_2035.rda"
   projections_file_name: "proyecs_2005_2035.rda"
   incidence_events_path: "extdata/incidencia_events.xlsx"
+  caption_geo_incidence: "Incidencia según distribución geográfica"
