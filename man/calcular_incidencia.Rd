@@ -9,7 +9,8 @@ calcular_incidencia(
   data_agrupada,
   year,
   dpto = NULL,
-  mpio = NULL
+  mpio = NULL,
+  sex = NULL
 )
 }
 \arguments{
@@ -19,6 +20,9 @@ poblaciones del DANE}
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la enfermedad
 agrupados por departamento o municipio y número de casos}
 
+\item{year}{Un `numeric` (numerico) con el año que se debe tomar de las
+proyecciones poblacionales}
+
 \item{dpto}{Un `character` (cadena de caracteres) o `numeric` (numérico)
 que contiene el código o nombre del departamento; su valor por
 defecto es `NULL`}
@@ -26,12 +30,12 @@ defecto es `NULL`}
 \item{mpio}{Un `character` (cadena de caracteres) o `numeric` (numérico)
 que contiene el código o nombre del municipio; su valor por defecto es `NULL`}
 
-\item{years}{Un `numeric` (numerico) con el año que se debe tomar de las
-proyecciones poblacionales}
+\item{sex}{Un `character` (cadena de caracteres) que contiene el sexo`"F"`
+para Femenino y `"M"` Masculino; su valor por defecto es `NULL`}
 }
 \value{
 Un `numeric` con el calculo de la incidencia para todo Colombia, un
-departamento o municipio
+departamento, municipio o sexo especifico
 }
 \description{
 Función que calcula la incidencia de una enfermedad o evento para todo
@@ -41,21 +45,19 @@ Colombia, departamento o municipio
 \dontrun{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
-proyecciones <- import_data_inicidencia()
-proyecciones_limpias <- limpiar_data_incidencia(data_incidencia =
-                                                 proyecciones)
+proyecciones <- import_data_incidencia()
 data_agrupada_mpios <- agrupar_mpio(data_limpia, dpto = "Antioquia")
-calcular_incidencia(data_incidencia = proyecciones_limpias,
+calcular_incidencia(data_incidencia = proyecciones,
                     data_agrupada = data_agrupada_mpios,
                     dpto = "05",
                     year = 2020)
-calcular_incidencia(data_incidencia = proyecciones_limpias,
+calcular_incidencia(data_incidencia = proyecciones,
                     data_agrupada = data_agrupada_mpios,
-                    dpto = "05",
-                    mpio = "05001"
+                    dpto = "Antioquia",
+                    mpio = "05001",
                     year = 2020)
 data_agrupada_dptos <- agrupar_dpto(data_limpia)
-calcular_incidencia(data_incidencia = proyecciones_limpias,
+calcular_incidencia(data_incidencia = proyecciones,
                     data_agrupada = data_agrupada_dptos,
                     year = 2020)
 }
