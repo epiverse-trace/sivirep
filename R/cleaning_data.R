@@ -475,37 +475,3 @@ limpiar_data_sivigila <- function(data_event) {
                                   col_uni_med = "uni_med")
   return(data_event_limp)
 }
-
-#' Limpiar datos o proyecciones DANE
-#'
-#' Función que limpia y estandariza las proyecciones DANE para realizar
-#' el cálculo de incidencia
-#' @param proyecciones Un `data.frame` que contiene los datos de
-#' las proyecciones DANE
-#' @return Un `data.frame` con los datos limpios y estandarizados de las
-#' proyecciones DANE
-#' @examples
-#' proyecciones = import_data_incidencia()
-#' limpiar_data_sivigila(proyecciones = proyecciones)
-#' @export
-limpiar_data_incidencia <- function(proyecciones) {
-  data_incidencia_limpia <- limpiar_encabezado(proyecciones)
-  data_incidencia_limpia <- data_incidencia_limpia %>%
-    tidyr::pivot_longer(
-      cols = starts_with("hombres_") |
-        starts_with("mujeres_") | starts_with("total_"),
-      names_to = c(".value", "grupo_edad"),
-      names_pattern = "(.*)_(\\d+_y_mas|\\d+)$"
-    ) %>%
-    dplyr::select(.data$dp, .data$dpnom, .data$dpmp, .data$mpio, .data$ano,
-                  .data$area_geografica, .data$grupo_edad, .data$hombres,
-                  .data$mujeres, .data$total) %>%
-    dplyr::mutate(grupo_edad = dplyr::recode(.data$grupo_edad,
-                                             `85_y_mas` = "85+"))
-  data_incidencia_limpia <- data_incidencia_limpia %>%
-    dplyr::filter(!is.na(data_incidencia_limpia[["grupo_edad"]]))
-  data_incidencia_limpia <- limpiar_encabezado(data_incidencia_limpia)
-  data_incidencia_limpia <- data_incidencia_limpia[
-    duplicated(data_incidencia_limpia), ]
-  return(data_incidencia_limpia)
-}
