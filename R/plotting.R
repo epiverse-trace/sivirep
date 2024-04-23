@@ -1273,7 +1273,7 @@ plot_per_etn <- function(data_agrupada,
 #' @param col_geo Un `character` (cadena de carácteres) con el nombre de
 #' la columna que contiene los nombres de los departamentos o municipios
 #' en los datos agrupados de la enfermedad o evento; su valor por
-#' defecto es `"municipio_ocurrencia"`
+#' defecto es `NULL`
 #' @return Una `kable` (tabla gráfica) con la incidencia según
 #' distribución geográfica
 #' @examples
@@ -1282,11 +1282,12 @@ plot_per_etn <- function(data_agrupada,
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 #' proyecciones <- import_data_incidencia()
 #' data_agrupada <- agrupar_mpio(data_limpia, dpto = "Antioquia")
-#' calcular_geo_incidencia(data_incidencia = proyecciones,
-#'                         data_agrupada = data_agrupada_mpios,
+#' incidencia_mpios <- calcular_incidencia_geo(
+#'                         data_incidencia = proyecciones,
+#'                         data_agrupada = data_agrupada,
 #'                         year = 2020)
-#  plot_tabla_incidencia_geo(data_agrupada,
-#'                          col_geo = "municipio_ocurrencia")
+#  plot_tabla_incidencia_geo(data_agrupada = incidencia_mpios,
+#'                           col_geo = "municipio_ocurrencia")
 #' }
 #' @export
 plot_tabla_incidencia_geo <- function(data_agrupada,
