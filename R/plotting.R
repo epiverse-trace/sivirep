@@ -528,21 +528,30 @@ plot_sex <- function(data_agrupada,
   }
   stopifnot("El parametro fuente_data debe ser un cadena de caracteres"
             = is.character(fuente_data))
-  etiqueta_casos <- config::get(file =
-                                  system.file("extdata",
-                                              "config.yml",
-                                              package = "sivirep"),
+  etiqueta_eje <- NULL
+  if (col_distribucion == "casos") {
+    etiqueta_eje <- config::get(file =
+                                    system.file("extdata",
+                                                "config.yml",
+                                                package = "sivirep"),
                                 "label_cases")
+  } else {
+    etiqueta_eje <- config::get(file =
+                                    system.file("extdata",
+                                                "config.yml",
+                                                package = "sivirep"),
+                                "label_incidence")
+  }
   plot_casos_sex <- ggplot2::ggplot(data_agrupada,
                                     ggplot2::aes(x = .data[[col_sex]],
-                                                 y = .data[["casos"]],
+                                                 y = .data[[col_distribucion]],
                                                  fill = .data[[col_sex]])) +
     ggplot2::geom_bar(width = 0.5,
                       stat = "identity") +
-    ggplot2::labs(x = "\nSexo\n", y = paste0(etiqueta_casos, "\n"),
+    ggplot2::labs(x = "\nSexo\n", y = paste0(etiqueta_eje, "\n"),
                   caption = fuente_data) +
     ggplot2::theme_classic() +
-    ggplot2::geom_text(ggplot2::aes(label = paste0(.data[["casos"]],
+    ggplot2::geom_text(ggplot2::aes(label = paste0(.data[[col_distribucion]],
                                                    " \n (",
                                                    .data[["porcentaje"]],
                                                    " %)")),
