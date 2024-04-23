@@ -1296,11 +1296,11 @@ plot_tabla_incidencia_geo <- function(data_agrupada,
   geo_etiqueta <- "Departamento"
   if (is.null(col_geo)) {
     col_geo <- nomb_cols[2]
-    if (nomb_cols[2] %in% colnames(data_agrupada) &&
-        length(unique(data_agrupada[[nomb_cols[1]]])) == 1) {
-      geo_etiqueta <- "Municipio"
-      col_geo <- nomb_cols[4]
-    }
+  }
+  if (nomb_cols[3] %in% colnames(data_agrupada) &&
+      length(unique(data_agrupada[[nomb_cols[1]]])) == 1) {
+    geo_etiqueta <- "Municipio"
+    col_geo <- nomb_cols[4]
   }
   caption_tabla <- config::get(file =
                                  system.file("extdata",
