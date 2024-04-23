@@ -1264,6 +1264,16 @@ plot_per_etn <- function(data_agrupada,
   }
   nomb_cols <- c(col_etn, "nombre_evento")
   escala <- length(unique(data_agrupada[["nombre_evento"]]))
+  etiqueta_casos <- config::get(file =
+                                  system.file("extdata",
+                                              "config.yml",
+                                              package = "sivirep"),
+                                "label_cases")
+  etiqueta_etn <- config::get(file =
+                                  system.file("extdata",
+                                              "config.yml",
+                                              package = "sivirep"),
+                                "label_etn_groups")
   etiquetas <- config::get(file =
                              system.file("extdata",
                                          "config.yml",
