@@ -1282,13 +1282,14 @@ plot_per_etn <- function(data_agrupada,
   grupos <- unique(data_agrupada[[nomb_cols[1]]])
   etiquetas <- etiquetas[as.character(grupos)]
   etiquetas <- unlist(etiquetas)
-  plot_casos_years <-
+  plot_per_etn <-
     ggplot2::ggplot(data_agrupada,
                     ggplot2::aes(x = .data[[nomb_cols[1]]],
                                  y = .data[["casos"]],
                                  fill = .data[[nomb_cols[2]]])) +
     ggplot2::geom_bar(stat = "identity") +
-    ggplot2::labs(x = "\nPertenencia etnica\n", y = "Numero de casos\n",
+    ggplot2::labs(x = paste0("\n", etiqueta_etn, "\n"),
+                  y = paste0(etiqueta_casos, "\n"),
                   caption = fuente_data) +
     ggplot2::theme_classic() +
     obtener_estetica_escala(escala = escala, nombre = "Eventos\n") +
@@ -1298,7 +1299,7 @@ plot_per_etn <- function(data_agrupada,
                    axis.text.x = ggplot2::element_text(
                      angle = 15,
                      hjust = 1))
-  return(plot_casos_years)
+  return(plot_per_etn)
 }
 
 #' Generar tabla con la incidencia
