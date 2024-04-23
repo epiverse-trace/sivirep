@@ -308,7 +308,7 @@ plot_per_etn(data_agrupada = casos_per_etn)
 
 `r if(params$mpio_distribution) {"# Distribución de casos por municipio"}`
 
-```{r group_distribution_municipios,  results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
+```{r group_distribution_municipios, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
 dist_espacial_dpto <- agrupar_mpio(data_event = data_event_filtrada,
                                    dpto = params$departmento)
 dist_espacial_dpto <- dist_espacial_dpto[order(dist_espacial_dpto$casos), ]
@@ -326,6 +326,21 @@ plot_spatial
 \newpage
 
 `r if(params$spatial_distribution) {"# Distribución espacial de casos"}`
+# Incidencia
+
+```{r total_incidence, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
+proyecciones <- import_data_incidencia()
+incidencia_dpto <- calcular_incidencia(data_incidencia =
+                                          proyecciones,
+                                       data_agrupada =
+                                         dist_espacial_dpto,
+                                       year = params$year)
+cond_incidencia <-
+  obtener_cond_inciden_event(cod_eve = dist_espacial_dpto$cod_eve[1])
+```
+
+La incidencia para el departamento de `r params$departamento` es: `r incidencia_dpto` por  `r cond_incidencia$coeficiente` habitantes.
+
 
 ```{r plot_distribution_spatial, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
 mapa <- plot_map(data_agrupada = dist_espacial_dpto, col_distribucion = "casos")
