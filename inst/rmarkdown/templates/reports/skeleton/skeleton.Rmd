@@ -371,7 +371,9 @@ plot_sex(data_agrupada = incidencias_sex,
          col_distribucion = "incidencia")
 ```
 
-`r if(params$spatial_distribution) {"# La incidencia según distribución geográfica"}`
+`r if(params$spatial_distribution) {"# Incidencia según distribución geográfica"}`
+
+La incidencia para cada uno de los municipios del departamento del `r params$departmento` por `r cond_incidencia$coeficiente` habitantes es la siguiente:
 
 ```{r geo_incidence, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
 dist_espacial_dpto <- calcular_incidencia_geo(data_incidencia =
