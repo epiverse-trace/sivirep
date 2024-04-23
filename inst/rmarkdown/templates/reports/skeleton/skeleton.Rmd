@@ -143,8 +143,8 @@ fuente <- "Fuente SIVIGILA, Datos libres"
 ```
 
 ```{r import_data, include = FALSE}
-data_event <-  import_data_event(nombre_event = params$nombre_evento,
-                                 year = params$year)
+data_event <- import_data_event(nombre_event = params$nombre_evento,
+                                years = params$year)
 ```
 
 ```{r clean_data, include = FALSE}
