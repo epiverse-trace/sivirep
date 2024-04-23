@@ -492,3 +492,47 @@ obtener_casos_pob_especial <- function(data_event) {
   )
   return(data_pob_especial)
 }
+#' Obtener código de un departamento y municipio
+#'
+#' Función que obtiene los códigos geográficos de un departamento y municipio
+#' dadas unas condiciones
+#' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
+#' agrupados por departamento o municipio y número de casos
+#' @param nomb_cols Un `character` (cadena de caracteres) o
+#' `array (arreglo) de character` que contiene el nombre de la(s) columna(s) con
+#' la información de los departamentos y municipios en los datos agrupados de la
+#' enfermedad o evento
+#' @param dpto Un `character` (cadena de caracteres) o `numeric` (numérico)
+#' que contiene el código o nombre del departamento; su valor por
+#' defecto es `NULL`
+#' @param mpio Un `character` (cadena de caracteres) o `numeric` (numérico)
+#' que contiene el código o nombre del municipio; su valor por defecto es `NULL`
+#' @return Una `list` (lista) con el departamento y municipio con la siguiente
+#' estructura `list("dpto" = "05", "mpio" = "05001")`
+#' @examples
+#' data(dengue2020)
+#' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+#' data_agrupada_mpios <- agrupar_mpio(data_limpia, dpto = "Antioquia")
+#' nomb_cols <- obtener_tip_ocurren_geo(data_agrupada$nombre_evento[1])
+#' obtener_dpto_mpio <- function(data_agrupada, nomb_cols)
+#' @keywords internal
+obtener_dpto_mpio <- function(data_agrupada, nomb_cols,
+                              dpto = NULL, mpio = NULL) {
+  unidades_geo <- NULL
+  if (!is.null(dpto) && dpto != "01") {
+    dept_data <- obtener_info_depts(dpto, mpio)
+    stopifnot("El departamento o municipio ingresado no existe"
+              = nrow(dept_data) > 0)
+    dept_data <- dept_data[1, ]
+    dpto <- dept_data$codigo_departamento
+    if (!is.null(mpio)) {
+      mpio <- dept_data$codigo_municipio
+    }
+    unidades_geo <- list("dpto" = dpto, "mpio" = mpio)
+  } else if (nomb_cols[1] %in% colnames(data_agrupada) &&
+      !is.na(unique(
+        nomb_cols[data_agrupada[[nomb_cols[1]]]]))) {
+    dpto <- data_agrupada[[nomb_cols[1]]][1]
+    if (is.null(mpio) &&
+        nomb_cols[3] %in% colnames(data_agrupada) &&
+        !is.na(unique(
