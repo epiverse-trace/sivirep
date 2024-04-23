@@ -998,7 +998,9 @@ plot_tabla_tipos_event <- function(data_agrupada,
                                "caption_table_events")
   data_agrupada[[col_event]] <-
     stringr::str_to_title(data_agrupada[[col_event]])
-  tabla_tipos <- knitr::kable(data_agrupada,
+  tabla_tipos <- knitr::kable(data_agrupada[, c("cod_eve",
+                                                col_event,
+                                                "casos")],
                               col.names = c(etiqueta_cod,
                                             "Evento", "Casos"),
                               align = "c",
