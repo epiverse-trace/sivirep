@@ -1415,6 +1415,8 @@ plot_tabla_incidencia_sex <- function(data_agrupada,
                                "caption_sex_incidence")
   data_agrupada[[col_sex]] <-
     stringr::str_to_title(data_agrupada[[col_sex]])
+  data_agrupada[["nombre_evento"]] <-
+    stringr::str_to_title(data_agrupada[["nombre_evento"]])
   data_agrupada <- data_agrupada[order(data_agrupada$incidencia,
                                  decreasing = TRUE), ]
   tabla_sex <- knitr::kable(data_agrupada[, c("cod_eve",
@@ -1430,5 +1432,5 @@ plot_tabla_incidencia_sex <- function(data_agrupada,
     kableExtra::row_spec(0, color = "white", background = "#2274BB") %>%
     kableExtra::kable_styling(full_width = FALSE,
                               latex_options = "HOLD_position")
-  return(tabla_tipos)
+  return(tabla_sex)
 }
