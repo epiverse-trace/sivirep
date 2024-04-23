@@ -1116,6 +1116,16 @@ plot_tipo_caso <- function(data_agrupada,
                                          "config.yml",
                                          package = "sivirep"),
                            "labels_cas_tip")
+  etiqueta_casos <- config::get(file =
+                                  system.file("extdata",
+                                              "config.yml",
+                                              package = "sivirep"),
+                                "label_cases")
+  etiqueta_tipo <- config::get(file =
+                                  system.file("extdata",
+                                              "config.yml",
+                                              package = "sivirep"),
+                                "label_type_case")
   clasificacion <- unique(data_agrupada[[nomb_cols[1]]])
   escala <- length(unique(data_agrupada[[nomb_cols[2]]]))
   etiquetas <- etiquetas[as.character(clasificacion)]
@@ -1126,7 +1136,8 @@ plot_tipo_caso <- function(data_agrupada,
                                  y = .data[["casos"]],
                                  fill = .data[[nomb_cols[2]]])) +
     ggplot2::geom_bar(stat = "identity") +
-    ggplot2::labs(x = "\nClasificacion del caso\n", y = "Numero de casos\n",
+    ggplot2::labs(x = paste0("\n", etiqueta_tipo, "\n"),
+                  y = paste0(etiqueta_casos, "\n"),
                   caption = fuente_data) +
     ggplot2::theme_classic() +
     obtener_estetica_escala(escala = escala, nombre = "Eventos\n") +
