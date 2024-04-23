@@ -341,6 +341,20 @@ cond_incidencia <-
 
 La incidencia para el departamento de `r params$departamento` es: `r incidencia_dpto` por  `r cond_incidencia$coeficiente` habitantes.
 
+## Incidencia por sexo
+
+```{r sex_incidence, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
+incidencias_sex <- calcular_incidencia_sex(data_incidencia = proyecciones,
+                                           data_agrupada = casos_sex,
+                                           dpto = params$departmento,
+                                           year = params$year)
+```
+
+```{r distribution_cg_plots, fig.height = 4, fig.width = 8, fig.cap = "Distribucion de casos por sexo", include = params$epi_sex_distribution}
+plot_sex(data_agrupada = incidencias_sex,
+         col_distribucion = "incidencia")
+```
+
 
 ```{r plot_distribution_spatial, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
 mapa <- plot_map(data_agrupada = dist_espacial_dpto, col_distribucion = "casos")
