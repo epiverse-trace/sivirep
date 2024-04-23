@@ -1313,8 +1313,12 @@ plot_tabla_incidencia_geo <- function(data_agrupada,
                                "caption_geo_incidence")
   data_agrupada[[col_geo]] <-
     stringr::str_to_title(data_agrupada[[col_geo]])
-  data_tabla <- data.frame(data_agrupada[[col_geo]],
-                           data_agrupada[["incidencia"]])
+  data_tabla <- data_agrupada %>%
+    group_by_at(c(col_geo, "incidencia")) %>%
+    dplyr::summarise(incidencia = sum(.data[["incidencia"]]),
+                     .groups = "drop")
+  data_tabla <- data_tabla[order(data_tabla$incidencia,
+                                   decreasing = TRUE), ]
   tabla_tipos <- knitr::kable(data_tabla,
                               col.names = c(geo_etiqueta, "Incidencia"),
                               align = "c",
