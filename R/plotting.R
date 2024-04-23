@@ -1333,7 +1333,12 @@ plot_tabla_incidencia_geo <- function(data_agrupada,
   stopifnot("El parametro data_agrupada debe ser un data.frame"
             = is.data.frame(data_agrupada))
   nomb_cols <- obtener_tip_ocurren_geo(data_agrupada$nombre_evento[1])
-  geo_etiqueta <- "Departamento"
+  etiqueta_geo <- "Departamento"
+  etiqueta_cod <- config::get(file =
+                                system.file("extdata",
+                                            "config.yml",
+                                            package = "sivirep"),
+                              "label_code")
   if (is.null(col_geo)) {
     col_geo <- nomb_cols[2]
   }
@@ -1355,10 +1360,12 @@ plot_tabla_incidencia_geo <- function(data_agrupada,
                      .groups = "drop")
   data_tabla <- data_tabla[order(data_tabla$incidencia,
                                    decreasing = TRUE), ]
-  tabla_tipos <- knitr::kable(data_tabla,
-                              col.names = c(geo_etiqueta, "Incidencia"),
-                              align = "c",
-                              caption = caption_tabla) %>%
+  tabla_geo <- knitr::kable(data_tabla,
+                            col.names = c(etiqueta_cod,
+                                          etiqueta_geo,
+                                          "Incidencia"),
+                            align = "c",
+                            caption = caption_tabla) %>%
     kableExtra::row_spec(0, color = "white", background = "#2274BB") %>%
     kableExtra::kable_styling(full_width = FALSE,
                               latex_options = "HOLD_position")
