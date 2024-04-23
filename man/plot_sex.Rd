@@ -7,6 +7,7 @@
 plot_sex(
   data_agrupada,
   col_sex = "sexo",
+  col_distribucion = "casos",
   porcentaje = TRUE,
   fuente_data = NULL
 )
@@ -18,6 +19,10 @@ enfermedad o evento agrupados}
 \item{col_sex}{Un `character` (cadena de caracteres) con el nombre de la
 columna que contiene el sexo en los datos agrupados de la enfermedad o
 evento; su valor por defecto es `"sexo"`}
+
+\item{col_distribucion}{Un `character` (cadena de caracteres) que contiene el
+nombre de la columna que tiene los valores de la distribución, por número de
+casos o incidencia; su valor por defecto es `"incidencia"`}
 
 \item{porcentaje}{Un `boolean` (TRUE/FALSE) que indica si los datos
 tienen porcentajes; su valor por defecto es `TRUE`}
