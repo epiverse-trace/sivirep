@@ -1130,7 +1130,7 @@ plot_tipo_caso <- function(data_agrupada,
   escala <- length(unique(data_agrupada[[nomb_cols[2]]]))
   etiquetas <- etiquetas[as.character(clasificacion)]
   etiquetas <- unlist(etiquetas)
-  plot_casos_years <-
+  plot_tipo_casos <-
     ggplot2::ggplot(data_agrupada,
                     ggplot2::aes(x = .data[[nomb_cols[1]]],
                                  y = .data[["casos"]],
@@ -1144,7 +1144,7 @@ plot_tipo_caso <- function(data_agrupada,
     ggplot2::scale_x_discrete(labels = etiquetas)
     tema_sivirep() +
     ggplot2::theme(legend.position = "right")
-  return(plot_casos_years)
+  return(plot_tipo_casos)
 }
 
 #' Generar gráfico de distribución de casos por la clasificacion inicial
