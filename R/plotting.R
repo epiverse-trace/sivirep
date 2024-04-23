@@ -1313,3 +1313,55 @@ plot_tabla_incidencia_geo <- function(data_agrupada,
                               latex_options = "HOLD_position")
   return(tabla_tipos)
 }
+
+#' Generar tabla con la incidencia por sexo
+#'
+#' Función que genera la tabla con la incidencia según por sexo
+#' @param data_agrupada Un `data.frame` que contiene los datos de la
+#' enfermedad o evento agrupados por departamento o municipio
+#' @param col_sex Un `character` (cadena de carácteres) con el nombre de
+#' la columna que contiene el sexo en los datos agrupados de la enfermedad
+#' o evento; su valor por defecto es `"sexo"`
+#' @return Una `kable` (tabla gráfica) con la incidencia por sexo
+#' @examples
+#' \dontrun{
+#' data(dengue2020)
+#' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+#' proyecciones <- import_data_incidencia()
+#' data_agrupada <- agrupar_sex(data_limpia)
+#' incidencia_mpios <- calcular_incidencia_sex(
+#'                         data_incidencia = proyecciones,
+#'                         data_agrupada = data_agrupada,
+#'                         dpto = "Antioquia",
+#'                         year = 2020)
+#  plot_tabla_incidencia_sex(data_agrupada = incidencia_mpios,
+#'                           col_sex = "sexo")
+#' }
+#' @export
+plot_tabla_incidencia_sex <- function(data_agrupada,
+                                      col_sex = "sexo") {
+  stopifnot("El parametro data_agrupada debe ser un data.frame"
+            = is.data.frame(data_agrupada),
+            "El parametro col_sex debe ser una cadena de caracteres"
+            = is.character(col_sex))
+  etiqueta <- "Sexo"
+  caption_tabla <- config::get(file =
+                                 system.file("extdata",
+                                             "config.yml",
+                                             package = "sivirep"),
+                               "caption_sex_incidence")
+  data_agrupada[[col_sex]] <-
+    stringr::str_to_title(data_agrupada[[col_sex]])
+  data_agrupada <- data_agrupada[order(data_agrupada$incidencia,
+                                 decreasing = TRUE), ]
+  data_tabla <- data.frame(data_agrupada[[col_sex]],
+                           data_agrupada[["incidencia"]])
+  tabla_tipos <- knitr::kable(data_tabla,
+                              col.names = c(etiqueta, "Incidencia"),
+                              align = "c",
+                              caption = caption_tabla) %>%
+    kableExtra::row_spec(0, color = "white", background = "#2274BB") %>%
+    kableExtra::kable_styling(full_width = FALSE,
+                              latex_options = "HOLD_position")
+  return(tabla_tipos)
+}
