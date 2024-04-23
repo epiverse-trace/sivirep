@@ -510,7 +510,7 @@ obtener_cond_inciden_event <- function(cod_eve) {
   stopifnot("El parametro cod_eve es obligatorio" =
               !missing(cod_eve),
             "El parametro cod_eve debe ser una cadena de caracteres
-            o un numerico" = 
+            o un numerico" =
               (is.numeric(cod_eve) && !is.character(cod_eve)) ||
               (!is.numeric(cod_eve) && is.character(cod_eve)))
   ruta_base <- config::get(file =
@@ -551,9 +551,8 @@ obtener_dpto_mpio <- function(data_agrupada, nomb_cols,
   if (!is.null(dpto) && dpto != "01") {
     dept_data <- obtener_info_depts(dpto, mpio)
     if (nrow(dept_data) == 0) {
-      warning(paste0("El departamento o municipio ingresado no existe: ",
-                     dpto, " ,",
-                     mpio))
+      warning("El departamento o municipio ingresado no existe, ",
+              "dpto: ", dpto, " , mpio: ", mpio)
     }
     dept_data <- dept_data[1, ]
     dpto <- dept_data$codigo_departamento
