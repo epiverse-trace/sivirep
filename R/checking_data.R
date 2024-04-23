@@ -883,7 +883,7 @@ agrupar_per_etn <- function(data_event, cols_etn = "per_etn") {
 #' poblaciones del DANE
 #' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
 #' agrupados por departamento o municipio y número de casos
-#' @param years Un `numeric` (numerico) con el año que se debe tomar de las
+#' @param year Un `numeric` (numerico) con el año que se debe tomar de las
 #' proyecciones poblacionales
 #' @param dpto Un `character` (cadena de caracteres) o `numeric` (numérico)
 #' que contiene el código o nombre del departamento; su valor por
