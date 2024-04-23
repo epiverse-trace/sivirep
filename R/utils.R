@@ -550,8 +550,11 @@ obtener_dpto_mpio <- function(data_agrupada, nomb_cols,
   unidades_geo <- NULL
   if (!is.null(dpto) && dpto != "01") {
     dept_data <- obtener_info_depts(dpto, mpio)
-    stopifnot("El departamento o municipio ingresado no existe"
-              = nrow(dept_data) > 0)
+    if (nrow(dept_data) == 0) {
+      warning(paste0("El departamento o municipio ingresado no existe: ",
+                     dpto, " ,",
+                     mpio))
+    }
     dept_data <- dept_data[1, ]
     dpto <- dept_data$codigo_departamento
     if (!is.null(mpio)) {
