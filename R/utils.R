@@ -492,6 +492,41 @@ obtener_casos_pob_especial <- function(data_event) {
   )
   return(data_pob_especial)
 }
+
+#' Obtener las condiciones para calcular la incidencia de una
+#' enfermedad o evento
+#'
+#' Función que obtiene las condiciones del numerador, denominador
+#' y coeficiente de múltiplicación para calcular la incidencia de un
+#' evento
+#' @param cod_eve Un `numeric` (numerico) o `character` (cadena de
+#' caracteres) que contiene el código de una enfermedad o evento
+#' @return Un `data.frame` con las condiciones para calcular la
+#' incidencia de una enfermedad o evento
+#' @examples
+#' obtener_cond_inciden_event(cod_eve = 210)
+#' @export
+obtener_cond_inciden_event <- function(cod_eve) {
+  stopifnot("El parametro cod_eve es obligatorio" =
+              !missing(cod_eve),
+            "El parametro cod_eve debe ser una cadena de caracteres
+            o un numerico" = 
+              (is.numeric(cod_eve) && !is.character(cod_eve)) ||
+              (!is.numeric(cod_eve) && is.character(cod_eve)))
+  ruta_base <- config::get(file =
+                             system.file("extdata",
+                                         "config.yml",
+                                         package = "sivirep"),
+                           "incidence_events_path")
+  archivo_condiciones <-  system.file(ruta_base, package = "sivirep")
+  incidencia_events <- readxl::read_excel(archivo_condiciones,
+                                          col_types = c("numeric", "text",
+                                                        "text", "text"))
+  vals_event <- incidencia_events[incidencia_events$cod_eve ==
+                                    as.numeric(cod_eve), ]
+  return(vals_event)
+}
+
 #' Obtener código de un departamento y municipio
 #'
 #' Función que obtiene los códigos geográficos de un departamento y municipio
