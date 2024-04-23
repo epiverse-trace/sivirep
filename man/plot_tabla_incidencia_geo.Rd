@@ -29,9 +29,10 @@ data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 proyecciones <- import_data_incidencia()
 data_agrupada <- agrupar_mpio(data_limpia, dpto = "Antioquia")
-calcular_geo_incidencia(data_incidencia = proyecciones,
-                        data_agrupada = data_agrupada_mpios,
+incidencia_mpios <- calcular_incidencia_geo(
+                        data_incidencia = proyecciones,
+                        data_agrupada = data_agrupada,
                         year = 2020)
-                         col_geo = "municipio_ocurrencia")
+                          col_geo = "municipio_ocurrencia")
 }
 }
