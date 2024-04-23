@@ -19,7 +19,7 @@ plot_map(
 agrupados por departamento y número de casos}
 
 \item{col_distribucion}{Un `character` (cadena de caracteres) que contiene el
-nombre de la columna que tiene los valores de la distribución, por número de 
+nombre de la columna que tiene los valores de la distribución, por número de
 casos o incidencia; su valor por defecto es `"incidencia"`}
 
 \item{col_codigos}{Un `character` (cadena de caracteres) que contiene el
@@ -51,13 +51,15 @@ data_limpia <- limpiar_data_sivigila(dengue2020)
 data_estandar <- estandarizar_geo_cods(data_limpia)
 # Mapa por departamentos
 data_espacial <- agrupar_dpto(data_event = data_estandar)
-plot_map(data_agrupada = data_espacial)
+plot_map(data_agrupada = data_espacial,
+         col_distribucion = "casos")
 # Mapa por municipios de un departamento especifico
 data_filtrada_dpto <- geo_filtro(data_event = data_estandar,
                                  dpto = "Cundinamarca")
 data_espacial_dpto <- agrupar_mpio(data_event = data_filtrada_dpto)
 plot_map(data_agrupada = data_espacial_dpto,
-         col_codigos = "cod_mun_o")
+         col_codigos = "cod_mun_o",
+         col_distribucion = "casos")
 # Mapa por municipio especifico
 data_filtrada_mpio <- geo_filtro(data_event = data_estandar,
                                  dpto = "Antioquia",
@@ -65,6 +67,7 @@ data_filtrada_mpio <- geo_filtro(data_event = data_estandar,
 data_espacial_mpio <- agrupar_mpio(data_event = data_filtrada_mpio)
 plot_map(data_agrupada = data_espacial_mpio,
          col_codigos = "cod_mun_o",
+         col_distribucion = "casos",
          dpto = "Antioquia",
          mpio = "Envigado")
 }
