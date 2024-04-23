@@ -43,8 +43,7 @@
 #'          col_distribucion = "casos",
 #'          dpto = "Antioquia",
 #'          mpio = "Envigado")
-#' # Mapa con la incidencia por municipios de un departamento
-#' especifico
+#' # Mapa con la incidencia por municipios de un departamento especifico
 #' \dontrun{
 #' proyecciones <- import_data_incidencia()
 #' incidencia_dpto <- 
