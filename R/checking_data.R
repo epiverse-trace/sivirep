@@ -932,18 +932,11 @@ calcular_incidencia <- function(data_incidencia, data_agrupada, year,
   poblacion <- NULL
   total_casos <- NULL
   nomb_cols <- obtener_tip_ocurren_geo(data_agrupada$nombre_evento[1])
-  if (is.null(dpto) &&
-      nomb_cols[1] %in% colnames(data_agrupada) &&
-      !is.na(unique(
-        nomb_cols[data_agrupada[[nomb_cols[1]]]]))) {
-    dpto <- data_agrupada[[nomb_cols[1]]][1]
-    if (is.null(mpio) &&
-        nomb_cols[3] %in% colnames(data_agrupada) &&
-        !is.na(unique(
-          nomb_cols[data_agrupada[[nomb_cols[3]]]]))) {
-      mpio <- data_agrupada[[nomb_cols[3]]][1]
-    }
-  }
+  unidades_geo <- obtener_dpto_mpio(data_agrupada = data_agrupada,
+                                    nomb_cols = nomb_cols,
+                                    dpto = dpto, mpio = mpio)
+  dpto <- unidades_geo$dpto
+  mpio <- unidades_geo$mpio
   if (!is.null(dpto)) {
     poblacion <- dplyr::filter(data_incidencia,
                                .data$area_geografica == "Total",
