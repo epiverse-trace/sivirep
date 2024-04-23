@@ -714,8 +714,7 @@ agrupar_area_geo <- function(data_event,
             "El parametro porcentaje debe ser un booleano (TRUE o FALSE)" =
               is.logical(porcentaje))
   nomb_cols <- append(col_area,
-                     obtener_tip_ocurren_geo(data_event$cod_eve[1])[1:4],
-                     "cod_eve")
+                      obtener_tip_ocurren_geo(data_event$cod_eve[1])[1:4])
   data_event_area <- data_event
   if (!is.null(dpto)) {
       aux_dpto <- unique(data_event_area[[nomb_cols[2]]])
