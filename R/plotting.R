@@ -952,7 +952,7 @@ plot_area_geo <- function(data_agrupada,
                     ggplot2::aes(x = .data[[nomb_cols[2]]],
                                  y = .data[["casos"]],
                                  fill = .data[[nomb_cols[1]]])) +
-    ggplot2::geom_bar(position = "dodge", stat = "identity") +
+    ggplot2::geom_bar(stat = "identity") +
     ggplot2::labs(x = "\nDepartamento\n",
                   y = paste0(etiqueta_casos, "\n"),
                   caption = fuente_data) +
@@ -1066,7 +1066,7 @@ plot_years <- function(data_agrupada,
                     ggplot2::aes(x = .data[[col_year]],
                                  y = .data[["casos"]],
                                  fill = .data[["nombre_evento"]])) +
-    ggplot2::geom_bar(position = "dodge", stat = "identity") +
+    ggplot2::geom_bar(stat = "identity") +
     ggplot2::labs(x = paste0("\n", etiqueta_year, "\n"),
                   y = paste0(etiqueta_casos, "\n"),
                   caption = fuente_data) +
@@ -1125,7 +1125,7 @@ plot_tipo_caso <- function(data_agrupada,
                     ggplot2::aes(x = .data[[nomb_cols[1]]],
                                  y = .data[["casos"]],
                                  fill = .data[[nomb_cols[2]]])) +
-    ggplot2::geom_bar(position = "dodge", stat = "identity") +
+    ggplot2::geom_bar(stat = "identity") +
     ggplot2::labs(x = "\nClasificacion del caso\n", y = "Numero de casos\n",
                   caption = fuente_data) +
     ggplot2::theme_classic() +
@@ -1192,7 +1192,7 @@ plot_tipo_caso_years <- function(data_agrupada,
                     ggplot2::aes(x = .data[[col_year]],
                                  y = .data[["casos"]],
                                  fill = .data[[col_tipo]])) +
-    ggplot2::geom_bar(position = "dodge", stat = "identity") +
+    ggplot2::geom_bar(stat = "identity") +
     ggplot2::labs(x = "\nYear\n", y = "Numero de casos\n",
                   caption = fuente_data) +
     ggplot2::theme_classic() +
@@ -1250,7 +1250,7 @@ plot_per_etn <- function(data_agrupada,
                     ggplot2::aes(x = .data[[nomb_cols[1]]],
                                  y = .data[["casos"]],
                                  fill = .data[[nomb_cols[2]]])) +
-    ggplot2::geom_bar(position = "dodge", stat = "identity") +
+    ggplot2::geom_bar(stat = "identity") +
     ggplot2::labs(x = "\nPertenencia etnica\n", y = "Numero de casos\n",
                   caption = fuente_data) +
     ggplot2::theme_classic() +
