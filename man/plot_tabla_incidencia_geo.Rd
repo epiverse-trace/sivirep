@@ -13,7 +13,7 @@ enfermedad o evento agrupados por departamento o municipio}
 \item{col_geo}{Un `character` (cadena de carácteres) con el nombre de
 la columna que contiene los nombres de los departamentos o municipios
 en los datos agrupados de la enfermedad o evento; su valor por
-defecto es `"municipio_ocurrencia"`}
+defecto es `NULL`}
 }
 \value{
 Una `kable` (tabla gráfica) con la incidencia según
