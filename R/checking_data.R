@@ -1002,20 +1002,18 @@ calcular_incidencia <- function(data_incidencia, data_agrupada, year,
 #' \dontrun{
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
-#' proyecciones <- import_data_inicidencia()
-#' proyecciones_limpias <- limpiar_data_incidencia(data_incidencia =
-#'                                                  proyecciones)
+#' proyecciones <- import_data_incidencia()
 #' data_agrupada_mpios <- agrupar_mpio(data_limpia, dpto = "Antioquia")
-#' calcular_geo_incidencia(data_incidencia = proyecciones_limpias,
+#' calcular_incidencia_geo(data_incidencia = proyecciones,
 #'                         data_agrupada = data_agrupada_mpios,
 #'                         year = 2020)
 #' data_agrupada_dptos <- agrupar_dpto(data_limpia)
-#' calcular_geo_incidencia(data_incidencia = proyecciones_limpias,
+#' calcular_incidencia_geo(data_incidencia = proyecciones,
 #'                         data_agrupada = data_agrupada_dptos,
 #'                         year = 2020)
 #' }
 #' @export
-calcular_geo_incidencia <- function(data_incidencia,
+calcular_incidencia_geo <- function(data_incidencia,
                                     data_agrupada,
                                     year) {
   data_geo_inicidencia <- NULL
