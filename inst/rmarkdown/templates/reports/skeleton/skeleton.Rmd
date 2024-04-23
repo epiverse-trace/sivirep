@@ -325,7 +325,6 @@ plot_spatial
 
 \newpage
 
-`r if(params$spatial_distribution) {"# Distribución espacial de casos"}`
 # Incidencia
 
 ```{r total_incidence, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
@@ -355,9 +354,22 @@ plot_sex(data_agrupada = incidencias_sex,
          col_distribucion = "incidencia")
 ```
 
+`r if(params$spatial_distribution) {"# La incidencia según distribución geográfica"}`
+
+```{r geo_incidence, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
+dist_espacial_dpto <- calcular_incidencia_geo(data_incidencia =
+                                          proyecciones,
+                                       data_agrupada =
+                                         dist_espacial_dpto,
+                                       year = params$year)
+```
+
+```{r table_geo_incidence, echo = FALSE, error = FALSE, fig.height=5, fig.width = 10, warning = FALSE, include = TRUE, message = FALSE, fig.pos = "H"} 
+plot_tabla_incidencia_geo(dist_espacial_dpto)
+```
 
 ```{r plot_distribution_spatial, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
-mapa <- plot_map(data_agrupada = dist_espacial_dpto, col_distribucion = "casos")
+mapa <- plot_map(data_agrupada = dist_espacial_dpto)
 ```
 
 ```{r map_distribution_spatial, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, cache = FALSE, results = FALSE, comment = FALSE, fig.height = 16, fig.width = 14, fig.cap =  "Distribucion espacial de casos", include = params$spatial_distribution}
