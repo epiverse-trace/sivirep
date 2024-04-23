@@ -220,7 +220,7 @@ mes_mayor_casos <- obtener_meses_mas_casos(data_event =
                                            col_fechas = "ini_sin")
 ```
 
-`r if (params$temporal_distribution) {paste0("Los casos se distribuyen a lo largo de los meses de enero a diciembre de ", params$year, " teniendo un mayor reporte en el mes de ", mes_mayor_casos$Meses, " tanto por fecha de inicio de síntomas (Ver Figura 1) como por fecha de notificación (Ver Figura 2).")}`
+`r if (params$temporal_distribution) {paste0("Los casos se distribuyen a lo largo de los meses de enero a diciembre de ", params$year, " teniendo un mayor reporte en el mes de ", mes_mayor_casos$meses, " tanto por fecha de inicio de síntomas (Ver Figura 1) como por fecha de notificación (Ver Figura 2).")}`
 
 \newpage
 
@@ -354,7 +354,7 @@ plot_areas_geo
 
 a.  Los casos totales reportados de `r stringr::str_to_title(params$nombre_evento)` en Colombia en el año `r params$year` fueron `r nrow(data_event)`.
 b.  Los casos totales reportados de `r stringr::str_to_title(params$nombre_evento)` en el departamento del `r params$departmento` en el año `r params$year` fueron `r nrow(data_event_filtrada)`.
-c.  El mes de `r mes_mayor_casos` tuvo el mayor reporte.
+c.  El mes de `r mes_mayor_casos$meses` tuvo el mayor reporte.
 d.  El reporte de casos de `r stringr::str_to_title(params$nombre_evento)` a lo largo de `r params$year` predominó en la población de `r age_most_cases$edad` años.
 e.  El reporte de casos de `r stringr::str_to_title(params$nombre_evento)` predominó a lo largo del año en el sexo `r sexo_mayor[1]`.
 
