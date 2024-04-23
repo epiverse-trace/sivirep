@@ -1402,7 +1402,12 @@ plot_tabla_incidencia_sex <- function(data_agrupada,
             = is.data.frame(data_agrupada),
             "El parametro col_sex debe ser una cadena de caracteres"
             = is.character(col_sex))
-  etiqueta <- "Sexo"
+  etiqueta_sex <- "Sexo"
+  etiqueta_cod <- config::get(file =
+                                system.file("extdata",
+                                            "config.yml",
+                                            package = "sivirep"),
+                              "label_code")
   caption_tabla <- config::get(file =
                                  system.file("extdata",
                                              "config.yml",
@@ -1412,12 +1417,16 @@ plot_tabla_incidencia_sex <- function(data_agrupada,
     stringr::str_to_title(data_agrupada[[col_sex]])
   data_agrupada <- data_agrupada[order(data_agrupada$incidencia,
                                  decreasing = TRUE), ]
-  data_tabla <- data.frame(data_agrupada[[col_sex]],
-                           data_agrupada[["incidencia"]])
-  tabla_tipos <- knitr::kable(data_tabla,
-                              col.names = c(etiqueta, "Incidencia"),
-                              align = "c",
-                              caption = caption_tabla) %>%
+  tabla_sex <- knitr::kable(data_agrupada[, c("cod_eve",
+                                              "nombre_evento",
+                                              col_sex,
+                                              "incidencia")],
+                             col.names = c(etiqueta_cod,
+                                           "Evento",
+                                           etiqueta_sex,
+                                           "Incidencia"),
+                             align = "c",
+                             caption = caption_tabla) %>%
     kableExtra::row_spec(0, color = "white", background = "#2274BB") %>%
     kableExtra::kable_styling(full_width = FALSE,
                               latex_options = "HOLD_position")
