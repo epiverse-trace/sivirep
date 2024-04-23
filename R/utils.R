@@ -50,9 +50,9 @@ obtener_meses_mas_casos <- function(data_event,
     top <- nrow(data_mas_casos)
   }
   data_mas_casos <- data_mas_casos[1:top, ]
-  data_mas_casos$Meses <- months(data_mas_casos[[col_fechas]],
-                                 abbreviate = TRUE)
-  if (concat_vals && length(data_mas_casos$Meses) >= 2) {
+  data_mas_casos$meses <- months(data_mas_casos[[col_fechas]],
+                                 abbreviate = FALSE)
+  if (concat_vals && length(data_mas_casos$meses) >= 2) {
     months_concat <-
       concatenar_vals_token(as.character(data_mas_casos$Meses)[1:top])
     return(months_concat)
