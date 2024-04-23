@@ -41,7 +41,7 @@ params:
   types_distribution:
     value: TRUE
     input: checkbox
-    label: Distribucion de casos por tipo
+    label: Distribución de casos por tipo
   temporal_distribution:
     value: TRUE
     input: checkbox
@@ -352,6 +352,8 @@ cond_incidencia <-
 La incidencia para el departamento de `r params$departmento` es: `r incidencia_dpto` por  `r cond_incidencia$coeficiente` habitantes.
 
 ## Incidencia por sexo
+
+La incidencia para cada sexo por `r cond_incidencia$coeficiente` habitantes, se puede visualizar en la tabla 2 y figura 13.
 
 ```{r sex_incidence, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
 incidencias_sex <- calcular_incidencia_sex(data_incidencia = proyecciones,
