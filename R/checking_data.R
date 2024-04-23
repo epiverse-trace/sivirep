@@ -1059,6 +1059,86 @@ calcular_incidencia_geo <- function(data_incidencia,
   }
   return(data_geo_incidencia)
 }
+
+
+#' Calcular incidencia por sexo
+#'
+#' Función que calcula la incidencia de una enfermedad o evento para todos los
+#' departamentos de Colombia o los municipios de un departamento por sexo
+#' @param data_incidencia Un `data.frame` que contiene la proyecciones
+#' poblaciones del DANE
+#' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
+#' agrupados por departamento o municipio y número de casos
+#' @param year Un `numeric` (numerico) con el año que se debe tomar de las
+#' proyecciones poblacionales
+#' @param dpto Un `character` (cadena de caracteres) o `numeric` (numérico)
+#' que contiene el código o nombre del departamento; su valor por
+#' defecto es `NULL`
+#' @param mpio Un `character` (cadena de caracteres) o `numeric` (numérico)
+#' que contiene el código o nombre del municipio; su valor por defecto es `NULL`
+#' @return Un `data.frame` con el calculo de la incidencia para todos los
+#' departamentos de Colombia o los municipios de un departamento
+#' @examples
+#' \dontrun{
+#' data(dengue2020)
+#' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+#' proyecciones <- import_data_incidencia()
+#' data_agrupada <- agrupar_sex(data_limpia)
+#' calcular_incidencia_sex(data_incidencia = proyecciones,
+#'                         data_agrupada = data_agrupada,
+#'                         dpto = "05",
+#'                         year = 2020)
+#' calcular_incidencia_sex(data_incidencia = proyecciones,
+#'                         data_agrupada = data_agrupada,
+#'                         dpto = "05",
+#'                         mpio = "Medellin",
+#'                         year = 2020)
+#' }
+#' @export
+calcular_incidencia_sex <- function(data_incidencia,
+                                    data_agrupada,
+                                    year, dpto = NULL,
+                                    mpio = NULL) {
+  stopifnot("El parametro data_incidencia es obligatorio" =
+              !missing(data_incidencia),
+            "El parametro data_incidencia debe ser un data.frame" =
+              is.data.frame(data_incidencia),
+            "El parametro data_incidencia no debe estar vacio" =
+              nrow(data_incidencia) > 0,
+            "El parametro data_agrupada es obligatorio" =
+              !missing(data_agrupada),
+            "El parametro data_agrupada debe ser un data.frame" =
+              is.data.frame(data_agrupada),
+            "El parametro data_agrupada no debe estar vacio" =
+              nrow(data_agrupada) > 0,
+            "El parametro dpto debe ser una cadena de caracteres
+            o numerico" =
+              (is.numeric(dpto) && !is.character(dpto)) ||
+              (!is.numeric(dpto) && is.character(dpto)),
+            "El parametro year es obligatorio" = !missing(year))
+  data_incidencia_sex <- NULL
+  incidencia <- NULL
+  dept_data <- NULL
+  if (!is.null(dpto)) {
+    dept_data <- obtener_info_depts(dpto, mpio)
+    stopifnot("El departamento o municipio ingresado no existe"
+              = seq_len(nrow(dept_data)) > 0)
+    dept_data <- dept_data[1, ]
+    dpto <- dept_data$codigo_departamento
+    if (!is.null(mpio)) {
+      mpio <- dept_data$codigo_municipio
+    }
   }
-  return(data_geo_inicidencia)
+  for (fila in seq_len(nrow(data_agrupada))) {
+    sex_fila <- data_agrupada[fila, ]
+    incidencia_sex <- calcular_incidencia(data_incidencia = data_incidencia,
+                                          data_agrupada = sex_fila,
+                                          dpto = dpto,
+                                          mpio = mpio,
+                                          sex = sex_fila[["sexo"]],
+                                          year = year)
+    incidencia <- append(incidencia, incidencia_sex)
+  }
+  data_incidencia_sex <- cbind(data_agrupada, incidencia)
+  return(data_incidencia_sex)
 }
