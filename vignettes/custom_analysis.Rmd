@@ -7,9 +7,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-# Análisis o reportes personalizados
-
-Esta sección proporciona un conjunto básico de instrucciones para usar
+A continuación se describe un conjunto básico de instrucciones para usar
 `sivirep` 0.0.9 si: - Ya has producido un archivo .Rmd y deseas editar
 un reporte. - Deseas realizar análisis personalizados sin un archivo
 .Rmd.
