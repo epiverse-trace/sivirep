@@ -865,7 +865,7 @@ agrupar_per_etn <- function(data_event, cols_etn = "per_etn") {
                              system.file("extdata",
                                          "config.yml",
                                          package = "sivirep"),
-                           "labels_cas_tip")
+                           "labels_per_etn")
   etiquetas <- unlist(etiquetas)
   data_event_tipo <- agrupar_cols_casos(data_event,
                                         nomb_cols = cols_etn)
