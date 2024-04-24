@@ -206,7 +206,7 @@ casos_tip_cas_years <- agrupar_tipo_caso(data_event = data_years_filtrada,
                                          cols_tipo = c("tip_cas", "ano"))
 ```
 
-```{r plot_tip_cas_by_years, fig.height = 7, fig.width = 13, fig.cap = "Distribución de casos en los últimos 5 años"}
+```{r plot_tip_cas_by_years, fig.height = 7, fig.width = 13, fig.cap = "Distribución de casos en los últimos 6 años"}
 plot_tipo_caso_years(casos_tip_cas_years)
 ```
 
