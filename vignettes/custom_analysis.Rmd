@@ -280,8 +280,8 @@ Actualmente, con la función llamada `plot_map`, el usuario puede generar
 un mapa estático de Colombia que muestra la distribución de casos por
 departamentos y municipios.
 
-```{r plot_mapa, results = 'hide', echo = TRUE}
-mapa <- plot_map(data_agrupada = dist_esp_dept, dpto = "Choco")
+```{r plot_mapa, results = 'hide', echo = TRUE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
+mapa <- plot_map(data_agrupada = dist_esp_dept, dpto = "Choco", col_distribucion = "casos")
 ```
 
 ```{r mapa, fig.height = 14, fig.width = 10}
