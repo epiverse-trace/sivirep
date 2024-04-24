@@ -23,16 +23,19 @@ que contiene el año de los datos de una enfermedad o evento}
 el formato deseado de fecha; su valor por defecto es "\%AAAA-\%MM-\%DD"}
 
 \item{nomb_col}{Un `character` (cadena de caracteres) que contiene
-el nombre de la columna del conjunto de datos}
+el nombre de la columna con la fecha que se desea limpiar en los datos
+de la enfermedad o evento}
 
 \item{col_comp}{Un `character` (cadena de caracteres) que contiene el
-nombre de la columna de comparación del conjunto de datos}
+nombre de la columna con la cual se va a comparar la columna `nomb_col`
+para limpiarla, estandarizarla o aplicar las reglas definidas}
 }
 \value{
-Un `data.frame` con los datos con las fechas limpias
+Un `data.frame` con las fechas limpias
 }
 \description{
-Función que limpia las fechas de los datos de una enfermedad o evento
+Función que limpia y estandariza las fechas de los datos de una
+enfermedad o evento
 }
 \examples{
 data(dengue2020)

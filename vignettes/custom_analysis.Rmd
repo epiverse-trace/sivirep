@@ -1,0 +1,292 @@
+---
+title: "Análisis o reportes personalizados"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Análisis o reportes personalizados}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+A continuación se describe un conjunto básico de instrucciones para usar
+`sivirep` 0.0.9 si: - Ya has producido un archivo .Rmd y deseas editar
+un reporte. - Deseas realizar análisis personalizados sin un archivo
+.Rmd.
+
+### Configuración
+
+Puedes instalar la versión de desarrollo de `sivirep` desde GitHub con
+el siguiente comando:
+
+```{r setup_sivirep, eval = FALSE}
+install.packages("pak")
+pak::pak("epiverse-trace/sivirep")
+```
+
+Después de la instalación de `sivirep`, puedes comenzar importando el
+paquete a través del siguiente comando:
+
+```{r import_sivirep}
+library(sivirep)
+```
+
+### 1. Importación de datos de SIVIGILA
+
+La fuente de SIVIGILA proporciona los datos de la lista de casos
+históricos hasta el último año epidemiológico cerrado. El cierre de un
+año epidemiológico generalmente ocurre en abril del siguiente año (por
+ejemplo, si estás utilizando `sivirep` en marzo de 2023, es posible que
+puedas acceder a los datos históricos hasta diciembre de 2021) para la
+mayoría de las enfermedades, con algunas excepciones.
+
+Por favor, verifica las enfermedades y años disponibles utilizando:
+
+```{r eventos, results = 'hide'}
+lista_eventos <- list_events()
+```
+
+Una vez que hayas decidido la enfermedad y el año de la cual deseas
+obtener la información, `import_data_event` es la función que permite la
+importación de datos desde la fuente de SIVIGILA utilizando un formato
+parametrizado basado en la enfermedad y el año.
+
+```{r import_data_event}
+data_event <-  import_data_event(year = 2020,
+                                 nombre_event = "Dengue")
+```
+
+##### 💡 Tip 1 - Evita retrasos en el tiempo al importar los datos
+
+-   `sivirep` 0.0.9 está diseñado para ayudar con el acceso a la fuente
+    de SIVIGILA. Este proceso de descarga de información puede tomar
+    unos minutos dependiendo del tamaño del conjunto de datos. Para
+    evitar descargar los mismos datos repetidamente, puedes utilizar
+    `cache = TRUE` en la función `import_data_event`. Esta opción está
+    configurada de forma predeterminada.
+
+### 2. Limpieza de datos de SIVIGILA
+
+Los datos de SIVIGILA son una fuente de información oficial altamente
+confiable, con certificación ISO de calidad de datos. Sin embargo, a
+veces puede haber algunos valores atípicos en los datos que requieran
+una limpieza adicional.
+
+`sivirep` proporciona una función genérica llamada
+`limpiar_data_sivigila` que envuelve diversas tareas para identificar y
+corregir errores, inconsistencias y discrepancias en los conjuntos de
+datos con el fin de mejorar su calidad y precisión. Este proceso puede
+incluir la eliminación de duplicados, la corrección de errores
+tipográficos, el reemplazo de valores faltantes y la validación de
+datos, entre otras tareas, como eliminar fechas improbables, limpiar
+códigos de geolocalización y estandarizar los nombres de las columnas y
+las categorías de edad.
+
+```{r limpiar_data_sivigila}
+data_event <- limpiar_data_sivigila(data_event = data_event)
+```
+
+Las funciones de limpieza dentro de `limpiar_data_sivigila` se han
+recopilado y creado en base a la experiencia de epidemiólogos de campo.
+Estas pueden incluir funciones internas como:
+
+-   `limpiar_encabezado`: función que limpia y estandariza los nombres
+    de las columnas de los datos de lista de casos de SIVIGILA basándose
+    en el diccionario de datos de SIVIGILA.
+
+-   `limpiar_edad_event`: función que limpia las edades de los datos de
+    lista de casos de SIVIGILA.
+
+-   `limpiar_fecha_event`: función que limpia las fechas de los datos de
+    enfermedades.
+
+-   `limpiar_cods_dpto`: función que limpia los códigos geográficos de
+    departamentos en los datos de enfermedades.
+
+El usuario puede utilizar estas funciones individualmente o simplemente
+utilizar la función envolvente genérica `limpiar_data_sivigila`.
+
+### 3. Filtrar casos
+
+`sivirep` proporciona una función que permite filtrar los datos de
+enfermedades por departamento o nombre del municipio llamada
+`geo_filtro`. Esto permite al usuario crear un informe a nivel
+subnacional, seleccionando casos específicos basados en la ubicación
+geográfica.
+
+```{r geo_filtro}
+data_event_filtrada <- geo_filtro(data_event = data_event,
+                                  dpto = "Choco")
+```
+
+### 4. Distribución temporal de casos
+
+En `sivirep`, la distribución temporal de casos se define por las
+variables de fecha de inicio de síntomas y fecha de notificación. Para
+cada una de estas variables, existen funciones especializadas para
+agrupar los datos y generar los gráficos.
+
+#### 4.1. Agrupar los datos por fecha de inicio de síntomas en la escala temporal deseada
+
+Para generar la distribución de casos por fecha de inicio de síntomas,
+es necesario agrupar los datos por estas variables. `sivirep`
+proporciona una función que permite esta agrupación llamada
+`agrupar_fecha_inisintomas`.
+
+```{r agrupar_fecha_inicio_sintomas}
+casos_ini_sintomas <- agrupar_fecha_inisintomas(data_event =
+                                                  data_event)
+```
+
+##### 💡 Tip 2 - Obtén los primeros n meses con más casos
+
+-   Al construir una sección del reporte o analizar estos datos, puede
+    ser útil obtener los meses con más casos. En `sivirep`, puedes
+    utilizar la función `obtener_meses_mas_casos` para obtener esta
+    información.
+
+El gráfico que permite visualizar esta distribución se debe generar con
+la función `plot_fecha_inisintomas`. Ten en cuenta que, incluso si has
+agrupado los datos por día, es posible que prefieras representarlo por
+semana epidemiológica, como en:
+
+```{r plot_fecha_inicio_sintomas, fig.height = 5, fig.width = 10}
+plot_fecha_inisintomas(data_agrupada = casos_ini_sintomas,
+                       uni_marca = "semanaepi")
+```
+
+#### 4.2. Agrupar los datos por fecha de notificación en la escala temporal deseada
+
+El proceso para generar la distribución de casos por fecha de
+notificación consiste en agrupar los datos de enfermedades por esta
+variable. Puedes utilizar la siguiente función de `sivirep` para hacer
+esto:
+
+```{r agrupar_fecha_notificacion}
+casos_fecha_notificacion <- agrupar_fecha_notifica(data_event =
+                                                     data_event)
+```
+
+El gráfico que permite visualizar esta distribución debe generarse con
+la función `plot_fecha_notifica`. Ten en cuenta que, aunque hayas
+agrupado los datos por día, es posible que prefieras representarlos por
+semana epidemiológica, como en:
+
+```{r plot_fecha_notificacion, fig.height = 5, fig.width = 10}
+plot_fecha_notifica(data_agrupada = casos_fecha_notificacion,
+                    uni_marca = "semanaepi")
+```
+
+### 5. Edad y sexo
+
+### 5.1. Variable de sexo
+
+Cuando se analizan o se informan datos de enfermedades, a menudo es
+necesario determinar la distribución de casos por género o sexo. Sin
+embargo, la fuente de SIVIGILA solo registra el sexo.
+
+`sivirep` proporciona una función que agrega y calcula automáticamente
+los porcentajes por sexo después del proceso de limpieza.
+
+```{r agrupar_sexo}
+casos_sex <- agrupar_sex(data_event = data_event,
+                         porcentaje = TRUE)
+```
+
+Además, `sivirep` cuenta con una función para generar el gráfico por
+esta variable llamada `plot_sex`:
+
+```{r plot_sexo, fig.height = 5, fig.width = 8}
+plot_sex(data_agrupada = casos_sex)
+```
+
+La distribución de casos por sexo y semana epidemiológica se puede
+generar utilizando la función `agrupar_sex_semanaepi` proporcionada por
+`sivirep`.
+
+```{r agrupar_sex_semana_epidemiologica}
+casos_sex_semanaepi <- agrupar_sex_semanaepi(data_event = data_event)
+```
+
+La función de visualización correspondiente es `plot_sex_semanaepi`, que
+`sivirep` proporciona para mostrar la distribución de casos por sexo y
+semana epidemiológica.
+
+```{r plot_sex_semana_epidemiologica, fig.height = 9, fig.width = 11}
+plot_sex_semanaepi(data_agrupada = casos_sex_semanaepi)
+```
+
+### 5.2. Variable de edad
+
+La edad es una variable importante para analizar, ya que es un factor de
+riesgo conocido para muchas enfermedades. Ciertas enfermedades y
+condiciones tienden a ocurrir con más frecuencia en grupos de edad
+específicos, y esta distribución puede ayudar a identificar poblaciones
+con mayor riesgo e implementar estrategias de prevención y control
+dirigidas.
+
+`sivirep` proporciona una función llamada `agrupar_edad`, que puede
+agrupar los datos de enfermedades por grupos de edad. De forma
+predeterminada, esta función produce rangos de edad con intervalos de 10
+años. Además, los usuarios pueden personalizar un rango de edad
+diferente.
+
+```{r agrupar_edad}
+casos_edad <- agrupar_edad(data_event = data_event, interval_edad = 10)
+```
+
+La función de visualización correspondiente es `plot_edad`.
+
+```{r plot_edad, fig.height = 3, fig.width = 8}
+plot_edad(data_agrupada = casos_edad)
+```
+
+### 5.3. Edad y sexo simultáneamente
+
+`sivirep` proporciona una función llamada `agrupar_edad_sex`, que puede
+agrupar los datos de enfermedades por rangos de edad y sexo de forma
+simultánea y obtener el número de casos y los porcentajes
+correspondientes. Además, permite personalizar el intervalo de edad.
+
+```{r agrupar_edad_sexo}
+casos_edad_sex <- agrupar_edad_sex(data_event = data_event,
+                                   interval_edad = 10)
+
+```
+
+La función de visualización correspondiente es `plot_edad_sex`.
+
+```{r plot_edad_sexo, fig.height = 3, fig.width = 9}
+plot_edad_sex(data_agrupada = casos_edad_sex)
+```
+
+### 6. Distribución espacial de casos
+
+Obtener la distribución espacial de los casos es útil para identificar
+áreas con una alta concentración de casos, agrupaciones de enfermedades
+y factores de riesgo ambientales o sociales.
+
+En Colombia, existen 32 unidades geográficas administrativas (adm1)
+llamadas departamentos. `sivirep` proporciona una función llamada
+`agrupar_mpio` que permite obtener un data.frame de casos agrupados por
+departamento o municipio.
+
+```{r agrupar_municipios}
+dist_esp_dept <- agrupar_mpio(data_event = data_event_filtrada,
+                             dpto = "Choco")
+```
+
+Actualmente, con la función llamada `plot_map`, el usuario puede generar
+un mapa estático de Colombia que muestra la distribución de casos por
+departamentos y municipios.
+
+```{r plot_mapa, results = 'hide', echo = TRUE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
+mapa <- plot_map(data_agrupada = dist_esp_dept, dpto = "Choco",
+                 col_distribucion = "casos")
+```
+
+```{r mapa, fig.height = 14, fig.width = 10}
+mapa
+```
+
+##### 💡 Tip 3 - Obtén la fila con más casos
+
+- Al construir una sección del reporte o analizar estos datos, puede ser útil saber cuál es la variable que tiene la mayoría de los casos. En `sivirep`, puedes utilizar la función `obtener_fila_mas_casos` para obtener esta información. Esta función funciona con cualquier conjunto de datos que contenga una columna llamada "casos" en cualquier nivel de agregación.

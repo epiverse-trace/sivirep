@@ -7,7 +7,7 @@
 #' @usage data(divipoladata)
 #'
 #' @format ## `divipoladata`
-#' A `<data.frame>` con 1121 filas and 5 columnas:
+#' Un `<data.frame>` con 1121 filas y 5 columnas:
 #' \describe{
 #'   \item{codigo_departamento}{Codigo de los departamentos}
 #'   \item{codigo_municipio}{Codigo de los municipios}

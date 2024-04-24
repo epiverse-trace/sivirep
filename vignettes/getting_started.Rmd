@@ -1,0 +1,56 @@
+---
+title: "Inicio rápido"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Inicio rápido}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Puedes instalar la versión de desarrollo de `sivirep` desde GitHub con
+el siguiente comando:
+
+```{r setup_sivirep, eval = FALSE}
+install.packages("pak")
+pak::pak("epiverse-trace/sivirep")
+```
+
+Después de la instalación de `sivirep`, puedes comenzar importando el
+paquete a través del siguiente comando:
+
+```{r import_sivirep}
+library(sivirep)
+```
+
+## Enfermedades disponibles para su descarga
+
+Puedes revisar las enfermedades y los años disponibles de forma libre
+utilizando:
+
+```{r list_events}
+lista_eventos <- list_events()
+knitr::kable(lista_eventos)
+```
+
+## Reporte automatizado
+
+Actualmente, `sivirep` provee una plantilla de reporte llamada
+`Reporte Básico {sivirep}`, la cual recibe los siguientes parámetros de
+entrada: el nombre de la enfermedad, el año, el nombre de departamento
+(opcional) y nombre del municipio (opcional) para descargar los datos de
+la fuente de SIVIGILA.
+
+Para hacer uso de la plantilla del reporte puedes seguir los
+siguientes pasos:
+
+<img src="../man/figures/template.gif" width="900" height="540"/>
+
+El reporte que obtendrás al utilizar la plantilla de `sivirep` es este:
+
+<img src="../man/figures/template-report.gif" width="900" height="800"/>
+
+Si deseas generar el reporte en formato PDF debes instalar LateX. Puedes instalarlo siguiendo las instrucciones que se
+encuentran en [R Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html):
+
+Para obtener más detalles sobre plantillas y reportes genéricos de R
+Markdown, por favor consulta [R Markdown templates](https://rstudio.github.io/rstudio-extensions/rmarkdown_templates.html).

@@ -19,7 +19,15 @@ Un `data.frame` con los datos de una enfermedad o evento
 con las edades limpias
 }
 \description{
-Función que limpia las edades de los datos de una enfermedad o evento
+Función que limpia y estandariza las edades de los datos de una
+enfermedad o evento, conviertiendolas en años, según la clasificación
+del Instituto Nacional de Salud:
+No aplica = 0
+Años = 1
+Meses = 2
+Días = 3
+Horas = 4
+Minutos = 5
 }
 \examples{
 data(dengue2020)

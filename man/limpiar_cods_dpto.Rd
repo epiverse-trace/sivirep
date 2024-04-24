@@ -32,10 +32,10 @@ de una enfermedad o evento
 }
 \examples{
 data(dengue2020)
-geo_codes <- import_geo_cods()
+geo_cods <- import_geo_cods()
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 limpiar_cods_dpto(data_event = data_limpia,
                   col_cods_data = "cod_dpto_o",
-                  geo_data = geo_codes,
+                  geo_data = geo_cods,
                   col_geo_cods = "codigo_departamento")
 }

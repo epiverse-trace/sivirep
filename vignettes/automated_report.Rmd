@@ -1,0 +1,82 @@
+---
+title: "Reportes automatizados"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Reportes automatizados}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Puedes instalar la versión de desarrollo de `sivirep` desde GitHub con
+el siguiente comando:
+
+```{r setup_sivirep, eval = FALSE}
+install.packages("pak")
+pak::pak("epiverse-trace/sivirep")
+```
+
+Después de la instalación de `sivirep`, puedes comenzar importando el
+paquete a través del siguiente comando:
+
+```{r import_sivirep}
+library(sivirep)
+```
+
+Ante de iniciar con el reporte automatizado, revisa la lista de
+enfermedades disponibles para hacer un reporte con `sivirep` en:
+
+```{r eventos_disponibles, results = 'hide'}
+list_events()
+```
+
+Actualmente, `sivirep` provee una plantilla de reporte llamada
+`Reporte Básico {sivirep}`, la cual contiene seis secciones y recibe los
+siguientes parámetros de entrada: el nombre de la enfermedad, el año, el
+nombre de departamento (opcional) y nombre del municipio (opcional) para
+descargar los datos de la fuente de SIVIGILA.
+
+Para hacer uso de la plantilla del reporte se deben seguir los
+siguientes pasos:
+
+1.  En RStudio hacer click *'File/New File/R'* Markdown:
+
+![](../man/figures/file_rmarkdown.png){.rmarkdown-img align="center"
+style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;"
+width="560"}
+
+2.  Selecciona la opción del panel izquierdo: *'From Template'*, después
+    selecciona el template del reporte llamado
+    `Reporte Básico {sivirep}`, indica el nombre que deseas para el
+    reporte (i.e. Reporte_Laura), la ubicación donde deseas guardarlo y
+    presiona *'Ok'*.
+
+![](../man/figures/reporte_basico.png){.rmarkdown-img align="center"
+style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;"
+width="550"}
+
+3.  A continuación, podrás seleccionar el nombre de la enfermedad, el
+    año, el departamento (opcional) y el municipio (opcional) del
+    reporte. Esta acción descargará los datos deseados y también
+    proporcionará la plantilla en un archivo R Markdown (.Rmd). Para
+    esto, es importante encontrar el botón *'Knit'*, desplegar las
+    opciones y seleccionar *'Knit with parameters'*.
+
+![](../man/figures/button_knit.png){.rmarkdown-img align="center"
+style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;"
+width="560"}
+
+4.  Espera unos segundos mientras el informe se genera en un archivo
+    PDF.
+
+5.  Puedes agregar, editar, eliminar y personalizar las secciones del
+    reporte en el archivo R Markdown generado anteriormente.
+
+![](../man/figures/editable_rmarkdown.png){.rmarkdown-img align="center"
+style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;"
+width="560"}
+
+Si deseas generar el reporte en formato PDF debes instalar LateX. Puedes instalarlo siguiendo las instrucciones que se
+encuentran en [R Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html):
+
+Para obtener más detalles sobre plantillas y reportes genéricos de R
+Markdown, por favor consulta [R Markdown templates](https://rstudio.github.io/rstudio-extensions/rmarkdown_templates.html).

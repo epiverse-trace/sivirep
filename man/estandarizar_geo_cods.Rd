@@ -12,11 +12,11 @@ enfermedad o evento}
 }
 \value{
 Un `data.frame` que contiene los códigos geográficos estandarizados
-de los datos de una enfermedad o evento
+de los datos de una enfermedad o evento según la codificación del DIVIPOLA
 }
 \description{
 Función que estandariza los códigos geográficos de los datos
-de una enfermedad o evento
+de una enfermedad o evento según la codificación del DIVIPOLA
 }
 \examples{
 data(dengue2020)

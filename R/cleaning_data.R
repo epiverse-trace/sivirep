@@ -1,11 +1,11 @@
 #' Estandarizar códigos geográficos de los datos de una enfermedad o evento
 #'
 #' Función que estandariza los códigos geográficos de los datos
-#' de una enfermedad o evento
+#' de una enfermedad o evento según la codificación del DIVIPOLA
 #' @param data_event Un `data.frame` que contiene los datos de una
 #' enfermedad o evento
 #' @return Un `data.frame` que contiene los códigos geográficos estandarizados
-#' de los datos de una enfermedad o evento
+#' de los datos de una enfermedad o evento según la codificación del DIVIPOLA
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
@@ -63,11 +63,11 @@ estandarizar_geo_cods <- function(data_event) {
 #' de los datos de una enfermedad o evento
 #' @examples
 #' data(dengue2020)
-#' geo_codes <- import_geo_cods()
+#' geo_cods <- import_geo_cods()
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 #' limpiar_cods_dpto(data_event = data_limpia,
 #'                   col_cods_data = "cod_dpto_o",
-#'                   geo_data = geo_codes,
+#'                   geo_data = geo_cods,
 #'                   col_geo_cods = "codigo_departamento")
 #' @export
 limpiar_cods_dpto <- function(data_event,
@@ -248,18 +248,12 @@ remove_error_fecha <- function(data_event,
 #' @param data_event Un `data.frame` que contiene los datos
 #' de un evento o enfermedad
 #' @param format_fecha Un `character` (cadena de caracteres)
-#' que contiene  el formato deseado de fecha
+#' que contiene  el formato deseado de la fecha
 #' @param nomb_cols Un `character` (cadena de caracteres) que
 #' contiene los nombres de la columna a formatear; su valor por defecto
 #' es `NULL`
 #' @return Un `data.frame` con los datos con las fechas formateadas
-#' @examples
-#' data(dengue2020)
-#' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
-#' format_fecha(data_event = data_limpia,
-#'              format_fecha = "%Y-%m-%d",
-#'              nomb_cols = c("ini_sin", "fec_hos"))
-#' @export
+#' @keywords internal
 format_fecha <- function(data_event,
                          format_fecha = "%Y-%m-%d",
                          nomb_cols = NULL) {
@@ -276,16 +270,16 @@ format_fecha <- function(data_event,
             un arreglo de cadenas de caracteres" =
               (is.character(nomb_cols) && !is.array(nomb_cols)) ||
               (!is.character(nomb_cols) && is.array(nomb_cols)))
-  data_event_limp <- data_event
+  data_limpia <- data_event
   if (!is.null(nomb_cols)) {
     for (name in nomb_cols) {
       if (!is.null(name)) {
-        data_event_limp[[name]] <- as.Date(data_event[[name]],
+        data_limpia[[name]] <- as.Date(data_event[[name]],
                                            format = format_fecha)
       }
     }
   }
-  return(data_event_limp)
+  return(data_limpia)
 }
 
 #' Limpiar las etiquetas del encabezado de los datos de una enfermedad
@@ -312,7 +306,8 @@ limpiar_encabezado <- function(data_event) {
 
 #' Limpiar fechas de los datos de una enfermedad o evento
 #'
-#' Función que limpia las fechas de los datos de una enfermedad o evento
+#' Función que limpia y estandariza las fechas de los datos de una
+#' enfermedad o evento
 #' @param data_event Un `data.frame` que contiene los datos de
 #' una enfermedad o evento
 #' @param year Un `numeric` (numerico) o `character` (cadena de caracteres)
@@ -320,10 +315,12 @@ limpiar_encabezado <- function(data_event) {
 #' @param format_fecha Un `character` (cadena de caracteres) que contiene
 #' el formato deseado de fecha; su valor por defecto es "\%AAAA-\%MM-\%DD"
 #' @param nomb_col Un `character` (cadena de caracteres) que contiene
-#' el nombre de la columna del conjunto de datos
+#' el nombre de la columna con la fecha que se desea limpiar en los datos
+#' de la enfermedad o evento
 #' @param col_comp Un `character` (cadena de caracteres) que contiene el
-#' nombre de la columna de comparación del conjunto de datos
-#' @return Un `data.frame` con los datos con las fechas limpias
+#' nombre de la columna con la cual se va a comparar la columna `nomb_col`
+#' para limpiarla, estandarizarla o aplicar las reglas definidas
+#' @return Un `data.frame` con las fechas limpias
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
@@ -371,7 +368,15 @@ limpiar_fecha_event <- function(data_event,
 
 #' Limpiar las edades de los datos de una enfermedad o evento
 #'
-#' Función que limpia las edades de los datos de una enfermedad o evento
+#' Función que limpia y estandariza las edades de los datos de una
+#' enfermedad o evento, conviertiendolas en años, según la clasificación
+#' del Instituto Nacional de Salud:
+#' No aplica = 0
+#' Años = 1
+#' Meses = 2
+#' Días = 3
+#' Horas = 4
+#' Minutos = 5
 #' @param data_event Un `data.frame` que contiene los datos de una
 #' enfermedad o evento
 #' @param nomb_col Un `character` (cadena de caracteres) con el nombre
@@ -458,20 +463,20 @@ limpiar_data_sivigila <- function(data_event) {
                                                     package = "sivirep"),
                                  "dates_column_names")
   year <- names(sort(table(data_event$ano), decreasing = TRUE)[1])
-  data_event_limp <- format_fecha(data_event,
+  data_limpia <- format_fecha(data_event,
                                   nomb_cols = nom_cols_fechas)
   nombre <- unique(data_event$nombre_evento)
   if (length(nombre) == 1 &&
       !stringr::str_detect(nombre, stringr::fixed("MORTALIDAD"))) {
-    data_event_limp <- limpiar_fecha_event(data_event_limp, year,
-                                           nomb_col = nom_cols_fechas[3],
-                                           col_comp = nom_cols_fechas[4])
-    data_event_limp <- limpiar_fecha_event(data_event_limp, year,
-                                           nomb_col = nom_cols_fechas[2])
+    data_limpia <- limpiar_fecha_event(data_limpia, year,
+                                       nomb_col = nom_cols_fechas[3],
+                                       col_comp = nom_cols_fechas[4])
+    data_limpia <- limpiar_fecha_event(data_limpia, year,
+                                       nomb_col = nom_cols_fechas[2])
   }
-  data_event_limp <- estandarizar_geo_cods(data_event_limp)
-  data_event_limp <- convert_edad(data_event_limp,
-                                  col_edad = "edad",
-                                  col_uni_med = "uni_med")
-  return(data_event_limp)
+  data_limpia <- estandarizar_geo_cods(data_limpia)
+  data_limpia <- convert_edad(data_limpia,
+                              col_edad = "edad",
+                              col_uni_med = "uni_med")
+  return(data_limpia)
 }

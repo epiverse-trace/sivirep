@@ -67,43 +67,6 @@ obtener_meses_mas_casos <- function(data_event,
   return(data_mas_casos)
 }
 
-#' Obtener nombres de departamentos
-#'
-#' Función que obtiene los nombres de los departamentos
-#' @param data_event Un `data.frame` que contiene los datos de
-#' la enfermedad o evento
-#' @return Un `data.frame` con los nombres de los departamentos
-#' @examples
-#' data(dengue2020)
-#' @export
-obtener_nombres_dptos <- function(data_event) {
-  stopifnot("El parametro data_event es obligatorio" =
-              !missing(data_event),
-            "El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event),
-            "El parametro data_agrupada no debe estar vacio" =
-              nrow(data_event) > 0)
-  data_event_dptos <- data_event
-  data_event_dptos$codigo <- data_event$id
-  geo_country_data <- import_geo_cods()
-  deptos_data <- data.frame(
-    id = geo_country_data$c_digo_departamento,
-    nombre = geo_country_data$nombre_departamento
-  )
-  i <- 1
-  for (code in deptos_data$id) {
-    data_event_dptos$id[data_event_dptos$id == code] <-
-      deptos_data$nombre[i]
-    i <- i + 1
-  }
-  colnames(data_event_dptos)[colnames(data_event_dptos) == "id"] <-
-    "nombre"
-  data_event_dptos <- data_event_dptos[order(data_event_dptos$nombre,
-                                             decreasing = FALSE), ]
-  data_event_dptos <- data_event_dptos[5:nrow(data_event_dptos), ]
-  return(data_event_dptos)
-}
-
 #' Obtener fila con mayor número de casos
 #'
 #' Función que obtiene la fila con el mayor número de casos
@@ -164,12 +127,7 @@ obtener_fila_mas_casos <- function(data_event,
 #' @param final_token Un `character` (cadena de caracteres) que contien el
 #' separador o token final; su valor por defecto es `"y "`
 #' @return Un `character` (cadena de caracteres) con el valor final concatenado
-#' @examples
-#' concatenar_vals_token(vals = c("enero", "febrero", "marzo"),
-#'                       longitud = 3,
-#'                       princ_token = ", ",
-#'                       final_token = "y ")
-#' @export
+#' @keywords internal
 concatenar_vals_token <- function(vals,
                                   longitud = 3,
                                   princ_token = ", ",
@@ -279,10 +237,9 @@ obtener_info_depts <- function(dpto = NULL, mpio = NULL) {
   if (is.numeric(dpto_busqueda) ||
       !is.na(suppressWarnings(as.numeric(dpto_busqueda)))) {
     col_dpto <- "codigo_departamento"
-    dpto_busqueda <- formatC(dpto_busqueda,
-                             width = 2,
-                             format = "d",
-                             flag = "0")
+    dpto_busqueda <- format_cod_geo(cod_geo = dpto_busqueda,
+                                    etiqueta = "departamento",
+                                    digitos = 2, tam = 2)
   }
   list_dptos <- unique(data_geo[[col_dpto]])
   dpto_busqueda <-  tolower(dpto_busqueda)
@@ -309,15 +266,9 @@ obtener_info_depts <- function(dpto = NULL, mpio = NULL) {
     if (is.numeric(mpio_busqueda) ||
         !is.na(suppressWarnings(as.numeric(mpio_busqueda)))) {
       col_mpio <- "codigo_municipio"
-      mpio_busqueda <- formatC(mpio_busqueda,
-                               width = 3,
-                               format = "d",
-                               flag = "0")
-      stopifnot("El codigo del municipio debe tener maximo 5 digitos" =
-                  nchar(mpio_busqueda) <= 5)
-      if (nchar(mpio_busqueda) == 4) {
-        mpio_busqueda <- paste0("0", mpio_busqueda)
-      }
+      mpio_busqueda <- format_cod_geo(cod_geo = mpio_busqueda,
+                                      etiqueta = "municipio",
+                                      digitos = 3, tam = 5)
     }
     if (nchar(mpio_busqueda) == 3) {
       mpio_busqueda <- paste0(dpto_busqueda, mpio_busqueda)
@@ -358,9 +309,51 @@ obtener_dptos <- function() {
   return(dptos)
 }
 
-#' Obtener nombre del municipio en Colombia
+#' Obtener el nombre de un departamento de Colombia
 #'
-#' Función que obtiene el nombre del municipio
+#' Función que obtiene el nombre de un departamento de Colombia a
+#' partir de su código geográfico
+#' @param data_geo Un `data.frame` que contiene los códigos
+#' geográficos (departamentos y municipios de Colombia)
+#' @param cod_dpto Un `numeric` (numerico) o `character`
+#' (cadena de caracteres) que contiene el código
+#' del departamento
+#' @return Un `character` (cadena de caracteres) con el nombre del
+#' departamento
+#' @examples
+#' data_geo <- import_geo_cods()
+#' obtener_nombre_dpto(data_geo,
+#'                     cod_dpto = "05")
+#' obtener_nombre_dpto(data_geo,
+#'                     cod_dpto = 05)
+#' obtener_nombre_dpto(data_geo,
+#'                     cod_dpto = 5)
+#' @export
+obtener_nombre_dpto <- function(data_geo, cod_dpto) {
+  stopifnot("El parametro data_geo es obligatorio" =
+              !missing(data_geo),
+            "El parametro data_geo debe ser un data.frame" =
+              is.data.frame(data_geo),
+            "El parametro data_geo no debe estar vacio" =
+              nrow(data_geo) > 0,
+            "El parametro cod_dpto es obligatorio" =
+              !missing(cod_dpto),
+            "El parametro cod_dpto debe ser una cadena de caracteres
+             o numerico" =
+              (is.numeric(cod_dpto) && !is.character(cod_dpto)) ||
+              (!is.numeric(cod_dpto) && is.character(cod_dpto)))
+  cod_dpto <- format_cod_geo(cod_geo = cod_dpto, etiqueta = "departamento",
+                             digitos = 2, tam = 2)
+  data_dpto <- dplyr::filter(data_geo,
+                               .data$codigo_departamento %in% cod_dpto)
+  data_dpto <- data_dpto[1, ]
+  return(data_dpto$nombre_departamento)
+}
+
+#' Obtener el nombre de un departamento o municipio de Colombia
+#'
+#' Función que obtiene el nombre de un municipio de Colombi a
+#' partir de su código geográfico
 #' @param data_geo Un `data.frame` que contiene los códigos
 #' geográficos (departamentos y municipios de Colombia)
 #' @param cod_dpto Un `numeric` (numerico) o `character`
@@ -372,11 +365,17 @@ obtener_dptos <- function() {
 #' @return Un `character` (cadena de caracteres) con el nombre del municipio
 #' @examples
 #' data_geo <- import_geo_cods()
-#' obtener_nombres_mpios(data_geo,
-#'                       cod_dpto = "05",
-#'                       cod_mpio = "001")
+#' obtener_nombre_mpio(data_geo,
+#'                     cod_dpto = "05",
+#'                     cod_mpio = "001")
+#' obtener_nombre_mpio(data_geo,
+#'                     cod_dpto = 05,
+#'                     cod_mpio = 001)
+#' obtener_nombre_mpio(data_geo,
+#'                     cod_dpto = 5,
+#'                     cod_mpio = 1)
 #' @export
-obtener_nombres_mpios <- function(data_geo, cod_dpto, cod_mpio) {
+obtener_nombre_mpio <- function(data_geo, cod_dpto, cod_mpio) {
   stopifnot("El parametro data_geo es obligatorio" =
               !missing(data_geo),
             "El parametro data_geo debe ser un data.frame" =
@@ -386,26 +385,61 @@ obtener_nombres_mpios <- function(data_geo, cod_dpto, cod_mpio) {
             "El parametro cod_dpto es obligatorio" =
               !missing(cod_dpto),
             "El parametro cod_dpto debe ser una cadena de caracteres
-            o numerico" =
+             o numerico" =
             (is.numeric(cod_dpto) && !is.character(cod_dpto)) ||
             (!is.numeric(cod_dpto) && is.character(cod_dpto)),
             "El parametro cod_mpio es obligatorio" =
-              !missing(cod_mpio),
-            "El parametro cod_mpio debe ser una cadena de caracteres
+              !missing(cod_dpto),
+            "El parametro cod_mpio debe ser una cadena de caracteres 
             o numerico" =
-            (is.numeric(cod_mpio) && !is.character(cod_mpio)) ||
-            (!is.numeric(cod_mpio) && is.character(cod_mpio)))
-  cod_dpto <- as.character(cod_dpto)
-  if (startsWith(cod_dpto, "0")) {
-    cod_dpto <- substr(cod_dpto, 2, 2)
-    cod_mpio <- paste0(cod_dpto, cod_mpio)
-  } else {
-    cod_mpio <- paste0(cod_dpto, cod_mpio)
-  }
+              (is.numeric(cod_mpio) && !is.character(cod_mpio)) ||
+              (!is.numeric(cod_mpio) && is.character(cod_mpio)))
+  cod_dpto <- format_cod_geo(cod_geo = cod_dpto, etiqueta = "departamento",
+                             digitos = 2, tam = 2)
+  cod_mpio <- format_cod_geo(cod_geo = cod_mpio, etiqueta = "municipio",
+                             digitos = 3, tam = 5)
+  cod_mpio <- paste0(cod_dpto, cod_mpio)
   data_mpio <- dplyr::filter(data_geo,
-                            .data$codigo_municipio %in% as.integer(cod_mpio))
+                               .data$codigo_municipio %in% cod_mpio)
   data_mpio <- data_mpio[1, ]
   return(data_mpio$nombre_municipio)
+}
+
+#' Formatear código geográfico
+#'
+#' Función que da el formato deseado a un código geográfico
+#' @param cod_geo Un `numeric` (numerico) o `character`
+#' (cadena de caracteres) que contiene el código
+#' geográfico
+#' @param etiqueta Un `character` (cadena de caracteres) con el nombre
+#' de la etiqueta de la validación relacionada a la longitud máxima del
+#' código geográfico; se refiere al tipo de división geográfica ("municipio",
+#' "departamento")
+#' @param digitos Un `numeric` (numerico) que contiende el número de digitos
+#' que debe tener individualmente el código geográfico
+#' @param tam Un `numeric` (numerico) que contiende el tamaño o la longitud
+#' máxima que debe tener el código geográfico
+#' @return Un `character` (cadena de caracteres) con el código geográfico
+#' formateado
+#' @keywords internal
+format_cod_geo <- function(cod_geo, etiqueta, digitos, tam) {
+  cod_format <- NULL
+  if (is.numeric(cod_geo) ||
+      !is.na(suppressWarnings(as.numeric(cod_geo)))) {
+    cod_format <- formatC(cod_geo,
+                          width = digitos,
+                          format = "d",
+                          flag = "0")
+    etiqueta <- paste0("El codigo del ", etiqueta,
+                       " debe tener maximo ", tam, " digitos")
+    if (nchar(cod_geo) > tam) {
+      stop(etiqueta)
+    }
+    if (nchar(cod_format) == tam - 1) {
+      cod_format <- paste0("0", cod_format)
+    }
+  }
+  return(cod_format)
 }
 
 #' Obtener los eventos relacionados
