@@ -7,8 +7,6 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-# Reportes automatizados
-
 Puedes instalar la versión de desarrollo de `sivirep` desde GitHub con
 el siguiente comando:
 
