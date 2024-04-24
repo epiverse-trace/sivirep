@@ -1,5 +1,11 @@
 # Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
 # Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
+#
+# Reproduce locally by running:
+# ```r
+# pak::pak(c("any::pkgdown", "."), dependencies = "Config/Needs/website")
+# pkgdown::build_site()
+# ```
 on:
   push:
     branches: [main, master]
@@ -15,6 +21,7 @@ on:
       - 'DESCRIPTION'
       - '.Rbuildignore'
       - '.github/**'
+  merge_group:
   pull_request:
     paths:
       - 'README.Rmd'
@@ -46,12 +53,6 @@ jobs:
     permissions:
       contents: write
     steps:
-      - name: Remove Microsoft repository configuration
-        if: runner.os == 'ubuntu-latest'
-        run: |
-          sudo rm /etc/apt/sources.list.d/microsoft-prod.list
-          sudo apt-get update
-
       - uses: actions/checkout@v3
 
       - uses: r-lib/actions/setup-pandoc@v2
@@ -69,11 +70,16 @@ jobs:
         run: pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)
         shell: Rscript {0}
 
+      - name: Check website links
+        uses: untitaker/hyperlink@0.1.32
+        with:
+          args: docs/
+
       - name: Deploy to GitHub pages 🚀
-        if: github.event_name != 'pull_request'
+        if: github.event_name != 'merge_group' && github.event_name != 'pull_request'
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
-          # We clean on releases because we want to remove old vignettes, 
+          # We clean on releases because we want to remove old vignettes,
           # figures, etc. that have been deleted from the `main` branch.
           # But we clean ONLY on releases because we want to be able to keep
           # both the 'stable' and 'dev' websites.
