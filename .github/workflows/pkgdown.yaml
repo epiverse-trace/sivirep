@@ -46,6 +46,12 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: Remove Microsoft repository configuration
+        if: runner.os == 'ubuntu-latest'
+        run: |
+          sudo rm /etc/apt/sources.list.d/microsoft-prod.list
+          sudo apt-get update
+
       - uses: actions/checkout@v3
 
       - uses: r-lib/actions/setup-pandoc@v2
