@@ -57,6 +57,38 @@ para:
 - Estudiantes del área de la salud y epidemiología.
 - Investigadores y analistas de datos a nivel nacional e internacional.
 
+## Versiones futuras
+
+Las versiones futuras de `sivirep` podrían incluir:
+
+- Interacción con otras fuentes de datos en Colombia.
+- Otros sistemas de vigilancia epidemiológica en América Latina.
+
+## Contribuciones
+
+Las contribuciones son bienvenidas via [pull
+requests](https://github.com/epiverse-trace/sivirep/pulls).
+
+Los contribuyentes al paquete incluyen:
+
+**Autores**: [Geraldine Gómez-Millán](https://github.com/GeraldineGomez)
+y [Zulma M. Cucunubá](https://github.com/zmcucunuba)
+
+**Contribuyentes**: [Hugo Gruson](https://github.com/Bisaloo), [Juanita
+Romero-Garcés](https://github.com/juanitaromerog), [Andrés
+Moreno](https://github.com/andresmore), [Miguel
+Gámez](https://github.com/megamezl), Jennifer Méndez-Romero, Claudia
+Huguett-Aragón, [Laura Gómez-Bermeo](https://github.com/lgbermeo), Johan
+Calderón, Lady Flórez-Tapiero, Verónica Tangarife-Arredondo y Gerard
+Alarcon
+
+## Código de conducta
+
+Por favor, ten en cuenta que el proyecto `sivirep` se publica con un
+[Código de Conducta para
+Contribuyentes](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).
+Al contribuir a este proyecto, aceptas cumplir con sus términos.
+
 ## Instalación
 
 Puedes instalar la versión de desarrollo de `sivirep` desde GitHub con
@@ -166,58 +198,12 @@ la fuente de SIVIGILA.
 Para hacer uso de la plantilla del reporte puedes seguir los siguientes
 pasos:
 
-<img src="man/figures/template.gif" width="900" height="500"/>
+<img src="man/figures/template.gif" width="900" height="540"/>
 
 El reporte que obtendrás al utilizar la plantilla de `sivirep` es este:
 
-<img src="man/figures/template-report.gif" width="400" height="600"/>
+<img src="man/figures/template-report.gif" width="900" height="600"/>
 
 Si deseas generar el reporte en formato PDF debes instalar LateX. Puedes
 instalarlo siguiendo las instrucciones que se encuentran en [R Markdown
 Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html):
-
-## Versiones futuras
-
-Las versiones futuras de `sivirep` podrían incluir:
-
-- Interacción con otras fuentes de datos en Colombia.
-- Otros sistemas de vigilancia epidemiológica en América Latina.
-
-## Contribuciones
-
-Las contribuciones son bienvenidas via [pull
-requests](https://github.com/epiverse-trace/sivirep/pulls).
-
-Los contribuyentes al paquete incluyen:
-
-- [Geraldine Gómez-Millán](https://github.com/GeraldineGomez) (author)
-
-- [Zulma M. Cucunubá](https://github.com/zmcucunuba) (author)
-
-- [Hugo Gruson](https://github.com/Bisaloo) (contributor)
-
-- [Juanita Romero](https://github.com/Bisaloo) (contributor)
-
-- [Andrés Moreno](https://github.com/andresmore) (contributor)
-
-- [Miguel Gámez](https://github.com/megamezl) (contributor)
-
-- Jennifer Méndez-Romero (contributor)
-
-- Claudia Huguett-Aragón (contributor)
-
-- [Laura Gómez-Bermeo](https://github.com/lgbermeo) (contributor to
-  documentation)
-
-- Johan Calderón (contributor)
-
-- Lady Flórez-Tapiero (contributor)
-
-- Verónica Tangarife-Arredondo (contributor)
-
-## Código de conducta
-
-Por favor, ten en cuenta que el proyecto `sivirep` se publica con un
-[Código de Conducta para
-Contribuyentes](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).
-Al contribuir a este proyecto, aceptas cumplir con sus términos.
