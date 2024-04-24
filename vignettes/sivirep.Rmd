@@ -124,21 +124,21 @@ Para hacer uso de la plantilla del reporte se deben seguir los siguientes pasos:
 
 1.  En RStudio hacer click *'File/New File/R'* Markdown:
 
-![](man/figures/file_rmarkdown.png){.rmarkdown-img align="center" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;"width="560"}
+![](../man/figures/file_rmarkdown.png){.rmarkdown-img align="center" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;"width="560"}
 
 2.  Selecciona la opción del panel izquierdo: *'From Template'*, después selecciona el template del reporte llamado `Reporte Básico {sivirep}`, indica el nombre que deseas para el reporte (i.e. Reporte_Laura), la ubicación donde deseas guardarlo y presiona *'Ok'*.
 
-![](man/figures/reporte_basico.png){.rmarkdown-img align="center" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;" width="550"}
+![](../man/figures/reporte_basico.png){.rmarkdown-img align="center" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;" width="550"}
 
 3.  A continuación, podrás seleccionar el nombre de la enfermedad, el año, el departamento (opcional) y el municipio (opcional) del reporte. Esta acción descargará los datos deseados y también proporcionará la plantilla en un archivo R Markdown (.Rmd). Para esto, es importante encontrar el botón *'Knit'*, desplegar las opciones y seleccionar *'Knit with parameters'*.
 
-![](man/figures/button_knit.png){.rmarkdown-img align="center" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;" width="560"}
+![](../man/figures/button_knit.png){.rmarkdown-img align="center" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;" width="560"}
 
 4. Espera unos segundos mientras el informe se genera en un archivo PDF.
 
 5. Puedes agregar, editar, eliminar y personalizar las secciones del reporte en el archivo R Markdown generado anteriormente.
 
-![](man/figures/editable_rmarkdown.png){.rmarkdown-img align="center" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;" width="560"}
+![](../man/figures/editable_rmarkdown.png){.rmarkdown-img align="center" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;" width="560"}
 
 Para obtener más detalles sobre plantillas y reportes genéricos de R Markdown, por favor consulta [rmarkdown
 templates](https://rstudio.github.io/rstudio-extensions/rmarkdown_templates.html).

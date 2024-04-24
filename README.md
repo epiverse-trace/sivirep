@@ -225,7 +225,7 @@ siguientes pasos:
 
 1.  En RStudio hacer click *‘File/New File/R’* Markdown:
 
-<img src="man/figures/file_rmarkdown.png" class="rmarkdown-img"
+<img src="./man/figures/file_rmarkdown.png" class="rmarkdown-img"
 style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;"
 data-align="center" width="560" />
 
@@ -235,7 +235,7 @@ data-align="center" width="560" />
     reporte (i.e. Reporte_Laura), la ubicación donde deseas guardarlo y
     presiona *‘Ok’*.
 
-<img src="man/figures/reporte_basico.png" class="rmarkdown-img"
+<img src="./man/figures/reporte_basico.png" class="rmarkdown-img"
 style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;"
 data-align="center" width="550" />
 
@@ -246,7 +246,7 @@ data-align="center" width="550" />
     esto, es importante encontrar el botón *‘Knit’*, desplegar las
     opciones y seleccionar *‘Knit with parameters’*.
 
-<img src="man/figures/button_knit.png" class="rmarkdown-img"
+<img src="./man/figures/button_knit.png" class="rmarkdown-img"
 style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;"
 data-align="center" width="560" />
 
@@ -256,7 +256,7 @@ data-align="center" width="560" />
 5.  Puedes agregar, editar, eliminar y personalizar las secciones del
     reporte en el archivo R Markdown generado anteriormente.
 
-<img src="man/figures/editable_rmarkdown.png" class="rmarkdown-img"
+<img src="./man/figures/editable_rmarkdown.png" class="rmarkdown-img"
 style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;"
 data-align="center" width="560" />
 
@@ -533,8 +533,7 @@ un mapa estático de Colombia que muestra la distribución de casos por
 departamentos y municipios.
 
 ``` r
-mapa <- plot_map(data_agrupada = dist_esp_dept, dpto = "Choco",
-                 col_distribucion = "casos")
+mapa <- plot_map(data_agrupada = dist_esp_dept, dpto = "Choco", col_distribucion = "casos")
 ```
 
 ``` r
