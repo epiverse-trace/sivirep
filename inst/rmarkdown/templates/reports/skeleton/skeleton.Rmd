@@ -185,7 +185,7 @@ data_years_filtrada <- geo_filtro(data_event = data_years_limpia,
 casos_years <- agrupar_years(data_event = data_years_filtrada)
 ```
 
-```{r plot_cases_by_years, fig.height = 5, fig.width = 11, fig.cap = "Distribución de casos en los últimos 5 años"}
+```{r plot_cases_by_years, fig.height = 5, fig.width = 11, fig.cap = "Distribución de casos en los últimos 6 años"}
 plot_years(casos_years)
 ```
 
