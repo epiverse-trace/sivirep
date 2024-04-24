@@ -120,11 +120,6 @@ obtener_fila_mas_casos <- function(data_event,
 #' @param final_token Un `character` (cadena de caracteres) que contien el
 #' separador o token final; su valor por defecto es `"y "`
 #' @return Un `character` (cadena de caracteres) con el valor final concatenado
-#' @examples
-#' concatenar_vals_token(vals = c("enero", "febrero", "marzo"),
-#'                       longitud = 3,
-#'                       princ_token = ", ",
-#'                       final_token = "y ")
 #' @keywords internal
 concatenar_vals_token <- function(vals,
                                   longitud = 3,

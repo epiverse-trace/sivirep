@@ -30,10 +30,4 @@ Un `character` (cadena de caracteres) con el valor final concatenado
 \description{
 Función que concatena valores con un separador o token específico
 }
-\examples{
-concatenar_vals_token(vals = c("enero", "febrero", "marzo"),
-                      longitud = 3,
-                      princ_token = ", ",
-                      final_token = "y ")
-}
 \keyword{internal}
