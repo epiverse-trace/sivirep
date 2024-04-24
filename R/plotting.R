@@ -1297,7 +1297,7 @@ plot_per_etn <- function(data_agrupada,
     tema_sivirep() +
     ggplot2::theme(legend.position = "right",
                    axis.text.x = ggplot2::element_text(
-                     angle = 15,
+                     angle = 90,
                      hjust = 1))
   return(plot_per_etn)
 }
