@@ -1,7 +1,10 @@
 #' Función que genera el mapa por departamentos o municipios con el número de
-#' casos de una enfermedad o evento
+#' casos o la incidencia de una enfermedad o evento
 #' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
 #' agrupados por departamento y número de casos
+#' @param col_distribucion Un `character` (cadena de caracteres) que contiene el
+#' nombre de la columna que tiene los valores de la distribución, por número de
+#' casos o incidencia; su valor por defecto es `"incidencia"`
 #' @param col_codigos Un `character` (cadena de caracteres) que contiene el
 #' nombre de la columna con los códigos de los departamentos o municipios, se
 #' utilizan para obtener los poligonos de las áreas geográficas del archivo
@@ -14,20 +17,22 @@
 #' @param mpio Un `character` (cadena de caracteres) que contiene el
 #' nombre del municipio; su valor por defecto `NULL`
 #' @return Un `plot` o mapa por departamentos o municipios con el número de
-#' casos de una enfermedad específica
+#' casos o incidencia de una enfermedad específica
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(dengue2020)
 #' data_estandar <- estandarizar_geo_cods(data_limpia)
 #' # Mapa por departamentos
 #' data_espacial <- agrupar_dpto(data_event = data_estandar)
-#' plot_map(data_agrupada = data_espacial)
+#' plot_map(data_agrupada = data_espacial,
+#'          col_distribucion = "casos")
 #' # Mapa por municipios de un departamento especifico
 #' data_filtrada_dpto <- geo_filtro(data_event = data_estandar,
 #'                                  dpto = "Cundinamarca")
 #' data_espacial_dpto <- agrupar_mpio(data_event = data_filtrada_dpto)
 #' plot_map(data_agrupada = data_espacial_dpto,
-#'          col_codigos = "cod_mun_o")
+#'          col_codigos = "cod_mun_o",
+#'          col_distribucion = "casos")
 #' # Mapa por municipio especifico
 #' data_filtrada_mpio <- geo_filtro(data_event = data_estandar,
 #'                                  dpto = "Antioquia",
@@ -35,10 +40,23 @@
 #' data_espacial_mpio <- agrupar_mpio(data_event = data_filtrada_mpio)
 #' plot_map(data_agrupada = data_espacial_mpio,
 #'          col_codigos = "cod_mun_o",
+#'          col_distribucion = "casos",
 #'          dpto = "Antioquia",
 #'          mpio = "Envigado")
+#' # Mapa con la incidencia por municipios de un departamento especifico
+#' \dontrun{
+#' proyecciones <- import_data_incidencia()
+#' incidencia_dpto <-
+#'     calcular_incidencia_geo(data_incidencia = proyecciones,
+#'                             data_agrupada = data_espacial_dpto,
+#'                             year = 2020)
+#' plot_map(data_agrupada = incidencia_dpto,
+#'          col_codigos = "cod_mun_o",
+#'          col_distribucion = "incidencia")
+#' }
 #' @export
 plot_map <- function(data_agrupada,
+                     col_distribucion = "incidencia",
                      col_codigos = NULL,
                      fuente_data = NULL,
                      dpto = NULL,
@@ -58,15 +76,22 @@ plot_map <- function(data_agrupada,
   cols_geo_ocurrencia <- NULL
   data_tabla <- data.frame()
   nombres_col <- NULL
-  if (is.null(fuente_data)) {
-    fuente_data <- "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
-  }
+  etiqueta_relleno <- "Casos"
+  fuente_data <- "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
   stopifnot("El parametro fuente_data debe ser un cadena de caracteres"
             = is.character(fuente_data))
   nombre_events <- unique(data_agrupada$nombre_evento)[1]
   cols_geo_ocurrencia <- obtener_tip_ocurren_geo(nombre_event = nombre_events)
   if (length(cols_geo_ocurrencia) > 1) {
     subtitulo <- paste0(subtitulo, cols_geo_ocurrencia[5])
+  }
+  if (col_distribucion == "incidencia") {
+    etiqueta_relleno <- "Incidencia"
+    cond_incidencia <-
+      obtener_cond_inciden_event(cod_eve = data_agrupada$cod_eve[1])
+    etiqueta_relleno <- paste0(etiqueta_relleno, " por \n",
+                               cond_incidencia$coeficiente,
+                               " habitantes")
   }
   config_file <- system.file("extdata", "config.yml", package = "sivirep")
   base_path <- config::get(file = config_file, "map_shape_file")
@@ -149,7 +174,7 @@ plot_map <- function(data_agrupada,
   }
   data_agrupada <- data_agrupada %>%
     group_by_at(c("id", nombres_col)) %>%
-    dplyr::summarise(casos = sum(.data$casos), .groups = "drop")
+    dplyr::summarise(casos = sum(.data[[col_distribucion]]), .groups = "drop")
   polygon_seleccionado <- ggplot2::fortify(polygon_seleccionado, region = "id")
   polygon_seleccionado$indice <- seq_len(nrow(polygon_seleccionado))
   polygon_seleccionado <- polygon_seleccionado %>%
@@ -189,9 +214,10 @@ plot_map <- function(data_agrupada,
                                                          face = "bold"),
                    text = ggplot2::element_text(size = 14),
                    legend.title = ggplot2::element_text(face = "bold")) +
-    ggplot2::labs(caption = fuente_data, fill = "Casos")
+    ggplot2::labs(caption = fuente_data, fill = etiqueta_relleno)
+  relleno <- 1
   tema_tabla <- gridExtra::ttheme_minimal(base_size = 14,
-                                          padding = ggplot2::unit(c(1, 1),
+                                          padding = ggplot2::unit(c(5, relleno),
                                                                   "mm"))
   tabla <- ggplot2::ggplot() + ggplot2::theme_void() +
     ggplot2::annotation_custom(gridExtra::tableGrob(data_tabla,
@@ -463,6 +489,9 @@ plot_fecha_notifica <- function(data_agrupada,
 #' @param col_sex Un `character` (cadena de caracteres) con el nombre de la
 #' columna que contiene el sexo en los datos agrupados de la enfermedad o
 #' evento; su valor por defecto es `"sexo"`
+#' @param col_distribucion Un `character` (cadena de caracteres) que contiene el
+#' nombre de la columna que tiene los valores de la distribución, por número de
+#' casos o incidencia; su valor por defecto es `"incidencia"`
 #' @param porcentaje Un `boolean` (TRUE/FALSE) que indica si los datos
 #' tienen porcentajes; su valor por defecto es `TRUE`
 #' @param fuente_data Un `character` (cadena de caracteres) que contiene la
@@ -479,6 +508,7 @@ plot_fecha_notifica <- function(data_agrupada,
 #' @export
 plot_sex <- function(data_agrupada,
                      col_sex = "sexo",
+                     col_distribucion = "casos",
                      porcentaje = TRUE,
                      fuente_data = NULL) {
   stopifnot("El parametro data_agrupada es obligatorio" =
@@ -497,21 +527,30 @@ plot_sex <- function(data_agrupada,
   }
   stopifnot("El parametro fuente_data debe ser un cadena de caracteres"
             = is.character(fuente_data))
-  etiqueta_casos <- config::get(file =
-                                  system.file("extdata",
-                                              "config.yml",
-                                              package = "sivirep"),
+  etiqueta_eje <- NULL
+  if (col_distribucion == "casos") {
+    etiqueta_eje <- config::get(file =
+                                    system.file("extdata",
+                                                "config.yml",
+                                                package = "sivirep"),
                                 "label_cases")
+  } else {
+    etiqueta_eje <- config::get(file =
+                                    system.file("extdata",
+                                                "config.yml",
+                                                package = "sivirep"),
+                                "label_incidence")
+  }
   plot_casos_sex <- ggplot2::ggplot(data_agrupada,
                                     ggplot2::aes(x = .data[[col_sex]],
-                                                 y = .data[["casos"]],
+                                                 y = .data[[col_distribucion]],
                                                  fill = .data[[col_sex]])) +
     ggplot2::geom_bar(width = 0.5,
                       stat = "identity") +
-    ggplot2::labs(x = "\nSexo\n", y = paste0(etiqueta_casos, "\n"),
+    ggplot2::labs(x = "\nSexo\n", y = paste0(etiqueta_eje, "\n"),
                   caption = fuente_data) +
     ggplot2::theme_classic() +
-    ggplot2::geom_text(ggplot2::aes(label = paste0(.data[["casos"]],
+    ggplot2::geom_text(ggplot2::aes(label = paste0(.data[[col_distribucion]],
                                                    " \n (",
                                                    .data[["porcentaje"]],
                                                    " %)")),
@@ -596,7 +635,10 @@ plot_sex_semanaepi <- function(data_agrupada,
     tema_sivirep() +
     ggplot2::facet_wrap(facets = ~nombre_evento,
                         scales = "free_y",
-                        ncol = 1)
+                        ncol = 1) +
+    ggplot2::theme(axis.text.x = ggplot2::element_text(
+      angle = 90,
+      hjust = 1))
   return(plot_casos_sex_semanaepi)
 }
 
@@ -910,7 +952,7 @@ plot_area_geo <- function(data_agrupada,
                     ggplot2::aes(x = .data[[nomb_cols[2]]],
                                  y = .data[["casos"]],
                                  fill = .data[[nomb_cols[1]]])) +
-    ggplot2::geom_bar(position = "dodge", stat = "identity") +
+    ggplot2::geom_bar(stat = "identity") +
     ggplot2::labs(x = "\nDepartamento\n",
                   y = paste0(etiqueta_casos, "\n"),
                   caption = fuente_data) +
@@ -958,7 +1000,9 @@ plot_tabla_tipos_event <- function(data_agrupada,
                                "caption_table_events")
   data_agrupada[[col_event]] <-
     stringr::str_to_title(data_agrupada[[col_event]])
-  tabla_tipos <- knitr::kable(data_agrupada,
+  tabla_tipos <- knitr::kable(data_agrupada[, c("cod_eve",
+                                                col_event,
+                                                "casos")],
                               col.names = c(etiqueta_cod,
                                             "Evento", "Casos"),
                               align = "c",
@@ -1022,7 +1066,7 @@ plot_years <- function(data_agrupada,
                     ggplot2::aes(x = .data[[col_year]],
                                  y = .data[["casos"]],
                                  fill = .data[["nombre_evento"]])) +
-    ggplot2::geom_bar(position = "dodge", stat = "identity") +
+    ggplot2::geom_bar(stat = "identity") +
     ggplot2::labs(x = paste0("\n", etiqueta_year, "\n"),
                   y = paste0(etiqueta_casos, "\n"),
                   caption = fuente_data) +
@@ -1072,24 +1116,35 @@ plot_tipo_caso <- function(data_agrupada,
                                          "config.yml",
                                          package = "sivirep"),
                            "labels_cas_tip")
+  etiqueta_casos <- config::get(file =
+                                  system.file("extdata",
+                                              "config.yml",
+                                              package = "sivirep"),
+                                "label_cases")
+  etiqueta_tipo <- config::get(file =
+                                  system.file("extdata",
+                                              "config.yml",
+                                              package = "sivirep"),
+                                "label_type_case")
   clasificacion <- unique(data_agrupada[[nomb_cols[1]]])
   escala <- length(unique(data_agrupada[[nomb_cols[2]]]))
   etiquetas <- etiquetas[as.character(clasificacion)]
   etiquetas <- unlist(etiquetas)
-  plot_casos_years <-
+  plot_tipo_casos <-
     ggplot2::ggplot(data_agrupada,
                     ggplot2::aes(x = .data[[nomb_cols[1]]],
                                  y = .data[["casos"]],
                                  fill = .data[[nomb_cols[2]]])) +
-    ggplot2::geom_bar(position = "dodge", stat = "identity") +
-    ggplot2::labs(x = "\nClasificacion del caso\n", y = "Numero de casos\n",
+    ggplot2::geom_bar(stat = "identity", width = 0.5) +
+    ggplot2::labs(x = paste0("\n", etiqueta_tipo, "\n"),
+                  y = paste0(etiqueta_casos, "\n"),
                   caption = fuente_data) +
     ggplot2::theme_classic() +
     obtener_estetica_escala(escala = escala, nombre = "Eventos\n") +
     ggplot2::scale_x_discrete(labels = etiquetas)
     tema_sivirep() +
     ggplot2::theme(legend.position = "right")
-  return(plot_casos_years)
+  return(plot_tipo_casos)
 }
 
 #' Generar gráfico de distribución de casos por la clasificacion inicial
@@ -1139,6 +1194,21 @@ plot_tipo_caso_years <- function(data_agrupada,
                                          "config.yml",
                                          package = "sivirep"),
                            "labels_cas_tip")
+  etiqueta_year <- config::get(file =
+                                 system.file("extdata",
+                                             "config.yml",
+                                             package = "sivirep"),
+                               "label_year")
+  etiqueta_casos <- config::get(file =
+                                  system.file("extdata",
+                                              "config.yml",
+                                              package = "sivirep"),
+                                "label_cases")
+  etiqueta_tipo <- config::get(file =
+                                 system.file("extdata",
+                                             "config.yml",
+                                             package = "sivirep"),
+                               "label_type_case")
   clasificacion <- unique(data_agrupada[[col_tipo]])
   escala <- length(unique(data_agrupada[[col_tipo]]))
   etiquetas <- etiquetas[as.character(clasificacion)]
@@ -1148,12 +1218,13 @@ plot_tipo_caso_years <- function(data_agrupada,
                     ggplot2::aes(x = .data[[col_year]],
                                  y = .data[["casos"]],
                                  fill = .data[[col_tipo]])) +
-    ggplot2::geom_bar(position = "dodge", stat = "identity") +
-    ggplot2::labs(x = "\nYear\n", y = "Numero de casos\n",
+    ggplot2::geom_bar(stat = "identity") +
+    ggplot2::labs(x = paste0("\n", etiqueta_year, "\n"),
+                  y = paste0(etiqueta_casos, "\n"),
                   caption = fuente_data) +
     ggplot2::theme_classic() +
     obtener_estetica_escala(escala = escala,
-                            nombre = "Clasificacion del caso\n",
+                            nombre = paste0(etiqueta_tipo, "\n"),
                             etiquetas = etiquetas) +
     tema_sivirep() +
     ggplot2::theme(legend.position = "right")
@@ -1193,26 +1264,173 @@ plot_per_etn <- function(data_agrupada,
   }
   nomb_cols <- c(col_etn, "nombre_evento")
   escala <- length(unique(data_agrupada[["nombre_evento"]]))
+  etiqueta_casos <- config::get(file =
+                                  system.file("extdata",
+                                              "config.yml",
+                                              package = "sivirep"),
+                                "label_cases")
+  etiqueta_etn <- config::get(file =
+                                  system.file("extdata",
+                                              "config.yml",
+                                              package = "sivirep"),
+                                "label_etn_groups")
   etiquetas <- config::get(file =
                              system.file("extdata",
                                          "config.yml",
                                          package = "sivirep"),
-                           "labels_cas_tip")
+                           "labels_per_etn")
   grupos <- unique(data_agrupada[[nomb_cols[1]]])
   etiquetas <- etiquetas[as.character(grupos)]
   etiquetas <- unlist(etiquetas)
-  plot_casos_years <-
+  plot_per_etn <-
     ggplot2::ggplot(data_agrupada,
                     ggplot2::aes(x = .data[[nomb_cols[1]]],
                                  y = .data[["casos"]],
                                  fill = .data[[nomb_cols[2]]])) +
-    ggplot2::geom_bar(position = "dodge", stat = "identity") +
-    ggplot2::labs(x = "\nPertenencia etnica\n", y = "Numero de casos\n",
+    ggplot2::geom_bar(stat = "identity", width = 0.7) +
+    ggplot2::labs(x = paste0("\n", etiqueta_etn, "\n"),
+                  y = paste0(etiqueta_casos, "\n"),
                   caption = fuente_data) +
     ggplot2::theme_classic() +
     obtener_estetica_escala(escala = escala, nombre = "Eventos\n") +
-    ggplot2::scale_x_discrete(labels = etiquetas)
+    ggplot2::scale_x_discrete(labels = etiquetas) +
     tema_sivirep() +
-    ggplot2::theme(legend.position = "right")
-  return(plot_casos_years)
+    ggplot2::theme(legend.position = "right",
+                   axis.text.x = ggplot2::element_text(
+                     angle = 90,
+                     hjust = 1))
+  return(plot_per_etn)
+}
+
+#' Generar tabla con la incidencia
+#'
+#' Función que genera la tabla con la incidencia según
+#' distribución geográfica
+#' @param data_agrupada Un `data.frame` que contiene los datos de la
+#' enfermedad o evento agrupados por departamento o municipio
+#' @param col_geo Un `character` (cadena de carácteres) con el nombre de
+#' la columna que contiene los nombres de los departamentos o municipios
+#' en los datos agrupados de la enfermedad o evento; su valor por
+#' defecto es `NULL`
+#' @return Una `kable` (tabla gráfica) con la incidencia según
+#' distribución geográfica
+#' @examples
+#' \dontrun{
+#' data(dengue2020)
+#' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+#' proyecciones <- import_data_incidencia()
+#' data_agrupada <- agrupar_mpio(data_limpia, dpto = "Antioquia")
+#' incidencia_mpios <- calcular_incidencia_geo(
+#'                         data_incidencia = proyecciones,
+#'                         data_agrupada = data_agrupada,
+#'                         year = 2020)
+#  plot_tabla_incidencia_geo(data_agrupada = incidencia_mpios,
+#'                           col_geo = "municipio_ocurrencia")
+#' }
+#' @export
+plot_tabla_incidencia_geo <- function(data_agrupada,
+                                      col_geo = NULL) {
+  stopifnot("El parametro data_agrupada debe ser un data.frame"
+            = is.data.frame(data_agrupada))
+  nomb_cols <- obtener_tip_ocurren_geo(data_agrupada$nombre_evento[1])
+  etiqueta_geo <- "Departamento"
+  etiqueta_cod <- config::get(file =
+                                system.file("extdata",
+                                            "config.yml",
+                                            package = "sivirep"),
+                              "label_code")
+  if (is.null(col_geo)) {
+    col_geo <- nomb_cols[1:2]
+  }
+  if (nomb_cols[3] %in% colnames(data_agrupada) &&
+      length(unique(data_agrupada[[nomb_cols[1]]])) == 1) {
+    etiqueta_geo <- "Municipio"
+    col_geo <- nomb_cols[3:4]
+  }
+  caption_tabla <- config::get(file =
+                                 system.file("extdata",
+                                             "config.yml",
+                                             package = "sivirep"),
+                               "caption_geo_incidence")
+  data_agrupada[[col_geo[2]]] <-
+    stringr::str_to_title(data_agrupada[[col_geo[2]]])
+  data_tabla <- data_agrupada %>%
+    group_by_at(c(col_geo, "incidencia")) %>%
+    dplyr::summarise(incidencia = sum(.data[["incidencia"]]),
+                     .groups = "drop")
+  data_tabla <- data_tabla[order(data_tabla$incidencia,
+                                   decreasing = TRUE), ]
+  tabla_geo <- knitr::kable(data_tabla,
+                            col.names = c(etiqueta_cod,
+                                          etiqueta_geo,
+                                          "Incidencia"),
+                            align = "c",
+                            caption = caption_tabla) %>%
+    kableExtra::row_spec(0, color = "white", background = "#2274BB") %>%
+    kableExtra::kable_styling(full_width = FALSE,
+                              latex_options = "HOLD_position")
+  return(tabla_geo)
+}
+
+#' Generar tabla con la incidencia por sexo
+#'
+#' Función que genera la tabla con la incidencia según por sexo
+#' @param data_agrupada Un `data.frame` que contiene los datos de la
+#' enfermedad o evento agrupados por departamento o municipio
+#' @param col_sex Un `character` (cadena de carácteres) con el nombre de
+#' la columna que contiene el sexo en los datos agrupados de la enfermedad
+#' o evento; su valor por defecto es `"sexo"`
+#' @return Una `kable` (tabla gráfica) con la incidencia por sexo
+#' @examples
+#' \dontrun{
+#' data(dengue2020)
+#' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+#' proyecciones <- import_data_incidencia()
+#' data_agrupada <- agrupar_sex(data_limpia)
+#' incidencia_mpios <- calcular_incidencia_sex(
+#'                         data_incidencia = proyecciones,
+#'                         data_agrupada = data_agrupada,
+#'                         dpto = "Antioquia",
+#'                         year = 2020)
+#  plot_tabla_incidencia_sex(data_agrupada = incidencia_mpios,
+#'                           col_sex = "sexo")
+#' }
+#' @export
+plot_tabla_incidencia_sex <- function(data_agrupada,
+                                      col_sex = "sexo") {
+  stopifnot("El parametro data_agrupada debe ser un data.frame"
+            = is.data.frame(data_agrupada),
+            "El parametro col_sex debe ser una cadena de caracteres"
+            = is.character(col_sex))
+  etiqueta_sex <- "Sexo"
+  etiqueta_cod <- config::get(file =
+                                system.file("extdata",
+                                            "config.yml",
+                                            package = "sivirep"),
+                              "label_code")
+  caption_tabla <- config::get(file =
+                                 system.file("extdata",
+                                             "config.yml",
+                                             package = "sivirep"),
+                               "caption_sex_incidence")
+  data_agrupada[[col_sex]] <-
+    stringr::str_to_title(data_agrupada[[col_sex]])
+  data_agrupada[["nombre_evento"]] <-
+    stringr::str_to_title(data_agrupada[["nombre_evento"]])
+  data_agrupada <- data_agrupada[order(data_agrupada$incidencia,
+                                 decreasing = TRUE), ]
+  tabla_sex <- knitr::kable(data_agrupada[, c("cod_eve",
+                                              "nombre_evento",
+                                              col_sex,
+                                              "incidencia")],
+                             col.names = c(etiqueta_cod,
+                                           "Evento",
+                                           etiqueta_sex,
+                                           "Incidencia"),
+                             align = "c",
+                             caption = caption_tabla) %>%
+    kableExtra::row_spec(0, color = "white", background = "#2274BB") %>%
+    kableExtra::kable_styling(full_width = FALSE,
+                              latex_options = "HOLD_position")
+  return(tabla_sex)
 }

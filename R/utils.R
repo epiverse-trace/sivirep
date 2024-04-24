@@ -50,12 +50,19 @@ obtener_meses_mas_casos <- function(data_event,
     top <- nrow(data_mas_casos)
   }
   data_mas_casos <- data_mas_casos[1:top, ]
-  data_mas_casos$Meses <- months(data_mas_casos[[col_fechas]],
-                                 abbreviate = TRUE)
-  if (concat_vals && length(data_mas_casos$Meses) >= 2) {
-    months_concat <-
-      concatenar_vals_token(as.character(data_mas_casos$Meses)[1:top])
-    return(months_concat)
+  mes <- strftime(data_mas_casos[[col_fechas]], "%m")
+  mes <- as.numeric(mes)
+  etiquetas <- config::get(file =
+                             system.file("extdata",
+                                         "config.yml",
+                                         package = "sivirep"),
+                           "months")
+  etiquetas <- etiquetas[mes]
+  data_mas_casos$meses <- etiquetas
+  if (concat_vals && length(data_mas_casos$meses) >= 2) {
+    meses_concat <-
+      concatenar_vals_token(as.character(data_mas_casos$meses)[1:top])
+    return(meses_concat)
   }
   return(data_mas_casos)
 }
@@ -525,4 +532,86 @@ obtener_casos_pob_especial <- function(data_event) {
     nombre = pob_especial_noms
   )
   return(data_pob_especial)
+}
+
+#' Obtener las condiciones para calcular la incidencia de una
+#' enfermedad o evento
+#'
+#' Función que obtiene las condiciones del numerador, denominador
+#' y coeficiente de múltiplicación para calcular la incidencia de un
+#' evento
+#' @param cod_eve Un `numeric` (numerico) o `character` (cadena de
+#' caracteres) que contiene el código de una enfermedad o evento
+#' @return Un `data.frame` con las condiciones para calcular la
+#' incidencia de una enfermedad o evento
+#' @examples
+#' obtener_cond_inciden_event(cod_eve = 210)
+#' @export
+obtener_cond_inciden_event <- function(cod_eve) {
+  stopifnot("El parametro cod_eve es obligatorio" =
+              !missing(cod_eve),
+            "El parametro cod_eve debe ser una cadena de caracteres
+            o un numerico" =
+              (is.numeric(cod_eve) && !is.character(cod_eve)) ||
+              (!is.numeric(cod_eve) && is.character(cod_eve)))
+  ruta_base <- config::get(file =
+                             system.file("extdata",
+                                         "config.yml",
+                                         package = "sivirep"),
+                           "incidence_events_path")
+  archivo_condiciones <-  system.file(ruta_base, package = "sivirep")
+  incidencia_events <- readxl::read_excel(archivo_condiciones,
+                                          col_types = c("numeric", "text",
+                                                        "text", "text"))
+  vals_event <- incidencia_events[incidencia_events$cod_eve ==
+                                    as.numeric(cod_eve), ]
+  return(vals_event)
+}
+
+#' Obtener código de un departamento y municipio
+#'
+#' Función que obtiene los códigos geográficos de un departamento y municipio
+#' dadas unas condiciones
+#' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
+#' agrupados por departamento o municipio y número de casos
+#' @param nomb_cols Un `character` (cadena de caracteres) o
+#' `array (arreglo) de character` que contiene el nombre de la(s) columna(s) con
+#' la información de los departamentos y municipios en los datos agrupados de la
+#' enfermedad o evento
+#' @param dpto Un `character` (cadena de caracteres) o `numeric` (numérico)
+#' que contiene el código o nombre del departamento; su valor por
+#' defecto es `NULL`
+#' @param mpio Un `character` (cadena de caracteres) o `numeric` (numérico)
+#' que contiene el código o nombre del municipio; su valor por defecto es `NULL`
+#' @return Una `list` (lista) con el departamento y municipio con la siguiente
+#' estructura `list("dpto" = "05", "mpio" = "05001")`
+#' @keywords internal
+obtener_dpto_mpio <- function(data_agrupada, nomb_cols,
+                              dpto = NULL, mpio = NULL) {
+  unidades_geo <- NULL
+  if (!is.null(dpto) && dpto != "01") {
+    dept_data <- obtener_info_depts(dpto, mpio)
+    if (nrow(dept_data) == 0) {
+      warning("El departamento o municipio ingresado no existe, ",
+              "dpto: ", dpto, " , mpio: ", mpio)
+    }
+    dept_data <- dept_data[1, ]
+    dpto <- dept_data$codigo_departamento
+    if (!is.null(mpio)) {
+      mpio <- dept_data$codigo_municipio
+    }
+    unidades_geo <- list("dpto" = dpto, "mpio" = mpio)
+  } else if (nomb_cols[1] %in% colnames(data_agrupada) &&
+      !is.na(unique(
+        nomb_cols[data_agrupada[[nomb_cols[1]]]]))) {
+    dpto <- data_agrupada[[nomb_cols[1]]][1]
+    if (is.null(mpio) &&
+        nomb_cols[3] %in% colnames(data_agrupada) &&
+        !is.na(unique(
+          nomb_cols[data_agrupada[[nomb_cols[3]]]]))) {
+      mpio <- data_agrupada[[nomb_cols[3]]][1]
+    }
+    unidades_geo <- list("dpto" = dpto, "mpio" = mpio)
+  }
+  return(unidades_geo)
 }

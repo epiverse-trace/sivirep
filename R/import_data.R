@@ -231,3 +231,34 @@ obtener_ruta_descarga <- function(ruta) {
                              "')", fixed = TRUE)[[1]][1] %>% as.character()
   return(nombre_archivo)
 }
+
+#' Importar las proyecciones DANE del año 2005 hasta el 2035
+#'
+#' Función que obtiene las proyecciones poblacionales DANE desde
+#' el año 2005 hasta el 2035
+#' @return Un `data.frame` con las proyecciones poblacionales
+#' @examples
+#' import_data_incidencia()
+#' @export
+import_data_incidencia <- function() {
+  proyecciones <- NULL
+  proyecs_2005_2035 <- NULL
+  url_proyecs <- config::get(file =
+                             system.file("extdata",
+                                         "config.yml",
+                                         package = "sivirep"),
+                            "projections_path")
+  nomb_proyecs <- config::get(file =
+                                system.file("extdata",
+                                            "config.yml",
+                                            package = "sivirep"),
+                              "projections_file_name")
+  ruta_extdata <- system.file("extdata", package = "sivirep")
+  ruta_proyecs <- file.path(ruta_extdata, nomb_proyecs)
+  if (!file.exists(ruta_proyecs)) {
+    utils::download.file(url_proyecs, ruta_proyecs)
+  }
+  load(ruta_proyecs)
+  proyecciones <- proyecs_2005_2035
+  return(proyecciones)
+}

@@ -3,10 +3,11 @@
 \name{plot_map}
 \alias{plot_map}
 \title{Función que genera el mapa por departamentos o municipios con el número de
-casos de una enfermedad o evento}
+casos o la incidencia de una enfermedad o evento}
 \usage{
 plot_map(
   data_agrupada,
+  col_distribucion = "incidencia",
   col_codigos = NULL,
   fuente_data = NULL,
   dpto = NULL,
@@ -16,6 +17,10 @@ plot_map(
 \arguments{
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la enfermedad
 agrupados por departamento y número de casos}
+
+\item{col_distribucion}{Un `character` (cadena de caracteres) que contiene el
+nombre de la columna que tiene los valores de la distribución, por número de
+casos o incidencia; su valor por defecto es `"incidencia"`}
 
 \item{col_codigos}{Un `character` (cadena de caracteres) que contiene el
 nombre de la columna con los códigos de los departamentos o municipios, se
@@ -34,11 +39,11 @@ nombre del municipio; su valor por defecto `NULL`}
 }
 \value{
 Un `plot` o mapa por departamentos o municipios con el número de
-casos de una enfermedad específica
+casos o incidencia de una enfermedad específica
 }
 \description{
 Función que genera el mapa por departamentos o municipios con el número de
-casos de una enfermedad o evento
+casos o la incidencia de una enfermedad o evento
 }
 \examples{
 data(dengue2020)
@@ -46,13 +51,15 @@ data_limpia <- limpiar_data_sivigila(dengue2020)
 data_estandar <- estandarizar_geo_cods(data_limpia)
 # Mapa por departamentos
 data_espacial <- agrupar_dpto(data_event = data_estandar)
-plot_map(data_agrupada = data_espacial)
+plot_map(data_agrupada = data_espacial,
+         col_distribucion = "casos")
 # Mapa por municipios de un departamento especifico
 data_filtrada_dpto <- geo_filtro(data_event = data_estandar,
                                  dpto = "Cundinamarca")
 data_espacial_dpto <- agrupar_mpio(data_event = data_filtrada_dpto)
 plot_map(data_agrupada = data_espacial_dpto,
-         col_codigos = "cod_mun_o")
+         col_codigos = "cod_mun_o",
+         col_distribucion = "casos")
 # Mapa por municipio especifico
 data_filtrada_mpio <- geo_filtro(data_event = data_estandar,
                                  dpto = "Antioquia",
@@ -60,6 +67,18 @@ data_filtrada_mpio <- geo_filtro(data_event = data_estandar,
 data_espacial_mpio <- agrupar_mpio(data_event = data_filtrada_mpio)
 plot_map(data_agrupada = data_espacial_mpio,
          col_codigos = "cod_mun_o",
+         col_distribucion = "casos",
          dpto = "Antioquia",
          mpio = "Envigado")
+# Mapa con la incidencia por municipios de un departamento especifico
+\dontrun{
+proyecciones <- import_data_incidencia()
+incidencia_dpto <-
+    calcular_incidencia_geo(data_incidencia = proyecciones,
+                            data_agrupada = data_espacial_dpto,
+                            year = 2020)
+plot_map(data_agrupada = incidencia_dpto,
+         col_codigos = "cod_mun_o",
+         col_distribucion = "incidencia")
+}
 }
