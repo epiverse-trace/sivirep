@@ -30,6 +30,7 @@ jobs:
 
     steps:
       - name: Remove Microsoft repository configuration
+        if: runner.os == 'ubuntu-latest'
         run: |
           sudo rm /etc/apt/sources.list.d/microsoft-prod.list
           sudo apt-get update
