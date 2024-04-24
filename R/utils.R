@@ -50,12 +50,19 @@ obtener_meses_mas_casos <- function(data_event,
     top <- nrow(data_mas_casos)
   }
   data_mas_casos <- data_mas_casos[1:top, ]
-  data_mas_casos$meses <- months(data_mas_casos[[col_fechas]],
-                                 abbreviate = FALSE)
+  mes <- strftime(data_mas_casos[[col_fechas]], "%m")
+  mes <- as.numeric(mes)
+  etiquetas <- config::get(file =
+                             system.file("extdata",
+                                         "config.yml",
+                                         package = "sivirep"),
+                           "months")
+  etiquetas <- etiquetas[mes]
+  data_mas_casos$meses <- etiquetas
   if (concat_vals && length(data_mas_casos$meses) >= 2) {
-    months_concat <-
-      concatenar_vals_token(as.character(data_mas_casos$Meses)[1:top])
-    return(months_concat)
+    meses_concat <-
+      concatenar_vals_token(as.character(data_mas_casos$meses)[1:top])
+    return(meses_concat)
   }
   return(data_mas_casos)
 }
