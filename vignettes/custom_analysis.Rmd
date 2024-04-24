@@ -288,9 +288,6 @@ mapa <- plot_map(data_agrupada = dist_esp_dept, dpto = "Choco", col_distribucion
 mapa
 ```
 
-> :bulb: Tip 3 - Obtén la fila con más casos Al construir una sección
-> del reporte o analizar estos datos, puede ser útil saber cuál es la
-> variable que tiene la mayoría de los casos. En `sivirep`, puedes
-> utilizar la función `obtener_fila_mas_casos` para obtener esta
-> información. Esta función funciona con cualquier conjunto de datos que
-> contenga una columna llamada "casos" en cualquier nivel de agregación.
+##### 💡 Tip 3 - Obtén la fila con más casos
+
+- Al construir una sección del reporte o analizar estos datos, puede ser útil saber cuál es la variable que tiene la mayoría de los casos. En `sivirep`, puedes utilizar la función `obtener_fila_mas_casos` para obtener esta información. Esta función funciona con cualquier conjunto de datos que contenga una columna llamada "casos" en cualquier nivel de agregación.
