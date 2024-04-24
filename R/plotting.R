@@ -637,7 +637,7 @@ plot_sex_semanaepi <- function(data_agrupada,
                         scales = "free_y",
                         ncol = 1) +
     ggplot2::theme(axis.text.x = ggplot2::element_text(
-      angle = 45,
+      angle = 90,
       hjust = 1))
   return(plot_casos_sex_semanaepi)
 }
