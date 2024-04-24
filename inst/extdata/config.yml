@@ -51,3 +51,4 @@ default:
   incidence_events_path: "extdata/incidencia_events.xlsx"
   caption_geo_incidence: "Incidencia según distribución geográfica"
   caption_sex_incidence: "Incidencia por sexo"
+  months: ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"]
