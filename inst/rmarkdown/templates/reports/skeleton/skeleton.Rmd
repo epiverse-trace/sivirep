@@ -406,15 +406,3 @@ b.  Los casos totales reportados de `r stringr::str_to_title(params$nombre_event
 c.  El mes de `r mes_mayor_casos$meses` tuvo el mayor reporte.
 d.  El reporte de casos de `r stringr::str_to_title(params$nombre_evento)` a lo largo de `r params$year` predominó en la población de `r age_most_cases$edad` años.
 e.  El reporte de casos de `r stringr::str_to_title(params$nombre_evento)` predominó a lo largo del año en el sexo `r sexo_mayor[1]`.
-
-# Sugerencias
-
-Se recomienda ampliar o incluir los siguientes componentes, según el contexto, objetivo, alcance y las dimensiones que apliquen al reporte:
-
-a.  Identificar factores socioeconómicos que pueden influir en la propagación de la enfermedad o evento.
-b.  Evaluar la capacidad de respuesta del sistema de salud en diferentes niveles administrativos.
-c.  Identificar condiciones ambientales que pueden influir en la propagación de la enfermedad.
-d.  Analizar la relación entre variables climáticas y la ocurrencia de casos.
-e.  Evaluar la presencia de vectores o reservorios específicos en la región.
-f.  Analizar comparativamente la situación municipal, departamental o nacional.
-g.  Sugerir acciones de salud pública para mitigar la enfermedad.
