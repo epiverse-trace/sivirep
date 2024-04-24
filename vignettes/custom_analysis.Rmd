@@ -95,8 +95,6 @@ Estas pueden incluir funciones internas como:
 -   `limpiar_edad_event`: función que limpia las edades de los datos de
     lista de casos de SIVIGILA.
 
--   `format_fecha`: función que da un formato específico a una fecha.
-
 -   `limpiar_fecha_event`: función que limpia las fechas de los datos de
     enfermedades.
 
