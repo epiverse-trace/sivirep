@@ -414,11 +414,6 @@ obtener_nombre_mpio <- function(data_geo, cod_dpto, cod_mpio) {
 #' máxima que debe tener el código geográfico
 #' @return Un `character` (cadena de caracteres) con el código geográfico
 #' formateado
-#' @examples
-#' format_cod_geo(cod_geo = cod_dpto, etiqueta = "departamento",
-#'                digitos = 2, tam = 2)
-#' format_cod_geo(cod_geo = cod_mpio, etiqueta = "municipio",
-#'                digitos = 3, tam = 5)
 #' @keywords internal
 format_cod_geo <- function(cod_geo, etiqueta, digitos, tam) {
   cod_format <- NULL

@@ -29,10 +29,4 @@ formateado
 \description{
 Función que da el formato deseado a un código geográfico
 }
-\examples{
-format_cod_geo(cod_geo = cod_dpto, etiqueta = "departamento",
-               digitos = 2, tam = 2)
-format_cod_geo(cod_geo = cod_mpio, etiqueta = "municipio",
-               digitos = 3, tam = 5)
-}
 \keyword{internal}
