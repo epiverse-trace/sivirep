@@ -7,9 +7,6 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-
-# Inicio rápido
-
 Puedes instalar la versión de desarrollo de `sivirep` desde GitHub con
 el siguiente comando:
 
@@ -34,8 +31,6 @@ utilizando:
 lista_eventos <- list_events()
 knitr::kable(lista_eventos)
 ```
-
-## Reporte automatizado
 
 ## Reporte automatizado
 
