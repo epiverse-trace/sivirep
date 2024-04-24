@@ -253,12 +253,6 @@ remove_error_fecha <- function(data_event,
 #' contiene los nombres de la columna a formatear; su valor por defecto
 #' es `NULL`
 #' @return Un `data.frame` con los datos con las fechas formateadas
-#' @examples
-#' data(dengue2020)
-#' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
-#' format_fecha(data_event = data_limpia,
-#'              format_fecha = "%Y-%m-%d",
-#'              nomb_cols = c("ini_sin", "fec_hos"))
 #' @keywords internal
 format_fecha <- function(data_event,
                          format_fecha = "%Y-%m-%d",
