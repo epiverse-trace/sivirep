@@ -1039,7 +1039,6 @@ calcular_incidencia_geo <- function(data_incidencia,
       !(nomb_cols[3] %in% colnames(data_agrupada))) {
     incidencia_dptos <- NULL
     for (dpto in data_agrupada[[nomb_cols[1]]]) {
-      print(data_agrupada$nombre_evento[1])
       incidencia <- calcular_incidencia(data_incidencia = data_incidencia,
                                         data_agrupada = data_agrupada,
                                         dpto = dpto,
