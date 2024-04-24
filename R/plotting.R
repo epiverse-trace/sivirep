@@ -1287,7 +1287,7 @@ plot_per_etn <- function(data_agrupada,
                     ggplot2::aes(x = .data[[nomb_cols[1]]],
                                  y = .data[["casos"]],
                                  fill = .data[[nomb_cols[2]]])) +
-    ggplot2::geom_bar(stat = "identity") +
+    ggplot2::geom_bar(stat = "identity", width = 0.7) +
     ggplot2::labs(x = paste0("\n", etiqueta_etn, "\n"),
                   y = paste0(etiqueta_casos, "\n"),
                   caption = fuente_data) +
