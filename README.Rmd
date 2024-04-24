@@ -53,6 +53,9 @@ El objetivo de `sivirep` es proporcionar un conjunto de herramientas para:
 2) Generar informes epidemiológicos automatizados adaptables al contexto.
 3) Proporcionar retroalimentación sobre el sistema de vigilancia al proveedor de la fuente de datos.
 
+***sivirep*** esta desarrollado por la [Pontificia Universidad
+Javeriana](https://www.javeriana.edu.co/inicio) como parte de la iniciativa [Epiverse](https://data.org/initiatives/epiverse/).
+
 ## Potenciales usuarios
 
 - Profesionales de salud pública y de epidemiología de campo que utilizan la fuente de datos de SIVIGILA a nivel local.
