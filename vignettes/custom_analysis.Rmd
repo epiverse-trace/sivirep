@@ -12,6 +12,23 @@ A continuación se describe un conjunto básico de instrucciones para usar
 un reporte. - Deseas realizar análisis personalizados sin un archivo
 .Rmd.
 
+### Configuración
+
+Puedes instalar la versión de desarrollo de `sivirep` desde GitHub con
+el siguiente comando:
+
+```{r setup_sivirep, eval = FALSE}
+install.packages("pak")
+pak::pak("epiverse-trace/sivirep")
+```
+
+Después de la instalación de `sivirep`, puedes comenzar importando el
+paquete a través del siguiente comando:
+
+```{r import_sivirep}
+library(sivirep)
+```
+
 ### 1. Importación de datos de SIVIGILA
 
 La fuente de SIVIGILA proporciona los datos de la lista de casos
