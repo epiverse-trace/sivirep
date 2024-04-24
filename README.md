@@ -51,7 +51,8 @@ para:
     proveedor de la fuente de datos.
 
 ***sivirep*** esta desarrollado por la [Pontificia Universidad
-Javeriana](https://www.javeriana.edu.co/inicio) como parte de la iniciativa [Epiverse](https://data.org/initiatives/epiverse/).
+Javeriana](https://www.javeriana.edu.co/inicio) como parte de la
+iniciativa [Epiverse](https://data.org/initiatives/epiverse/).
 
 ## Potenciales usuarios
 
@@ -90,7 +91,7 @@ knitr::kable(lista_eventos)
 | 6   | Cáncer Infantil                                                       | 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022                                                 |
 | 7   | Chagas                                                                | 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022                                     |
 | 8   | Chikunguya                                                            | 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022                                                 |
-| 9   | Dengue                                                                | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2015, 2017, 2018, 2019, 2020, 2021, 2022       |
+| 9   | Dengue                                                                | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
 | 10  | Dengue Grave                                                          | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
 | 11  | Esi - Irag (Vigilancia Centinela)                                     | 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022             |
 | 12  | Evento Adverso Grave Posterior A La Vacunación                        | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
@@ -149,6 +150,7 @@ knitr::kable(lista_eventos)
 | 63  | Tuberculosis Pulmonar                                                 | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
 | 64  | Varicela Individual                                                   | 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022       |
 | 65  | Vigilancia En Salud Pública De La Violencia De Género E Intrafamiliar | 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022                                     |
+| 68  | Zika                                                                  |                                                                                                      |
 
 ## Versiones futuras
 
@@ -321,7 +323,7 @@ códigos de geolocalización y estandarizar los nombres de las columnas y
 las categorías de edad.
 
 ``` r
-data_limpia <- limpiar_data_sivigila(data_event = data_event)
+data_event_limp <- limpiar_data_sivigila(data_event = data_event)
 ```
 
 Las funciones de limpieza dentro de `limpiar_data_sivigila` se han
@@ -355,7 +357,7 @@ subnacional, seleccionando casos específicos basados en la ubicación
 geográfica.
 
 ``` r
-data_event_filtrada <- geo_filtro(data_event = data_limpia,
+data_event_filtrada <- geo_filtro(data_event = data_event_limp,
                                   dpto = "Choco")
 ```
 
@@ -374,7 +376,8 @@ proporciona una función que permite esta agrupación llamada
 `agrupar_fecha_inisintomas`.
 
 ``` r
-casos_ini_sintomas <- agrupar_fecha_inisintomas(data_event = data_limpia)
+casos_ini_sintomas <- agrupar_fecha_inisintomas(data_event =
+                                                  data_event_limp)
 ```
 
 ##### 💡 Tip 2 - Obtén los primeros n meses con más casos
@@ -403,7 +406,8 @@ variable. Puedes utilizar la siguiente función de `sivirep` para hacer
 esto:
 
 ``` r
-casos_fecha_notificacion <- agrupar_fecha_notifica(data_event = data_limpia)
+casos_fecha_notificacion <- agrupar_fecha_notifica(data_event =
+                                                     data_event_limp)
 ```
 
 El gráfico que permite visualizar esta distribución debe generarse con
@@ -430,7 +434,7 @@ embargo, la fuente de SIVIGILA solo registra el sexo.
 los porcentajes por sexo después del proceso de limpieza.
 
 ``` r
-casos_sex <- agrupar_sex(data_event = data_limpia,
+casos_sex <- agrupar_sex(data_event = data_event_limp,
                          porcentaje = TRUE)
 ```
 
@@ -448,7 +452,7 @@ generar utilizando la función `agrupar_sex_semanaepi` proporcionada por
 `sivirep`.
 
 ``` r
-casos_sex_semanaepi <- agrupar_sex_semanaepi(data_event = data_limpia)
+casos_sex_semanaepi <- agrupar_sex_semanaepi(data_event = data_event_limp)
 ```
 
 La función de visualización correspondiente es `plot_sex_semanaepi`, que
@@ -477,7 +481,7 @@ años. Además, los usuarios pueden personalizar un rango de edad
 diferente.
 
 ``` r
-casos_edad <- agrupar_edad(data_event = data_limpia, interval_edad = 10)
+casos_edad <- agrupar_edad(data_event = data_event_limp, interval_edad = 10)
 ```
 
 La función de visualización correspondiente es `plot_edad`.
@@ -496,7 +500,7 @@ simultánea y obtener el número de casos y los porcentajes
 correspondientes. Además, permite personalizar el intervalo de edad.
 
 ``` r
-casos_edad_sex <- agrupar_edad_sex(data_event = data_limpia,
+casos_edad_sex <- agrupar_edad_sex(data_event = data_event_limp,
                                    interval_edad = 10)
 ```
 
@@ -529,7 +533,8 @@ un mapa estático de Colombia que muestra la distribución de casos por
 departamentos y municipios.
 
 ``` r
-mapa <- plot_map(data_agrupada = dist_esp_dept, dpto = "Choco")
+mapa <- plot_map(data_agrupada = dist_esp_dept, dpto = "Choco",
+                 col_distribucion = "casos")
 ```
 
 ``` r
