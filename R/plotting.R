@@ -1278,7 +1278,7 @@ plot_per_etn <- function(data_agrupada,
                              system.file("extdata",
                                          "config.yml",
                                          package = "sivirep"),
-                           "labels_cas_tip")
+                           "labels_per_etn")
   grupos <- unique(data_agrupada[[nomb_cols[1]]])
   etiquetas <- etiquetas[as.character(grupos)]
   etiquetas <- unlist(etiquetas)
