@@ -22,6 +22,11 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
+      - name: Remove Microsoft repository configuration
+        run: |
+          sudo rm /etc/apt/sources.list.d/microsoft-prod.list
+          sudo apt-get update
+
       - uses: actions/checkout@v3
 
       - uses: r-lib/actions/setup-r@v2
