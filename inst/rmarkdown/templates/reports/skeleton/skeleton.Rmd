@@ -301,7 +301,7 @@ plot_edad_sex(data_agrupada = casos_edad_sex)
 
 `r if(params$age_sex_distribution) {"# Distribución de casos por pertenencia étnica"}`
 
-```{r distribution_per_etn, fig.height = 4, fig.width = 9, fig.cap =  "Distribución de casos por pertenencia étnica", include = params$age_sex_distribution}
+```{r distribution_per_etn, fig.height = 8, fig.width = 9, fig.cap =  "Distribución de casos por pertenencia étnica", include = params$age_sex_distribution}
 casos_per_etn <- agrupar_per_etn(data_event = data_event_filtrada)
 plot_per_etn(data_agrupada = casos_per_etn)
 ```
