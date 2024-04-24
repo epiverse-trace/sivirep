@@ -9,6 +9,8 @@ output:
   word_document: 
     number_sections: true
 header-includes:
+  - \usepackage{fancyhdr}
+  - \pagestyle{fancy}
   - \usepackage[utf8]{inputenc}
   - \usepackage[spanish]{babel}
   - \fancyfoot[R]{\includegraphics[width=1.1cm]{logo.png}}
