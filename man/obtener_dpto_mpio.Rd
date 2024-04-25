@@ -24,7 +24,7 @@ que contiene el código o nombre del municipio; su valor por defecto es `NULL`}
 }
 \value{
 Una `list` (lista) con el departamento y municipio con la siguiente
-estructura `list("dpto" = "05", "mpio" = "05001")`
+estructura `list(dpto = "05", mpio = "05001")`
 }
 \description{
 Función que obtiene los códigos geográficos de un departamento y municipio

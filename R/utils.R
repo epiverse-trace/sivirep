@@ -550,8 +550,8 @@ obtener_casos_pob_especial <- function(data_event) {
 obtener_cond_inciden_event <- function(cod_eve) {
   stopifnot("El parametro cod_eve es obligatorio" =
               !missing(cod_eve),
-            "El parametro cod_eve debe ser una cadena de caracteres
-            o un numerico" =
+            "El parametro cod_eve debe ser una cadena de caracteres o
+            un numerico" =
               (is.numeric(cod_eve) && !is.character(cod_eve)) ||
               (!is.numeric(cod_eve) && is.character(cod_eve)))
   ruta_base <- config::get(file =
@@ -584,7 +584,7 @@ obtener_cond_inciden_event <- function(cod_eve) {
 #' @param mpio Un `character` (cadena de caracteres) o `numeric` (numérico)
 #' que contiene el código o nombre del municipio; su valor por defecto es `NULL`
 #' @return Una `list` (lista) con el departamento y municipio con la siguiente
-#' estructura `list("dpto" = "05", "mpio" = "05001")`
+#' estructura `list(dpto = "05", mpio = "05001")`
 #' @keywords internal
 obtener_dpto_mpio <- function(data_agrupada, nomb_cols,
                               dpto = NULL, mpio = NULL) {
@@ -600,7 +600,7 @@ obtener_dpto_mpio <- function(data_agrupada, nomb_cols,
     if (!is.null(mpio)) {
       mpio <- dept_data$codigo_municipio
     }
-    unidades_geo <- list("dpto" = dpto, "mpio" = mpio)
+    unidades_geo <- list(dpto = dpto, mpio = mpio)
   } else if (nomb_cols[1] %in% colnames(data_agrupada) &&
       !is.na(unique(
         nomb_cols[data_agrupada[[nomb_cols[1]]]]))) {
@@ -611,7 +611,7 @@ obtener_dpto_mpio <- function(data_agrupada, nomb_cols,
           nomb_cols[data_agrupada[[nomb_cols[3]]]]))) {
       mpio <- data_agrupada[[nomb_cols[3]]][1]
     }
-    unidades_geo <- list("dpto" = dpto, "mpio" = mpio)
+    unidades_geo <- list(dpto = dpto, mpio = mpio)
   }
   return(unidades_geo)
 }

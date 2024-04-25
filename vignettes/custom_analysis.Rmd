@@ -14,16 +14,7 @@ un reporte. - Deseas realizar análisis personalizados sin un archivo
 
 ### Configuración
 
-Puedes instalar la versión de desarrollo de `sivirep` desde GitHub con
-el siguiente comando:
-
-```{r setup_sivirep, eval = FALSE}
-install.packages("pak")
-pak::pak("epiverse-trace/sivirep")
-```
-
-Después de la instalación de `sivirep`, puedes comenzar importando el
-paquete a través del siguiente comando:
+Puedes comenzar importando el paquete a través del siguiente comando:
 
 ```{r import_sivirep}
 library(sivirep)

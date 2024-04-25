@@ -7,22 +7,13 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-Puedes instalar la versión de desarrollo de `sivirep` desde GitHub con
-el siguiente comando:
-
-```{r setup_sivirep, eval = FALSE}
-install.packages("pak")
-pak::pak("epiverse-trace/sivirep")
-```
-
-Después de la instalación de `sivirep`, puedes comenzar importando el
-paquete a través del siguiente comando:
+Puedes comenzar importando el paquete a través del siguiente comando:
 
 ```{r import_sivirep}
 library(sivirep)
 ```
 
-Ante de iniciar con el reporte automatizado, revisa la lista de
+Antes de generar el reporte automatizado, revisa la lista de
 enfermedades disponibles para hacer un reporte con `sivirep` en:
 
 ```{r eventos_disponibles, results = 'hide'}
