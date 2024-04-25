@@ -7,12 +7,12 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-Puedes instalar la versión de desarrollo de `sivirep` desde GitHub con
-el siguiente comando:
+Puedes iniciar instalando la versión de desarrollo de `sivirep` desde GitHub con
+los siguientes comandos:
 
 ```{r setup_sivirep, eval = FALSE}
 install.packages("pak")
-pak::pak("epiverse-trace/sivirep")
+pak::pak(paste0("epiverse-trace", "/", "sivirep"))
 ```
 
 Después de la instalación de `sivirep`, puedes comenzar importando el
