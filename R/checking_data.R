@@ -934,7 +934,7 @@ calcular_incidencia <- function(data_incidencia, data_agrupada, year,
   poblacion <- NULL
   total_casos <- NULL
   total_poblacion <- NULL
-  incidencia <- 0
+  incidencia <- 0.00
   nomb_cols <- obtener_tip_ocurren_geo(data_agrupada$nombre_evento[1])
   unidades_geo <- obtener_dpto_mpio(data_agrupada = data_agrupada,
                                     nomb_cols = nomb_cols,
@@ -983,9 +983,15 @@ calcular_incidencia <- function(data_incidencia, data_agrupada, year,
   vals_event <- obtener_cond_inciden_event(cod_eve = data_agrupada$cod_eve[1])
   vals_event$coeficiente <- as.integer(vals_event$coeficiente)
   if (total_poblacion > 0) {
+    if (length(vals_event$coeficiente) == 0) {
+      vals_event$coeficiente <- 100000
+    }
     incidencia <- round((total_casos / total_poblacion) *
                           vals_event$coeficiente,
                         2)
+    if (length(incidencia) == 0) {
+      incidencia <- 0.00
+    }
   }
   return(incidencia)
 }
