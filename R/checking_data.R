@@ -1138,6 +1138,16 @@ calcular_incidencia_sex <- function(data_incidencia,
       mpio <- dept_data$codigo_municipio
     }
   }
+  cod_eve <- data_agrupada$cod_eve[1]
+  nombre_evento <- data_agrupada$nombre_evento[1]
+  data_agrupada <- data_agrupada %>%
+    group_by_at("sexo") %>%
+    dplyr::summarise(casos = sum(.data[["casos"]]), .groups = "drop")
+  cols_eve <- data.frame(cod_eve = rep(cod_eve,
+                                       nrow(data_agrupada)),
+                         nombre_evento = rep(nombre_evento,
+                                              nrow(data_agrupada)))
+  data_agrupada <- cbind(data_agrupada, cols_eve)
   for (fila in seq_len(nrow(data_agrupada))) {
     sex_fila <- data_agrupada[fila, ]
     incidencia_sex <- calcular_incidencia(data_incidencia = data_incidencia,
