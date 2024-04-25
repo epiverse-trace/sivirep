@@ -12,7 +12,7 @@ los siguientes comandos:
 
 ```{r setup_sivirep, eval = FALSE}
 install.packages("pak")
-pak::pak(paste0("epiverse-trace", "/", "sivirep"))
+pak::pak("epiverse-trace/sivirep")
 ```
 
 Después de la instalación de `sivirep`, puedes comenzar importando el
