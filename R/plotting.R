@@ -543,8 +543,10 @@ plot_sex <- function(data_agrupada,
   }
   if (porcentaje) {
     plot_casos_sex <- ggplot2::ggplot(data_agrupada,
-                                      ggplot2::aes(x = .data[[col_sex]],
-                                                   y = .data[[col_distribucion]],
+                                      ggplot2::aes(x =
+                                                     .data[[col_sex]],
+                                                   y =
+                                                     .data[[col_distribucion]],
                                                    fill = .data[[col_sex]])) +
       ggplot2::geom_bar(width = 0.5,
                         stat = "identity") +
@@ -565,8 +567,10 @@ plot_sex <- function(data_agrupada,
                           ncol = 2)  
   } else {
     plot_casos_sex <- ggplot2::ggplot(data_agrupada,
-                                      ggplot2::aes(x = .data[[col_sex]],
-                                                   y = .data[[col_distribucion]],
+                                      ggplot2::aes(x =
+                                                     .data[[col_sex]],
+                                                   y =
+                                                     .data[[col_distribucion]],
                                                    fill = .data[[col_sex]])) +
       ggplot2::geom_bar(width = 0.5,
                         stat = "identity") +
