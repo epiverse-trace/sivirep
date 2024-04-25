@@ -600,7 +600,7 @@ obtener_dpto_mpio <- function(data_agrupada, nomb_cols,
     if (!is.null(mpio)) {
       mpio <- dept_data$codigo_municipio
     }
-    unidades_geo <- list("dpto" = dpto, "mpio" = mpio)
+    unidades_geo <- list(dpto = dpto, mpio = mpio)
   } else if (nomb_cols[1] %in% colnames(data_agrupada) &&
       !is.na(unique(
         nomb_cols[data_agrupada[[nomb_cols[1]]]]))) {
@@ -611,7 +611,7 @@ obtener_dpto_mpio <- function(data_agrupada, nomb_cols,
           nomb_cols[data_agrupada[[nomb_cols[3]]]]))) {
       mpio <- data_agrupada[[nomb_cols[3]]][1]
     }
-    unidades_geo <- list("dpto" = dpto, "mpio" = mpio)
+    unidades_geo <- list(dpto = dpto, mpio = mpio)
   }
   return(unidades_geo)
 }
