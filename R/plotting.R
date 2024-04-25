@@ -564,7 +564,7 @@ plot_sex <- function(data_agrupada,
       tema_sivirep() +
       ggplot2::facet_wrap(facets = ~nombre_evento,
                           scales = "free_y",
-                          ncol = 2)  
+                          ncol = 2)
   } else {
     plot_casos_sex <- ggplot2::ggplot(data_agrupada,
                                       ggplot2::aes(x =
