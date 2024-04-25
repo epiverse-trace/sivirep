@@ -7,6 +7,15 @@
     <loc>https://epiverse-trace.github.io/sivirep/dev/LICENSE.html</loc>
   </url>
   <url>
+    <loc>https://epiverse-trace.github.io/sivirep/dev/articles/automated_report.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/sivirep/dev/articles/custom_analysis.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/sivirep/dev/articles/getting_started.html</loc>
+  </url>
+  <url>
     <loc>https://epiverse-trace.github.io/sivirep/dev/articles/index.html</loc>
   </url>
   <url>
@@ -94,6 +103,9 @@
     <loc>https://epiverse-trace.github.io/sivirep/dev/reference/estandarizar_geo_cods.html</loc>
   </url>
   <url>
+    <loc>https://epiverse-trace.github.io/sivirep/dev/reference/format_cod_geo.html</loc>
+  </url>
+  <url>
     <loc>https://epiverse-trace.github.io/sivirep/dev/reference/format_fecha.html</loc>
   </url>
   <url>
@@ -169,10 +181,10 @@
     <loc>https://epiverse-trace.github.io/sivirep/dev/reference/obtener_meses_mas_casos.html</loc>
   </url>
   <url>
-    <loc>https://epiverse-trace.github.io/sivirep/dev/reference/obtener_nombres_dptos.html</loc>
+    <loc>https://epiverse-trace.github.io/sivirep/dev/reference/obtener_nombre_dpto.html</loc>
   </url>
   <url>
-    <loc>https://epiverse-trace.github.io/sivirep/dev/reference/obtener_nombres_mpios.html</loc>
+    <loc>https://epiverse-trace.github.io/sivirep/dev/reference/obtener_nombre_mpio.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/sivirep/dev/reference/obtener_ruta_descarga.html</loc>
