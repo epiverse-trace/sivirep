@@ -541,27 +541,48 @@ plot_sex <- function(data_agrupada,
                                                 package = "sivirep"),
                                 "label_incidence")
   }
-  plot_casos_sex <- ggplot2::ggplot(data_agrupada,
-                                    ggplot2::aes(x = .data[[col_sex]],
-                                                 y = .data[[col_distribucion]],
-                                                 fill = .data[[col_sex]])) +
-    ggplot2::geom_bar(width = 0.5,
-                      stat = "identity") +
-    ggplot2::labs(x = "\nSexo\n", y = paste0(etiqueta_eje, "\n"),
-                  caption = fuente_data) +
-    ggplot2::theme_classic() +
-    ggplot2::geom_text(ggplot2::aes(label = paste0(.data[[col_distribucion]],
-                                                   " \n (",
-                                                   .data[["porcentaje"]],
-                                                   " %)")),
-                       vjust = 1.5,
-                       color = "black",
-                       hjust = 0.5) +
-    obtener_estetica_escala(escala = 2, nombre = "Sexo") +
-    tema_sivirep() +
-    ggplot2::facet_wrap(facets = ~nombre_evento,
-                        scales = "free_y",
-                        ncol = 2)
+  if (porcentaje) {
+    plot_casos_sex <- ggplot2::ggplot(data_agrupada,
+                                      ggplot2::aes(x = .data[[col_sex]],
+                                                   y = .data[[col_distribucion]],
+                                                   fill = .data[[col_sex]])) +
+      ggplot2::geom_bar(width = 0.5,
+                        stat = "identity") +
+      ggplot2::labs(x = "\nSexo\n", y = paste0(etiqueta_eje, "\n"),
+                    caption = fuente_data) +
+      ggplot2::theme_classic() +
+      ggplot2::geom_text(ggplot2::aes(label = paste0(.data[[col_distribucion]],
+                                                     " \n (",
+                                                     .data[["porcentaje"]],
+                                                     " %)")),
+                         vjust = 1.5,
+                         color = "black",
+                         hjust = 0.5) +
+      obtener_estetica_escala(escala = 2, nombre = "Sexo") +
+      tema_sivirep() +
+      ggplot2::facet_wrap(facets = ~nombre_evento,
+                          scales = "free_y",
+                          ncol = 2)  
+  } else {
+    plot_casos_sex <- ggplot2::ggplot(data_agrupada,
+                                      ggplot2::aes(x = .data[[col_sex]],
+                                                   y = .data[[col_distribucion]],
+                                                   fill = .data[[col_sex]])) +
+      ggplot2::geom_bar(width = 0.5,
+                        stat = "identity") +
+      ggplot2::labs(x = "\nSexo\n", y = paste0(etiqueta_eje, "\n"),
+                    caption = fuente_data) +
+      ggplot2::theme_classic() +
+      ggplot2::geom_text(ggplot2::aes(label = .data[[col_distribucion]]),
+                         vjust = 1.5,
+                         color = "black",
+                         hjust = 0.5) +
+      obtener_estetica_escala(escala = 2, nombre = "Sexo") +
+      tema_sivirep() +
+      ggplot2::facet_wrap(facets = ~nombre_evento,
+                          scales = "free_y",
+                          ncol = 2)
+  }
   return(plot_casos_sex)
 }
 
