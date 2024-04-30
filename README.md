@@ -20,6 +20,10 @@ en las bases de datos individualizadas de casos de
 [SIVIGILA](https://www.ins.gov.co/Direcciones/Vigilancia/Paginas/SIVIGILA.aspx),
 que es el sistema oficial de vigilancia epidemiológica de Colombia.
 
+***sivirep*** esta desarrollado por la [Pontificia Universidad
+Javeriana](https://www.javeriana.edu.co/inicio) como parte de la
+iniciativa [Epiverse](https://data.org/initiatives/epiverse/).
+
 ## Motivación
 
 América Latina ha progresado en la calidad de sus sistemas de
@@ -49,10 +53,6 @@ para:
     contexto.
 3)  Proporcionar retroalimentación sobre el sistema de vigilancia al
     proveedor de la fuente de datos.
-
-***sivirep*** esta desarrollado por la [Pontificia Universidad
-Javeriana](https://www.javeriana.edu.co/inicio) como parte de la
-iniciativa [Epiverse](https://data.org/initiatives/epiverse/).
 
 ## Potenciales usuarios
 
