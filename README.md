@@ -202,11 +202,11 @@ la fuente de SIVIGILA.
 Para hacer uso de la plantilla del reporte puedes seguir los siguientes
 pasos:
 
-<img src="./man/figures/template.gif" width="900" height="540"/>
+<img src="./man/figures/template.webm" width="900" height="540"/>
 
 El reporte que obtendrás al utilizar la plantilla de `sivirep` es este:
 
-<img src="./man/figures/template-report.gif" width="900" height="600"/>
+<img src="./man/figures/template-report.webm" width="900" height="600"/>
 
 Si deseas generar el reporte en formato PDF debes instalar LateX. Puedes
 instalarlo siguiendo las instrucciones que se encuentran en [R Markdown
