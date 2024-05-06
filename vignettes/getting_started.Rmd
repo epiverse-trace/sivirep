@@ -1,6 +1,10 @@
 ---
 title: "Inicio rápido"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette:
+    pandoc_args: ["--self-contained"]
+pkgdown:
+  as_is: true
 vignette: >
   %\VignetteIndexEntry{Inicio rápido}
   %\VignetteEngine{knitr::rmarkdown}
