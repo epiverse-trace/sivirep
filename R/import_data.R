@@ -1,3 +1,63 @@
+#' Función de conveniencia para hacer peticiones a SIVIGILA
+#' @param url La dirección HTTP desde donde descargar la información
+#' @return Si la petición es exitosa, retorna una respuesta HTTP.
+#' De lo contrario arroja un mensaje de error explicando el problema
+#' y finaliza la ejecución del programa
+#' @examples
+#' \dontrun{
+#' query_event_year_path <- config::get(file =
+#'            system.file("extdata",
+#'            "config.yml",
+#'            package = "sivirep"),
+#'            "query_diseases_by_year_path")
+#' make_request(query_event_year_path)
+#' }
+#' @NoRd
+
+make_request <- function(url) {
+  request_timeout <- config::get(file =
+                                        system.file("extdata",
+                                                    "config.yml",
+                                                    package = "sivirep"),
+                                      "request_timeout")
+  return(tryCatch(
+    httr2::request(url) %>%
+    httr2::req_timeout(request_timeout) %>%
+    httr2::req_perform(),
+    httr2_failure = function(e) {
+      rlang::abort(
+        "No se pudo conectar al servidor de SIVIGILA para descargar los datos",
+        parent = e)
+    },
+    httr2_error = function(e) {
+      rlang::abort(
+        "Error al conectarse al servidor de SIVIGILA para descargar los datos",
+        parent = e)
+    },
+    httr2_http_404 = function(e) {
+      rlang::abort(
+        "El dato no existe en los servidores de SIVIGILA",
+        parent = e)
+    },
+    httr2_http = function(e) {
+      rlang::abort(
+        "Error al conectarse al servidor de SIVIGILA para descargar los datos",
+        parent = e)
+    },
+    error = function(e) {
+      # Check if the error message indicates a timeout
+      if (grepl("Timeout", e$message, fixed = TRUE)) {
+       rlang::abort(
+        "No se pudo conectar al servidor de SIVIGILA para descargar los datos",
+        parent = e)
+      } else {
+        rlang::abort("Ha ocurrido un error inesperado ", parent = e)
+      }
+    }
+  ))
+}
+
+
 #' Importar datos geográficos de Colombia
 #'
 #' Función que importa los nombres y códigos de los departamentos
@@ -44,19 +104,22 @@ import_geo_cods <- function(descargar = FALSE) {
 #' list_events()
 #' @export
 list_events <- function() {
+
   query_event_year_path <- config::get(file =
                                          system.file("extdata",
                                                      "config.yml",
                                                      package = "sivirep"),
                                        "query_diseases_by_year_path")
-  query_event_year <- httr2::request(query_event_year_path)
-  query_event_year_response <- httr2::req_perform(query_event_year)
-  query_event_year_content <- httr2::resp_body_xml(query_event_year_response)
-  children <- xml2::xml_children(query_event_year_content)
-  children <- xml2::xml_children(children)
-  children <- xml2::xml_children(children)
-  children <- xml2::xml_children(children)
+  query_event_year_content <-
+    make_request(query_event_year_path) %>%
+    httr2::resp_body_xml()
+
+  children <- xml2::xml_children(query_event_year_content) %>%
+    xml2::xml_children() %>%
+    xml2::xml_children() %>%
+    xml2::xml_children()
   children_text <- xml2::xml_text(children)
+
   i <- 2
   name_diseases <- NULL
   years_diseases <- NULL
@@ -190,8 +253,7 @@ import_sep_data <- function(path_data = NULL, cache = TRUE) {
     file_name <- stringr::str_sub(path_data, start_file_name, end_file_name)
     file_path <- file.path(extdata_path, file_name)
     if (!file.exists(file_path) || !cache) {
-      file_request <- httr2::request(path_data)
-      file_response <- httr2::req_perform(file_request)
+      file_response <- make_request(path_data)
       if (httr2::resp_status(file_response) == 200) {
         file_content <- httr2::resp_body_raw(file_response)
         con_file <- file(file_path, "wb")

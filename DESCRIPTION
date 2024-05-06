@@ -44,7 +44,10 @@ Imports:
     readxl,
     sysfonts,
     showtext,
-    kableExtra
+    cowplot,
+    gridExtra,
+    kableExtra,
+    rlang
 Suggests: 
     knitr,
     rmarkdown

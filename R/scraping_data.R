@@ -24,8 +24,7 @@ get_path_data_disease_year <- function(year, disease_name) {
   query_disease_path <- paste0(base_path,
                               paste0(microdata_path,
                                     query_path))
-  query_disease_request <- httr2::request(query_disease_path)
-  query_disease_get <- httr2::req_perform(query_disease_request)
+  query_disease_get <- make_request(query_disease_path)
   query_disease_response <- httr2::resp_body_string(query_disease_get)
   response_document <- xml2::as_xml_document(query_disease_response)
   property_file_ref <- xml2::xml_find_all(response_document, "//d:FileRef")
