@@ -1,6 +1,10 @@
 ---
 title: "sivirep"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette:
+    pandoc_args: ["--self-contained"]
+pkgdown:
+  as_is: true
 vignette: >
   %\VignetteIndexEntry{sivirep}
   %\VignetteEngine{knitr::rmarkdown}
