@@ -113,11 +113,11 @@ la fuente de SIVIGILA.
 Para hacer uso de la plantilla del reporte puedes seguir los
 siguientes pasos:
 
-![](`r system.file("demo", "template.webm", package = "sivirep")`){width=900}
+![](`r system.file("video", "template.webm", package = "sivirep")`){width=900}
 
 El reporte que obtendrás al utilizar la plantilla de `sivirep` es este:
 
-![](`r system.file("demo", "template-report.webm", package = "sivirep")`){width=900}
+![](`r system.file("videoo", "template-report.webm", package = "sivirep")`){width=900}
 
 Si deseas generar el reporte en formato PDF debes instalar LateX. Puedes instalarlo siguiendo las instrucciones que se
 encuentran en [R Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html).
