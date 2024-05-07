@@ -231,17 +231,6 @@ plot_fecha_inisintomas(data_agrupada = casos_iniciosin_dia,
                        uni_marca = "semanaepi")
 ```
 
-**Distribución de casos por fecha de notificación**
-```{r cases_by_onset_notification_date, include = FALSE}
-casos_fecha_notifica_dia <- agrupar_fecha_notifica(data_event =
-                                                     data_event_filtrada)
-```
-
-```{r plot_cases_by_onset_notification_date, fig.height = 5, fig.width = 10, fig.cap = "Distribución de casos por fecha de notificación", include = params$temporal_distribution, eval = params$temporal_distribution}
-plot_fecha_notifica(data_agrupada = casos_fecha_notifica_dia,
-                    uni_marca = "semanaepi")
-```
-
 `r if (params$epi_sex_distribution) {"# Distribución de casos por sexo y semana epidemiológica"}`
 
 ```{r distribution_cg, include = FALSE}
