@@ -973,6 +973,17 @@ plot_area_geo <- function(data_agrupada,
     pos_leyenda
   return(plot_casos_area)
 }
+plot_top_area_geo <- function(data_agrupada,
+                          col_area = "area",
+                          fuente_data = NULL) {
+  stopifnot("El parametro data_agrupada debe ser un data.frame"
+            = is.data.frame(data_agrupada),
+            "El parametro col_area debe ser una cadena de caracteres"
+            = is.character(col_area))
+  if (is.null(fuente_data)) {
+    fuente_data <-
+      "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
+  }
   cols_geo_ocurrencia <-
     obtener_tip_ocurren_geo(nombre_event =
                               data_agrupada[["nombre_evento"]][1])
@@ -1010,7 +1021,7 @@ plot_area_geo <- function(data_agrupada,
                                  fill = .data[[nomb_cols[1]]])) +
     ggplot2::geom_bar(stat = "identity") +
     ggplot2::labs(x = "\nDepartamento\n",
-                  y = paste0(etiqueta_casos, "\n"),
+                  y = paste0("\n", etiqueta_casos),
                   caption = fuente_data) +
     ggplot2::theme_classic() +
     obtener_estetica_escala(escala = 3,
