@@ -973,6 +973,28 @@ plot_area_geo <- function(data_agrupada,
     pos_leyenda
   return(plot_casos_area)
 }
+
+#' Generar gráfico de distribución de casos por área geográfica a nivel
+#' departamental o municipal
+#'
+#' Función que genera el gráfico de casos por área geográfica a nivel
+#' departamental o municipal
+#' @param data_agrupada Un `data.frame` que contiene los datos de la
+#' enfermedad o evento agrupados
+#' @param col_area Un `character` (cadena de carácteres) con el nombre de
+#' la columna con el área geografica en los datos agrupados de la enfermedad
+#' o evento; su valor por defecto es `"area"`
+#' @param fuente_data Un `character` (cadena de caracteres) que contiene la
+#' leyenda o fuente de información de los datos; su valor por defecto es `NULL`
+#' @return Un `plot` o gráfico de distribución de casos por área geográfica
+#' @examples
+#' data(dengue2020)
+#' data_limpia <- limpiar_data_sivigila(dengue2020)
+#' data_agrupada <- agrupar_top_area_geo(data_event = data_limpia,
+#'                                       dpto = "Antioquia")
+#' plot_top_area_geo(data_agrupada,
+#'               col_area = "area")
+#' @export
 plot_top_area_geo <- function(data_agrupada,
                           col_area = "area",
                           fuente_data = NULL) {
