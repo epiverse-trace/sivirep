@@ -710,6 +710,10 @@ agrupar_area_geo <- function(data_event,
                                     dplyr::desc(.data$casos))
   return(data_event_area)
 }
+
+#' Agrupar por área geográfica a nivel departamental o municipal
+#'
+#' Función que agrupa los datos de una enfermedad o evento por área
 #' geográfica a nivel departamental o municipal
 #' @param data_event Un `data.frame` que contiene los datos de la
 #' enfermedad o evento
@@ -726,15 +730,19 @@ agrupar_area_geo <- function(data_event,
 #' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si se debe
 #' agregar una columna con el porcentaje de casos; su valor por
 #' defecto es `FALSE`
+#' @param top Un `numeric` (numerico) que indica la cantidad de departamentos o
+#' municipios con mayor número de casos que se deben retornar; su valor
+#' por defecto es `10`
 #' @return Un `data.frame` con los datos de la enfermedad o evento agrupados
 #' por códigos de municipios y número de casos
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
-#' agrupar_area_geo(data_event = data_limpia,
-#'                  dpto = "Antioquia",
-#'                  col_area = "area",
-#'                  porcentaje = FALSE)
+#' agrupar_top_area_geo(data_event = data_limpia,
+#'                      dpto = "Antioquia",
+#'                      col_area = "area",
+#'                      porcentaje = FALSE,
+#'                      top = 10)
 #' @export
 agrupar_top_area_geo <- function(data_event,
                              dpto = NULL,
