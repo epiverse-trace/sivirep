@@ -4,7 +4,7 @@
 \alias{agrupar_per_etn}
 \title{Agrupar por la pertenencia étnica}
 \usage{
-agrupar_per_etn(data_event, cols_etn = "per_etn")
+agrupar_per_etn(data_event, cols_etn = "per_etn", porcentaje = TRUE)
 }
 \arguments{
 \item{data_event}{Un `data.frame` que contiene los datos de la
@@ -13,6 +13,10 @@ enfermedad o evento}
 \item{cols_etn}{Un `character` (cadena de caracteres) con el nombre de
 las columna(s) que contiene(n) la pertenencia étnica en los datos de la
 enfermedad o evento; su valor por defecto es `"per_etn"`}
+
+\item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica
+si se debe agregar una columna con el porcentaje de casos;
+su valor por defecto es `TRUE`}
 }
 \value{
 Un `data.frame` con los datos de la enfermedad o evento agrupados
