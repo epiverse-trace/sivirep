@@ -1382,8 +1382,8 @@ plot_per_etn <- function(data_agrupada,
     ggplot2::geom_bar(stat = "identity", width = 0.7) +
     ggplot2::labs(x = paste0("\n", etiqueta_etn, "\n"),
                   y = paste0(etiqueta_casos, "\n"),
-                  caption = fuente_data) +
-    { if (porcentaje) {
+                  caption = fuente_data) + {
+                    if (porcentaje) {
       ggplot2::geom_text(ggplot2::aes(label = paste0(.data[["porcentaje"]],
                                                      "%\n")),
                          vjust = 0,
