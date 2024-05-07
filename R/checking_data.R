@@ -736,10 +736,10 @@ agrupar_area_geo <- function(data_event,
 #'                  col_area = "area",
 #'                  porcentaje = FALSE)
 #' @export
-agrupar_area_geo <- function(data_event,
+agrupar_top_area_geo <- function(data_event,
                              dpto = NULL,
                              col_area = "area",
-                             porcentaje = FALSE) {
+                             porcentaje = FALSE,
   stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
             "El parametro data_event debe ser un data.frame" =
               is.data.frame(data_event),
