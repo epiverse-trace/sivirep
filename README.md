@@ -14,15 +14,15 @@ coverage](https://codecov.io/gh/epiverse-trace/readepi/branch/main/graph/badge.s
 
 <!-- badges: end -->
 
+***sivirep*** es desarrollado por la [Pontificia Universidad
+Javeriana](https://www.javeriana.edu.co/inicio) como parte de la
+iniciativa [Epiverse](https://data.org/initiatives/epiverse/).
+
 La versión actual de *sivirep* 0.0.9 proporciona funciones para la
 manipulación de datos y la generación de reportes automatizados basados
 en las bases de datos individualizadas de casos de
 [SIVIGILA](https://www.ins.gov.co/Direcciones/Vigilancia/Paginas/SIVIGILA.aspx),
 que es el sistema oficial de vigilancia epidemiológica de Colombia.
-
-***sivirep*** esta desarrollado por la [Pontificia Universidad
-Javeriana](https://www.javeriana.edu.co/inicio) como parte de la
-iniciativa [Epiverse](https://data.org/initiatives/epiverse/).
 
 ## Motivación
 
