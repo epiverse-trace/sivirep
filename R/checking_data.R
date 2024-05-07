@@ -842,6 +842,9 @@ agrupar_tipo_caso <- function(data_event, cols_tipo = "tip_cas") {
 #' @param cols_etn Un `character` (cadena de caracteres) con el nombre de
 #' las columna(s) que contiene(n) la pertenencia étnica en los datos de la
 #' enfermedad o evento; su valor por defecto es `"per_etn"`
+#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica
+#' si se debe agregar una columna con el porcentaje de casos;
+#' su valor por defecto es `TRUE`
 #' @return Un `data.frame` con los datos de la enfermedad o evento agrupados
 #' por la pertenencia étnica
 #' @examples
@@ -850,7 +853,8 @@ agrupar_tipo_caso <- function(data_event, cols_tipo = "tip_cas") {
 #' agrupar_per_etn(data_event = data_limpia,
 #'                 cols_etn = "per_etn")
 #' @export
-agrupar_per_etn <- function(data_event, cols_etn = "per_etn") {
+agrupar_per_etn <- function(data_event, cols_etn = "per_etn",
+                            porcentaje = TRUE) {
   stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
             "El parametro data_event debe ser un data.frame" =
               is.data.frame(data_event),
@@ -868,7 +872,8 @@ agrupar_per_etn <- function(data_event, cols_etn = "per_etn") {
                            "labels_per_etn")
   etiquetas <- unlist(etiquetas)
   data_event_tipo <- agrupar_cols_casos(data_event,
-                                        nomb_cols = cols_etn)
+                                        nomb_cols = cols_etn,
+                                        porcentaje = porcentaje)
   data_event_tipo <- data_event_tipo %>%
     dplyr::mutate(nombre_per_etn =
                     etiquetas[as.character(.data[[cols_etn[1]]])])
