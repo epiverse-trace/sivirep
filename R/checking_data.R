@@ -674,6 +674,42 @@ agrupar_mpio <- function(data_event,
 #' Agrupar por área geográfica
 #'
 #' Función que agrupa los datos de una enfermedad o evento por área
+#' geográfica
+#' @param data_event Un `data.frame` que contiene los datos de la
+#' enfermedad o evento
+#' @param col_area Un `character` (cadena de caracteres) con el nombre de
+#' la columna que contiene las áreas geográficas en los datos de la enfermedad
+#' o evento; su valor por defecto es `"area"`
+#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si se debe
+#' agregar una columna con el porcentaje de casos; su valor por
+#' defecto es `FALSE`
+#' @return Un `data.frame` con los datos de la enfermedad o evento agrupados
+#' por área geográfica
+#' @examples
+#' data(dengue2020)
+#' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+#' agrupar_area_geo(data_event = data_limpia,
+#'                  col_area = "area",
+#'                  porcentaje = FALSE)
+#' @export
+agrupar_area_geo <- function(data_event,
+                             col_area = "area",
+                             porcentaje = FALSE) {
+  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
+            "El parametro data_event debe ser un data.frame" =
+              is.data.frame(data_event),
+            "El parametro data_event no debe estar vacio" =
+              nrow(data_event) > 0,
+            "El parametro col_area debe ser una cadena de caracteres"
+            = is.character(col_area),
+            "El parametro porcentaje debe ser un booleano (TRUE o FALSE)" =
+              is.logical(porcentaje))
+  data_event_area <- agrupar_cols_casos(data_event,
+                                        col_area)
+  data_event_area <- dplyr::arrange(data_event_area,
+                                    dplyr::desc(.data$casos))
+  return(data_event_area)
+}
 #' geográfica a nivel departamental o municipal
 #' @param data_event Un `data.frame` que contiene los datos de la
 #' enfermedad o evento
