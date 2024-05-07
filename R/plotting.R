@@ -927,8 +927,7 @@ plot_mpios <- function(data_agrupada,
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(dengue2020)
-#' data_agrupada <- agrupar_area_geo(data_event = data_limpia,
-#'                                   dpto = "Antioquia")
+#' data_agrupada <- agrupar_area_geo(data_event = data_limpia)
 #' plot_area_geo(data_agrupada,
 #'               col_area = "area")
 #' @export
