@@ -25,33 +25,28 @@ make_request <- function(url) {
     httr2::req_timeout(request_timeout) %>%
     httr2::req_perform(),
     httr2_failure = function(e) {
-      rlang::abort(
-        "No se pudo conectar al servidor de SIVIGILA para descargar los datos",
-        parent = e)
+      stop(
+        "No se pudo conectar al servidor de SIVIGILA para descargar los datos")
     },
     httr2_error = function(e) {
-      rlang::abort(
-        "Error al conectarse al servidor de SIVIGILA para descargar los datos",
-        parent = e)
+      stop(
+        "Error al conectarse al servidor de SIVIGILA para descargar los datos")
     },
     httr2_http_404 = function(e) {
-      rlang::abort(
-        "El dato no existe en los servidores de SIVIGILA",
-        parent = e)
+      stop(
+        "El dato no existe en los servidores de SIVIGILA")
     },
     httr2_http = function(e) {
-      rlang::abort(
-        "Error al conectarse al servidor de SIVIGILA para descargar los datos",
-        parent = e)
+      stop(
+        "Error al conectarse al servidor de SIVIGILA para descargar los datos")
     },
     error = function(e) {
       # Check if the error message indicates a timeout
       if (grepl("Timeout", e$message, fixed = TRUE)) {
-       rlang::abort(
-        "No se pudo conectar al servidor de SIVIGILA para descargar los datos",
-        parent = e)
+       stop(
+        "No se pudo conectar al servidor de SIVIGILA para descargar los datos")
       } else {
-        rlang::abort("Ha ocurrido un error inesperado ", parent = e)
+        stop("Ha ocurrido un error inesperado ", parent = e)
       }
     }
   ))

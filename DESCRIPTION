@@ -46,8 +46,7 @@ Imports:
     showtext,
     cowplot,
     gridExtra,
-    kableExtra,
-    rlang
+    kableExtra
 Suggests: 
     knitr,
     rmarkdown
