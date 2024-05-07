@@ -4,7 +4,12 @@
 \alias{plot_per_etn}
 \title{Generar gráfico de distribución de casos por la pertenencia étnica}
 \usage{
-plot_per_etn(data_agrupada, col_etn = "per_etn", fuente_data = NULL)
+plot_per_etn(
+  data_agrupada,
+  col_etn = "per_etn",
+  porcentaje = TRUE,
+  fuente_data = NULL
+)
 }
 \arguments{
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la
@@ -13,6 +18,9 @@ enfermedad o evento agrupados por la pertenencia étnica}
 \item{col_etn}{Un `character` (cadena de carácteres) con el nombre de
 la columna que contiene la pertenencia étnica en los datos agrupados de
 la enfermedad o evento; su valor por defecto es `"per_etn"`}
+
+\item{porcentaje}{Un `boolean` (TRUE/FALSE) que indica si los datos
+tienen porcentajes; su valor por defecto es `TRUE`}
 
 \item{fuente_data}{Un `character` (cadena de caracteres) que contiene la
 leyenda o fuente de información de los datos; su valor por defecto es `NULL`}
