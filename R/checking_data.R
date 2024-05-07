@@ -166,7 +166,7 @@ agrupar_cols_casos <- function(data_event,
       dplyr::mutate(porcentaje =
                     round(data_event_agrupada$casos
                           / sum(data_event_agrupada$casos) * 100,
-                          1))
+                          2))
   }
   return(data_event_agrupada)
 }
