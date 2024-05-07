@@ -36,6 +36,9 @@ coverage](https://codecov.io/gh/epiverse-trace/readepi/branch/main/graph/badge.s
 
 <!-- badges: end -->
 
+***sivirep*** es desarrollado por la [Pontificia Universidad
+Javeriana](https://www.javeriana.edu.co/inicio) como parte de la iniciativa [Epiverse](https://data.org/initiatives/epiverse/).
+
 La versión actual de *sivirep* 0.0.9 proporciona funciones para la
 manipulación de datos y la generación de reportes automatizados basados
 en las bases de datos individualizadas de casos de
@@ -71,9 +74,6 @@ para:
     contexto.
 3)  Proporcionar retroalimentación sobre el sistema de vigilancia al
     proveedor de la fuente de datos.
-
-***sivirep*** esta desarrollado por la [Pontificia Universidad
-Javeriana](https://www.javeriana.edu.co/inicio) como parte de la iniciativa [Epiverse](https://data.org/initiatives/epiverse/).
 
 ## Potenciales usuarios
 
