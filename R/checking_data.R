@@ -740,6 +740,7 @@ agrupar_top_area_geo <- function(data_event,
                              dpto = NULL,
                              col_area = "area",
                              porcentaje = FALSE,
+                             top = 10) {
   stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
             "El parametro data_event debe ser un data.frame" =
               is.data.frame(data_event),
@@ -757,18 +758,19 @@ agrupar_top_area_geo <- function(data_event,
       if (length(aux_dpto) > 1) {
         data_event_area <- geo_filtro(data_event, dpto)
       }
-      data_event_area <- agrupar_cols_casos(data_event_area,
-                                            nomb_cols)
   } else {
     dpto <- unique(data_event_area[[nomb_cols[3]]])
     if (length(dpto) != 1) {
       nomb_cols <- nomb_cols[1:3]
     }
-    data_event_area <- agrupar_cols_casos(data_event_area,
-                                          nomb_cols)
   }
+  data_event_area <- agrupar_cols_casos(data_event_area,
+                                        nomb_cols)
   data_event_area <- dplyr::arrange(data_event_area,
                                     dplyr::desc(.data$casos))
+  if (top <= nrow(data_event_area)) {
+    data_event_area <- data_event_area[1:top, ]
+  }
   return(data_event_area)
 }
 
