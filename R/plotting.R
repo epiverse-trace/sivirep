@@ -1266,6 +1266,8 @@ plot_tipo_caso_years <- function(data_agrupada,
 #' @param col_etn Un `character` (cadena de carácteres) con el nombre de
 #' la columna que contiene la pertenencia étnica en los datos agrupados de
 #' la enfermedad o evento; su valor por defecto es `"per_etn"`
+#' @param porcentaje Un `boolean` (TRUE/FALSE) que indica si los datos
+#' tienen porcentajes; su valor por defecto es `TRUE`
 #' @param fuente_data Un `character` (cadena de caracteres) que contiene la
 #' leyenda o fuente de información de los datos; su valor por defecto es `NULL`
 #' @return Un `plot` o gráfico de la distribución de casos por la pertenencia
@@ -1279,6 +1281,7 @@ plot_tipo_caso_years <- function(data_agrupada,
 #' @export
 plot_per_etn <- function(data_agrupada,
                          col_etn = "per_etn",
+                         porcentaje = TRUE,
                          fuente_data = NULL) {
   stopifnot("El parametro data_agrupada debe ser un data.frame"
             = is.data.frame(data_agrupada),
@@ -1317,6 +1320,14 @@ plot_per_etn <- function(data_agrupada,
     ggplot2::labs(x = paste0("\n", etiqueta_etn, "\n"),
                   y = paste0(etiqueta_casos, "\n"),
                   caption = fuente_data) +
+    { if (porcentaje) {
+      ggplot2::geom_text(ggplot2::aes(label = paste0(.data[["porcentaje"]],
+                                                     "%\n")),
+                         vjust = 0,
+                         color = "black",
+                         hjust = 0.5)
+      }
+    } +
     ggplot2::theme_classic() +
     obtener_estetica_escala(escala = escala, nombre = "Eventos\n") +
     ggplot2::scale_x_discrete(labels = etiquetas) +
