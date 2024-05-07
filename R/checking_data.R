@@ -283,46 +283,6 @@ agrupar_fecha_inisintomas <- function(data_event,
   return(data_agrupada_fecha_ini)
 }
 
-#' Agrupar por fecha de notificación y casos
-#'
-#' Función que agrupa los datos de una enfermedad o evento por fecha de
-#' notificación y número de casos
-#' @param data_event Un `data.frame` que contiene los datos de la enfermedad
-#' o evento
-#' @param col_fecha Un `character` (cadena de caracteres) con el nombre de
-#' la columna que contiene las fechas de notificación en los datos de la
-#' enfermedad o evento; su valor por defecto es `"fec_not"`
-#' @return Un `data.frame` con los datos de enfermedades agrupados por fecha de
-#' notificación y número de casos
-#' @examples
-#' data(dengue2020)
-#' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
-#' agrupar_fecha_notifica(data_event = data_limpia,
-#'                        col_fecha = "fec_not")
-#' @export
-agrupar_fecha_notifica <- function(data_event,
-                                   col_fecha = "fec_not") {
-  fechas_cols_nombres <- config::get(file =
-                                       system.file("extdata",
-                                                   "config.yml",
-                                                   package = "sivirep"),
-                                     "dates_column_names")
-  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
-            "El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event),
-            "El parametro data_event no debe estar vacio" =
-              nrow(data_event) > 0)
-  if (is.null(col_fecha)) {
-    col_fecha <- fechas_cols_nombres[2]
-  }
-  stopifnot("El parametro col_fecha debe ser una cadena de caracteres"
-            = is.character(col_fecha))
-  nomb_cols <- append(col_fecha, "semana")
-  data_agrupada_fecha_not <- agrupar_cols_casos(data_event,
-                                                nomb_cols = nomb_cols)
-  return(data_agrupada_fecha_not)
-}
-
 #' Agrupar por sexo y casos
 #'
 #' Función que agrupa los datos de una enfermedad o evento
