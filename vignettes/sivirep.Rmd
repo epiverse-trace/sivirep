@@ -2,6 +2,7 @@
 title: "sivirep"
 output: 
   rmarkdown::html_vignette:
+    self_contained: true
     pandoc_args: ["--self-contained"]
 pkgdown:
   as_is: true
