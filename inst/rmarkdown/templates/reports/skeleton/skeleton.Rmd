@@ -20,6 +20,8 @@ header-includes:
   - \definecolor{colortitle}{HTML}{0CC0DF}
   - \usepackage{caption}
   - \captionsetup[table]{position=above,name=Tabla}
+  - \usepackage{floatrow}
+  - \floatsetup[figure]{capposition=top}  
 papersize: a4
 title: \textcolor{colortitle}{.}
 subtitle: ""
