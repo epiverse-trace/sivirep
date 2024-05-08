@@ -4,7 +4,7 @@
 \alias{agrupar_cols_casos}
 \title{Agrupar por columnas y casos}
 \usage{
-agrupar_cols_casos(data_event, nomb_cols, porcentaje = FALSE)
+agrupar_cols_casos(data_event, nomb_cols, porcentaje = FALSE, estandar = TRUE)
 }
 \arguments{
 \item{data_event}{Un `data.frame` que contiene los datos de
@@ -17,6 +17,15 @@ la(s) columna(s) en los datos de la enfermedad o evento}
 \item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica
 si se debe agregar una columna con el porcentaje de casos;
 su valor por defecto es `FALSE`}
+
+\item{estandar}{Un `boolean` (TRUE o FALSE) que indica
+si se debe utilizar el estandar de agrupación de los datos
+del evento o enfermedad propuesto por el paquete, es decir
+que se incluyan estas columnas o variables como parte del
+resultado `c("cod_eve", "nombre_evento", "ano")`; su valor
+por defecto es `TRUE`, si su valor es `FALSE` agrupara los
+datos solamente por las columnas o variables enviadas en el
+párametro `nomb_cols`}
 }
 \value{
 Un `data.frame` con los datos de una enfermedad
