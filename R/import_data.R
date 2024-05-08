@@ -12,7 +12,7 @@
 #'            "query_diseases_by_year_path")
 #' make_request(query_event_year_path)
 #' }
-#' @NoRd
+#' @noRd
 
 make_request <- function(url) {
   request_timeout <- config::get(file =
@@ -96,7 +96,9 @@ import_geo_cods <- function(descargar = FALSE) {
 #' @return Una list con las enfermedades y los años disponibles
 #' para su descarga desde los microdatos de SIVIGILA
 #' @examples
+#' \dontrun{
 #' list_events()
+#' }
 #' @export
 list_events <- function() {
 
