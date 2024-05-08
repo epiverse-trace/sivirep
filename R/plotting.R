@@ -1229,8 +1229,6 @@ plot_per_etn <- function(data_agrupada,
     fuente_data <-
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
   }
-  nomb_cols <- c(col_etn, "nombre_evento")
-  escala <- length(unique(data_agrupada[["nombre_evento"]]))
   etiqueta_casos <- config::get(file =
                                   system.file("extdata",
                                               "config.yml",
@@ -1246,9 +1244,13 @@ plot_per_etn <- function(data_agrupada,
                                          "config.yml",
                                          package = "sivirep"),
                            "labels_per_etn")
-  grupos <- unique(data_agrupada[[nomb_cols[1]]])
+  grupos <- unique(data_agrupada[[col_etn]])
   etiquetas <- etiquetas[as.character(grupos)]
   etiquetas <- unlist(etiquetas)
+  data_agrupada <- agrupar_cols_casos(data_event = data_agrupada,
+                                      nomb_cols = col_etn,
+                                      porcentaje = TRUE,
+                                      estandar = FALSE)
   plot_per_etn <-
     ggplot2::ggplot(data_agrupada,
                     ggplot2::aes(x = .data[[nomb_cols[1]]],
