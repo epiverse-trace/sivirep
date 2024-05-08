@@ -117,7 +117,7 @@ siguientes pasos:
 
 El reporte que obtendrás al utilizar la plantilla de `sivirep` es este:
 
-![](`r system.file("videoo", "template-report.webm", package = "sivirep")`){width=900}
+![](`r system.file("video", "template-report.webm", package = "sivirep")`){width=900}
 
 Si deseas generar el reporte en formato PDF debes instalar LateX. Puedes instalarlo siguiendo las instrucciones que se
 encuentran en [R Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html).
