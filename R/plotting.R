@@ -1253,29 +1253,25 @@ plot_per_etn <- function(data_agrupada,
                                       estandar = FALSE)
   plot_per_etn <-
     ggplot2::ggplot(data_agrupada,
-                    ggplot2::aes(x = .data[[nomb_cols[1]]],
-                                 y = .data[["casos"]],
-                                 fill = .data[[nomb_cols[2]]])) +
-    ggplot2::geom_bar(stat = "identity", width = 0.7) +
-    ggplot2::labs(x = paste0("\n", etiqueta_etn, "\n"),
-                  y = paste0(etiqueta_casos, "\n"),
+                    ggplot2::aes(x = .data[[col_etn]],
+                                 y = .data[["casos"]])) +
+    ggplot2::geom_bar(stat = "identity", width = 0.5,
+                      fill = "#2274BB") +
+    ggplot2::labs(x = paste0(etiqueta_etn, "\n"),
+                  y = paste0("\n", etiqueta_casos),
                   caption = fuente_data) + {
                     if (porcentaje) {
       ggplot2::geom_text(ggplot2::aes(label = paste0(.data[["porcentaje"]],
                                                      "%\n")),
-                         vjust = 0,
+                         vjust = 0.8,
                          color = "black",
-                         hjust = 0.5)
+                         hjust = 0)
       }
     } +
     ggplot2::theme_classic() +
-    obtener_estetica_escala(escala = escala, nombre = "Eventos\n") +
     ggplot2::scale_x_discrete(labels = etiquetas) +
     tema_sivirep() +
-    ggplot2::theme(legend.position = "right",
-                   axis.text.x = ggplot2::element_text(
-                     angle = 90,
-                     hjust = 1))
+    ggplot2::coord_flip()
   return(plot_per_etn)
 }
 
