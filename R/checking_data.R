@@ -142,7 +142,8 @@ agrupar_semanaepi <- function(data_event,
 #' @export
 agrupar_cols_casos <- function(data_event,
                                nomb_cols,
-                               porcentaje = FALSE) {
+                               porcentaje = FALSE,
+                               estandar = TRUE) {
   stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
             "El parametro data_event debe ser un data.frame" =
               is.data.frame(data_event),
@@ -156,10 +157,16 @@ agrupar_cols_casos <- function(data_event,
               (!is.character(nomb_cols) && is.array(nomb_cols)),
             "El parametro porcentaje debe ser un booleano (TRUE o FALSE)" =
               is.logical(porcentaje))
-  nomb_cols <- append(nomb_cols, c("cod_eve", "nombre_evento", "ano"))
-  data_event_agrupada <- data_event %>%
-    dplyr::group_by_at(nomb_cols) %>%
-    dplyr::summarise(casos = dplyr::n(), .groups = "drop")
+  if (estandar) {
+    nomb_cols <- append(nomb_cols, c("cod_eve", "nombre_evento", "ano"))
+    data_event_agrupada <- data_event %>%
+      dplyr::group_by_at(nomb_cols) %>%
+      dplyr::summarise(casos = dplyr::n(), .groups = "drop")
+  } else {
+    data_event_agrupada <- data_event %>%
+      dplyr::group_by_at(nomb_cols) %>%
+      dplyr::summarise(casos = sum(.data[["casos"]]), .groups = "drop")
+  }
   if (porcentaje) {
     data_event_agrupada <-
       data_event_agrupada %>%
