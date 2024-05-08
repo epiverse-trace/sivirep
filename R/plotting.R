@@ -1025,7 +1025,7 @@ plot_tabla_tipos_event <- function(data_agrupada,
                                "caption_table_events")
   data_agrupada[[col_event]] <-
     stringr::str_to_title(data_agrupada[[col_event]])
-  tabla_tipos <- knitr::kable(data_agrupada[, c("cod_eve",
+  tabla_tipos <- kableExtra::kbl(data_agrupada[, c("cod_eve",
                                                 col_event,
                                                 "casos")],
                               col.names = c(etiqueta_cod,
@@ -1385,7 +1385,7 @@ plot_tabla_incidencia_geo <- function(data_agrupada,
                      .groups = "drop")
   data_tabla <- data_tabla[order(data_tabla$incidencia,
                                    decreasing = TRUE), ]
-  tabla_geo <- knitr::kable(data_tabla,
+  tabla_geo <- kableExtra::kbl(data_tabla,
                             col.names = c(etiqueta_cod,
                                           etiqueta_geo,
                                           "Incidencia"),
@@ -1444,7 +1444,7 @@ plot_tabla_incidencia_sex <- function(data_agrupada,
     stringr::str_to_title(data_agrupada[["nombre_evento"]])
   data_agrupada <- data_agrupada[order(data_agrupada$incidencia,
                                  decreasing = TRUE), ]
-  tabla_sex <- knitr::kable(data_agrupada[, c("cod_eve",
+  tabla_sex <- kableExtra::kbl(data_agrupada[, c("cod_eve",
                                               "nombre_evento",
                                               col_sex,
                                               "incidencia")],
