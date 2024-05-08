@@ -14,9 +14,9 @@ vignette: >
 Puedes iniciar instalando la versión de desarrollo de `sivirep` desde GitHub con
 los siguientes comandos:
 
-```{r setup_sivirep, eval = FALSE}
+```r
 install.packages("pak")
-pak::pak(paste0("epiverse-trace", "/", "sivirep"))
+pak::pak("epiverse-trace/sivirep")
 ```
 
 Después de la instalación de `sivirep`, puedes comenzar importando el
