@@ -128,6 +128,14 @@ agrupar_semanaepi <- function(data_event,
 #' @param porcentaje Un `boolean` (TRUE o FALSE) que indica
 #' si se debe agregar una columna con el porcentaje de casos;
 #' su valor por defecto es `FALSE`
+#' @param estandar Un `boolean` (TRUE o FALSE) que indica
+#' si se debe utilizar el estandar de agrupación de los datos
+#' del evento o enfermedad propuesto por el paquete, es decir
+#' que se incluyan estas columnas o variables como parte del
+#' resultado `c("cod_eve", "nombre_evento", "ano")`; su valor
+#' por defecto es `TRUE`, si su valor es `FALSE` agrupara los
+#' datos solamente por las columnas o variables enviadas en el
+#' párametro `nomb_cols`
 #' @return Un `data.frame` con los datos de una enfermedad
 #' o evento agrupados por el nombre de la(s) columna(s) y el
 #' número de casos
