@@ -1236,7 +1236,8 @@ plot_per_etn <- function(data_agrupada,
       }
     } +
     ggplot2::theme_classic() +
-    ggplot2::scale_x_discrete(labels = etiquetas) +
+    ggplot2::scale_x_discrete(labels = stringr::str_wrap(etiquetas,
+                                                         5)) +
     tema_sivirep() +
     ggplot2::coord_flip()
   return(plot_per_etn)
