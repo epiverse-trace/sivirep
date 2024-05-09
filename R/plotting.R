@@ -1307,7 +1307,8 @@ plot_tabla_incidencia_geo <- function(data_agrupada,
                                           etiqueta_geo,
                                           "Incidencia"),
                             align = "c",
-                            caption = caption_tabla) %>%
+                            caption = caption_tabla,
+                            longtable = TRUE) %>%
     kableExtra::row_spec(0, color = "white", background = "#2274BB") %>%
     kableExtra::kable_styling(full_width = FALSE,
                               latex_options = "HOLD_position")
