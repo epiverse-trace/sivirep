@@ -1223,17 +1223,16 @@ plot_per_etn <- function(data_agrupada,
     ggplot2::ggplot(data_agrupada,
                     ggplot2::aes(x = .data[[col_etn]],
                                  y = .data[["casos"]])) +
-    ggplot2::geom_bar(stat = "identity", width = 0.5,
+    ggplot2::geom_bar(stat = "identity",
                       fill = "#2274BB") +
     ggplot2::labs(x = paste0(etiqueta_etn, "\n"),
                   y = paste0("\n", etiqueta_casos),
                   caption = fuente_data) + {
                     if (porcentaje) {
       ggplot2::geom_text(ggplot2::aes(label = paste0(.data[["porcentaje"]],
-                                                     "%\n")),
-                         vjust = 0.8,
-                         color = "black",
-                         hjust = 0)
+                                                     "%")),
+                         hjust = 0,
+                         color = "black")
       }
     } +
     ggplot2::theme_classic() +
