@@ -6,6 +6,8 @@ output:
     number_sections: true
     fig_caption: true
     css: style.css
+  pdf_document: 
+    number_sections: true
   word_document: 
     number_sections: true
 header-includes:
