@@ -482,47 +482,6 @@ agrupar_edad_sex <- function(data_event,
   return(data_event_edad_sex)
 }
 
-#' Agrupar por población especial y casos
-#'
-#' Función que agrupa los datos de la enfermedad o evento por población
-#' especial y casos
-#' @param data_event Un `data.frame` que contiene los datos de la enfermedad
-#' o evento
-#' @param col_pob Un `character` (cadena de caracteres) con el nombre de la
-#' columna que contiene las poblaciones especiales en los datos de la
-#' enfermedad o evento; su valor por defecto es `"poblacion"`
-#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si se debe
-#' agregar una columna con el porcentaje de casos; su valor por
-#' defecto es `FALSE`
-#' @return Un `data.frame` con los datos de la enfermedad o evento agrupados
-#' por poblaciones especiales y casos
-#' @examples
-#' data(dengue2020)
-#' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
-#' agrupar_pob_especial(data_event = data_limpia,
-#'                      col_pob = "poblacion",
-#'                      porcentaje = TRUE)
-#' @export
-agrupar_pob_especial <- function(data_event,
-                                 col_pob = "poblacion",
-                                 porcentaje = TRUE) {
-  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
-            "El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event),
-            "El parametro data_event no debe estar vacio" =
-              nrow(data_event) > 0,
-            "El parametro col_pob debe ser una cadena de caracteres"
-            = is.character(col_pob),
-            "El parametro porcentaje debe ser un booleano (TRUE o FALSE)" =
-              is.logical(porcentaje))
-  data_event_especial <- obtener_casos_pob_especial(data_event)
-  data_event_especial_agrupada <- data.frame(poblacion =
-                                               data_event_especial$poblacion,
-                                             casos =
-                                               data_event_especial$casos)
-  return(data_event_especial_agrupada)
-}
-
 #' Agrupar por departamento y casos
 #'
 #' Función que agrupa los datos por códigos de departamento y
