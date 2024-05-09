@@ -108,6 +108,7 @@ fuente <- "Fuente SIVIGILA, Datos libres"
    \end{tikzpicture}
 }
 ```
+
 ```{=tex}
 \begin{textblock*}{5cm}(15cm,18cm) % {block width} (coords)
   \begin{flushright}
@@ -116,6 +117,7 @@ fuente <- "Fuente SIVIGILA, Datos libres"
   \end{flushright}
 \end{textblock*}
 ```
+
 \newpage
 
 ```{=tex}
@@ -123,12 +125,14 @@ fuente <- "Fuente SIVIGILA, Datos libres"
   \huge{\textbf{\\ `r titulo`}}
 \end{center}
 ```
+
 ```{=tex}
 \begin{center}
   \large{\textbf{`r fuente` \\[0.4in]}}
   \includegraphics[width=1in]{logo.png}
 \end{center}
 ```
+
 ```{=html}
 <div class="caratula">
     <div class="texto-caratula">
