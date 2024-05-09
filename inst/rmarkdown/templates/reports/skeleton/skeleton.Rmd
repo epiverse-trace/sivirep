@@ -255,7 +255,7 @@ if (isTRUE(porcentaje_femenino < porcentaje_masculino)) {
 
 `r if (params$epi_sex_distribution) {paste0("En el total de casos para ",  params$year, " se observa una predominancia del sexo ", sexo_mayor[1],  " (", sexo_mayor[2], ")% respecto al sexo ", sexo_menor[1], " (", sexo_menor[2], ")% (Ver Figura 3).")}`
 
-```{r distribution_cg_plots, fig.height = 4, fig.width = 8, fig.cap = "Distribución de casos por sexo", include = params$epi_sex_distribution}
+```{r distribution_cg_plots, fig.height = 5, fig.width = 8, fig.cap = "Distribución de casos por sexo", include = params$epi_sex_distribution}
 plot_sex(data_agrupada = casos_sex)
 ```
 
