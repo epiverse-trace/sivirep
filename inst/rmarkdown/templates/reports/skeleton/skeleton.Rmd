@@ -302,9 +302,11 @@ dist_espacial_dpto <- agrupar_mpio(data_event = data_event_filtrada,
 dist_espacial_dpto <- dist_espacial_dpto[order(dist_espacial_dpto$casos), ]
 espacial_mayor_casos <- obtener_fila_mas_casos(data_event =
                                                  dist_espacial_dpto)
+geo_ocurrencia <- obtener_tip_ocurren_geo(nombre_event = params$nombre_evento)
+col_geo <- geo_ocurrencia[4]
 ```
 
-`r if(params$mpio_distribution) {paste0("Los casos se distribuyen a lo largo de ", nrow(dist_espacial_dpto), " municipios del departamento de ", params$departmento, " teniendo un mayor reporte el municipio de ", stringr::str_to_title(espacial_mayor_casos$nombre), " con ", espacial_mayor_casos$casos, " casos (Ver Figura 7).")}`
+`r if(params$mpio_distribution) {paste0("Los casos se distribuyen a lo largo de ", nrow(dist_espacial_dpto), " municipios del departamento de ", params$departmento, " teniendo un mayor reporte el municipio de ", stringr::str_to_title(espacial_mayor_casos[[col_geo]]), " con ", espacial_mayor_casos$casos, " casos (Ver Figura 7).")}`
 
 ```{r plot_distribution_municipios, fig.height = 15, fig.width = 10, fig.cap = "Distribución de casos por municipio", include = params$mpio_distribution}
 plot_spatial <- plot_mpios(data_agrupada = dist_espacial_dpto)
