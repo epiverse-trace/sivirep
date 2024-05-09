@@ -400,7 +400,7 @@ plot_tabla_incidencia_geo(dist_espacial_dpto)
 mapa <- plot_map(data_agrupada = dist_espacial_dpto)
 ```
 
-```{r map_distribution_spatial, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, cache = FALSE, results = FALSE, comment = FALSE, fig.height = 16, fig.width = 14, fig.cap = "Incidencia según distribución geográfica", include = params$spatial_distribution}
+```{r map_distribution_spatial, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, cache = FALSE, results = FALSE, comment = FALSE, fig.height = 18, fig.width = 16, fig.cap = "Incidencia según distribución geográfica", include = params$spatial_distribution}
 mapa
 ```
 
