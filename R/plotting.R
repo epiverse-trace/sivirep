@@ -806,7 +806,8 @@ plot_area_geo <- function(data_agrupada,
                     ggplot2::aes(x = .data[[col_area]],
                                  y = .data[["casos"]])) +
     ggplot2::geom_bar(stat = "identity",
-                      fill = "#2274BB") +
+                      fill = "#2274BB",
+                      width = 0.3) +
     ggplot2::labs(x = paste0("\n", etiqueta_area_geo),
                   y = paste0(etiqueta_casos, "\n"),
                   caption = fuente_data) +
