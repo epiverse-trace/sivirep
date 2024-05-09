@@ -81,3 +81,11 @@ p {
 .year {
   margin-top: 0;
 }
+
+th {
+  font-weight: 600;
+}
+
+.titulo h1 {
+  font-size: 24pt;
+}
