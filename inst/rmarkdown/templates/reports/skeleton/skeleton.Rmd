@@ -224,7 +224,7 @@ mes_mayor_casos <- obtener_meses_mas_casos(data_event =
                                            col_fechas = "ini_sin")
 ```
 
-`r if (params$temporal_distribution) {paste0("Los casos se distribuyen a lo largo de los meses de enero a diciembre de ", params$year, " teniendo un mayor reporte en el mes de ", mes_mayor_casos$meses, " tanto por fecha de inicio de síntomas (Ver Figura 1) como por fecha de notificación (Ver Figura 2).")}`
+`r if (params$temporal_distribution) {paste0("Los casos se distribuyen a lo largo de los meses de enero a diciembre de ", params$year, " teniendo un mayor reporte en el mes de ", mes_mayor_casos$meses, " por fecha de inicio de síntomas (Ver Figura 1)")}`
 
 \newpage
 
