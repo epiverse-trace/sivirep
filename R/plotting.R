@@ -1293,6 +1293,7 @@ plot_tabla_incidencia_geo <- function(data_agrupada,
                                              "config.yml",
                                              package = "sivirep"),
                                "caption_geo_incidence")
+  caption_tabla <- paste0(caption_tabla, nomb_cols[5])
   data_agrupada[[col_geo[2]]] <-
     stringr::str_to_title(data_agrupada[[col_geo[2]]])
   data_tabla <- data_agrupada %>%
