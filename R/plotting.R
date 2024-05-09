@@ -81,6 +81,7 @@ plot_map <- function(data_agrupada,
   }
   stopifnot("El parametro fuente_data debe ser un cadena de caracteres"
             = is.character(fuente_data))
+  color_min <- "#fcebfc"
   nombre_events <- unique(data_agrupada$nombre_evento)[1]
   cols_geo_ocurrencia <- obtener_tip_ocurren_geo(nombre_event = nombre_events)
   if (length(cols_geo_ocurrencia) > 1) {
@@ -138,10 +139,8 @@ plot_map <- function(data_agrupada,
     if (!is.null(mpio)) {
       stopifnot("El parametro mpio debe ser un cadena de caracteres"
                 = is.character(mpio))
-      polygon_seleccionado <-
-        polygon_seleccionado[polygon_seleccionado$MPIO_CCDGO ==
-                               data_dept$codigo_municipio, ]
       titulo <- paste0(titulo, " , ", mpio)
+      color_min <- "#be0000"
     }
     colnames(polygon_seleccionado)[colnames(polygon_seleccionado) ==
                                      "MPIO_CCDGO"] <- "id"
@@ -187,7 +186,7 @@ plot_map <- function(data_agrupada,
     ggplot2::ggtitle(label = titulo, subtitle = subtitulo) +
     ggplot2::geom_sf(data = polygon_seleccionado,
                      ggplot2::aes(fill = .data$casos)) +
-    ggplot2::scale_fill_continuous(low = "#fcebfc", high = "#be0000",
+    ggplot2::scale_fill_continuous(low = color_min, high = "#be0000",
                                    guide = "colorbar", na.value = "white") +
     ggplot2::theme_void() +
     ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5,
