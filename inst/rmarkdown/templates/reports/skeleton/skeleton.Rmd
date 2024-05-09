@@ -376,7 +376,7 @@ incidencias_sex <- calcular_incidencia_sex(data_incidencia = proyecciones,
 plot_tabla_incidencia_sex(incidencias_sex)
 ```
 
-```{r sex_incidence_plot, fig.height = 4, fig.width = 8, fig.cap = "Incidencia por sexo", include = params$epi_sex_distribution}
+```{r sex_incidence_plot, fig.height = 3, fig.width = 7, fig.cap = "Incidencia por sexo", include = params$epi_sex_distribution}
 plot_sex(data_agrupada = incidencias_sex,
          col_distribucion = "incidencia",
          porcentaje = FALSE)
