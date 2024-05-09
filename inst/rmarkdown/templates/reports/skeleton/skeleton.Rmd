@@ -294,15 +294,6 @@ casos_edad_sex <- agrupar_edad_sex(data_event = data_event_filtrada,
 plot_edad_sex(data_agrupada = casos_edad_sex)
 ```
 
-\newpage
-
-`r if(params$age_sex_distribution) {"# Distribución de casos por pertenencia étnica"}`
-
-```{r distribution_per_etn, fig.height = 8, fig.width = 9, fig.cap =  "Distribución de casos por pertenencia étnica", include = params$age_sex_distribution}
-casos_per_etn <- agrupar_per_etn(data_event = data_event_filtrada)
-plot_per_etn(data_agrupada = casos_per_etn)
-```
-
 `r if(params$mpio_distribution) {"# Distribución de casos por municipio"}`
 
 ```{r group_distribution_municipios, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
