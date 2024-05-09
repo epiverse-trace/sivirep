@@ -74,7 +74,6 @@ plot_map <- function(data_agrupada,
                                           package = "sivirep"),
                             "label_geo_analysis")
   cols_geo_ocurrencia <- NULL
-  data_tabla <- data.frame()
   nombres_col <- NULL
   etiqueta_relleno <- "Casos"
   fuente_data <- "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
@@ -182,29 +181,10 @@ plot_map <- function(data_agrupada,
   polygon_seleccionado <-
     cbind(polygon_seleccionado,
           sf::st_coordinates(sf::st_centroid(polygon_seleccionado$geometry)))
-  if (!is.null(dpto)) {
-    data_tabla <-
-      data.frame(Indice = polygon_seleccionado$indice,
-                 Codigo = polygon_seleccionado$id,
-                 Municipio =
-                   stringr::str_to_title(polygon_seleccionado$MPIO_CNMBR))
-  } else {
-    data_tabla <-
-      data.frame(Indice = seq_along(data_agrupada$id),
-                 Codigo = data_agrupada$id,
-                 Departamento =
-                   stringr::str_to_title(data_agrupada[[nombres_col]]))
-  }
-  data_tabla <- data_tabla[order(data_tabla$Indice), ]
-  sysfonts::font_add_google("Montserrat", "Montserrat")
-  showtext::showtext_auto()
   map <- ggplot2::ggplot(polygon_seleccionado) +
     ggplot2::ggtitle(label = titulo, subtitle = subtitulo) +
     ggplot2::geom_sf(data = polygon_seleccionado,
                      ggplot2::aes(fill = .data$casos)) +
-    ggplot2::geom_sf_text(ggplot2::aes(label = .data$indice),
-                          size = ggplot2::unit(3, "cm"),
-                          fontface = "bold") +
     ggplot2::scale_fill_continuous(low = "#fcebfc", high = "#be0000",
                                    guide = "colorbar", na.value = "white") +
     ggplot2::theme_void() +
@@ -215,20 +195,7 @@ plot_map <- function(data_agrupada,
                    text = ggplot2::element_text(size = 14),
                    legend.title = ggplot2::element_text(face = "bold")) +
     ggplot2::labs(caption = fuente_data, fill = etiqueta_relleno)
-  relleno <- 1
-  tema_tabla <- gridExtra::ttheme_minimal(base_size = 14,
-                                          padding = ggplot2::unit(c(5, relleno),
-                                                                  "mm"))
-  tabla <- ggplot2::ggplot() + ggplot2::theme_void() +
-    ggplot2::annotation_custom(gridExtra::tableGrob(data_tabla,
-                                                    theme = tema_tabla,
-                                                    rows = NULL))
-  mapa_tabla <- cowplot::plot_grid(map,
-                                   tabla,
-                                   align = "h",
-                                   rel_widths = c(2, 1),
-                                   nrow = 1)
-  return(mapa_tabla)
+  return(map)
 }
 
 #' Generar gráfico de distribución de casos por fecha de inicio de síntomas
