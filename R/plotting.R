@@ -401,7 +401,7 @@ plot_sex <- function(data_agrupada,
                                                      .data[["porcentaje"]],
                                                      " %)")),
                          vjust = 1.5,
-                         color = "black",
+                         color = "white",
                          hjust = 0.5) +
       obtener_estetica_escala(escala = 2, nombre = "Sexo") +
       tema_sivirep() +
@@ -422,7 +422,7 @@ plot_sex <- function(data_agrupada,
       ggplot2::theme_classic() +
       ggplot2::geom_text(ggplot2::aes(label = .data[[col_distribucion]]),
                          vjust = 1.5,
-                         color = "black",
+                         color = "white",
                          hjust = 0.5) +
       obtener_estetica_escala(escala = 2, nombre = "Sexo") +
       tema_sivirep() +
