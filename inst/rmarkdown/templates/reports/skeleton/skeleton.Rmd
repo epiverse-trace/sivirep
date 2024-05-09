@@ -237,10 +237,14 @@ plot_fecha_inisintomas(data_agrupada = casos_iniciosin_dia,
 
 ```{r distribution_cg, include = FALSE}
 casos_sex <- agrupar_sex(data_event = data_event_filtrada)
-porcentaje_masculino <- casos_sex$porcentaje[2]
-porcentaje_femenino <- casos_sex$porcentaje[1]
-sexo_mayor_casos <- obtener_fila_mas_casos(data_event = casos_sex)
-
+porcentaje_femenino <-
+  casos_sex[which(casos_sex$sexo == "F" &
+                    casos_sex$nombre_evento ==
+                    toupper(params$nombre_evento)), ]$porcentaje
+porcentaje_masculino <-
+  casos_sex[which(casos_sex$sexo == "M" &
+                    casos_sex$nombre_evento ==
+                    toupper(params$nombre_evento)), ]$porcentaje
 sexo_mayor <- c("femenino", porcentaje_femenino)
 sexo_menor <- c("masculino", porcentaje_masculino)
 if (isTRUE(porcentaje_femenino < porcentaje_masculino)) {
