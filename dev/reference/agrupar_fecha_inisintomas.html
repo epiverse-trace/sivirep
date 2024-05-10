@@ -73,12 +73,12 @@ fecha de inicio de síntomas y número de casos</p>
 
     <div class="section level2">
     <h2 id="argumentos">Argumentos<a class="anchor" aria-label="anchor" href="#argumentos"></a></h2>
-    <dl><dt>data_event</dt>
+    <dl><dt id="arg-data-event">data_event<a class="anchor" aria-label="anchor" href="#arg-data-event"></a></dt>
 <dd><p>Un `data.frame` que contiene los datos de
 la enfermedad o evento</p></dd>
 
 
-<dt>col_fecha</dt>
+<dt id="arg-col-fecha">col_fecha<a class="anchor" aria-label="anchor" href="#arg-col-fecha"></a></dt>
 <dd><p>Un `character` (cadena de caracteres) con el
 nombre de la columna de los datos de la enfermedad o evento que contiene
 las fechas de inicio de síntomas; su valor por defecto es `"ini_sin"`</p></dd>
@@ -98,20 +98,29 @@ agrupados por fecha de inicio de síntomas y número de casos</p>
 <span class="r-in"><span><span class="va">data_limpia</span> <span class="op">&lt;-</span> <span class="fu"><a href="limpiar_data_sivigila.html">limpiar_data_sivigila</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">dengue2020</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">agrupar_fecha_inisintomas</span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_limpia</span>,</span></span>
 <span class="r-in"><span>                          col_fecha <span class="op">=</span> <span class="st">"ini_sin"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 457 × 6</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 20 × 6</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    ini_sin    semana cod_eve nombre_evento ano   casos</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2020-01-01 01     210     DENGUE        2020    401</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2020-01-02 01     210     DENGUE        2020    371</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2020-01-03 01     210     DENGUE        2020    398</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2020-01-03 02     210     DENGUE        2020      1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2020-01-04 01     210     DENGUE        2020    392</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2020-01-04 15     210     DENGUE        2020      1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2020-01-05 02     210     DENGUE        2020    371</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2020-01-06 02     210     DENGUE        2020    376</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2020-01-07 02     210     DENGUE        2020    389</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2020-01-08 02     210     DENGUE        2020    362</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 447 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2020-01-04 01     210     DENGUE        2020      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2020-01-11 02     210     DENGUE        2020      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2020-01-12 03     210     DENGUE        2020      7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2020-01-13 03     210     DENGUE        2020      2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2020-01-14 03     210     DENGUE        2020      4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2020-01-15 03     210     DENGUE        2020      6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2020-01-16 03     210     DENGUE        2020      6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2020-01-17 03     210     DENGUE        2020      2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2020-01-18 03     210     DENGUE        2020      5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2020-01-20 04     210     DENGUE        2020      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> 2020-01-30 05     210     DENGUE        2020      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> 2020-02-17 08     210     DENGUE        2020      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> 2020-02-24 09     210     DENGUE        2020      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> 2020-03-07 10     210     DENGUE        2020      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> 2020-03-12 11     210     DENGUE        2020      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> 2020-03-16 12     210     DENGUE        2020      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">17</span> 2020-03-28 13     210     DENGUE        2020      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">18</span> 2020-04-02 14     210     DENGUE        2020      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">19</span> 2020-04-08 15     210     DENGUE        2020      1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">20</span> 2020-04-13 16     210     DENGUE        2020      1</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>En esta página</h2>

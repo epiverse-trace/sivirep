@@ -73,16 +73,16 @@ y municipios</p>
 
     <div class="section level2">
     <h2 id="argumentos">Argumentos<a class="anchor" aria-label="anchor" href="#argumentos"></a></h2>
-    <dl><dt>data_event</dt>
+    <dl><dt id="arg-data-event">data_event<a class="anchor" aria-label="anchor" href="#arg-data-event"></a></dt>
 <dd><p>Un `data.frame` con los datos de una enfermedad o evento</p></dd>
 
 
-<dt>dpto</dt>
+<dt id="arg-dpto">dpto<a class="anchor" aria-label="anchor" href="#arg-dpto"></a></dt>
 <dd><p>Un `character` (cadena de caracteres) o `numeric` (numérico)
 que contiene el nombre o código del departamento; valor por defecto `NULL`</p></dd>
 
 
-<dt>mpio</dt>
+<dt id="arg-mpio">mpio<a class="anchor" aria-label="anchor" href="#arg-mpio"></a></dt>
 <dd><p>Un `character` (cadena de caracteres) o `numeric` (numérico)
 que contiene el nombre o código del municipio; su valor por defecto
 es `NULL`</p></dd>
@@ -101,140 +101,120 @@ departamentos y municipios seleccionados</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">dengue2020</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">data_limpia</span> <span class="op">&lt;-</span> <span class="fu"><a href="limpiar_data_sivigila.html">limpiar_data_sivigila</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">dengue2020</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">geo_filtro</span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_limpia</span>, dpto <span class="op">=</span> <span class="st">"ANTIOQUIA"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,710 × 74</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    particion   consecutive cod_eve fec_not    semana ano   cod_pre cod_sub  edad</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Datos_2020… 7233789     210     2020-07-07 27     2020  050880… 07         27</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Datos_2020… 7233816     210     2020-06-02 22     2020  230010… 02          8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Datos_2020… 7233817     210     2020-07-11 28     2020  057900… 01         13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Datos_2020… 7233837     210     2020-02-23 08     2020  056600… 01         15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Datos_2020… 7233481     210     2020-10-20 41     2020  052660… 01         31</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Datos_2020… 7233482     210     2020-03-13 11     2020  050450… 35         15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Datos_2020… 7233524     210     2020-11-18 46     2020  055790… 02         36</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Datos_2020… 7233531     210     2020-08-17 33     2020  056150… 01         27</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Datos_2020… 7233591     210     2020-05-09 18     2020  053900… 01          5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Datos_2020… 7233682     210     2020-12-20 50     2020  056150… 01          5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1,700 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 65 more variables: uni_med &lt;dbl&gt;, nacionalidad &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   nombre_nacionalidad &lt;chr&gt;, sexo &lt;chr&gt;, cod_pais_o &lt;chr&gt;, cod_dpto_o &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   cod_mun_o &lt;chr&gt;, area &lt;chr&gt;, ocupacion &lt;chr&gt;, tip_ss &lt;chr&gt;, cod_ase &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   per_etn &lt;chr&gt;, gru_pob &lt;lgl&gt;, nom_grupo &lt;chr&gt;, estrato &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gp_discapa &lt;chr&gt;, gp_desplaz &lt;chr&gt;, gp_migrant &lt;chr&gt;, gp_carcela &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gp_gestan &lt;chr&gt;, sem_ges &lt;chr&gt;, gp_indigen &lt;chr&gt;, gp_pobicfb &lt;chr&gt;, …</span></span>
-<span class="r-in"><span><span class="fu">geo_filtro</span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_limpia</span>, dpto <span class="op">=</span> <span class="st">"ANTIOQUIA"</span>, mpio <span class="op">=</span> <span class="st">"MEDELLIN"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 504 × 74</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    particion   consecutive cod_eve fec_not    semana ano   cod_pre cod_sub  edad</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Datos_2020… 7233481     210     2020-10-20 41     2020  052660… 01         31</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Datos_2020… 7233755     210     2020-03-03 10     2020  050010… 08         15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Datos_2020… 7345121     210     2020-09-10 36     2020  050010… 10         50</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Datos_2020… 7345145     210     2020-04-04 14     2020  050011… 07         33</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Datos_2020… 7234649     210     2020-02-06 05     2020  050010… 01         57</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Datos_2020… 7317731     210     2020-10-03 40     2020  050010… 01         23</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Datos_2020… 7317853     210     2020-01-22 03     2020  110013… 02          9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Datos_2020… 7249163     210     2020-09-23 38     2020  052660… 03         66</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Datos_2020… 7249172     210     2020-01-18 02     2020  050010… 17         66</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Datos_2020… 7314789     210     2020-01-08 02     2020  050011… 01         27</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 494 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 65 more variables: uni_med &lt;dbl&gt;, nacionalidad &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   nombre_nacionalidad &lt;chr&gt;, sexo &lt;chr&gt;, cod_pais_o &lt;chr&gt;, cod_dpto_o &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   cod_mun_o &lt;chr&gt;, area &lt;chr&gt;, ocupacion &lt;chr&gt;, tip_ss &lt;chr&gt;, cod_ase &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   per_etn &lt;chr&gt;, gru_pob &lt;lgl&gt;, nom_grupo &lt;chr&gt;, estrato &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gp_discapa &lt;chr&gt;, gp_desplaz &lt;chr&gt;, gp_migrant &lt;chr&gt;, gp_carcela &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gp_gestan &lt;chr&gt;, sem_ges &lt;chr&gt;, gp_indigen &lt;chr&gt;, gp_pobicfb &lt;chr&gt;, …</span></span>
-<span class="r-in"><span><span class="fu">geo_filtro</span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_limpia</span>, dpto <span class="op">=</span> <span class="st">"05"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,710 × 74</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    particion   consecutive cod_eve fec_not    semana ano   cod_pre cod_sub  edad</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Datos_2020… 7233789     210     2020-07-07 27     2020  050880… 07         27</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Datos_2020… 7233816     210     2020-06-02 22     2020  230010… 02          8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Datos_2020… 7233817     210     2020-07-11 28     2020  057900… 01         13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Datos_2020… 7233837     210     2020-02-23 08     2020  056600… 01         15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Datos_2020… 7233481     210     2020-10-20 41     2020  052660… 01         31</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Datos_2020… 7233482     210     2020-03-13 11     2020  050450… 35         15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Datos_2020… 7233524     210     2020-11-18 46     2020  055790… 02         36</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Datos_2020… 7233531     210     2020-08-17 33     2020  056150… 01         27</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Datos_2020… 7233591     210     2020-05-09 18     2020  053900… 01          5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Datos_2020… 7233682     210     2020-12-20 50     2020  056150… 01          5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1,700 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 65 more variables: uni_med &lt;dbl&gt;, nacionalidad &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   nombre_nacionalidad &lt;chr&gt;, sexo &lt;chr&gt;, cod_pais_o &lt;chr&gt;, cod_dpto_o &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   cod_mun_o &lt;chr&gt;, area &lt;chr&gt;, ocupacion &lt;chr&gt;, tip_ss &lt;chr&gt;, cod_ase &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   per_etn &lt;chr&gt;, gru_pob &lt;lgl&gt;, nom_grupo &lt;chr&gt;, estrato &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gp_discapa &lt;chr&gt;, gp_desplaz &lt;chr&gt;, gp_migrant &lt;chr&gt;, gp_carcela &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gp_gestan &lt;chr&gt;, sem_ges &lt;chr&gt;, gp_indigen &lt;chr&gt;, gp_pobicfb &lt;chr&gt;, …</span></span>
-<span class="r-in"><span><span class="fu">geo_filtro</span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_limpia</span>, dpto <span class="op">=</span> <span class="st">"05"</span>, mpio <span class="op">=</span> <span class="st">"05001"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 504 × 74</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    particion   consecutive cod_eve fec_not    semana ano   cod_pre cod_sub  edad</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Datos_2020… 7233481     210     2020-10-20 41     2020  052660… 01         31</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Datos_2020… 7233755     210     2020-03-03 10     2020  050010… 08         15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Datos_2020… 7345121     210     2020-09-10 36     2020  050010… 10         50</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Datos_2020… 7345145     210     2020-04-04 14     2020  050011… 07         33</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Datos_2020… 7234649     210     2020-02-06 05     2020  050010… 01         57</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Datos_2020… 7317731     210     2020-10-03 40     2020  050010… 01         23</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Datos_2020… 7317853     210     2020-01-22 03     2020  110013… 02          9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Datos_2020… 7249163     210     2020-09-23 38     2020  052660… 03         66</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Datos_2020… 7249172     210     2020-01-18 02     2020  050010… 17         66</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Datos_2020… 7314789     210     2020-01-08 02     2020  050011… 01         27</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 494 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 65 more variables: uni_med &lt;dbl&gt;, nacionalidad &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   nombre_nacionalidad &lt;chr&gt;, sexo &lt;chr&gt;, cod_pais_o &lt;chr&gt;, cod_dpto_o &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   cod_mun_o &lt;chr&gt;, area &lt;chr&gt;, ocupacion &lt;chr&gt;, tip_ss &lt;chr&gt;, cod_ase &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   per_etn &lt;chr&gt;, gru_pob &lt;lgl&gt;, nom_grupo &lt;chr&gt;, estrato &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gp_discapa &lt;chr&gt;, gp_desplaz &lt;chr&gt;, gp_migrant &lt;chr&gt;, gp_carcela &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gp_gestan &lt;chr&gt;, sem_ges &lt;chr&gt;, gp_indigen &lt;chr&gt;, gp_pobicfb &lt;chr&gt;, …</span></span>
-<span class="r-in"><span><span class="fu">geo_filtro</span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_limpia</span>, dpto <span class="op">=</span> <span class="fl">05</span>, mpio <span class="op">=</span> <span class="fl">05001</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 504 × 74</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    particion   consecutive cod_eve fec_not    semana ano   cod_pre cod_sub  edad</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Datos_2020… 7233481     210     2020-10-20 41     2020  052660… 01         31</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Datos_2020… 7233755     210     2020-03-03 10     2020  050010… 08         15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Datos_2020… 7345121     210     2020-09-10 36     2020  050010… 10         50</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Datos_2020… 7345145     210     2020-04-04 14     2020  050011… 07         33</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Datos_2020… 7234649     210     2020-02-06 05     2020  050010… 01         57</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Datos_2020… 7317731     210     2020-10-03 40     2020  050010… 01         23</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Datos_2020… 7317853     210     2020-01-22 03     2020  110013… 02          9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Datos_2020… 7249163     210     2020-09-23 38     2020  052660… 03         66</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Datos_2020… 7249172     210     2020-01-18 02     2020  050010… 17         66</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Datos_2020… 7314789     210     2020-01-08 02     2020  050011… 01         27</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 494 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 65 more variables: uni_med &lt;dbl&gt;, nacionalidad &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   nombre_nacionalidad &lt;chr&gt;, sexo &lt;chr&gt;, cod_pais_o &lt;chr&gt;, cod_dpto_o &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   cod_mun_o &lt;chr&gt;, area &lt;chr&gt;, ocupacion &lt;chr&gt;, tip_ss &lt;chr&gt;, cod_ase &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   per_etn &lt;chr&gt;, gru_pob &lt;lgl&gt;, nom_grupo &lt;chr&gt;, estrato &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gp_discapa &lt;chr&gt;, gp_desplaz &lt;chr&gt;, gp_migrant &lt;chr&gt;, gp_carcela &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gp_gestan &lt;chr&gt;, sem_ges &lt;chr&gt;, gp_indigen &lt;chr&gt;, gp_pobicfb &lt;chr&gt;, …</span></span>
-<span class="r-in"><span><span class="fu">geo_filtro</span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_limpia</span>, dpto <span class="op">=</span> <span class="fl">05</span>, mpio <span class="op">=</span> <span class="fl">001</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 504 × 74</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    particion   consecutive cod_eve fec_not    semana ano   cod_pre cod_sub  edad</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Datos_2020… 7233481     210     2020-10-20 41     2020  052660… 01         31</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Datos_2020… 7233755     210     2020-03-03 10     2020  050010… 08         15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Datos_2020… 7345121     210     2020-09-10 36     2020  050010… 10         50</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Datos_2020… 7345145     210     2020-04-04 14     2020  050011… 07         33</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Datos_2020… 7234649     210     2020-02-06 05     2020  050010… 01         57</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Datos_2020… 7317731     210     2020-10-03 40     2020  050010… 01         23</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Datos_2020… 7317853     210     2020-01-22 03     2020  110013… 02          9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Datos_2020… 7249163     210     2020-09-23 38     2020  052660… 03         66</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Datos_2020… 7249172     210     2020-01-18 02     2020  050010… 17         66</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Datos_2020… 7314789     210     2020-01-08 02     2020  050011… 01         27</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 494 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 65 more variables: uni_med &lt;dbl&gt;, nacionalidad &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   nombre_nacionalidad &lt;chr&gt;, sexo &lt;chr&gt;, cod_pais_o &lt;chr&gt;, cod_dpto_o &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   cod_mun_o &lt;chr&gt;, area &lt;chr&gt;, ocupacion &lt;chr&gt;, tip_ss &lt;chr&gt;, cod_ase &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   per_etn &lt;chr&gt;, gru_pob &lt;lgl&gt;, nom_grupo &lt;chr&gt;, estrato &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gp_discapa &lt;chr&gt;, gp_desplaz &lt;chr&gt;, gp_migrant &lt;chr&gt;, gp_carcela &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gp_gestan &lt;chr&gt;, sem_ges &lt;chr&gt;, gp_indigen &lt;chr&gt;, gp_pobicfb &lt;chr&gt;, …</span></span>
-<span class="r-in"><span><span class="fu">geo_filtro</span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_limpia</span>, dpto <span class="op">=</span> <span class="st">"bogota dc"</span>, mpio <span class="op">=</span> <span class="st">"bogota dc"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 0 × 74</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 74 variables: particion &lt;chr&gt;, consecutive &lt;chr&gt;, cod_eve &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   fec_not &lt;date&gt;, semana &lt;chr&gt;, ano &lt;chr&gt;, cod_pre &lt;chr&gt;, cod_sub &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   edad &lt;dbl&gt;, uni_med &lt;dbl&gt;, nacionalidad &lt;chr&gt;, nombre_nacionalidad &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 12 × 73</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    consecutive cod_eve fec_not    semana ano   cod_pre    cod_sub  edad uni_med</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 7322720     210     2020-01-09 01     2020  0504509099 37          1       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 7249231     210     2020-02-07 04     2020  1100123118 01         64       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 7234649     210     2020-02-06 05     2020  0500102126 01         57       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 7233727     210     2020-02-20 08     2020  0549004811 01         13       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 7216310     210     2020-03-06 09     2020  0500102178 10         25       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 7219710     210     2020-03-20 10     2020  0512909099 03         48       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 7315084     210     2020-03-16 11     2020  1557200807 01          8       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 7359390     210     2020-03-20 12     2020  0536009099 24         27       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 7299329     210     2020-03-30 13     2020  0580904349 01         13       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 7328153     210     2020-04-06 14     2020  0500102104 01         77       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> 7303305     210     2020-04-08 15     2020  0573606125 01         11       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> 7396875     210     2020-04-20 16     2020  0583702287 01          2       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 64 more variables: nacionalidad &lt;chr&gt;, nombre_nacionalidad &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   sexo &lt;chr&gt;, cod_pais_o &lt;chr&gt;, cod_dpto_o &lt;chr&gt;, cod_mun_o &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   area &lt;chr&gt;, ocupacion &lt;chr&gt;, tip_ss &lt;chr&gt;, cod_ase &lt;chr&gt;, per_etn &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gru_pob &lt;lgl&gt;, nom_grupo &lt;chr&gt;, estrato &lt;chr&gt;, gp_discapa &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gp_desplaz &lt;chr&gt;, gp_migrant &lt;chr&gt;, gp_carcela &lt;chr&gt;, gp_gestan &lt;chr&gt;, …</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gru_pob &lt;chr&gt;, nom_grupo &lt;lgl&gt;, estrato &lt;chr&gt;, gp_discapa &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gp_desplaz &lt;chr&gt;, gp_migrant &lt;chr&gt;, gp_carcela &lt;chr&gt;, gp_gestan &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   sem_ges &lt;lgl&gt;, gp_indigen &lt;chr&gt;, gp_pobicfb &lt;chr&gt;, gp_mad_com &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gp_desmovi &lt;chr&gt;, gp_psiquia &lt;chr&gt;, gp_vic_vio &lt;chr&gt;, gp_otros &lt;chr&gt;, …</span></span>
+<span class="r-in"><span><span class="fu">geo_filtro</span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_limpia</span>, dpto <span class="op">=</span> <span class="st">"ANTIOQUIA"</span>, mpio <span class="op">=</span> <span class="st">"MEDELLIN"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4 × 73</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   consecutive cod_eve fec_not    semana ano   cod_pre    cod_sub  edad uni_med</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 7234649     210     2020-02-06 05     2020  0500102126 01         57       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> 7216310     210     2020-03-06 09     2020  0500102178 10         25       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> 7359390     210     2020-03-20 12     2020  0536009099 24         27       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> 7328153     210     2020-04-06 14     2020  0500102104 01         77       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 64 more variables: nacionalidad &lt;chr&gt;, nombre_nacionalidad &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   sexo &lt;chr&gt;, cod_pais_o &lt;chr&gt;, cod_dpto_o &lt;chr&gt;, cod_mun_o &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   area &lt;chr&gt;, ocupacion &lt;chr&gt;, tip_ss &lt;chr&gt;, cod_ase &lt;chr&gt;, per_etn &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gru_pob &lt;chr&gt;, nom_grupo &lt;lgl&gt;, estrato &lt;chr&gt;, gp_discapa &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gp_desplaz &lt;chr&gt;, gp_migrant &lt;chr&gt;, gp_carcela &lt;chr&gt;, gp_gestan &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   sem_ges &lt;lgl&gt;, gp_indigen &lt;chr&gt;, gp_pobicfb &lt;chr&gt;, gp_mad_com &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gp_desmovi &lt;chr&gt;, gp_psiquia &lt;chr&gt;, gp_vic_vio &lt;chr&gt;, gp_otros &lt;chr&gt;, …</span></span>
+<span class="r-in"><span><span class="fu">geo_filtro</span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_limpia</span>, dpto <span class="op">=</span> <span class="st">"05"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 12 × 73</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    consecutive cod_eve fec_not    semana ano   cod_pre    cod_sub  edad uni_med</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 7322720     210     2020-01-09 01     2020  0504509099 37          1       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 7249231     210     2020-02-07 04     2020  1100123118 01         64       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 7234649     210     2020-02-06 05     2020  0500102126 01         57       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 7233727     210     2020-02-20 08     2020  0549004811 01         13       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 7216310     210     2020-03-06 09     2020  0500102178 10         25       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 7219710     210     2020-03-20 10     2020  0512909099 03         48       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 7315084     210     2020-03-16 11     2020  1557200807 01          8       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 7359390     210     2020-03-20 12     2020  0536009099 24         27       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 7299329     210     2020-03-30 13     2020  0580904349 01         13       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 7328153     210     2020-04-06 14     2020  0500102104 01         77       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> 7303305     210     2020-04-08 15     2020  0573606125 01         11       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> 7396875     210     2020-04-20 16     2020  0583702287 01          2       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 64 more variables: nacionalidad &lt;chr&gt;, nombre_nacionalidad &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   sexo &lt;chr&gt;, cod_pais_o &lt;chr&gt;, cod_dpto_o &lt;chr&gt;, cod_mun_o &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   area &lt;chr&gt;, ocupacion &lt;chr&gt;, tip_ss &lt;chr&gt;, cod_ase &lt;chr&gt;, per_etn &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gru_pob &lt;chr&gt;, nom_grupo &lt;lgl&gt;, estrato &lt;chr&gt;, gp_discapa &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gp_desplaz &lt;chr&gt;, gp_migrant &lt;chr&gt;, gp_carcela &lt;chr&gt;, gp_gestan &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   sem_ges &lt;lgl&gt;, gp_indigen &lt;chr&gt;, gp_pobicfb &lt;chr&gt;, gp_mad_com &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gp_desmovi &lt;chr&gt;, gp_psiquia &lt;chr&gt;, gp_vic_vio &lt;chr&gt;, gp_otros &lt;chr&gt;, …</span></span>
+<span class="r-in"><span><span class="fu">geo_filtro</span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_limpia</span>, dpto <span class="op">=</span> <span class="st">"05"</span>, mpio <span class="op">=</span> <span class="st">"05001"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4 × 73</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   consecutive cod_eve fec_not    semana ano   cod_pre    cod_sub  edad uni_med</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 7234649     210     2020-02-06 05     2020  0500102126 01         57       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> 7216310     210     2020-03-06 09     2020  0500102178 10         25       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> 7359390     210     2020-03-20 12     2020  0536009099 24         27       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> 7328153     210     2020-04-06 14     2020  0500102104 01         77       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 64 more variables: nacionalidad &lt;chr&gt;, nombre_nacionalidad &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   sexo &lt;chr&gt;, cod_pais_o &lt;chr&gt;, cod_dpto_o &lt;chr&gt;, cod_mun_o &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   area &lt;chr&gt;, ocupacion &lt;chr&gt;, tip_ss &lt;chr&gt;, cod_ase &lt;chr&gt;, per_etn &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gru_pob &lt;chr&gt;, nom_grupo &lt;lgl&gt;, estrato &lt;chr&gt;, gp_discapa &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gp_desplaz &lt;chr&gt;, gp_migrant &lt;chr&gt;, gp_carcela &lt;chr&gt;, gp_gestan &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   sem_ges &lt;lgl&gt;, gp_indigen &lt;chr&gt;, gp_pobicfb &lt;chr&gt;, gp_mad_com &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gp_desmovi &lt;chr&gt;, gp_psiquia &lt;chr&gt;, gp_vic_vio &lt;chr&gt;, gp_otros &lt;chr&gt;, …</span></span>
+<span class="r-in"><span><span class="fu">geo_filtro</span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_limpia</span>, dpto <span class="op">=</span> <span class="fl">05</span>, mpio <span class="op">=</span> <span class="fl">05001</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4 × 73</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   consecutive cod_eve fec_not    semana ano   cod_pre    cod_sub  edad uni_med</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 7234649     210     2020-02-06 05     2020  0500102126 01         57       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> 7216310     210     2020-03-06 09     2020  0500102178 10         25       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> 7359390     210     2020-03-20 12     2020  0536009099 24         27       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> 7328153     210     2020-04-06 14     2020  0500102104 01         77       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 64 more variables: nacionalidad &lt;chr&gt;, nombre_nacionalidad &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   sexo &lt;chr&gt;, cod_pais_o &lt;chr&gt;, cod_dpto_o &lt;chr&gt;, cod_mun_o &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   area &lt;chr&gt;, ocupacion &lt;chr&gt;, tip_ss &lt;chr&gt;, cod_ase &lt;chr&gt;, per_etn &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gru_pob &lt;chr&gt;, nom_grupo &lt;lgl&gt;, estrato &lt;chr&gt;, gp_discapa &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gp_desplaz &lt;chr&gt;, gp_migrant &lt;chr&gt;, gp_carcela &lt;chr&gt;, gp_gestan &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   sem_ges &lt;lgl&gt;, gp_indigen &lt;chr&gt;, gp_pobicfb &lt;chr&gt;, gp_mad_com &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gp_desmovi &lt;chr&gt;, gp_psiquia &lt;chr&gt;, gp_vic_vio &lt;chr&gt;, gp_otros &lt;chr&gt;, …</span></span>
+<span class="r-in"><span><span class="fu">geo_filtro</span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_limpia</span>, dpto <span class="op">=</span> <span class="fl">05</span>, mpio <span class="op">=</span> <span class="fl">001</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 4 × 73</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   consecutive cod_eve fec_not    semana ano   cod_pre    cod_sub  edad uni_med</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 7234649     210     2020-02-06 05     2020  0500102126 01         57       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> 7216310     210     2020-03-06 09     2020  0500102178 10         25       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> 7359390     210     2020-03-20 12     2020  0536009099 24         27       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> 7328153     210     2020-04-06 14     2020  0500102104 01         77       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 64 more variables: nacionalidad &lt;chr&gt;, nombre_nacionalidad &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   sexo &lt;chr&gt;, cod_pais_o &lt;chr&gt;, cod_dpto_o &lt;chr&gt;, cod_mun_o &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   area &lt;chr&gt;, ocupacion &lt;chr&gt;, tip_ss &lt;chr&gt;, cod_ase &lt;chr&gt;, per_etn &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gru_pob &lt;chr&gt;, nom_grupo &lt;lgl&gt;, estrato &lt;chr&gt;, gp_discapa &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gp_desplaz &lt;chr&gt;, gp_migrant &lt;chr&gt;, gp_carcela &lt;chr&gt;, gp_gestan &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   sem_ges &lt;lgl&gt;, gp_indigen &lt;chr&gt;, gp_pobicfb &lt;chr&gt;, gp_mad_com &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gp_desmovi &lt;chr&gt;, gp_psiquia &lt;chr&gt;, gp_vic_vio &lt;chr&gt;, gp_otros &lt;chr&gt;, …</span></span>
+<span class="r-in"><span><span class="fu">geo_filtro</span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_limpia</span>, dpto <span class="op">=</span> <span class="st">"bogota dc"</span>, mpio <span class="op">=</span> <span class="st">"bogota dc"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 0 × 73</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 73 variables: consecutive &lt;chr&gt;, cod_eve &lt;chr&gt;, fec_not &lt;date&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   semana &lt;chr&gt;, ano &lt;chr&gt;, cod_pre &lt;chr&gt;, cod_sub &lt;chr&gt;, edad &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   uni_med &lt;dbl&gt;, nacionalidad &lt;chr&gt;, nombre_nacionalidad &lt;chr&gt;, sexo &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   cod_pais_o &lt;chr&gt;, cod_dpto_o &lt;chr&gt;, cod_mun_o &lt;chr&gt;, area &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ocupacion &lt;chr&gt;, tip_ss &lt;chr&gt;, cod_ase &lt;chr&gt;, per_etn &lt;chr&gt;, gru_pob &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   nom_grupo &lt;lgl&gt;, estrato &lt;chr&gt;, gp_discapa &lt;chr&gt;, gp_desplaz &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gp_migrant &lt;chr&gt;, gp_carcela &lt;chr&gt;, gp_gestan &lt;chr&gt;, sem_ges &lt;lgl&gt;, …</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>En esta página</h2>

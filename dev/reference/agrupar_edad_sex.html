@@ -79,30 +79,30 @@ sexo y número de casos</p>
 
     <div class="section level2">
     <h2 id="argumentos">Argumentos<a class="anchor" aria-label="anchor" href="#argumentos"></a></h2>
-    <dl><dt>data_event</dt>
+    <dl><dt id="arg-data-event">data_event<a class="anchor" aria-label="anchor" href="#arg-data-event"></a></dt>
 <dd><p>Un `data.frame` que contiene los datos de la enfermedad
 o evento</p></dd>
 
 
-<dt>col_edad</dt>
+<dt id="arg-col-edad">col_edad<a class="anchor" aria-label="anchor" href="#arg-col-edad"></a></dt>
 <dd><p>Un `character` (cadena de caracteres) con el nombre de la
 columna que contiene las edades en los datos de la enfermedad o evento;
 su valor por defecto es `"edad`</p></dd>
 
 
-<dt>col_sex</dt>
+<dt id="arg-col-sex">col_sex<a class="anchor" aria-label="anchor" href="#arg-col-sex"></a></dt>
 <dd><p>Un `character` (cadena de caracteres) con el nombre de la
 columna que contiene el sexo en los datos de la enfermedad o evento;
 su valor por defecto es `"sexo`</p></dd>
 
 
-<dt>porcentaje</dt>
+<dt id="arg-porcentaje">porcentaje<a class="anchor" aria-label="anchor" href="#arg-porcentaje"></a></dt>
 <dd><p>Un `boolean` (TRUE o FALSE) que indica si se debe
 agregar una columna con el porcentaje de casos; su valor por
 defecto es `TRUE`</p></dd>
 
 
-<dt>interval_edad</dt>
+<dt id="arg-interval-edad">interval_edad<a class="anchor" aria-label="anchor" href="#arg-interval-edad"></a></dt>
 <dd><p>Un `numeric` (numérico) que contiene el intervalo del
 rango de edades; su valor por defecto es `10`</p></dd>
 
@@ -123,31 +123,21 @@ por edades, sexo y número de casos</p>
 <span class="r-in"><span>                 col_edad <span class="op">=</span> <span class="st">"edad"</span>,</span></span>
 <span class="r-in"><span>                 col_sex <span class="op">=</span> <span class="st">"sexo"</span>,</span></span>
 <span class="r-in"><span>                 porcentaje <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         edad sexo casos porcentaje</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     (0,10]    F 10860     17.481</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2     (0,10]    M 10241     16.485</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3    (10,20]    F  7763     12.496</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    (10,20]    M  9377     15.094</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5    (20,30]    F  4228      6.806</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6    (20,30]    M  4271      6.875</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7    (30,40]    F  2747      4.422</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8    (30,40]    M  2855      4.596</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9    (40,50]    F  1681      2.706</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10   (40,50]    M  1845      2.970</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11   (50,60]    F  1499      2.413</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12   (50,60]    M  1420      2.286</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13   (60,70]    F   914      1.471</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14   (60,70]    M   906      1.458</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15   (70,80]    F   508      0.818</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16   (70,80]    M   548      0.882</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17   (80,90]    F   173      0.278</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18   (80,90]    M   229      0.369</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19  (90,100]    F    26      0.042</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20  (90,100]    M    29      0.047</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21 (100,110]    F     1      0.002</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22 (100,110]    M     1      0.002</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23      &lt;NA&gt;    F     1      0.002</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24      &lt;NA&gt;    M     1      0.002</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       edad sexo casos porcentaje</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   (0,10]    F     4      8.889</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   (0,10]    M     3      6.667</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  (10,20]    F     6     13.333</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  (10,20]    M     9     20.000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  (20,30]    F     4      8.889</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  (20,30]    M     7     15.556</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  (30,40]    F     3      6.667</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  (30,40]    M     1      2.222</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9  (40,50]    F     1      2.222</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 (40,50]    M     3      6.667</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11 (50,60]    F     1      2.222</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12 (60,70]    F     1      2.222</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13 (60,70]    M     1      2.222</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14    &lt;NA&gt;    F     1      2.222</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>En esta página</h2>

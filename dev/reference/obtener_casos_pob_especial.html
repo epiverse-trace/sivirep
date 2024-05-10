@@ -73,7 +73,7 @@ especial de una enfermedad o evento</p>
 
     <div class="section level2">
     <h2 id="argumentos">Argumentos<a class="anchor" aria-label="anchor" href="#argumentos"></a></h2>
-    <dl><dt>data_event</dt>
+    <dl><dt id="arg-data-event">data_event<a class="anchor" aria-label="anchor" href="#arg-data-event"></a></dt>
 <dd><p>Un `data.frame` que contiene los datos de una
 enfermedad o evento</p></dd>
 
@@ -91,19 +91,19 @@ de una enfermedad o evento</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">dengue2020</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">data_limpia</span> <span class="op">&lt;-</span> <span class="fu"><a href="limpiar_data_sivigila.html">limpiar_data_sivigila</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">dengue2020</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">obtener_casos_pob_especial</span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_limpia</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     poblacion  casos                       nombre</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  gp_discapa 124160               Discapacitados</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  gp_desplaz 124011                  Desplazados</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  gp_migrant 123816                    Migrantes</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  gp_carcela 124181                  Carcelarios</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5   gp_gestan 123977                    Gestantes</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  gp_indigen 124225                    Indigenas</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  gp_pobicfb 124184                         ICBF</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  gp_mad_com 124240          Madres comunitarias</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  gp_desmovi 124241               Desmovilizados</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 gp_psiquia 124237   Pob. Centros psiquiatricos</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11 gp_vic_vio 124189 Victimas de violencia armada</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12   gp_otros  63013                        Otros</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     poblacion casos                       nombre</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  gp_discapa    90               Discapacitados</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  gp_desplaz    90                  Desplazados</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  gp_migrant    90                    Migrantes</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  gp_carcela    90                  Carcelarios</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5   gp_gestan    90                    Gestantes</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  gp_indigen    90                    Indigenas</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  gp_pobicfb    90                         ICBF</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  gp_mad_com    90          Madres comunitarias</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9  gp_desmovi    90               Desmovilizados</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 gp_psiquia    90   Pob. Centros psiquiatricos</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11 gp_vic_vio    90 Victimas de violencia armada</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12   gp_otros    45                        Otros</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>En esta página</h2>

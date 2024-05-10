@@ -78,12 +78,12 @@ geográfica a nivel departamental o municipal</p>
 
     <div class="section level2">
     <h2 id="argumentos">Argumentos<a class="anchor" aria-label="anchor" href="#argumentos"></a></h2>
-    <dl><dt>data_event</dt>
+    <dl><dt id="arg-data-event">data_event<a class="anchor" aria-label="anchor" href="#arg-data-event"></a></dt>
 <dd><p>Un `data.frame` que contiene los datos de la
 enfermedad o evento</p></dd>
 
 
-<dt>dpto</dt>
+<dt id="arg-dpto">dpto<a class="anchor" aria-label="anchor" href="#arg-dpto"></a></dt>
 <dd><p>Un `character` (cadena de caracteres) que contiene
 el nombre del departamento; su valor por defecto es `NULL`; si se ingresa
 un valor en este parámetro se procederá agrupar los datos por los
@@ -93,13 +93,13 @@ filtrados por algún departamento, si no lo están generará la agrupación
 por departamento</p></dd>
 
 
-<dt>col_area</dt>
+<dt id="arg-col-area">col_area<a class="anchor" aria-label="anchor" href="#arg-col-area"></a></dt>
 <dd><p>Un `character` (cadena de caracteres) con el nombre de
 la columna que contiene las áreas geográficas en los datos de la enfermedad
 o evento; su valor por defecto es `"cod_mun_o"`</p></dd>
 
 
-<dt>porcentaje</dt>
+<dt id="arg-porcentaje">porcentaje<a class="anchor" aria-label="anchor" href="#arg-porcentaje"></a></dt>
 <dd><p>Un `boolean` (TRUE o FALSE) que indica si se debe
 agregar una columna con el porcentaje de casos; su valor por
 defecto es `FALSE`</p></dd>
@@ -121,20 +121,19 @@ por códigos de municipios y número de casos</p>
 <span class="r-in"><span>                 dpto <span class="op">=</span> <span class="st">"Antioquia"</span>,</span></span>
 <span class="r-in"><span>                 col_area <span class="op">=</span> <span class="st">"area"</span>,</span></span>
 <span class="r-in"><span>                 porcentaje <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 157 × 9</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 9</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    area  cod_dpto_o departamento_ocurrencia cod_mun_o municipio_ocurrencia</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 1     05         ANTIOQUIA               05001     MEDELLIN            </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 1     05         ANTIOQUIA               05045     APARTADO            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 1     05         ANTIOQUIA               05390     LA PINTADA          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 1     05         ANTIOQUIA               05190     CISNEROS            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 1     05         ANTIOQUIA               05030     AMAGA               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 1     05         ANTIOQUIA               05042     ANTIOQUIA           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 1     05         ANTIOQUIA               05051     ARBOLETES           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 1     05         ANTIOQUIA               05088     BELLO               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2     05         ANTIOQUIA               05837     TURBO               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 1     05         ANTIOQUIA               05837     TURBO               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 147 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 1     05         ANTIOQUIA               05809     TITIRIBI            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 1     05         ANTIOQUIA               05837     TURBO               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2     05         ANTIOQUIA               05001     MEDELLIN            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2     05         ANTIOQUIA               05129     CALDAS              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2     05         ANTIOQUIA               05591     PUERTO TRIUNFO      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2     05         ANTIOQUIA               05659     SAN JUAN DE URABA   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 3     05         ANTIOQUIA               05490     NECOCLI             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 3     05         ANTIOQUIA               05736     SEGOVIA             </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 4 more variables: cod_eve &lt;chr&gt;, nombre_evento &lt;chr&gt;, ano &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   casos &lt;int&gt;</span></span>
 </code></pre></div>

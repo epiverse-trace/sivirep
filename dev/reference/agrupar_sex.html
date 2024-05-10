@@ -73,18 +73,18 @@ por sexo y número de casos</p>
 
     <div class="section level2">
     <h2 id="argumentos">Argumentos<a class="anchor" aria-label="anchor" href="#argumentos"></a></h2>
-    <dl><dt>data_event</dt>
+    <dl><dt id="arg-data-event">data_event<a class="anchor" aria-label="anchor" href="#arg-data-event"></a></dt>
 <dd><p>Un `data.frame` que contiene los datos de la enfermedad
 o evento</p></dd>
 
 
-<dt>col_sex</dt>
+<dt id="arg-col-sex">col_sex<a class="anchor" aria-label="anchor" href="#arg-col-sex"></a></dt>
 <dd><p>Un `character` (cadena de caracteres) con el nombre
 de la columna que contiene el sexo en los datos de la enfermedad o evento;
 su valor por defecto es `"sexo"`</p></dd>
 
 
-<dt>porcentaje</dt>
+<dt id="arg-porcentaje">porcentaje<a class="anchor" aria-label="anchor" href="#arg-porcentaje"></a></dt>
 <dd><p>Un `boolean` (TRUE o FALSE) que indica si se debe
 agregar una columna con el porcentaje de casos; su valor por
 defecto es `TRUE`</p></dd>
@@ -108,8 +108,8 @@ agrupados por sexo y número de casos</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2 × 6</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   sexo  cod_eve nombre_evento ano   casos porcentaje</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> F     210     DENGUE        2020  <span style="text-decoration: underline;">30</span>401       48.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> M     210     DENGUE        2020  <span style="text-decoration: underline;">31</span>723       51.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> F     210     DENGUE        2020     21       46.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> M     210     DENGUE        2020     24       53.3</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>En esta página</h2>

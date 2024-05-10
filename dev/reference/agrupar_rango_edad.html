@@ -81,39 +81,39 @@ de edad y número de casos</p>
 
     <div class="section level2">
     <h2 id="argumentos">Argumentos<a class="anchor" aria-label="anchor" href="#argumentos"></a></h2>
-    <dl><dt>data_event</dt>
+    <dl><dt id="arg-data-event">data_event<a class="anchor" aria-label="anchor" href="#arg-data-event"></a></dt>
 <dd><p>Un `data.frame` que contiene los datos de la
 enfermedad o evento</p></dd>
 
 
-<dt>col_edad</dt>
+<dt id="arg-col-edad">col_edad<a class="anchor" aria-label="anchor" href="#arg-col-edad"></a></dt>
 <dd><p>Un `character` (cadena de caracteres) con
 el nombre de la columna que contiene las edades en los datos de
 la enfermedad o evento</p></dd>
 
 
-<dt>col_adicional</dt>
+<dt id="arg-col-adicional">col_adicional<a class="anchor" aria-label="anchor" href="#arg-col-adicional"></a></dt>
 <dd><p>Un `character` (cadena de caracteres) con
 el nombre de la columna adicional para agrupar con las edades en
 los datos de la enfermedad o evento; su valor por defecto es `NULL`</p></dd>
 
 
-<dt>min_val</dt>
+<dt id="arg-min-val">min_val<a class="anchor" aria-label="anchor" href="#arg-min-val"></a></dt>
 <dd><p>Un `numeric` (numérico) que contiene la edad mínima
 con la que debe iniciar el rango de edades</p></dd>
 
 
-<dt>max_val</dt>
+<dt id="arg-max-val">max_val<a class="anchor" aria-label="anchor" href="#arg-max-val"></a></dt>
 <dd><p>Un `numeric` (numérico) que contiene la edad máxima
 con la que debe finalizar el rango de edades</p></dd>
 
 
-<dt>paso</dt>
+<dt id="arg-paso">paso<a class="anchor" aria-label="anchor" href="#arg-paso"></a></dt>
 <dd><p>Un `numeric` (numérico) que contiene el valor del paso
 para generar el rango de edades</p></dd>
 
 
-<dt>porcentaje</dt>
+<dt id="arg-porcentaje">porcentaje<a class="anchor" aria-label="anchor" href="#arg-porcentaje"></a></dt>
 <dd><p>Un `boolean` (TRUE o FALSE) que indica si se debe
 agregar una columna con el porcentaje de casos; su valor por
 defecto es `TRUE`</p></dd>
@@ -140,19 +140,15 @@ agrupados por el rango de edad y número de casos</p>
 <span class="r-in"><span>                   max_val <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">data_edad</span><span class="op">$</span><span class="va">edad</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                   paso <span class="op">=</span> <span class="fl">10</span>,</span></span>
 <span class="r-in"><span>                   porcentaje <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         edad casos porcentaje</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     (0,10] 21101     33.966</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    (10,20] 17140     27.590</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3    (20,30]  8499     13.681</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    (30,40]  5602      9.017</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5    (40,50]  3526      5.676</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6    (50,60]  2919      4.699</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7    (60,70]  1820      2.930</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8    (70,80]  1056      1.700</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9    (80,90]   402      0.647</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10  (90,100]    55      0.089</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11 (100,110]     2      0.003</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12      &lt;NA&gt;     2      0.003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      edad casos porcentaje</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  (0,10]     7     15.556</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 (10,20]    15     33.333</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 (20,30]    11     24.444</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 (30,40]     4      8.889</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 (40,50]     4      8.889</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 (50,60]     1      2.222</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7 (60,70]     2      4.444</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8    &lt;NA&gt;     1      2.222</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>En esta página</h2>
