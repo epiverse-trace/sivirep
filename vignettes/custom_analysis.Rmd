@@ -144,28 +144,6 @@ plot_fecha_inisintomas(data_agrupada = casos_ini_sintomas,
                        uni_marca = "semanaepi")
 ```
 
-#### 4.2. Agrupar los datos por fecha de notificación en la escala temporal deseada
-
-El proceso para generar la distribución de casos por fecha de
-notificación consiste en agrupar los datos de enfermedades por esta
-variable. Puedes utilizar la siguiente función de `sivirep` para hacer
-esto:
-
-```{r agrupar_fecha_notificacion}
-casos_fecha_notificacion <- agrupar_fecha_notifica(data_event =
-                                                     data_event)
-```
-
-El gráfico que permite visualizar esta distribución debe generarse con
-la función `plot_fecha_notifica`. Ten en cuenta que, aunque hayas
-agrupado los datos por día, es posible que prefieras representarlos por
-semana epidemiológica, como en:
-
-```{r plot_fecha_notificacion, fig.height = 5, fig.width = 10}
-plot_fecha_notifica(data_agrupada = casos_fecha_notificacion,
-                    uni_marca = "semanaepi")
-```
-
 ### 5. Edad y sexo
 
 ### 5.1. Variable de sexo
