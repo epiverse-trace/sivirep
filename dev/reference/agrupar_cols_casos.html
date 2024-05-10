@@ -68,7 +68,7 @@ por nombre de columna(s) y número de casos</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Uso<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">agrupar_cols_casos</span><span class="op">(</span><span class="va">data_event</span>, <span class="va">nomb_cols</span>, porcentaje <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">agrupar_cols_casos</span><span class="op">(</span><span class="va">data_event</span>, <span class="va">nomb_cols</span>, porcentaje <span class="op">=</span> <span class="cn">FALSE</span>, estandar <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -88,6 +88,17 @@ la(s) columna(s) en los datos de la enfermedad o evento</p></dd>
 <dd><p>Un `boolean` (TRUE o FALSE) que indica
 si se debe agregar una columna con el porcentaje de casos;
 su valor por defecto es `FALSE`</p></dd>
+
+
+<dt id="arg-estandar">estandar<a class="anchor" aria-label="anchor" href="#arg-estandar"></a></dt>
+<dd><p>Un `boolean` (TRUE o FALSE) que indica
+si se debe utilizar el estandar de agrupación de los datos
+del evento o enfermedad propuesto por el paquete, es decir
+que se incluyan estas columnas o variables como parte del
+resultado `c("cod_eve", "nombre_evento", "ano")`; su valor
+por defecto es `TRUE`, si su valor es `FALSE` agrupara los
+datos solamente por las columnas o variables enviadas en el
+párametro `nomb_cols`</p></dd>
 
 </dl></div>
     <div class="section level2">

@@ -49,16 +49,10 @@
     <loc>https://epiverse-trace.github.io/sivirep/dev/reference/agrupar_fecha_inisintomas.html</loc>
   </url>
   <url>
-    <loc>https://epiverse-trace.github.io/sivirep/dev/reference/agrupar_fecha_notifica.html</loc>
-  </url>
-  <url>
     <loc>https://epiverse-trace.github.io/sivirep/dev/reference/agrupar_mpio.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/sivirep/dev/reference/agrupar_per_etn.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/sivirep/dev/reference/agrupar_pob_especial.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/sivirep/dev/reference/agrupar_rango_edad.html</loc>
@@ -74,6 +68,9 @@
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/sivirep/dev/reference/agrupar_tipo_caso.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/sivirep/dev/reference/agrupar_top_area_geo.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/sivirep/dev/reference/agrupar_years.html</loc>
@@ -154,9 +151,6 @@
     <loc>https://epiverse-trace.github.io/sivirep/dev/reference/listar_dptos.html</loc>
   </url>
   <url>
-    <loc>https://epiverse-trace.github.io/sivirep/dev/reference/obtener_casos_pob_especial.html</loc>
-  </url>
-  <url>
     <loc>https://epiverse-trace.github.io/sivirep/dev/reference/obtener_cond_inciden_event.html</loc>
   </url>
   <url>
@@ -208,9 +202,6 @@
     <loc>https://epiverse-trace.github.io/sivirep/dev/reference/plot_fecha_inisintomas.html</loc>
   </url>
   <url>
-    <loc>https://epiverse-trace.github.io/sivirep/dev/reference/plot_fecha_notifica.html</loc>
-  </url>
-  <url>
     <loc>https://epiverse-trace.github.io/sivirep/dev/reference/plot_map.html</loc>
   </url>
   <url>
@@ -239,6 +230,9 @@
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/sivirep/dev/reference/plot_tipo_caso_years.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/sivirep/dev/reference/plot_top_area_geo.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/sivirep/dev/reference/plot_years.html</loc>

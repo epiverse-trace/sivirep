@@ -228,26 +228,6 @@ representarlo por semana epidemiológica, como en:</p>
 <p><img src="custom_analysis_files/figure-html/plot_fecha_inicio_sintomas-1.png" width="960"></p>
 </div>
 </div>
-<div class="section level4">
-<h4 id="agrupar-los-datos-por-fecha-de-notificación-en-la-escala-temporal-deseada">4.2. Agrupar los datos por fecha de notificación en la escala
-temporal deseada<a class="anchor" aria-label="anchor" href="#agrupar-los-datos-por-fecha-de-notificaci%C3%B3n-en-la-escala-temporal-deseada"></a>
-</h4>
-<p>El proceso para generar la distribución de casos por fecha de
-notificación consiste en agrupar los datos de enfermedades por esta
-variable. Puedes utilizar la siguiente función de <code>sivirep</code>
-para hacer esto:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">casos_fecha_notificacion</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/agrupar_fecha_notifica.html">agrupar_fecha_notifica</a></span><span class="op">(</span>data_event <span class="op">=</span></span>
-<span>                                                     <span class="va">data_event</span><span class="op">)</span></span></code></pre></div>
-<p>El gráfico que permite visualizar esta distribución debe generarse
-con la función <code>plot_fecha_notifica</code>. Ten en cuenta que,
-aunque hayas agrupado los datos por día, es posible que prefieras
-representarlos por semana epidemiológica, como en:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_fecha_notifica.html">plot_fecha_notifica</a></span><span class="op">(</span>data_agrupada <span class="op">=</span> <span class="va">casos_fecha_notificacion</span>,</span>
-<span>                    uni_marca <span class="op">=</span> <span class="st">"semanaepi"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="custom_analysis_files/figure-html/plot_fecha_notificacion-1.png" width="960"></p>
-</div>
 </div>
 <div class="section level3">
 <h3 id="edad-y-sexo">5. Edad y sexo<a class="anchor" aria-label="anchor" href="#edad-y-sexo"></a>
@@ -262,24 +242,24 @@ embargo, la fuente de SIVIGILA solo registra el sexo.</p>
 <p><code>sivirep</code> proporciona una función que agrega y calcula
 automáticamente los porcentajes por sexo después del proceso de
 limpieza.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">casos_sex</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/agrupar_sex.html">agrupar_sex</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_event</span>,</span>
 <span>                         porcentaje <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>Además, <code>sivirep</code> cuenta con una función para generar el
 gráfico por esta variable llamada <code>plot_sex</code>:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_sex.html">plot_sex</a></span><span class="op">(</span>data_agrupada <span class="op">=</span> <span class="va">casos_sex</span><span class="op">)</span></span></code></pre></div>
 <p><img src="custom_analysis_files/figure-html/plot_sexo-1.png" width="768"></p>
 <p>La distribución de casos por sexo y semana epidemiológica se puede
 generar utilizando la función <code>agrupar_sex_semanaepi</code>
 proporcionada por <code>sivirep</code>.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">casos_sex_semanaepi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/agrupar_sex_semanaepi.html">agrupar_sex_semanaepi</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_event</span><span class="op">)</span></span></code></pre></div>
 <p>La función de visualización correspondiente es
 <code>plot_sex_semanaepi</code>, que <code>sivirep</code> proporciona
 para mostrar la distribución de casos por sexo y semana
 epidemiológica.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_sex_semanaepi.html">plot_sex_semanaepi</a></span><span class="op">(</span>data_agrupada <span class="op">=</span> <span class="va">casos_sex_semanaepi</span><span class="op">)</span></span></code></pre></div>
 <p><img src="custom_analysis_files/figure-html/plot_sex_semana_epidemiologica-1.png" width="1056"></p>
 </div>
@@ -297,11 +277,11 @@ dirigidas.</p>
 por grupos de edad. De forma predeterminada, esta función produce rangos
 de edad con intervalos de 10 años. Además, los usuarios pueden
 personalizar un rango de edad diferente.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">casos_edad</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/agrupar_edad.html">agrupar_edad</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_event</span>, interval_edad <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
 <p>La función de visualización correspondiente es
 <code>plot_edad</code>.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_edad.html">plot_edad</a></span><span class="op">(</span>data_agrupada <span class="op">=</span> <span class="va">casos_edad</span><span class="op">)</span></span></code></pre></div>
 <p><img src="custom_analysis_files/figure-html/plot_edad-1.png" width="768"></p>
 </div>
@@ -313,12 +293,12 @@ personalizar un rango de edad diferente.</p>
 enfermedades por rangos de edad y sexo de forma simultánea y obtener el
 número de casos y los porcentajes correspondientes. Además, permite
 personalizar el intervalo de edad.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">casos_edad_sex</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/agrupar_edad_sex.html">agrupar_edad_sex</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_event</span>,</span>
 <span>                                   interval_edad <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
 <p>La función de visualización correspondiente es
 <code>plot_edad_sex</code>.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_edad_sex.html">plot_edad_sex</a></span><span class="op">(</span>data_agrupada <span class="op">=</span> <span class="va">casos_edad_sex</span><span class="op">)</span></span></code></pre></div>
 <p><img src="custom_analysis_files/figure-html/plot_edad_sexo-1.png" width="864"></p>
 </div>
@@ -332,13 +312,13 @@ enfermedades y factores de riesgo ambientales o sociales.</p>
 llamadas departamentos. <code>sivirep</code> proporciona una función
 llamada <code>agrupar_mpio</code> que permite obtener un data.frame de
 casos agrupados por departamento o municipio.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dist_esp_dept</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/agrupar_mpio.html">agrupar_mpio</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_event_filtrada</span>,</span>
 <span>                             dpto <span class="op">=</span> <span class="st">"Choco"</span><span class="op">)</span></span></code></pre></div>
 <p>Actualmente, con la función llamada <code>plot_map</code>, el usuario
 puede generar un mapa estático de Colombia que muestra la distribución
 de casos por departamentos y municipios.</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mapa</span></span></code></pre></div>
 <p><img src="custom_analysis_files/figure-html/mapa-1.png" width="960"></p>
 <div class="section level5">
