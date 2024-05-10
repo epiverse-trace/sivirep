@@ -63,7 +63,7 @@ plot_map(data_agrupada = data_espacial_dpto,
 # Mapa por municipio especifico
 data_filtrada_mpio <- geo_filtro(data_event = data_estandar,
                                  dpto = "Antioquia",
-                                 mpio = "Envigado")
+                                 mpio = "Medellin")
 data_espacial_mpio <- agrupar_mpio(data_event = data_filtrada_mpio)
 plot_map(data_agrupada = data_espacial_mpio,
          col_codigos = "cod_mun_o",
