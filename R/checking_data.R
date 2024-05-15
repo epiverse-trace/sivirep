@@ -925,12 +925,8 @@ calcular_incidencia <- function(data_incidencia = NULL, data_agrupada,
   unidades_geo <- obtener_dpto_mpio(data_agrupada = data_agrupada,
                                     nomb_cols = nomb_cols,
                                     dpto = dpto, mpio = mpio)
-  if (!is.null(unidades_geo$dpto)) {
-    dpto <- unidades_geo$dpto
-  }
-  if (!is.null(unidades_geo$mpio)) {
-    mpio <- unidades_geo$mpio
-  }
+  dpto <- unidades_geo$dpto
+  mpio <- unidades_geo$mpio
   if (!is.null(dpto)) {
     if (poblacion == "proyecciones") {
       poblacion_incidencia <-
