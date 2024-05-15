@@ -243,11 +243,6 @@ obtener_ruta_descarga <- function(ruta) {
 import_pob_proyecciones <- function() {
   proyecciones <- NULL
   proyecs_2005_2035 <- NULL
-  url_proyecs <- config::get(file =
-                             system.file("extdata",
-                                         "config.yml",
-                                         package = "sivirep"),
-                            "projections_path")
   nomb_proyecs <- config::get(file =
                                 system.file("extdata",
                                             "config.yml",
@@ -256,6 +251,11 @@ import_pob_proyecciones <- function() {
   ruta_extdata <- system.file("extdata", package = "sivirep")
   ruta_proyecs <- file.path(ruta_extdata, nomb_proyecs)
   if (!file.exists(ruta_proyecs)) {
+    url_proyecs <- config::get(file =
+                                 system.file("extdata",
+                                             "config.yml",
+                                             package = "sivirep"),
+                               "projections_path")
     utils::download.file(url_proyecs, ruta_proyecs)
   }
   load(ruta_proyecs)
