@@ -573,3 +573,67 @@ obtener_dpto_mpio <- function(data_agrupada, nomb_cols,
   }
   return(unidades_geo)
 }
+
+#' Obtener la población para efectuar el cálculo de la incidencia
+#'
+#' Función que obtiene la población a riesgo de un evento o enfermedad
+#' o las proyecciones poblacionales DANE desde el año 2005 hasta el 2035.
+#' Si no hay población a riesgo disponible del evento o enfermedad para el año
+#' seleccionado se obtendrá las proyecciones poblacionales DANE y se mostrarán
+#' mensajes de advertencia al usuario dependendiendo del tipo de población
+#' obtenida
+#' @param data_incidencia Un `data.frame` que contiene la población a riesgo o
+#' las proyecciones poblaciones DANE. Si este parámetro está vacío importará
+#' la población a riesgo o las proyecciones dependiendo de la disponibilidad de
+#' la información; su valor por defecto es `NULL`
+#' @param poblacion Un `character` (cadena de caracteres) con el tipo de
+#' población que se desea obtener. Indica si se desea obtener la población
+#' a riesgo del evento `"riesgo"` o las proyecciones poblacionales DANE
+#' `"proyecciones"`
+#' @param event Un `character` (cadena de caracteres) o un `numeric` (numerico)
+#' con el nombre o código de la enfermedad o evento. Es obligatorio para
+#' obtener la población a riesgo
+#' @param year Un `numeric` (numerico) con el año deseado de la población a
+#' riesgo. Es obligatorio para obtener la población a riesgo
+#' @return Un `data.frame` con la población a riesgo o las proyecciones
+#' poblacionaldes DANE
+#' @keywords internal
+obtener_pob_incidencia <- function(data_incidencia = NULL,
+                                   poblacion,
+                                   event,
+                                   year) {
+  if (is.null(data_incidencia)) {
+    data_incidencia <- import_pob_incidencia(poblacion = poblacion,
+                                             event = event,
+                                             year = year)
+    if (poblacion == "riesgo") {
+      if (!is.null(data_incidencia)) {
+        message("Las incidencias para ", stringr::str_to_title(event),
+                " se calcularan con la población a riesgo definida por el",
+                " Ministerio de Salud para el año ", year)
+      } else {
+        poblacion <- "proyecciones"
+        data_incidencia <- import_pob_incidencia(poblacion = poblacion)
+        warning("Las incidencias para ", stringr::str_to_title(event),
+                " se calcularan con las proyecciones poblacionales DANE. ",
+                "Si usted cuenta con la población a riesgo ",
+                "definida por el Ministerio de Salud para el año ", year,
+                " puede hacer uso de ella, asignandola en el argumento ",
+                "data_incidencia de la función")
+      }
+    } else {
+      message("Las incidencias que va a generar para ",
+              stringr::str_to_title(event),
+              " deberían idealmente estar calculadas por población a riesgo.",
+              " Para esto, puede usar el argumento poblacion = 'riesgo'")
+    }
+  } else {
+    stopifnot("El parametro data_incidencia debe ser un data.frame" =
+                is.data.frame(data_incidencia),
+              "El parametro data_incidencia no debe estar vacio" =
+                nrow(data_incidencia) > 0)
+  }
+  pop_data_incidencia <- list(data_incidencia = data_incidencia,
+                              poblacion = poblacion)
+  return(pop_data_incidencia)
+}
