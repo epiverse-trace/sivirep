@@ -900,7 +900,8 @@ agrupar_per_etn <- function(data_event, cols_etn = "per_etn",
 #'                     year = 2020)
 #' }
 #' @export
-calcular_incidencia <- function(data_incidencia, data_agrupada, year,
+calcular_incidencia <- function(data_incidencia = NULL, data_agrupada,
+                                poblacion = "riesgo", year = NULL,
                                 dpto = NULL, mpio = NULL,
                                 sex = NULL) {
   stopifnot("El parametro data_incidencia es obligatorio" =
@@ -916,7 +917,7 @@ calcular_incidencia <- function(data_incidencia, data_agrupada, year,
             "El parametro data_agrupada no debe estar vacio" =
               nrow(data_agrupada) > 0,
             "El parametro year es obligatorio" = !missing(year))
-  poblacion <- NULL
+  poblacion_incidencia <- data_incidencia
   total_casos <- NULL
   total_poblacion <- NULL
   incidencia <- 0.00
@@ -931,39 +932,54 @@ calcular_incidencia <- function(data_incidencia, data_agrupada, year,
     mpio <- unidades_geo$mpio
   }
   if (!is.null(dpto)) {
-    poblacion <- dplyr::filter(data_incidencia,
-                               .data$area_geografica == "Total",
-                               .data$dp == dpto, .data$ano == 2020)
-    if (!is.null(mpio)) {
-      poblacion <- poblacion[poblacion$mpio == mpio, ]
-      if (is.null(sex)) {
-        total_mpio <- data_agrupada[data_agrupada[[nomb_cols[3]]] == mpio, ]
-        total_casos <- sum(total_mpio$casos)
-      } else {
-        total_casos <- sum(data_agrupada$casos)
-      }
+    if (poblacion == "proyecciones") {
+      poblacion_incidencia <-
+        dplyr::filter(poblacion_incidencia,
+                      .data$area_geografica == "Total",
+                      .data$dp == dpto, .data$ano == year)
     } else {
-      if (is.null(sex)) {
-        total_dpto <- data_agrupada[data_agrupada[[nomb_cols[1]]] == dpto, ]
-        total_casos <- sum(total_dpto$casos)
+      poblacion_incidencia <- dplyr::filter(data_incidencia,
+                                            .data$cod_dpto == dpto)
+      total_poblacion <-
+        sum(poblacion_incidencia[[paste0("poblacion_riesgo_", year)]])
+    }
+    if (!is.null(mpio)) {
+      if (poblacion == "proyecciones") {
+        poblacion_incidencia <-
+          poblacion_incidencia[poblacion_incidencia$mpio == mpio, ]
       } else {
-        total_casos <- sum(data_agrupada$casos)
+        poblacion_incidencia <-
+          poblacion_incidencia[poblacion_incidencia$cod_mpio == mpio, ]
+        total_poblacion <-
+          sum(poblacion_incidencia[[paste0("poblacion_riesgo_", year)]])
       }
+      if (is.null(sex)) {
+        data_agrupada <- data_agrupada[data_agrupada[[nomb_cols[3]]] == mpio, ]
+      }
+    } else if (is.null(sex)) {
+        data_agrupada <- data_agrupada[data_agrupada[[nomb_cols[1]]] == dpto, ]
     }
   } else {
-    poblacion <- dplyr::filter(data_incidencia,
-                               .data$area_geografica == "Total",
-                               .data$ano == year)
-    total_casos <- sum(data_agrupada$casos)
+    if (poblacion == "proyecciones") {
+      poblacion_incidencia <-
+        dplyr::filter(data_incidencia,
+                      .data$area_geografica == "Total",
+                      .data$ano == year)
+    } else {
+      total_poblacion <-
+        sum(poblacion_incidencia[[paste0("poblacion_riesgo_", year)]])
+    }
   }
   if (!is.null(sex)) {
     if (sex == "F") {
-      total_poblacion <- sum(poblacion$mujeres)
+      total_poblacion <- sum(poblacion_incidencia$mujeres)
     } else {
-      total_poblacion <- sum(poblacion$hombres)
+      total_poblacion <- sum(poblacion_incidencia$hombres)
     }
   } else {
-    total_poblacion <- sum(poblacion$total)
+    if (poblacion == "proyecciones") {
+      total_poblacion <- sum(poblacion_incidencia$total)
+    }
   }
   vals_event <- obtener_cond_inciden_event(cod_eve = data_agrupada$cod_eve[1])
   vals_event$coeficiente <- as.integer(vals_event$coeficiente)
