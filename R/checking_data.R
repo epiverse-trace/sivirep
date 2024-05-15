@@ -917,6 +917,17 @@ calcular_incidencia <- function(data_incidencia = NULL, data_agrupada,
             "El parametro data_agrupada no debe estar vacio" =
               nrow(data_agrupada) > 0,
             "El parametro year es obligatorio" = !missing(year))
+  nombre_evento <- data_agrupada$nombre_evento[1]
+  if (is.null(year)) {
+    year <- as.numeric(obtener_year(data_agrupada))
+  }
+  pop_incidencia <-
+    obtener_pob_incidencia(data_incidencia = data_incidencia,
+                           poblacion = poblacion,
+                           event = nombre_evento,
+                           year = year)
+  data_incidencia <- pop_incidencia$data_incidencia
+  poblacion <- pop_incidencia$poblacion
   poblacion_incidencia <- data_incidencia
   total_casos <- NULL
   total_poblacion <- NULL
