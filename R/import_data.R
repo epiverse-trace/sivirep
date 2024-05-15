@@ -262,3 +262,60 @@ import_data_incidencia <- function() {
   proyecciones <- proyecs_2005_2035
   return(proyecciones)
 }
+
+#' Importar la población a riesgo de un evento o enfermedad
+#'
+#' Función que importa la población a riesgo de un evento o enfermedad de un
+#' año específico
+#' @param event Un `character` (cadena de caracteres) o un `numeric` (numerico)
+#' con el nombre o código de la enfermedad o evento
+#' @param year Un `numeric` (numerico) con el año deseado de la población a
+#' riesgo
+#' @return Un `data.frame` con la población a riesgo de un año específico
+#' @examples
+#' \donttest{
+#' import_pob_riesgo(event = "Dengue", year = 2020)
+#' }
+#' @export
+import_pob_riesgo <- function(event, year) {
+  stopifnot("El parametro event no debe estar vacio" =
+              !missing(event),
+            "El parametro event debe ser una cadena de caracteres" =
+              is.character(event),
+            "El parametro year no debe estar vacio" = !missing(year),
+            "El parametro year debe ser numerico" = is.numeric(year))
+  rutas_pop_riesgo <- config::get(file =
+                                      system.file("extdata",
+                                                  "config.yml",
+                                                  package = "sivirep"),
+                                  "risk_population_paths")
+  ruta_extdata <- system.file("extdata", package = "sivirep")
+  pop_event <- NULL
+  years_disponibles <- NULL
+  pob_riesgo_event <- NULL
+  event_min <- tolower(event)
+  for (pop_riesgo in rutas_pop_riesgo) {
+    if (pop_riesgo$event == event_min || pop_riesgo$cod_eve == event_min) {
+      years_disponibles <- pop_riesgo$years
+      if (year %in% pop_riesgo$years) {
+        pop_event <- pop_riesgo
+        pop_event$path <- file.path(ruta_extdata, paste0(pop_riesgo$file_name,
+                                                         pop_riesgo$extension))
+        utils::download.file(pop_event$url, pop_event$path)
+        break
+      }
+    }
+  }
+  if (!is.null(pop_event)) {
+      load(pop_event$path)
+      pob_riesgo_event <- eval(parse(text = pop_event$file_name))
+  } else if (!is.null(years_disponibles)) {
+    warning("Para el año ", year, " la población a riesgo no está disponible.",
+    " Los años disponibles para ", stringr::str_to_title(event), " son: ",
+    toString(years_disponibles, collapse = ", "))
+  } else {
+    warning("Para ", event, " no hay población a riesgo disponible de ",
+            "ningún año")
+  }
+  return(pob_riesgo_event)
+}
