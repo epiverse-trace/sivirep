@@ -637,3 +637,31 @@ obtener_pob_incidencia <- function(data_incidencia = NULL,
                               poblacion = poblacion)
   return(pop_data_incidencia)
 }
+
+#' Obtener el año de una enfermedad o evento
+#'
+#' Función que obtiene el año de los datos de una enfermedad o
+#' evento
+#' @param data_event Un `data.frame` que contiene los datos de la
+#' enfermedad o evento
+#' @keywords internal
+obtener_year <- function(data_event) {
+  year <- NULL
+  nomb_col <- "ano"
+  if (!is.null(data_event)) {
+    if (nomb_col %in% colnames(data_event)) {
+      year <- unique(data_event[[nomb_col]])
+      stopifnot("Los datos del evento o enfermedad tienen informacion de mas
+                de un anio, no es posible inferir el anio que debe tomar la
+                funcion para su ejecucion. Por favor indique el anio en el
+                parametro year que debe tomar" =
+                  length(year) == 1)
+    } else {
+      stopifnot("Los datos del evento o enfermedad no contienen la variable
+                o columna ano. Por favor indique el anio en el parametro year
+                para ejecutar la funcion" =
+                  length(year) == 1)
+    }
+  }
+  return(year)
+}
