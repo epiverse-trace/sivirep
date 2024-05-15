@@ -234,11 +234,13 @@ obtener_ruta_descarga <- function(ruta) {
 
 #' Importar las proyecciones DANE del año 2005 hasta el 2035
 #'
-#' Función que obtiene las proyecciones poblacionales DANE desde
+#' Función que importa las proyecciones poblacionales DANE desde
 #' el año 2005 hasta el 2035
-#' @return Un `data.frame` con las proyecciones poblacionales
+#' @return Un `data.frame` con las proyecciones poblacionales DANE
 #' @examples
-#' import_data_incidencia()
+#' \donttest{
+#' import_pob_proyecciones()
+#' }
 #' @export
 import_pob_proyecciones <- function() {
   proyecciones <- NULL
