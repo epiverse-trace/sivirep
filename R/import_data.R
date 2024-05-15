@@ -232,6 +232,42 @@ obtener_ruta_descarga <- function(ruta) {
   return(nombre_archivo)
 }
 
+#' Importar la población para efectuar el cálculo de la incidencia
+#'
+#' Función que importa la población a riesgo de un evento o enfermedad
+#' o las proyecciones poblacionales DANE desde el año 2005 hasta el 2035
+#' @param poblacion Un `character` (cadena de caracteres) con el tipo de
+#' población que se desea importar. Indica si se desea descargar la población
+#' a riesgo del evento `"riesgo"` o las proyecciones poblacionales DANE
+#' `"proyecciones"`; su valor por defecto es `"riesgo"`
+#' @param event Un `character` (cadena de caracteres) o un `numeric` (numerico)
+#' con el nombre o código de la enfermedad o evento. Es obligatorio para
+#' importar la población a riesgo
+#' @param year Un `numeric` (numerico) con el año deseado de la población a
+#' riesgo. Es obligatorio para importar la población a riesgo
+#' @return Un `data.frame` con la población a riesgo o las proyecciones
+#' poblacionaldes DANE
+#' @examples
+#'  \donttest{
+#' import_pob_incidencia(poblacion = "proyecciones")
+#' import_pob_incidencia(poblacion = "riesgo", event = "dengue", year = 2020)
+#' }
+#' @export
+import_pob_incidencia <- function(poblacion = "riesgo", event, year) {
+  stopifnot("El parametro poblacion no debe estar vacio" =
+              !missing(poblacion),
+            "El parametro poblacion debe ser una cadena de caracteres" =
+              is.character(poblacion),
+            "Valor invalido para el parametro poblacion" =
+              (poblacion %in% c("riesgo", "proyecciones")))
+  if (poblacion == "proyecciones") {
+    poblacion <- import_pob_proyecciones()
+  } else {
+    poblacion <- import_pob_riesgo(event = event, year = year)
+  }
+  return(poblacion)
+}
+
 #' Importar las proyecciones DANE del año 2005 hasta el 2035
 #'
 #' Función que importa las proyecciones poblacionales DANE desde
