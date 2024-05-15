@@ -977,6 +977,7 @@ calcular_incidencia <- function(data_incidencia = NULL, data_agrupada,
       total_poblacion <- sum(poblacion_incidencia$total)
     }
   }
+  total_casos <- sum(data_agrupada$casos)
   vals_event <- obtener_cond_inciden_event(cod_eve = data_agrupada$cod_eve[1])
   vals_event$coeficiente <- as.integer(vals_event$coeficiente)
   if (total_poblacion > 0) {
