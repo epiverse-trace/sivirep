@@ -240,7 +240,7 @@ obtener_ruta_descarga <- function(ruta) {
 #' @examples
 #' import_data_incidencia()
 #' @export
-import_data_incidencia <- function() {
+import_pob_proyecciones <- function() {
   proyecciones <- NULL
   proyecs_2005_2035 <- NULL
   url_proyecs <- config::get(file =
