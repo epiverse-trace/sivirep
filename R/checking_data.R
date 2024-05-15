@@ -904,19 +904,12 @@ calcular_incidencia <- function(data_incidencia = NULL, data_agrupada,
                                 poblacion = "riesgo", year = NULL,
                                 dpto = NULL, mpio = NULL,
                                 sex = NULL) {
-  stopifnot("El parametro data_incidencia es obligatorio" =
-              !missing(data_incidencia),
-            "El parametro data_incidencia debe ser un data.frame" =
-              is.data.frame(data_incidencia),
-            "El parametro data_incidencia no debe estar vacio" =
-              nrow(data_incidencia) > 0,
-            "El parametro data_agrupada es obligatorio" =
+  stopifnot("El parametro data_agrupada es obligatorio" =
               !missing(data_agrupada),
             "El parametro data_agrupada debe ser un data.frame" =
               is.data.frame(data_agrupada),
             "El parametro data_agrupada no debe estar vacio" =
-              nrow(data_agrupada) > 0,
-            "El parametro year es obligatorio" = !missing(year))
+              nrow(data_agrupada) > 0)
   nombre_evento <- data_agrupada$nombre_evento[1]
   if (is.null(year)) {
     year <- as.numeric(obtener_year(data_agrupada))
