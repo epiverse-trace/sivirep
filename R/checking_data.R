@@ -887,7 +887,7 @@ agrupar_per_etn <- function(data_event, cols_etn = "per_etn",
 #' @return Un `numeric` con el calculo de la incidencia para todo Colombia, un
 #' departamento, municipio o sexo especifico
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 #' data_agrupada_mpios <- agrupar_mpio(data_limpia, dpto = "Antioquia")
