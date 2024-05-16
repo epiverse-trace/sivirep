@@ -352,11 +352,6 @@ plot_per_etn(data_agrupada = casos_per_etn)
 # Incidencia
 
 ```{r total_incidence, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
-proyecciones <- import_data_incidencia()
-incidencia_dpto <- calcular_incidencia(data_incidencia =
-                                          proyecciones,
-                                       data_agrupada =
-                                         dist_espacial_dpto,
                                        year = params$year)
 cond_incidencia <-
   obtener_cond_inciden_event(cod_eve = dist_espacial_dpto$cod_eve[1])
@@ -369,9 +364,6 @@ La incidencia para el departamento de `r params$departmento` es: `r incidencia_d
 La incidencia para cada sexo por `r cond_incidencia$coeficiente` habitantes, se puede visualizar en la tabla 2 y figura 13.
 
 ```{r sex_incidence, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
-incidencias_sex <- calcular_incidencia_sex(data_incidencia = proyecciones,
-                                           data_agrupada = casos_sex,
-                                           dpto = params$departmento,
                                            year = params$year)
 ```
 
@@ -392,10 +384,6 @@ plot_sex(data_agrupada = incidencias_sex,
 La incidencia para cada uno de los municipios del departamento del `r params$departmento` por `r cond_incidencia$coeficiente` habitantes es la siguiente:
 
 ```{r geo_incidence, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
-dist_espacial_dpto <- calcular_incidencia_geo(data_incidencia =
-                                          proyecciones,
-                                       data_agrupada =
-                                         dist_espacial_dpto,
                                        year = params$year)
 ```
 
