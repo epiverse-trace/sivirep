@@ -24,13 +24,10 @@ Función que genera la tabla con la incidencia según por sexo
 \dontrun{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
-proyecciones <- import_data_incidencia()
 data_agrupada <- agrupar_sex(data_limpia)
 incidencia_mpios <- calcular_incidencia_sex(
-                        data_incidencia = proyecciones,
                         data_agrupada = data_agrupada,
-                        dpto = "Antioquia",
-                        year = 2020)
+                        dpto = "Antioquia")
                           col_sex = "sexo")
 }
 }

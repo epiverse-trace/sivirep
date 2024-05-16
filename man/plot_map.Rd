@@ -72,11 +72,8 @@ plot_map(data_agrupada = data_espacial_mpio,
          mpio = "Envigado")
 # Mapa con la incidencia por municipios de un departamento especifico
 \dontrun{
-proyecciones <- import_data_incidencia()
 incidencia_dpto <-
-    calcular_incidencia_geo(data_incidencia = proyecciones,
-                            data_agrupada = data_espacial_dpto,
-                            year = 2020)
+    calcular_incidencia_geo(data_agrupada = data_espacial_dpto)
 plot_map(data_agrupada = incidencia_dpto,
          col_codigos = "cod_mun_o",
          col_distribucion = "incidencia")
