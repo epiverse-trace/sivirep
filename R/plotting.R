@@ -45,11 +45,8 @@
 #'          mpio = "Envigado")
 #' # Mapa con la incidencia por municipios de un departamento especifico
 #' \dontrun{
-#' proyecciones <- import_data_incidencia()
 #' incidencia_dpto <-
-#'     calcular_incidencia_geo(data_incidencia = proyecciones,
-#'                             data_agrupada = data_espacial_dpto,
-#'                             year = 2020)
+#'     calcular_incidencia_geo(data_agrupada = data_espacial_dpto)
 #' plot_map(data_agrupada = incidencia_dpto,
 #'          col_codigos = "cod_mun_o",
 #'          col_distribucion = "incidencia")
@@ -1260,12 +1257,9 @@ plot_per_etn <- function(data_agrupada,
 #' \dontrun{
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
-#' proyecciones <- import_data_incidencia()
 #' data_agrupada <- agrupar_mpio(data_limpia, dpto = "Antioquia")
 #' incidencia_mpios <- calcular_incidencia_geo(
-#'                         data_incidencia = proyecciones,
-#'                         data_agrupada = data_agrupada,
-#'                         year = 2020)
+#'                         data_agrupada = data_agrupada)
 #  plot_tabla_incidencia_geo(data_agrupada = incidencia_mpios,
 #'                           col_geo = "municipio_ocurrencia")
 #' }
@@ -1329,13 +1323,10 @@ plot_tabla_incidencia_geo <- function(data_agrupada,
 #' \dontrun{
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
-#' proyecciones <- import_data_incidencia()
 #' data_agrupada <- agrupar_sex(data_limpia)
 #' incidencia_mpios <- calcular_incidencia_sex(
-#'                         data_incidencia = proyecciones,
 #'                         data_agrupada = data_agrupada,
-#'                         dpto = "Antioquia",
-#'                         year = 2020)
+#'                         dpto = "Antioquia")
 #  plot_tabla_incidencia_sex(data_agrupada = incidencia_mpios,
 #'                           col_sex = "sexo")
 #' }
