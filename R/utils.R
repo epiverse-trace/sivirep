@@ -609,7 +609,7 @@ obtener_pob_incidencia <- function(data_incidencia = NULL,
     if (poblacion == "riesgo") {
       if (!is.null(data_incidencia)) {
         message("Las incidencias para ", stringr::str_to_title(event),
-                " se calcularan con la población a riesgo definida por el",
+                " se calcularan con la poblacion a riesgo definida por el",
                 " Ministerio de Salud para el ", year)
       } else {
         poblacion <- "proyecciones"
