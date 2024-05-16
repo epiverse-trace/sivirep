@@ -1070,11 +1070,13 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
     data_geo_incidencia <- cbind(data_agrupada, geo_incidencia)
   } else if (nomb_cols[3] %in% colnames(data_agrupada)) {
     incidencia_mpios <- NULL
-    for (mpio in data_agrupada[[nomb_cols[3]]]) {
+    for (fila in seq_len(nrow(data_agrupada))) {
+      mpio_fila <- data_agrupada[fila, ]
       incidencia <- calcular_incidencia(data_incidencia = data_incidencia,
-                                        data_agrupada = data_agrupada,
-                                        dpto = data_agrupada[[nomb_cols[1]]][1],
-                                        mpio = mpio,
+                                        data_agrupada = mpio_fila,
+                                        poblacion = poblacion,
+                                        dpto = mpio_fila[[nomb_cols[1]]],
+                                        mpio = mpio_fila[[nomb_cols[3]]],
                                         year = year)
       incidencia_mpios <- append(incidencia_mpios, incidencia)
     }
