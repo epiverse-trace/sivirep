@@ -610,21 +610,21 @@ obtener_pob_incidencia <- function(data_incidencia = NULL,
       if (!is.null(data_incidencia)) {
         message("Las incidencias para ", stringr::str_to_title(event),
                 " se calcularan con la población a riesgo definida por el",
-                " Ministerio de Salud para el año ", year)
+                " Ministerio de Salud para el ", year)
       } else {
         poblacion <- "proyecciones"
         data_incidencia <- import_pob_incidencia(poblacion = poblacion)
         warning("Las incidencias para ", stringr::str_to_title(event),
                 " se calcularan con las proyecciones poblacionales DANE. ",
-                "Si usted cuenta con la población a riesgo ",
-                "definida por el Ministerio de Salud para el año ", year,
+                "Si usted cuenta con la poblacion a riesgo ",
+                "definida por el Ministerio de Salud para el ", year,
                 " puede hacer uso de ella, asignandola en el argumento ",
-                "data_incidencia de la función")
+                "data_incidencia de la funcion")
       }
     } else {
       message("Las incidencias que va a generar para ",
               stringr::str_to_title(event),
-              " deberían idealmente estar calculadas por población a riesgo.",
+              " deberian idealmente estar calculadas por poblacion a riesgo.",
               " Para esto, puede usar el argumento poblacion = 'riesgo'")
     }
   } else {
@@ -652,13 +652,13 @@ obtener_year <- function(data_event) {
     if (nomb_col %in% colnames(data_event)) {
       year <- unique(data_event[[nomb_col]])
       stopifnot("Los datos del evento o enfermedad tienen informacion de mas
-                de un anio, no es posible inferir el anio que debe tomar la
-                funcion para su ejecucion. Por favor indique el anio en el
-                parametro year que debe tomar" =
+                de un year, no es posible inferir el year que debe tomar la
+                funcion para su ejecucion. Por favor indique el valor en el
+                parametro year" =
                   length(year) == 1)
     } else {
       stopifnot("Los datos del evento o enfermedad no contienen la variable
-                o columna ano. Por favor indique el anio en el parametro year
+                o columna ano. Por favor indique el valor en el parametro year
                 para ejecutar la funcion" =
                   length(year) == 1)
     }
