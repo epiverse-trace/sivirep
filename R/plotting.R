@@ -1225,14 +1225,7 @@ plot_per_etn <- function(data_agrupada,
                       fill = "#2274BB") +
     ggplot2::labs(x = paste0(etiqueta_etn, "\n"),
                   y = paste0("\n", etiqueta_casos),
-                  caption = fuente_data) + {
-                    if (porcentaje) {
-      ggplot2::geom_text(ggplot2::aes(label = paste0(.data[["porcentaje"]],
-                                                     "%")),
-                         hjust = 0,
-                         color = "black")
-      }
-    } +
+                  caption = fuente_data) +
     ggplot2::theme_classic() +
     ggplot2::scale_x_discrete(labels = stringr::str_wrap(etiquetas,
                                                          5)) +
