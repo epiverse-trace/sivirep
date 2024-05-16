@@ -1031,26 +1031,29 @@ calcular_incidencia <- function(data_incidencia = NULL, data_agrupada,
 #'                         year = 2020)
 #' }
 #' @export
-calcular_incidencia_geo <- function(data_incidencia,
+calcular_incidencia_geo <- function(data_incidencia = NULL,
                                     data_agrupada,
-                                    year) {
-  stopifnot("El parametro data_incidencia es obligatorio" =
-              !missing(data_incidencia),
-            "El parametro data_incidencia debe ser un data.frame" =
-              is.data.frame(data_incidencia),
-            "El parametro data_incidencia no debe estar vacio" =
-              nrow(data_incidencia) > 0,
-            "El parametro data_agrupada es obligatorio" =
+                                    poblacion = "riesgo",
+                                    year = NULL) {
+  stopifnot("El parametro data_agrupada es obligatorio" =
               !missing(data_agrupada),
             "El parametro data_agrupada debe ser un data.frame" =
               is.data.frame(data_agrupada),
             "El parametro data_agrupada no debe estar vacio" =
+              nrow(data_agrupada) > 0)
   data_geo_incidencia <- NULL
-  nomb_cols <- obtener_tip_ocurren_geo(data_agrupada$nombre_evento[1])
   nombre_evento <- data_agrupada$nombre_evento[1]
   if (is.null(year)) {
     year <- as.numeric(obtener_year(data_agrupada))
   }
+  pop_incidencia <-
+    obtener_pob_incidencia(data_incidencia = data_incidencia,
+                           poblacion = poblacion,
+                           event = nombre_evento,
+                           year = year)
+  data_incidencia <- pop_incidencia$data_incidencia
+  poblacion <- pop_incidencia$poblacion
+  nomb_cols <- obtener_tip_ocurren_geo(nombre_evento)
   if (nomb_cols[1] %in% colnames(data_agrupada) &&
       !(nomb_cols[3] %in% colnames(data_agrupada))) {
     incidencia_dptos <- NULL
