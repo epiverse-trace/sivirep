@@ -1149,7 +1149,18 @@ calcular_incidencia_sex <- function(data_incidencia = NULL,
   if (is.null(data_incidencia)) {
     data_incidencia <-
       import_pob_incidencia(poblacion = "proyecciones")
+    warning("Las incidencias para ", stringr::str_to_title(nombre_evento),
+            " se calcularon con las proyecciones poblacionales DANE. ",
+            "Si usted cuenta con la poblacion a riesgo ",
+            "definida por el Ministerio de Salud para el anio ", year,
+            " puede hacer uso de ella, asignandola en el argumento ",
+            "data_incidencia de la funcion")
   } else {
+    stopifnot("El parametro data_incidencia debe ser un data.frame" =
+                is.data.frame(data_incidencia),
+              "El parametro data_incidencia no debe estar vacio" =
+                nrow(data_incidencia) > 0)
+  }
   if (!is.null(dpto)) {
     dept_data <- obtener_info_depts(dpto, mpio)
     stopifnot("El departamento o municipio ingresado no existe"
