@@ -1125,17 +1125,11 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
 #'                         year = 2020)
 #' }
 #' @export
-calcular_incidencia_sex <- function(data_incidencia,
+calcular_incidencia_sex <- function(data_incidencia = NULL,
                                     data_agrupada,
                                     year = NULL, dpto = NULL,
                                     mpio = NULL) {
-  stopifnot("El parametro data_incidencia es obligatorio" =
-              !missing(data_incidencia),
-            "El parametro data_incidencia debe ser un data.frame" =
-              is.data.frame(data_incidencia),
-            "El parametro data_incidencia no debe estar vacio" =
-              nrow(data_incidencia) > 0,
-            "El parametro data_agrupada es obligatorio" =
+  stopifnot("El parametro data_agrupada es obligatorio" =
               !missing(data_agrupada),
             "El parametro data_agrupada debe ser un data.frame" =
               is.data.frame(data_agrupada),
@@ -1152,6 +1146,10 @@ calcular_incidencia_sex <- function(data_incidencia,
   if (is.null(year)) {
     year <- as.numeric(obtener_year(data_agrupada))
   }
+  if (is.null(data_incidencia)) {
+    data_incidencia <-
+      import_pob_incidencia(poblacion = "proyecciones")
+  } else {
   if (!is.null(dpto)) {
     dept_data <- obtener_info_depts(dpto, mpio)
     stopifnot("El departamento o municipio ingresado no existe"
