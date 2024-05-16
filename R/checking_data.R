@@ -1005,13 +1005,19 @@ calcular_incidencia <- function(data_incidencia = NULL, data_agrupada,
 }
 
 #' Calcular incidencia
+#' Calcular incidencia según distribución geográfica
 #'
 #' Función que calcula la incidencia de una enfermedad o evento para todos los
 #' departamentos de Colombia o los municipios de un departamento
 #' @param data_incidencia Un `data.frame` que contiene la proyecciones
-#' poblaciones del DANE
+#' poblaciones del DANE; su valor por defecto es `NULL`
 #' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
 #' agrupados por departamento o municipio y número de casos
+#' @param poblacion Un `character` (cadena de caracteres) con el tipo de
+#' población para efectuar el calculo de la incidencia. Indica si se
+#' desea utilizar la población a riesgo del evento `"riesgo"` o las
+#' proyecciones poblacionales DANE `"proyecciones"`; su valor por defecto
+#' es `"riesgo"`
 #' @param year Un `numeric` (numerico) con el año que se debe tomar de las
 #' proyecciones poblacionales
 #' @return Un `data.frame` con el calculo de la incidencia para todos los
@@ -1022,11 +1028,11 @@ calcular_incidencia <- function(data_incidencia = NULL, data_agrupada,
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 #' proyecciones <- import_data_incidencia()
 #' data_agrupada_mpios <- agrupar_mpio(data_limpia, dpto = "Antioquia")
-#' calcular_incidencia_geo(data_incidencia = proyecciones,
+#' calcular_incidencia_geo(poblacion = "riesgo",
 #'                         data_agrupada = data_agrupada_mpios,
 #'                         year = 2020)
 #' data_agrupada_dptos <- agrupar_dpto(data_limpia)
-#' calcular_incidencia_geo(data_incidencia = proyecciones,
+#' calcular_incidencia_geo(poblacion = "proyecciones",
 #'                         data_agrupada = data_agrupada_dptos,
 #'                         year = 2020)
 #' }
