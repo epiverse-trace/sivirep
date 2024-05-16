@@ -1172,7 +1172,6 @@ calcular_incidencia_sex <- function(data_incidencia = NULL,
     }
   }
   cod_eve <- data_agrupada$cod_eve[1]
-  nombre_evento <- data_agrupada$nombre_evento[1]
   data_agrupada <- data_agrupada %>%
     group_by_at("sexo") %>%
     dplyr::summarise(casos = sum(.data[["casos"]]), .groups = "drop")
@@ -1185,6 +1184,7 @@ calcular_incidencia_sex <- function(data_incidencia = NULL,
     sex_fila <- data_agrupada[fila, ]
     incidencia_sex <- calcular_incidencia(data_incidencia = data_incidencia,
                                           data_agrupada = sex_fila,
+                                          poblacion = "proyecciones",
                                           dpto = dpto,
                                           mpio = mpio,
                                           sex = sex_fila[["sexo"]],
