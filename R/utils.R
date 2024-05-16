@@ -608,24 +608,22 @@ obtener_pob_incidencia <- function(data_incidencia = NULL,
                                              year = year)
     if (poblacion == "riesgo") {
       if (!is.null(data_incidencia)) {
-        message("Las incidencias para ", stringr::str_to_title(event),
-                " se calcularan con la poblacion a riesgo definida por el",
-                " Ministerio de Salud para el ", year)
+        message("Las incidencias se calcularan con la poblacion a ",
+                "riesgo definida por el Ministerio de Salud para ",
+                "el ", year)
       } else {
         poblacion <- "proyecciones"
         data_incidencia <- import_pob_incidencia(poblacion = poblacion)
-        warning("Las incidencias para ", stringr::str_to_title(event),
-                " se calcularan con las proyecciones poblacionales DANE. ",
-                "Si usted cuenta con la poblacion a riesgo ",
-                "definida por el Ministerio de Salud para el ", year,
-                " puede hacer uso de ella, asignandola en el argumento ",
-                "data_incidencia de la funcion")
+        warning("Las incidencias se calcularan con las proyecciones ",
+                "poblacionales DANE. Si usted cuenta con la ",
+                "poblacion a riesgo definida por el Ministerio de ",
+                "Salud para el ", year, " puede hacer uso de ella, ",
+                "asignandola en el argumento data_incidencia de la funcion")
       }
     } else {
-      message("Las incidencias que va a generar para ",
-              stringr::str_to_title(event),
-              " deberian idealmente estar calculadas por poblacion a riesgo.",
-              " Para esto, puede usar el argumento poblacion = 'riesgo'")
+      message("Las incidencias que va a generar idealmente deberian estar ",
+              "calculadas por poblacion a riesgo. Para esto, puede usar ",
+              "el argumento poblacion = 'riesgo'")
     }
   } else {
     stopifnot("El parametro data_incidencia debe ser un data.frame" =
