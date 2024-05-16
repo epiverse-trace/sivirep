@@ -1004,7 +1004,6 @@ calcular_incidencia <- function(data_incidencia = NULL, data_agrupada,
   return(incidencia)
 }
 
-#' Calcular incidencia
 #' Calcular incidencia según distribución geográfica
 #'
 #' Función que calcula la incidencia de una enfermedad o evento para todos los
@@ -1023,10 +1022,9 @@ calcular_incidencia <- function(data_incidencia = NULL, data_agrupada,
 #' @return Un `data.frame` con el calculo de la incidencia para todos los
 #' departamentos de Colombia o los municipios de un departamento
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
-#' proyecciones <- import_data_incidencia()
 #' data_agrupada_mpios <- agrupar_mpio(data_limpia, dpto = "Antioquia")
 #' calcular_incidencia_geo(poblacion = "riesgo",
 #'                         data_agrupada = data_agrupada_mpios,
