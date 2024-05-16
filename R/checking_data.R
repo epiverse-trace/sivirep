@@ -1108,7 +1108,7 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
 #' @return Un `data.frame` con el calculo de la incidencia para todos los
 #' departamentos de Colombia o los municipios de un departamento
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 #' data_filtrada <-  geo_filtro(data_event = data_limpia,
