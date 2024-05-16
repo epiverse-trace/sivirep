@@ -5,22 +5,22 @@
 \title{Calcular incidencia por sexo}
 \usage{
 calcular_incidencia_sex(
-  data_incidencia,
+  data_incidencia = NULL,
   data_agrupada,
-  year,
+  year = NULL,
   dpto = NULL,
   mpio = NULL
 )
 }
 \arguments{
 \item{data_incidencia}{Un `data.frame` que contiene la proyecciones
-poblaciones del DANE}
+poblaciones del DANE; su valor por defecto es `NULL`}
 
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la enfermedad
 agrupados por departamento o municipio y número de casos}
 
 \item{year}{Un `numeric` (numerico) con el año que se debe tomar de las
-proyecciones poblacionales}
+proyecciones poblacionales; valor por defecto es `NULL`}
 
 \item{dpto}{Un `character` (cadena de caracteres) o `numeric` (numérico)
 que contiene el código o nombre del departamento; su valor por
@@ -38,19 +38,20 @@ Función que calcula la incidencia de una enfermedad o evento para todos los
 departamentos de Colombia o los municipios de un departamento por sexo
 }
 \examples{
-\dontrun{
+\donttest{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
-proyecciones <- import_data_incidencia()
-data_agrupada <- agrupar_sex(data_limpia)
-calcular_incidencia_sex(data_incidencia = proyecciones,
-                        data_agrupada = data_agrupada,
+data_filtrada <-  geo_filtro(data_event = data_limpia,
+                             dpto = "05")
+data_agrupada <- agrupar_sex(data_filtrada)
+calcular_incidencia_sex(data_agrupada = data_agrupada,
                         dpto = "05",
                         year = 2020)
-calcular_incidencia_sex(data_incidencia = proyecciones,
-                        data_agrupada = data_agrupada,
+data_filtrada <-  geo_filtro(data_event = data_limpia,
+                             dpto = "05",
+                             mpio = "Medellin")
+calcular_incidencia_sex(data_agrupada = data_agrupada,
                         dpto = "05",
-                        mpio = "Medellin",
-                        year = 2020)
+                        mpio = "Medellin")
 }
 }

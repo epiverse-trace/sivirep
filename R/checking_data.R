@@ -1090,17 +1090,16 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
   return(data_geo_incidencia)
 }
 
-
 #' Calcular incidencia por sexo
 #'
 #' Función que calcula la incidencia de una enfermedad o evento para todos los
 #' departamentos de Colombia o los municipios de un departamento por sexo
 #' @param data_incidencia Un `data.frame` que contiene la proyecciones
-#' poblaciones del DANE
+#' poblaciones del DANE; su valor por defecto es `NULL`
 #' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
 #' agrupados por departamento o municipio y número de casos
 #' @param year Un `numeric` (numerico) con el año que se debe tomar de las
-#' proyecciones poblacionales
+#' proyecciones poblacionales; valor por defecto es `NULL`
 #' @param dpto Un `character` (cadena de caracteres) o `numeric` (numérico)
 #' que contiene el código o nombre del departamento; su valor por
 #' defecto es `NULL`
@@ -1112,17 +1111,18 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
 #' \dontrun{
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
-#' proyecciones <- import_data_incidencia()
-#' data_agrupada <- agrupar_sex(data_limpia)
-#' calcular_incidencia_sex(data_incidencia = proyecciones,
-#'                         data_agrupada = data_agrupada,
+#' data_filtrada <-  geo_filtro(data_event = data_limpia,
+#'                              dpto = "05")
+#' data_agrupada <- agrupar_sex(data_filtrada)
+#' calcular_incidencia_sex(data_agrupada = data_agrupada,
 #'                         dpto = "05",
 #'                         year = 2020)
-#' calcular_incidencia_sex(data_incidencia = proyecciones,
-#'                         data_agrupada = data_agrupada,
+#' data_filtrada <-  geo_filtro(data_event = data_limpia,
+#'                              dpto = "05",
+#'                              mpio = "Medellin")
+#' calcular_incidencia_sex(data_agrupada = data_agrupada,
 #'                         dpto = "05",
-#'                         mpio = "Medellin",
-#'                         year = 2020)
+#'                         mpio = "Medellin")
 #' }
 #' @export
 calcular_incidencia_sex <- function(data_incidencia = NULL,
