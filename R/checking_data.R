@@ -1127,7 +1127,7 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
 #' @export
 calcular_incidencia_sex <- function(data_incidencia,
                                     data_agrupada,
-                                    year, dpto = NULL,
+                                    year = NULL, dpto = NULL,
                                     mpio = NULL) {
   stopifnot("El parametro data_incidencia es obligatorio" =
               !missing(data_incidencia),
@@ -1144,11 +1144,14 @@ calcular_incidencia_sex <- function(data_incidencia,
             "El parametro dpto debe ser una cadena de caracteres
             o numerico" =
               (is.numeric(dpto) && !is.character(dpto)) ||
-              (!is.numeric(dpto) && is.character(dpto)),
-            "El parametro year es obligatorio" = !missing(year))
+              (!is.numeric(dpto) && is.character(dpto)))
   data_incidencia_sex <- NULL
   incidencia <- NULL
   dept_data <- NULL
+  nombre_evento <- data_agrupada$nombre_evento[1]
+  if (is.null(year)) {
+    year <- as.numeric(obtener_year(data_agrupada))
+  }
   if (!is.null(dpto)) {
     dept_data <- obtener_info_depts(dpto, mpio)
     stopifnot("El departamento o municipio ingresado no existe"
