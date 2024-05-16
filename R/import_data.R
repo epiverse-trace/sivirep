@@ -341,7 +341,8 @@ import_pob_riesgo <- function(event, year) {
   event_min <- tolower(event)
   for (pop_riesgo in rutas_pop_riesgo) {
     if (stringr::str_detect(event_min, pop_riesgo$event) ||
-        stringr::str_detect(event_min, pop_riesgo$cod_eve)) {
+        stringr::str_detect(as.character(event_min),
+                            as.character(pop_riesgo$cod_eve))) {
       years_disponibles <- pop_riesgo$years
       if (year %in% pop_riesgo$years) {
         pop_event <- pop_riesgo
