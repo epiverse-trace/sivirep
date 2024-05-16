@@ -356,8 +356,9 @@ import_pob_riesgo <- function(event, year) {
       pob_riesgo_event <- eval(parse(text = pop_event$file_name))
   } else if (!is.null(years_disponibles)) {
     warning("Para el ", year, " la poblacion a riesgo no esta disponible.",
-    " Los ", etiqueta_year, " disponibles para ", stringr::str_to_title(event), " son: ",
-    toString(years_disponibles, collapse = ", "))
+            " Los ", etiqueta_year, " disponibles para ",
+            stringr::str_to_title(event), " son: ",
+            toString(years_disponibles, collapse = ", "))
   } else {
     warning("Para ", event, " no hay poblacion a riesgo disponible de ",
             "ningun year")
