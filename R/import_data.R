@@ -211,7 +211,8 @@ import_sep_data <- function(path_data = NULL, cache = TRUE) {
 
 #' Obtener el nombre del archivo desde una URL
 #'
-#' Función que obtiene el nombre del archivo a descargar desde una URL o ruta
+#' Función que importa el nombre del archivo a descargar desde una URL
+#' o ruta
 #' @param ruta Un `character` (cadena de caracteres) con la ruta o URL
 #' de descarga
 #' @return Un `character` (cadena de caracteres) con el nombre del
