@@ -15,6 +15,7 @@ Un `character` (cadena de caracteres) con el nombre del
 archivo a descargar
 }
 \description{
-Función que obtiene el nombre del archivo a descargar desde una URL o ruta
+Función que importa el nombre del archivo a descargar desde una URL
+o ruta
 }
 \keyword{internal}
