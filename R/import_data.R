@@ -348,12 +348,12 @@ import_pob_riesgo <- function(event, year) {
       load(pop_event$path)
       pob_riesgo_event <- eval(parse(text = pop_event$file_name))
   } else if (!is.null(years_disponibles)) {
-    warning("Para el año ", year, " la población a riesgo no está disponible.",
-    " Los años disponibles para ", stringr::str_to_title(event), " son: ",
+    warning("Para el year ", year, " la poblacion a riesgo no esta disponible.",
+    " Los years disponibles para ", stringr::str_to_title(event), " son: ",
     toString(years_disponibles, collapse = ", "))
   } else {
-    warning("Para ", event, " no hay población a riesgo disponible de ",
-            "ningún año")
+    warning("Para ", event, " no hay poblacion a riesgo disponible de ",
+            "ningun year")
   }
   return(pob_riesgo_event)
 }
