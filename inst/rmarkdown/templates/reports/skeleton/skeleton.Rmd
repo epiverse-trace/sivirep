@@ -2,7 +2,7 @@
 output:
   pdf_document: 
     number_sections: true
-  html_document2:
+  bookdown::html_document2:
     number_sections: true
     fig_caption: true
     css: style.css
