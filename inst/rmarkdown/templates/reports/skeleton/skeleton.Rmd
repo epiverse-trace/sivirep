@@ -117,6 +117,12 @@ fuente <- "Fuente SIVIGILA, Datos libres"
   \begin{flushright}
      \Huge{\textbf{`r toupper(params$nombre_evento)` \\ }}
   \end{flushright}
+\end{textblock*}
+```
+
+```{=tex}
+\begin{textblock*}{5cm}(15cm,24cm) % {block width} (coords)
+  \begin{flushright}
      \Huge{\textbf{`r params$year`}}
   \end{flushright}
 \end{textblock*}
