@@ -520,6 +520,7 @@ obtener_cond_inciden_event <- function(cod_eve) {
   archivo_condiciones <-  system.file(ruta_base, package = "sivirep")
   incidencia_events <- readxl::read_excel(archivo_condiciones,
                                           col_types = c("numeric", "text",
+                                                        "text", "text",
                                                         "text", "text"))
   vals_event <- incidencia_events[incidencia_events$cod_eve ==
                                     as.numeric(cod_eve), ]
