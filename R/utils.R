@@ -664,3 +664,78 @@ obtener_year <- function(data_event) {
   }
   return(year)
 }
+
+#' Obtener el parráfo de la distribución de casos por sexo
+#'
+#' Función que obtiene el parráfo descriptivo de la sección de
+#' distribución de casos por sexo de la plantilla del reporte
+#' @param data_agrupada Un `data.frame` que contiene los datos
+#' de la enfermedad o evento agrupados por sexo
+#' @param year Un `numeric` (numerico) con el año de los datos
+#' agrupados por sexo
+#' @param figura Un `numeric` (numerico) con el número de la
+#' figura de la distribución de casos por sexo
+#' @keywords internal
+obtener_text_sex <- function(data_agrupada,
+                             year, figura) {
+  nombre_evento <- tolower(data_agrupada$nombre_evento[1])
+  femenino <- 0
+  masculino <- 0
+  tam <- seq_len(nrow(data_agrupada))
+  text_sex <- NULL
+  if (stringr::str_detect(nombre_evento,
+                          stringr::fixed("malaria"))) {
+    for (fila in tam) {
+      sex_fila <- data_agrupada[fila, ]
+      indices_femenino <- which(data_agrupada$sexo == "F" &
+                                  data_agrupada$nombre_evento ==
+                                  sex_fila$nombre_evento)
+      porcentaje_femenino <-
+        data_agrupada[indices_femenino, ]$porcentaje
+      indices_masculino <- which(data_agrupada$sexo == "M" &
+                                  data_agrupada$nombre_evento ==
+                                  sex_fila$nombre_evento)
+      porcentaje_masculino <-
+        data_agrupada[indices_masculino, ]$porcentaje
+      data_agrupada <- data_agrupada[-c(indices_femenino,
+                                indices_masculino), ]
+      tam <- seq_len(nrow(data_agrupada))
+      fila <- 1
+      if (isTRUE(porcentaje_femenino < porcentaje_masculino)) {
+        masculino <- masculino + 1
+      } else {
+        femenino <- femenino + 1
+      }
+    }
+    sexo_mayor <- "femenino"
+    sexo_menor <- "masculino"
+    if (isTRUE(femenino < masculino)) {
+      sexo_mayor <- "masculino"
+      sexo_menor <- "femenino"
+    }
+    text_sex <- paste0("En el total de casos para ", year,
+                       " se observa una predominancia del sexo ",
+                       sexo_mayor, " respecto al sexo ", sexo_menor,
+                       " (Ver Figura", figura, ").")
+  } else {
+    porcentaje_femenino <-
+      data_agrupada[which(data_agrupada$sexo == "F" &
+                        data_agrupada$nombre_evento ==
+                        toupper(nombre_evento)), ]$porcentaje
+    porcentaje_masculino <-
+      data_agrupada[which(data_agrupada$sexo == "M" &
+                        data_agrupada$nombre_evento ==
+                        toupper(nombre_evento)), ]$porcentaje
+    sexo_mayor <- c("femenino", porcentaje_femenino)
+    sexo_menor <- c("masculino", porcentaje_masculino)
+    if (isTRUE(porcentaje_femenino < porcentaje_masculino)) {
+      sexo_mayor <- c("masculino", porcentaje_masculino)
+      sexo_menor <- c("femenino", porcentaje_femenino)
+    }
+    text_sex <- paste0("En el total de casos para ", year,
+                       " se observa una predominancia del sexo ",
+                       sexo_mayor, " respecto al sexo ", sexo_menor,
+                       " (Ver Figura", figura, ").")
+  }
+  return(text_sex)
+}
