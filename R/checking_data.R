@@ -917,8 +917,16 @@ calcular_incidencia <- function(data_incidencia = NULL, data_agrupada,
             "El parametro data_agrupada no debe estar vacio" =
               nrow(data_agrupada) > 0)
   nombre_evento <- data_agrupada$nombre_evento[1]
+  vals_event <- obtener_cond_inciden_event(cod_eve = data_agrupada$cod_eve[1])
+  coeficiente <- as.integer(vals_event$coeficiente)
   if (is.null(year)) {
     year <- as.numeric(obtener_year(data_agrupada))
+  }
+  if (is.null(poblacion)) {
+    poblacion <- "proyecciones"
+  }
+  if (nrow(vals_event) == 0) {
+    coeficiente <- 100000L
   }
   pop_incidencia <-
     obtener_pob_incidencia(data_incidencia = data_incidencia,
@@ -982,24 +990,14 @@ calcular_incidencia <- function(data_incidencia = NULL, data_agrupada,
     } else {
       total_poblacion <- sum(poblacion_incidencia$hombres)
     }
-  } else {
-    if (poblacion == "proyecciones") {
+  } else if (poblacion == "proyecciones") {
       total_poblacion <- sum(poblacion_incidencia$total)
-    }
   }
   total_casos <- sum(data_agrupada$casos)
-  vals_event <- obtener_cond_inciden_event(cod_eve = data_agrupada$cod_eve[1])
-  vals_event$coeficiente <- as.integer(vals_event$coeficiente)
   if (total_poblacion > 0) {
-    if (length(vals_event$coeficiente) == 0) {
-      vals_event$coeficiente <- 100000
-    }
-    incidencia <- round((total_casos / total_poblacion) *
-                          vals_event$coeficiente,
+    incidencia <- round((total_casos / total_poblacion)  *
+                          coeficiente,
                         2)
-    if (length(incidencia) == 0) {
-      incidencia <- 0.00
-    }
   }
   return(incidencia)
 }
@@ -1049,6 +1047,14 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
   nombre_evento <- data_agrupada$nombre_evento[1]
   if (is.null(year)) {
     year <- as.numeric(obtener_year(data_agrupada))
+  }
+  if (is.null(poblacion)) {
+    vals_event <-
+      obtener_cond_inciden_event(cod_eve = data_agrupada$cod_eve[1])
+    poblacion <- vals_event$denominador
+    if (length(poblacion) == 0) {
+      poblacion <- "proyecciones"
+    }
   }
   pop_incidencia <-
     obtener_pob_incidencia(data_incidencia = data_incidencia,
