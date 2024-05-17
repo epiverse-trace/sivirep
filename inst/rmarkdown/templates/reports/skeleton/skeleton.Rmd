@@ -160,7 +160,7 @@ fuente <- "Fuente SIVIGILA, Datos libres"
 data_event <- import_data_event(nombre_event = params$nombre_evento,
                                 years = params$year)
 mostrar_sex <- stringr::str_detect(tolower(params$nombre_evento),
-                                   "materna")
+                                   stringr::fixed("materna"))
 sexo_mayor <- "femenino"
 ```
 
