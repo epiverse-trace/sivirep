@@ -874,7 +874,7 @@ agrupar_per_etn <- function(data_event, cols_etn = "per_etn",
 #' población para efectuar el calculo de la incidencia. Indica si se
 #' va a utilizar la población a riesgo del evento `"riesgo"` o las
 #' proyecciones poblacionales DANE `"proyecciones"`; su valor por defecto
-#' es `"riesgo"`
+#' es `NULL`
 #' @param year Un `numeric` (numerico) con el año que se debe tomar de las
 #' proyecciones poblacionales; su valor por defecto es `NULL`
 #' @param dpto Un `character` (cadena de caracteres) o `numeric` (numérico)
@@ -907,7 +907,7 @@ agrupar_per_etn <- function(data_event, cols_etn = "per_etn",
 #' }
 #' @export
 calcular_incidencia <- function(data_incidencia = NULL, data_agrupada,
-                                poblacion = "riesgo", year = NULL,
+                                poblacion = NULL, year = NULL,
                                 dpto = NULL, mpio = NULL,
                                 sex = NULL) {
   stopifnot("El parametro data_agrupada es obligatorio" =
@@ -1006,7 +1006,7 @@ calcular_incidencia <- function(data_incidencia = NULL, data_agrupada,
 #'
 #' Función que calcula la incidencia de una enfermedad o evento para todos los
 #' departamentos de Colombia o los municipios de un departamento
-#' @param data_incidencia Un `data.frame` que contiene la proyecciones
+#' @param data_incidencia Un `data.frame` que contiene las proyecciones
 #' poblaciones del DANE; su valor por defecto es `NULL`
 #' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
 #' agrupados por departamento o municipio y número de casos
@@ -1014,7 +1014,7 @@ calcular_incidencia <- function(data_incidencia = NULL, data_agrupada,
 #' población para efectuar el calculo de la incidencia. Indica si se
 #' desea utilizar la población a riesgo del evento `"riesgo"` o las
 #' proyecciones poblacionales DANE `"proyecciones"`; su valor por defecto
-#' es `"riesgo"`
+#' es `NULL`
 #' @param year Un `numeric` (numerico) con el año que se debe tomar de las
 #' proyecciones poblacionales
 #' @return Un `data.frame` con el calculo de la incidencia para todos los
@@ -1035,7 +1035,7 @@ calcular_incidencia <- function(data_incidencia = NULL, data_agrupada,
 #' @export
 calcular_incidencia_geo <- function(data_incidencia = NULL,
                                     data_agrupada,
-                                    poblacion = "riesgo",
+                                    poblacion = NULL,
                                     year = NULL) {
   stopifnot("El parametro data_agrupada es obligatorio" =
               !missing(data_agrupada),

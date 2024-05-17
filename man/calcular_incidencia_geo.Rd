@@ -7,12 +7,12 @@
 calcular_incidencia_geo(
   data_incidencia = NULL,
   data_agrupada,
-  poblacion = "riesgo",
+  poblacion = NULL,
   year = NULL
 )
 }
 \arguments{
-\item{data_incidencia}{Un `data.frame` que contiene la proyecciones
+\item{data_incidencia}{Un `data.frame` que contiene las proyecciones
 poblaciones del DANE; su valor por defecto es `NULL`}
 
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la enfermedad
@@ -22,7 +22,7 @@ agrupados por departamento o municipio y número de casos}
 población para efectuar el calculo de la incidencia. Indica si se
 desea utilizar la población a riesgo del evento `"riesgo"` o las
 proyecciones poblacionales DANE `"proyecciones"`; su valor por defecto
-es `"riesgo"`}
+es `NULL`}
 
 \item{year}{Un `numeric` (numerico) con el año que se debe tomar de las
 proyecciones poblacionales}

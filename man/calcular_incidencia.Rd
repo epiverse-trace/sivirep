@@ -7,7 +7,7 @@
 calcular_incidencia(
   data_incidencia = NULL,
   data_agrupada,
-  poblacion = "riesgo",
+  poblacion = NULL,
   year = NULL,
   dpto = NULL,
   mpio = NULL,
@@ -27,7 +27,7 @@ agrupados por departamento o municipio y número de casos}
 población para efectuar el calculo de la incidencia. Indica si se
 va a utilizar la población a riesgo del evento `"riesgo"` o las
 proyecciones poblacionales DANE `"proyecciones"`; su valor por defecto
-es `"riesgo"`}
+es `NULL`}
 
 \item{year}{Un `numeric` (numerico) con el año que se debe tomar de las
 proyecciones poblacionales; su valor por defecto es `NULL`}
