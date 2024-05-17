@@ -197,9 +197,14 @@ data_years_limpia <- limpiar_data_sivigila(data_event_years)
 data_years_filtrada <- geo_filtro(data_event = data_years_limpia,
                                   dpto = params$departmento)
 casos_years <- agrupar_years(data_event = data_years_filtrada)
+altura_fig_years <- 5
+eventos <- unique(casos_years[["cod_eve"]])
+if (length(eventos) > 3) {
+  altura_fig_years <- 4
+}
 ```
 
-```{r plot_cases_by_years, fig.height = 5, fig.width = 11, fig.cap = "Distribución de casos en los últimos 6 años"}
+```{r plot_cases_by_years, fig.height = altura_fig_years, fig.width = 11, fig.cap = "Distribución de casos en los últimos 6 años"}
 plot_years(casos_years)
 ```
 
