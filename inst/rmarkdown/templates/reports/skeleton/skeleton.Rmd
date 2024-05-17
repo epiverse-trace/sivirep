@@ -243,7 +243,7 @@ mes_mayor_casos <- obtener_meses_mas_casos(data_event =
 
 \newpage
 
-```{r plot_cases_by_onset_symptom_date, fig.height = 4, fig.width = 11, fig.cap = "Distribución de casos por fecha de inicio de sintomas", include = params$temporal_distribution, eval = params$temporal_distribution}
+```{r plot_cases_by_onset_symptom_date, fig.height = 5, fig.width = 11, fig.cap = "Distribución de casos por fecha de inicio de sintomas", include = params$temporal_distribution, eval = params$temporal_distribution}
 plot_fecha_inisintomas(data_agrupada = casos_iniciosin_dia,
                        uni_marca = "semanaepi")
 ```
