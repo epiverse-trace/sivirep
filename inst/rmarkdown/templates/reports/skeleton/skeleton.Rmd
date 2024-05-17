@@ -159,6 +159,9 @@ fuente <- "Fuente SIVIGILA, Datos libres"
 ```{r import_data, include = FALSE}
 data_event <- import_data_event(nombre_event = params$nombre_evento,
                                 years = params$year)
+mostrar_sex <- stringr::str_detect(tolower(params$nombre_evento),
+                                   "materna")
+sexo_mayor <- "femenino"
 ```
 
 ```{r clean_data, include = FALSE}
@@ -252,25 +255,12 @@ plot_fecha_inisintomas(data_agrupada = casos_iniciosin_dia,
 
 ```{r distribution_cg, include = FALSE}
 casos_sex <- agrupar_sex(data_event = data_event_filtrada)
-porcentaje_femenino <-
-  casos_sex[which(casos_sex$sexo == "F" &
-                    casos_sex$nombre_evento ==
-                    toupper(params$nombre_evento)), ]$porcentaje
-porcentaje_masculino <-
-  casos_sex[which(casos_sex$sexo == "M" &
-                    casos_sex$nombre_evento ==
-                    toupper(params$nombre_evento)), ]$porcentaje
-sexo_mayor <- c("femenino", porcentaje_femenino)
-sexo_menor <- c("masculino", porcentaje_masculino)
-if (isTRUE(porcentaje_femenino < porcentaje_masculino)) {
-  sexo_mayor <- c("masculino", porcentaje_masculino)
-  sexo_menor <- c("femenino", porcentaje_femenino)
-}
+
 ```
 
-`r if (params$epi_sex_distribution) {paste0("En el total de casos para ",  params$year, " se observa una predominancia del sexo ", sexo_mayor[1],  " (", sexo_mayor[2], ")% respecto al sexo ", sexo_menor[1], " (", sexo_menor[2], ")% (Ver Figura 3).")}`
+`r if (params$epi_sex_distribution && !mostrar_sex) {obtener_text_sex(casos_sex, params$year,  3)}`
 
-```{r distribution_cg_plots, fig.height = 5, fig.width = 8, fig.cap = "Distribución de casos por sexo", include = params$epi_sex_distribution}
+```{r distribution_cg_plots, fig.height = 4.8, fig.width = 8.4, fig.cap = "Distribución de casos por sexo", include = params$epi_sex_distribution}
 plot_sex(data_agrupada = casos_sex)
 ```
 
@@ -301,9 +291,9 @@ plot_edad(data_agrupada = casos_edad)
 
 \newpage
 
-`r if(params$age_sex_distribution) {"# Distribución de casos por edad y sexo"}`
+`r if(params$age_sex_distribution && !mostrar_sex) {"# Distribución de casos por edad y sexo"}`
 
-```{r distribution_age_anger, fig.height = 3, fig.width = 9, fig.cap =  "Distribución de casos por edad y sexo", include = params$age_sex_distribution}
+```{r distribution_age_anger, fig.height = 3, fig.width = 9, fig.cap =  "Distribución de casos por edad y sexo", include = params$age_sex_distribution && !mostrar_sex}
 casos_edad_sex <- agrupar_edad_sex(data_event = data_event_filtrada,
                                    interval_edad = 10)
 plot_edad_sex(data_agrupada = casos_edad_sex)
