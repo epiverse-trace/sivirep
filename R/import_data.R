@@ -333,7 +333,7 @@ import_pob_riesgo <- function(event, year) {
                                                 "config.yml",
                                                 package = "sivirep"),
                                "label_year")
-  etiqueta_year <- paste0(toupper(etiqueta_year), "s")
+  etiqueta_year <- paste0(tolower(etiqueta_year), "s")
   ruta_extdata <- system.file("extdata", package = "sivirep")
   pop_event <- NULL
   years_disponibles <- NULL
