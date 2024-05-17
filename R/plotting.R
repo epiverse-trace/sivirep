@@ -1341,12 +1341,28 @@ plot_tabla_incidencia_sex <- function(data_agrupada,
                                              "config.yml",
                                              package = "sivirep"),
                                "caption_sex_incidence")
+  event_especiales <- config::get(file =
+                                  system.file("extdata",
+                                              "config.yml",
+                                              package = "sivirep"),
+                                  "special_events")
+  nombre_event <- tolower(data_agrupada$nombre_evento[1])
   data_agrupada[[col_sex]] <-
     stringr::str_to_title(data_agrupada[[col_sex]])
   data_agrupada[["nombre_evento"]] <-
     stringr::str_to_title(data_agrupada[["nombre_evento"]])
   data_agrupada <- data_agrupada[order(data_agrupada$incidencia,
                                  decreasing = TRUE), ]
+  for (evento in event_especiales) {
+    if (stringr::str_detect(nombre_event, evento$event)) {
+      col_nomb <- rep(stringr::str_to_title(evento$event),
+                      nrow(data_agrupada))
+      col_cod <- rep(evento$cod_eve, nrow(data_agrupada))
+      data_agrupada[["nombre_evento"]] <- col_nomb
+      data_agrupada[["cod_eve"]] <- col_cod
+      break
+    }
+  }
   data_tabla <- data.frame(cod_eve = data_agrupada$cod_eve,
                            nombre_evento = data_agrupada$nombre_evento,
                            sexo = data_agrupada$sexo,
