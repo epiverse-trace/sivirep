@@ -524,6 +524,13 @@ obtener_cond_inciden_event <- function(cod_eve) {
                                                         "text", "text"))
   vals_event <- incidencia_events[incidencia_events$cod_eve ==
                                     as.numeric(cod_eve), ]
+  if (nrow(vals_event) == 0) {
+    aux_event <-
+      data.frame(cod_eve, "casos", "NA", "proyecciones", "NA", "10000",
+                 stringsAsFactors = FALSE)
+    names(aux_event) <- names(vals_event)
+    return(aux_event)
+  }
   return(vals_event)
 }
 
