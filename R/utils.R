@@ -512,18 +512,15 @@ obtener_cond_inciden_event <- function(cod_eve) {
             un numerico" =
               (is.numeric(cod_eve) && !is.character(cod_eve)) ||
               (!is.numeric(cod_eve) && is.character(cod_eve)))
-  ruta_base <- config::get(file =
-                             system.file("extdata",
-                                         "config.yml",
-                                         package = "sivirep"),
-                           "incidence_events_path")
-  archivo_condiciones <-  system.file(ruta_base, package = "sivirep")
-  incidencia_events <- readxl::read_excel(archivo_condiciones,
-                                          col_types = c("numeric", "text",
-                                                        "text", "text",
-                                                        "text", "text"))
-  vals_event <- incidencia_events[incidencia_events$cod_eve ==
-                                    as.numeric(cod_eve), ]
+  incidencia_eventos <- NULL
+  condiciones <- NULL
+  ruta_extdata <- system.file("extdata", package = "sivirep")
+  archivo_config <- system.file("extdata", "config.yml", package = "sivirep")
+  ruta_data <- config::get(file = archivo_config,
+                           "incidence_events_file_name")
+  load(file.path(ruta_extdata, ruta_data))
+  condiciones <- incidencia_eventos
+  vals_event <- condiciones[condiciones$cod_eve == as.numeric(cod_eve), ]
   if (nrow(vals_event) == 0) {
     aux_event <-
       data.frame(cod_eve, "casos", "NA", "proyecciones", "NA", "10000",
