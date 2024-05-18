@@ -21,82 +21,54 @@
 <meta property="og:description" content="sivirep">
 <meta property="og:image" content="https://epiverse-trace.github.io/sivirep/logo.svg">
 <meta name="robots" content="noindex">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]--><!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-XZ471458FQ"></script><script>
+<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-XZ471458FQ"></script><script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-XZ471458FQ');
 </script>
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Ir al contenido</a>
-    
-
     <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark" data-bs-theme="dark"><div class="container">
-    
     <a href="https://epiverse-trace.github.io/" class="external-link"><img src="../logo_white.svg" id="logo" alt="Epiverse-TRACE"></a>
     <a class="navbar-brand me-2" href="../index.html">sivirep</a>
-
     <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Versión en desarrollo">0.0.2.0</small>
-
-    
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Cambiar la navegación">
       <span class="navbar-toggler-icon"></span>
     </button>
-
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item">
-  <a class="nav-link" href="../articles/sivirep.html">Primeros pasos</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="../reference/index.html">Índice</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="../articles/sivirep.html">Primeros pasos</a></li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Índice</a></li>
 <li class="active nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-art-culos">Artículos</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-art-culos">
-    <a class="dropdown-item" href="../articles/automated_report.html">Reportes automatizados</a>
-    <a class="dropdown-item" href="../articles/custom_analysis.html">Análisis o reportes personalizados</a>
-    <a class="dropdown-item" href="../articles/getting_started.html">Inicio rápido</a>
-  </div>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-art-culos" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Artículos</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-art-culos">
+<li><a class="dropdown-item" href="../articles/automated_report.html">Reportes automatizados</a></li>
+    <li><a class="dropdown-item" href="../articles/custom_analysis.html">Análisis o reportes personalizados</a></li>
+    <li><a class="dropdown-item" href="../articles/getting_started.html">Inicio rápido</a></li>
+  </ul>
 </li>
       </ul>
 <ul class="navbar-nav">
-<li><form class="form-inline" role="search">
-<input type="search" class="form-control" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Buscar" data-search-index="search.json">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Buscar" data-search-index="../search.json">
 </form></li>
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/epiverse-trace/sivirep/" aria-label="github">
-    <span class="fab fa fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/epiverse-trace/sivirep/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
-
-    
   </div>
 </nav><div class="container template-article">
-
 
 
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.svg" class="logo" alt=""><h1>Inicio rápido</h1>
-            
-      
-      <small class="dont-index">Código: <a href="https://github.com/epiverse-trace/sivirep/blob/HEAD/vignettes/getting_started.Rmd" class="external-link"><code>vignettes/getting_started.Rmd</code></a></small>
+                        <small class="dont-index">Código: <a href="https://github.com/epiverse-trace/sivirep/blob/HEAD/vignettes/getting_started.Rmd" class="external-link"><code>vignettes/getting_started.Rmd</code></a></small>
       <div class="d-none name"><code>getting_started.Rmd</code></div>
     </div>
-
-    
-    
-<p>Puedes iniciar instalando la versión de desarrollo de
+        <p>Puedes iniciar instalando la versión de desarrollo de
 <code>sivirep</code> desde GitHub con los siguientes comandos:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"pak"</span><span class="op">)</span></span>
@@ -374,81 +346,81 @@ Rabia</td>
 </tr>
 <tr class="odd">
 <td align="left">41</td>
-<td align="left">Meningitis Bacteriana Y Enfermedad Meningocócica</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2014,
-2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
+<td align="left">Meningitis Meningocócica</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015,
+2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="even">
 <td align="left">42</td>
-<td align="left">Meningitis Meningocócica</td>
+<td align="left">Meningitis Por Haemophilus Influenzae</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015,
 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="odd">
 <td align="left">43</td>
-<td align="left">Meningitis Por Haemophilus Influenzae</td>
+<td align="left">Meningitis Por Neumococo</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015,
 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="even">
 <td align="left">44</td>
-<td align="left">Meningitis Por Neumococo</td>
+<td align="left">Meningitis Tuberculosa</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015,
 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="odd">
 <td align="left">45</td>
-<td align="left">Meningitis Tuberculosa</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015,
-2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
-</tr>
-<tr class="even">
-<td align="left">46</td>
 <td align="left">Morbilidad Por Eda</td>
 <td align="left">2013, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
 2022</td>
 </tr>
-<tr class="odd">
-<td align="left">47</td>
+<tr class="even">
+<td align="left">46</td>
 <td align="left">Morbilidad Por Ira</td>
 <td align="left">2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020,
 2021, 2022</td>
 </tr>
+<tr class="odd">
+<td align="left">47</td>
+<td align="left">Mortalidad Materna</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015,
+2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
+</tr>
 <tr class="even">
 <td align="left">48</td>
-<td align="left">Mortalidad Materna</td>
+<td align="left">Mortalidad Perinatal Y Neonatal Tardía</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015,
 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="odd">
 <td align="left">49</td>
-<td align="left">Mortalidad Perinatal Y Neonatal Tardía</td>
+<td align="left">Mortalidad Por Dengue</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015,
 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="even">
 <td align="left">50</td>
-<td align="left">Mortalidad Por Dengue</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015,
-2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
-</tr>
-<tr class="odd">
-<td align="left">51</td>
 <td align="left">Mortalidad Por Desnutrición</td>
 <td align="left">2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021,
 2022</td>
 </tr>
+<tr class="odd">
+<td align="left">51</td>
+<td align="left">Mortalidad Por Eda 0-4 Años</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015,
+2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
+</tr>
 <tr class="even">
 <td align="left">52</td>
-<td align="left">Mortalidad Por Eda 0-4 Años</td>
+<td align="left">Mortalidad Por Ira</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015,
 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="odd">
 <td align="left">53</td>
-<td align="left">Mortalidad Por Ira</td>
-<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015,
-2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
+<td align="left">Mortalidad Por Malaria</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2014,
+2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="even">
 <td align="left">54</td>
@@ -550,26 +522,16 @@ Markdown Cookbook</a>:</p>
 Markdown, por favor consulta <a href="https://rstudio.github.io/rstudio-extensions/rmarkdown_templates.html" class="external-link">R
 Markdown templates</a>.</p>
 </div>
-  </main><aside class="col-md-3"><nav id="toc"><h2>En esta página</h2>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Índice de contenidos"><h2>En esta página</h2>
     </nav></aside>
 </div>
-
-
-
     <footer><div class="pkgdown-footer-left">
-  <p>Desarrollado por Geraldine Gómez Millán, Zulma M. Cucunubá.</p>
+  <p>Desarrollado por Geraldine Gómez-Millán, Zulma M. Cucunubá, Jennifer A. Mendez-Romero, Claudia Huguett-Aragón.</p>
 </div>
-
 <div class="pkgdown-footer-right">
   <p>Sitio creado con <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.9000.</p>
 </div>
-
     </footer>
 </div>
-
-  
-
-  
-
   </body>
 </html>

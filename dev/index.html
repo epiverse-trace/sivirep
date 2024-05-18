@@ -21,64 +21,42 @@
 <meta property="og:description" content="Provides functions for data wrangling and automated reports from SIVIGILA source.">
 <meta property="og:image" content="https://epiverse-trace.github.io/sivirep/logo.svg">
 <meta name="robots" content="noindex">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]--><!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-XZ471458FQ"></script><script>
+<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-XZ471458FQ"></script><script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-XZ471458FQ');
 </script>
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Ir al contenido</a>
-    
-
     <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark" data-bs-theme="dark"><div class="container">
-    
     <a href="https://epiverse-trace.github.io/" class="external-link"><img src="logo_white.svg" id="logo" alt="Epiverse-TRACE"></a>
     <a class="navbar-brand me-2" href="index.html">sivirep</a>
-
     <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Versión en desarrollo">0.0.2.0</small>
-
-    
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Cambiar la navegación">
       <span class="navbar-toggler-icon"></span>
     </button>
-
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item">
-  <a class="nav-link" href="articles/sivirep.html">Primeros pasos</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="reference/index.html">Índice</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="articles/sivirep.html">Primeros pasos</a></li>
+<li class="nav-item"><a class="nav-link" href="reference/index.html">Índice</a></li>
 <li class="nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-art-culos">Artículos</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-art-culos">
-    <a class="dropdown-item" href="articles/automated_report.html">Reportes automatizados</a>
-    <a class="dropdown-item" href="articles/custom_analysis.html">Análisis o reportes personalizados</a>
-    <a class="dropdown-item" href="articles/getting_started.html">Inicio rápido</a>
-  </div>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-art-culos" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Artículos</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-art-culos">
+<li><a class="dropdown-item" href="articles/automated_report.html">Reportes automatizados</a></li>
+    <li><a class="dropdown-item" href="articles/custom_analysis.html">Análisis o reportes personalizados</a></li>
+    <li><a class="dropdown-item" href="articles/getting_started.html">Inicio rápido</a></li>
+  </ul>
 </li>
       </ul>
 <ul class="navbar-nav">
-<li><form class="form-inline" role="search">
-<input type="search" class="form-control" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Buscar" data-search-index="search.json">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Buscar" data-search-index="search.json">
 </form></li>
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/epiverse-trace/sivirep/" aria-label="github">
-    <span class="fab fa fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/epiverse-trace/sivirep/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
-
-    
   </div>
 </nav><div class="container template-home">
 <div class="row">
@@ -127,8 +105,8 @@
 </h2>
 <p>Las contribuciones son bienvenidas via <a href="https://github.com/epiverse-trace/sivirep/pulls" class="external-link">pull requests</a>.</p>
 <p>Los contribuyentes al paquete incluyen:</p>
-<p><strong>Autores</strong>: <a href="https://github.com/GeraldineGomez" class="external-link">Geraldine Gómez-Millán</a> y <a href="https://github.com/zmcucunuba" class="external-link">Zulma M. Cucunubá</a></p>
-<p><strong>Contribuyentes</strong>: <a href="https://github.com/Bisaloo" class="external-link">Hugo Gruson</a>, <a href="https://github.com/juanitaromerog" class="external-link">Juanita Romero-Garcés</a>, <a href="https://github.com/andresmore" class="external-link">Andrés Moreno</a>, <a href="https://github.com/megamezl" class="external-link">Miguel Gámez</a>, Jennifer Méndez-Romero, Claudia Huguett-Aragón, <a href="https://github.com/lgbermeo" class="external-link">Laura Gómez-Bermeo</a>, Johan Calderón, Lady Flórez-Tapiero, Verónica Tangarife-Arredondo y Gerard Alarcon</p>
+<p><strong>Autores</strong>: <a href="https://github.com/GeraldineGomez" class="external-link">Geraldine Gómez-Millán</a>, <a href="https://github.com/zmcucunuba" class="external-link">Zulma M. Cucunubá</a>, Jennifer A. Mendez-Romero y <a href="https://github.com/chuguett" class="external-link">Claudia Huguett-Aragón</a></p>
+<p><strong>Contribuyentes</strong>: <a href="https://github.com/Bisaloo" class="external-link">Hugo Gruson</a>, <a href="https://github.com/juanitaromerog" class="external-link">Juanita Romero-Garcés</a>, <a href="https://github.com/andresmore" class="external-link">Andrés Moreno</a>, <a href="https://github.com/megamezl" class="external-link">Miguel Gámez</a>, <a href="https://github.com/lgbermeo" class="external-link">Laura Gómez-Bermeo</a>, Johan Calderón, Lady Flórez-Tapiero, Verónica Tangarife-Arredondo y Gerard Alarcon</p>
 </div>
 <div class="section level2">
 <h2 id="código-de-conducta">Código de conducta<a class="anchor" aria-label="anchor" href="#c%C3%B3digo-de-conducta"></a>
@@ -518,7 +496,6 @@
 <p><img src="./reference/figures/template-report.gif" width="900" height="600"></p>
 <p>Si deseas generar el reporte en formato PDF debes instalar LateX. Puedes instalarlo siguiendo las instrucciones que se encuentran en <a href="https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html" class="external-link">R Markdown Cookbook</a>.</p>
 </div>
-
   </main><aside class="col-md-3"><div class="enlaces">
 <h2 data-toc-skip>Enlaces</h2>
 <ul class="list-unstyled">
@@ -526,7 +503,6 @@
 <li><a href="https://github.com/epiverse-trace/sivirep/issues" class="external-link">Informar de un problema</a></li>
 </ul>
 </div>
-
 <div class="licencia">
 <h2 data-toc-skip>Licencia</h2>
 <ul class="list-unstyled">
@@ -534,7 +510,6 @@
 <li><small><a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
 </ul>
 </div>
-
 <div class="code-of-conduct">
 <h2 data-toc-skip>Code of Conduct</h2>
 <ul class="list-unstyled">
@@ -544,24 +519,22 @@
 </li>
 </ul>
 </div>
-
-
 <div class="cita">
 <h2 data-toc-skip>Cita</h2>
 <ul class="list-unstyled">
 <li><a href="authors.html#citation">Cómo citar sivirep</a></li>
 </ul>
 </div>
-
 <div class="desarrolladores">
 <h2 data-toc-skip>Desarrolladores</h2>
 <ul class="list-unstyled">
-<li>Geraldine Gómez Millán <br><small class="roles"> Autor-a, mantenedor-a, colaborador-a </small> <a href="https://orcid.org/0009-0007-8701-0568" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Geraldine Gómez-Millán <br><small class="roles"> Autor-a, mantenedor-a, colaborador-a </small> <a href="https://orcid.org/0009-0007-8701-0568" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li>Zulma M. Cucunubá <br><small class="roles"> Autor-a, colaborador-a </small> <a href="https://orcid.org/0000-0002-8165-3198" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Jennifer A. Mendez-Romero <br><small class="roles"> Autor-a, colaborador-a </small> <a href="https://orcid.org/0009-0001-6138-0225" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Claudia Huguett-Aragón <br><small class="roles"> Autor-a, colaborador-a </small> <a href="https://orcid.org/0000-0002-9814-2386" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li><a href="authors.html">Más sobre los autores...</a></li>
 </ul>
 </div>
-
 <div class="estado-de-desarrollo">
 <h2 data-toc-skip>Estado de desarrollo</h2>
 <ul class="list-unstyled">
@@ -571,25 +544,15 @@
 <li><a href="https://www.reconverse.org/lifecycle.html#maturing" class="external-link"><img src="https://raw.githubusercontent.com/reconverse/reconverse.github.io/master/images/badge-maturing.svg" alt="lifecycle-maturing"></a></li>
 </ul>
 </div>
-
   </aside>
 </div>
-
-
     <footer><div class="pkgdown-footer-left">
-  <p>Desarrollado por Geraldine Gómez Millán, Zulma M. Cucunubá.</p>
+  <p>Desarrollado por Geraldine Gómez-Millán, Zulma M. Cucunubá, Jennifer A. Mendez-Romero, Claudia Huguett-Aragón.</p>
 </div>
-
 <div class="pkgdown-footer-right">
   <p>Sitio creado con <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.9000.</p>
 </div>
-
     </footer>
 </div>
-
-  
-
-  
-
   </body>
 </html>

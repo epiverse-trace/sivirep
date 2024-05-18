@@ -21,85 +21,57 @@
 <meta property="og:description" content="sivirep">
 <meta property="og:image" content="https://epiverse-trace.github.io/sivirep/logo.svg">
 <meta name="robots" content="noindex">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]--><!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-XZ471458FQ"></script><script>
+<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-XZ471458FQ"></script><script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-XZ471458FQ');
 </script>
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Ir al contenido</a>
-    
-
     <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark" data-bs-theme="dark"><div class="container">
-    
     <a href="https://epiverse-trace.github.io/" class="external-link"><img src="../logo_white.svg" id="logo" alt="Epiverse-TRACE"></a>
     <a class="navbar-brand me-2" href="../index.html">sivirep</a>
-
     <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Versión en desarrollo">0.0.2.0</small>
-
-    
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Cambiar la navegación">
       <span class="navbar-toggler-icon"></span>
     </button>
-
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item">
-  <a class="nav-link" href="../articles/sivirep.html">Primeros pasos</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="../reference/index.html">Índice</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="../articles/sivirep.html">Primeros pasos</a></li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Índice</a></li>
 <li class="active nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-art-culos">Artículos</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-art-culos">
-    <a class="dropdown-item" href="../articles/automated_report.html">Reportes automatizados</a>
-    <a class="dropdown-item" href="../articles/custom_analysis.html">Análisis o reportes personalizados</a>
-    <a class="dropdown-item" href="../articles/getting_started.html">Inicio rápido</a>
-  </div>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-art-culos" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Artículos</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-art-culos">
+<li><a class="dropdown-item" href="../articles/automated_report.html">Reportes automatizados</a></li>
+    <li><a class="dropdown-item" href="../articles/custom_analysis.html">Análisis o reportes personalizados</a></li>
+    <li><a class="dropdown-item" href="../articles/getting_started.html">Inicio rápido</a></li>
+  </ul>
 </li>
       </ul>
 <ul class="navbar-nav">
-<li><form class="form-inline" role="search">
-<input type="search" class="form-control" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Buscar" data-search-index="search.json">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Buscar" data-search-index="../search.json">
 </form></li>
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/epiverse-trace/sivirep/" aria-label="github">
-    <span class="fab fa fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/epiverse-trace/sivirep/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
-
-    
   </div>
 </nav><div class="container template-article">
-
 
 
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.svg" class="logo" alt=""><h1>Análisis o reportes personalizados</h1>
-            
-      
-      <small class="dont-index">Código: <a href="https://github.com/epiverse-trace/sivirep/blob/HEAD/vignettes/custom_analysis.Rmd" class="external-link"><code>vignettes/custom_analysis.Rmd</code></a></small>
+                        <small class="dont-index">Código: <a href="https://github.com/epiverse-trace/sivirep/blob/HEAD/vignettes/custom_analysis.Rmd" class="external-link"><code>vignettes/custom_analysis.Rmd</code></a></small>
       <div class="d-none name"><code>custom_analysis.Rmd</code></div>
     </div>
-
-    
-    
-<p>A continuación se describe un conjunto básico de instrucciones para
-usar <code>sivirep</code> 0.0.9 si: - Ya has producido un archivo .Rmd y
-deseas editar un reporte. - Deseas realizar análisis personalizados sin
-un archivo .Rmd.</p>
+        <p>A continuación se describe un conjunto básico de
+instrucciones para usar <code>sivirep</code> 0.0.9 si: - Ya has
+producido un archivo .Rmd y deseas editar un reporte. - Deseas realizar
+análisis personalizados sin un archivo .Rmd.</p>
 <div class="section level3">
 <h3 id="configuración">Configuración<a class="anchor" aria-label="anchor" href="#configuraci%C3%B3n"></a>
 </h3>
@@ -334,26 +306,16 @@ columna llamada “casos” en cualquier nivel de agregación.</li>
 </ul>
 </div>
 </div>
-  </main><aside class="col-md-3"><nav id="toc"><h2>En esta página</h2>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Índice de contenidos"><h2>En esta página</h2>
     </nav></aside>
 </div>
-
-
-
     <footer><div class="pkgdown-footer-left">
-  <p>Desarrollado por Geraldine Gómez Millán, Zulma M. Cucunubá.</p>
+  <p>Desarrollado por Geraldine Gómez-Millán, Zulma M. Cucunubá, Jennifer A. Mendez-Romero, Claudia Huguett-Aragón.</p>
 </div>
-
 <div class="pkgdown-footer-right">
   <p>Sitio creado con <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.9000.</p>
 </div>
-
     </footer>
 </div>
-
-  
-
-  
-
   </body>
 </html>
