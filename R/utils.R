@@ -568,13 +568,11 @@ obtener_dpto_mpio <- function(data_agrupada, nomb_cols,
     }
     unidades_geo <- list(dpto = dpto, mpio = mpio)
   } else if (nomb_cols[1] %in% colnames(data_agrupada) &&
-      !is.na(unique(
-        nomb_cols[data_agrupada[[nomb_cols[1]]]]))) {
+      dplyr::n_distinct(data_agrupada[[nomb_cols[1]]]) == 1) {
     dpto <- data_agrupada[[nomb_cols[1]]][1]
     if (is.null(mpio) &&
         nomb_cols[3] %in% colnames(data_agrupada) &&
-        !is.na(unique(
-          nomb_cols[data_agrupada[[nomb_cols[3]]]]))) {
+        dplyr::n_distinct(data_agrupada[[nomb_cols[3]]]) == 1) {
       mpio <- data_agrupada[[nomb_cols[3]]][1]
     }
     unidades_geo <- list(dpto = dpto, mpio = mpio)
