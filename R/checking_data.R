@@ -923,10 +923,7 @@ calcular_incidencia <- function(data_incidencia = NULL, data_agrupada,
     year <- as.numeric(obtener_year(data_agrupada))
   }
   if (is.null(poblacion)) {
-    poblacion <- "proyecciones"
-  }
-  if (nrow(vals_event) == 0) {
-    coeficiente <- 100000L
+    poblacion <- vals_event$denominador
   }
   pop_incidencia <-
     obtener_pob_incidencia(data_incidencia = data_incidencia,
@@ -1052,9 +1049,6 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
     vals_event <-
       obtener_cond_inciden_event(cod_eve = data_agrupada$cod_eve[1])
     poblacion <- vals_event$denominador
-    if (length(poblacion) == 0) {
-      poblacion <- "proyecciones"
-    }
   }
   pop_incidencia <-
     obtener_pob_incidencia(data_incidencia = data_incidencia,
