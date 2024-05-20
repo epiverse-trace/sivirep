@@ -740,3 +740,20 @@ obtener_text_sex <- function(data_agrupada,
   }
   return(text_sex)
 }
+
+#' Obtener valor del archivo de configuración
+#'
+#' Función que obtiene el valor de una llave del archivo de configuración
+#' @param llave Un `character` (cadena de caracteres) con el nombre de la
+#' llave que se encuentra en el archivo de configuración del paquete
+#' @return Un `character` (cadena de caracteres) con el valor de la llave
+#' del archivo de configuración del paquete
+#' @keywords internal
+obtener_val_config <- function(llave) {
+  valor <- config::get(file =
+                         system.file("extdata",
+                                     "config.yml",
+                                     package = "sivirep"),
+                       llave)
+  return(valor)
+}
