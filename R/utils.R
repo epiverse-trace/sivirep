@@ -211,9 +211,11 @@ obtener_tip_ocurren_geo <- function(cod_event = NULL, nombre_event = NULL) {
 #' Función que obtiene la información geográfica de los datos de la enfermedad
 #' o evento
 #' @param dpto Un `character` (cadena de caracteres) o `numeric` (numerico)
-#' que contiene el nombre del departamento; su valor por defecto es `NULL`
+#' que contiene el nombre o código del departamento; su valor por defecto
+#' es `NULL`
 #' @param mpio Un `character` (cadena de caracteres) o `numeric` (numerico)
-#' que contiene los datos del municipio; su valor por defecto es `NULL`
+#' que contiene el nombre o código del municipio; su valor por defecto
+#' es `NULL`
 #' @return Un `data.frame` con la información geográfica de los datos de
 #' la enfermedad o evento
 #' @examples
