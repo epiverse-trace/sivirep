@@ -304,26 +304,26 @@ limpiar_fecha_event <- function(data_event,
 #' Minutos = 5
 #' @param data_event Un `data.frame` que contiene los datos de una
 #' enfermedad o evento
-#' @param nomb_col Un `character` (cadena de caracteres) con el nombre
-#' de la columna de los datos que contiene las edades;
-#' su valor por defecto es edad
+#' @param col_edad Un `character` (cadena de caracteres) con
+#' el nombre de la columna que contiene las edades en los datos de
+#' la enfermedad o evento; su valor por defecto es `"edad"`
 #' @return Un `data.frame` con los datos de una enfermedad o evento
 #' con las edades limpias
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
-#' limpiar_edad_event(data_event = data_limpia, nomb_col = "edad")
+#' limpiar_edad_event(data_event = data_limpia, col_edad = "edad")
 #' @export
-limpiar_edad_event <- function(data_event, nomb_col = "edad") {
+limpiar_edad_event <- function(data_event, col_edad = "edad") {
   stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
             "El parametro data_event debe ser un data.frame" =
               is.data.frame(data_event),
             "El parametro data_event no debe estar vacio" =
               nrow(data_event) > 0,
-            "El parametro nomb_col debe ser una cadena de caracteres" =
-              is.character(nomb_col))
+            "El parametro col_edad debe ser una cadena de caracteres" =
+              is.character(col_edad))
   data_event_years <- convert_edad(data_event)
-  data_event_years <- remove_val_nin(data_event_years, nomb_col)
+  data_event_years <- remove_val_nin(data_event_years, col_edad)
 }
 
 #' Limpiar los valores atipicos de los datos
