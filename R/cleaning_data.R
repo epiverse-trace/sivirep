@@ -368,10 +368,10 @@ limpiar_val_atipic <- function(data_event) {
 #' Limpiar datos de SIVIGILA
 #'
 #' Función que limpia los datos seleccionados de una enfermedad o evento de
-#' la fuente de SIVIGILA
-#' @param data_event Un data frame que contiene los datos de
+#' la fuente SIVIGILA
+#' @param data_event Un `data.frame` que contiene los datos de
 #' una enfermedad o evento
-#' @return Un data frame con los datos limpios de la enfermedad o evento
+#' @return Un `data.frame` con los datos limpios de la enfermedad o evento
 #' @examples
 #' data(dengue2020)
 #' limpiar_data_sivigila(data_event = dengue2020)
@@ -394,10 +394,10 @@ limpiar_data_sivigila <- function(data_event) {
   if (length(nombre) == 1 &&
       !stringr::str_detect(nombre, stringr::fixed("MORTALIDAD"))) {
     data_limpia <- limpiar_fecha_event(data_limpia, year,
-                                       nomb_col = nom_cols_fechas[3],
+                                       col_fecha = nom_cols_fechas[3],
                                        col_comp = nom_cols_fechas[4])
     data_limpia <- limpiar_fecha_event(data_limpia, year,
-                                       nomb_col = nom_cols_fechas[2])
+                                       col_fecha = nom_cols_fechas[2])
   }
   data_limpia <- estandarizar_geo_cods(data_limpia)
   data_limpia <- convert_edad(data_limpia,

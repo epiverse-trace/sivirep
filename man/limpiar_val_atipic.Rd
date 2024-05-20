@@ -7,11 +7,11 @@
 limpiar_val_atipic(data_event)
 }
 \arguments{
-\item{data_event}{Un data frame que contiene los datos de una
+\item{data_event}{Un `data.frame` que contiene los datos de una
 enfermedad o evento}
 }
 \value{
-Un data framecon los datos de una enfermedad o
+Un `data.frame` con los datos de una enfermedad o
 evento con los valores atípicos limpios (NA)
 }
 \description{
