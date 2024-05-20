@@ -160,12 +160,11 @@ concatenar_vals_token <- function(vals,
 #' Función que obtiene las columnas de ocurrencia geográfica de los
 #' datos de la enfermedad o evento
 #' @param cod_event Un `numeric` (numerico) o `character`
-#' (cadena de caracteres) que contiene el código de la
-#' enfermedad o evento
+#' (cadena de caracteres) que contiene el código de la enfermedad o evento
 #' @param nombre_event Un `character` (cadena de caracteres) con el nombre de
 #' la enfermedad o evento
 #' @return Un `data.frame` con las columnas de ocurrencia geográfica de los
-#' datos de la enfermedad
+#' datos de la enfermedad o evento
 #' @examples
 #' obtener_tip_ocurren_geo(cod_event = 210)
 #' @export

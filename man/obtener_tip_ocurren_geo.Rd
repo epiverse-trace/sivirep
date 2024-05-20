@@ -9,15 +9,14 @@ obtener_tip_ocurren_geo(cod_event = NULL, nombre_event = NULL)
 }
 \arguments{
 \item{cod_event}{Un `numeric` (numerico) o `character`
-(cadena de caracteres) que contiene el código de la
-enfermedad o evento}
+(cadena de caracteres) que contiene el código de la enfermedad o evento}
 
 \item{nombre_event}{Un `character` (cadena de caracteres) con el nombre de
 la enfermedad o evento}
 }
 \value{
 Un `data.frame` con las columnas de ocurrencia geográfica de los
-datos de la enfermedad
+datos de la enfermedad o evento
 }
 \description{
 Función que obtiene las columnas de ocurrencia geográfica de los
