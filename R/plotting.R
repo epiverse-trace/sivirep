@@ -92,8 +92,18 @@ plot_map <- function(data_agrupada,
                                cond_incidencia$coeficiente,
                                " habitantes")
   }
-  config_file <- system.file("extdata", "config.yml", package = "sivirep")
-  base_path <- config::get(file = config_file, "map_shape_file")
+  ruta_extdata <- system.file("extdata", package = "sivirep")
+  archivo_config <- system.file("extdata", "config.yml", package = "sivirep")
+  archivo_zip <- config::get(file = archivo_config, "map_shape_zip_file")
+  ruta_zip <- file.path(ruta_extdata, archivo_zip)
+  if (!file.exists(ruta_zip)) {
+    url_base <- config::get(file = archivo_config, "map_shape_path")
+    utils::download.file(url_base, ruta_zip)
+    utils::unzip(zipfile = ruta_zip, exdir = ruta_extdata)
+  }
+  carpeta_base <- config::get(file = archivo_config, "map_shape_folder")
+  ruta_base <- file.path("extdata", carpeta_base,
+                         config::get(file = archivo_config, "map_shape_file"))
   if (is.null(dpto)) {
     nomb_cols <- colnames(data_agrupada)
     pos_col_dpto <- which(stringr::str_detect(nomb_cols,
@@ -101,25 +111,24 @@ plot_map <- function(data_agrupada,
     pos_col_mpio <- which(stringr::str_detect(nomb_cols,
                                               stringr::fixed("municipio")))
     if (length(pos_col_dpto) > 0) {
-      aux_dpto <- NULL
+      aux_dpto <- unique(data_agrupada[[nomb_cols[pos_col_dpto]]])
       aux_mpio <- NULL
-      if (length(pos_col_dpto) > 0) {
-        aux_dpto <- unique(data_agrupada[[nomb_cols[pos_col_dpto]]])
-      }
       if (length(pos_col_mpio) > 0) {
         aux_mpio <- unique(data_agrupada[[nomb_cols[pos_col_mpio]]])
+        if (length(aux_mpio) == 1) {
+          mpio <- aux_mpio
+        }
       }
       if (length(aux_dpto) == 1) {
         dpto <- aux_dpto
       } else {
-        base_path <- config::get(file = config_file, "dpto_shape_file")
-      }
-      if (length(aux_mpio) == 1) {
-        mpio <- aux_mpio
+        ruta_base <- file.path("extdata", carpeta_base,
+                               config::get(file = archivo_config,
+                                           "dpto_shape_file"))
       }
     }
   }
-  dsn <-  system.file(base_path,
+  dsn <-  system.file(ruta_base,
                       package = "sivirep")
   shp <- sf::st_read(dsn = dsn, quiet = TRUE)
   polygon_seleccionado <- shp
