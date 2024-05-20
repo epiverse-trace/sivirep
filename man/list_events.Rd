@@ -3,17 +3,17 @@
 \name{list_events}
 \alias{list_events}
 \title{Importar las enfermedades y años disponibles disposibles
-para su descarga desde los microdatos de SIVIGILA}
+para su descarga desde los microdatos del SIVIGILA}
 \usage{
 list_events()
 }
 \value{
-Una list con las enfermedades y los años disponibles
-para su descarga desde los microdatos de SIVIGILA
+Una `list` con las enfermedades y los años disponibles
+para su descarga desde los microdatos del SIVIGILA
 }
 \description{
 Función que obtiene las enfermedades y los años disponibles
-para su descarga desde los microdatos de SIVIGILA
+para su descarga desde los microdatos del SIVIGILA
 }
 \examples{
 list_events()
