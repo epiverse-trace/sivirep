@@ -8,7 +8,7 @@ limpiar_fecha_event(
   data_event,
   year,
   format_fecha = "\%Y-\%m-\%d",
-  nomb_col = "ini_sin",
+  col_fecha = "ini_sin",
   col_comp = NULL
 )
 }
@@ -22,7 +22,7 @@ que contiene el año de los datos de una enfermedad o evento}
 \item{format_fecha}{Un `character` (cadena de caracteres) que contiene
 el formato deseado de fecha; su valor por defecto es "\%AAAA-\%MM-\%DD"}
 
-\item{nomb_col}{Un `character` (cadena de caracteres) que contiene
+\item{col_fecha}{Un `character` (cadena de caracteres) que contiene
 el nombre de la columna con la fecha que se desea limpiar en los datos
 de la enfermedad o evento}
 
@@ -43,6 +43,6 @@ data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 limpiar_fecha_event(data_event = data_limpia,
                     year = 2020,
                     format_fecha = "\%Y-\%m-\%d",
-                    nomb_col = "ini_sin",
+                    col_fecha = "ini_sin",
                     col_comp = "fec_hos")
 }

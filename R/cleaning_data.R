@@ -239,7 +239,7 @@ limpiar_encabezado <- function(data_event) {
 #' que contiene el año de los datos de una enfermedad o evento
 #' @param format_fecha Un `character` (cadena de caracteres) que contiene
 #' el formato deseado de fecha; su valor por defecto es "\%AAAA-\%MM-\%DD"
-#' @param nomb_col Un `character` (cadena de caracteres) que contiene
+#' @param col_fecha Un `character` (cadena de caracteres) que contiene
 #' el nombre de la columna con la fecha que se desea limpiar en los datos
 #' de la enfermedad o evento
 #' @param col_comp Un `character` (cadena de caracteres) que contiene el
@@ -252,13 +252,13 @@ limpiar_encabezado <- function(data_event) {
 #' limpiar_fecha_event(data_event = data_limpia,
 #'                     year = 2020,
 #'                     format_fecha = "%Y-%m-%d",
-#'                     nomb_col = "ini_sin",
+#'                     col_fecha = "ini_sin",
 #'                     col_comp = "fec_hos")
 #' @export
 limpiar_fecha_event <- function(data_event,
                                 year,
                                 format_fecha = "%Y-%m-%d",
-                                nomb_col = "ini_sin",
+                                col_fecha = "ini_sin",
                                 col_comp = NULL) {
   stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
             "El parametro data_event debe ser un data.frame" =
@@ -272,21 +272,21 @@ limpiar_fecha_event <- function(data_event,
             (!is.numeric(year) && is.character(year)),
             "El parametro format_fecha debe ser una cadena de caracteres" =
               is.character(format_fecha),
-            "El parametro nomb_col debe ser una cadena de caracteres" =
-              is.character(nomb_col))
+            "El parametro col_fecha debe ser una cadena de caracteres" =
+              is.character(col_fecha))
   data_event_fecha_ini <- data_event
   if (!is.null(col_comp)) {
     data_event_fecha_ini <-
       remove_error_fecha(data_event_fecha_ini,
-                         nomb_col,
+                         col_fecha,
                          col_comp)
     stopifnot("El parametro col_comp debe ser una cadena de caracteres" =
               is.character(col_comp))
   }
-  data_event_fecha_ini[order(data_event_fecha_ini[[nomb_col]],
+  data_event_fecha_ini[order(data_event_fecha_ini[[col_fecha]],
                              decreasing = TRUE), ]
   data_event_fecha_ini <-
-    data_event_fecha_ini[format(data_event_fecha_ini[[nomb_col]],
+    data_event_fecha_ini[format(data_event_fecha_ini[[col_fecha]],
                                 "%Y") == year, ]
   return(data_event_fecha_ini)
 }
