@@ -325,7 +325,9 @@ import_pob_riesgo <- function(event, year) {
         pop_event <- pop_riesgo
         pop_event$path <- file.path(ruta_extdata, paste0(pop_riesgo$file_name,
                                                          pop_riesgo$extension))
-        utils::download.file(pop_event$url, pop_event$path)
+        if (!file.exists(pop_event$path)) {
+          utils::download.file(pop_event$url, pop_event$path)
+        }
         break
       }
     }
