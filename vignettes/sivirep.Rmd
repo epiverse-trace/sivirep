@@ -60,10 +60,10 @@ requests](https://github.com/epiverse-trace/sivirep/pulls).
 
 Los contribuyentes al paquete incluyen:
 
-**Autores**: [Geraldine Gómez-Millán](https://github.com/GeraldineGomez) y [Zulma M. Cucunubá](https://github.com/zmcucunuba)
+**Autores**: [Geraldine Gómez-Millán](https://github.com/GeraldineGomez), [Zulma M. Cucunubá](https://github.com/zmcucunuba), Jennifer A. Mendez-Romero y [Claudia Huguett-Aragón](https://github.com/chuguett)
 
 **Contribuyentes**:
-[Hugo Gruson](https://github.com/Bisaloo), [Juanita Romero-Garcés](https://github.com/juanitaromerog), [Andrés Moreno](https://github.com/andresmore), [Miguel Gámez](https://github.com/megamezl), Jennifer Méndez-Romero, Claudia Huguett-Aragón, [Laura Gómez-Bermeo](https://github.com/lgbermeo), Johan Calderón, Lady Flórez-Tapiero, Verónica Tangarife-Arredondo y Gerard Alarcon
+[Hugo Gruson](https://github.com/Bisaloo), [Juanita Romero-Garcés](https://github.com/juanitaromerog), [Andrés Moreno](https://github.com/andresmore), [Miguel Gámez](https://github.com/megamezl), [Laura Gómez-Bermeo](https://github.com/lgbermeo), Johan Calderón, Lady Flórez-Tapiero, Verónica Tangarife-Arredondo y Gerard Alarcon
 
 ## Código de conducta
 
