@@ -24,12 +24,13 @@ Función que genera la tabla con la incidencia según
 distribución geográfica
 }
 \examples{
-\dontrun{
+\donttest{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 data_agrupada <- agrupar_mpio(data_limpia, dpto = "Antioquia")
 incidencia_mpios <- calcular_incidencia_geo(
                         data_agrupada = data_agrupada)
+ plot_tabla_incidencia_geo(data_agrupada = incidencia_mpios,
                           col_geo = "municipio_ocurrencia")
 }
 }

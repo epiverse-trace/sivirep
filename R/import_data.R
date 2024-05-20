@@ -4,7 +4,7 @@
 #' De lo contrario arroja un mensaje de error explicando el problema
 #' y finaliza la ejecución del programa
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' query_event_year_path <- config::get(file =
 #'            system.file("extdata",
 #'            "config.yml",
@@ -96,7 +96,7 @@ import_geo_cods <- function(descargar = FALSE) {
 #' @return Una list con las enfermedades y los años disponibles
 #' para su descarga desde los microdatos de SIVIGILA
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' list_events()
 #' }
 #' @export
@@ -166,15 +166,13 @@ list_events <- function() {
 #' @return Un `data.frame` con los datos de la enfermedad o evento seleccionado
 #' por año desde los microdatos de SIVIGILA
 #' @examples
+#' \donttest{
 #' import_data_event(nombre_event = "DENGUE",
 #'                   years = 2020,
 #'                   cache = TRUE)
-#' \dontrun{
 #' import_data_event(nombre_event = "DENGUE",
 #'                   years = c(2019, 2020),
 #'                   cache = TRUE)
-#' }
-#' \dontrun{
 #' import_data_event(nombre_event = "DENGUE",
 #'                   years = seq(2007, 2020),
 #'                   cache = TRUE)

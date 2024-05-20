@@ -16,7 +16,7 @@ Función que obtiene las enfermedades y los años disponibles
 para su descarga desde los microdatos de SIVIGILA
 }
 \examples{
-\dontrun{
+\donttest{
 list_events()
 }
 }
