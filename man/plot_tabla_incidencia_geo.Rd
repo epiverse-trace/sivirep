@@ -31,6 +31,6 @@ data_agrupada <- agrupar_mpio(data_limpia, dpto = "Antioquia")
 incidencia_mpios <- calcular_incidencia_geo(data_agrupada =
                                                data_agrupada)
 plot_tabla_incidencia_geo(data_agrupada = incidencia_mpios,
-col_geo = "municipio_ocurrencia")
+                          col_geo = "municipio_ocurrencia")
 }
 }
