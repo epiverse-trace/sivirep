@@ -26,15 +26,13 @@ Función que obtiene los datos de una enfermedad por año
 desde los microdatos de SIVIGILA
 }
 \examples{
+\donttest{
 import_data_event(nombre_event = "DENGUE",
                   years = 2020,
                   cache = TRUE)
-\dontrun{
 import_data_event(nombre_event = "DENGUE",
                   years = c(2019, 2020),
                   cache = TRUE)
-}
-\dontrun{
 import_data_event(nombre_event = "DENGUE",
                   years = seq(2007, 2020),
                   cache = TRUE)

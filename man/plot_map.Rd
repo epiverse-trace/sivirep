@@ -71,7 +71,7 @@ plot_map(data_agrupada = data_espacial_mpio,
          dpto = "Antioquia",
          mpio = "Envigado")
 # Mapa con la incidencia por municipios de un departamento especifico
-\dontrun{
+\donttest{
 incidencia_dpto <-
     calcular_incidencia_geo(data_agrupada = data_espacial_dpto)
 plot_map(data_agrupada = incidencia_dpto,
