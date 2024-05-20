@@ -8,8 +8,7 @@ format_cod_geo(cod_geo, etiqueta, digitos, tam)
 }
 \arguments{
 \item{cod_geo}{Un `numeric` (numerico) o `character`
-(cadena de caracteres) que contiene el código
-geográfico}
+(cadena de caracteres) que contiene el código geográfico}
 
 \item{etiqueta}{Un `character` (cadena de caracteres) con el nombre
 de la etiqueta de la validación relacionada a la longitud máxima del

@@ -57,33 +57,6 @@ geo_filtro <- function(data_event, dpto = NULL, mpio = NULL) {
   return(data_dept_filt)
 }
 
-#' Listar códigos de departamentos
-#'
-#' Función que lista los departamentos de Colombia con su nombre y
-#' código
-#' @param geo_cods Un `data.frame` que contiene la información geográfica
-#' (departamentos y municipios de Colombia) con sus códigos
-#' @return Un `data.frame` con los datos de los departamentos con
-#' código y nombre
-#' @examples
-#' geo_cods <- import_geo_cods()
-#' listar_dptos(geo_cods = geo_cods)
-#' @export
-listar_dptos <- function(geo_cods) {
-  stopifnot("El parametro geo_cods es obligatorio" = !missing(geo_cods),
-            "El parametro geo_cods debe ser un data.frame" =
-              is.data.frame(geo_cods),
-            "El parametro geo_cods no debe estar vacio" =
-              nrow(geo_cods) > 0)
-  data_deptos <- geo_cods %>%
-    dplyr::group_by(cod_dep = .data$codigo_departamento,
-                    name_dep = .data$nombre_departamento) %>%
-    dplyr::select(.data$cod_dep, .data$name_dep) %>%
-    dplyr::distinct()
-  data_deptos <- data_deptos[1:33, ]
-  return(data_deptos)
-}
-
 #' Agrupar por semana epidemiológica y casos
 #'
 #' Función que agrupa los datos de una enfermedad o evento
