@@ -144,7 +144,8 @@ import_data_event <- function(nombre_event,
   for (year in years) {
     for (event in grupo_events$enfermedad) {
       if (event != "Malaria") {
-        data_url <- get_path_data_disease_year(year, event)
+        data_url <- obtener_ruta_data_event_year(nombre_event = event,
+                                                 year = year)
         data_import <- import_sep_data(data_url, cache)
         data_import <- limpiar_encabezado(data_import)
         data_import$fec_def <- as.character(data_import$fec_def)
