@@ -169,23 +169,29 @@ import_data_event <- function(nombre_event,
 
 #' Importar datos con un separador específico
 #'
+#' Función que identifica el separador que tiene los datos para tabularlos
+#' @param ruta_data Un `character` (cadena de caracteres) que contiene
 #' la URL de los datos de SIVIGILA
 #' @param cache Un `boolean` (TRUE o FALSE) que indica si los datos descargados
 #' deben ser almacenados en caché; su valor por defecto es `TRUE`
 #' @return Un `data.frame` con los datos
 #' @keywords internal
-import_sep_data <- function(path_data = NULL, cache = TRUE) {
-  stopifnot("El parametro path_data debe ser una cadena de caracteres" =
-              is.character(path_data),
+import_sep_data <- function(ruta_data = NULL, cache = TRUE) {
+  stopifnot("El parametro ruta_data debe ser una cadena de caracteres" =
+              is.character(ruta_data),
             "El parametro cache debe ser un booleano"
             = is.logical(cache))
   data <- data.frame()
   extdata_path <- system.file("extdata", package = "sivirep")
   if (!is.null(ruta_data)) {
+    start_file_name <- stringr::str_locate(ruta_data,
                                            stringr::fixed("Microdatos/"))[2] + 1
+    end_file_name <- stringr::str_locate(ruta_data,
                                          stringr::fixed("value"))[1] - 5
+    file_name <- stringr::str_sub(ruta_data, start_file_name, end_file_name)
     file_path <- file.path(extdata_path, file_name)
     if (!file.exists(file_path) || !cache) {
+      file_request <- httr2::request(ruta_data)
       file_response <- httr2::req_perform(file_request)
       if (httr2::resp_status(file_response) == 200) {
         file_content <- httr2::resp_body_raw(file_response)
