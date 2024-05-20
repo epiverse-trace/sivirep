@@ -641,8 +641,7 @@ obtener_pob_incidencia <- function(data_incidencia = NULL,
 
 #' Obtener el año de una enfermedad o evento
 #'
-#' Función que obtiene el año de los datos de una enfermedad o
-#' evento
+#' Función que obtiene el año de los datos de una enfermedad o evento
 #' @param data_event Un `data.frame` que contiene los datos de la
 #' enfermedad o evento
 #' @keywords internal
