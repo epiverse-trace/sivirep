@@ -114,13 +114,10 @@ convert_edad <- function(data_event,
 #' @param data_event Un `data.frame` que contiene los datos de una
 #' enfermedad o evento
 #' @param nomb_col Un `character` (cadena de caracteres) que contiene el
-#' nombre de la columna en los datos de una enfermedad o evento a evaluar
-#' @return Los datos limpios sin valores NA, Infinito o NaN
-#' @examples
-#' data(dengue2020)
-#' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
-#' remove_val_nin(data_event = data_limpia, nomb_col = "edad")
-#' @export
+#' nombre de la columna a evaluar en los datos de una enfermedad o evento
+#' @return Un `data.frame` con los datos limpios sin valores NA,
+#' Infinito o NaN
+#' @keywords internal
 remove_val_nin <- function(data_event, nomb_col) {
   stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
             "El parametro data_event debe ser un data.frame" =
