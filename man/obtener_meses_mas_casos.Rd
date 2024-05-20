@@ -17,8 +17,8 @@ obtener_meses_mas_casos(
 o vento}
 
 \item{col_fechas}{Un `array` (arreglo) de `character` (cadena de caracteres)
-con los nombres de columna de los datos de la enfermedad o evento
-que contienen las fechas}
+con los nombres de las columnas que contienen las fechas en los datos de la
+enfermedad o evento}
 
 \item{col_casos}{Un `character` (cadena de caracteres) con el nombre de la
 columna de los datos de la enfermedad o evento que contiene el número
