@@ -2,7 +2,7 @@
 % Please edit documentation in R/cleaning_data.R
 \name{limpiar_encabezado}
 \alias{limpiar_encabezado}
-\title{Limpiar las etiquetas del encabezado de los datos de una enfermedad}
+\title{Limpiar las etiquetas del encabezado}
 \usage{
 limpiar_encabezado(data_event)
 }

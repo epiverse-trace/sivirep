@@ -207,7 +207,7 @@ format_fecha <- function(data_event,
   return(data_limpia)
 }
 
-#' Limpiar las etiquetas del encabezado de los datos de una enfermedad
+#' Limpiar las etiquetas del encabezado
 #'
 #' Función que limpia las etiquetas del encabezado de los datos
 #' de una enfermedad o evento
