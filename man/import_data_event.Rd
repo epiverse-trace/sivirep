@@ -3,7 +3,7 @@
 \name{import_data_event}
 \alias{import_data_event}
 \title{Importar los datos de una enfermedad o evento por año
-desde los microdatos de SIVIGILA}
+desde los microdatos del SIVIGILA}
 \usage{
 import_data_event(nombre_event, years, cache = TRUE)
 }
@@ -11,30 +11,32 @@ import_data_event(nombre_event, years, cache = TRUE)
 \item{nombre_event}{Un `character` (cadena de caracteres) con el nombre de
 la enfermedad o evento}
 
-\item{years}{Un `numeric` (numerico) con el año deseado para la descarga
-de los datos}
+\item{years}{Un `numeric` (numerico) con el año o años deseado(s) para
+la descarga de los datos}
 
 \item{cache}{Un `boolean` (TRUE o FALSE) que indica si los datos descargados
-deben ser almacenados en caché; su valor por defecto es TRUE}
+deben ser almacenados en caché; su valor por defecto es `TRUE`}
 }
 \value{
-Un `data.frame` con los datos de la enfermedad o evento seleccionado
-por año desde los microdatos de SIVIGILA
+Un `data.frame` con los datos del año de la enfermedad o evento
+seleccionado desde los microdatos del SIVIGILA
 }
 \description{
-Función que obtiene los datos de una enfermedad por año
-desde los microdatos de SIVIGILA
+Función que importa los datos de una enfermedad o evento por año
+desde los microdatos del SIVIGILA
 }
 \examples{
+\donttest{
 import_data_event(nombre_event = "DENGUE",
                   years = 2020,
                   cache = TRUE)
-\dontrun{
+}
+\donttest{
 import_data_event(nombre_event = "DENGUE",
                   years = c(2019, 2020),
                   cache = TRUE)
 }
-\dontrun{
+\donttest{
 import_data_event(nombre_event = "DENGUE",
                   years = seq(2007, 2020),
                   cache = TRUE)
