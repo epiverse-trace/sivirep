@@ -330,9 +330,9 @@ limpiar_edad_event <- function(data_event, col_edad = "edad") {
 #'
 #' Función que limpia los valores atipicos de los datos de una
 #' enfermedad o evento del SIVIGILA
-#' @param data_event Un data frame que contiene los datos de una
+#' @param data_event Un `data.frame` que contiene los datos de una
 #' enfermedad o evento
-#' @return Un data framecon los datos de una enfermedad o
+#' @return Un `data.frame` con los datos de una enfermedad o
 #' evento con los valores atípicos limpios (NA)
 #' @examples
 #' data(dengue2020)
