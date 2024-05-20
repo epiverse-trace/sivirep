@@ -536,13 +536,13 @@ obtener_cond_inciden_event <- function(cod_eve) {
 #' dadas unas condiciones
 #' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
 #' agrupados por departamento o municipio y número de casos
-#' @param nomb_cols Un `character` (cadena de caracteres) o
-#' `array (arreglo) de character` que contiene el nombre de la(s) columna(s) con
-#' la información de los departamentos y municipios en los datos agrupados de la
-#' enfermedad o evento
+#' @param nomb_cols Un `character` (cadena de caracteres) o `array` (arreglo)
+#' de `character` que contiene el nombre de la(s) columna(s) con la información
+#' de los departamentos y municipios en los datos agrupados de la enfermedad o
+#' evento
 #' @param dpto Un `character` (cadena de caracteres) o `numeric` (numérico)
-#' que contiene el código o nombre del departamento; su valor por
-#' defecto es `NULL`
+#' que contiene el código o nombre del departamento; su valor por defecto es
+#' `NULL`
 #' @param mpio Un `character` (cadena de caracteres) o `numeric` (numérico)
 #' que contiene el código o nombre del municipio; su valor por defecto es `NULL`
 #' @return Una `list` (lista) con el departamento y municipio con la siguiente
