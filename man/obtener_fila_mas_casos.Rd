@@ -11,8 +11,8 @@ obtener_fila_mas_casos(data_event, nomb_col = "casos", porcentaje = TRUE)
 enfermedad o evento}
 
 \item{nomb_col}{Un `character` (cadena de caracteres) con el
-nombre de la columna de los datos de la enfermedad o evento que
-contiene el número de casos}
+nombre de la columna que contiene el número de casos en los datos de
+la enfermedad o evento}
 
 \item{porcentaje}{Un `boolean` (TRUE/FALSE) que indica si se
 requiere agregar un porcentaje de casos como columna}

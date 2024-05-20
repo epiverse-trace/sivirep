@@ -73,8 +73,8 @@ obtener_meses_mas_casos <- function(data_event,
 #' @param data_event Un `data.frame` que contiene los datos de la
 #' enfermedad o evento
 #' @param nomb_col Un `character` (cadena de caracteres) con el
-#' nombre de la columna de los datos de la enfermedad o evento que
-#' contiene el número de casos
+#' nombre de la columna que contiene el número de casos en los datos de
+#' la enfermedad o evento
 #' @param porcentaje Un `boolean` (TRUE/FALSE) que indica si se
 #' requiere agregar un porcentaje de casos como columna
 #' @return Un `data.frame` que contiene la fila con mayor número de casos
