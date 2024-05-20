@@ -5,7 +5,6 @@ default:
   path_microdata: "web/lists/GetByTitle('Microdatos')/"
   query_path_microdata: "items?$select=*,FileRef&$filter=(A_x00f1_o%20eq%20%27_year_%27)and(NombreEvento%20eq%20%27_disease_%27)"
   query_diseases_by_year_path: "https://portalsivigila.ins.gov.co/_api/web/lists/GetByTitle('Microdatos')/items?$select=Evento,A_x00f1_o,NombreEvento&$orderby=NombreEvento%20asc&$top=1000"
-  name_file_split: "/Microdatos/"
   data_delim: ["|", "," , ";", ":", "-"]
   cols_remover: ["particion", "consecutive", "consecutive2", "separacion"]
   special_populations_cols: ["gp_discapa","gp_desplaz","gp_migrant","gp_carcela","gp_gestan","gp_indigen","gp_pobicfb","gp_mad_com","gp_desmovi","gp_psiquia","gp_vic_vio","gp_otros"]
