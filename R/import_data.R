@@ -210,30 +210,6 @@ import_sep_data <- function(ruta_data = NULL, cache = TRUE) {
   return(data)
 }
 
-#' Obtener el nombre del archivo desde una URL
-#'
-#' Función que importa el nombre del archivo a descargar desde una URL
-#' o ruta
-#' @param ruta Un `character` (cadena de caracteres) con la ruta o URL
-#' de descarga
-#' @return Un `character` (cadena de caracteres) con el nombre del
-#' archivo a descargar
-#' @keywords internal
-obtener_ruta_descarga <- function(ruta) {
-  stopifnot("El parametro ruta no debe estar vacio"
-            = !missing(ruta),
-            "El parametro ruta debe ser una cadena de caracteres"
-            = is.character(ruta))
-  nombre_archivo <- strsplit(ruta,
-                             config::get(file =
-                                           system.file("extdata", "config.yml",
-                                                       package = "sivirep"),
-                                         "name_file_split"))
-  nombre_archivo <- strsplit(nombre_archivo[[1]][2],
-                             "')", fixed = TRUE)[[1]][1] %>% as.character()
-  return(nombre_archivo)
-}
-
 #' Importar la población para efectuar el cálculo de la incidencia
 #'
 #' Función que importa la población a riesgo de un evento o enfermedad
