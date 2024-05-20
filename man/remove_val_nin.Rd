@@ -11,17 +11,14 @@ remove_val_nin(data_event, nomb_col)
 enfermedad o evento}
 
 \item{nomb_col}{Un `character` (cadena de caracteres) que contiene el
-nombre de la columna en los datos de una enfermedad o evento a evaluar}
+nombre de la columna a evaluar en los datos de una enfermedad o evento}
 }
 \value{
-Los datos limpios sin valores NA, Infinito o NaN
+Un `data.frame` con los datos limpios sin valores NA,
+Infinito o NaN
 }
 \description{
 Función que elimina filas si los valores de la columna seleccionada
 incluyen NA, Infinito o NaN
 }
-\examples{
-data(dengue2020)
-data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
-remove_val_nin(data_event = data_limpia, nomb_col = "edad")
-}
+\keyword{internal}
