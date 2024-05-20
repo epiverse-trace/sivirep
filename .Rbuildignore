@@ -11,3 +11,4 @@
 ^LICENSE\.md$
 ^config\.yml$
 ^\.lintr$
+^vignettes/articles$
