@@ -3,32 +3,31 @@
 \name{obtener_estetica_escala}
 \alias{obtener_estetica_escala}
 \title{Obtener la estetica de una escala para un grafico de \pkg{sivirep}
-Función que genera la estetica de una escala para un grafico de
+Función que genera la estética de una escala para un gráfico de
 \pkg{sivirep}}
 \usage{
 obtener_estetica_escala(escala = 0, nombre, etiquetas = NULL)
 }
 \arguments{
-\item{escala}{Un numero (numeric) que indica la cantidad de valores que
+\item{escala}{Un `numeric` (numerico) que indica la cantidad de valores que
 contiene la escala}
 
-\item{nombre}{Un character (cadena de caracteres) que contiene el nombre
+\item{nombre}{Un `character` (cadena de caracteres) que contiene el nombre
 de la escala}
 
-\item{etiquetas}{Un character (cadena de caracteres) que contiene las
+\item{etiquetas}{Un `character` (cadena de caracteres) que contiene las
 etiquetas de la escala}
 }
 \value{
-Un objecto scale_fill_manual de \pkg{ggplot2}
+Un objeto `scale_fill_manual` de \pkg{ggplot2}
 }
 \description{
 Obtener la estetica de una escala para un grafico de \pkg{sivirep}
-Función que genera la estetica de una escala para un grafico de
+Función que genera la estética de una escala para un gráfico de
 \pkg{sivirep}
 }
 \examples{
 library(ggplot2)
-
 ggplot(mtcars, ggplot2::aes(wt, mpg)) +
   ggplot2::geom_point() +
   ggplot2::labs(title = "La economia") +
