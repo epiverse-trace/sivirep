@@ -352,8 +352,8 @@ limpiar_val_atipic <- function(data_event) {
   cod_event <- data_event$cod_eve[1]
   if (cod_event > 0) {
     for (event in cols_events) {
-      code <- names(event)
-      if (cod_event %in% code) {
+      cod <- names(event)
+      if (cod_event %in% cod) {
         cols <- event[as.character(cod_event)]
         for (nom_cols in cols) {
           for (col in nom_cols) {
