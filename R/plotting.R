@@ -955,7 +955,7 @@ plot_tabla_tipos_event <- function(data_agrupada,
 #' data_agrupada <- agrupar_years(data_event = data_limpia)
 #' plot_years(data_agrupada,
 #'            col_year = "ano")
-#' \dontrun{
+#' \donttest{
 #' data_years <- import_data_event(nombre_event = "DENGUE",
 #'                                 years = seq(2007, 2020))
 #' data_limpia <- limpiar_data_sivigila(data_years)
@@ -1242,12 +1242,12 @@ plot_per_etn <- function(data_agrupada,
 #' @return Una `kable` (tabla gráfica) con la incidencia según
 #' distribución geográfica
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 #' data_agrupada <- agrupar_mpio(data_limpia, dpto = "Antioquia")
-#' incidencia_mpios <- calcular_incidencia_geo(
-#'                         data_agrupada = data_agrupada)
+#' incidencia_mpios <- calcular_incidencia_geo(data_agrupada =
+#'                                                data_agrupada)
 #  plot_tabla_incidencia_geo(data_agrupada = incidencia_mpios,
 #'                           col_geo = "municipio_ocurrencia")
 #' }
@@ -1308,7 +1308,7 @@ plot_tabla_incidencia_geo <- function(data_agrupada,
 #' o evento; su valor por defecto es `"sexo"`
 #' @return Una `kable` (tabla gráfica) con la incidencia por sexo
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 #' data_agrupada <- agrupar_sex(data_limpia)
