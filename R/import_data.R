@@ -14,7 +14,7 @@
 #' }
 #' @noRd
 
-make_request <- function(url) {
+peticion_http <- function(url) {
   request_timeout <- config::get(file =
                                         system.file("extdata",
                                                     "config.yml",
@@ -108,7 +108,7 @@ list_events <- function() {
                                                      package = "sivirep"),
                                        "query_diseases_by_year_path")
   query_event_year_content <-
-    make_request(query_event_year_path) %>%
+    peticion_http(query_event_year_path) %>%
     httr2::resp_body_xml()
 
   children <- xml2::xml_children(query_event_year_content) %>%
@@ -250,7 +250,7 @@ import_sep_data <- function(path_data = NULL, cache = TRUE) {
     file_name <- stringr::str_sub(path_data, start_file_name, end_file_name)
     file_path <- file.path(extdata_path, file_name)
     if (!file.exists(file_path) || !cache) {
-      file_response <- make_request(path_data)
+      file_response <- peticion_http(path_data)
       if (httr2::resp_status(file_response) == 200) {
         file_content <- httr2::resp_body_raw(file_response)
         con_file <- file(file_path, "wb")
