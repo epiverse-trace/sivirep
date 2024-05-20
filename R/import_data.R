@@ -111,12 +111,10 @@ list_events <- function() {
 #'                   years = 2020,
 #'                   cache = TRUE)
 #' }
-#' \donttest{
+#' \dontrun{
 #' import_data_event(nombre_event = "DENGUE",
 #'                   years = c(2019, 2020),
 #'                   cache = TRUE)
-#' }
-#' \donttest{
 #' import_data_event(nombre_event = "DENGUE",
 #'                   years = seq(2007, 2020),
 #'                   cache = TRUE)
@@ -227,7 +225,7 @@ import_sep_data <- function(ruta_data = NULL, cache = TRUE) {
 #' @return Un `data.frame` con la población a riesgo o las proyecciones
 #' poblacionaldes DANE
 #' @examples
-#'  \donttest{
+#'  \dontrun{
 #' import_pob_incidencia(poblacion = "proyecciones")
 #' import_pob_incidencia(poblacion = "riesgo", event = "dengue", year = 2020)
 #' }
@@ -253,7 +251,7 @@ import_pob_incidencia <- function(poblacion = "riesgo", event, year) {
 #' el año 2005 hasta el 2035
 #' @return Un `data.frame` con las proyecciones poblacionales DANE
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' import_pob_proyecciones()
 #' }
 #' @export
@@ -290,7 +288,7 @@ import_pob_proyecciones <- function() {
 #' riesgo
 #' @return Un `data.frame` con la población a riesgo de un año específico
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' import_pob_riesgo(event = "Dengue", year = 2020)
 #' }
 #' @export

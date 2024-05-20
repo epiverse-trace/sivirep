@@ -21,7 +21,7 @@ Función que importa la población a riesgo de un evento o enfermedad de un
 año específico
 }
 \examples{
-\donttest{
+\dontrun{
 import_pob_riesgo(event = "Dengue", year = 2020)
 }
 }

@@ -28,7 +28,7 @@ Función que importa la población a riesgo de un evento o enfermedad
 o las proyecciones poblacionales DANE desde el año 2005 hasta el 2035
 }
 \examples{
- \donttest{
+ \dontrun{
 import_pob_incidencia(poblacion = "proyecciones")
 import_pob_incidencia(poblacion = "riesgo", event = "dengue", year = 2020)
 }

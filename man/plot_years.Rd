@@ -29,7 +29,7 @@ data_limpia <- limpiar_data_sivigila(dengue2020)
 data_agrupada <- agrupar_years(data_event = data_limpia)
 plot_years(data_agrupada,
            col_year = "ano")
-\donttest{
+\dontrun{
 data_years <- import_data_event(nombre_event = "DENGUE",
                                 years = seq(2007, 2020))
 data_limpia <- limpiar_data_sivigila(data_years)

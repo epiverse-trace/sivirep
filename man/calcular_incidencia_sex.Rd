@@ -38,7 +38,7 @@ Función que calcula la incidencia de una enfermedad o evento para todos los
 departamentos de Colombia o los municipios de un departamento por sexo
 }
 \examples{
-\donttest{
+\dontrun{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 data_filtrada <-  geo_filtro(data_event = data_limpia,

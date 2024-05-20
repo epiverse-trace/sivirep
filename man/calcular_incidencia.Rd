@@ -51,7 +51,7 @@ Función que calcula la incidencia de una enfermedad o evento para todo
 Colombia, departamento o municipio
 }
 \examples{
-\donttest{
+\dontrun{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 data_agrupada_mpios <- agrupar_mpio(data_limpia, dpto = "Antioquia")

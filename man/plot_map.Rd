@@ -46,6 +46,7 @@ Función que genera el mapa por departamentos o municipios con el número de
 casos o la incidencia de una enfermedad o evento
 }
 \examples{
+\dontrun{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(dengue2020)
 data_estandar <- estandarizar_geo_cods(data_limpia)
@@ -70,8 +71,7 @@ plot_map(data_agrupada = data_espacial_mpio,
          col_distribucion = "casos",
          dpto = "Antioquia",
          mpio = "Envigado")
-# Mapa con la incidencia por municipios de un departamento especifico
-\donttest{
+# Mapa con la incidencia por municipios de un departamento específico
 incidencia_dpto <-
     calcular_incidencia_geo(data_agrupada = data_espacial_dpto)
 plot_map(data_agrupada = incidencia_dpto,
