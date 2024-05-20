@@ -106,15 +106,17 @@ list_events <- function() {
 #' @return Un `data.frame` con los datos del año de la enfermedad o evento
 #' seleccionado desde los microdatos del SIVIGILA
 #' @examples
+#' \donttest{
 #' import_data_event(nombre_event = "DENGUE",
 #'                   years = 2020,
 #'                   cache = TRUE)
-#' \dontrun{
+#' }
+#' \donttest{
 #' import_data_event(nombre_event = "DENGUE",
 #'                   years = c(2019, 2020),
 #'                   cache = TRUE)
 #' }
-#' \dontrun{
+#' \donttest{
 #' import_data_event(nombre_event = "DENGUE",
 #'                   years = seq(2007, 2020),
 #'                   cache = TRUE)
