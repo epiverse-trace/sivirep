@@ -1,6 +1,5 @@
 #' Tema \pkg{ggplot2} personalizado para los reportes de \pkg{sivirep}
-#' @return
-#' Un objecto tema de \pkg{ggplot2}
+#' @return Un objecto tema de \pkg{ggplot2}
 #' @examples
 #' library(ggplot2)
 #' ggplot(mtcars, ggplot2::aes(wt, mpg)) +
