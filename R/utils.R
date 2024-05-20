@@ -52,11 +52,7 @@ obtener_meses_mas_casos <- function(data_event,
   data_mas_casos <- data_mas_casos[1:top, ]
   mes <- strftime(data_mas_casos[[col_fechas]], "%m")
   mes <- as.numeric(mes)
-  etiquetas <- config::get(file =
-                             system.file("extdata",
-                                         "config.yml",
-                                         package = "sivirep"),
-                           "months")
+  etiquetas <- obtener_val_config(llave = "months")
   etiquetas <- etiquetas[mes]
   data_mas_casos$meses <- etiquetas
   if (concat_vals && length(data_mas_casos$meses) >= 2) {
@@ -169,11 +165,7 @@ concatenar_vals_token <- function(vals,
 #' obtener_tip_ocurren_geo(cod_event = 210)
 #' @export
 obtener_tip_ocurren_geo <- function(cod_event = NULL, nombre_event = NULL) {
-  geo_occurren <- config::get(file =
-                                system.file("extdata",
-                                            "config.yml",
-                                            package = "sivirep"),
-                              "occurrence_geo_diseases")
+  geo_occurren <- obtener_val_config(llave = "occurrence_geo_diseases")
   col_ocurren <- c("cod_dpto_o", "cod_mun_o", "ocurrencia")
   param_busqueda <- NULL
   if (!is.null(cod_event)) {
@@ -303,10 +295,7 @@ obtener_info_depts <- function(dpto = NULL, mpio = NULL) {
 #' obtener_dptos()
 #' @export
 obtener_dptos <- function() {
-  dptos <- config::get(file =
-                         system.file("extdata", "config.yml",
-                                     package = "sivirep"),
-                       "departments")
+  dptos <- obtener_val_config(llave = "departments")
   return(dptos)
 }
 
@@ -408,8 +397,7 @@ obtener_nombre_mpio <- function(data_geo, cod_dpto, cod_mpio) {
 #'
 #' Función que da el formato deseado a un código geográfico
 #' @param cod_geo Un `numeric` (numerico) o `character`
-#' (cadena de caracteres) que contiene el código
-#' geográfico
+#' (cadena de caracteres) que contiene el código geográfico
 #' @param etiqueta Un `character` (cadena de caracteres) con el nombre
 #' de la etiqueta de la validación relacionada a la longitud máxima del
 #' código geográfico; se refiere al tipo de división geográfica ("municipio",
@@ -459,11 +447,7 @@ obtener_eventos_relacionados <- function(nombre_event, years) {
                                           substr(nombre_event,
                                                  1,
                                                  nchar(nombre_event) - 1))), ]
-  list_events_relacionados <- config::get(file =
-                                            system.file("extdata",
-                                                        "config.yml",
-                                                        package = "sivirep"),
-                                          "related_diseases")
+  list_events_relacionados <- obtener_val_config(llave = "related_diseases")
   list_events_relacionados <- lapply(list_events_relacionados,
                                      stringr::str_to_title)
   if (length(list_events_relacionados) > 0) {
@@ -514,9 +498,7 @@ obtener_cond_inciden_event <- function(cod_eve) {
   incidencia_eventos <- NULL
   condiciones <- NULL
   ruta_extdata <- system.file("extdata", package = "sivirep")
-  archivo_config <- system.file("extdata", "config.yml", package = "sivirep")
-  ruta_data <- config::get(file = archivo_config,
-                           "incidence_events_file_name")
+  ruta_data <- obtener_val_config(llave = "incidence_events_file_name")
   load(file.path(ruta_extdata, ruta_data))
   condiciones <- incidencia_eventos
   vals_event <- condiciones[condiciones$cod_eve == as.numeric(cod_eve), ]
