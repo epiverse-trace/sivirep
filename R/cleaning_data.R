@@ -50,12 +50,12 @@ estandarizar_geo_cods <- function(data_event) {
 #' SIVIGILA
 #' @param data_event Un `data.frame` que contiene los datos de una
 #' enfermedad o evento
-#' @param col_edad Un `character` (cadena de caracteres) con el nombre
-#' de la columna en los datos de una enfermedad o evento que
-#' contiene las edades; su valor por defecto es edad
+#' @param col_edad Un `character` (cadena de caracteres) con
+#' el nombre de la columna que contiene las edades en los datos de
+#' la enfermedad o evento; su valor por defecto es `"edad"`
 #' @param col_uni_med Un `character` (cadena de caracteres) con el nombre
-#' de la columna en los datos de una enfermedad o evento que contiene
-#' las unidades de medida; su valor por defecto es uni_med
+#' de la columna que contiene las unidades de medida en los datos de una
+#' enfermedad o evento; su valor por defecto es `"uni_med"`
 #' @return Un `data.frame` con las edades en años según las unidades de medida
 #' del SIVIGILA
 #' @examples
