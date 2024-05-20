@@ -175,8 +175,8 @@ remove_error_fecha <- function(data_event,
 #' @param format_fecha Un `character` (cadena de caracteres)
 #' que contiene  el formato deseado de la fecha
 #' @param nomb_cols Un `character` (cadena de caracteres) que
-#' contiene los nombres de la columna a formatear; su valor por defecto
-#' es `NULL`
+#' contiene los nombres de la columna a formatear en los datos de
+#' una enfermedad o evento; su valor por defecto es `NULL`
 #' @return Un `data.frame` con los datos con las fechas formateadas
 #' @keywords internal
 format_fecha <- function(data_event,
