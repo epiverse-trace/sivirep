@@ -322,17 +322,17 @@ import_pob_riesgo <- function(event, year) {
       years_disponibles <- pop_riesgo$years
       if (year %in% pop_riesgo$years) {
         pop_event <- pop_riesgo
-        pop_event$path <- file.path(ruta_extdata, paste0(pop_riesgo$file_name,
+        pop_event$url <- file.path(ruta_extdata, paste0(pop_riesgo$file_name,
                                                          pop_riesgo$extension))
-        if (!file.exists(pop_event$path)) {
-          utils::download.file(pop_event$url, pop_event$path)
+        if (!file.exists(pop_event$url)) {
+          utils::download.file(pop_event$url, pop_event$url)
         }
         break
       }
     }
   }
   if (!is.null(pop_event)) {
-      load(pop_event$path)
+      load(pop_event$url)
       pob_riesgo_event <- eval(parse(text = pop_event$file_name))
   } else if (!is.null(years_disponibles)) {
     warning("Para el ", year, " la poblacion a riesgo no esta disponible.",
