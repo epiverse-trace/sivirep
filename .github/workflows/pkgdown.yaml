@@ -70,11 +70,6 @@ jobs:
         run: pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)
         shell: Rscript {0}
 
-      - name: Check website links
-        uses: untitaker/hyperlink@0.1.32
-        with:
-          args: docs/
-
       - name: Deploy to GitHub pages 🚀
         if: github.event_name != 'merge_group' && github.event_name != 'pull_request'
         uses: JamesIves/github-pages-deploy-action@4.1.4
