@@ -8,8 +8,8 @@ desde los microdatos de SIVIGILA"><meta property="og:image" content="https://epi
   gtag('config', 'G-XZ471458FQ');
 </script></head><body>
     <a href="#main" class="visually-hidden-focusable">Ir al contenido</a>
-    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark" data-bs-theme="dark"><div class="container">
-    <a href="https://epiverse-trace.github.io/" class="external-link"><img src="../logo_white.svg" id="logo" alt="Epiverse-TRACE"></a>
+    <nav class="navbar navbar-expand-lg fixed-top bg-dark" data-bs-theme="dark" aria-label="Site navigation"><div class="container">
+    <a href="https://epiverse-trace.github.io/" class="external-link"><img src="https://epiverse-trace.github.io/blueprints/logo_white.svg" id="logo" alt="Epiverse-TRACE"></a>
     <a class="navbar-brand me-2" href="../index.html">sivirep</a>
     <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Versión en desarrollo">0.0.2.0</small>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Cambiar la navegación">
@@ -63,7 +63,8 @@ por año desde los microdatos de SIVIGILA</p>
     </div>
     <div class="section level2">
     <h2 id="ref-examples">Ejemplos<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">import_data_event</span><span class="op">(</span>nombre_event <span class="op">=</span> <span class="st">"DENGUE"</span>,</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="fu">import_data_event</span><span class="op">(</span>nombre_event <span class="op">=</span> <span class="st">"DENGUE"</span>,</span></span>
 <span class="r-in"><span>                  years <span class="op">=</span> <span class="fl">2020</span>,</span></span>
 <span class="r-in"><span>                  cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 77,351 × 72</span></span>
@@ -86,16 +87,15 @@ por año desde los microdatos de SIVIGILA</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   estrato &lt;chr&gt;, gp_discapa &lt;chr&gt;, gp_desplaz &lt;chr&gt;, gp_migrant &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gp_carcela &lt;chr&gt;, gp_gestan &lt;chr&gt;, sem_ges &lt;chr&gt;, gp_indigen &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gp_pobicfb &lt;chr&gt;, gp_mad_com &lt;chr&gt;, gp_desmovi &lt;chr&gt;, gp_psiquia &lt;chr&gt;, …</span></span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span><span class="fu">import_data_event</span><span class="op">(</span>nombre_event <span class="op">=</span> <span class="st">"DENGUE"</span>,</span></span>
 <span class="r-in"><span>                  years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2019</span>, <span class="fl">2020</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                  cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in value[[3L]](cond):</span> Ha ocurrido un error inesperado Error in value[[3L]](cond): No se pudo conectar al servidor de SIVIGILA para descargar los datos</span>
 <span class="r-in"><span><span class="fu">import_data_event</span><span class="op">(</span>nombre_event <span class="op">=</span> <span class="st">"DENGUE"</span>,</span></span>
 <span class="r-in"><span>                  years <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">2007</span>, <span class="fl">2020</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                  cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in value[[3L]](cond):</span> Ha ocurrido un error inesperado Error in value[[3L]](cond): No se pudo conectar al servidor de SIVIGILA para descargar los datos</span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Índice de contenidos"><h2>En esta página</h2>

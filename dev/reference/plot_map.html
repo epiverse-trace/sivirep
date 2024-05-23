@@ -8,8 +8,8 @@ casos o la incidencia de una enfermedad o evento"><meta property="og:image" cont
   gtag('config', 'G-XZ471458FQ');
 </script></head><body>
     <a href="#main" class="visually-hidden-focusable">Ir al contenido</a>
-    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark" data-bs-theme="dark"><div class="container">
-    <a href="https://epiverse-trace.github.io/" class="external-link"><img src="../logo_white.svg" id="logo" alt="Epiverse-TRACE"></a>
+    <nav class="navbar navbar-expand-lg fixed-top bg-dark" data-bs-theme="dark" aria-label="Site navigation"><div class="container">
+    <a href="https://epiverse-trace.github.io/" class="external-link"><img src="https://epiverse-trace.github.io/blueprints/logo_white.svg" id="logo" alt="Epiverse-TRACE"></a>
     <a class="navbar-brand me-2" href="../index.html">sivirep</a>
     <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Versión en desarrollo">0.0.2.0</small>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Cambiar la navegación">
@@ -90,7 +90,7 @@ casos o incidencia de una enfermedad específica</p>
 <span class="r-in"><span><span class="va">data_espacial</span> <span class="op">&lt;-</span> <span class="fu"><a href="agrupar_dpto.html">agrupar_dpto</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_estandar</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">plot_map</span><span class="op">(</span>data_agrupada <span class="op">=</span> <span class="va">data_espacial</span>,</span></span>
 <span class="r-in"><span>         col_distribucion <span class="op">=</span> <span class="st">"casos"</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="plot_map-1.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="plot_map-1.png" alt="" width="768" height="576"></span>
 <span class="r-in"><span><span class="co"># Mapa por municipios de un departamento especifico</span></span></span>
 <span class="r-in"><span><span class="va">data_filtrada_dpto</span> <span class="op">&lt;-</span> <span class="fu"><a href="geo_filtro.html">geo_filtro</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_estandar</span>,</span></span>
 <span class="r-in"><span>                                 dpto <span class="op">=</span> <span class="st">"Cundinamarca"</span><span class="op">)</span></span></span>
@@ -98,7 +98,7 @@ casos o incidencia de una enfermedad específica</p>
 <span class="r-in"><span><span class="fu">plot_map</span><span class="op">(</span>data_agrupada <span class="op">=</span> <span class="va">data_espacial_dpto</span>,</span></span>
 <span class="r-in"><span>         col_codigos <span class="op">=</span> <span class="st">"cod_mun_o"</span>,</span></span>
 <span class="r-in"><span>         col_distribucion <span class="op">=</span> <span class="st">"casos"</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="plot_map-2.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="plot_map-2.png" alt="" width="768" height="576"></span>
 <span class="r-in"><span><span class="co"># Mapa por municipio especifico</span></span></span>
 <span class="r-in"><span><span class="va">data_filtrada_mpio</span> <span class="op">&lt;-</span> <span class="fu"><a href="geo_filtro.html">geo_filtro</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_estandar</span>,</span></span>
 <span class="r-in"><span>                                 dpto <span class="op">=</span> <span class="st">"Antioquia"</span>,</span></span>
@@ -109,15 +109,17 @@ casos o incidencia de una enfermedad específica</p>
 <span class="r-in"><span>         col_distribucion <span class="op">=</span> <span class="st">"casos"</span>,</span></span>
 <span class="r-in"><span>         dpto <span class="op">=</span> <span class="st">"Antioquia"</span>,</span></span>
 <span class="r-in"><span>         mpio <span class="op">=</span> <span class="st">"Envigado"</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="plot_map-3.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="plot_map-3.png" alt="" width="768" height="576"></span>
 <span class="r-in"><span><span class="co"># Mapa con la incidencia por municipios de un departamento especifico</span></span></span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="va">incidencia_dpto</span> <span class="op">&lt;-</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="calcular_incidencia_geo.html">calcular_incidencia_geo</a></span><span class="op">(</span>data_agrupada <span class="op">=</span> <span class="va">data_espacial_dpto</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Las incidencias se calcularan con la poblacion a riesgo definida por el Ministerio de Salud para el 2020</span>
 <span class="r-in"><span><span class="fu">plot_map</span><span class="op">(</span>data_agrupada <span class="op">=</span> <span class="va">incidencia_dpto</span>,</span></span>
 <span class="r-in"><span>         col_codigos <span class="op">=</span> <span class="st">"cod_mun_o"</span>,</span></span>
 <span class="r-in"><span>         col_distribucion <span class="op">=</span> <span class="st">"incidencia"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-plt img"><img src="plot_map-4.png" alt="" width="768" height="576"></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Índice de contenidos"><h2>En esta página</h2>
