@@ -89,7 +89,7 @@ plot_map <- function(data_agrupada,
     cond_incidencia <-
       obtener_cond_inciden_event(cod_eve = data_agrupada$cod_eve[1])
     etiqueta_relleno <- paste0(etiqueta_relleno, " por \n",
-                               cond_incidencia$coeficiente,
+                               as.integer(cond_incidencia$coeficiente),
                                " habitantes")
   }
   ruta_extdata <- system.file("extdata", package = "sivirep")
