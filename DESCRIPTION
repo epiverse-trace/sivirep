@@ -44,8 +44,6 @@ Imports:
     readxl,
     sysfonts,
     showtext,
-    cowplot,
-    gridExtra,
     kableExtra
 Suggests: 
     knitr,
