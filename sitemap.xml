@@ -10,6 +10,12 @@
     <loc>https://epiverse-trace.github.io/sivirep/LICENSE.html</loc>
   </url>
   <url>
+    <loc>https://epiverse-trace.github.io/sivirep/articles/automated_report.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/sivirep/articles/custom_analysis.html</loc>
+  </url>
+  <url>
     <loc>https://epiverse-trace.github.io/sivirep/articles/index.html</loc>
   </url>
   <url>
@@ -25,12 +31,6 @@
     <loc>https://epiverse-trace.github.io/sivirep/reference/agrupar_area_geo.html</loc>
   </url>
   <url>
-    <loc>https://epiverse-trace.github.io/sivirep/reference/agrupar_casos_eventos.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/sivirep/reference/agrupar_casos_semanaepi.html</loc>
-  </url>
-  <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/agrupar_cols_casos.html</loc>
   </url>
   <url>
@@ -43,10 +43,10 @@
     <loc>https://epiverse-trace.github.io/sivirep/reference/agrupar_edad_sex.html</loc>
   </url>
   <url>
-    <loc>https://epiverse-trace.github.io/sivirep/reference/agrupar_fecha_inisintomas.html</loc>
+    <loc>https://epiverse-trace.github.io/sivirep/reference/agrupar_eventos.html</loc>
   </url>
   <url>
-    <loc>https://epiverse-trace.github.io/sivirep/reference/agrupar_fecha_notifica.html</loc>
+    <loc>https://epiverse-trace.github.io/sivirep/reference/agrupar_fecha_inisintomas.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/agrupar_mpio.html</loc>
@@ -55,10 +55,10 @@
     <loc>https://epiverse-trace.github.io/sivirep/reference/agrupar_per_etn.html</loc>
   </url>
   <url>
-    <loc>https://epiverse-trace.github.io/sivirep/reference/agrupar_pob_especial.html</loc>
+    <loc>https://epiverse-trace.github.io/sivirep/reference/agrupar_rango_edad.html</loc>
   </url>
   <url>
-    <loc>https://epiverse-trace.github.io/sivirep/reference/agrupar_rango_edad_casos.html</loc>
+    <loc>https://epiverse-trace.github.io/sivirep/reference/agrupar_semanaepi.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/agrupar_sex.html</loc>
@@ -70,7 +70,19 @@
     <loc>https://epiverse-trace.github.io/sivirep/reference/agrupar_tipo_caso.html</loc>
   </url>
   <url>
+    <loc>https://epiverse-trace.github.io/sivirep/reference/agrupar_top_area_geo.html</loc>
+  </url>
+  <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/agrupar_years.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/sivirep/reference/calcular_incidencia.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/sivirep/reference/calcular_incidencia_geo.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/sivirep/reference/calcular_incidencia_sex.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/concatenar_vals_token.html</loc>
@@ -88,13 +100,13 @@
     <loc>https://epiverse-trace.github.io/sivirep/reference/estandarizar_geo_cods.html</loc>
   </url>
   <url>
+    <loc>https://epiverse-trace.github.io/sivirep/reference/format_cod_geo.html</loc>
+  </url>
+  <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/format_fecha.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/geo_filtro.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/sivirep/reference/get_path_data_disease_year.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/import_data_event.html</loc>
@@ -103,13 +115,19 @@
     <loc>https://epiverse-trace.github.io/sivirep/reference/import_geo_cods.html</loc>
   </url>
   <url>
+    <loc>https://epiverse-trace.github.io/sivirep/reference/import_pob_incidencia.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/sivirep/reference/import_pob_proyecciones.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/sivirep/reference/import_pob_riesgo.html</loc>
+  </url>
+  <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/import_sep_data.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://epiverse-trace.github.io/sivirep/reference/limpiar_cods_dpto.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/limpiar_data_sivigila.html</loc>
@@ -130,10 +148,10 @@
     <loc>https://epiverse-trace.github.io/sivirep/reference/list_events.html</loc>
   </url>
   <url>
-    <loc>https://epiverse-trace.github.io/sivirep/reference/obtener_casos_pob_especial.html</loc>
+    <loc>https://epiverse-trace.github.io/sivirep/reference/obtener_cond_inciden_event.html</loc>
   </url>
   <url>
-    <loc>https://epiverse-trace.github.io/sivirep/reference/obtener_cods_dpto.html</loc>
+    <loc>https://epiverse-trace.github.io/sivirep/reference/obtener_dpto_mpio.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/obtener_dptos.html</loc>
@@ -154,16 +172,28 @@
     <loc>https://epiverse-trace.github.io/sivirep/reference/obtener_meses_mas_casos.html</loc>
   </url>
   <url>
-    <loc>https://epiverse-trace.github.io/sivirep/reference/obtener_nombres_dptos.html</loc>
+    <loc>https://epiverse-trace.github.io/sivirep/reference/obtener_nombre_dpto.html</loc>
   </url>
   <url>
-    <loc>https://epiverse-trace.github.io/sivirep/reference/obtener_nombres_mpios.html</loc>
+    <loc>https://epiverse-trace.github.io/sivirep/reference/obtener_nombre_mpio.html</loc>
   </url>
   <url>
-    <loc>https://epiverse-trace.github.io/sivirep/reference/obtener_ruta_descarga.html</loc>
+    <loc>https://epiverse-trace.github.io/sivirep/reference/obtener_pob_incidencia.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/sivirep/reference/obtener_ruta_data_event_year.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/sivirep/reference/obtener_text_sex.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/obtener_tip_ocurren_geo.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/sivirep/reference/obtener_val_config.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/sivirep/reference/obtener_year.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/plot_area_geo.html</loc>
@@ -181,9 +211,6 @@
     <loc>https://epiverse-trace.github.io/sivirep/reference/plot_fecha_inisintomas.html</loc>
   </url>
   <url>
-    <loc>https://epiverse-trace.github.io/sivirep/reference/plot_fecha_notifica.html</loc>
-  </url>
-  <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/plot_map.html</loc>
   </url>
   <url>
@@ -199,6 +226,12 @@
     <loc>https://epiverse-trace.github.io/sivirep/reference/plot_sex_semanaepi.html</loc>
   </url>
   <url>
+    <loc>https://epiverse-trace.github.io/sivirep/reference/plot_tabla_incidencia_geo.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/sivirep/reference/plot_tabla_incidencia_sex.html</loc>
+  </url>
+  <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/plot_tabla_tipos_event.html</loc>
   </url>
   <url>
@@ -206,6 +239,9 @@
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/plot_tipo_caso_years.html</loc>
+  </url>
+  <url>
+    <loc>https://epiverse-trace.github.io/sivirep/reference/plot_top_area_geo.html</loc>
   </url>
   <url>
     <loc>https://epiverse-trace.github.io/sivirep/reference/plot_years.html</loc>
