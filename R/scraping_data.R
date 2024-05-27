@@ -28,7 +28,7 @@ obtener_ruta_data_event_year <- function(nombre_event, year) {
                              paste0(ruta_microdata,
                                     ruta_query))
   solicitud_query_event <- httr2::request(ruta_query_event)
-  get_query_event <- httr2::req_perform(solicitud_query_event)
+  get_query_event <- peticion_http(solicitud_query_event)
   respuesta_query_event <- httr2::resp_body_string(get_query_event)
   respuesta_document <- xml2::as_xml_document(respuesta_query_event)
   ref_archivo_propiedad <- xml2::xml_find_all(respuesta_document, "//d:FileRef")

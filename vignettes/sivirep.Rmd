@@ -1,6 +1,11 @@
 ---
 title: "sivirep"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette:
+    self_contained: true
+    pandoc_args: ["--self-contained"]
+pkgdown:
+  as_is: true
 vignette: >
   %\VignetteIndexEntry{sivirep}
   %\VignetteEngine{knitr::rmarkdown}
@@ -77,9 +82,9 @@ Al contribuir a este proyecto, aceptas cumplir con sus términos.
 Puedes instalar la versión de desarrollo de `sivirep` desde GitHub con
 los siguientes comandos:
 
-```{r setup_sivirep, eval = FALSE}
+```r
 install.packages("pak")
-pak::pak(paste0("epiverse-trace", "/", "sivirep"))
+pak::pak("epiverse-trace/sivirep")
 ```
 
 ## Inicio rápido
@@ -109,11 +114,11 @@ la fuente de SIVIGILA.
 Para hacer uso de la plantilla del reporte puedes seguir los
 siguientes pasos:
 
-<img src="../man/figures/template.gif" width="900" height="540"/>
+![](`r system.file("video", "template.webm", package = "sivirep")`){width=900}
 
 El reporte que obtendrás al utilizar la plantilla de `sivirep` es este:
 
-<img src="../man/figures/template-report.gif" width="900" height="600"/>
+![](`r system.file("video", "template-report.webm", package = "sivirep")`){width=900}
 
 Si deseas generar el reporte en formato PDF debes instalar LateX. Puedes instalarlo siguiendo las instrucciones que se
 encuentran en [R Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html).

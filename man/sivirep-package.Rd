@@ -11,7 +11,7 @@ Provides functions for data wrangling and automated reports from SIVIGILA source
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://epiverse-trace.github.io/sivirep}
+  \item \url{https://epiverse-trace.github.io/sivirep/}
   \item \url{https://github.com/epiverse-trace/sivirep}
   \item Report bugs at \url{https://github.com/epiverse-trace/sivirep/issues}
 }

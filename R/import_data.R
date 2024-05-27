@@ -1,3 +1,58 @@
+#' Función de conveniencia para hacer peticiones a SIVIGILA
+#' @param url La dirección HTTP desde donde descargar la información
+#' @return Si la petición es exitosa, retorna una respuesta HTTP.
+#' De lo contrario arroja un mensaje de error explicando el problema
+#' y finaliza la ejecución del programa
+#' @examples
+#' \donttest{
+#' query_event_year_path <- config::get(file =
+#'            system.file("extdata",
+#'            "config.yml",
+#'            package = "sivirep"),
+#'            "query_diseases_by_year_path")
+#' make_request(query_event_year_path)
+#' }
+#' @noRd
+
+peticion_http <- function(url) {
+  request_timeout <- config::get(file =
+                                        system.file("extdata",
+                                                    "config.yml",
+                                                    package = "sivirep"),
+                                      "request_timeout")
+  return(tryCatch(
+    httr2::request(url) %>%
+    httr2::req_timeout(request_timeout) %>%
+    httr2::req_perform(),
+    httr2_failure = function(e) {
+      stop(
+        "No se pudo conectar al servidor de SIVIGILA para descargar los datos")
+    },
+    httr2_error = function(e) {
+      stop(
+        "Error al conectarse al servidor de SIVIGILA para descargar los datos")
+    },
+    httr2_http_404 = function(e) {
+      stop(
+        "El dato no existe en los servidores de SIVIGILA")
+    },
+    httr2_http = function(e) {
+      stop(
+        "Error al conectarse al servidor de SIVIGILA para descargar los datos")
+    },
+    error = function(e) {
+      # Check if the error message indicates a timeout
+      if (grepl("Timeout", e$message, fixed = TRUE)) {
+       stop(
+        "No se pudo conectar al servidor de SIVIGILA para descargar los datos")
+      } else {
+        stop("Ha ocurrido un error inesperado ", parent = e)
+      }
+    }
+  ))
+}
+
+
 #' Importar datos geográficos de Colombia
 #'
 #' Función que importa los nombres y códigos de los departamentos
@@ -41,22 +96,27 @@ import_geo_cods <- function(descargar = FALSE) {
 #' @return Una `list` con las enfermedades y los años disponibles
 #' para su descarga desde los microdatos del SIVIGILA
 #' @examples
+#' \donttest{
 #' list_events()
+#' }
 #' @export
 list_events <- function() {
+
   query_event_year_path <- config::get(file =
                                          system.file("extdata",
                                                      "config.yml",
                                                      package = "sivirep"),
                                        "query_diseases_by_year_path")
-  query_event_year <- httr2::request(query_event_year_path)
-  query_event_year_response <- httr2::req_perform(query_event_year)
-  query_event_year_content <- httr2::resp_body_xml(query_event_year_response)
-  children <- xml2::xml_children(query_event_year_content)
-  children <- xml2::xml_children(children)
-  children <- xml2::xml_children(children)
-  children <- xml2::xml_children(children)
+  query_event_year_content <-
+    peticion_http(query_event_year_path) %>%
+    httr2::resp_body_xml()
+
+  children <- xml2::xml_children(query_event_year_content) %>%
+    xml2::xml_children() %>%
+    xml2::xml_children() %>%
+    xml2::xml_children()
   children_text <- xml2::xml_text(children)
+
   i <- 2
   name_diseases <- NULL
   years_diseases <- NULL
@@ -190,8 +250,7 @@ import_sep_data <- function(ruta_data = NULL, cache = TRUE) {
     file_name <- stringr::str_sub(ruta_data, start_file_name, end_file_name)
     file_path <- file.path(extdata_path, file_name)
     if (!file.exists(file_path) || !cache) {
-      file_request <- httr2::request(ruta_data)
-      file_response <- httr2::req_perform(file_request)
+      file_response <- peticion_http(path_data)
       if (httr2::resp_status(file_response) == 200) {
         file_content <- httr2::resp_body_raw(file_response)
         con_file <- file(file_path, "wb")

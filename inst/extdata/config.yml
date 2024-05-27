@@ -52,3 +52,4 @@ default:
   caption_sex_incidence: "Incidencia por sexo"
   months: ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"]
   special_events: [{"cod_eve": 465, "event": "malaria"}]
+  request_timeout: 10
