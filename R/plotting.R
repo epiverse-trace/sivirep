@@ -401,17 +401,17 @@ plot_sex <- function(data_agrupada,
     ggplot2::labs(x = "\nSexo\n", y = paste0(etiqueta_eje, "\n"),
                   caption = fuente_data) +
     ggplot2::theme_classic() + {
-      if (!porcentaje) {
-            ggplot2::geom_text(ggplot2::aes(label = .data[[col_distribucion]]),
-                               vjust = 1.5,
-                               color = "white",
-                               hjust = 0.5)
-      } else {
+      if (porcentaje) {
             ggplot2::geom_text(ggplot2::aes(label =
                                               paste0(.data[[col_distribucion]],
                                                      " \n (",
                                                      .data[["porcentaje"]],
                                                      " %)")),
+                               vjust = 1.5,
+                               color = "white",
+                               hjust = 0.5)
+      } else {
+            ggplot2::geom_text(ggplot2::aes(label = .data[[col_distribucion]]),
                                vjust = 1.5,
                                color = "white",
                                hjust = 0.5)
