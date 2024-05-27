@@ -250,7 +250,7 @@ import_sep_data <- function(ruta_data = NULL, cache = TRUE) {
     file_name <- stringr::str_sub(ruta_data, start_file_name, end_file_name)
     file_path <- file.path(extdata_path, file_name)
     if (!file.exists(file_path) || !cache) {
-      file_response <- peticion_http(path_data)
+      file_response <- peticion_http(ruta_data)
       if (httr2::resp_status(file_response) == 200) {
         file_content <- httr2::resp_body_raw(file_response)
         con_file <- file(file_path, "wb")
