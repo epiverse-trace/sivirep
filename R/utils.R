@@ -658,7 +658,13 @@ obtener_year <- function(data_event) {
 #' agrupados por sexo
 #' @param figura Un `numeric` (numerico) con el número de la
 #' figura de la distribución de casos por sexo
-#' @keywords internal
+#' @examples
+#' data(dengue2020)
+#' data_limpia <- limpiar_data_sivigila(dengue2020)
+#' data_agrupada <- agrupar_sex(data_event = data_limpia,
+#'                              porcentaje = TRUE)
+#' obtener_text_sex(data_agrupada, year = 2020, figura = 3)
+#' @export
 obtener_text_sex <- function(data_agrupada,
                              year, figura) {
   nombre_evento <- tolower(data_agrupada$nombre_evento[1])
