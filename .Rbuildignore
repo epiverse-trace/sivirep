@@ -12,3 +12,4 @@
 ^config\.yml$
 ^\.lintr$
 ^vignettes/articles$
+^CITATION\.cff$
