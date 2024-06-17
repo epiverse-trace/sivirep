@@ -1,0 +1,318 @@
+# --------------------------------------------
+# CITATION file created with {cffr} R package
+# See also: https://docs.ropensci.org/cffr/
+# --------------------------------------------
+ 
+cff-version: 1.2.0
+message: 'To cite package "sivirep" in publications use:'
+type: software
+license: MIT
+title: 'sivirep: Data Wrangling and Automated Reports from ''SIVIGILA'' source'
+version: 0.0.9
+abstract: Provides functions for data wrangling and automated reports from SIVIGILA
+  source.
+authors:
+- family-names: Gómez-Millán
+  given-names: Geraldine
+  email: geralidine.gomez@javeriana.edu.co
+  orcid: https://orcid.org/0009-0007-8701-0568
+- family-names: Cucunubá
+  given-names: Zulma M.
+  email: zulma.cucunuba@javeriana.edu.co
+  orcid: https://orcid.org/0000-0002-8165-3198
+- family-names: Mendez-Romero
+  given-names: Jennifer A.
+  email: jenniferk2@hotmail.com
+  orcid: https://orcid.org/0009-0001-6138-0225
+- family-names: Huguett-Aragón
+  given-names: Claudia
+  email: chuguett@hotmail.com
+  orcid: https://orcid.org/0000-0002-9814-2386
+repository-code: https://github.com/epiverse-trace/sivirep
+url: https://epiverse-trace.github.io/sivirep/
+contact:
+- family-names: Gómez-Millán
+  given-names: Geraldine
+  email: geralidine.gomez@javeriana.edu.co
+  orcid: https://orcid.org/0009-0007-8701-0568
+keywords:
+- colombia
+- epidemiological-surveillance
+- epiverse
+- public-health
+- r
+- r-package
+references:
+- type: software
+  title: config
+  abstract: 'config: Manage Environment Specific Configuration Values'
+  notes: Imports
+  url: https://rstudio.github.io/config/
+  repository: https://CRAN.R-project.org/package=config
+  authors:
+  - family-names: Allaire
+    given-names: JJ
+    email: jj@rstudio.com
+  year: '2024'
+  doi: 10.32614/CRAN.package.config
+- type: software
+  title: dplyr
+  abstract: 'dplyr: A Grammar of Data Manipulation'
+  notes: Imports
+  url: https://dplyr.tidyverse.org
+  repository: https://CRAN.R-project.org/package=dplyr
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+    orcid: https://orcid.org/0000-0003-4757-117X
+  - family-names: François
+    given-names: Romain
+    orcid: https://orcid.org/0000-0002-2444-4226
+  - family-names: Henry
+    given-names: Lionel
+  - family-names: Müller
+    given-names: Kirill
+    orcid: https://orcid.org/0000-0002-1416-3412
+  - family-names: Vaughan
+    given-names: Davis
+    email: davis@posit.co
+    orcid: https://orcid.org/0000-0003-4777-038X
+  year: '2024'
+  doi: 10.32614/CRAN.package.dplyr
+- type: software
+  title: ggplot2
+  abstract: 'ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics'
+  notes: Imports
+  url: https://ggplot2.tidyverse.org
+  repository: https://CRAN.R-project.org/package=ggplot2
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+    orcid: https://orcid.org/0000-0003-4757-117X
+  - family-names: Chang
+    given-names: Winston
+    orcid: https://orcid.org/0000-0002-1576-2126
+  - family-names: Henry
+    given-names: Lionel
+  - family-names: Pedersen
+    given-names: Thomas Lin
+    email: thomas.pedersen@posit.co
+    orcid: https://orcid.org/0000-0002-5147-4711
+  - family-names: Takahashi
+    given-names: Kohske
+  - family-names: Wilke
+    given-names: Claus
+    orcid: https://orcid.org/0000-0002-7470-9261
+  - family-names: Woo
+    given-names: Kara
+    orcid: https://orcid.org/0000-0002-5125-4188
+  - family-names: Yutani
+    given-names: Hiroaki
+    orcid: https://orcid.org/0000-0002-3385-7233
+  - family-names: Dunnington
+    given-names: Dewey
+    orcid: https://orcid.org/0000-0002-9415-4582
+  - family-names: Brand
+    given-names: Teun
+    name-particle: van den
+    orcid: https://orcid.org/0000-0002-9335-7468
+  year: '2024'
+  doi: 10.32614/CRAN.package.ggplot2
+- type: software
+  title: httr2
+  abstract: 'httr2: Perform HTTP Requests and Process the Responses'
+  notes: Imports
+  url: https://httr2.r-lib.org
+  repository: https://CRAN.R-project.org/package=httr2
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
+  year: '2024'
+  doi: 10.32614/CRAN.package.httr2
+- type: software
+  title: stringr
+  abstract: 'stringr: Simple, Consistent Wrappers for Common String Operations'
+  notes: Imports
+  url: https://stringr.tidyverse.org
+  repository: https://CRAN.R-project.org/package=stringr
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+  year: '2024'
+  doi: 10.32614/CRAN.package.stringr
+- type: software
+  title: xml2
+  abstract: 'xml2: Parse XML'
+  notes: Imports
+  url: https://xml2.r-lib.org/
+  repository: https://CRAN.R-project.org/package=xml2
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+  - family-names: Hester
+    given-names: Jim
+  - family-names: Ooms
+    given-names: Jeroen
+  year: '2024'
+  doi: 10.32614/CRAN.package.xml2
+- type: software
+  title: epitrix
+  abstract: 'epitrix: Small Helpers and Tricks for Epidemics Analysis'
+  notes: Imports
+  url: http://www.repidemicsconsortium.org/epitrix/
+  repository: https://CRAN.R-project.org/package=epitrix
+  authors:
+  - family-names: Jombart
+    given-names: Thibaut
+    email: thibautjombart@gmail.com
+  - family-names: Cori
+    given-names: Anne
+    email: a.cori@imperial.ac.uk
+  - family-names: Finger
+    given-names: Flavio
+    email: flavio.finger@lshtm.ac.uk
+  year: '2024'
+  doi: 10.32614/CRAN.package.epitrix
+- type: software
+  title: sf
+  abstract: 'sf: Simple Features for R'
+  notes: Imports
+  url: https://r-spatial.github.io/sf/
+  repository: https://CRAN.R-project.org/package=sf
+  authors:
+  - family-names: Pebesma
+    given-names: Edzer
+    email: edzer.pebesma@uni-muenster.de
+    orcid: https://orcid.org/0000-0001-8049-7069
+  year: '2024'
+  doi: 10.32614/CRAN.package.sf
+- type: software
+  title: readxl
+  abstract: 'readxl: Read Excel Files'
+  notes: Imports
+  url: https://readxl.tidyverse.org
+  repository: https://CRAN.R-project.org/package=readxl
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+    orcid: https://orcid.org/0000-0003-4757-117X
+  - family-names: Bryan
+    given-names: Jennifer
+    email: jenny@posit.co
+    orcid: https://orcid.org/0000-0002-6983-2759
+  year: '2024'
+  doi: 10.32614/CRAN.package.readxl
+- type: software
+  title: sysfonts
+  abstract: 'sysfonts: Loading Fonts into R'
+  notes: Imports
+  url: https://github.com/yixuan/sysfonts
+  repository: https://CRAN.R-project.org/package=sysfonts
+  authors:
+  - family-names: Qiu
+    given-names: Yixuan
+  - family-names: details.
+    given-names: authors/contributors of the included fonts. See file AUTHORS for
+  year: '2024'
+  doi: 10.32614/CRAN.package.sysfonts
+- type: software
+  title: showtext
+  abstract: 'showtext: Using Fonts More Easily in R Graphs'
+  notes: Imports
+  url: https://github.com/yixuan/showtext
+  repository: https://CRAN.R-project.org/package=showtext
+  authors:
+  - family-names: Qiu
+    given-names: Yixuan
+  - family-names: details.
+    given-names: authors/contributors of the included software. See file AUTHORS for
+  year: '2024'
+  doi: 10.32614/CRAN.package.showtext
+- type: software
+  title: kableExtra
+  abstract: 'kableExtra: Construct Complex Table with ''kable'' and Pipe Syntax'
+  notes: Imports
+  url: http://haozhu233.github.io/kableExtra/
+  repository: https://CRAN.R-project.org/package=kableExtra
+  authors:
+  - family-names: Zhu
+    given-names: Hao
+    email: haozhu233@gmail.com
+    orcid: https://orcid.org/0000-0002-3386-6076
+  year: '2024'
+  doi: 10.32614/CRAN.package.kableExtra
+- type: software
+  title: knitr
+  abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
+  notes: Suggests
+  url: https://yihui.org/knitr/
+  repository: https://CRAN.R-project.org/package=knitr
+  authors:
+  - family-names: Xie
+    given-names: Yihui
+    email: xie@yihui.name
+    orcid: https://orcid.org/0000-0003-0645-5666
+  year: '2024'
+  doi: 10.32614/CRAN.package.knitr
+- type: software
+  title: rmarkdown
+  abstract: 'rmarkdown: Dynamic Documents for R'
+  notes: Suggests
+  url: https://pkgs.rstudio.com/rmarkdown/
+  repository: https://CRAN.R-project.org/package=rmarkdown
+  authors:
+  - family-names: Allaire
+    given-names: JJ
+    email: jj@posit.co
+  - family-names: Xie
+    given-names: Yihui
+    email: xie@yihui.name
+    orcid: https://orcid.org/0000-0003-0645-5666
+  - family-names: Dervieux
+    given-names: Christophe
+    email: cderv@posit.co
+    orcid: https://orcid.org/0000-0003-4474-2498
+  - family-names: McPherson
+    given-names: Jonathan
+    email: jonathan@posit.co
+  - family-names: Luraschi
+    given-names: Javier
+  - family-names: Ushey
+    given-names: Kevin
+    email: kevin@posit.co
+  - family-names: Atkins
+    given-names: Aron
+    email: aron@posit.co
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+  - family-names: Cheng
+    given-names: Joe
+    email: joe@posit.co
+  - family-names: Chang
+    given-names: Winston
+    email: winston@posit.co
+  - family-names: Iannone
+    given-names: Richard
+    email: rich@posit.co
+    orcid: https://orcid.org/0000-0003-3925-190X
+  year: '2024'
+  doi: 10.32614/CRAN.package.rmarkdown
+- type: software
+  title: 'R: A Language and Environment for Statistical Computing'
+  notes: Depends
+  url: https://www.R-project.org/
+  authors:
+  - name: R Core Team
+  institution:
+    name: R Foundation for Statistical Computing
+    address: Vienna, Austria
+  year: '2024'
+  version: '>= 3.5.0'
+
