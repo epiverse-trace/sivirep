@@ -24,6 +24,11 @@ en las bases de datos individualizadas de casos de
 [SIVIGILA](https://www.ins.gov.co/Direcciones/Vigilancia/Paginas/SIVIGILA.aspx),
 que es el sistema oficial de vigilancia epidemiológica de Colombia.
 
+## Exclusión de responsabilidad
+
+El uso de esta librería, así como de los datos, reportes generados y otros productos derivados de la misma, se realiza bajo la responsabilidad exclusiva del usuario. Ni los autores de la librería, ni la Pontificia Universidad Javeriana, ni la fuente de información asumen responsabilidad alguna por los resultados obtenidos o el uso que se haga de dichos productos.
+
+
 ## Motivación
 
 América Latina ha progresado en la calidad de sus sistemas de
