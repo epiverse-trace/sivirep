@@ -28,7 +28,6 @@ que es el sistema oficial de vigilancia epidemiológica de Colombia.
 
 El uso de esta librería, así como de los datos, reportes generados y otros productos derivados de la misma, se realiza bajo la responsabilidad exclusiva del usuario. Ni los autores de la librería, ni la Pontificia Universidad Javeriana, ni la fuente de información asumen responsabilidad alguna por los resultados obtenidos o el uso que se haga de dichos productos.
 
-
 ## Motivación
 
 América Latina ha progresado en la calidad de sus sistemas de
