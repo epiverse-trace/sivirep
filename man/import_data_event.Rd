@@ -35,5 +35,8 @@ import_data_event(nombre_event = "DENGUE",
 import_data_event(nombre_event = "ZIKA",
                   years = c(2019, 2020),
                   cache = TRUE)
+import_data_event(nombre_event = "ZIKA",
+                  years = seq(2018, 2020),
+                  cache = TRUE)
 }
 }

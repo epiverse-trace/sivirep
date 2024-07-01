@@ -137,17 +137,16 @@ list_events <- function() {
   return(list_events)
 }
 
-#' Importar los datos de una enfermedad o evento por año
+#' @title Importar los datos de una enfermedad o evento por año
 #' desde los microdatos del SIVIGILA
-#'
-#' Función que importa los datos de una enfermedad o evento por año
-#' desde los microdatos del SIVIGILA
+#' @description Función que importa los datos de una enfermedad o evento por
+#' año desde los microdatos del SIVIGILA
 #' @param nombre_event Un `character` (cadena de caracteres) con el nombre de
 #' la enfermedad o evento
 #' @param years Un `numeric` (numerico) con el año o años deseado(s) para
 #' la descarga de los datos
-#' @param cache Un `boolean` (TRUE o FALSE) que indica si los datos descargados
-#' deben ser almacenados en caché; su valor por defecto es `TRUE`
+#' @param cache Un `boolean` (`TRUE` o `FALSE`) que indica si los datos
+#' descargados deben ser almacenados en caché; su valor por defecto es `TRUE`
 #' @return Un `data.frame` con los datos del año de la enfermedad o evento
 #' seleccionado desde los microdatos del SIVIGILA
 #' @examples
