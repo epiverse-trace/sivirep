@@ -160,8 +160,8 @@ list_events <- function() {
 #' import_data_event(nombre_event = "ZIKA",
 #'                   years = c(2019, 2020),
 #'                   cache = TRUE)
-#' import_data_event(nombre_event = "DENGUE",
-#'                   years = seq(2007, 2020),
+#' import_data_event(nombre_event = "ZIKA",
+#'                   years = seq(2018, 2020),
 #'                   cache = TRUE)
 #' }
 #' @export
