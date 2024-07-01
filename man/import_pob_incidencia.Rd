@@ -24,8 +24,9 @@ Un `data.frame` con la población a riesgo o las proyecciones
 poblacionaldes DANE
 }
 \description{
-Función que importa la población a riesgo de un evento o enfermedad
-o las proyecciones poblacionales DANE desde el año 2005 hasta el 2035
+Función que importa la población a riesgo de un evento o
+enfermedad o las proyecciones poblacionales DANE desde el año 2005 hasta
+el 2035
 }
 \examples{
  \dontrun{

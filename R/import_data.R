@@ -253,10 +253,10 @@ import_sep_data <- function(ruta_data = NULL, cache = TRUE) {
   return(data)
 }
 
-#' Importar la población para efectuar el cálculo de la incidencia
-#'
-#' Función que importa la población a riesgo de un evento o enfermedad
-#' o las proyecciones poblacionales DANE desde el año 2005 hasta el 2035
+#' @title Importar la población para efectuar el cálculo de la incidencia
+#' @description Función que importa la población a riesgo de un evento o
+#' enfermedad o las proyecciones poblacionales DANE desde el año 2005 hasta
+#' el 2035
 #' @param poblacion Un `character` (cadena de caracteres) con el tipo de
 #' población que se desea importar. Indica si se desea descargar la población
 #' a riesgo del evento `"riesgo"` o las proyecciones poblacionales DANE
