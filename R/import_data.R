@@ -228,25 +228,27 @@ import_sep_data <- function(ruta_data = NULL, cache = TRUE) {
   data_archivo <- data.frame()
   ruta_extdata <- system.file("extdata", package = "sivirep")
   if (!is.null(ruta_data)) {
-    start_file_name <- stringr::str_locate(ruta_data,
-                                           stringr::fixed("Microdatos/"))[2] + 1
-    end_file_name <- stringr::str_locate(ruta_data,
-                                         stringr::fixed("value"))[1] - 5
-    file_name <- stringr::str_sub(ruta_data, start_file_name, end_file_name)
-    file_path <- file.path(ruta_extdata, file_name)
-    if (!file.exists(file_path) || !cache) {
-      file_response <- realizar_peticion_http(ruta_data)
-      if (httr2::resp_status(file_response) == 200) {
-        file_content <- httr2::resp_body_raw(file_response)
-        con_file <- file(file_path, "wb")
-        if (length(file_content) > 0) {
-          writeBin(file_content, con_file)
+    ini_nomb_archivo <-
+      stringr::str_locate(ruta_data,
+                          stringr::fixed("Microdatos/"))[2] + 1
+    fin_nomb_archivo <-
+      stringr::str_locate(ruta_data, stringr::fixed("value"))[1] - 5
+    nomb_archivo <- stringr::str_sub(ruta_data, ini_nomb_archivo,
+                                     fin_nomb_archivo)
+    ruta_archivo <- file.path(ruta_extdata, nomb_archivo)
+    if (!file.exists(ruta_archivo) || !cache) {
+      respuesta_archivo <- realizar_peticion_http(ruta_data)
+      if (httr2::resp_status(respuesta_archivo) == 200) {
+        conten_archivo <- httr2::resp_body_raw(respuesta_archivo)
+        con_archivo <- file(ruta_archivo, "wb")
+        if (length(conten_archivo) > 0) {
+          writeBin(conten_archivo, con_archivo)
         }
-        close(con_file)
+        close(con_archivo)
       }
     }
-    if (stringr::str_detect(file_name, ".xls")) {
-      data_archivo <- readxl::read_excel(file_path,
+    if (stringr::str_detect(nomb_archivo, ".xls")) {
+      data_archivo <- readxl::read_excel(ruta_archivo,
                                          col_types = "text")
     }
   }

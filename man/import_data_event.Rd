@@ -14,16 +14,16 @@ la enfermedad o evento}
 \item{years}{Un `numeric` (numerico) con el año o años deseado(s) para
 la descarga de los datos}
 
-\item{cache}{Un `boolean` (TRUE o FALSE) que indica si los datos descargados
-deben ser almacenados en caché; su valor por defecto es `TRUE`}
+\item{cache}{Un `boolean` (`TRUE` o `FALSE`) que indica si los datos
+descargados deben ser almacenados en caché; su valor por defecto es `TRUE`}
 }
 \value{
 Un `data.frame` con los datos del año de la enfermedad o evento
 seleccionado desde los microdatos del SIVIGILA
 }
 \description{
-Función que importa los datos de una enfermedad o evento por año
-desde los microdatos del SIVIGILA
+Función que importa los datos de una enfermedad o evento por
+año desde los microdatos del SIVIGILA
 }
 \examples{
 \donttest{
@@ -31,12 +31,9 @@ import_data_event(nombre_event = "DENGUE",
                   years = 2020,
                   cache = TRUE)
 }
-\dontrun{
-import_data_event(nombre_event = "DENGUE",
+\donttest{
+import_data_event(nombre_event = "ZIKA",
                   years = c(2019, 2020),
-                  cache = TRUE)
-import_data_event(nombre_event = "DENGUE",
-                  years = seq(2007, 2020),
                   cache = TRUE)
 }
 }
