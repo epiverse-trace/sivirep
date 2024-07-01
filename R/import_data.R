@@ -67,9 +67,9 @@ import_geo_cods <- function(descargar = FALSE) {
     names(data_geo) <- epitrix::clean_labels(names(data_geo))
   } else {
     divipoladata <- NULL
-    extdata_path <- system.file("extdata", package = "sivirep")
-    load(file.path(extdata_path, path_data))
+    ruta_extdata <- system.file("extdata", package = "sivirep")
     ruta_data <- obtener_val_config("divipola_data_path")
+    load(file.path(ruta_extdata, ruta_data))
     data_geo <- divipoladata
   }
   return(data_geo)
