@@ -225,15 +225,15 @@ import_sep_data <- function(ruta_data = NULL, cache = TRUE) {
               is.character(ruta_data),
             "El parametro cache debe ser un booleano"
             = is.logical(cache))
-  data <- data.frame()
-  extdata_path <- system.file("extdata", package = "sivirep")
+  data_archivo <- data.frame()
+  ruta_extdata <- system.file("extdata", package = "sivirep")
   if (!is.null(ruta_data)) {
     start_file_name <- stringr::str_locate(ruta_data,
                                            stringr::fixed("Microdatos/"))[2] + 1
     end_file_name <- stringr::str_locate(ruta_data,
                                          stringr::fixed("value"))[1] - 5
     file_name <- stringr::str_sub(ruta_data, start_file_name, end_file_name)
-    file_path <- file.path(extdata_path, file_name)
+    file_path <- file.path(ruta_extdata, file_name)
     if (!file.exists(file_path) || !cache) {
       file_response <- realizar_peticion_http(ruta_data)
       if (httr2::resp_status(file_response) == 200) {
@@ -246,11 +246,11 @@ import_sep_data <- function(ruta_data = NULL, cache = TRUE) {
       }
     }
     if (stringr::str_detect(file_name, ".xls")) {
-      data <- readxl::read_excel(file_path,
-                                 col_types = "text")
+      data_archivo <- readxl::read_excel(file_path,
+                                         col_types = "text")
     }
   }
-  return(data)
+  return(data_archivo)
 }
 
 #' @title Importar la población para efectuar el cálculo de la incidencia
