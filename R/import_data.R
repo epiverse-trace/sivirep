@@ -289,10 +289,9 @@ import_pob_incidencia <- function(poblacion = "riesgo", event, year) {
   return(poblacion)
 }
 
-#' Importar las proyecciones DANE del año 2005 hasta el 2035
-#'
-#' Función que importa las proyecciones poblacionales DANE desde
-#' el año 2005 hasta el 2035
+#' @title Importar las proyecciones DANE del año 2005 hasta el 2035
+#' @description Función que importa las proyecciones poblacionales
+#' DANE desde el año 2005 hasta el 2035
 #' @return Un `data.frame` con las proyecciones poblacionales DANE
 #' @examples
 #' \dontrun{

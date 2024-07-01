@@ -10,8 +10,8 @@ import_pob_proyecciones()
 Un `data.frame` con las proyecciones poblacionales DANE
 }
 \description{
-Función que importa las proyecciones poblacionales DANE desde
-el año 2005 hasta el 2035
+Función que importa las proyecciones poblacionales
+DANE desde el año 2005 hasta el 2035
 }
 \examples{
 \dontrun{
