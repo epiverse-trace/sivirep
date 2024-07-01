@@ -1,4 +1,6 @@
-#' Función de conveniencia para hacer peticiones a SIVIGILA
+#' @title Realizar petición HTTP
+#' @description Función que gestiona las peticiones HTTP al API del
+#' SIVIGILA
 #' @param url La dirección HTTP desde donde descargar la información
 #' @return Si la petición es exitosa, retorna una respuesta HTTP.
 #' De lo contrario arroja un mensaje de error explicando el problema
