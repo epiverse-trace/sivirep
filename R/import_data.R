@@ -5,21 +5,12 @@
 #' y finaliza la ejecución del programa
 #' @examples
 #' \donttest{
-#' query_event_year_path <- config::get(file =
-#'            system.file("extdata",
-#'            "config.yml",
-#'            package = "sivirep"),
-#'            "query_diseases_by_year_path")
-#' make_request(query_event_year_path)
+#' ruta_consulta_event <- obtener_val_config("query_diseases_by_year_path")
 #' realizar_peticion_http(ruta_consulta_event)
 #' }
 #' @noRd
-  request_timeout <- config::get(file =
-                                        system.file("extdata",
-                                                    "config.yml",
-                                                    package = "sivirep"),
-                                      "request_timeout")
 realizar_peticion_http <- function(url) {
+  request_timeout <- obtener_val_config("request_timeout")
   return(tryCatch(
     httr2::request(url) %>%
     httr2::req_timeout(request_timeout) %>%
