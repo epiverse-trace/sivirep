@@ -11,15 +11,15 @@
 #'            package = "sivirep"),
 #'            "query_diseases_by_year_path")
 #' make_request(query_event_year_path)
+#' realizar_peticion_http(ruta_consulta_event)
 #' }
 #' @noRd
-
-peticion_http <- function(url) {
   request_timeout <- config::get(file =
                                         system.file("extdata",
                                                     "config.yml",
                                                     package = "sivirep"),
                                       "request_timeout")
+realizar_peticion_http <- function(url) {
   return(tryCatch(
     httr2::request(url) %>%
     httr2::req_timeout(request_timeout) %>%
@@ -41,7 +41,6 @@ peticion_http <- function(url) {
         "Error al conectarse al servidor de SIVIGILA para descargar los datos")
     },
     error = function(e) {
-      # Check if the error message indicates a timeout
       if (grepl("Timeout", e$message, fixed = TRUE)) {
        stop(
         "No se pudo conectar al servidor de SIVIGILA para descargar los datos")
@@ -108,7 +107,7 @@ list_events <- function() {
                                                      package = "sivirep"),
                                        "query_diseases_by_year_path")
   query_event_year_content <-
-    peticion_http(query_event_year_path) %>%
+    realizar_peticion_http(query_event_year_path) %>%
     httr2::resp_body_xml()
 
   children <- xml2::xml_children(query_event_year_content) %>%
@@ -250,7 +249,7 @@ import_sep_data <- function(ruta_data = NULL, cache = TRUE) {
     file_name <- stringr::str_sub(ruta_data, start_file_name, end_file_name)
     file_path <- file.path(extdata_path, file_name)
     if (!file.exists(file_path) || !cache) {
-      file_response <- peticion_http(ruta_data)
+      file_response <- realizar_peticion_http(ruta_data)
       if (httr2::resp_status(file_response) == 200) {
         file_content <- httr2::resp_body_raw(file_response)
         con_file <- file(file_path, "wb")
