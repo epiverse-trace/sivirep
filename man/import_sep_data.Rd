@@ -10,13 +10,14 @@ import_sep_data(ruta_data = NULL, cache = TRUE)
 \item{ruta_data}{Un `character` (cadena de caracteres) que contiene
 la URL de los datos de SIVIGILA}
 
-\item{cache}{Un `boolean` (TRUE o FALSE) que indica si los datos descargados
-deben ser almacenados en caché; su valor por defecto es `TRUE`}
+\item{cache}{Un `boolean` (`TRUE` o `FALSE`) que indica si los datos
+descargados deben ser almacenados en caché; su valor por defecto es `TRUE`}
 }
 \value{
-Un `data.frame` con los datos
+Un `data.frame` con los datos tabulados
 }
 \description{
-Función que identifica el separador que tiene los datos para tabularlos
+Función que importa e identifica el separador que tiene los
+datos para tabularlos
 }
 \keyword{internal}
