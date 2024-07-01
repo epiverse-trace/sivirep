@@ -343,16 +343,8 @@ import_pob_riesgo <- function(event, year) {
               is.character(event),
             "El parametro year no debe estar vacio" = !missing(year),
             "El parametro year debe ser numerico" = is.numeric(year))
-  rutas_pop_riesgo <- config::get(file =
-                                      system.file("extdata",
-                                                  "config.yml",
-                                                  package = "sivirep"),
-                                  "risk_population_paths")
-  etiqueta_year <- config::get(file =
-                                    system.file("extdata",
-                                                "config.yml",
-                                                package = "sivirep"),
-                               "label_year")
+  rutas_pop_riesgo <- obtener_val_config("risk_population_paths")
+  etiqueta_year <- obtener_val_config("label_year")
   etiqueta_year <- paste0(tolower(etiqueta_year), "s")
   ruta_extdata <- system.file("extdata", package = "sivirep")
   pop_event <- NULL
