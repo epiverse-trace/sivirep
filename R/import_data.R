@@ -322,10 +322,9 @@ import_pob_proyecciones <- function() {
   return(proyecciones)
 }
 
-#' Importar la población a riesgo de un evento o enfermedad
-#'
-#' Función que importa la población a riesgo de un evento o enfermedad de un
-#' año específico
+#' @title Importar la población a riesgo de un evento o enfermedad
+#' @description Función que importa la población a riesgo de un evento
+#'o enfermedad de un año específico
 #' @param event Un `character` (cadena de caracteres) o un `numeric` (numerico)
 #' con el nombre o código de la enfermedad o evento
 #' @param year Un `numeric` (numerico) con el año deseado de la población a

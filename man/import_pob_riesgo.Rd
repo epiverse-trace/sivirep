@@ -17,8 +17,8 @@ riesgo}
 Un `data.frame` con la población a riesgo de un año específico
 }
 \description{
-Función que importa la población a riesgo de un evento o enfermedad de un
-año específico
+Función que importa la población a riesgo de un evento
+o enfermedad de un año específico
 }
 \examples{
 \dontrun{
