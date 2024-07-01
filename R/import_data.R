@@ -193,14 +193,14 @@ import_data_event <- function(nombre_event,
         data_import <- limpiar_encabezado(data_import)
         data_import$fec_def <- as.character(data_import$fec_def)
         nombre_cols <- names(data_import)
-        index_cols_eve <- which(stringr::str_detect(nombre_cols,
+        indice_cols_eve <- which(stringr::str_detect(nombre_cols,
                                                     stringr::fixed("cod_eve_")))
-        if (!identical(index_cols_eve,
+        if (!identical(indice_cols_eve,
                        integer(0))) {
-          names(data_import)[index_cols_eve[1]] <- "cod_eve"
-          index_cols_eve[1] <- index_cols_eve[-1]
+          names(data_import)[indice_cols_eve[1]] <- "cod_eve"
+          indice_cols_eve[1] <- indice_cols_eve[-1]
           data_import <-
-            data_import[, -index_cols_eve]
+            data_import[, -indice_cols_eve]
           nombre_cols <- names(data_import)
         }
         nombre_cols <- nombre_cols[-which(nombre_cols %in% cols_remover)]
