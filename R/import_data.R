@@ -44,13 +44,11 @@ realizar_peticion_http <- function(url) {
   ))
 }
 
-
-#' Importar datos geográficos de Colombia
-#'
-#' Función que importa los nombres y códigos de los departamentos
-#' y municipios de Colombia a través de una URL
-#' @param descargar Un `boolean` (TRUE o FALSE) que indica si los datos
-#' se deben descargar desde la API de datos abiertos; su valor por
+#' @title Importar datos geográficos de Colombia
+#' @description Función que importa los nombres y códigos de
+#' los departamentos y municipios de Colombia a través de una URL
+#' @param descargar Un `boolean` (`TRUE` o `FALSE`) que indica si los
+#' datos se deben descargar desde la API de datos abiertos; su valor por
 #' defecto es `FALSE`
 #' @return Un `data.frame` con los nombres y códigos de los departamentos
 #' y municipios de Colombia
