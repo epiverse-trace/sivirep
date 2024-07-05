@@ -309,7 +309,7 @@ age_most_cases <- obtener_fila_mas_casos(data_event = casos_edad)
 
 `r if (params$age_distribution) {paste0("La distribución de los casos por grupos de edad muestra que la población de ", age_most_cases$edad, " años representó el ",  age_most_cases$porcentaje, " % de todos los casos de ", stringr::str_to_title(params$nombre_evento), " (Ver figura 7).")}`
 
-```{r distribution_age, fig.height = 3, fig.width = 8, fig.cap =  "Distribución de casos por edad", include = params$age_distribution}
+```{r distribution_age, fig.height = 3, fig.width = 8, fig.cap =  paste0("Distribución de casos por edad - ", text_ext_geo), include = params$age_distribution}
 plot_edad(data_agrupada = casos_edad)
 ```
 
