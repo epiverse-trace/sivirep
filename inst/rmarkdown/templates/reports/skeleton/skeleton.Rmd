@@ -44,7 +44,7 @@ params:
     value: "Choco" 
     label: Departamento
     input: select
-    choices: !r sivirep::obtener_dptos()
+    choices: !r c("", sivirep::obtener_dptos())
   municipio:
     value: ""
     label: Municipio
