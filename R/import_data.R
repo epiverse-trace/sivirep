@@ -86,14 +86,10 @@ import_geo_cods <- function(descargar = FALSE) {
 #' }
 #' @export
 list_events <- function() {
-
-  query_event_year_path <- config::get(file =
-                                         system.file("extdata",
-                                                     "config.yml",
-                                                     package = "sivirep"),
-                                       "query_diseases_by_year_path")
-  query_event_year_content <-
-    realizar_peticion_http(query_event_year_path) %>%
+  ruta_consulta_event_year <-
+    obtener_val_config("query_diseases_by_year_path")
+  conten_consulta_event_year <-
+    realizar_peticion_http(ruta_consulta_event_year) %>%
     httr2::resp_body_xml()
 
   children <- xml2::xml_children(query_event_year_content) %>%

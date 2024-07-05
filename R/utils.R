@@ -165,6 +165,8 @@ concatenar_vals_token <- function(vals,
 #' obtener_tip_ocurren_geo(cod_event = 210)
 #' @export
 obtener_tip_ocurren_geo <- function(cod_event = NULL, nombre_event = NULL) {
+  stopifnot("Debe ingresar algun valor en cod_event o nombre_event"
+            = !(is.null(cod_event) && is.null(nombre_event)))
   geo_occurren <- obtener_val_config(llave = "occurrence_geo_diseases")
   col_ocurren <- c("cod_dpto_o", "cod_mun_o", "ocurrencia")
   param_busqueda <- NULL
