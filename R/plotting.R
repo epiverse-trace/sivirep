@@ -862,7 +862,7 @@ plot_top_area_geo <- function(data_agrupada,
                                    "label_geo_area")
   nomb_cols <- NULL
   if (length(cols_geo_ocurrencia) > 1) {
-      if (length(names(data_agrupada)) > 5) {
+      if (cols_geo_ocurrencia[4] %in% names(data_agrupada)) {
         nomb_cols <- append(col_area, cols_geo_ocurrencia[4])
       } else {
         nomb_cols <- append(col_area, cols_geo_ocurrencia[2])
