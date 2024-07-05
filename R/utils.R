@@ -172,9 +172,7 @@ obtener_tip_ocurren_geo <- function(cod_event = NULL, nombre_event = NULL) {
   param_busqueda <- NULL
   if (!is.null(cod_event)) {
       param_busqueda <- cod_event
-      stopifnot("El parametro cod_event es obligatorio" =
-              !missing(cod_event),
-            "El parametro cod_event debe ser una cadena de caracteres o
+      stopifnot("El parametro cod_event debe ser una cadena de caracteres o
             numerico" =
               (is.numeric(cod_event) && !is.character(cod_event)) ||
               (!is.numeric(cod_event) && is.character(cod_event)))
