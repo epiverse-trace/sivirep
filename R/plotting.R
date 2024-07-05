@@ -913,6 +913,10 @@ plot_top_area_geo <- function(data_agrupada,
 #' @export
 plot_tabla_tipos_event <- function(data_agrupada,
                                    col_event = "nombre_evento") {
+  stopifnot("El parametro data_agrupada debe ser un data.frame"
+            = is.data.frame(data_agrupada),
+            "El parametro col_event debe ser una cadena de caracteres"
+            = is.character(col_event))
   etiqueta_cod <- config::get(file =
                               system.file("extdata",
                                           "config.yml",
@@ -1278,7 +1282,6 @@ plot_tabla_incidencia_geo <- function(data_agrupada,
                                              "config.yml",
                                              package = "sivirep"),
                                "caption_geo_incidence")
-  caption_tabla <- paste0(caption_tabla, nomb_cols[5])
   caption_tabla <- paste0(caption_tabla, nomb_cols[5], " por ",
                           cond_incidencia$coeficiente,
                           " habitantes")
