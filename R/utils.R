@@ -51,16 +51,16 @@ obtener_meses_mas_casos <- function(data_event,
   }
   data_mas_casos <- data_mas_casos[1:top, ]
   mes <- strftime(data_mas_casos[[col_fechas]], "%m")
-  mes <- as.numeric(mes)
+  mes <- as.numeric(unique(mes))
   etiquetas <- obtener_val_config(llave = "months")
   etiquetas <- etiquetas[mes]
-  data_mas_casos$meses <- etiquetas
-  if (concat_vals && length(data_mas_casos$meses) >= 2) {
+  if (concat_vals && length(mes) >= 2) {
+    data_mas_casos$meses <- etiquetas
     meses_concat <-
       concatenar_vals_token(as.character(data_mas_casos$meses)[1:top])
     return(meses_concat)
   }
-  return(data_mas_casos)
+  return(etiquetas)
 }
 
 #' Obtener fila con mayor número de casos
