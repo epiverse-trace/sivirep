@@ -133,9 +133,9 @@ concatenar_vals_token <- function(vals,
             "El parametro vals debe ser una cadena de caracteres o
             un arreglo de cadenas de caracteres"
             = is.character(vals),
-            "El parametro princ_token debe ser un cadena de caracteres"
+            "El parametro princ_token debe ser una cadena de caracteres"
             = is.character(princ_token),
-            "El parametro final_token debe ser un cadena de caracteres"
+            "El parametro final_token debe ser una cadena de caracteres"
             = is.character(final_token))
   final_val <- ""
   i <- 1
