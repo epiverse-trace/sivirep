@@ -467,9 +467,9 @@ text_casos_totales <- paste0("*   Los casos totales reportados de ",
 
 # Conclusiones
 
-a.  Los casos totales reportados de `r stringr::str_to_title(params$nombre_evento)` en Colombia en el año `r params$year` fueron `r nrow(data_event)`.
-b.  Los casos totales reportados de `r stringr::str_to_title(params$nombre_evento)` en el departamento del `r params$departmento` en el año `r params$year` fueron `r nrow(data_event_filtrada)`.
-c.  El mes de `r mes_mayor_casos$meses` tuvo el mayor reporte.
-d.  El reporte de casos de `r stringr::str_to_title(params$nombre_evento)` a lo largo de `r params$year` predominó en la población de `r age_most_cases$edad` años.
-e.  El reporte de casos de `r stringr::str_to_title(params$nombre_evento)` predominó a lo largo del año en el sexo `r sexo_mayor[1]`.
+*  Los casos totales reportados de `r stringr::str_to_title(params$nombre_evento)` en Colombia en el año `r params$year` fueron `r nrow(data_event)`.
+`r if(params$spatial_distribution && params$departmento != "") text_casos_totales`
+*  El mes de `r mes_mayor_casos` tuvo el mayor reporte.
+*  El reporte de casos de `r stringr::str_to_title(params$nombre_evento)` a lo largo de `r params$year` predominó en la población de `r age_most_cases$edad` años.
 *  El reporte de casos de `r stringr::str_to_title(params$nombre_evento)` predominó a lo largo del año en el sexo `r vals_sex$mayor[1]`.
+* La incidencia para `r text_geo` es de `r incidencia_dpto` por  `r cond_incidencia$coeficiente` habitantes.
