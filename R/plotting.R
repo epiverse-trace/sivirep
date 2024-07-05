@@ -1345,6 +1345,11 @@ plot_tabla_incidencia_sex <- function(data_agrupada,
                                               "config.yml",
                                               package = "sivirep"),
                                   "special_events")
+  cond_incidencia <-
+    obtener_cond_inciden_event(cod_eve = data_agrupada$cod_eve[1])
+  caption_tabla <- paste0(caption_tabla, " por ",
+                          cond_incidencia$coeficiente,
+                          " habitantes")
   nombre_event <- tolower(data_agrupada$nombre_evento[1])
   data_agrupada[[col_sex]] <-
     stringr::str_to_title(data_agrupada[[col_sex]])
