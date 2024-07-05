@@ -353,6 +353,7 @@ plot_mpios
 ```
 
 ```{r plot_distribution_dptos, fig.height = altura_fig_espacial, fig.width = 10, fig.cap = paste0("Distribución de casos por ", text_fig_geo), eval = params$departmento == "", include = params$departmento == ""}
+plot_dptos <- plot_dptos(data_agrupada = dist_espacial_dpto)
 plot_dptos
 ```
 
@@ -405,9 +406,16 @@ cond_incidencia <-
 La incidencia para cada sexo por `r cond_incidencia$coeficiente` habitantes, se puede visualizar en la tabla 2 y figura 13.
 
 ```{r sex_incidence, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
+nomb_dpto <- NULL
+if (params$departmento != "") { 
+  nomb_dpto <- params$departmento
+}
 incidencias_sex <-
   calcular_incidencia_sex(data_agrupada = casos_sex,
-                          dpto = params$departmento)
+                          dpto = nomb_dpto)
+incidencia_mayor_sex <- obtener_fila_mas_casos(data_event =
+                                                incidencias_sex,
+                                               nomb_col = "incidencia ")
 ```
 
 ```{r table_sex_incidence, echo = FALSE, error = FALSE, fig.height=5, fig.width = 10, warning = FALSE, include = TRUE, message = FALSE, fig.pos = "H"} 
