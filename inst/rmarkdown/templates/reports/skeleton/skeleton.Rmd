@@ -284,7 +284,7 @@ vals_sex <- obtener_text_sex(casos_sex, params$year,  4)
 
 `r if (params$epi_sex_distribution && !mostrar_sex) {vals_sex$text}`
 
-```{r distribution_cg_plots, fig.height = 4.8, fig.width = 8.4, fig.cap = "Distribución de casos por sexo", include = params$epi_sex_distribution}
+```{r distribution_cg_plots, fig.height = 4.8, fig.width = 8.4, fig.cap = paste0("Distribución de casos por sexo - ", text_ext_geo), include = params$epi_sex_distribution}
 plot_sex(data_agrupada = casos_sex)
 ```
 
