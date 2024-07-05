@@ -452,6 +452,17 @@ mapa <- plot_map(data_agrupada = dist_espacial_dpto)
 mapa
 ```
 
+```{r conclusiones, echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE, cache = FALSE, results = FALSE, comment = FALSE}
+text_geo <- params$pais
+if (params$spatial_distribution && params$departmento != "") {
+  text_geo <- paste0("el departamento de ", params$departmento)
+}
+text_casos_totales <- paste0("*   Los casos totales reportados de ",
+                             stringr::str_to_title(params$nombre_evento),
+                             " en ", text_geo, " en el año ", params$year,
+                             " fueron ", nrow(data_event_filtrada))
+```
+
 \newpage
 
 # Conclusiones
