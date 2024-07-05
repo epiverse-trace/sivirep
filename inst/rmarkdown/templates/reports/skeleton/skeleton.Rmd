@@ -296,7 +296,7 @@ casos_sex_semanaepi <- agrupar_sex_semanaepi(data_event = data_event_filtrada)
 
 `r if (params$epi_sex_distribution) {paste0("Esta predominancia del reporte de casos del sexo ", vals_sex$mayor[1], " se mantuvo a lo largo de la mayoria de semanas epidemiológicas (Ver figura 6). ")}`
 
-```{r plot_cg_semanaepi, fig.height = 6, fig.width = 10, fig.cap =  "Distribución de casos por sexo y semana epidemiológica", include = params$epi_sex_distribution, fig.pos = "H"}
+```{r plot_cg_semanaepi, fig.height = 6, fig.width = 10, fig.cap =  paste0("Distribución de casos por sexo y semana epidemiológica - ", text_ext_geo), include = params$epi_sex_distribution, fig.pos = "H"}
 plot_sex_semanaepi(data_agrupada = casos_sex_semanaepi)
 ```
 
