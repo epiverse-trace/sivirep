@@ -455,7 +455,7 @@ plot_sex_semanaepi <- function(data_agrupada,
                                fuente_data = NULL) {
   stopifnot("El parametro data_agrupada debe ser un data.frame"
             = is.data.frame(data_agrupada),
-            "El parametro col_sexo debe ser una cadena de caracteres" =
+            "El parametro col_sex debe ser una cadena de caracteres" =
               is.character(col_sex),
             "El parametro col_semanaepi debe ser una cadena de caracteres" =
               is.character(col_semanaepi))
