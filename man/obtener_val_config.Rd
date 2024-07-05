@@ -17,4 +17,6 @@ del archivo de configuración del paquete
 \description{
 Función que obtiene el valor de una llave del archivo de configuración
 }
-\keyword{internal}
+\examples{
+obtener_val_config("request_timeout")
+}

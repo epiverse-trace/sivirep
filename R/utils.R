@@ -738,7 +738,9 @@ obtener_text_sex <- function(data_agrupada,
 #' llave que se encuentra en el archivo de configuración del paquete
 #' @return Un `character` (cadena de caracteres) con el valor de la llave
 #' del archivo de configuración del paquete
-#' @keywords internal
+#' @examples
+#' obtener_val_config("request_timeout")
+#' @export
 obtener_val_config <- function(llave) {
   valor <- config::get(file =
                          system.file("extdata",
