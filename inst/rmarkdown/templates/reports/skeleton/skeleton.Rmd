@@ -317,7 +317,7 @@ plot_edad(data_agrupada = casos_edad)
 
 `r if(params$age_sex_distribution && !mostrar_sex) {"# Distribución de casos por edad y sexo"}`
 
-```{r distribution_age_anger, fig.height = 3, fig.width = 9, fig.cap =  "Distribución de casos por edad y sexo", include = params$age_sex_distribution && !mostrar_sex}
+```{r distribution_age_anger, fig.height = 3, fig.width = 9, fig.cap =  paste0("Distribución de casos por edad y sexo - ", text_ext_geo), include = params$age_sex_distribution && !mostrar_sex}
 casos_edad_sex <- agrupar_edad_sex(data_event = data_event_filtrada,
                                    interval_edad = 10)
 plot_edad_sex(data_agrupada = casos_edad_sex)
