@@ -218,8 +218,11 @@ data_event_years <- import_data_event(nombre_event = params$nombre_evento,
                                       years = seq(params$year - 5,
                                                    params$year))
 data_years_limpia <- limpiar_data_sivigila(data_event_years)
+data_years_filtrada <- data_years_limpia
+if (params$departmento != "") {
 data_years_filtrada <- geo_filtro(data_event = data_years_limpia,
                                   dpto = params$departmento)
+}
 casos_years <- agrupar_years(data_event = data_years_filtrada)
 altura_fig_years <- 5
 eventos <- unique(casos_years[["cod_eve"]])
