@@ -91,43 +91,38 @@ list_events <- function() {
   conten_consulta_event_year <-
     realizar_peticion_http(ruta_consulta_event_year) %>%
     httr2::resp_body_xml()
-
-  children <- xml2::xml_children(query_event_year_content) %>%
+  children <- xml2::xml_children(conten_consulta_event_year) %>%
     xml2::xml_children() %>%
     xml2::xml_children() %>%
     xml2::xml_children()
-  children_text <- xml2::xml_text(children)
+  text_children <- xml2::xml_text(children)
 
   i <- 2
-  name_diseases <- NULL
-  years_diseases <- NULL
+  nomb_events <- NULL
+  years_events <- NULL
   children <- children[-base::seq(3, length(children), 3)]
-  children_text <- children_text[-base::seq(3, length(children_text), 3)]
+  text_children <- text_children[-base::seq(3, length(text_children), 3)]
   while (i < base::length(children)) {
-    disease <- xml2::xml_text(children[i])
-    name_diseases <- base::append(name_diseases, disease)
-    diseases <- base::which(children_text == disease)
-    years <- diseases - 1
-    years_diseases <-
-      base::append(years_diseases,
-                   base::toString(base::sort(children_text[years],
+    event <- xml2::xml_text(children[i])
+    nomb_events <- base::append(nomb_events, event)
+    events <- base::which(text_children == event)
+    years <- events - 1
+    years_events <-
+      base::append(years_events,
+                   base::toString(base::sort(text_children[years],
                                              decreasing = FALSE)))
     children <- children[-years]
-    children_text <- children_text[-(diseases - 1)]
-    children <- children[-base::which(children_text == disease)]
-    children_text <- children_text[-base::which(children_text == disease)]
+    text_children <- text_children[-(events - 1)]
+    children <- children[-base::which(text_children == event)]
+    text_children <- text_children[-base::which(text_children == event)]
     i <- i + 2
   }
-  additional_diseases <- config::get(file =
-                                       system.file("extdata",
-                                                   "config.yml",
-                                                   package = "sivirep"),
-                                     "additional_diseases")
-  name_diseases <- base::append(stringr::str_to_title(name_diseases),
-                                additional_diseases)
-  years_diseases <- base::append(years_diseases, c("", "", ""))
-  list_events <- data.frame(enfermedad = name_diseases,
-                            aa = years_diseases)
+  events_adicionales <- obtener_val_config("additional_diseases")
+  nomb_events <- base::append(stringr::str_to_title(nomb_events),
+                              events_adicionales)
+  years_events <- base::append(years_events, c("", "", ""))
+  list_events <- data.frame(enfermedad = nomb_events,
+                            aa = years_events)
   list_events <- list_events[order(list_events$enfermedad,
                                    decreasing = FALSE), ]
   return(list_events)
