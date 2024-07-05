@@ -510,6 +510,7 @@ obtener_cond_inciden_event <- function(cod_eve) {
     names(aux_event) <- names(vals_event)
     return(aux_event)
   }
+  vals_event[["coeficiente"]] <- as.integer(vals_event[["coeficiente"]])
   return(vals_event)
 }
 
