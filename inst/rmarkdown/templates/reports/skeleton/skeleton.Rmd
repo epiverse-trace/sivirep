@@ -422,7 +422,7 @@ incidencia_mayor_sex <- obtener_fila_mas_casos(data_event =
 plot_tabla_incidencia_sex(incidencias_sex)
 ```
 
-```{r sex_incidence_plot, fig.height = 3, fig.width = 7, fig.cap = "Incidencia por sexo", include = params$epi_sex_distribution}
+```{r sex_incidence_plot, fig.height = 3, fig.width = 7, fig.cap = paste0("Incidencia por sexo - ", text_ext_geo), include = params$epi_sex_distribution}
 plot_sex(data_agrupada = incidencias_sex,
          col_distribucion = "incidencia",
          porcentaje = FALSE)
