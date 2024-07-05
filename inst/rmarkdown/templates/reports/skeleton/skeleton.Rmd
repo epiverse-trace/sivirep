@@ -41,7 +41,7 @@ params:
     label: País
     choices: ["Colombia"]
   departmento:
-    value: "Choco" 
+    value: "" 
     label: Departamento
     input: select
     choices: !r c("", sivirep::obtener_dptos())
