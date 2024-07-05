@@ -174,11 +174,11 @@ obtener_tip_ocurren_geo <- function(cod_event = NULL, nombre_event = NULL) {
       param_busqueda <- cod_event
       stopifnot("El parametro cod_event debe ser una cadena de caracteres o
             numerico" =
-              (is.numeric(cod_event) && !is.character(cod_event)) ||
-              (!is.numeric(cod_event) && is.character(cod_event)))
+                  (is.numeric(cod_event) && !is.character(cod_event)) ||
+                  (!is.numeric(cod_event) && is.character(cod_event)))
   }
   if (!is.null(nombre_event)) {
-    stopifnot("El parametro nombre_event debe ser un cadena de caracteres"
+    stopifnot("El parametro nombre_event debe ser una cadena de caracteres"
             = is.character(nombre_event))
     param_busqueda <- nombre_event
   }
@@ -221,7 +221,8 @@ obtener_tip_ocurren_geo <- function(cod_event = NULL, nombre_event = NULL) {
 obtener_info_depts <- function(dpto = NULL, mpio = NULL) {
   stopifnot("El parametro dpto es obligatorio" =
               !missing(dpto),
-            "El parametro dpto debe ser una cadena de caracteres" =
+            "El parametro dpto debe ser una cadena de caracteres o 
+            un numero" =
               is.character(dpto) || is.numeric(dpto))
   data_geo <- import_geo_cods()
   data_dpto <- NULL
@@ -377,7 +378,7 @@ obtener_nombre_mpio <- function(data_geo, cod_dpto, cod_mpio) {
             (is.numeric(cod_dpto) && !is.character(cod_dpto)) ||
             (!is.numeric(cod_dpto) && is.character(cod_dpto)),
             "El parametro cod_mpio es obligatorio" =
-              !missing(cod_dpto),
+              !missing(cod_mpio),
             "El parametro cod_mpio debe ser una cadena de caracteres 
             o numerico" =
               (is.numeric(cod_mpio) && !is.character(cod_mpio)) ||
