@@ -398,7 +398,7 @@ cond_incidencia <-
   obtener_cond_inciden_event(cod_eve = dist_espacial_dpto$cod_eve[1])
 ```
 
-La incidencia para el departamento de `r params$departmento` es: `r incidencia_dpto` por  `r cond_incidencia$coeficiente` habitantes.
+`r if(params$mpio_distribution && params$departmento != "") {paste0("La incidencia para el departamento de ", params$departmento, " es ", incidencia_dpto, " por ", cond_incidencia$coeficiente, " habitantes.")} else {paste0("La incidencia para ", params$pais, " es ", incidencia_dpto, " por ", cond_incidencia$coeficiente, " habitantes.")}`
 
 ## Incidencia por sexo
 
