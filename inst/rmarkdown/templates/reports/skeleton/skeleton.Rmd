@@ -184,8 +184,14 @@ data_limpia <- limpiar_data_sivigila(data_event)
 ```
 
 ```{r filter_data, include = FALSE}
-data_event_filtrada <-  geo_filtro(data_event = data_limpia,
-                                   dpto = params$departmento)
+data_event_filtrada <- data_limpia
+if (params$departmento != "") {
+data_event_filtrada <- geo_filtro(data_event = data_limpia,
+                                  dpto = params$departmento)
+text_intro_geo <- paste0(", en el departamento del ", params$departmento,
+                         " se reportaron ", nrow(data_event_filtrada),
+                         " casos.")
+}
 ```
 
 ```{=tex}
