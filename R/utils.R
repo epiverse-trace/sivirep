@@ -37,9 +37,9 @@ obtener_meses_mas_casos <- function(data_event,
               nrow(data_event) > 0,
             "El parametro col_fechas es obligatorio"
             = !missing(col_fechas),
-            "El parametro col_fechas debe ser un cadena de caracteres"
+            "El parametro col_fechas debe ser una cadena de caracteres"
             = is.character(col_fechas),
-            "El parametro col_casos debe ser un cadena de caracteres"
+            "El parametro col_casos debe ser una cadena de caracteres"
             = is.character(col_casos),
             "El parametro top debe ser numerico"
             = is.numeric(top))
