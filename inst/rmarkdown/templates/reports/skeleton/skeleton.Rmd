@@ -364,7 +364,7 @@ plot_dptos
 dist_areas_geo <- agrupar_area_geo(data_event = data_event_filtrada)
 ```
 
-```{r plot_distribution_areas, fig.height = 3, fig.width = 7, fig.cap = "Distribución de casos por área geográfica", include = params$areas_distribution, fig.pos = "H"}
+```{r plot_distribution_areas, fig.height = 3, fig.width = 7, fig.cap = paste0("Distribución de casos por área geográfica - ", text_ext_geo), include = params$areas_distribution, fig.pos = "H"}
 plot_areas_geo <- plot_area_geo(data_agrupada = dist_areas_geo)
 plot_areas_geo
 ```
