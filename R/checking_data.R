@@ -1107,11 +1107,7 @@ calcular_incidencia_sex <- function(data_incidencia = NULL,
             "El parametro data_agrupada debe ser un data.frame" =
               is.data.frame(data_agrupada),
             "El parametro data_agrupada no debe estar vacio" =
-              nrow(data_agrupada) > 0,
-            "El parametro dpto debe ser una cadena de caracteres
-            o numerico" =
-              (is.numeric(dpto) && !is.character(dpto)) ||
-              (!is.numeric(dpto) && is.character(dpto)))
+              nrow(data_agrupada) > 0)
   data_incidencia_sex <- NULL
   incidencia <- NULL
   dept_data <- NULL
@@ -1134,6 +1130,10 @@ calcular_incidencia_sex <- function(data_incidencia = NULL,
                 nrow(data_incidencia) > 0)
   }
   if (!is.null(dpto)) {
+    stopifnot("El parametro dpto debe ser una cadena de caracteres
+               o numerico" =
+              (is.numeric(dpto) && !is.character(dpto)) ||
+              (!is.numeric(dpto) && is.character(dpto)))
     dept_data <- obtener_info_depts(dpto, mpio)
     stopifnot("El departamento o municipio ingresado no existe"
               = seq_len(nrow(dept_data)) > 0)
@@ -1164,5 +1164,18 @@ calcular_incidencia_sex <- function(data_incidencia = NULL,
     incidencia <- append(incidencia, incidencia_sex)
   }
   data_incidencia_sex <- cbind(data_agrupada, incidencia)
+  if (!is.null(dpto) && is.null(data_incidencia_sex)) {
+    nomb_dpto <- rep(dept_data$nombre_departamento[1],
+                     nrow(data_incidencia_sex))
+    cod_dpto <- rep(dpto, nrow(data_incidencia_sex))
+    data_incidencia_sex["nombre_departamento"] <- nomb_dpto
+    data_incidencia_sex["codigo_departamento"] <- cod_dpto
+    if (!is.null(mpio)) {
+      nomb_mpio <- rep(dept_data$nombre_municipio[1], nrow(data_incidencia_sex))
+      cod_mpio <- rep(mpio, nrow(data_incidencia_sex))
+      data_incidencia_sex["nombre_municipio"] <- nomb_mpio
+      data_incidencia_sex["codigo_municipio"] <- cod_mpio
+    }
+  }
   return(data_incidencia_sex)
 }
