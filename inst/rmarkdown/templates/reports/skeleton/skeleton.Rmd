@@ -231,7 +231,7 @@ if (length(eventos) > 3) {
 }
 ```
 
-```{r plot_cases_by_years, fig.height = altura_fig_years, fig.width = 11, fig.cap = "Distribución de casos en los últimos 6 años"}
+```{r plot_cases_by_years, fig.height = altura_fig_years, fig.width = 11, fig.cap = [paste0(Distribución de casos en los últimos 6 años - ", text_ext_geo)]}
 plot_years(casos_years)
 ```
 
