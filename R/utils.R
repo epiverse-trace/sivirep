@@ -92,7 +92,7 @@ obtener_fila_mas_casos <- function(data_event,
               is.data.frame(data_event),
             "El parametro data_agrupada no debe estar vacio" =
               nrow(data_event) > 0,
-            "El parametro nomb_col debe ser un cadena de caracteres"
+            "El parametro nomb_col debe ser una cadena de caracteres"
             = is.character(nomb_col),
             "El parametro porcentaje debe ser booleano"
             = is.logical(porcentaje))
