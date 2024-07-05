@@ -35,6 +35,11 @@ params:
   year:
     value: 2020
     label: Año
+  pais:
+    value: "Colombia"
+    input: select
+    label: País
+    choices: ["Colombia"]
   departmento:
     value: "Choco" 
     label: Departamento
