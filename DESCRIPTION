@@ -27,7 +27,7 @@ Authors@R:
     person(given = "Gerard", family = "Alarcon", role = c("ctb"))
   )
 Description: Provides functions for data wrangling and automated reports 
-    from SIVIGILA source.
+    from 'SIVIGILA' source.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
