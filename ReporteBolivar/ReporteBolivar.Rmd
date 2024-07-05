@@ -35,16 +35,11 @@ params:
   year:
     value: 2020
     label: Año
-  pais:
-    value: "Colombia"
-    input: select
-    label: País
-    choices: ["Colombia"]
   departmento:
-    value: "" 
+    value: "Choco" 
     label: Departamento
     input: select
-    choices: !r c("", sivirep::obtener_dptos())
+    choices: !r sivirep::obtener_dptos()
   municipio:
     value: ""
     label: Municipio
@@ -166,17 +161,7 @@ data_event <- import_data_event(nombre_event = params$nombre_evento,
                                 years = params$year)
 mostrar_sex <- stringr::str_detect(tolower(params$nombre_evento),
                                    stringr::fixed("materna"))
-etiqueta_geo <- "municipios"
-text_intro_geo <- "."
-text_fig_geo <- paste0("municipio - ", params$departmento)
-text_ext_geo <- params$departmento
-if (params$departmento == "") {
-  etiqueta_geo <- "departamentos"
-  text_fig_geo <- paste0("departamento - ", params$pais)
-  text_ext_geo <- params$pais
-}
-text_fig_geo <- paste0(text_fig_geo, " ", params$year)
-text_ext_geo <- paste0(text_ext_geo, " ", params$year)
+sexo_mayor <- "femenino"
 ```
 
 ```{r clean_data, include = FALSE}
@@ -184,14 +169,8 @@ data_limpia <- limpiar_data_sivigila(data_event)
 ```
 
 ```{r filter_data, include = FALSE}
-data_event_filtrada <- data_limpia
-if (params$departmento != "") {
-data_event_filtrada <- geo_filtro(data_event = data_limpia,
-                                  dpto = params$departmento)
-text_intro_geo <- paste0(", en el departamento del ", params$departmento,
-                         " se reportaron ", nrow(data_event_filtrada),
-                         " casos.")
-}
+data_event_filtrada <-  geo_filtro(data_event = data_limpia,
+                                   dpto = params$departmento)
 ```
 
 ```{=tex}
@@ -199,7 +178,7 @@ text_intro_geo <- paste0(", en el departamento del ", params$departmento,
 \pagenumbering{arabic}
 ```
 
-En este reporte se presenta el comportamiento del `r stringr::str_to_title(params$nombre_evento)` durante el año `r params$year` para Colombia con base en la fuente de datos SIVIGILA de acceso libre. En total en Colombia durante `r params$year` se reportaron `r nrow(data_event)` casos en todo el territorio nacional`r text_intro_geo`
+En este reporte se presenta el comportamiento del `r stringr::str_to_title(params$nombre_evento)` durante el año `r params$year` para Colombia con base en la fuente de datos SIVIGILA de acceso libre. En total en Colombia durante `r params$year` se reportaron `r nrow(data_event)` casos en todo el territorio nacional, en el departamento del `r params$departmento` se reportaron `r nrow(data_event_filtrada)` casos.
 
 # Distribución de casos
 
@@ -218,11 +197,8 @@ data_event_years <- import_data_event(nombre_event = params$nombre_evento,
                                       years = seq(params$year - 5,
                                                    params$year))
 data_years_limpia <- limpiar_data_sivigila(data_event_years)
-data_years_filtrada <- data_years_limpia
-if (params$departmento != "") {
 data_years_filtrada <- geo_filtro(data_event = data_years_limpia,
                                   dpto = params$departmento)
-}
 casos_years <- agrupar_years(data_event = data_years_filtrada)
 altura_fig_years <- 5
 eventos <- unique(casos_years[["cod_eve"]])
@@ -231,7 +207,7 @@ if (length(eventos) > 3) {
 }
 ```
 
-```{r plot_cases_by_years, fig.height = altura_fig_years, fig.width = 11, fig.cap = [paste0(Distribución de casos en los últimos 6 años - ", text_ext_geo)]}
+```{r plot_cases_by_years, fig.height = altura_fig_years, fig.width = 11, fig.cap = "Distribución de casos en los últimos 6 años"}
 plot_years(casos_years)
 ```
 
@@ -241,7 +217,7 @@ plot_years(casos_years)
 casos_tip_cas <- agrupar_tipo_caso(data_event = data_event_filtrada)
 ```
 
-```{r plot_cases_by_tip_cas, fig.height = 5, fig.width = 11, fig.cap = paste0("Distribución de casos por clasificación - ", text_ext_geo)}
+```{r plot_cases_by_tip_cas, fig.height = 5, fig.width = 11, fig.cap = "Distribución de casos por clasificación"}
 plot_tipo_caso(casos_tip_cas)
 ```
 
@@ -252,7 +228,7 @@ casos_tip_cas_years <- agrupar_tipo_caso(data_event = data_years_filtrada,
                                          cols_tipo = c("tip_cas", "ano"))
 ```
 
-```{r plot_tip_cas_by_years, fig.height = 7, fig.width = 13, fig.cap = paste0("Distribución de casos en los últimos 6 años - ", text_ext_geo)}
+```{r plot_tip_cas_by_years, fig.height = 7, fig.width = 13, fig.cap = "Distribución de casos en los últimos 6 años"}
 plot_tipo_caso_years(casos_tip_cas_years)
 ```
 
@@ -266,11 +242,11 @@ mes_mayor_casos <- obtener_meses_mas_casos(data_event =
                                            col_fechas = "ini_sin")
 ```
 
-`r if (params$temporal_distribution) {paste0("Los casos se distribuyen a lo largo de los meses de enero a diciembre de ", params$year, " teniendo un mayor reporte en el mes de ", mes_mayor_casos, " por fecha de inicio de síntomas (Ver Figura 4).")}`
+`r if (params$temporal_distribution) {paste0("Los casos se distribuyen a lo largo de los meses de enero a diciembre de ", params$year, " teniendo un mayor reporte en el mes de ", mes_mayor_casos$meses, " por fecha de inicio de síntomas (Ver Figura 1).")}`
 
 \newpage
 
-```{r plot_cases_by_onset_symptom_date, fig.height = 5, fig.width = 11, fig.cap = paste0("Distribución de casos por fecha de inicio de sintomas - ", text_ext_geo), include = params$temporal_distribution, eval = params$temporal_distribution}
+```{r plot_cases_by_onset_symptom_date, fig.height = 5, fig.width = 11, fig.cap = "Distribución de casos por fecha de inicio de sintomas", include = params$temporal_distribution, eval = params$temporal_distribution}
 plot_fecha_inisintomas(data_agrupada = casos_iniciosin_dia,
                        uni_marca = "semanaepi")
 ```
@@ -279,10 +255,10 @@ plot_fecha_inisintomas(data_agrupada = casos_iniciosin_dia,
 
 ```{r distribution_cg, include = FALSE}
 casos_sex <- agrupar_sex(data_event = data_event_filtrada)
-vals_sex <- obtener_text_sex(casos_sex, params$year,  4)
+
 ```
 
-`r if (params$epi_sex_distribution && !mostrar_sex) {vals_sex$text}`
+`r if (params$epi_sex_distribution && !mostrar_sex) {obtener_text_sex(casos_sex, params$year,  3)}`
 
 ```{r distribution_cg_plots, fig.height = 4.8, fig.width = 8.4, fig.cap = "Distribución de casos por sexo", include = params$epi_sex_distribution}
 plot_sex(data_agrupada = casos_sex)
@@ -445,4 +421,3 @@ b.  Los casos totales reportados de `r stringr::str_to_title(params$nombre_event
 c.  El mes de `r mes_mayor_casos$meses` tuvo el mayor reporte.
 d.  El reporte de casos de `r stringr::str_to_title(params$nombre_evento)` a lo largo de `r params$year` predominó en la población de `r age_most_cases$edad` años.
 e.  El reporte de casos de `r stringr::str_to_title(params$nombre_evento)` predominó a lo largo del año en el sexo `r sexo_mayor[1]`.
-*  El reporte de casos de `r stringr::str_to_title(params$nombre_evento)` predominó a lo largo del año en el sexo `r vals_sex$mayor[1]`.
