@@ -241,7 +241,7 @@ plot_years(casos_years)
 casos_tip_cas <- agrupar_tipo_caso(data_event = data_event_filtrada)
 ```
 
-```{r plot_cases_by_tip_cas, fig.height = 5, fig.width = 11, fig.cap = "Distribución de casos por clasificación"}
+```{r plot_cases_by_tip_cas, fig.height = 5, fig.width = 11, fig.cap = paste0("Distribución de casos por clasificación - ", text_ext_geo)}
 plot_tipo_caso(casos_tip_cas)
 ```
 
