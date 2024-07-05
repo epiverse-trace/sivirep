@@ -166,7 +166,17 @@ data_event <- import_data_event(nombre_event = params$nombre_evento,
                                 years = params$year)
 mostrar_sex <- stringr::str_detect(tolower(params$nombre_evento),
                                    stringr::fixed("materna"))
-sexo_mayor <- "femenino"
+etiqueta_geo <- "municipios"
+text_intro_geo <- "."
+text_fig_geo <- paste0("municipio - ", params$departmento)
+text_ext_geo <- params$departmento
+if (params$departmento == "") {
+  etiqueta_geo <- "departamentos"
+  text_fig_geo <- paste0("departamento - ", params$pais)
+  text_ext_geo <- params$pais
+}
+text_fig_geo <- paste0(text_fig_geo, " ", params$year)
+text_ext_geo <- paste0(text_ext_geo, " ", params$year)
 ```
 
 ```{r clean_data, include = FALSE}
