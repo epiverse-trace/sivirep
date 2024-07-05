@@ -6,7 +6,7 @@
 \alias{sivirep-package}
 \title{sivirep: Data Wrangling and Automated Reports from 'SIVIGILA' source}
 \description{
-Provides functions for data wrangling and automated reports from SIVIGILA source.
+Provides functions for data wrangling and automated reports from 'SIVIGILA' source.
 }
 \seealso{
 Useful links:
