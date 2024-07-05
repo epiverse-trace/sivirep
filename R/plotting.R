@@ -1271,12 +1271,17 @@ plot_tabla_incidencia_geo <- function(data_agrupada,
     etiqueta_geo <- "Municipio"
     col_geo <- nomb_cols[3:4]
   }
+  cond_incidencia <-
+    obtener_cond_inciden_event(cod_eve = data_agrupada$cod_eve[1])
   caption_tabla <- config::get(file =
                                  system.file("extdata",
                                              "config.yml",
                                              package = "sivirep"),
                                "caption_geo_incidence")
   caption_tabla <- paste0(caption_tabla, nomb_cols[5])
+  caption_tabla <- paste0(caption_tabla, nomb_cols[5], " por ",
+                          cond_incidencia$coeficiente,
+                          " habitantes")
   data_agrupada[[col_geo[2]]] <-
     stringr::str_to_title(data_agrupada[[col_geo[2]]])
   data_tabla <- data_agrupada %>%
