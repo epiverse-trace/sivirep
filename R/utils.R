@@ -734,7 +734,9 @@ obtener_text_sex <- function(data_agrupada,
                        sexo_menor[2], "% ", "(Ver Figura ", figura,
                        ").")
   }
-  return(text_sex)
+  text_values <- list(text = text_sex, mayor = sexo_mayor,
+                      menor = sexo_menor)
+  return(text_values)
 }
 
 #' Obtener valor del archivo de configuración
