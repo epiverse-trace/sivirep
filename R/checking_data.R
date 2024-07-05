@@ -783,7 +783,7 @@ agrupar_tipo_caso <- function(data_event, cols_tipo = "tip_cas") {
                                         nomb_cols = cols_tipo)
   data_event_tipo <- data_event_tipo %>%
     dplyr::mutate(nombre_tip_cas =
-                    etiquetas[as.numeric(.data[[cols_tipo[1]]])])
+                    unlist(etiquetas[as.numeric(.data[[cols_tipo[1]]])]))
   return(data_event_tipo)
 }
 
