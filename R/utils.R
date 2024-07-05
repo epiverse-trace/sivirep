@@ -729,8 +729,10 @@ obtener_text_sex <- function(data_agrupada,
     }
     text_sex <- paste0("En el total de casos para ", year,
                        " se observa una predominancia del sexo ",
-                       sexo_mayor, " respecto al sexo ", sexo_menor,
-                       " (Ver Figura", figura, ").")
+                       sexo_mayor[1], " con ", sexo_mayor[2], "%",
+                       " respecto al sexo ", sexo_menor[1], " con ",
+                       sexo_menor[2], "% ", "(Ver Figura ", figura,
+                       ").")
   }
   return(text_sex)
 }
