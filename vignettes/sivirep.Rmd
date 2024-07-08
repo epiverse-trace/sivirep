@@ -12,7 +12,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include = FALSE}
+```{r configuracion, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup_package, include = FALSE}
+```{r configuracion-sivirep, include = FALSE}
 library(sivirep)
 ```
 
@@ -92,7 +92,7 @@ pak::pak("epiverse-trace/sivirep")
 Puedes iniciar importando el paquete después de finalizada su
 instalación con el siguiente comando:
 
-```{r import_sivirep, eval = FALSE}
+```{r import-sivirep, eval = FALSE}
 library(sivirep)
 ```
 
