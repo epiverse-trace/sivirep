@@ -46,28 +46,28 @@ y seguir los siguientes pasos:
 > 🎥 **Tip**: Si deseas ver el paso a paso directamente en RStudio, te
 > recomendamos ver el video [¿Cómo generar un reporte con sivirep?](https://youtu.be/pqzRw5YhP_g)
 
-1.  En RStudio dirígete a la parte superior izquierda de la ventana, haz clic en el icono de ![](`r system.file("images", "archivo_nuevo.png", package = "sivirep")`){.rmarkdown-img width="40"} y selecciona la opción de *'R Markdown'*:
+1.  En RStudio dirígete a la parte superior izquierda de la ventana, haz clic en el icono de ![](https://raw.githubusercontent.com/epiverse-trace/sivirep/main/inst/images/archivo_nuevo.png){.rmarkdown-img width="40"} y selecciona la opción de *'R Markdown'*:
 
-![](`r system.file("images", "opcion_rmarkdown.png", package = "sivirep")`){.rmarkdown-img align="center" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;" width="560"}
+![](https://raw.githubusercontent.com/epiverse-trace/sivirep/main/inst/images/opcion_rmarkdown.png){.rmarkdown-img align="center" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;" width="560"}
 
 2.  Selecciona la opción del panel izquierdo: *'From Template'*, después el template del reporte llamado: `Reporte Básico {sivirep}`, indica el nombre que deseas para el reporte (i.e. ReporteDengue), la ubicación donde deseas guardarlo y presiona *'Ok'*.
 
-![](`r system.file("images", "template_reporte_basico.png", package = "sivirep")`){.rmarkdown-img align="center" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;" width="400"}
+![](https://raw.githubusercontent.com/epiverse-trace/sivirep/main/inst/images/template_reporte_basico.png){.rmarkdown-img align="center" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;" width="400"}
 
 3.  Presiona el botón *'Knit*', el cual puedes encontrar en la parte superior de RStudio, despliega las opciones y selecciona *'Knit with parameters*'.
 
-![](`r system.file("images", "knit_parameters.png", package = "sivirep")`){.rmarkdown-img align="center" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;" width="560"}
+![](https://raw.githubusercontent.com/epiverse-trace/sivirep/main/inst/images/knit_parameters.png){.rmarkdown-img align="center" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;" width="560"}
 
 4.  Selecciona el nombre de la enfermedad, el año, el país, el departamento (opcional), el municipio (opcional) y las secciones que deseas visualizar en el reporte y haz clic en el botón *'Knit'*.
 Esta acción descargará los datos deseados y también proporcionará la plantilla en un archivo R Markdown (.Rmd).
 
-![](`r system.file("images", "template_parametros.png", package = "sivirep")`){.rmarkdown-img align="center" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;" width="400"}
+![](https://raw.githubusercontent.com/epiverse-trace/sivirep/main/inst/images/template_parametros.png){.rmarkdown-img align="center" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;" width="400"}
 
 4.  Espera unos segundos mientras el informe se genera en un archivo PDF o HTML.
 
 5.  Puedes agregar, editar, eliminar y personalizar las secciones del reporte en el archivo R Markdown generado anteriormente.
 
-![](`r system.file("images", "edit_rmarkdown.png", package = "sivirep")`){.rmarkdown-img align="center" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;" width="560"}
+![](https://raw.githubusercontent.com/epiverse-trace/sivirep/main/inst/images/edit_rmarkdown.png){.rmarkdown-img align="center" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;" width="560"}
 
 > ⚠️ Si deseas generar el reporte en formato PDF debes              instalar LateX. Puedes instalarlo siguiendo las instrucciones     que se encuentran en [R Markdown          Cookbook.](https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html)
 
