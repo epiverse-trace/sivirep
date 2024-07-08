@@ -101,8 +101,10 @@ de forma libre utilizando:
 
 ```{r list_events}
 lista_eventos <- list_events()
-knitr::kable(lista_eventos)
+knitr::kable(lista_eventos,
+             col.names = c("Enfermedad", "Año"))
 ```
+
 ## Reporte automatizado
 
 Actualmente, `sivirep` provee una plantilla de reporte llamada
