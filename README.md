@@ -203,12 +203,15 @@ la fuente de SIVIGILA.
 Para hacer uso de la plantilla del reporte puedes seguir los siguientes
 pasos:
 
-[template.webm](https://github.com/epiverse-trace/sivirep/assets/10783929/acbb0111-4044-4698-8e0c-f8e902ddaba3)
+<video controls autoplay width="100%" loop>
+  <source src="https://github.com/epiverse-trace/sivirep/assets/10783929/acbb0111-4044-4698-8e0c-f8e902ddaba3" type="video/webm" label="fullHD">
+</video>
 
 El reporte que obtendrás al utilizar la plantilla de `sivirep` es este:
 
-[template-report.webm](https://github.com/epiverse-trace/sivirep/assets/10783929/265f9bd5-8da5-45b7-b216-3d7648328037)
-
+<video controls autoplay width="100%" loop>
+  <source src="https://github.com/epiverse-trace/sivirep/assets/10783929/265f9bd5-8da5-45b7-b216-3d7648328037" type="video/webm" label="fullHD">
+</video>
 
 Si deseas generar el reporte en formato PDF debes instalar LateX. Puedes
 instalarlo siguiendo las instrucciones que se encuentran en [R Markdown
