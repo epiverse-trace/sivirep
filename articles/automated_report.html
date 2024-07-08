@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>automated_report • sivirep</title>
+<title>Plantilla Reporte automatizado • sivirep</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -16,7 +16,7 @@
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="automated_report">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Plantilla Reporte automatizado">
 <!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=G-XZ471458FQ"></script><script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -44,11 +44,12 @@
       <ul class="navbar-nav me-auto">
 <li class="nav-item"><a class="nav-link" href="../articles/sivirep.html">Primeros pasos</a></li>
 <li class="nav-item"><a class="nav-link" href="../reference/index.html">Índice</a></li>
-<li class="nav-item dropdown">
+<li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-art-culos" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Artículos</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-art-culos">
-<li><a class="dropdown-item" href="../articles/automated_report.html">automated_report</a></li>
-    <li><a class="dropdown-item" href="../articles/custom_analysis.html">custom_analysis</a></li>
+<li><a class="dropdown-item" href="../articles/automated_report.html">Plantilla Reporte automatizado</a></li>
+    <li><a class="dropdown-item" href="../articles/custom_analysis.html">Análisis personalizados</a></li>
+    <li><a class="dropdown-item" href="../articles/resources.html">Recursos</a></li>
   </ul>
 </li>
       </ul>
@@ -69,7 +70,7 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="../logo.svg" class="logo" alt=""><h1>automated_report</h1>
+      <img src="../logo.svg" class="logo" alt=""><h1>Plantilla Reporte automatizado</h1>
             
       
       <small class="dont-index">Código: <a href="https://github.com/epiverse-trace/sivirep/blob/main/vignettes/articles/automated_report.Rmd" class="external-link"><code>vignettes/articles/automated_report.Rmd</code></a></small>
@@ -78,54 +79,79 @@
 
     
     
-<p>Puedes comenzar importando el paquete a través del siguiente
-comando:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://epiverse-trace.github.io/sivirep/">sivirep</a></span><span class="op">)</span></span></code></pre></div>
 <p>Antes de generar el reporte automatizado, revisa la lista de
 enfermedades disponibles para hacer un reporte con <code>sivirep</code>
-en:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+utilizando el comando:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/list_events.html">list_events</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>Actualmente, <code>sivirep</code> provee una plantilla de reporte
-llamada <code>Reporte Básico {sivirep}</code>, la cual contiene seis
-secciones y recibe los siguientes parámetros de entrada: el nombre de la
-enfermedad, el año, el nombre de departamento (opcional) y nombre del
-municipio (opcional) para descargar los datos de la fuente de
-SIVIGILA.</p>
-<p>Para hacer uso de la plantilla del reporte se deben seguir los
-siguientes pasos:</p>
+<p>También, puedes ver el listado de enfermedades en la página <a href="https://epiverse-trace.github.io/sivirep/articles/resources.html#enfermedades-y-a%C3%B1os-disponibles-para-su-descarga">Recursos
+sivirep.</a></p>
+<p>Actualmente, <code>sivirep</code> provee una <a href="https://rstudio.github.io/rstudio-extensions/rmarkdown_templates.html" class="external-link">plantilla
+de reporte en R Markdown</a> llamada
+<code>Reporte Básico {sivirep}</code>, la cual contiene 12 secciones y
+recibe los siguientes parámetros de entrada:</p>
+<ul>
+<li>Nombre de la enfermedad</li>
+<li>Año</li>
+<li>País</li>
+<li>Nombre de departamento (opcional)</li>
+<li>Nombre del municipio (opcional)</li>
+</ul>
+<p>Con esta plantilla podrás generar reportes a nivel nacional,
+departamental o municipal y descargar la información de la enfermedad o
+evento directamente de los microdatos del SIVIGILA, según los valores
+que ingreses en estos parámetros.</p>
+<p>Para hacer uso de la plantilla del reporte puedes iniciar importando
+el paquete después de finalizada su <a href="https://epiverse-trace.github.io/sivirep/articles/sivirep.html#instalaci%C3%B3n">instalación</a>
+con el comando:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://epiverse-trace.github.io/sivirep/">sivirep</a></span><span class="op">)</span></span></code></pre></div>
+<p>y seguir los siguientes pasos:</p>
+<blockquote>
+<p>🎥 <strong>Tip</strong>: Si deseas ver el paso a paso directamente en
+RStudio, te recomendamos ver el video <a href="https://youtu.be/pqzRw5YhP_g" class="external-link">¿Cómo generar un reporte con
+sivirep?</a></p>
+</blockquote>
 <ol style="list-style-type: decimal">
-<li>En RStudio hacer click <em>‘File/New File/R’</em> Markdown:</li>
+<li>En RStudio dirígete a la parte superior izquierda de la ventana, haz
+clic en el icono de <img src="../../../../_temp/Library/sivirep/images/archivo_nuevo.png" class="rmarkdown-img" width="40"> y selecciona la opción de <em>‘R
+Markdown’</em>:</li>
 </ol>
-<p><img src="../../reference/figures/file_rmarkdown.png" class="rmarkdown-img" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;" align="center" width="560"></p>
+<p><img src="../../../../_temp/Library/sivirep/images/opcion_rmarkdown.png" class="rmarkdown-img" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;" align="center" width="560"></p>
 <ol start="2" style="list-style-type: decimal">
 <li>Selecciona la opción del panel izquierdo: <em>‘From Template’</em>,
-después selecciona el template del reporte llamado
+después el template del reporte llamado:
 <code>Reporte Básico {sivirep}</code>, indica el nombre que deseas para
-el reporte (i.e. Reporte_Laura), la ubicación donde deseas guardarlo y
+el reporte (i.e. ReporteDengue), la ubicación donde deseas guardarlo y
 presiona <em>‘Ok’</em>.</li>
 </ol>
-<p><img src="../../reference/figures/reporte_basico.png" class="rmarkdown-img" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;" align="center" width="550"></p>
+<p><img src="../../../../_temp/Library/sivirep/images/template_reporte_basico.png" class="rmarkdown-img" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;" align="center" width="400"></p>
 <ol start="3" style="list-style-type: decimal">
-<li>A continuación, podrás seleccionar el nombre de la enfermedad, el
-año, el departamento (opcional) y el municipio (opcional) del reporte.
-Esta acción descargará los datos deseados y también proporcionará la
-plantilla en un archivo R Markdown (.Rmd). Para esto, es importante
-encontrar el botón <em>‘Knit’</em>, desplegar las opciones y seleccionar
-<em>‘Knit with parameters’</em>.</li>
+<li>Presiona el botón <em>’Knit</em>’, el cual puedes encontrar en la
+parte superior de RStudio, despliega las opciones y selecciona <em>’Knit
+with parameters</em>’.</li>
 </ol>
-<p><img src="../../reference/figures/button_knit.png" class="rmarkdown-img" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;" align="center" width="560"></p>
+<p><img src="../../../../_temp/Library/sivirep/images/knit_parameters.png" class="rmarkdown-img" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;" align="center" width="560"></p>
+<ol start="4" style="list-style-type: decimal">
+<li>Selecciona el nombre de la enfermedad, el año, el país, el
+departamento (opcional), el municipio (opcional) y las secciones que
+deseas visualizar en el reporte y haz clic en el botón <em>‘Knit’</em>.
+Esta acción descargará los datos deseados y también proporcionará la
+plantilla en un archivo R Markdown (.Rmd).</li>
+</ol>
+<p><img src="../../../../_temp/Library/sivirep/images/template_parametros.png" class="rmarkdown-img" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;" align="center" width="400"></p>
 <ol start="4" style="list-style-type: decimal">
 <li><p>Espera unos segundos mientras el informe se genera en un archivo
-PDF.</p></li>
+PDF o HTML.</p></li>
 <li><p>Puedes agregar, editar, eliminar y personalizar las secciones del
 reporte en el archivo R Markdown generado anteriormente.</p></li>
 </ol>
-<p><img src="../../reference/figures/editable_rmarkdown.png" class="rmarkdown-img" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;" align="center" width="560"></p>
-<p>Si deseas generar el reporte en formato PDF debes instalar LateX.
+<p><img src="../../../../_temp/Library/sivirep/images/edit_rmarkdown.png" class="rmarkdown-img" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;" align="center" width="560"></p>
+<blockquote>
+<p>⚠️ Si deseas generar el reporte en formato PDF debes instalar LateX.
 Puedes instalarlo siguiendo las instrucciones que se encuentran en <a href="https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html" class="external-link">R
-Markdown Cookbook</a>:</p>
+Markdown Cookbook.</a></p>
+</blockquote>
 <p>Para obtener más detalles sobre plantillas y reportes genéricos de R
 Markdown, por favor consulta <a href="https://rstudio.github.io/rstudio-extensions/rmarkdown_templates.html" class="external-link">R
 Markdown templates</a>.</p>
@@ -139,7 +165,7 @@ Markdown templates</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Sitio creado con <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.9000.</p>
+  <p>Sitio creado con <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.9000.</p>
 </div>
 
     </footer>
