@@ -1,7 +1,7 @@
 url: https://epiverse-trace.github.io/sivirep/
 template:
   package: epiversetheme
+  bootstrap: 5
 development:
   mode: auto
-
 lang: es
