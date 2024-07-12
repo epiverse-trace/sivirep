@@ -27,6 +27,8 @@ Authors@R:
     person(given = "Lady", family = "Flórez-Tapiero", role = "ctb"),
     person(given = "Verónica", family = "Tangarife-Arredondo", role = "ctb"),
     person(given = "Gerard", family = "Alarcon", role = "ctb"),
+    person("International Development Research Center (IDRC)", role = "fnd"),
+    person("Pontificia Universidad Javeriana", role = "cph")
   )
 Description: Provides functions for data wrangling and automated reports 
     from 'SIVIGILA' source.
