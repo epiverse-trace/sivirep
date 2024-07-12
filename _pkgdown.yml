@@ -5,3 +5,29 @@ template:
 development:
   mode: auto
 lang: es
+reference:
+- title: Importacion de datos
+  contents: 
+    - contains("importar")
+    - contains("list_events")
+- title: Limpieza de datos
+  contents: 
+    - contains("limpiar")
+    - contains("format")
+    - contains("estandarizar")
+    - contains("remove")
+    - contains("convert")
+- title: Distribuciones y agrupaciones por variable
+  contents: contains("agrupar")
+- title: Cálculo de la incidencia
+  contents: contains("calcular")
+- title: Generación de gráficas, mapas y tablas
+  contents: contains("plot")
+- title: Utilidades
+  contents: 
+    - contains("obtener")
+- title: Datos del paquete
+  contents:
+    - contains("dengue")
+    - contains("divipola")
+    - contains("incidencia_eventos")
