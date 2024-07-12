@@ -8,23 +8,23 @@ convert_edad(data_event, col_edad = "edad", col_uni_med = "uni_med")
 }
 \arguments{
 \item{data_event}{Un `data.frame` que contiene los datos de una
-enfermedad o evento}
+enfermedad o evento.}
 
 \item{col_edad}{Un `character` (cadena de caracteres) con
 el nombre de la columna que contiene las edades en los datos de
-la enfermedad o evento; su valor por defecto es `"edad"`}
+la enfermedad o evento; su valor por defecto es `"edad"`.}
 
 \item{col_uni_med}{Un `character` (cadena de caracteres) con el nombre
 de la columna que contiene las unidades de medida en los datos de una
-enfermedad o evento; su valor por defecto es `"uni_med"`}
+enfermedad o evento; su valor por defecto es `"uni_med"`.}
 }
 \value{
 Un `data.frame` con las edades en años según las unidades de medida
-del SIVIGILA
+del SIVIGILA.
 }
 \description{
-Función que convierte las edades en años según las unidades de medida del
-SIVIGILA
+Función que convierte las edades en años según las unidades de
+medida del SIVIGILA.
 }
 \examples{
 data(dengue2020)

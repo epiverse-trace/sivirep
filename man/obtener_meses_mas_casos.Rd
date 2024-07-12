@@ -14,24 +14,24 @@ obtener_meses_mas_casos(
 }
 \arguments{
 \item{data_event}{Un `data.frame` con los datos de la enfermedad
-o vento}
+o vento.}
 
 \item{col_fechas}{Un `array` (arreglo) de `character` (cadena de caracteres)
 con los nombres de las columnas que contienen las fechas en los datos de la
-enfermedad o evento}
+enfermedad o evento.}
 
 \item{col_casos}{Un `character` (cadena de caracteres) con el nombre de la
 columna de los datos de la enfermedad o evento que contiene el número
-de casos; su valor por defecto es `"casos"`}
+de casos; su valor por defecto es `"casos"`.}
 
 \item{top}{Un `numeric` (numerico) que contiene la cantidad máxima
-de meses a retornar; su valor por defecto es `3`}
+de meses a retornar; su valor por defecto es `3`.}
 
 \item{concat_vals}{Un `boolean` (TRUE/FALSE) que indica si se requiere
-concatenar los meses como una cadena; su valor por defecto es `TRUE`}
+concatenar los meses como una cadena; su valor por defecto es `TRUE`.}
 }
 \value{
-Un `data.frame` que contiene los meses con mayor número de casos
+Un `data.frame` que contiene los meses con mayor número de casos.
 }
 \description{
 Función que obtiene los meses con el mayor número de casos

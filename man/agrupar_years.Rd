@@ -8,18 +8,19 @@ agrupar_years(data_event, col_year = "ano")
 }
 \arguments{
 \item{data_event}{Un `data.frame` que contiene los datos de la
-enfermedad o evento}
+enfermedad o evento.}
 
 \item{col_year}{Un `character` (cadena de caracteres) con el nombre de
 la columna que contiene los años en los datos de la enfermedad o evento;
-su valor por defecto es `"ano"`}
+su valor por defecto es `"ano"`.}
 }
 \value{
 Un `data.frame` con los datos de la enfermedad o evento agrupados
-por sus años
+por sus años.
 }
 \description{
-Función que agrupa los casos por los años de una enfermedad o evento
+Función que agrupa los casos por los años de una enfermedad
+o evento.
 }
 \examples{
 data(dengue2020)

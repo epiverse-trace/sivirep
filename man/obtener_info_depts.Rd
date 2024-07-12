@@ -9,19 +9,19 @@ obtener_info_depts(dpto = NULL, mpio = NULL)
 \arguments{
 \item{dpto}{Un `character` (cadena de caracteres) o `numeric` (numerico)
 que contiene el nombre o código del departamento; su valor por defecto
-es `NULL`}
+es `NULL`.}
 
 \item{mpio}{Un `character` (cadena de caracteres) o `numeric` (numerico)
 que contiene el nombre o código del municipio; su valor por defecto
-es `NULL`}
+es `NULL`.}
 }
 \value{
 Un `data.frame` con la información geográfica de los datos de
-la enfermedad o evento
+la enfermedad o evento.
 }
 \description{
-Función que obtiene la información geográfica de los datos de la enfermedad
-o evento
+Función que obtiene la información geográfica de los datos de
+la enfermedad o evento.
 }
 \examples{
 obtener_info_depts(dpto = "ANTIOQUIA")

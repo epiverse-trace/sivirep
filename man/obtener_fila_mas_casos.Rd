@@ -8,20 +8,20 @@ obtener_fila_mas_casos(data_event, nomb_col = "casos", porcentaje = TRUE)
 }
 \arguments{
 \item{data_event}{Un `data.frame` que contiene los datos de la
-enfermedad o evento}
+enfermedad o evento.}
 
 \item{nomb_col}{Un `character` (cadena de caracteres) con el
 nombre de la columna que contiene el número de casos en los datos de
-la enfermedad o evento}
+la enfermedad o evento.}
 
 \item{porcentaje}{Un `boolean` (TRUE/FALSE) que indica si se
-requiere agregar un porcentaje de casos como columna}
+requiere agregar un porcentaje de casos como columna.}
 }
 \value{
-Un `data.frame` que contiene la fila con mayor número de casos
+Un `data.frame` que contiene la fila con mayor número de casos.
 }
 \description{
-Función que obtiene la fila con el mayor número de casos
+Función que obtiene la fila con el mayor número de casos.
 }
 \examples{
 data(dengue2020)

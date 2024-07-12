@@ -8,20 +8,20 @@ obtener_nombre_mpio(data_geo, cod_dpto, cod_mpio)
 }
 \arguments{
 \item{data_geo}{Un `data.frame` que contiene los códigos geográficos
-(departamentos y municipios de Colombia)}
+(departamentos y municipios de Colombia).}
 
 \item{cod_dpto}{Un `numeric` (numerico) o `character` (cadena de caracteres)
-que contiene el código del departamento}
+que contiene el código del departamento.}
 
 \item{cod_mpio}{Un `numeric` (numerico) o `character`
-(cadena de caracteres) que contiene el código del municipio}
+(cadena de caracteres) que contiene el código del municipio.}
 }
 \value{
-Un `character` (cadena de caracteres) con el nombre del municipio
+Un `character` (cadena de caracteres) con el nombre del municipio.
 }
 \description{
-Función que obtiene el nombre de un municipio de Colombia a partir de su
-código geográfico
+Función que obtiene el nombre de un municipio de Colombia a
+partir de su código geográfico
 }
 \examples{
 data_geo <- import_geo_cods()

@@ -14,30 +14,30 @@ agrupar_edad_sex(
 }
 \arguments{
 \item{data_event}{Un `data.frame` que contiene los datos de la enfermedad
-o evento}
+o evento.}
 
 \item{col_edad}{Un `character` (cadena de caracteres) con el nombre de la
 columna que contiene las edades en los datos de la enfermedad o evento;
-su valor por defecto es `"edad`}
+su valor por defecto es `"edad`.}
 
 \item{col_sex}{Un `character` (cadena de caracteres) con el nombre de la
 columna que contiene el sexo en los datos de la enfermedad o evento;
-su valor por defecto es `"sexo`}
+su valor por defecto es `"sexo`.}
 
 \item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica si se debe
 agregar una columna con el porcentaje de casos; su valor por
-defecto es `TRUE`}
+defecto es `TRUE`.}
 
 \item{interval_edad}{Un `numeric` (numérico) que contiene el intervalo del
-rango de edades; su valor por defecto es `10`}
+rango de edades; su valor por defecto es `10`.}
 }
 \value{
 Un `data.frame` con los datos de enfermedades agrupados
-por edades, sexo y número de casos
+por edades, sexo y número de casos.
 }
 \description{
-Función que agrupa los datos de una enfermedad o evento por edades,
-sexo y número de casos
+Función que agrupa los datos de una enfermedad o evento por
+edades, sexo y número de casos.
 }
 \examples{
 data(dengue2020)

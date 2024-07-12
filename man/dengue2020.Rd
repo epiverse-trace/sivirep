@@ -89,7 +89,7 @@ data(dengue2020)
 }
 \description{
 Datos obtenidos del SIVIGILA
-(Sistema de Vigilancia en Salud Publica de Colombia)
+(Sistema de Vigilancia en Salud Publica de Colombia).
 }
 \examples{
 data(dengue2020)

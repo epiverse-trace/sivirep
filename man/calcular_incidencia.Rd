@@ -18,52 +18,56 @@ calcular_incidencia(
 \item{data_incidencia}{Un `data.frame` que contiene la población a riesgo o
 las proyecciones poblaciones DANE. Si este parámetro está vacío importará
 la población a riesgo o las proyecciones dependiendo de la disponibilidad de
-la información; su valor por defecto es `NULL`}
+la información; su valor por defecto es `NULL`.}
 
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la enfermedad
-agrupados por departamento o municipio y número de casos}
+agrupados por departamento o municipio y número de casos.}
 
 \item{poblacion}{Un `character` (cadena de caracteres) con el tipo de
 población para efectuar el calculo de la incidencia. Indica si se
 va a utilizar la población a riesgo del evento `"riesgo"` o las
 proyecciones poblacionales DANE `"proyecciones"`; su valor por defecto
-es `NULL`}
+es `NULL`.}
 
 \item{year}{Un `numeric` (numerico) con el año que se debe tomar de las
-proyecciones poblacionales; su valor por defecto es `NULL`}
+proyecciones poblacionales; su valor por defecto es `NULL`.}
 
 \item{dpto}{Un `character` (cadena de caracteres) o `numeric` (numérico)
 que contiene el código o nombre del departamento; su valor por
-defecto es `NULL`}
+defecto es `NULL`.}
 
 \item{mpio}{Un `character` (cadena de caracteres) o `numeric` (numérico)
-que contiene el código o nombre del municipio; su valor por defecto es `NULL`}
+que contiene el código o nombre del municipio; su valor por defecto
+es `NULL`.}
 
 \item{sex}{Un `character` (cadena de caracteres) que contiene el sexo`"F"`
-para Femenino y `"M"` Masculino; su valor por defecto es `NULL`}
+para Femenino y `"M"` Masculino; su valor por defecto es `NULL`.}
 }
 \value{
 Un `numeric` con el calculo de la incidencia para todo Colombia, un
-departamento, municipio o sexo especifico
+departamento, municipio o sexo especifico.
 }
 \description{
-Función que calcula la incidencia de una enfermedad o evento para todo
-Colombia, departamento o municipio
+Función que calcula la incidencia de una enfermedad o evento
+para todo Colombia, departamento o municipio.
 }
 \examples{
-\dontrun{
+\donttest{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+# Cálculo de la incidencia con proyecciones poblacionales por departamento
 data_agrupada_mpios <- agrupar_mpio(data_limpia, dpto = "Antioquia")
 calcular_incidencia(data_agrupada = data_agrupada_mpios,
                     poblacion = "proyecciones",
                     dpto = "05",
                     year = 2020)
+# Cálculo de la incidencia con proyecciones poblacionales por municipio
 calcular_incidencia(data_agrupada = data_agrupada_mpios,
                     poblacion = "proyecciones",
                     dpto = "Antioquia",
                     mpio = "05001",
                     year = 2020)
+# Cálculo de la incidencia con población a riesgo para Colombia
 data_agrupada_dptos <- agrupar_dpto(data_limpia)
 calcular_incidencia(poblacion = "riesgo",
                     data_agrupada = data_agrupada_dptos,

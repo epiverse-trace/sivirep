@@ -1,10 +1,10 @@
 #' @title Realizar petición HTTP
 #' @description Función que gestiona las peticiones HTTP al API del
-#' SIVIGILA
-#' @param url La dirección HTTP desde donde descargar la información
+#' SIVIGILA.
+#' @param url La dirección HTTP desde donde descargar la información.
 #' @return Si la petición es exitosa, retorna una respuesta HTTP.
 #' De lo contrario arroja un mensaje de error explicando el problema
-#' y finaliza la ejecución del programa
+#' y finaliza la ejecución del programa.
 #' @examples
 #' \donttest{
 #' ruta_consulta_event <- obtener_val_config("query_diseases_by_year_path")
@@ -46,12 +46,12 @@ realizar_peticion_http <- function(url) {
 
 #' @title Importar datos geográficos de Colombia
 #' @description Función que importa los nombres y códigos de
-#' los departamentos y municipios de Colombia a través de una URL
+#' los departamentos y municipios de Colombia a través de una URL.
 #' @param descargar Un `boolean` (`TRUE` o `FALSE`) que indica si los
 #' datos se deben descargar desde la API de datos abiertos; su valor por
-#' defecto es `FALSE`
+#' defecto es `FALSE`.
 #' @return Un `data.frame` con los nombres y códigos de los departamentos
-#' y municipios de Colombia
+#' y municipios de Colombia.
 #' @examples
 #' import_geo_cods(descargar = FALSE)
 #' @export
@@ -76,9 +76,9 @@ import_geo_cods <- function(descargar = FALSE) {
 #' @title Importar las enfermedades y años disponibles disposibles
 #' para su descarga desde los microdatos del SIVIGILA
 #' @description Función que obtiene las enfermedades y los años
-#' disponibles para su descarga desde los microdatos del SIVIGILA
+#' disponibles para su descarga desde los microdatos del SIVIGILA.
 #' @return Una `list` con las enfermedades y los años disponibles
-#' para su descarga desde los microdatos del SIVIGILA
+#' para su descarga desde los microdatos del SIVIGILA.
 #' @examples
 #' \donttest{
 #' list_events()
@@ -130,15 +130,15 @@ list_events <- function() {
 #' @title Importar los datos de una enfermedad o evento por año
 #' desde los microdatos del SIVIGILA
 #' @description Función que importa los datos de una enfermedad o evento por
-#' año desde los microdatos del SIVIGILA
+#' año desde los microdatos del SIVIGILA.
 #' @param nombre_event Un `character` (cadena de caracteres) con el nombre de
-#' la enfermedad o evento
+#' la enfermedad o evento.
 #' @param years Un `numeric` (numerico) con el año o años deseado(s) para
-#' la descarga de los datos
+#' la descarga de los datos.
 #' @param cache Un `boolean` (`TRUE` o `FALSE`) que indica si los datos
-#' descargados deben ser almacenados en caché; su valor por defecto es `TRUE`
+#' descargados deben ser almacenados en caché; su valor por defecto es `TRUE`.
 #' @return Un `data.frame` con los datos del año de la enfermedad o evento
-#' seleccionado desde los microdatos del SIVIGILA
+#' seleccionado desde los microdatos del SIVIGILA.
 #' @examples
 #' \donttest{
 #' import_data_event(nombre_event = "DENGUE",
@@ -200,14 +200,14 @@ import_data_event <- function(nombre_event,
   return(data_event)
 }
 
-#' @title Importar datos con un separador específico
+#' @title Importar datos con un separador específico.
 #' @description Función que importa e identifica el separador que tiene los
-#' datos para tabularlos
+#' datos para tabularlos.
 #' @param ruta_data Un `character` (cadena de caracteres) que contiene
-#' la URL de los datos de SIVIGILA
-#' @param cache Un `boolean` (`TRUE` o `FALSE`) que indica si los datos
-#' descargados deben ser almacenados en caché; su valor por defecto es `TRUE`
-#' @return Un `data.frame` con los datos tabulados
+#' la URL de los datos de SIVIGILA.
+#' @param cache Un `boolean` (`TRUE` o `FALSE`) que indica si los datos.
+#' descargados deben ser almacenados en caché; su valor por defecto es `TRUE`.
+#' @return Un `data.frame` con los datos tabulados.
 #' @keywords internal
 import_sep_data <- function(ruta_data = NULL, cache = TRUE) {
   stopifnot("El parametro ruta_data debe ser una cadena de caracteres" =
@@ -247,18 +247,18 @@ import_sep_data <- function(ruta_data = NULL, cache = TRUE) {
 #' @title Importar la población para efectuar el cálculo de la incidencia
 #' @description Función que importa la población a riesgo de un evento o
 #' enfermedad o las proyecciones poblacionales DANE desde el año 2005 hasta
-#' el 2035
+#' el 2035.
 #' @param poblacion Un `character` (cadena de caracteres) con el tipo de
 #' población que se desea importar. Indica si se desea descargar la población
 #' a riesgo del evento `"riesgo"` o las proyecciones poblacionales DANE
-#' `"proyecciones"`; su valor por defecto es `"riesgo"`
+#' `"proyecciones"`; su valor por defecto es `"riesgo"`.
 #' @param event Un `character` (cadena de caracteres) o un `numeric` (numerico)
 #' con el nombre o código de la enfermedad o evento. Es obligatorio para
-#' importar la población a riesgo
+#' importar la población a riesgo.
 #' @param year Un `numeric` (numerico) con el año deseado de la población a
-#' riesgo. Es obligatorio para importar la población a riesgo
+#' riesgo. Es obligatorio para importar la población a riesgo.
 #' @return Un `data.frame` con la población a riesgo o las proyecciones
-#' poblacionaldes DANE
+#' poblacionaldes DANE.
 #' @examples
 #'  \dontrun{
 #' import_pob_incidencia(poblacion = "proyecciones")
@@ -282,8 +282,10 @@ import_pob_incidencia <- function(poblacion = "riesgo", event, year) {
 
 #' @title Importar las proyecciones DANE del año 2005 hasta el 2035
 #' @description Función que importa las proyecciones poblacionales
-#' DANE desde el año 2005 hasta el 2035
-#' @return Un `data.frame` con las proyecciones poblacionales DANE
+#' DANE desde el año 2005 hasta el 2035.
+#' @param year Un `numeric` (numerico) con el año a importar de las
+#' proyecciones poblacionales DANE.
+#' @return Un `data.frame` con las proyecciones poblacionales DANE.
 #' @examples
 #' \dontrun{
 #' import_pob_proyecciones()
@@ -306,14 +308,14 @@ import_pob_proyecciones <- function() {
 
 #' @title Importar la población a riesgo de un evento o enfermedad
 #' @description Función que importa la población a riesgo de un evento
-#'o enfermedad de un año específico
+#'o enfermedad de un año específico.
 #' @param event Un `character` (cadena de caracteres) o un `numeric` (numerico)
-#' con el nombre o código de la enfermedad o evento
+#' con el nombre o código de la enfermedad o evento.
 #' @param year Un `numeric` (numerico) con el año deseado de la población a
-#' riesgo
-#' @return Un `data.frame` con la población a riesgo de un año específico
+#' riesgo.
+#' @return Un `data.frame` con la población a riesgo de un año específico.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' import_pob_riesgo(event = "Dengue", year = 2020)
 #' }
 #' @export

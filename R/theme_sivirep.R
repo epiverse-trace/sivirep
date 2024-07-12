@@ -21,13 +21,13 @@ tema_sivirep <- function() {
   return(tema)
 }
 
-#' Obtener la estetica de una escala para un grafico de \pkg{sivirep}
-#' Función que genera la estética de una escala para un gráfico de
-#' \pkg{sivirep}
+#' @title Obtener la estetica de una escala para un grafico de \pkg{sivirep}
+#' @description Función que genera la estética de una escala para un gráfico
+#' de \pkg{sivirep}.
 #' @param escala Un `numeric` (numerico) que indica la cantidad de valores que
-#' contiene la escala
+#' contiene la escala.
 #' @param nombre Un `character` (cadena de caracteres) que contiene el nombre
-#' de la escala
+#' de la escala.
 #' @param etiquetas Un `character` (cadena de caracteres) que contiene las
 #' etiquetas de la escala
 #' @returns Un objeto `scale_fill_manual` de \pkg{ggplot2}
@@ -38,6 +38,9 @@ tema_sivirep <- function() {
 #'   ggplot2::labs(title = "La economia") +
 #'   tema_sivirep()
 #' @export
+#' etiquetas de la escala.
+#' @returns Un objeto `scale_fill_manual` de \pkg{ggplot2}.
+#' @keywords internal
 obtener_estetica_escala <- function(escala = 0, nombre,
                                     etiquetas = NULL) {
   colores <- c("#2274BB", "#5ab4ac", "#d8b365", "#AC6DAD", "#D49392",

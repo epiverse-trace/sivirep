@@ -9,15 +9,15 @@ import_geo_cods(descargar = FALSE)
 \arguments{
 \item{descargar}{Un `boolean` (`TRUE` o `FALSE`) que indica si los
 datos se deben descargar desde la API de datos abiertos; su valor por
-defecto es `FALSE`}
+defecto es `FALSE`.}
 }
 \value{
 Un `data.frame` con los nombres y códigos de los departamentos
-y municipios de Colombia
+y municipios de Colombia.
 }
 \description{
 Función que importa los nombres y códigos de
-los departamentos y municipios de Colombia a través de una URL
+los departamentos y municipios de Colombia a través de una URL.
 }
 \examples{
 import_geo_cods(descargar = FALSE)

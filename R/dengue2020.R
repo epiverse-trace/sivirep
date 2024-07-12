@@ -1,7 +1,7 @@
 #' Datos Dengue 2020 del SIVIGILA en sivirep
 #'
 #' Datos obtenidos del SIVIGILA
-#' (Sistema de Vigilancia en Salud Publica de Colombia)
+#' (Sistema de Vigilancia en Salud Publica de Colombia).
 #'
 #' @docType data
 #'

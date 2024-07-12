@@ -9,11 +9,11 @@ list_events()
 }
 \value{
 Una `list` con las enfermedades y los años disponibles
-para su descarga desde los microdatos del SIVIGILA
+para su descarga desde los microdatos del SIVIGILA.
 }
 \description{
 Función que obtiene las enfermedades y los años
-disponibles para su descarga desde los microdatos del SIVIGILA
+disponibles para su descarga desde los microdatos del SIVIGILA.
 }
 \examples{
 \donttest{

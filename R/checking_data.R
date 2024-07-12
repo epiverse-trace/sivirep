@@ -1,15 +1,14 @@
-#' Filtrar por departamentos y municipios
-#'
-#' Función que filtra los datos de una enfermedad o evento por departamentos
-#' y municipios
-#' @param data_event Un `data.frame` con los datos de una enfermedad o evento
+#' @title Filtrar por departamentos y municipios
+#' @description Función que filtra los datos de una enfermedad o evento por
+#' departamentos y municipios.
+#' @param data_event Un `data.frame` con los datos de una enfermedad o evento.
 #' @param dpto Un `character` (cadena de caracteres) o `numeric` (numérico)
-#' que contiene el nombre o código del departamento; valor por defecto `NULL`
+#' que contiene el nombre o código del departamento; valor por defecto `NULL`.
 #' @param mpio Un `character` (cadena de caracteres) o `numeric` (numérico)
 #' que contiene el nombre o código del municipio; su valor por defecto
-#' es `NULL`
+#' es `NULL`.
 #' @return Un `data.frame` con los datos filtrados con la enfermedad,
-#' departamentos y municipios seleccionados
+#' departamentos y municipios seleccionados.
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
@@ -57,18 +56,17 @@ geo_filtro <- function(data_event, dpto = NULL, mpio = NULL) {
   return(data_dept_filt)
 }
 
-#' Agrupar por semana epidemiológica y casos
-#'
-#' Función que agrupa los datos de una enfermedad o evento
-#' por semana epidemiológica y número de casos
+#' @title Agrupar por semana epidemiológica y casos
+#' @description Función que agrupa los datos de una enfermedad o evento
+#' por semana epidemiológica y número de casos.
 #' @param data_event Un `data.frame` que contiene los datos de
-#' una enfermedad o evento
+#' una enfermedad o evento.
 #' @param col_semanaepi Un `character` (cadena de caracteres)
 #' con el nombre de la columna que contiene las semanas
 #' epidemiológicas en los datos de la enfermedad o evento;
-#' su valor por defecto es `"semana"`
+#' su valor por defecto es `"semana"`.
 #' @return Un `data.frame` con los datos de una enfermedad o
-#' evento agrupados por semana epidemiológica y número de casos
+#' evento agrupados por semana epidemiológica y número de casos.
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
@@ -89,18 +87,17 @@ agrupar_semanaepi <- function(data_event,
   return(data_event_agrupada)
 }
 
-#' Agrupar por columnas y casos
-#'
-#' Función que agrupa los datos de una enfermedad o evento
-#' por nombre de columna(s) y número de casos
+#' @title Agrupar por columnas y casos
+#' @description Función que agrupa los datos de una enfermedad o evento
+#' por nombre de columna(s) y número de casos.
 #' @param data_event Un `data.frame` que contiene los datos de
-#' una enfermedad o evento
+#' una enfermedad o evento.
 #' @param nomb_cols Un `character` (cadena de caracteres) o
 #' `array (arreglo) de character` que contiene el nombre de
-#' la(s) columna(s) en los datos de la enfermedad o evento
+#' la(s) columna(s) en los datos de la enfermedad o evento.
 #' @param porcentaje Un `boolean` (TRUE o FALSE) que indica
 #' si se debe agregar una columna con el porcentaje de casos;
-#' su valor por defecto es `FALSE`
+#' su valor por defecto es `FALSE`.
 #' @param estandar Un `boolean` (TRUE o FALSE) que indica
 #' si se debe utilizar el estandar de agrupación de los datos
 #' del evento o enfermedad propuesto por el paquete, es decir
@@ -159,29 +156,29 @@ agrupar_cols_casos <- function(data_event,
   return(data_event_agrupada)
 }
 
-#' Agrupar por rango de edad y casos
-#'
-#' Función que agrupa los datos de una enfermedad o evento por rango
-#' de edad y número de casos
+#' @title Agrupar por rango de edad y casos
+#' @description Función que agrupa los datos de una enfermedad o evento por
+#' rango de edad y número de casos.
 #' @param data_event Un `data.frame` que contiene los datos de la
-#' enfermedad o evento
+#' enfermedad o evento.
 #' @param col_edad Un `character` (cadena de caracteres) con
 #' el nombre de la columna que contiene las edades en los datos de
-#' la enfermedad o evento
+#' la enfermedad o evento.
 #' @param col_adicional Un `character` (cadena de caracteres) con
 #' el nombre de la columna adicional para agrupar con las edades en
-#' los datos de la enfermedad o evento; su valor por defecto es `NULL`
+#' los datos de la enfermedad o evento; su valor por defecto
+#' es `NULL`.
 #' @param min_val Un `numeric` (numérico) que contiene la edad mínima
-#' con la que debe iniciar el rango de edades
+#' con la que debe iniciar el rango de edades.
 #' @param max_val Un `numeric` (numérico) que contiene la edad máxima
-#' con la que debe finalizar el rango de edades
+#' con la que debe finalizar el rango de edades.
 #' @param paso Un `numeric` (numérico) que contiene el valor del paso
-#' para generar el rango de edades
+#' para generar el rango de edades.
 #' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si se debe
 #' agregar una columna con el porcentaje de casos; su valor por
-#' defecto es `TRUE`
+#' defecto es `TRUE`.
 #' @return Un `data.frame` con los datos de la enfermedad o evento
-#' agrupados por el rango de edad y número de casos
+#' agrupados por el rango de edad y número de casos.
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
@@ -231,17 +228,16 @@ agrupar_rango_edad <- function(data_event,
   return(data_vals_rango)
 }
 
-#' Agrupar por fecha de inicio de síntomas y casos
-#'
-#' Función que agrupa los datos de una enfermedad o evento por
-#' fecha de inicio de síntomas y número de casos
+#' @title Agrupar por fecha de inicio de síntomas y casos
+#' @description Función que agrupa los datos de una enfermedad o evento por
+#' fecha de inicio de síntomas y número de casos.
 #' @param data_event Un `data.frame` que contiene los datos de
-#' la enfermedad o evento
+#' la enfermedad o evento.
 #' @param col_fecha Un `character` (cadena de caracteres) con el
 #' nombre de la columna de los datos de la enfermedad o evento que contiene
-#' las fechas de inicio de síntomas; su valor por defecto es `"ini_sin"`
+#' las fechas de inicio de síntomas; su valor por defecto es `"ini_sin"`.
 #' @return Un `data.frame` con los datos de la enfermedad o evento
-#' agrupados por fecha de inicio de síntomas y número de casos
+#' agrupados por fecha de inicio de síntomas y número de casos.
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
@@ -271,20 +267,19 @@ agrupar_fecha_inisintomas <- function(data_event,
   return(data_agrupada_fecha_ini)
 }
 
-#' Agrupar por sexo y casos
-#'
-#' Función que agrupa los datos de una enfermedad o evento
-#' por sexo y número de casos
+#' @title Agrupar por sexo y casos
+#' @description Función que agrupa los datos de una enfermedad o evento
+#' por sexo y número de casos.
 #' @param data_event Un `data.frame` que contiene los datos de la enfermedad
-#' o evento
+#' o evento.
 #' @param col_sex Un `character` (cadena de caracteres) con el nombre
 #' de la columna que contiene el sexo en los datos de la enfermedad o evento;
-#' su valor por defecto es `"sexo"`
+#' su valor por defecto es `"sexo"`.
 #' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si se debe
 #' agregar una columna con el porcentaje de casos; su valor por
-#' defecto es `TRUE`
+#' defecto es `TRUE`.
 #' @return Un data.frame con los datos de la enfermedad o evento
-#' agrupados por sexo y número de casos
+#' agrupados por sexo y número de casos.
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
@@ -306,21 +301,20 @@ agrupar_sex <- function(data_event,
   return(data_event_sex)
 }
 
-#' Agrupar por sexo, semana epidemiológica y casos
-#'
-#' Función que agrupa los datos de enfermedades por sexo, semana
-#' epidemiológica y número de casos
+#' @title Agrupar por sexo, semana epidemiológica y casos
+#' @description Función que agrupa los datos de enfermedades por sexo,
+#' semana, epidemiológica y número de casos.
 #' @param data_event Un `data.frame` que contiene los datos de
-#' la enfermedad o evento
+#' la enfermedad o evento.
 #' @param cols_sex Un `character` (cadena de caracteres) o
 #' `array (arreglo) de character` con el nombre de la(s)
 #' columna(s) que contienen el sexo y las semanas
-#' epidemiológicas; su valor por defecto es `c("sexo", "semana")`
+#' epidemiológicas; su valor por defecto es `c("sexo", "semana")`.
 #' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si se debe
 #' agregar una columna con el porcentaje de casos; su valor por
-#' defecto es `TRUE`
+#' defecto es `TRUE`.
 #' @return Un `data.frame` con los datos de la enfermedad o evento
-#' agrupados por sexo, semana epidemiológica y número de casos
+#' agrupados por sexo, semana epidemiológica y número de casos.
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
@@ -346,22 +340,21 @@ agrupar_sex_semanaepi <- function(data_event,
   return(data_event_sex_semanaepi)
 }
 
-#' Agrupar por edad y casos
-#'
-#' Función que agrupa los datos de una enfermedad o evento por edad
-#' y número de casos
+#' @title Agrupar por edad y casos
+#' @description Función que agrupa los datos de una enfermedad o evento por
+#' edad y número de casos.
 #' @param data_event Un `data.frame` que contiene los datos de la enfermedad
-#' o evento
+#' o evento.
 #' @param col_edad Un `character` (cadena de caracteres) con el nombre
 #' de la columna que contiene las edades en los datos de la enfermedad o
-#' evento; su valor por defecto es `"edad"`
+#' evento; su valor por defecto es `"edad"`.
 #' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si se debe
 #' agregar una columna con el porcentaje de casos; su valor por
-#' defecto es `FALSE`
+#' defecto es `FALSE`.
 #' @param interval_edad Un `numeric` (numérico) que contiene el intervalo del
-#' rango de edades; su valor por defecto es `10`
+#' rango de edades; su valor por defecto es `10`.
 #' @return Un `data.frame` con los datos de la enfermedad o evento agrupados
-#' por edad y número de casos
+#' por edad y número de casos.
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
@@ -395,25 +388,24 @@ agrupar_edad <- function(data_event,
   return(data_event_edad)
 }
 
-#' Agrupar por edades, sexo y casos
-#'
-#' Función que agrupa los datos de una enfermedad o evento por edades,
-#' sexo y número de casos
+#' @title Agrupar por edades, sexo y casos
+#' @description Función que agrupa los datos de una enfermedad o evento por
+#' edades, sexo y número de casos.
 #' @param data_event Un `data.frame` que contiene los datos de la enfermedad
-#' o evento
+#' o evento.
 #' @param col_edad Un `character` (cadena de caracteres) con el nombre de la
 #' columna que contiene las edades en los datos de la enfermedad o evento;
-#' su valor por defecto es `"edad`
+#' su valor por defecto es `"edad`.
 #' @param col_sex Un `character` (cadena de caracteres) con el nombre de la
 #' columna que contiene el sexo en los datos de la enfermedad o evento;
-#' su valor por defecto es `"sexo`
+#' su valor por defecto es `"sexo`.
 #' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si se debe
 #' agregar una columna con el porcentaje de casos; su valor por
-#' defecto es `TRUE`
+#' defecto es `TRUE`.
 #' @param interval_edad Un `numeric` (numérico) que contiene el intervalo del
-#' rango de edades; su valor por defecto es `10`
+#' rango de edades; su valor por defecto es `10`.
 #' @return Un `data.frame` con los datos de enfermedades agrupados
-#' por edades, sexo y número de casos
+#' por edades, sexo y número de casos.
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
@@ -455,20 +447,19 @@ agrupar_edad_sex <- function(data_event,
   return(data_event_edad_sex)
 }
 
-#' Agrupar por departamento y casos
-#'
-#' Función que agrupa los datos por códigos de departamento y
-#' número de casos
+#' @title Agrupar por departamento y casos
+#' @description Función que agrupa los datos por códigos de departamento y
+#' número de casos.
 #' @param data_event Un `data.frame` que contiene los datos de la
-#' enfermedad o evento
+#' enfermedad o evento.
 #' @param col_dpto Un `character` (cadena de caracteres) con el nombre
 #' de la columna que contiene los códigos de los departamentos en los
-#' datos de la enfermedad o evento; su valor por defecto es `"cod_dpto_o"`
+#' datos de la enfermedad o evento; su valor por defecto es `"cod_dpto_o"`.
 #' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si se debe
 #' agregar una columna con el porcentaje de casos; su valor por
-#' defecto es `FALSE`
+#' defecto es `FALSE`.
 #' @return Un `data.frame` con los datos de la enfermedad o evento agrupados
-#' por códigos de departamento y número de casos
+#' por códigos de departamento y número de casos.
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
@@ -498,22 +489,21 @@ agrupar_dpto <- function(data_event,
   return(data_event_cods_dpto)
 }
 
-#' Agrupar por municipios y casos
-#'
-#' Función que agrupa los datos de una enfermedad o evento por código
-#' de municipios y número de casos
+#' @title Agrupar por municipios y casos
+#' @description Función que agrupa los datos de una enfermedad o evento por
+#' código de municipios y número de casos.
 #' @param data_event Un `data.frame` que contiene los datos de la
-#' enfermedad o evento
+#' enfermedad o evento.
 #' @param dpto Un `character` (cadena de caracteres) o `numeric` (numérico)
-#' que contiene el nombre del departamento; su valor por defecto es `NULL`
+#' que contiene el nombre del departamento; su valor por defecto es `NULL`.
 #' @param col_mpio Un `character` (cadena de caracteres) con el nombre de
 #' la columna que contiene los códigos de los municipios en los datos de la
-#' enfermedad o evento; su valor por defecto es `"cod_mun_o"`
+#' enfermedad o evento; su valor por defecto es `"cod_mun_o"`.
 #' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si se debe
 #' agregar una columna con el porcentaje de casos; su valor por
-#' defecto es `FALSE`
+#' defecto es `FALSE`.
 #' @return Un `data.frame` con los datos de la enfermedad o evento agrupados
-#' por códigos de municipios y número de casos
+#' por códigos de municipios y número de casos.
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
@@ -578,20 +568,19 @@ agrupar_mpio <- function(data_event,
   return(data_event_muns)
 }
 
-#' Agrupar por área geográfica
-#'
-#' Función que agrupa los datos de una enfermedad o evento por área
-#' geográfica
+#' @title Agrupar por área geográfica
+#' @description Función que agrupa los datos de una enfermedad o evento por
+#' área geográfica.
 #' @param data_event Un `data.frame` que contiene los datos de la
-#' enfermedad o evento
+#' enfermedad o evento.
 #' @param col_area Un `character` (cadena de caracteres) con el nombre de
 #' la columna que contiene las áreas geográficas en los datos de la enfermedad
-#' o evento; su valor por defecto es `"area"`
+#' o evento; su valor por defecto es `"area"`.
 #' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si se debe
 #' agregar una columna con el porcentaje de casos; su valor por
-#' defecto es `FALSE`
+#' defecto es `FALSE`.
 #' @return Un `data.frame` con los datos de la enfermedad o evento agrupados
-#' por área geográfica
+#' por área geográfica.
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
@@ -618,30 +607,29 @@ agrupar_area_geo <- function(data_event,
   return(data_event_area)
 }
 
-#' Agrupar por área geográfica a nivel departamental o municipal
-#'
-#' Función que agrupa los datos de una enfermedad o evento por área
-#' geográfica a nivel departamental o municipal
+#' @title Agrupar por área geográfica a nivel departamental o municipal
+#' @description Función que agrupa los datos de una enfermedad o evento por
+#' área geográfica a nivel departamental o municipal.
 #' @param data_event Un `data.frame` que contiene los datos de la
-#' enfermedad o evento
+#' enfermedad o evento.
 #' @param dpto Un `character` (cadena de caracteres) que contiene
 #' el nombre del departamento; su valor por defecto es `NULL`; si se ingresa
 #' un valor en este parámetro se procederá agrupar los datos por los
 #' municipios del departamento y sus áreas geográficas; si no se
 #' ingresa un valor en este parámetro validará si los datos ya están
 #' filtrados por algún departamento, si no lo están generará la agrupación
-#' por departamento
+#' por departamento.
 #' @param col_area Un `character` (cadena de caracteres) con el nombre de
 #' la columna que contiene las áreas geográficas en los datos de la enfermedad
-#' o evento; su valor por defecto es `"cod_mun_o"`
+#' o evento; su valor por defecto es `"cod_mun_o"`.
 #' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si se debe
 #' agregar una columna con el porcentaje de casos; su valor por
-#' defecto es `FALSE`
+#' defecto es `FALSE`.
 #' @param top Un `numeric` (numerico) que indica la cantidad de departamentos o
 #' municipios con mayor número de casos que se deben retornar; su valor
-#' por defecto es `10`
+#' por defecto es `10`.
 #' @return Un `data.frame` con los datos de la enfermedad o evento agrupados
-#' por códigos de municipios y número de casos
+#' por códigos de municipios y número de casos.
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
@@ -689,16 +677,15 @@ agrupar_top_area_geo <- function(data_event,
   return(data_event_area)
 }
 
-#' Agrupar por tipo de enfermedad o evento
-#'
-#' Función que agrupa los casos por tipo de enfermedad o evento
+#' @title Agrupar por tipo de enfermedad o evento
+#' @description Función que agrupa los casos por tipo de enfermedad o evento.
 #' @param data_event Un `data.frame` que contiene los datos de la
-#' enfermedad o evento
+#' enfermedad o evento.
 #' @param col_event Un `character` (cadena de caracteres) con el nombre de
 #' la columna que contiene los códigos de los eventos o de las enfermedades
-#' en los datos; su valor por defecto es `"cod_eve"`
+#' en los datos; su valor por defecto es `"cod_eve"`.
 #' @return Un `data.frame` con los datos de la enfermedad o evento agrupados
-#' por sus tipos
+#' por sus tipos.
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
@@ -717,16 +704,16 @@ agrupar_eventos <- function(data_event, col_event = "cod_eve") {
   return(data_event_tipos)
 }
 
-#' Agrupar por los años de una enfermedad o evento
-#'
-#' Función que agrupa los casos por los años de una enfermedad o evento
+#' @title Agrupar por los años de una enfermedad o evento
+#' @description Función que agrupa los casos por los años de una enfermedad
+#' o evento.
 #' @param data_event Un `data.frame` que contiene los datos de la
-#' enfermedad o evento
+#' enfermedad o evento.
 #' @param col_year Un `character` (cadena de caracteres) con el nombre de
 #' la columna que contiene los años en los datos de la enfermedad o evento;
-#' su valor por defecto es `"ano"`
+#' su valor por defecto es `"ano"`.
 #' @return Un `data.frame` con los datos de la enfermedad o evento agrupados
-#' por sus años
+#' por sus años.
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
@@ -747,16 +734,16 @@ agrupar_years <- function(data_event, col_year = "ano") {
   return(data_event_year)
 }
 
-#' Agrupar por la clasificación inicial del caso
-#'
-#' Función que agrupa los casos por la clasificación inicial del caso
+#' @title Agrupar por la clasificación inicial del caso
+#' @description Función que agrupa los casos por la clasificación inicial
+#' del caso.
 #' @param data_event Un `data.frame` que contiene los datos de la
-#' enfermedad o evento
+#' enfermedad o evento.
 #' @param cols_tipo Un `character` (cadena de caracteres) con el nombre de
 #' las columna(s) que contiene la clasificación inicial del caso en los datos
-#' de la enfermedad o evento; su valor por defecto es `"tip_cas"`
+#' de la enfermedad o evento; su valor por defecto es `"tip_cas"`.
 #' @return Un `data.frame` con los datos de la enfermedad o evento agrupados
-#' por la clasificación inicial del caso y/u otras variables como los años
+#' por la clasificación inicial del caso y/u otras variables como los años.
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
@@ -787,19 +774,18 @@ agrupar_tipo_caso <- function(data_event, cols_tipo = "tip_cas") {
   return(data_event_tipo)
 }
 
-#' Agrupar por la pertenencia étnica
-#'
-#' Función que agrupa los casos por la pertenencia étnica
+#' @title Agrupar por la pertenencia étnica
+#' @description Función que agrupa los casos por la pertenencia étnica
 #' @param data_event Un `data.frame` que contiene los datos de la
-#' enfermedad o evento
+#' enfermedad o evento.
 #' @param cols_etn Un `character` (cadena de caracteres) con el nombre de
 #' las columna(s) que contiene(n) la pertenencia étnica en los datos de la
 #' enfermedad o evento; su valor por defecto es `"per_etn"`
-#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica
+#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica.
 #' si se debe agregar una columna con el porcentaje de casos;
-#' su valor por defecto es `TRUE`
+#' su valor por defecto es `TRUE`.
 #' @return Un `data.frame` con los datos de la enfermedad o evento agrupados
-#' por la pertenencia étnica
+#' por la pertenencia étnica.
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
@@ -833,32 +819,32 @@ agrupar_per_etn <- function(data_event, cols_etn = "per_etn",
   return(data_event_tipo)
 }
 
-#' Calcular incidencia
-#'
-#' Función que calcula la incidencia de una enfermedad o evento para todo
-#' Colombia, departamento o municipio
+#' @title Calcular incidencia
+#' @description Función que calcula la incidencia de una enfermedad o evento
+#' para todo Colombia, departamento o municipio.
 #' @param data_incidencia Un `data.frame` que contiene la población a riesgo o
 #' las proyecciones poblaciones DANE. Si este parámetro está vacío importará
 #' la población a riesgo o las proyecciones dependiendo de la disponibilidad de
-#' la información; su valor por defecto es `NULL`
+#' la información; su valor por defecto es `NULL`.
 #' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
-#' agrupados por departamento o municipio y número de casos
+#' agrupados por departamento o municipio y número de casos.
 #' @param poblacion Un `character` (cadena de caracteres) con el tipo de
 #' población para efectuar el calculo de la incidencia. Indica si se
 #' va a utilizar la población a riesgo del evento `"riesgo"` o las
 #' proyecciones poblacionales DANE `"proyecciones"`; su valor por defecto
-#' es `NULL`
+#' es `NULL`.
 #' @param year Un `numeric` (numerico) con el año que se debe tomar de las
-#' proyecciones poblacionales; su valor por defecto es `NULL`
+#' proyecciones poblacionales; su valor por defecto es `NULL`.
 #' @param dpto Un `character` (cadena de caracteres) o `numeric` (numérico)
 #' que contiene el código o nombre del departamento; su valor por
-#' defecto es `NULL`
+#' defecto es `NULL`.
 #' @param mpio Un `character` (cadena de caracteres) o `numeric` (numérico)
-#' que contiene el código o nombre del municipio; su valor por defecto es `NULL`
+#' que contiene el código o nombre del municipio; su valor por defecto
+#' es `NULL`.
 #' @param sex Un `character` (cadena de caracteres) que contiene el sexo`"F"`
-#' para Femenino y `"M"` Masculino; su valor por defecto es `NULL`
+#' para Femenino y `"M"` Masculino; su valor por defecto es `NULL`.
 #' @return Un `numeric` con el calculo de la incidencia para todo Colombia, un
-#' departamento, municipio o sexo especifico
+#' departamento, municipio o sexo especifico.
 #' @examples
 #' \dontrun{
 #' data(dengue2020)
@@ -972,23 +958,22 @@ calcular_incidencia <- function(data_incidencia = NULL, data_agrupada,
   return(incidencia)
 }
 
-#' Calcular incidencia según distribución geográfica
-#'
-#' Función que calcula la incidencia de una enfermedad o evento para todos los
-#' departamentos de Colombia o los municipios de un departamento
+#' @title Calcular incidencia según distribución geográfica
+#' @description Función que calcula la incidencia de una enfermedad o evento
+#' para todos los departamentos de Colombia o los municipios de un departamento.
 #' @param data_incidencia Un `data.frame` que contiene las proyecciones
-#' poblaciones del DANE; su valor por defecto es `NULL`
+#' poblaciones del DANE; su valor por defecto es `NULL`.
 #' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
-#' agrupados por departamento o municipio y número de casos
+#' agrupados por departamento o municipio y número de casos.
 #' @param poblacion Un `character` (cadena de caracteres) con el tipo de
 #' población para efectuar el calculo de la incidencia. Indica si se
 #' desea utilizar la población a riesgo del evento `"riesgo"` o las
 #' proyecciones poblacionales DANE `"proyecciones"`; su valor por defecto
-#' es `NULL`
+#' es `NULL`.
 #' @param year Un `numeric` (numerico) con el año que se debe tomar de las
-#' proyecciones poblacionales
+#' proyecciones poblacionales.
 #' @return Un `data.frame` con el calculo de la incidencia para todos los
-#' departamentos de Colombia o los municipios de un departamento
+#' departamentos de Colombia o los municipios de un departamento.
 #' @examples
 #' \dontrun{
 #' data(dengue2020)
@@ -1063,23 +1048,24 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
   return(data_geo_incidencia)
 }
 
-#' Calcular incidencia por sexo
-#'
-#' Función que calcula la incidencia de una enfermedad o evento para todos los
-#' departamentos de Colombia o los municipios de un departamento por sexo
+#' @title Calcular incidencia por sexo
+#' @description Función que calcula la incidencia de una enfermedad o evento
+#' para todos los departamentos de Colombia o los municipios de un departamento
+#' por sexo.
 #' @param data_incidencia Un `data.frame` que contiene la proyecciones
-#' poblaciones del DANE; su valor por defecto es `NULL`
+#' poblacionales del DANE; su valor por defecto es `NULL`.
 #' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
-#' agrupados por departamento o municipio y número de casos
+#' agrupados por departamento o municipio y número de casos.
 #' @param year Un `numeric` (numerico) con el año que se debe tomar de las
-#' proyecciones poblacionales; valor por defecto es `NULL`
+#' proyecciones poblacionales; valor por defecto es `NULL`.
 #' @param dpto Un `character` (cadena de caracteres) o `numeric` (numérico)
 #' que contiene el código o nombre del departamento; su valor por
-#' defecto es `NULL`
+#' defecto es `NULL`.
 #' @param mpio Un `character` (cadena de caracteres) o `numeric` (numérico)
-#' que contiene el código o nombre del municipio; su valor por defecto es `NULL`
+#' que contiene el código o nombre del municipio; su valor por defecto
+#' es `NULL`.
 #' @return Un `data.frame` con el calculo de la incidencia para todos los
-#' departamentos de Colombia o los municipios de un departamento
+#' departamentos de Colombia o los municipios de un departamento.
 #' @examples
 #' \dontrun{
 #' data(dengue2020)

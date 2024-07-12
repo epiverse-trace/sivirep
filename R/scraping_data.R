@@ -1,14 +1,13 @@
-#' Obtener la ruta de descarga de una enfermedad por un año específico
-#'
-#' Función que obtiene la ruta o URL del servicio SIVIGILA para descargar
-#' los datos de una enfermedad o evento para un año específico
+#' @title Obtener la ruta de descarga de una enfermedad por un año específico
+#' @description Función que obtiene la ruta o URL del servicio SIVIGILA para
+#' descargar los datos de una enfermedad o evento para un año específico.
 #' @param nombre_event Un `character` (cadena de caracteres) con el nombre de
-#' la enfermedad o evento
+#' la enfermedad o evento.
 #' @param years Un `numeric` (numerico) con el año o años deseado(s) para
-#' la descarga de los datos
+#' la descarga de los datos.
 #' @return Un `character` (cadena de caracteres) con la ruta o URL para
 #' descargar los datos de una enfermedad o evento por un año específico de la
-#' fuente SIVIGILA
+#' fuente SIVIGILA.
 #' @keywords internal
 obtener_ruta_data_event_year <- function(nombre_event, year) {
   archivo_config <- system.file("extdata", "config.yml", package = "sivirep")

@@ -2,7 +2,8 @@
 % Please edit documentation in R/plotting.R
 \name{plot_sex_semanaepi}
 \alias{plot_sex_semanaepi}
-\title{Generar gráfico de distribución de casos por sexo y semana epidemiológica}
+\title{Generar gráfico de distribución de casos por sexo y semana
+epidemiológica}
 \usage{
 plot_sex_semanaepi(
   data_agrupada,
@@ -13,26 +14,27 @@ plot_sex_semanaepi(
 }
 \arguments{
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la enfermedad
-o evento agrupados}
+o evento agrupados.}
 
 \item{col_sex}{Un `character` (cadena de caracteres) con el nombre de la
 columna que contiene el sexo en los datos agrupados de la enfermedad o
-evento; su valor por defecto es `"sexo"`}
+evento; su valor por defecto es `"sexo"`.}
 
 \item{col_semanaepi}{Un `character` (cadena de caracteres) con el nombre de
 la columna que contiene las semanas epidemiológicas en los datos agrupados
-de la enfermedad o evento; su valor por defecto es `"semana"`}
+de la enfermedad o evento; su valor por defecto es `"semana"`.}
 
 \item{fuente_data}{Un `character` (cadena de caracteres) que contiene la
-leyenda o fuente de información de los datos; su valor por defecto es `NULL`}
+leyenda o fuente de información de los datos; su valor por defecto
+es `NULL`.}
 }
 \value{
 Un `plot` o gráfico de distribución de casos por sexo y semana
-epidemiológica
+epidemiológica.
 }
 \description{
 Función que genera el gráfico de distribución de casos por sexo
-y semana epidemiológica
+y semana epidemiológica.
 }
 \examples{
 data(dengue2020)

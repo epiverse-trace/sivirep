@@ -13,24 +13,26 @@ plot_edad_sex(
 }
 \arguments{
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la
-enfermedad o evento agrupados}
+enfermedad o evento agrupados.}
 
 \item{col_edad}{Un `character` (cadena de caracteres) con el nombre de la
 columna que contiene las edades en los datos agrupados de la enfermdedad o
-evento; su valor por defecto es `"edad`}
+evento; su valor por defecto es `"edad`.}
 
 \item{col_sex}{Un `character` (cadena de caracteres) con el nombre de la
 columna que contiene el sexo en los datos agrupados de la enfermdedad o
-evento; su valor por defecto es `"sexo`}
+evento; su valor por defecto es `"sexo`.}
 
 \item{fuente_data}{Un `character` (cadena de caracteres) que contiene la
-leyenda o fuente de información de los datos; su valor por defecto es `NULL`}
+leyenda o fuente de información de los datos; su valor por defecto
+es `NULL`.}
 }
 \value{
-Un `plot` o gráfico de distribución de casos por edad y sexo
+Un `plot` o gráfico de distribución de casos por edad y sexo.
 }
 \description{
-Función que genera el gráfico de distribución de casos por edad y sexo
+Función que genera el gráfico de distribución de casos por
+edad y sexo.
 }
 \examples{
 data(dengue2020)

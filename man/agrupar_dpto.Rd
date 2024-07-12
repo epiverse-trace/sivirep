@@ -8,23 +8,23 @@ agrupar_dpto(data_event, col_dpto = "cod_dpto_o", porcentaje = FALSE)
 }
 \arguments{
 \item{data_event}{Un `data.frame` que contiene los datos de la
-enfermedad o evento}
+enfermedad o evento.}
 
 \item{col_dpto}{Un `character` (cadena de caracteres) con el nombre
 de la columna que contiene los códigos de los departamentos en los
-datos de la enfermedad o evento; su valor por defecto es `"cod_dpto_o"`}
+datos de la enfermedad o evento; su valor por defecto es `"cod_dpto_o"`.}
 
 \item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica si se debe
 agregar una columna con el porcentaje de casos; su valor por
-defecto es `FALSE`}
+defecto es `FALSE`.}
 }
 \value{
 Un `data.frame` con los datos de la enfermedad o evento agrupados
-por códigos de departamento y número de casos
+por códigos de departamento y número de casos.
 }
 \description{
 Función que agrupa los datos por códigos de departamento y
-número de casos
+número de casos.
 }
 \examples{
 data(dengue2020)

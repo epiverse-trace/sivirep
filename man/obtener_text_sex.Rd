@@ -8,17 +8,17 @@ obtener_text_sex(data_agrupada, year, figura)
 }
 \arguments{
 \item{data_agrupada}{Un `data.frame` que contiene los datos
-de la enfermedad o evento agrupados por sexo}
+de la enfermedad o evento agrupados por sexo.}
 
 \item{year}{Un `numeric` (numerico) con el año de los datos
-agrupados por sexo}
+agrupados por sexo.}
 
 \item{figura}{Un `numeric` (numerico) con el número de la
-figura de la distribución de casos por sexo}
+figura de la distribución de casos por sexo.}
 }
 \description{
-Función que obtiene el parráfo descriptivo de la sección de
-distribución de casos por sexo de la plantilla del reporte
+Función que obtiene el parráfo descriptivo de la sección
+de distribución de casos por sexo de la plantilla del reporte.
 }
 \examples{
 data(dengue2020)

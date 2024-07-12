@@ -8,25 +8,28 @@ plot_area_geo(data_agrupada, col_area = "area", fuente_data = NULL)
 }
 \arguments{
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la
-enfermedad o evento agrupados}
+enfermedad o evento agrupados.}
 
 \item{col_area}{Un `character` (cadena de carácteres) con el nombre de
 la columna con el área geografica en los datos agrupados de la enfermedad
-o evento; su valor por defecto es `"area"`}
+o evento; su valor por defecto es `"area"`.}
 
 \item{fuente_data}{Un `character` (cadena de caracteres) que contiene la
-leyenda o fuente de información de los datos; su valor por defecto es `NULL`}
+leyenda o fuente de información de los datos; su valor por defecto
+es `NULL`.}
 }
 \value{
-Un `plot` o gráfico de distribución de casos por área geográfica
+Un `plot` o gráfico de distribución de casos por área geográfica.
 }
 \description{
-Función que genera el gráfico de casos por área geográfica
+Función que genera el gráfico de casos por área geográfica.
 }
 \examples{
+\donttest{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(dengue2020)
 data_agrupada <- agrupar_area_geo(data_event = data_limpia)
 plot_area_geo(data_agrupada,
               col_area = "area")
+}
 }

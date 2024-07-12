@@ -8,19 +8,19 @@ obtener_nombre_dpto(data_geo, cod_dpto)
 }
 \arguments{
 \item{data_geo}{Un `data.frame` que contiene los códigos
-geográficos (departamentos y municipios de Colombia)}
+geográficos (departamentos y municipios de Colombia).}
 
 \item{cod_dpto}{Un `numeric` (numerico) o `character`
 (cadena de caracteres) que contiene el código
-del departamento}
+del departamento.}
 }
 \value{
 Un `character` (cadena de caracteres) con el nombre del
-departamento
+departamento.
 }
 \description{
-Función que obtiene el nombre de un departamento de Colombia a
-partir de su código geográfico
+Función que obtiene el nombre de un departamento de
+Colombia a partir de su código geográfico.
 }
 \examples{
 data_geo <- import_geo_cods()

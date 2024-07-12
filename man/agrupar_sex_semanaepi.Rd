@@ -12,24 +12,24 @@ agrupar_sex_semanaepi(
 }
 \arguments{
 \item{data_event}{Un `data.frame` que contiene los datos de
-la enfermedad o evento}
+la enfermedad o evento.}
 
 \item{cols_sex}{Un `character` (cadena de caracteres) o
 `array (arreglo) de character` con el nombre de la(s)
 columna(s) que contienen el sexo y las semanas
-epidemiológicas; su valor por defecto es `c("sexo", "semana")`}
+epidemiológicas; su valor por defecto es `c("sexo", "semana")`.}
 
 \item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica si se debe
 agregar una columna con el porcentaje de casos; su valor por
-defecto es `TRUE`}
+defecto es `TRUE`.}
 }
 \value{
 Un `data.frame` con los datos de la enfermedad o evento
-agrupados por sexo, semana epidemiológica y número de casos
+agrupados por sexo, semana epidemiológica y número de casos.
 }
 \description{
-Función que agrupa los datos de enfermedades por sexo, semana
-epidemiológica y número de casos
+Función que agrupa los datos de enfermedades por sexo,
+semana, epidemiológica y número de casos.
 }
 \examples{
 data(dengue2020)

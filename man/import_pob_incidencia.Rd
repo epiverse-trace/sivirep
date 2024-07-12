@@ -10,27 +10,29 @@ import_pob_incidencia(poblacion = "riesgo", event, year)
 \item{poblacion}{Un `character` (cadena de caracteres) con el tipo de
 población que se desea importar. Indica si se desea descargar la población
 a riesgo del evento `"riesgo"` o las proyecciones poblacionales DANE
-`"proyecciones"`; su valor por defecto es `"riesgo"`}
+`"proyecciones"`; su valor por defecto es `"riesgo"`.}
 
 \item{event}{Un `character` (cadena de caracteres) o un `numeric` (numerico)
 con el nombre o código de la enfermedad o evento. Es obligatorio para
-importar la población a riesgo}
+importar la población a riesgo.}
 
 \item{year}{Un `numeric` (numerico) con el año deseado de la población a
-riesgo. Es obligatorio para importar la población a riesgo}
+riesgo. Es obligatorio para importar la población a riesgo.}
 }
 \value{
 Un `data.frame` con la población a riesgo o las proyecciones
-poblacionaldes DANE
+poblacionaldes DANE.
 }
 \description{
 Función que importa la población a riesgo de un evento o
 enfermedad o las proyecciones poblacionales DANE desde el año 2005 hasta
-el 2035
+el 2035.
 }
 \examples{
- \dontrun{
-import_pob_incidencia(poblacion = "proyecciones")
+ \donttest{
+# Importación proyecciones poblaciones DANE
+import_pob_incidencia(poblacion = "proyecciones", year = 2020)
+# Importación población a riesgo de Dengue del año 2020
 import_pob_incidencia(poblacion = "riesgo", event = "dengue", year = 2020)
 }
 }

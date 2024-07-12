@@ -8,15 +8,15 @@ limpiar_val_atipic(data_event)
 }
 \arguments{
 \item{data_event}{Un `data.frame` que contiene los datos de una
-enfermedad o evento}
+enfermedad o evento.}
 }
 \value{
 Un `data.frame` con los datos de una enfermedad o
-evento con los valores atípicos limpios (NA)
+evento con los valores atípicos limpios (NA).
 }
 \description{
-Función que limpia los valores atipicos de los datos de una
-enfermedad o evento del SIVIGILA
+Función que limpia los valores atipicos de los datos
+de una enfermedad o evento del SIVIGILA.
 }
 \examples{
 data(dengue2020)

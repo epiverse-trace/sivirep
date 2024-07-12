@@ -1,19 +1,18 @@
-#' Obtener los meses con mayor número de casos
-#'
-#' Función que obtiene los meses con el mayor número de casos
+#' @title Obtener los meses con mayor número de casos
+#' @description Función que obtiene los meses con el mayor número de casos
 #' @param data_event Un `data.frame` con los datos de la enfermedad
-#' o vento
+#' o vento.
 #' @param col_fechas Un `array` (arreglo) de `character` (cadena de caracteres)
 #' con los nombres de las columnas que contienen las fechas en los datos de la
-#' enfermedad o evento
+#' enfermedad o evento.
 #' @param col_casos Un `character` (cadena de caracteres) con el nombre de la
 #' columna de los datos de la enfermedad o evento que contiene el número
-#' de casos; su valor por defecto es `"casos"`
+#' de casos; su valor por defecto es `"casos"`.
 #' @param top Un `numeric` (numerico) que contiene la cantidad máxima
-#' de meses a retornar; su valor por defecto es `3`
+#' de meses a retornar; su valor por defecto es `3`.
 #' @param concat_vals Un `boolean` (TRUE/FALSE) que indica si se requiere
-#' concatenar los meses como una cadena; su valor por defecto es `TRUE`
-#' @return Un `data.frame` que contiene los meses con mayor número de casos
+#' concatenar los meses como una cadena; su valor por defecto es `TRUE`.
+#' @return Un `data.frame` que contiene los meses con mayor número de casos.
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(dengue2020)
@@ -63,17 +62,17 @@ obtener_meses_mas_casos <- function(data_event,
   return(etiquetas)
 }
 
-#' Obtener fila con mayor número de casos
+#' @title Obtener fila con mayor número de casos
 #'
-#' Función que obtiene la fila con el mayor número de casos
+#' @description Función que obtiene la fila con el mayor número de casos.
 #' @param data_event Un `data.frame` que contiene los datos de la
-#' enfermedad o evento
+#' enfermedad o evento.
 #' @param nomb_col Un `character` (cadena de caracteres) con el
 #' nombre de la columna que contiene el número de casos en los datos de
-#' la enfermedad o evento
+#' la enfermedad o evento.
 #' @param porcentaje Un `boolean` (TRUE/FALSE) que indica si se
-#' requiere agregar un porcentaje de casos como columna
-#' @return Un `data.frame` que contiene la fila con mayor número de casos
+#' requiere agregar un porcentaje de casos como columna.
+#' @return Un `data.frame` que contiene la fila con mayor número de casos.
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(dengue2020)
@@ -111,18 +110,19 @@ obtener_fila_mas_casos <- function(data_event,
   return(data_mas_casos)
 }
 
-#' Concatenar valores con separador o token
-#'
-#' Función que concatena valores con un separador o token específico
+#' @title Concatenar valores con separador o token
+#' @description Función que concatena valores con un separador o token
+#' específico.
 #' @param vals Un `array` (arreglo) de character (cadena de caracteres)
-#' que contiene los valores que se desean concatenar
+#' que contiene los valores que se desean concatenar.
 #' @param longitud Un `numeric` (numerico) que contiene la longitud de
-#' los valores que se desean concatenar; su valor por defecto es `3`
+#' los valores que se desean concatenar; su valor por defecto es `3`.
 #' @param princ_token Un `character` (cadena de caracteres) que contiene el
-#' separador o token principal; su valor por defecto es `", "`
+#' separador o token principal; su valor por defecto es `", "`.
 #' @param final_token Un `character` (cadena de caracteres) que contien el
-#' separador o token final; su valor por defecto es `"y "`
-#' @return Un `character` (cadena de caracteres) con el valor final concatenado
+#' separador o token final; su valor por defecto es `"y "`.
+#' @return Un `character` (cadena de caracteres) con el valor final
+#' concatenado.
 #' @keywords internal
 concatenar_vals_token <- function(vals,
                                   longitud = 3,
@@ -150,17 +150,16 @@ concatenar_vals_token <- function(vals,
   return(final_val)
 }
 
-#' Obtener columnas de ocurrencia geográfica de los datos de la
+#' @title Obtener columnas de ocurrencia geográfica de los datos de la
 #' enfermedad o evento
-#'
-#' Función que obtiene las columnas de ocurrencia geográfica de los
-#' datos de la enfermedad o evento
+#' @description Función que obtiene las columnas de ocurrencia geográfica
+#' de los datos de la enfermedad o evento.
 #' @param cod_event Un `numeric` (numerico) o `character`
-#' (cadena de caracteres) que contiene el código de la enfermedad o evento
+#' (cadena de caracteres) que contiene el código de la enfermedad o evento.
 #' @param nombre_event Un `character` (cadena de caracteres) con el nombre de
-#' la enfermedad o evento
+#' la enfermedad o evento.
 #' @return Un `data.frame` con las columnas de ocurrencia geográfica de los
-#' datos de la enfermedad o evento
+#' datos de la enfermedad o evento.
 #' @examples
 #' obtener_tip_ocurren_geo(cod_event = 210)
 #' @export
@@ -197,18 +196,17 @@ obtener_tip_ocurren_geo <- function(cod_event = NULL, nombre_event = NULL) {
   return(col_ocurren)
 }
 
-#' Obtener información geográfica de los datos de la enfermedad o evento
-#'
-#' Función que obtiene la información geográfica de los datos de la enfermedad
-#' o evento
+#' @title Obtener información geográfica de los datos de la enfermedad o evento
+#' @description Función que obtiene la información geográfica de los datos de
+#' la enfermedad o evento.
 #' @param dpto Un `character` (cadena de caracteres) o `numeric` (numerico)
 #' que contiene el nombre o código del departamento; su valor por defecto
-#' es `NULL`
+#' es `NULL`.
 #' @param mpio Un `character` (cadena de caracteres) o `numeric` (numerico)
 #' que contiene el nombre o código del municipio; su valor por defecto
-#' es `NULL`
+#' es `NULL`.
 #' @return Un `data.frame` con la información geográfica de los datos de
-#' la enfermedad o evento
+#' la enfermedad o evento.
 #' @examples
 #' obtener_info_depts(dpto = "ANTIOQUIA")
 #' obtener_info_depts(dpto = "ANTIOQUIA", mpio = "MEDELLIN")
@@ -288,10 +286,9 @@ obtener_info_depts <- function(dpto = NULL, mpio = NULL) {
   return(data_dpto)
 }
 
-#' Obtener departamentos de Colombia
-#'
-#' Función que obtiene los departamentos de Colombia
-#' @return Un `data.frame` con los departamentos de Colombia
+#' @title Obtener departamentos de Colombia
+#' @description Función que obtiene los departamentos de Colombia.
+#' @return Un `data.frame` con los departamentos de Colombia.
 #' @examples
 #' obtener_dptos()
 #' @export
@@ -300,17 +297,16 @@ obtener_dptos <- function() {
   return(dptos)
 }
 
-#' Obtener el nombre de un departamento de Colombia
-#'
-#' Función que obtiene el nombre de un departamento de Colombia a
-#' partir de su código geográfico
+#' @title Obtener el nombre de un departamento de Colombia
+#' @description Función que obtiene el nombre de un departamento de
+#' Colombia a partir de su código geográfico.
 #' @param data_geo Un `data.frame` que contiene los códigos
-#' geográficos (departamentos y municipios de Colombia)
+#' geográficos (departamentos y municipios de Colombia).
 #' @param cod_dpto Un `numeric` (numerico) o `character`
 #' (cadena de caracteres) que contiene el código
-#' del departamento
+#' del departamento.
 #' @return Un `character` (cadena de caracteres) con el nombre del
-#' departamento
+#' departamento.
 #' @examples
 #' data_geo <- import_geo_cods()
 #' obtener_nombre_dpto(data_geo,
@@ -341,17 +337,16 @@ obtener_nombre_dpto <- function(data_geo, cod_dpto) {
   return(data_dpto$nombre_departamento)
 }
 
-#' Obtener el nombre de un municipio de Colombia
-#'
-#' Función que obtiene el nombre de un municipio de Colombia a partir de su
-#' código geográfico
+#' @title Obtener el nombre de un municipio de Colombia
+#' @description Función que obtiene el nombre de un municipio de Colombia a
+#' partir de su código geográfico
 #' @param data_geo Un `data.frame` que contiene los códigos geográficos
-#' (departamentos y municipios de Colombia)
+#' (departamentos y municipios de Colombia).
 #' @param cod_dpto Un `numeric` (numerico) o `character` (cadena de caracteres)
-#' que contiene el código del departamento
+#' que contiene el código del departamento.
 #' @param cod_mpio Un `numeric` (numerico) o `character`
-#' (cadena de caracteres) que contiene el código del municipio
-#' @return Un `character` (cadena de caracteres) con el nombre del municipio
+#' (cadena de caracteres) que contiene el código del municipio.
+#' @return Un `character` (cadena de caracteres) con el nombre del municipio.
 #' @examples
 #' data_geo <- import_geo_cods()
 #' obtener_nombre_mpio(data_geo,
@@ -434,12 +429,15 @@ format_cod_geo <- function(cod_geo, etiqueta, digitos, tam) {
 #'
 #' Función que obtiene los eventos relacionados o tipos de un evento
 #' principal
+#' @title Obtener los eventos relacionados
+#' @description Función que obtiene los eventos relacionados o tipos de un
+#' evento principal.
 #' @param years Un `numeric` (numerico) el año  o años deseados para
-#' la descarga de los datos
+#' la descarga de los datos.
 #' @param nombre_event Un `character` (cadena de caracteres) con el
-#' nombre de la enfermedad o evento
+#' nombre de la enfermedad o evento.
 #' @return Un `array` con los eventos relacionados por año desde
-#' los microdatos de SIVIGILA
+#' los microdatos de SIVIGILA.
 #' @keywords internal
 obtener_eventos_relacionados <- function(nombre_event, years) {
   list_events <- list_events()
@@ -476,16 +474,15 @@ obtener_eventos_relacionados <- function(nombre_event, years) {
   return(grupo_events)
 }
 
-#' Obtener las condiciones para calcular la incidencia de una
+#' @title Obtener las condiciones para calcular la incidencia de una
 #' enfermedad o evento
-#'
-#' Función que obtiene las condiciones del numerador, denominador
-#' y coeficiente de múltiplicación para calcular la incidencia de un
-#' evento
+#' @description Función que obtiene las condiciones del numerador,
+#' denominador y coeficiente de múltiplicación para calcular la incidencia
+#' de un evento.
 #' @param cod_eve Un `numeric` (numerico) o `character` (cadena de
-#' caracteres) que contiene el código de una enfermedad o evento
+#' caracteres) que contiene el código de una enfermedad o evento.
 #' @return Un `data.frame` con las condiciones para calcular la
-#' incidencia de una enfermedad o evento
+#' incidencia de una enfermedad o evento.
 #' @examples
 #' obtener_cond_inciden_event(cod_eve = 210)
 #' @export
@@ -514,23 +511,23 @@ obtener_cond_inciden_event <- function(cod_eve) {
   return(vals_event)
 }
 
-#' Obtener código de un departamento y municipio
-#'
-#' Función que obtiene los códigos geográficos de un departamento y municipio
-#' dadas unas condiciones
+#' @title Obtener código de un departamento y municipio
+#' @description Función que obtiene los códigos geográficos de un departamento y
+#' municipio dadas unas condiciones.
 #' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
-#' agrupados por departamento o municipio y número de casos
+#' agrupados por departamento o municipio y número de casos.
 #' @param nomb_cols Un `character` (cadena de caracteres) o `array` (arreglo)
 #' de `character` que contiene el nombre de la(s) columna(s) con la información
 #' de los departamentos y municipios en los datos agrupados de la enfermedad o
-#' evento
+#' evento.
 #' @param dpto Un `character` (cadena de caracteres) o `numeric` (numérico)
 #' que contiene el código o nombre del departamento; su valor por defecto es
-#' `NULL`
+#' `NULL`.
 #' @param mpio Un `character` (cadena de caracteres) o `numeric` (numérico)
-#' que contiene el código o nombre del municipio; su valor por defecto es `NULL`
+#' que contiene el código o nombre del municipio; su valor por defecto
+#' es `NULL`.
 #' @return Una `list` (lista) con el departamento y municipio con la siguiente
-#' estructura `list(dpto = "05", mpio = "05001")`
+#' estructura `list(dpto = "05", mpio = "05001")`.
 #' @keywords internal
 obtener_dpto_mpio <- function(data_agrupada, nomb_cols,
                               dpto = NULL, mpio = NULL) {
@@ -560,30 +557,30 @@ obtener_dpto_mpio <- function(data_agrupada, nomb_cols,
   return(unidades_geo)
 }
 
-#' Obtener la población para efectuar el cálculo de la incidencia
-#'
-#' Función que obtiene la población a riesgo de un evento o enfermedad
-#' o las proyecciones poblacionales DANE desde el año 2005 hasta el 2035.
+#' @title Obtener la población para efectuar el cálculo de la incidencia
+#' @description Función que obtiene la población a riesgo de un evento o
+#' enfermedad o las proyecciones poblacionales DANE desde el año 2005 hasta
+#' el 2035.
 #' Si no hay población a riesgo disponible del evento o enfermedad para el año
 #' seleccionado se obtendrá las proyecciones poblacionales DANE y se mostrarán
 #' mensajes de advertencia al usuario dependendiendo del tipo de población
-#' obtenida
+#' obtenida.
 #' @param data_incidencia Un `data.frame` que contiene la población a riesgo o
 #' las proyecciones poblaciones DANE. Si este parámetro está vacío importará
 #' la población a riesgo o las proyecciones dependiendo de la disponibilidad de
 #' la información y las condiciones del evento o engermedad; su valor por
-#' defecto es `NULL`
+#' defecto es `NULL`.
 #' @param poblacion Un `character` (cadena de caracteres) con el tipo de
 #' población que se desea obtener. Indica si se desea obtener la población
 #' a riesgo del evento `"riesgo"` o las proyecciones poblacionales DANE
-#' `"proyecciones"`
+#' `"proyecciones"`.
 #' @param event Un `character` (cadena de caracteres) o un `numeric` (numerico)
 #' con el nombre o código de la enfermedad o evento. Es obligatorio para
-#' obtener la población a riesgo
+#' obtener la población a riesgo.
 #' @param year Un `numeric` (numerico) con el año deseado de la población a
-#' riesgo. Es obligatorio para obtener la población a riesgo
+#' riesgo. Es obligatorio para obtener la población a riesgo.
 #' @return Un `data.frame` con la población a riesgo o las proyecciones
-#' poblacionaldes DANE
+#' poblacionaldes DANE.
 #' @keywords internal
 obtener_pob_incidencia <- function(data_incidencia = NULL,
                                    poblacion,
@@ -623,11 +620,11 @@ obtener_pob_incidencia <- function(data_incidencia = NULL,
   return(pop_data_incidencia)
 }
 
-#' Obtener el año de una enfermedad o evento
-#'
-#' Función que obtiene el año de los datos de una enfermedad o evento
+#' @title Obtener el año de una enfermedad o evento
+#' @description Función que obtiene el año de los datos de una enfermedad o
+#' evento.
 #' @param data_event Un `data.frame` que contiene los datos de la
-#' enfermedad o evento
+#' enfermedad o evento.
 #' @keywords internal
 obtener_year <- function(data_event) {
   year <- NULL
@@ -650,16 +647,15 @@ obtener_year <- function(data_event) {
   return(year)
 }
 
-#' Obtener el parráfo de la distribución de casos por sexo
-#'
-#' Función que obtiene el parráfo descriptivo de la sección de
-#' distribución de casos por sexo de la plantilla del reporte
+#' @title Obtener el parráfo de la distribución de casos por sexo
+#' @description Función que obtiene el parráfo descriptivo de la sección
+#' de distribución de casos por sexo de la plantilla del reporte.
 #' @param data_agrupada Un `data.frame` que contiene los datos
-#' de la enfermedad o evento agrupados por sexo
+#' de la enfermedad o evento agrupados por sexo.
 #' @param year Un `numeric` (numerico) con el año de los datos
-#' agrupados por sexo
+#' agrupados por sexo.
 #' @param figura Un `numeric` (numerico) con el número de la
-#' figura de la distribución de casos por sexo
+#' figura de la distribución de casos por sexo.
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(dengue2020)
@@ -739,13 +735,13 @@ obtener_text_sex <- function(data_agrupada,
   return(text_values)
 }
 
-#' Obtener valor del archivo de configuración
-#'
-#' Función que obtiene el valor de una llave del archivo de configuración
+#' @title Obtener valor del archivo de configuración
+#' @description Función que obtiene el valor de una llave del archivo de
+#' configuración.
 #' @param llave Un `character` (cadena de caracteres) con el nombre de la
-#' llave que se encuentra en el archivo de configuración del paquete
+#' llave que se encuentra en el archivo de configuración del paquete.
 #' @return Un `character` (cadena de caracteres) con el valor de la llave
-#' del archivo de configuración del paquete
+#' del archivo de configuración del paquete.
 #' @examples
 #' obtener_val_config("request_timeout")
 #' @export

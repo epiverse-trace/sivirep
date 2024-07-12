@@ -13,21 +13,23 @@ concatenar_vals_token(
 }
 \arguments{
 \item{vals}{Un `array` (arreglo) de character (cadena de caracteres)
-que contiene los valores que se desean concatenar}
+que contiene los valores que se desean concatenar.}
 
 \item{longitud}{Un `numeric` (numerico) que contiene la longitud de
-los valores que se desean concatenar; su valor por defecto es `3`}
+los valores que se desean concatenar; su valor por defecto es `3`.}
 
 \item{princ_token}{Un `character` (cadena de caracteres) que contiene el
-separador o token principal; su valor por defecto es `", "`}
+separador o token principal; su valor por defecto es `", "`.}
 
 \item{final_token}{Un `character` (cadena de caracteres) que contien el
-separador o token final; su valor por defecto es `"y "`}
+separador o token final; su valor por defecto es `"y "`.}
 }
 \value{
-Un `character` (cadena de caracteres) con el valor final concatenado
+Un `character` (cadena de caracteres) con el valor final
+concatenado.
 }
 \description{
-Función que concatena valores con un separador o token específico
+Función que concatena valores con un separador o token
+específico.
 }
 \keyword{internal}

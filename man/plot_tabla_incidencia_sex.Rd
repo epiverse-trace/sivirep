@@ -8,20 +8,21 @@ plot_tabla_incidencia_sex(data_agrupada, col_sex = "sexo")
 }
 \arguments{
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la
-enfermedad o evento agrupados por departamento o municipio}
+enfermedad o evento agrupados por departamento o municipio.}
 
 \item{col_sex}{Un `character` (cadena de carácteres) con el nombre de
 la columna que contiene el sexo en los datos agrupados de la enfermedad
-o evento; su valor por defecto es `"sexo"`}
+o evento; su valor por defecto es `"sexo"`.}
 }
 \value{
-Una `kable` (tabla gráfica) con la incidencia por sexo
+Una `kable` (tabla gráfica) con la incidencia por sexo.
 }
 \description{
-Función que genera la tabla con la incidencia según por sexo
+Función que genera la tabla con la incidencia según por
+sexo.
 }
 \examples{
-\dontrun{
+\donttest{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 data_agrupada_sex <- agrupar_sex(data_limpia)

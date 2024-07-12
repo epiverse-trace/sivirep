@@ -9,19 +9,19 @@ plot_tabla_tipos_event(data_agrupada, col_event = "nombre_evento")
 }
 \arguments{
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la
-enfermedad o evento agrupados por tipo}
+enfermedad o evento agrupados por tipo.}
 
 \item{col_event}{Un `character` (cadena de carácteres) con el nombre de
 la columna que contiene el tipo de evento en los datos agrupados de
-la enfermedad o evento; su valor por defecto es `"nombre_evento"`}
+la enfermedad o evento; su valor por defecto es `"nombre_evento"`.}
 }
 \value{
 Una `kable` (tabla gráfica) con la distribución de casos
-por tipo de enfermedad o evento
+por tipo de enfermedad o evento.
 }
 \description{
-Función que genera la tabla con la distribución de casos por
-tipo de enfermedad o evento
+Función que genera la tabla con la distribución de casos
+por tipo de enfermedad o evento.
 }
 \examples{
 data(dengue2020)

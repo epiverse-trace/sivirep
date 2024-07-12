@@ -8,15 +8,15 @@ limpiar_encabezado(data_event)
 }
 \arguments{
 \item{data_event}{Un `data.frame` que contiene los datos de una
-enfermedad o evento}
+enfermedad o evento.}
 }
 \value{
 Un `data.frame` con las etiquetas del encabezado formateadas
-con guión bajo (_)
+con guión bajo (_).
 }
 \description{
-Función que limpia las etiquetas del encabezado de los datos
-de una enfermedad o evento
+Función que limpia las etiquetas del encabezado de los
+datos de una enfermedad o evento.
 }
 \examples{
 data(dengue2020)

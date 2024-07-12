@@ -14,28 +14,28 @@ limpiar_fecha_event(
 }
 \arguments{
 \item{data_event}{Un `data.frame` que contiene los datos de
-una enfermedad o evento}
+una enfermedad o evento.}
 
 \item{year}{Un `numeric` (numerico) o `character` (cadena de caracteres)
-que contiene el año de los datos de una enfermedad o evento}
+que contiene el año de los datos de una enfermedad o evento.}
 
 \item{format_fecha}{Un `character` (cadena de caracteres) que contiene
-el formato deseado de fecha; su valor por defecto es "\%AAAA-\%MM-\%DD"}
+el formato deseado de fecha; su valor por defecto es "\%AAAA-\%MM-\%DD".}
 
 \item{col_fecha}{Un `character` (cadena de caracteres) que contiene
 el nombre de la columna con la fecha que se desea limpiar en los datos
-de la enfermedad o evento}
+de la enfermedad o evento.}
 
 \item{col_comp}{Un `character` (cadena de caracteres) que contiene el
 nombre de la columna con la cual se va a comparar la columna `nomb_col`
-para limpiarla, estandarizarla o aplicar las reglas definidas}
+para limpiarla, estandarizarla o aplicar las reglas definidas.}
 }
 \value{
-Un `data.frame` con las fechas limpias
+Un `data.frame` con las fechas limpias.
 }
 \description{
-Función que limpia y estandariza las fechas de los datos de una
-enfermedad o evento
+Función que limpia y estandariza las fechas de los datos
+de una enfermedad o evento.
 }
 \examples{
 data(dengue2020)

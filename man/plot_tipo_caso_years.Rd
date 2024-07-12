@@ -2,8 +2,8 @@
 % Please edit documentation in R/plotting.R
 \name{plot_tipo_caso_years}
 \alias{plot_tipo_caso_years}
-\title{Generar gráfico de distribución de casos por la clasificacion inicial
-del caso y los años seleccionados}
+\title{Generar gráfico de distribución de casos por la clasificacion
+inicial del caso y los años seleccionados}
 \usage{
 plot_tipo_caso_years(
   data_agrupada,
@@ -15,26 +15,28 @@ plot_tipo_caso_years(
 \arguments{
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la
 enfermedad o evento, agrupados por la clasificación inicial y los años
-seleccionados}
+seleccionados.}
 
 \item{col_tipo}{Un `character` (cadena de carácteres) con el nombre de
 la columna que contiene la clasificación inicial del caso en los datos
-agrupados de la enfermedad o evento; su valor por defecto es `"tip_cas"`}
+agrupados de la enfermedad o evento; su valor por defecto es
+`"tip_cas"`.}
 
 \item{col_year}{Un `character` (cadena de carácteres) con el nombre de
 la columna que contiene el año en los datos agrupados de la enfermedad
-o evento; su valor por defecto es `"ano"`}
+o evento; su valor por defecto es `"ano"`.}
 
 \item{fuente_data}{Un `character` (cadena de caracteres) que contiene la
-leyenda o fuente de información de los datos; su valor por defecto es `NULL`}
+leyenda o fuente de información de los datos; su valor por defecto
+es `NULL`.}
 }
 \value{
 Un `plot` o gráfico de distribución de casos por la clasificación
-inicial y los años seleccionados
+inicial y los años seleccionados.
 }
 \description{
-Función que genera el gráfico por la clasificación inicial de los
-casos y los años seleccionados
+Función que genera el gráfico por la clasificación inicial
+de los casos y los años seleccionados.
 }
 \examples{
 data(dengue2020)

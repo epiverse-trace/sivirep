@@ -13,37 +13,39 @@ calcular_incidencia_geo(
 }
 \arguments{
 \item{data_incidencia}{Un `data.frame` que contiene las proyecciones
-poblaciones del DANE; su valor por defecto es `NULL`}
+poblaciones del DANE; su valor por defecto es `NULL`.}
 
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la enfermedad
-agrupados por departamento o municipio y número de casos}
+agrupados por departamento o municipio y número de casos.}
 
 \item{poblacion}{Un `character` (cadena de caracteres) con el tipo de
 población para efectuar el calculo de la incidencia. Indica si se
 desea utilizar la población a riesgo del evento `"riesgo"` o las
 proyecciones poblacionales DANE `"proyecciones"`; su valor por defecto
-es `NULL`}
+es `NULL`.}
 
 \item{year}{Un `numeric` (numerico) con el año que se debe tomar de las
-proyecciones poblacionales}
+proyecciones poblacionales.}
 }
 \value{
 Un `data.frame` con el calculo de la incidencia para todos los
-departamentos de Colombia o los municipios de un departamento
+departamentos de Colombia o los municipios de un departamento.
 }
 \description{
-Función que calcula la incidencia de una enfermedad o evento para todos los
-departamentos de Colombia o los municipios de un departamento
+Función que calcula la incidencia de una enfermedad o evento
+para todos los departamentos de Colombia o los municipios de un departamento.
 }
 \examples{
-\dontrun{
+\donttest{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 data_agrupada_mpios <- agrupar_mpio(data_limpia, dpto = "Antioquia")
+# Cálculo de la incidencia con población a riesgo por departamento
 calcular_incidencia_geo(poblacion = "riesgo",
                         data_agrupada = data_agrupada_mpios,
                         year = 2020)
 data_agrupada_dptos <- agrupar_dpto(data_limpia)
+# Cálculo de la incidencia con proyecciones poblacionales para Colombia
 calcular_incidencia_geo(poblacion = "proyecciones",
                         data_agrupada = data_agrupada_dptos,
                         year = 2020)

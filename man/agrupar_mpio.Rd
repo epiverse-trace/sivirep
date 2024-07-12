@@ -13,26 +13,26 @@ agrupar_mpio(
 }
 \arguments{
 \item{data_event}{Un `data.frame` que contiene los datos de la
-enfermedad o evento}
+enfermedad o evento.}
 
 \item{dpto}{Un `character` (cadena de caracteres) o `numeric` (numérico)
-que contiene el nombre del departamento; su valor por defecto es `NULL`}
+que contiene el nombre del departamento; su valor por defecto es `NULL`.}
 
 \item{col_mpio}{Un `character` (cadena de caracteres) con el nombre de
 la columna que contiene los códigos de los municipios en los datos de la
-enfermedad o evento; su valor por defecto es `"cod_mun_o"`}
+enfermedad o evento; su valor por defecto es `"cod_mun_o"`.}
 
 \item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica si se debe
 agregar una columna con el porcentaje de casos; su valor por
-defecto es `FALSE`}
+defecto es `FALSE`.}
 }
 \value{
 Un `data.frame` con los datos de la enfermedad o evento agrupados
-por códigos de municipios y número de casos
+por códigos de municipios y número de casos.
 }
 \description{
-Función que agrupa los datos de una enfermedad o evento por código
-de municipios y número de casos
+Función que agrupa los datos de una enfermedad o evento por
+código de municipios y número de casos.
 }
 \examples{
 data(dengue2020)

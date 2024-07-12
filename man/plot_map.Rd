@@ -2,8 +2,7 @@
 % Please edit documentation in R/plotting.R
 \name{plot_map}
 \alias{plot_map}
-\title{Función que genera el mapa por departamentos o municipios con el número de
-casos o la incidencia de una enfermedad o evento}
+\title{Generar mapa}
 \usage{
 plot_map(
   data_agrupada,
@@ -16,34 +15,34 @@ plot_map(
 }
 \arguments{
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la enfermedad
-agrupados por departamento y número de casos}
+agrupados por departamento y número de casos.}
 
 \item{col_distribucion}{Un `character` (cadena de caracteres) que contiene el
 nombre de la columna que tiene los valores de la distribución, por número de
-casos o incidencia; su valor por defecto es `"incidencia"`}
+casos o incidencia; su valor por defecto es `"incidencia"`.}
 
 \item{col_codigos}{Un `character` (cadena de caracteres) que contiene el
 nombre de la columna con los códigos de los departamentos o municipios, se
 utilizan para obtener los poligonos de las áreas geográficas del archivo
-geoespacial o de figuras (Shapefile); su valor por defecto `NULL`}
+geoespacial o de figuras (Shapefile); su valor por defecto `NULL`.}
 
 \item{fuente_data}{Un `character` (cadena de caracteres) que contiene la
 leyenda o fuente de información de los datos de la enfermedad o evento;
-su valor por defecto `NULL`}
+su valor por defecto `NULL`.}
 
 \item{dpto}{Un `character` (cadena de caracteres) que contiene el
-nombre del departamento; su valor por defecto `NULL`}
+nombre del departamento; su valor por defecto `NULL`.}
 
 \item{mpio}{Un `character` (cadena de caracteres) que contiene el
-nombre del municipio; su valor por defecto `NULL`}
+nombre del municipio; su valor por defecto `NULL`.}
 }
 \value{
 Un `plot` o mapa por departamentos o municipios con el número de
-casos o incidencia de una enfermedad específica
+casos o incidencia de una enfermedad específica.
 }
 \description{
-Función que genera el mapa por departamentos o municipios con el número de
-casos o la incidencia de una enfermedad o evento
+Función que genera el mapa por departamentos o municipios con el
+número de casos o la incidencia de una enfermedad o evento.
 }
 \examples{
 \dontrun{
@@ -70,7 +69,7 @@ plot_map(data_agrupada = data_espacial_mpio,
          col_codigos = "cod_mun_o",
          col_distribucion = "casos",
          dpto = "Antioquia",
-         mpio = "Envigado")
+         mpio = "Medellin")
 # Mapa con la incidencia por municipios de un departamento específico
 incidencia_dpto <-
     calcular_incidencia_geo(data_agrupada = data_espacial_dpto)

@@ -2,7 +2,8 @@
 % Please edit documentation in R/plotting.R
 \name{plot_fecha_inisintomas}
 \alias{plot_fecha_inisintomas}
-\title{Generar gráfico de distribución de casos por fecha de inicio de síntomas}
+\title{Generar gráfico de distribución de casos por fecha de inicio de
+síntomas}
 \usage{
 plot_fecha_inisintomas(
   data_agrupada,
@@ -14,29 +15,30 @@ plot_fecha_inisintomas(
 }
 \arguments{
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la enfermedad
-o evento agrupados}
+o evento agrupados.}
 
 \item{col_fecha}{Un `character` (cadena de caracteres) que contiene el
 nombre de la columna con las fechas de notificación en los datos de la
-enfermedad o evento agrupados; su valor por defecto es `"ini_sin"`}
+enfermedad o evento agrupados; su valor por defecto es `"ini_sin"`.}
 
 \item{uni_marca}{Un `character` (cadena de caracteres) que contiene la unidad
 de las marcas del gráfico (`"dia"`, `"semanaepi"` y `"mes"``);
-su valor por defecto es `"semanaepi"`}
+su valor por defecto es `"semanaepi"`.}
 
 \item{tipo}{Un `character` (cadena de caracteres) que contiene el tipo de
-gráfico (`"barras"` o `"tendencia"`); su valor por defecto es `"barras"`}
+gráfico (`"barras"` o `"tendencia"`); su valor por defecto es `"barras"`.}
 
 \item{fuente_data}{Un `character` (cadena de caracteres) que contiene la
-leyenda o fuente de información de los datos; su valor por defecto es `NULL`}
+leyenda o fuente de información de los datos; su valor por defecto
+es `NULL`.}
 }
 \value{
 Un `plot` o gráfico de la distribución de casos por fecha de inicio
-de síntomas
+de síntomas.
 }
 \description{
 Función que genera el gráfico de distribución de casos
-por fecha de inicio de síntomas
+por fecha de inicio de síntomas.
 }
 \examples{
 data(dengue2020)

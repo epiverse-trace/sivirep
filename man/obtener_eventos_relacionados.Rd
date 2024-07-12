@@ -8,17 +8,17 @@ obtener_eventos_relacionados(nombre_event, years)
 }
 \arguments{
 \item{nombre_event}{Un `character` (cadena de caracteres) con el
-nombre de la enfermedad o evento}
+nombre de la enfermedad o evento.}
 
 \item{years}{Un `numeric` (numerico) el año  o años deseados para
-la descarga de los datos}
+la descarga de los datos.}
 }
 \value{
 Un `array` con los eventos relacionados por año desde
-los microdatos de SIVIGILA
+los microdatos de SIVIGILA.
 }
 \description{
-Función que obtiene los eventos relacionados o tipos de un evento
-principal
+Función que obtiene los eventos relacionados o tipos de un
+evento principal.
 }
 \keyword{internal}

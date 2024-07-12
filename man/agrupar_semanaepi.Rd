@@ -8,20 +8,20 @@ agrupar_semanaepi(data_event, col_semanaepi = "semana")
 }
 \arguments{
 \item{data_event}{Un `data.frame` que contiene los datos de
-una enfermedad o evento}
+una enfermedad o evento.}
 
 \item{col_semanaepi}{Un `character` (cadena de caracteres)
 con el nombre de la columna que contiene las semanas
 epidemiológicas en los datos de la enfermedad o evento;
-su valor por defecto es `"semana"`}
+su valor por defecto es `"semana"`.}
 }
 \value{
 Un `data.frame` con los datos de una enfermedad o
-evento agrupados por semana epidemiológica y número de casos
+evento agrupados por semana epidemiológica y número de casos.
 }
 \description{
 Función que agrupa los datos de una enfermedad o evento
-por semana epidemiológica y número de casos
+por semana epidemiológica y número de casos.
 }
 \examples{
 data(dengue2020)

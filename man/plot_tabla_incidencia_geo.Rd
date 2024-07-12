@@ -8,23 +8,23 @@ plot_tabla_incidencia_geo(data_agrupada, col_geo = NULL)
 }
 \arguments{
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la
-enfermedad o evento agrupados por departamento o municipio}
+enfermedad o evento agrupados por departamento o municipio.}
 
 \item{col_geo}{Un `character` (cadena de carácteres) con el nombre de
 la columna que contiene los nombres de los departamentos o municipios
 en los datos agrupados de la enfermedad o evento; su valor por
-defecto es `NULL`}
+defecto es `NULL`.}
 }
 \value{
 Una `kable` (tabla gráfica) con la incidencia según
-distribución geográfica
+distribución geográfica.
 }
 \description{
 Función que genera la tabla con la incidencia según
-distribución geográfica
+distribución geográfica.
 }
 \examples{
-\dontrun{
+\donttest{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 data_agrupada <- agrupar_mpio(data_limpia, dpto = "Antioquia")

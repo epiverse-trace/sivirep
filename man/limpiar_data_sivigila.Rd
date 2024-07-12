@@ -8,14 +8,14 @@ limpiar_data_sivigila(data_event)
 }
 \arguments{
 \item{data_event}{Un `data.frame` que contiene los datos de
-una enfermedad o evento}
+una enfermedad o evento.}
 }
 \value{
-Un `data.frame` con los datos limpios de la enfermedad o evento
+Un `data.frame` con los datos limpios de la enfermedad o evento.
 }
 \description{
-Función que limpia los datos seleccionados de una enfermedad o evento de
-la fuente SIVIGILA
+Función que limpia los datos seleccionados de una enfermedad
+o evento de la fuente SIVIGILA.
 }
 \examples{
 data(dengue2020)

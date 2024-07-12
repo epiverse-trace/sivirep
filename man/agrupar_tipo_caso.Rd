@@ -8,18 +8,19 @@ agrupar_tipo_caso(data_event, cols_tipo = "tip_cas")
 }
 \arguments{
 \item{data_event}{Un `data.frame` que contiene los datos de la
-enfermedad o evento}
+enfermedad o evento.}
 
 \item{cols_tipo}{Un `character` (cadena de caracteres) con el nombre de
 las columna(s) que contiene la clasificación inicial del caso en los datos
-de la enfermedad o evento; su valor por defecto es `"tip_cas"`}
+de la enfermedad o evento; su valor por defecto es `"tip_cas"`.}
 }
 \value{
 Un `data.frame` con los datos de la enfermedad o evento agrupados
-por la clasificación inicial del caso y/u otras variables como los años
+por la clasificación inicial del caso y/u otras variables como los años.
 }
 \description{
-Función que agrupa los casos por la clasificación inicial del caso
+Función que agrupa los casos por la clasificación inicial
+del caso.
 }
 \examples{
 data(dengue2020)

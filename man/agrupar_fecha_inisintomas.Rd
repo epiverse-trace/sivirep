@@ -8,19 +8,19 @@ agrupar_fecha_inisintomas(data_event, col_fecha = "ini_sin")
 }
 \arguments{
 \item{data_event}{Un `data.frame` que contiene los datos de
-la enfermedad o evento}
+la enfermedad o evento.}
 
 \item{col_fecha}{Un `character` (cadena de caracteres) con el
 nombre de la columna de los datos de la enfermedad o evento que contiene
-las fechas de inicio de síntomas; su valor por defecto es `"ini_sin"`}
+las fechas de inicio de síntomas; su valor por defecto es `"ini_sin"`.}
 }
 \value{
 Un `data.frame` con los datos de la enfermedad o evento
-agrupados por fecha de inicio de síntomas y número de casos
+agrupados por fecha de inicio de síntomas y número de casos.
 }
 \description{
 Función que agrupa los datos de una enfermedad o evento por
-fecha de inicio de síntomas y número de casos
+fecha de inicio de síntomas y número de casos.
 }
 \examples{
 data(dengue2020)

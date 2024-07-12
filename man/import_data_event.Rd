@@ -9,21 +9,21 @@ import_data_event(nombre_event, years, cache = TRUE)
 }
 \arguments{
 \item{nombre_event}{Un `character` (cadena de caracteres) con el nombre de
-la enfermedad o evento}
+la enfermedad o evento.}
 
 \item{years}{Un `numeric` (numerico) con el año o años deseado(s) para
-la descarga de los datos}
+la descarga de los datos.}
 
 \item{cache}{Un `boolean` (`TRUE` o `FALSE`) que indica si los datos
-descargados deben ser almacenados en caché; su valor por defecto es `TRUE`}
+descargados deben ser almacenados en caché; su valor por defecto es `TRUE`.}
 }
 \value{
 Un `data.frame` con los datos del año de la enfermedad o evento
-seleccionado desde los microdatos del SIVIGILA
+seleccionado desde los microdatos del SIVIGILA.
 }
 \description{
 Función que importa los datos de una enfermedad o evento por
-año desde los microdatos del SIVIGILA
+año desde los microdatos del SIVIGILA.
 }
 \examples{
 \donttest{

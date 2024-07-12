@@ -8,26 +8,27 @@ obtener_dpto_mpio(data_agrupada, nomb_cols, dpto = NULL, mpio = NULL)
 }
 \arguments{
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la enfermedad
-agrupados por departamento o municipio y número de casos}
+agrupados por departamento o municipio y número de casos.}
 
 \item{nomb_cols}{Un `character` (cadena de caracteres) o `array` (arreglo)
 de `character` que contiene el nombre de la(s) columna(s) con la información
 de los departamentos y municipios en los datos agrupados de la enfermedad o
-evento}
+evento.}
 
 \item{dpto}{Un `character` (cadena de caracteres) o `numeric` (numérico)
 que contiene el código o nombre del departamento; su valor por defecto es
-`NULL`}
+`NULL`.}
 
 \item{mpio}{Un `character` (cadena de caracteres) o `numeric` (numérico)
-que contiene el código o nombre del municipio; su valor por defecto es `NULL`}
+que contiene el código o nombre del municipio; su valor por defecto
+es `NULL`.}
 }
 \value{
 Una `list` (lista) con el departamento y municipio con la siguiente
-estructura `list(dpto = "05", mpio = "05001")`
+estructura `list(dpto = "05", mpio = "05001")`.
 }
 \description{
-Función que obtiene los códigos geográficos de un departamento y municipio
-dadas unas condiciones
+Función que obtiene los códigos geográficos de un departamento y
+municipio dadas unas condiciones.
 }
 \keyword{internal}

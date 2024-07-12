@@ -2,22 +2,22 @@
 % Please edit documentation in R/import_data.R
 \name{import_sep_data}
 \alias{import_sep_data}
-\title{Importar datos con un separador específico}
+\title{Importar datos con un separador específico.}
 \usage{
 import_sep_data(ruta_data = NULL, cache = TRUE)
 }
 \arguments{
 \item{ruta_data}{Un `character` (cadena de caracteres) que contiene
-la URL de los datos de SIVIGILA}
+la URL de los datos de SIVIGILA.}
 
-\item{cache}{Un `boolean` (`TRUE` o `FALSE`) que indica si los datos
-descargados deben ser almacenados en caché; su valor por defecto es `TRUE`}
+\item{cache}{Un `boolean` (`TRUE` o `FALSE`) que indica si los datos.
+descargados deben ser almacenados en caché; su valor por defecto es `TRUE`.}
 }
 \value{
-Un `data.frame` con los datos tabulados
+Un `data.frame` con los datos tabulados.
 }
 \description{
 Función que importa e identifica el separador que tiene los
-datos para tabularlos
+datos para tabularlos.
 }
 \keyword{internal}

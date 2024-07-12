@@ -8,15 +8,15 @@ agrupar_cols_casos(data_event, nomb_cols, porcentaje = FALSE, estandar = TRUE)
 }
 \arguments{
 \item{data_event}{Un `data.frame` que contiene los datos de
-una enfermedad o evento}
+una enfermedad o evento.}
 
 \item{nomb_cols}{Un `character` (cadena de caracteres) o
 `array (arreglo) de character` que contiene el nombre de
-la(s) columna(s) en los datos de la enfermedad o evento}
+la(s) columna(s) en los datos de la enfermedad o evento.}
 
 \item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica
 si se debe agregar una columna con el porcentaje de casos;
-su valor por defecto es `FALSE`}
+su valor por defecto es `FALSE`.}
 
 \item{estandar}{Un `boolean` (TRUE o FALSE) que indica
 si se debe utilizar el estandar de agrupación de los datos
@@ -25,16 +25,16 @@ que se incluyan estas columnas o variables como parte del
 resultado `c("cod_eve", "nombre_evento", "ano")`; su valor
 por defecto es `TRUE`, si su valor es `FALSE` agrupara los
 datos solamente por las columnas o variables enviadas en el
-párametro `nomb_cols`}
+párametro `nomb_cols`.}
 }
 \value{
 Un `data.frame` con los datos de una enfermedad
 o evento agrupados por el nombre de la(s) columna(s) y el
-número de casos
+número de casos.
 }
 \description{
 Función que agrupa los datos de una enfermedad o evento
-por nombre de columna(s) y número de casos
+por nombre de columna(s) y número de casos.
 }
 \examples{
 data(dengue2020)

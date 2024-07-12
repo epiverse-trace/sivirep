@@ -7,10 +7,10 @@
 obtener_dptos()
 }
 \value{
-Un `data.frame` con los departamentos de Colombia
+Un `data.frame` con los departamentos de Colombia.
 }
 \description{
-Función que obtiene los departamentos de Colombia
+Función que obtiene los departamentos de Colombia.
 }
 \examples{
 obtener_dptos()

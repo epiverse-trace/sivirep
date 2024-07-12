@@ -1,11 +1,11 @@
-#' Estandarizar códigos geográficos de los datos de una enfermedad o evento
-#'
-#' Función que estandariza los códigos geográficos de los datos
+#' @title Estandarizar códigos geográficos de los datos de una enfermedad
+#' o evento
+#' @description Función que estandariza los códigos geográficos de los datos
 #' de una enfermedad o evento según la codificación del DIVIPOLA
 #' @param data_event Un `data.frame` que contiene los datos de una
-#' enfermedad o evento
+#' enfermedad o evento.
 #' @return Un `data.frame` que contiene los códigos geográficos estandarizados
-#' de los datos de una enfermedad o evento según la codificación del DIVIPOLA
+#' de los datos de una enfermedad o evento según la codificación del DIVIPOLA.
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
@@ -44,20 +44,19 @@ estandarizar_geo_cods <- function(data_event) {
   return(data_event)
 }
 
-#' Convertir edad a años
-#'
-#' Función que convierte las edades en años según las unidades de medida del
-#' SIVIGILA
+#' @title Convertir edad a años
+#' @description Función que convierte las edades en años según las unidades de
+#' medida del SIVIGILA.
 #' @param data_event Un `data.frame` que contiene los datos de una
-#' enfermedad o evento
+#' enfermedad o evento.
 #' @param col_edad Un `character` (cadena de caracteres) con
 #' el nombre de la columna que contiene las edades en los datos de
-#' la enfermedad o evento; su valor por defecto es `"edad"`
+#' la enfermedad o evento; su valor por defecto es `"edad"`.
 #' @param col_uni_med Un `character` (cadena de caracteres) con el nombre
 #' de la columna que contiene las unidades de medida en los datos de una
-#' enfermedad o evento; su valor por defecto es `"uni_med"`
+#' enfermedad o evento; su valor por defecto es `"uni_med"`.
 #' @return Un `data.frame` con las edades en años según las unidades de medida
-#' del SIVIGILA
+#' del SIVIGILA.
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
@@ -107,16 +106,15 @@ convert_edad <- function(data_event,
   return(data_event_years)
 }
 
-#' Eliminar valores NIN (NA, Infinito, NaN)
-#'
-#' Función que elimina filas si los valores de la columna seleccionada
-#' incluyen NA, Infinito o NaN
+#' @title Eliminar valores NIN (NA, Infinito, NaN)
+#' @description Función que elimina filas si los valores de la columna
+#' seleccionada incluyen NA, Infinito o NaN.
 #' @param data_event Un `data.frame` que contiene los datos de una
-#' enfermedad o evento
+#' enfermedad o evento.
 #' @param nomb_col Un `character` (cadena de caracteres) que contiene el
-#' nombre de la columna a evaluar en los datos de una enfermedad o evento
+#' nombre de la columna a evaluar en los datos de una enfermedad o evento.
 #' @return Un `data.frame` con los datos limpios sin valores NA,
-#' Infinito o NaN
+#' Infinito o NaN.
 #' @keywords internal
 remove_val_nin <- function(data_event, nomb_col) {
   stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
@@ -136,19 +134,19 @@ remove_val_nin <- function(data_event, nomb_col) {
   return(data_event_del)
 }
 
-#' Eliminar fechas mayores que el valor de comparación
-#'
-#' Función que elimina fechas mayores que el valor de comparación
+#' @title Eliminar fechas mayores que el valor de comparación
+#' @description Función que elimina fechas mayores que el valor de
+#' comparación.
 #' @param data_event Un `data.frame` que contiene los datos de
-#' una enfermedad o evento
+#' una enfermedad o evento.
 #' @param col_ini Un `character` (cadena de caracteres) que contiene
 #' el nombre de la columna de la fecha inicial en los datos de una
-#' enfermedad o evento; su valor por defecto es `"ini_sin"`
+#' enfermedad o evento; su valor por defecto es `"ini_sin"`.
 #' @param col_comp Un `character` (cadena de caracteres) que contiene el
 #' nombre de la columna de la fecha de comparación en los datos de una
-#' enfermedad o evento; su valor por defecto es `"fec_hos`"
+#' enfermedad o evento; su valor por defecto es `"fec_hos`".
 #' @return Un `data.frame` con los datos sin las fechas mayores que el
-#' valor de comparación
+#' valor de comparación.
 #' @keywords internal
 remove_error_fecha <- function(data_event,
                                col_ini = "ini_sin",
@@ -167,17 +165,17 @@ remove_error_fecha <- function(data_event,
   return(data_event_del)
 }
 
-#' Formatear fechas
-#'
-#' Función que da un formato específico a una fecha
+#' @title Formatear fechas
+#' @description Función que da un formato específico a una fecha.
 #' @param data_event Un `data.frame` que contiene los datos
-#' de un evento o enfermedad
+#' de un evento o enfermedad.
 #' @param format_fecha Un `character` (cadena de caracteres)
-#' que contiene  el formato deseado de la fecha
+#' que contiene  el formato deseado de la fecha; su valor por
+#' defecto es `"\%Y-\%m-\%d"`.
 #' @param nomb_cols Un `character` (cadena de caracteres) que
 #' contiene los nombres de la columna a formatear en los datos de
-#' una enfermedad o evento; su valor por defecto es `NULL`
-#' @return Un `data.frame` con los datos con las fechas formateadas
+#' una enfermedad o evento; su valor por defecto es `NULL`.
+#' @return Un `data.frame` con los datos con las fechas formateadas.
 #' @keywords internal
 format_fecha <- function(data_event,
                          format_fecha = "%Y-%m-%d",
@@ -229,23 +227,22 @@ limpiar_encabezado <- function(data_event) {
   return(data_event)
 }
 
-#' Limpiar fechas de los datos de una enfermedad o evento
-#'
-#' Función que limpia y estandariza las fechas de los datos de una
-#' enfermedad o evento
+#' @title Limpiar fechas de los datos de una enfermedad o evento
+#' @description Función que limpia y estandariza las fechas de los datos
+#' de una enfermedad o evento.
 #' @param data_event Un `data.frame` que contiene los datos de
-#' una enfermedad o evento
+#' una enfermedad o evento.
 #' @param year Un `numeric` (numerico) o `character` (cadena de caracteres)
-#' que contiene el año de los datos de una enfermedad o evento
+#' que contiene el año de los datos de una enfermedad o evento.
 #' @param format_fecha Un `character` (cadena de caracteres) que contiene
-#' el formato deseado de fecha; su valor por defecto es "\%AAAA-\%MM-\%DD"
+#' el formato deseado de fecha; su valor por defecto es "\%AAAA-\%MM-\%DD".
 #' @param col_fecha Un `character` (cadena de caracteres) que contiene
 #' el nombre de la columna con la fecha que se desea limpiar en los datos
-#' de la enfermedad o evento
+#' de la enfermedad o evento.
 #' @param col_comp Un `character` (cadena de caracteres) que contiene el
 #' nombre de la columna con la cual se va a comparar la columna `nomb_col`
-#' para limpiarla, estandarizarla o aplicar las reglas definidas
-#' @return Un `data.frame` con las fechas limpias
+#' para limpiarla, estandarizarla o aplicar las reglas definidas.
+#' @return Un `data.frame` con las fechas limpias.
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
@@ -291,24 +288,23 @@ limpiar_fecha_event <- function(data_event,
   return(data_event_fecha_ini)
 }
 
-#' Limpiar las edades de los datos de una enfermedad o evento
-#'
-#' Función que limpia y estandariza las edades de los datos de una
-#' enfermedad o evento, conviertiendolas en años, según la clasificación
-#' del Instituto Nacional de Salud:
+#' @title Limpiar las edades de los datos de una enfermedad o evento
+#' @description Función que limpia y estandariza las edades de los datos
+#' de una enfermedad o evento, conviertiendolas en años, según la
+#' clasificación del Instituto Nacional de Salud:
 #' No aplica = 0
 #' Años = 1
 #' Meses = 2
 #' Días = 3
 #' Horas = 4
-#' Minutos = 5
+#' Minutos = 5.
 #' @param data_event Un `data.frame` que contiene los datos de una
-#' enfermedad o evento
+#' enfermedad o evento.
 #' @param col_edad Un `character` (cadena de caracteres) con
 #' el nombre de la columna que contiene las edades en los datos de
-#' la enfermedad o evento; su valor por defecto es `"edad"`
+#' la enfermedad o evento; su valor por defecto es `"edad"`.
 #' @return Un `data.frame` con los datos de una enfermedad o evento
-#' con las edades limpias
+#' con las edades limpias.
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
@@ -365,13 +361,12 @@ limpiar_val_atipic <- function(data_event) {
   }
 }
 
-#' Limpiar datos de SIVIGILA
-#'
-#' Función que limpia los datos seleccionados de una enfermedad o evento de
-#' la fuente SIVIGILA
+#' @title Limpiar datos de SIVIGILA
+#' @description Función que limpia los datos seleccionados de una enfermedad
+#' o evento de la fuente SIVIGILA.
 #' @param data_event Un `data.frame` que contiene los datos de
-#' una enfermedad o evento
-#' @return Un `data.frame` con los datos limpios de la enfermedad o evento
+#' una enfermedad o evento.
+#' @return Un `data.frame` con los datos limpios de la enfermedad o evento.
 #' @examples
 #' data(dengue2020)
 #' limpiar_data_sivigila(data_event = dengue2020)

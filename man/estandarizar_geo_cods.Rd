@@ -2,17 +2,18 @@
 % Please edit documentation in R/cleaning_data.R
 \name{estandarizar_geo_cods}
 \alias{estandarizar_geo_cods}
-\title{Estandarizar códigos geográficos de los datos de una enfermedad o evento}
+\title{Estandarizar códigos geográficos de los datos de una enfermedad
+o evento}
 \usage{
 estandarizar_geo_cods(data_event)
 }
 \arguments{
 \item{data_event}{Un `data.frame` que contiene los datos de una
-enfermedad o evento}
+enfermedad o evento.}
 }
 \value{
 Un `data.frame` que contiene los códigos geográficos estandarizados
-de los datos de una enfermedad o evento según la codificación del DIVIPOLA
+de los datos de una enfermedad o evento según la codificación del DIVIPOLA.
 }
 \description{
 Función que estandariza los códigos geográficos de los datos

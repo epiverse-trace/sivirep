@@ -13,26 +13,26 @@ agrupar_edad(
 }
 \arguments{
 \item{data_event}{Un `data.frame` que contiene los datos de la enfermedad
-o evento}
+o evento.}
 
 \item{col_edad}{Un `character` (cadena de caracteres) con el nombre
 de la columna que contiene las edades en los datos de la enfermedad o
-evento; su valor por defecto es `"edad"`}
+evento; su valor por defecto es `"edad"`.}
 
 \item{interval_edad}{Un `numeric` (numérico) que contiene el intervalo del
-rango de edades; su valor por defecto es `10`}
+rango de edades; su valor por defecto es `10`.}
 
 \item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica si se debe
 agregar una columna con el porcentaje de casos; su valor por
-defecto es `FALSE`}
+defecto es `FALSE`.}
 }
 \value{
 Un `data.frame` con los datos de la enfermedad o evento agrupados
-por edad y número de casos
+por edad y número de casos.
 }
 \description{
-Función que agrupa los datos de una enfermedad o evento por edad
-y número de casos
+Función que agrupa los datos de una enfermedad o evento por
+edad y número de casos.
 }
 \examples{
 data(dengue2020)

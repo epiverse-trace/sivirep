@@ -4,17 +4,21 @@
 \alias{import_pob_proyecciones}
 \title{Importar las proyecciones DANE del año 2005 hasta el 2035}
 \usage{
-import_pob_proyecciones()
+import_pob_proyecciones(year)
+}
+\arguments{
+\item{year}{Un `numeric` (numerico) con el año a importar de las
+proyecciones poblacionales DANE.}
 }
 \value{
-Un `data.frame` con las proyecciones poblacionales DANE
+Un `data.frame` con las proyecciones poblacionales DANE.
 }
 \description{
 Función que importa las proyecciones poblacionales
-DANE desde el año 2005 hasta el 2035
+DANE desde el año 2005 hasta el 2035.
 }
 \examples{
-\dontrun{
-import_pob_proyecciones()
+\donttest{
+import_pob_proyecciones(year = 2020)
 }
 }

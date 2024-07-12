@@ -8,9 +8,10 @@ obtener_year(data_event)
 }
 \arguments{
 \item{data_event}{Un `data.frame` que contiene los datos de la
-enfermedad o evento}
+enfermedad o evento.}
 }
 \description{
-Función que obtiene el año de los datos de una enfermedad o evento
+Función que obtiene el año de los datos de una enfermedad o
+evento.
 }
 \keyword{internal}

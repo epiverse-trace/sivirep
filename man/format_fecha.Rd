@@ -8,19 +8,20 @@ format_fecha(data_event, format_fecha = "\%Y-\%m-\%d", nomb_cols = NULL)
 }
 \arguments{
 \item{data_event}{Un `data.frame` que contiene los datos
-de un evento o enfermedad}
+de un evento o enfermedad.}
 
 \item{format_fecha}{Un `character` (cadena de caracteres)
-que contiene  el formato deseado de la fecha}
+que contiene  el formato deseado de la fecha; su valor por
+defecto es `"\%Y-\%m-\%d"`.}
 
 \item{nomb_cols}{Un `character` (cadena de caracteres) que
 contiene los nombres de la columna a formatear en los datos de
-una enfermedad o evento; su valor por defecto es `NULL`}
+una enfermedad o evento; su valor por defecto es `NULL`.}
 }
 \value{
-Un `data.frame` con los datos con las fechas formateadas
+Un `data.frame` con los datos con las fechas formateadas.
 }
 \description{
-Función que da un formato específico a una fecha
+Función que da un formato específico a una fecha.
 }
 \keyword{internal}

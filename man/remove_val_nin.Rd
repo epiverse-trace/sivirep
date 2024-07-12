@@ -8,17 +8,17 @@ remove_val_nin(data_event, nomb_col)
 }
 \arguments{
 \item{data_event}{Un `data.frame` que contiene los datos de una
-enfermedad o evento}
+enfermedad o evento.}
 
 \item{nomb_col}{Un `character` (cadena de caracteres) que contiene el
-nombre de la columna a evaluar en los datos de una enfermedad o evento}
+nombre de la columna a evaluar en los datos de una enfermedad o evento.}
 }
 \value{
 Un `data.frame` con los datos limpios sin valores NA,
-Infinito o NaN
+Infinito o NaN.
 }
 \description{
-Función que elimina filas si los valores de la columna seleccionada
-incluyen NA, Infinito o NaN
+Función que elimina filas si los valores de la columna
+seleccionada incluyen NA, Infinito o NaN.
 }
 \keyword{internal}

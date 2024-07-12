@@ -8,18 +8,18 @@ agrupar_eventos(data_event, col_event = "cod_eve")
 }
 \arguments{
 \item{data_event}{Un `data.frame` que contiene los datos de la
-enfermedad o evento}
+enfermedad o evento.}
 
 \item{col_event}{Un `character` (cadena de caracteres) con el nombre de
 la columna que contiene los códigos de los eventos o de las enfermedades
-en los datos; su valor por defecto es `"cod_eve"`}
+en los datos; su valor por defecto es `"cod_eve"`.}
 }
 \value{
 Un `data.frame` con los datos de la enfermedad o evento agrupados
-por sus tipos
+por sus tipos.
 }
 \description{
-Función que agrupa los casos por tipo de enfermedad o evento
+Función que agrupa los casos por tipo de enfermedad o evento.
 }
 \examples{
 data(dengue2020)

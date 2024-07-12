@@ -2,7 +2,8 @@
 % Please edit documentation in R/plotting.R
 \name{plot_per_etn}
 \alias{plot_per_etn}
-\title{Generar gráfico de distribución de casos por la pertenencia étnica}
+\title{Generar gráfico de distribución de casos por la pertenencia
+étnica}
 \usage{
 plot_per_etn(
   data_agrupada,
@@ -13,30 +14,33 @@ plot_per_etn(
 }
 \arguments{
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la
-enfermedad o evento agrupados por la pertenencia étnica}
+enfermedad o evento agrupados por la pertenencia étnica.}
 
 \item{col_etn}{Un `character` (cadena de carácteres) con el nombre de
 la columna que contiene la pertenencia étnica en los datos agrupados de
-la enfermedad o evento; su valor por defecto es `"per_etn"`}
+la enfermedad o evento; su valor por defecto es `"per_etn"`.}
 
 \item{porcentaje}{Un `boolean` (TRUE/FALSE) que indica si los datos
-tienen porcentajes; su valor por defecto es `TRUE`}
+tienen porcentajes; su valor por defecto es `TRUE`.}
 
 \item{fuente_data}{Un `character` (cadena de caracteres) que contiene la
-leyenda o fuente de información de los datos; su valor por defecto es `NULL`}
+leyenda o fuente de información de los datos; su valor por defecto
+es `NULL`.}
 }
 \value{
 Un `plot` o gráfico de la distribución de casos por la pertenencia
-étnica
+étnica.
 }
 \description{
-Función que genera el gráfico de la distribución de casos por la
-pertenencia étnica
+Función que genera el gráfico de la distribución de casos
+por la pertenencia étnica.
 }
 \examples{
+\donttest{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(dengue2020)
 data_agrupada <- agrupar_per_etn(data_event = data_limpia)
 plot_per_etn(data_agrupada,
              col_etn = "per_etn")
+}
 }

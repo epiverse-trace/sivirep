@@ -8,26 +8,26 @@ limpiar_edad_event(data_event, col_edad = "edad")
 }
 \arguments{
 \item{data_event}{Un `data.frame` que contiene los datos de una
-enfermedad o evento}
+enfermedad o evento.}
 
 \item{col_edad}{Un `character` (cadena de caracteres) con
 el nombre de la columna que contiene las edades en los datos de
-la enfermedad o evento; su valor por defecto es `"edad"`}
+la enfermedad o evento; su valor por defecto es `"edad"`.}
 }
 \value{
 Un `data.frame` con los datos de una enfermedad o evento
-con las edades limpias
+con las edades limpias.
 }
 \description{
-Función que limpia y estandariza las edades de los datos de una
-enfermedad o evento, conviertiendolas en años, según la clasificación
-del Instituto Nacional de Salud:
+Función que limpia y estandariza las edades de los datos
+de una enfermedad o evento, conviertiendolas en años, según la
+clasificación del Instituto Nacional de Salud:
 No aplica = 0
 Años = 1
 Meses = 2
 Días = 3
 Horas = 4
-Minutos = 5
+Minutos = 5.
 }
 \examples{
 data(dengue2020)
