@@ -765,16 +765,19 @@ agrupar_per_etn <- function(data_event, cols_etn = "per_etn",
 #' \dontrun{
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
+#' # Cálculo de la incidencia con proyecciones poblacionales por departamento
 #' data_agrupada_mpios <- agrupar_mpio(data_limpia, dpto = "Antioquia")
 #' calcular_incidencia(data_agrupada = data_agrupada_mpios,
 #'                     poblacion = "proyecciones",
 #'                     dpto = "05",
 #'                     year = 2020)
+#' # Cálculo de la incidencia con proyecciones poblacionales por municipio
 #' calcular_incidencia(data_agrupada = data_agrupada_mpios,
 #'                     poblacion = "proyecciones",
 #'                     dpto = "Antioquia",
 #'                     mpio = "05001",
 #'                     year = 2020)
+#' # Cálculo de la incidencia con población a riesgo para Colombia
 #' data_agrupada_dptos <- agrupar_dpto(data_limpia)
 #' calcular_incidencia(poblacion = "riesgo",
 #'                     data_agrupada = data_agrupada_dptos,
@@ -890,10 +893,12 @@ calcular_incidencia <- function(data_incidencia = NULL, data_agrupada,
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 #' data_agrupada_mpios <- agrupar_mpio(data_limpia, dpto = "Antioquia")
+#' # Cálculo de la incidencia con población a riesgo por departamento
 #' calcular_incidencia_geo(poblacion = "riesgo",
 #'                         data_agrupada = data_agrupada_mpios,
 #'                         year = 2020)
 #' data_agrupada_dptos <- agrupar_dpto(data_limpia)
+#' # Cálculo de la incidencia con proyecciones poblacionales para Colombia
 #' calcular_incidencia_geo(poblacion = "proyecciones",
 #'                         data_agrupada = data_agrupada_dptos,
 #'                         year = 2020)
