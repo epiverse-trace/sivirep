@@ -184,11 +184,7 @@ agrupar_rango_edad <- function(data_event,
                                max_val,
                                paso,
                                porcentaje = TRUE) {
-  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
-            "El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event),
-            "El parametro data_event no debe estar vacio" =
-              nrow(data_event) > 0)
+  validar_data_event(data_event)
   data_vals_rango <- data.frame()
   if (is.null(col_edad) || length(col_edad) > 0) {
     col_edad <- "edad"
