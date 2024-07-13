@@ -589,11 +589,10 @@ agrupar_top_area_geo <- function(data_event,
                              col_area = "area",
                              porcentaje = FALSE,
                              top = 10) {
-            "El parametro col_area debe ser una cadena de caracteres"
-            = is.character(col_area),
             "El parametro porcentaje debe ser un booleano (TRUE o FALSE)" =
               is.logical(porcentaje))
   validar_data_event(data_event)
+  validar_area_geo(data_event, col_area)
   nomb_cols <- append(col_area,
                       obtener_tip_ocurren_geo(data_event$cod_eve[1])[1:4])
   data_event_area <- data_event
