@@ -785,12 +785,7 @@ calcular_incidencia <- function(data_incidencia = NULL, data_agrupada,
                                 poblacion = NULL, year = NULL,
                                 dpto = NULL, mpio = NULL,
                                 sex = NULL) {
-  stopifnot("El parametro data_agrupada es obligatorio" =
-              !missing(data_agrupada),
-            "El parametro data_agrupada debe ser un data.frame" =
-              is.data.frame(data_agrupada),
-            "El parametro data_agrupada no debe estar vacio" =
-              nrow(data_agrupada) > 0)
+  validar_data_agrupada(data_agrupada)
   nombre_evento <- data_agrupada$nombre_evento[1]
   vals_event <- obtener_cond_inciden_event(cod_eve = data_agrupada$cod_eve[1])
   coeficiente <- as.integer(vals_event$coeficiente)
