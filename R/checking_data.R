@@ -264,8 +264,6 @@ agrupar_fecha_inisintomas <- function(data_event,
 agrupar_sex <- function(data_event,
                         col_sex = "sexo",
                         porcentaje = TRUE) {
-            "El parametro col_sex debe ser una cadena de caracteres"
-            = is.character(col_sex))
   validar_data_event(data_event)
   validar_sex(data_event, col_sex)
   validar_porcentaje(porcentaje)
@@ -297,12 +295,8 @@ agrupar_sex <- function(data_event,
 agrupar_sex_semanaepi <- function(data_event,
                                   cols_sex = c("sexo", "semana"),
                                   porcentaje = TRUE) {
-  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
-            "El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event),
-            "El parametro data_event no debe estar vacio" =
-              nrow(data_event) > 0,
-            "El parametro cols_sex debe ser una cadena de caracteres 
+  validar_data_event(data_event)
+  stopifnot("El parametro cols_sex debe ser una cadena de caracteres 
             o un arreglo de cadenas de caracteres "
             = (is.character(cols_sex) && !is.array(cols_sex)) ||
               (!is.character(cols_sex) && is.array(cols_sex)))
