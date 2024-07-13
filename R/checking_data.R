@@ -71,14 +71,12 @@ geo_filtro <- function(data_event, dpto = NULL, mpio = NULL) {
 #' @export
 agrupar_semanaepi <- function(data_event,
                               col_semanaepi = "semana") {
-  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
-            "El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event),
-            "El parametro data_event no debe estar vacio" =
-              nrow(data_event) > 0)
   data_event_agrupada <- data_event %>%
     dplyr::group_by_at(col_semanaepi) %>%
     dplyr::summarise(casos = sum(.data$uni_med))
+  validar_data_event(data_event)
+  stopifnot("El parametro col_semanaepi debe ser una cadena de caracteres" =
+              is.character(col_semanaepi))
   data_event_agrupada <- data_event_agrupada[1:53, ]
   return(data_event_agrupada)
 }
