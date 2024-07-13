@@ -105,12 +105,8 @@ convert_edad <- function(data_event,
 #' Infinito o NaN.
 #' @keywords internal
 remove_val_nin <- function(data_event, nomb_col) {
-  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
-            "El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event),
-            "El parametro data_event no debe estar vacio" =
-              nrow(data_event) > 0,
-            "El parametro nomb_col es obligatorio" = !missing(nomb_col),
+  validar_data_event(data_event)
+  stopifnot("El parametro nomb_col es obligatorio" = !missing(nomb_col),
             "El parametro nomb_col debe ser una cadena de caracteres" =
               is.character(nomb_col))
   ref_col <- paste0("data_event$", nomb_col)
