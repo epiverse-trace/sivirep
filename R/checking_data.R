@@ -1012,12 +1012,7 @@ calcular_incidencia_sex <- function(data_incidencia = NULL,
                                     data_agrupada,
                                     year = NULL, dpto = NULL,
                                     mpio = NULL) {
-  stopifnot("El parametro data_agrupada es obligatorio" =
-              !missing(data_agrupada),
-            "El parametro data_agrupada debe ser un data.frame" =
-              is.data.frame(data_agrupada),
-            "El parametro data_agrupada no debe estar vacio" =
-              nrow(data_agrupada) > 0)
+  validar_data_agrupada(data_agrupada)
   data_incidencia_sex <- NULL
   incidencia <- NULL
   dept_data <- NULL
