@@ -718,9 +718,8 @@ agrupar_tipo_caso <- function(data_event, cols_tipo = "tip_cas") {
 #' @export
 agrupar_per_etn <- function(data_event, cols_etn = "per_etn",
                             porcentaje = TRUE) {
-            "El parametro cols_etn debe ser una cadena de caracteres"
-            = is.character(cols_etn))
   validar_data_event(data_event)
+  validar_per_etn(data_event, cols_etn)
   if (length(cols_etn) == 1) {
     cols_etn <- c(cols_etn, "cod_eve")
   }
