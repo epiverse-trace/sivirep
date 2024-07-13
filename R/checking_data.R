@@ -724,11 +724,7 @@ agrupar_per_etn <- function(data_event, cols_etn = "per_etn",
   if (length(cols_etn) == 1) {
     cols_etn <- c(cols_etn, "cod_eve")
   }
-  etiquetas <- config::get(file =
-                             system.file("extdata",
-                                         "config.yml",
-                                         package = "sivirep"),
-                           "labels_per_etn")
+  etiquetas <- obtener_val_config("labels_per_etn")
   etiquetas <- unlist(etiquetas)
   data_event_tipo <- agrupar_cols_casos(data_event,
                                         nomb_cols = cols_etn,
