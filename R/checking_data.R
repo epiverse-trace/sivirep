@@ -632,12 +632,8 @@ agrupar_top_area_geo <- function(data_event,
 #'                 col_event = "cod_eve")
 #' @export
 agrupar_eventos <- function(data_event, col_event = "cod_eve") {
-  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
-            "El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event),
-            "El parametro data_event no debe estar vacio" =
-              nrow(data_event) > 0,
-            "El parametro col_event debe ser una cadena de caracteres"
+  validar_data_event(data_event)
+  stopifnot("El parametro col_event debe ser una cadena de caracteres"
             = is.character(col_event))
   data_event_tipos <- agrupar_cols_casos(data_event, nomb_cols = col_event)
   return(data_event_tipos)
