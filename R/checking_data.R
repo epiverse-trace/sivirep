@@ -911,12 +911,13 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
   validar_data_agrupada(data_agrupada)
   data_geo_incidencia <- NULL
   nombre_evento <- data_agrupada$nombre_evento[1]
+  cod_evento <- data_agrupada$cod_eve[1]
   if (is.null(year)) {
     year <- as.numeric(obtener_year(data_agrupada))
   }
   if (is.null(poblacion)) {
     vals_event <-
-      obtener_cond_inciden_event(cod_eve = data_agrupada$cod_eve[1])
+      obtener_cond_inciden_event(cod_eve = cod_evento)
     poblacion <- vals_event$denominador
   }
   pop_incidencia <-
