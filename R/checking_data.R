@@ -228,16 +228,12 @@ agrupar_rango_edad <- function(data_event,
 #' @export
 agrupar_fecha_inisintomas <- function(data_event,
                                       col_fecha = "ini_sin") {
-  fechas_cols_nombres <- config::get(file =
-                                       system.file("extdata",
-                                                   "config.yml",
-                                                   package = "sivirep"),
-                                     "dates_column_names")
   stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
             "El parametro data_event debe ser un data.frame" =
               is.data.frame(data_event),
             "El parametro data_event no debe estar vacio" =
               nrow(data_event) > 0)
+  fechas_cols_nombres <- obtener_val_config("dates_column_names")
   if (is.null(col_fecha)) {
     col_fecha <- fechas_cols_nombres[3]
   }
