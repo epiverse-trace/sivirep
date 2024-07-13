@@ -725,9 +725,10 @@ agrupar_per_etn <- function(data_event, cols_etn = "per_etn",
   data_event_tipo <- agrupar_cols_casos(data_event,
                                         nomb_cols = cols_etn,
                                         porcentaje = porcentaje)
-  data_event_tipo <- data_event_tipo %>%
-    dplyr::mutate(nombre_per_etn =
-                    etiquetas[as.character(.data[[cols_etn[1]]])])
+  data_event_tipo <-
+    dplyr::mutate(data_event_tipo, nombre_per_etn =
+                    unname(etiquetas[
+                      as.character(data_event_tipo[[cols_etn[1]]])]))
   return(data_event_tipo)
 }
 
