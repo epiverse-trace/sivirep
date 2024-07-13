@@ -135,12 +135,8 @@ remove_val_nin <- function(data_event, nomb_col) {
 remove_error_fecha <- function(data_event,
                                col_ini = "ini_sin",
                                col_comp = "fec_hos") {
-  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
-            "El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event),
-            "El parametro data_event no debe estar vacio" =
-              nrow(data_event) > 0,
-            "El parametro col_ini debe ser una cadena de caracteres" =
+  validar_data_event(data_event)
+  stopifnot("El parametro col_ini debe ser una cadena de caracteres" =
               is.character(col_ini),
             "El parametro col_comp debe ser una cadena de caracteres" =
               is.character(col_comp))
