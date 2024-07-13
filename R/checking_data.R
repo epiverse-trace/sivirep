@@ -189,8 +189,7 @@ agrupar_rango_edad <- function(data_event,
   if (is.null(col_edad) || length(col_edad) > 0) {
     col_edad <- "edad"
   }
-  stopifnot("El parametro col_edad debe ser una cadena de caracteres"
-            = is.character(col_edad))
+  validar_edad(data_event, col_edad)
   total_casos <- sum(data_event$casos)
   data_vals_rango <- data_event %>%
     dplyr::mutate(ranges = cut(
