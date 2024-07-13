@@ -542,15 +542,11 @@ agrupar_mpio <- function(data_event,
 agrupar_area_geo <- function(data_event,
                              col_area = "area",
                              porcentaje = FALSE) {
-  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
-            "El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event),
-            "El parametro data_event no debe estar vacio" =
-              nrow(data_event) > 0,
             "El parametro col_area debe ser una cadena de caracteres"
             = is.character(col_area),
             "El parametro porcentaje debe ser un booleano (TRUE o FALSE)" =
               is.logical(porcentaje))
+  validar_data_event(data_event)
   data_event_area <- agrupar_cols_casos(data_event,
                                         col_area)
   data_event_area <- dplyr::arrange(data_event_area,
