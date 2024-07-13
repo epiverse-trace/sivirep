@@ -99,10 +99,10 @@ agrupar_semanaepi <- function(data_event,
 #' resultado `c("cod_eve", "nombre_evento", "ano")`; su valor
 #' por defecto es `TRUE`, si su valor es `FALSE` agrupara los
 #' datos solamente por las columnas o variables enviadas en el
-#' párametro `nomb_cols`
+#' párametro `nomb_cols`.
 #' @return Un `data.frame` con los datos de una enfermedad
 #' o evento agrupados por el nombre de la(s) columna(s) y el
-#' número de casos
+#' número de casos.
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
