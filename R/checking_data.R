@@ -191,15 +191,17 @@ agrupar_rango_edad <- function(data_event,
   }
   validar_edad(data_event, col_edad)
   total_casos <- sum(data_event$casos)
-  data_vals_rango <- data_event %>%
-    dplyr::mutate(ranges = cut(
+  data_vals_rango <-
+    dplyr::mutate(data_event, ranges = cut(
       data_event[[col_edad]],
       seq(min_val, max_val, paso)
-    )) %>%
-    dplyr::group_by_at(c("ranges", col_adicional)) %>%
-    dplyr::summarize(casos = sum(.data$casos),
-                     .groups = "drop") %>%
-    as.data.frame()
+    ))
+  data_vals_rango <- dplyr::group_by_at(data_vals_rango,
+                                        c("ranges", col_adicional))
+  data_vals_rango <- dplyr::summarize(data_vals_rango,
+                                      casos = sum(.data$casos),
+                                      .groups = "drop")
+  data_vals_rango <- as.data.frame(data_vals_rango)
   if (porcentaje) {
     data_vals_rango <- data_vals_rango %>%
       mutate(porcentaje =  round(.data$casos / total_casos * 100, 3))
