@@ -262,12 +262,8 @@ limpiar_fecha_event <- function(data_event,
                                 format_fecha = "%Y-%m-%d",
                                 col_fecha = "ini_sin",
                                 col_comp = NULL) {
-  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
-            "El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event),
-            "El parametro data_event no debe estar vacio" =
-              nrow(data_event) > 0,
-            "El parametro year es obligatorio" = !missing(year),
+  validar_data_event(data_event)
+  stopifnot("El parametro year es obligatorio" = !missing(year),
             "El parametro year debe ser una cadena de caracteres
             o numerico" =
             (is.numeric(year) && !is.character(year)) ||
