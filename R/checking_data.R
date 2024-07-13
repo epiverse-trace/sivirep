@@ -687,11 +687,7 @@ agrupar_tipo_caso <- function(data_event, cols_tipo = "tip_cas") {
   if (length(cols_tipo) == 1) {
    cols_tipo <- c(cols_tipo, "cod_eve")
   }
-  etiquetas <- config::get(file =
-                             system.file("extdata",
-                                         "config.yml",
-                                         package = "sivirep"),
-                           "labels_cas_tip")
+  etiquetas <- obtener_val_config("labels_cas_tip")
   data_event_tipo <- agrupar_cols_casos(data_event,
                                         nomb_cols = cols_tipo)
   data_event_tipo <- data_event_tipo %>%
