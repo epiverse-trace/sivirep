@@ -268,6 +268,7 @@ agrupar_sex <- function(data_event,
             = is.character(col_sex))
   validar_data_event(data_event)
   validar_sex(data_event, col_sex)
+  validar_porcentaje(porcentaje)
   data_event_sex <- agrupar_cols_casos(data_event, col_sex, porcentaje)
   return(data_event_sex)
 }
