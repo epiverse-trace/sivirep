@@ -71,12 +71,12 @@ geo_filtro <- function(data_event, dpto = NULL, mpio = NULL) {
 #' @export
 agrupar_semanaepi <- function(data_event,
                               col_semanaepi = "semana") {
-  data_event_agrupada <- data_event %>%
-    dplyr::group_by_at(col_semanaepi) %>%
-    dplyr::summarise(casos = sum(.data$uni_med))
   validar_data_event(data_event)
   stopifnot("El parametro col_semanaepi debe ser una cadena de caracteres" =
               is.character(col_semanaepi))
+  data_event_agrupada <- dplyr::group_by_at(data_event, col_semanaepi)
+  data_event_agrupada <- dplyr::summarise(data_event_agrupada,
+                                          casos = sum(.data$uni_med))
   data_event_agrupada <- data_event_agrupada[1:53, ]
   return(data_event_agrupada)
 }
