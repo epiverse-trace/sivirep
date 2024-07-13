@@ -228,12 +228,8 @@ agrupar_rango_edad <- function(data_event,
 #' @export
 agrupar_fecha_inisintomas <- function(data_event,
                                       col_fecha = "ini_sin") {
-  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
-            "El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event),
-            "El parametro data_event no debe estar vacio" =
-              nrow(data_event) > 0)
   fechas_cols_nombres <- obtener_val_config("dates_column_names")
+  validar_data_event(data_event)
   if (is.null(col_fecha)) {
     col_fecha <- fechas_cols_nombres[3]
   }
