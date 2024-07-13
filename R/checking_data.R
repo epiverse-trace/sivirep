@@ -479,12 +479,8 @@ agrupar_mpio <- function(data_event,
                          dpto = NULL,
                          col_mpio = "cod_mun_o",
                          porcentaje = FALSE) {
-  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
-            "El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event),
-            "El parametro data_event no debe estar vacio" =
-              nrow(data_event) > 0,
-            "El parametro col_mpio debe ser una cadena de caracteres"
+  validar_data_event(data_event)
+  stopifnot("El parametro col_mpio debe ser una cadena de caracteres"
             = is.character(col_mpio),
             "El parametro porcentaje debe ser un booleano (TRUE o FALSE)" =
               is.logical(porcentaje))
