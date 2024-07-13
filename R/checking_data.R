@@ -332,10 +332,9 @@ agrupar_edad <- function(data_event,
                          col_edad = "edad",
                          interval_edad = 10,
                          porcentaje = FALSE) {
-            "El parametro col_edad debe ser una cadena de caracteres"
-            = is.character(col_edad),
-            "El parametro interval_edad debe ser un numero"
   validar_data_event(data_event)
+  validar_edad(data_event, col_edad)
+  stopifnot("El parametro interval_edad debe ser un numero"
             = is.numeric(interval_edad))
   data_event_edad <- agrupar_cols_casos(data_event,
                                         col_edad)
