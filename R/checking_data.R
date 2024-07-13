@@ -928,6 +928,13 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
   if (nomb_cols[1] %in% colnames(data_agrupada) &&
       !(nomb_cols[3] %in% colnames(data_agrupada))) {
     incidencia_dptos <- NULL
+    data_agrupada <- group_by_at(data_agrupada, nomb_cols[1:2])
+    data_agrupada <- dplyr::summarise(data_agrupada,
+                                      casos =
+                                        sum(.data[["casos"]]),
+                                      .groups = "drop")
+    data_agrupada$nombre_evento <- rep(nombre_evento, nrow(data_agrupada))
+    data_agrupada$cod_eve <- rep(cod_evento, nrow(data_agrupada))
     for (fila in seq_len(nrow(data_agrupada))) {
       dpto_fila <- data_agrupada[fila, ]
       incidencia <- calcular_incidencia(data_incidencia = data_incidencia,
@@ -941,6 +948,14 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
     data_geo_incidencia <- cbind(data_agrupada, geo_incidencia)
   } else if (nomb_cols[3] %in% colnames(data_agrupada)) {
     incidencia_mpios <- NULL
+    data_agrupada <- group_by_at(data_agrupada, c(nomb_cols[3:4],
+                                                  nomb_cols[1:2]))
+    data_agrupada <- dplyr::summarise(data_agrupada,
+                                      casos =
+                                        sum(.data[["casos"]]),
+                                      .groups = "drop")
+    data_agrupada$nombre_evento <- rep(nombre_evento, nrow(data_agrupada))
+    data_agrupada$cod_eve <- rep(cod_evento, nrow(data_agrupada))
     for (fila in seq_len(nrow(data_agrupada))) {
       mpio_fila <- data_agrupada[fila, ]
       incidencia <- calcular_incidencia(data_incidencia = data_incidencia,
