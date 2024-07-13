@@ -116,10 +116,9 @@ agrupar_cols_casos <- function(data_event,
                                nomb_cols,
                                porcentaje = FALSE,
                                estandar = TRUE) {
-            "El parametro porcentaje debe ser un booleano (TRUE o FALSE)" =
-              is.logical(porcentaje))
   validar_data_event(data_event)
   validar_nomb_cols(data_event, nomb_cols)
+  validar_porcentaje(porcentaje)
   if (estandar) {
     nomb_cols <- append(nomb_cols, c("cod_eve", "nombre_evento", "ano"))
     data_event_agrupada <- data_event %>%
