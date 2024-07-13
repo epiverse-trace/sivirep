@@ -334,6 +334,7 @@ agrupar_edad <- function(data_event,
                          porcentaje = FALSE) {
   validar_data_event(data_event)
   validar_edad(data_event, col_edad)
+  validar_porcentaje(porcentaje)
   stopifnot("El parametro interval_edad debe ser un numero"
             = is.numeric(interval_edad))
   data_event_edad <- agrupar_cols_casos(data_event,
