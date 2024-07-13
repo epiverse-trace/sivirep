@@ -720,6 +720,7 @@ agrupar_per_etn <- function(data_event, cols_etn = "per_etn",
                             porcentaje = TRUE) {
   validar_data_event(data_event)
   validar_per_etn(data_event, cols_etn)
+  validar_porcentaje(porcentaje)
   if (length(cols_etn) == 1) {
     cols_etn <- c(cols_etn, "cod_eve")
   }
