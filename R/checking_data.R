@@ -267,6 +267,7 @@ agrupar_sex <- function(data_event,
             "El parametro col_sex debe ser una cadena de caracteres"
             = is.character(col_sex))
   validar_data_event(data_event)
+  validar_sex(data_event, col_sex)
   data_event_sex <- agrupar_cols_casos(data_event, col_sex, porcentaje)
   return(data_event_sex)
 }
