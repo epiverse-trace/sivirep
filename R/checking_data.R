@@ -1046,9 +1046,10 @@ calcular_incidencia_sex <- function(data_incidencia = NULL,
     }
   }
   cod_eve <- data_agrupada$cod_eve[1]
-  data_agrupada <- data_agrupada %>%
-    group_by_at("sexo") %>%
-    dplyr::summarise(casos = sum(.data[["casos"]]), .groups = "drop")
+  data_agrupada <- group_by_at(data_agrupada, "sexo")
+  data_agrupada <- dplyr::summarise(data_agrupada,
+                                    casos = sum(.data[["casos"]]),
+                                    .groups = "drop")
   cols_eve <- data.frame(cod_eve = rep(cod_eve,
                                        nrow(data_agrupada)),
                          nombre_evento = rep(nombre_evento,
