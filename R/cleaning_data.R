@@ -268,10 +268,9 @@ limpiar_fecha_event <- function(data_event,
             o numerico" =
             (is.numeric(year) && !is.character(year)) ||
             (!is.numeric(year) && is.character(year)),
-            "El parametro format_fecha debe ser una cadena de caracteres" =
-              is.character(format_fecha),
             "El parametro col_fecha debe ser una cadena de caracteres" =
               is.character(col_fecha))
+  validar_format_fecha(format_fecha)
   data_event_fecha_ini <- data_event
   if (!is.null(col_comp)) {
     data_event_fecha_ini <-
