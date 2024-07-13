@@ -385,11 +385,10 @@ agrupar_edad_sex <- function(data_event,
                              col_sex = "sexo",
                              porcentaje = TRUE,
                              interval_edad = 10) {
-            "El parametro porcentaje debe ser un booleano (TRUE o FALSE)" =
-              is.logical(porcentaje))
   validar_data_event(data_event)
   validar_edad(data_event, col_edad)
   validar_sex(data_event, col_sex)
+  validar_porcentaje(porcentaje)
   nomb_cols <- c(col_edad, col_sex)
   data_event_edad_sex <- agrupar_cols_casos(data_event,
                                             nomb_cols,
