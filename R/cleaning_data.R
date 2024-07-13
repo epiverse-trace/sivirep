@@ -214,10 +214,14 @@ format_cod_geo <- function(cod_geo, etiqueta, digitos, tam) {
   }
   return(cod_format)
 }
+
+#' @title Limpiar las etiquetas del encabezado
+#' @description Función que limpia las etiquetas del encabezado de los
+#' datos de una enfermedad o evento.
 #' @param data_event Un `data.frame` que contiene los datos de una
-#' enfermedad o evento
+#' enfermedad o evento.
 #' @return Un `data.frame` con las etiquetas del encabezado formateadas
-#' con guión bajo (_)
+#' con guión bajo (_).
 #' @examples
 #' data(dengue2020)
 #' limpiar_encabezado(data_event = dengue2020)
