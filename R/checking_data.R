@@ -116,11 +116,6 @@ agrupar_cols_casos <- function(data_event,
                                nomb_cols,
                                porcentaje = FALSE,
                                estandar = TRUE) {
-  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
-            "El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event),
-            "El parametro data_event no debe estar vacio" =
-              nrow(data_event) > 0,
             "El parametro nomb_cols es obligatorio"
             = !missing(nomb_cols),
             "El parametro nomb_cols debe ser una cadena de caracteres 
@@ -129,6 +124,7 @@ agrupar_cols_casos <- function(data_event,
               (!is.character(nomb_cols) && is.array(nomb_cols)),
             "El parametro porcentaje debe ser un booleano (TRUE o FALSE)" =
               is.logical(porcentaje))
+  validar_data_event(data_event)
   if (estandar) {
     nomb_cols <- append(nomb_cols, c("cod_eve", "nombre_evento", "ano"))
     data_event_agrupada <- data_event %>%
