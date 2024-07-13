@@ -227,11 +227,7 @@ format_cod_geo <- function(cod_geo, etiqueta, digitos, tam) {
 #' limpiar_encabezado(data_event = dengue2020)
 #' @export
 limpiar_encabezado <- function(data_event) {
-  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
-            "El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event),
-            "El parametro data_event no debe estar vacio" =
-              nrow(data_event) > 0)
+  validar_data_event(data_event)
   names(data_event) <- epitrix::clean_labels(names(data_event))
   return(data_event)
 }
