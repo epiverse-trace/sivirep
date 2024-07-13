@@ -60,14 +60,10 @@ estandarizar_geo_cods <- function(data_event) {
 convert_edad <- function(data_event,
                          col_edad = "edad",
                          col_uni_med = "uni_med") {
-  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
-            "El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event),
-            "El parametro data_event no debe estar vacio" =
-              nrow(data_event) > 0,
             "El parametro col_edad debe ser una cadena de caracteres" =
               is.character(col_edad),
             "El parametro col_uni_med debe ser una cadena de caracteres" =
+  validar_data_event(data_event)
               is.character(col_uni_med))
   data_event$uni_med <- as.numeric(data_event$uni_med)
   data_event$edad <- as.numeric(data_event$edad)
