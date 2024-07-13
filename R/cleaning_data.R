@@ -12,11 +12,8 @@
 #' estandarizar_geo_cods(data_event = data_limpia)
 #' @export
 estandarizar_geo_cods <- function(data_event) {
-  geo_columns <- config::get(file =
-                               system.file("extdata", "config.yml",
-                                           package = "sivirep"),
-                             "geo_column_names")
   validar_data_event(data_event)
+  geo_columns <- obtener_val_config("geo_column_names")
   for (column in geo_columns) {
     if (stringr::str_detect(column, stringr::fixed("dpto"))) {
       data_event[[column]] <- formatC(data_event[[column]],
