@@ -656,9 +656,8 @@ agrupar_eventos <- function(data_event, col_event = "cod_eve") {
 #'               col_year = "ano")
 #' @export
 agrupar_years <- function(data_event, col_year = "ano") {
-            "El parametro col_year debe ser una cadena de caracteres"
-            = is.character(col_year))
   validar_data_event(data_event)
+  validar_years(data_event, col_year)
   data_event_year <- agrupar_cols_casos(data_event,
                                         nomb_cols = c(col_year,
                                                       "cod_eve"))
