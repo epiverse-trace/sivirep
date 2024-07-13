@@ -1022,8 +1022,8 @@ calcular_incidencia_sex <- function(data_incidencia = NULL,
   }
   if (is.null(data_incidencia)) {
     data_incidencia <-
-      import_pob_incidencia(poblacion = "proyecciones")
-    warning("Las incidencias se calcularon con las proyecciones ",
+      import_pob_incidencia(poblacion = "proyecciones", year = year)
+    message("Las incidencias se calcularon con las proyecciones ",
             "poblacionales DANE. Si usted cuenta con la poblacion ",
             "a riesgo definida por el Ministerio de Salud para el ",
             year, " puede hacer uso de ella, asignandola en el ",
