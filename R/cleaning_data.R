@@ -160,10 +160,9 @@ remove_error_fecha <- function(data_event,
 format_fecha <- function(data_event,
                          format_fecha = "%Y-%m-%d",
                          nomb_cols = NULL) {
-            "El parametro format_fecha debe ser una cadena de caracteres" =
-              is.character(format_fecha),
-            "El parametro nomb_cols no debe estar vacio" =
   validar_data_event(data_event)
+  validar_format_fecha(format_fecha)
+  stopifnot("El parametro nomb_cols no debe estar vacio" =
               !is.null(nomb_cols),
             "El parametro nomb_cols debe ser una cadena de caracteres o 
             un arreglo de cadenas de caracteres" =
