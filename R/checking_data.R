@@ -332,14 +332,10 @@ agrupar_edad <- function(data_event,
                          col_edad = "edad",
                          interval_edad = 10,
                          porcentaje = FALSE) {
-  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
-            "El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event),
-            "El parametro data_event no debe estar vacio" =
-              nrow(data_event) > 0,
             "El parametro col_edad debe ser una cadena de caracteres"
             = is.character(col_edad),
             "El parametro interval_edad debe ser un numero"
+  validar_data_event(data_event)
             = is.numeric(interval_edad))
   data_event_edad <- agrupar_cols_casos(data_event,
                                         col_edad)
