@@ -1029,10 +1029,7 @@ calcular_incidencia_sex <- function(data_incidencia = NULL,
             year, " puede hacer uso de ella, asignandola en el ",
             "argumento data_incidencia de la funcion")
   } else {
-    stopifnot("El parametro data_incidencia debe ser un data.frame" =
-                is.data.frame(data_incidencia),
-              "El parametro data_incidencia no debe estar vacio" =
-                nrow(data_incidencia) > 0)
+    validar_data_incidencia(data_incidencia)
   }
   if (!is.null(dpto)) {
     stopifnot("El parametro dpto debe ser una cadena de caracteres
