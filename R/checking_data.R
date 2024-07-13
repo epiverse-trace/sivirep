@@ -121,18 +121,19 @@ agrupar_cols_casos <- function(data_event,
   validar_porcentaje(porcentaje)
   if (estandar) {
     nomb_cols <- append(nomb_cols, c("cod_eve", "nombre_evento", "ano"))
-    data_event_agrupada <- data_event %>%
-      dplyr::group_by_at(nomb_cols) %>%
-      dplyr::summarise(casos = dplyr::n(), .groups = "drop")
+    data_event_agrupada <- dplyr::group_by_at(data_event, nomb_cols)
+    data_event_agrupada <- dplyr::summarise(data_event_agrupada,
+                                            casos = dplyr::n(),
+                                            .groups = "drop")
   } else {
-    data_event_agrupada <- data_event %>%
-      dplyr::group_by_at(nomb_cols) %>%
-      dplyr::summarise(casos = sum(.data[["casos"]]), .groups = "drop")
+    data_event_agrupada <- dplyr::group_by_at(data_event, nomb_cols)
+    data_event_agrupada <- dplyr::summarise(data_event_agrupada,
+                                            casos = sum(.data[["casos"]]),
+                                            .groups = "drop")
   }
   if (porcentaje) {
     data_event_agrupada <-
-      data_event_agrupada %>%
-      dplyr::mutate(porcentaje =
+      dplyr::mutate(data_event_agrupada, porcentaje =
                     round(data_event_agrupada$casos
                           / sum(data_event_agrupada$casos) * 100,
                           2))
