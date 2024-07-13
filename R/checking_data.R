@@ -21,11 +21,7 @@
 #' geo_filtro(data_event = data_limpia, dpto = "bogota dc", mpio = "bogota dc")
 #' @export
 geo_filtro <- function(data_event, dpto = NULL, mpio = NULL) {
-  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
-            "El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event),
-            "El parametro data_event no debe estar vacio" =
-              nrow(data_event) > 0)
+  validar_data_event(data_event)
   data_dept_filt <- data.frame()
   dept_data <- data.frame()
   cols_ocurren <- NULL
