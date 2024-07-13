@@ -311,12 +311,6 @@ limpiar_fecha_event <- function(data_event,
 #' limpiar_edad_event(data_event = data_limpia, col_edad = "edad")
 #' @export
 limpiar_edad_event <- function(data_event, col_edad = "edad") {
-  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
-            "El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event),
-            "El parametro data_event no debe estar vacio" =
-              nrow(data_event) > 0,
-            "El parametro col_edad debe ser una cadena de caracteres" =
               is.character(col_edad))
   data_event_years <- convert_edad(data_event)
   data_event_years <- remove_val_nin(data_event_years, col_edad)
