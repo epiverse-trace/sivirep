@@ -681,12 +681,8 @@ agrupar_years <- function(data_event, col_year = "ano") {
 #'                   cols_tipo = "tip_cas")
 #' @export
 agrupar_tipo_caso <- function(data_event, cols_tipo = "tip_cas") {
-  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
-            "El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event),
-            "El parametro data_event no debe estar vacio" =
-              nrow(data_event) > 0,
-            "El parametro cols_tipo debe ser una cadena de caracteres"
+  validar_data_event(data_event)
+  stopifnot("El parametro cols_tipo debe ser una cadena de caracteres"
             = is.character(cols_tipo))
   if (length(cols_tipo) == 1) {
    cols_tipo <- c(cols_tipo, "cod_eve")
