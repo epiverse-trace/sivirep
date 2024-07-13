@@ -688,11 +688,13 @@ agrupar_tipo_caso <- function(data_event, cols_tipo = "tip_cas") {
    cols_tipo <- c(cols_tipo, "cod_eve")
   }
   etiquetas <- obtener_val_config("labels_cas_tip")
+  etiquetas <- as.character(etiquetas)
   data_event_tipo <- agrupar_cols_casos(data_event,
                                         nomb_cols = cols_tipo)
-  data_event_tipo <- data_event_tipo %>%
-    dplyr::mutate(nombre_tip_cas =
-                    unlist(etiquetas[as.numeric(.data[[cols_tipo[1]]])]))
+  data_event_tipo <-
+    dplyr::mutate(data_event_tipo,
+                  nombre_tip_cas =
+                    etiquetas[as.numeric(data_event_tipo[[cols_tipo[1]]])])
   return(data_event_tipo)
 }
 
