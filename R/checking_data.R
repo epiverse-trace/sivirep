@@ -718,13 +718,9 @@ agrupar_tipo_caso <- function(data_event, cols_tipo = "tip_cas") {
 #' @export
 agrupar_per_etn <- function(data_event, cols_etn = "per_etn",
                             porcentaje = TRUE) {
-  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
-            "El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event),
-            "El parametro data_event no debe estar vacio" =
-              nrow(data_event) > 0,
             "El parametro cols_etn debe ser una cadena de caracteres"
             = is.character(cols_etn))
+  validar_data_event(data_event)
   if (length(cols_etn) == 1) {
     cols_etn <- c(cols_etn, "cod_eve")
   }
