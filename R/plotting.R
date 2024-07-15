@@ -589,8 +589,7 @@ plot_dptos <- function(data_agrupada,
 plot_mpios <- function(data_agrupada,
                        col_mpios = NULL,
                        fuente_data = NULL) {
-  stopifnot("El parametro data_agrupada debe ser un data.frame"
-            = is.data.frame(data_agrupada))
+  validar_data_agrupada(data_agrupada)
   if (is.null(fuente_data)) {
     fuente_data <-
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
