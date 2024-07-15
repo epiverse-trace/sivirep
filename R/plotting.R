@@ -432,11 +432,7 @@ plot_edad <- function(data_agrupada,
     fuente_data <-
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
   }
-  etiqueta_casos <- config::get(file =
-                                  system.file("extdata",
-                                              "config.yml",
-                                              package = "sivirep"),
-                                "label_cases")
+  etiqueta_casos <- obtener_val_config("label_cases")
   plot_casos_edad <-
     ggplot2::ggplot(data_agrupada,
                     ggplot2::aes(x = .data[[col_edad]],
