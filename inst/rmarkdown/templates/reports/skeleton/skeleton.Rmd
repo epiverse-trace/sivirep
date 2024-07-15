@@ -197,8 +197,18 @@ data_event_filtrada <- data_limpia
 if (params$departmento != "") {
 data_event_filtrada <- geo_filtro(data_event = data_limpia,
                                   dpto = params$departmento)
-text_intro_geo <- paste0(", en el departamento del ", params$departmento,
-                         " se reportaron ", nrow(data_event_filtrada),
+text_init_geo <- paste0(", en el departamento del ",
+                        params$departmento)
+  if (params$municipio != "") {
+    text_init_geo <- paste0(", en el municipio del ",
+                            params$municipio)
+    data_event_filtrada <- geo_filtro(data_event = data_event_filtrada,
+                                  dpto = params$departmento,
+                                  mpio = params$municipio)
+  }
+text_intro_geo <- paste0(text_init_geo,
+                         " se reportaron ",
+                         nrow(data_event_filtrada),
                          " casos.")
 }
 ```
