@@ -615,9 +615,8 @@ obtener_year <- function(data_event) {
 #' @export
 obtener_text_sex <- function(data_agrupada,
                              year, figura) {
-  stopifnot("El parametro data_agrupada debe ser un data.frame"
-            = is.data.frame(data_agrupada),
-            "El parametro year debe ser un numerico"
+  validar_data_agrupada(data_agrupada)
+  stopifnot("El parametro year debe ser un numerico"
             = is.numeric(year))
   nombre_evento <- tolower(data_agrupada$nombre_evento[1])
   femenino <- 0
