@@ -104,6 +104,13 @@ titulo <- paste0("Reporte Automatizado para ",
                  stringr::str_to_title(params$nombre_evento), " ",
                  params$departmento, " - Colombia",
                  ", ", params$year)
+if (params$municipio != "") {
+  titulo <- paste0("Reporte Automatizado para ",
+                 stringr::str_to_title(params$nombre_evento), " ",
+                 params$municipio, ", ",
+                 params$departmento, " - Colombia",
+                 ", ", params$year)
+}
 fuente <- "Fuente SIVIGILA, Datos libres"
 ```
 
