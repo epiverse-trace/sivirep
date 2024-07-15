@@ -6,7 +6,8 @@
 #'   ggplot2::geom_point() +
 #'   ggplot2::labs(title = "La economia") +
 #'   tema_sivirep()
-#' @export
+#' @return Un objecto tema de \pkg{ggplot2}.
+#' @keywords internal
 tema_sivirep <- function() {
   sysfonts::font_add_google("Montserrat", "Montserrat")
   showtext::showtext_auto()
