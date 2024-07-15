@@ -1,0 +1,35 @@
+---
+title: "Recursos"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r configuracion, echo = FALSE}
+library(sivirep)
+```
+
+## Enfermedades y años disponibles para su descarga
+
+```{r list-events, echo = FALSE}
+lista_eventos <- list_events()
+knitr::kable(lista_eventos,
+             col.names = c("Enfermedad", "Año"))
+```
+
+## División Política y Admnistrativa de Colombia
+
+A continuación, encontrarás el listado de códigos y nombres que utiliza `sivirep` para generar la distribución espacial de casos, filtrar por departamento o municipio y producir el mapa nacional, departamental y municipal, según el estándar nacional que codifica y lista las entidades territoriales denominado DIVIPOLA.
+
+```{r list-geo, echo = FALSE}
+lista_geo <- import_geo_cods()
+knitr::kable(lista_geo,
+             col.names = c("Código departamento", "Código municipio",
+                           "Nombre departamento", "Nombre municipio", "Tipo"))
+```
+
+

@@ -1,0 +1,59 @@
+# Workflow derived from https://github.com/r-lib/actions/tree/master/examples
+# The action runs when:
+# - The DESCRIPTION or inst/CITATION are modified
+# - Can be run manually
+# For customizing the triggers, visit https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - DESCRIPTION
+      - inst/CITATION
+      - .github/workflows/update-citation-cff.yaml
+  workflow_dispatch:
+
+name: Update CITATION.cff
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-citation-cff:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: r-lib/actions/setup-r@v2
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: |
+            any::cffr
+            any::V8
+
+      - name: Update CITATION.cff
+        run: |
+
+          library(cffr)
+
+          # Customize with your own code
+          # See https://docs.ropensci.org/cffr/articles/cffr.html
+
+          # Write your own keys
+          mykeys <- list()
+
+          # Create your CITATION.cff file
+          cff_write(keys = mykeys)
+
+        shell: Rscript {0}
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: Update `CITATION.cff`
+          title: Update `CITATION.cff`
+          body: |
+            This pull request updates the citation file, ensuring all authors are credited and there are no discrepancies.
+
+            Please verify the changes before merging. 
+          branch: update-citation-cff

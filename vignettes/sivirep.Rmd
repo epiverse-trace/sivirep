@@ -12,7 +12,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include = FALSE}
+```{r configuracion, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup_package, include = FALSE}
+```{r configuracion-sivirep, include = FALSE}
 library(sivirep)
 ```
 
@@ -32,6 +32,10 @@ library(sivirep)
 La versión actual de *sivirep* 0.0.2 proporciona funciones para la manipulación de datos y la generación de reportes automatizados basados en las bases de datos individualizadas de casos de
 [SIVIGILA](https://www.ins.gov.co/Direcciones/Vigilancia/Paginas/SIVIGILA.aspx),
 que es el sistema oficial de vigilancia epidemiológica de Colombia.
+
+## Exclusión de responsabilidad
+
+El uso de esta librería, así como de los datos, reportes generados y otros productos derivados de la misma, se realiza bajo la responsabilidad exclusiva del usuario. Ni los autores de la librería, ni la Pontificia Universidad Javeriana, ni la fuente de información asumen responsabilidad alguna por los resultados obtenidos o el uso que se haga de dichos productos.
 
 ## Motivación
 
@@ -92,7 +96,7 @@ pak::pak("epiverse-trace/sivirep")
 Puedes iniciar importando el paquete después de finalizada su
 instalación con el siguiente comando:
 
-```{r import_sivirep, eval = FALSE}
+```{r import-sivirep, eval = FALSE}
 library(sivirep)
 ```
 
@@ -101,8 +105,10 @@ de forma libre utilizando:
 
 ```{r list_events}
 lista_eventos <- list_events()
-knitr::kable(lista_eventos)
+knitr::kable(lista_eventos,
+             col.names = c("Enfermedad", "Año"))
 ```
+
 ## Reporte automatizado
 
 Actualmente, `sivirep` provee una plantilla de reporte llamada
@@ -114,11 +120,19 @@ la fuente de SIVIGILA.
 Para hacer uso de la plantilla del reporte puedes seguir los
 siguientes pasos:
 
-![](`r system.file("video", "template.webm", package = "sivirep")`){width=900}
+```{=html}
+<video controls autoplay width="100%" loop>
+  <source src="`r system.file("video", "template.webm", package = "sivirep")`" type="video/webm" label="fullHD">
+</video>
+```
 
 El reporte que obtendrás al utilizar la plantilla de `sivirep` es este:
 
-![](`r system.file("video", "template-report.webm", package = "sivirep")`){width=900}
+```{=html}
+<video controls autoplay width="100%" loop>
+  <source src="`r system.file("video", "template-report.webm", package = "sivirep")`" type="video/webm" label="fullHD">
+</video>
+```
 
 Si deseas generar el reporte en formato PDF debes instalar LateX. Puedes instalarlo siguiendo las instrucciones que se
 encuentran en [R Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html).
