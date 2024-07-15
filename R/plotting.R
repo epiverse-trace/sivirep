@@ -1012,21 +1012,9 @@ plot_per_etn <- function(data_agrupada,
     fuente_data <-
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
   }
-  etiqueta_casos <- config::get(file =
-                                  system.file("extdata",
-                                              "config.yml",
-                                              package = "sivirep"),
-                                "label_cases")
-  etiqueta_etn <- config::get(file =
-                                  system.file("extdata",
-                                              "config.yml",
-                                              package = "sivirep"),
-                                "label_etn_groups")
-  etiquetas <- config::get(file =
-                             system.file("extdata",
-                                         "config.yml",
-                                         package = "sivirep"),
-                           "labels_per_etn")
+  etiqueta_casos <- obtener_val_config("label_cases")
+  etiqueta_etn <- obtener_val_config("label_etn_groups")
+  etiquetas <- obtener_val_config("labels_per_etn")
   grupos <- unique(data_agrupada[[col_etn]])
   etiquetas <- etiquetas[as.character(grupos)]
   etiquetas <- unlist(etiquetas)
