@@ -297,17 +297,9 @@ plot_sex <- function(data_agrupada,
             = is.character(fuente_data))
   etiqueta_eje <- NULL
   if (col_distribucion == "casos") {
-    etiqueta_eje <- config::get(file =
-                                    system.file("extdata",
-                                                "config.yml",
-                                                package = "sivirep"),
-                                "label_cases")
+    etiqueta_eje <- obtener_val_config("label_cases")
   } else {
-    etiqueta_eje <- config::get(file =
-                                    system.file("extdata",
-                                                "config.yml",
-                                                package = "sivirep"),
-                                "label_incidence")
+    etiqueta_eje <- obtener_val_config("label_incidence")
   }
   plot_casos_sex <- ggplot2::ggplot(data_agrupada,
                                     ggplot2::aes(x =
