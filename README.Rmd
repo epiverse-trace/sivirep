@@ -39,7 +39,7 @@ library(sivirep)
 ***sivirep*** es desarrollado por la [Pontificia Universidad
 Javeriana](https://www.javeriana.edu.co/inicio) como parte de la iniciativa [Epiverse](https://data.org/initiatives/epiverse/).
 
-La versión actual de *sivirep* 0.0.9 proporciona funciones para la
+La versión actual de *sivirep* 1.0.0 proporciona funciones para la
 manipulación de datos y la generación de reportes automatizados basados
 en las bases de datos individualizadas de casos de
 [SIVIGILA](https://www.ins.gov.co/Direcciones/Vigilancia/Paginas/SIVIGILA.aspx),
