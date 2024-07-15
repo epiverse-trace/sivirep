@@ -1053,7 +1053,7 @@ plot_per_etn <- function(data_agrupada,
 #' @return Una `kable` (tabla gráfica) con la incidencia según
 #' distribución geográfica.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 #' data_agrupada <- agrupar_mpio(data_limpia, dpto = "Antioquia")
