@@ -74,6 +74,7 @@ plot_map <- function(data_agrupada,
   cols_geo_ocurrencia <- NULL
   nombres_col <- NULL
   etiqueta_relleno <- "Casos"
+  shp <- import_shape_map()
   if (is.null(fuente_data)) {
     fuente_data <- "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
   }
@@ -93,18 +94,7 @@ plot_map <- function(data_agrupada,
                                as.integer(cond_incidencia$coeficiente),
                                " habitantes")
   }
-  ruta_extdata <- system.file("extdata", package = "sivirep")
-  archivo_config <- system.file("extdata", "config.yml", package = "sivirep")
-  archivo_zip <- config::get(file = archivo_config, "map_shape_zip_file")
-  ruta_zip <- file.path(ruta_extdata, archivo_zip)
-  if (!file.exists(ruta_zip)) {
-    url_base <- config::get(file = archivo_config, "map_shape_path")
-    utils::download.file(url_base, ruta_zip)
-    utils::unzip(zipfile = ruta_zip, exdir = ruta_extdata)
   }
-  carpeta_base <- config::get(file = archivo_config, "map_shape_folder")
-  ruta_base <- file.path("extdata", carpeta_base,
-                         config::get(file = archivo_config, "map_shape_file"))
   if (is.null(dpto)) {
     nomb_cols <- colnames(data_agrupada)
     pos_col_dpto <- which(stringr::str_detect(nomb_cols,

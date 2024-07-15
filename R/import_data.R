@@ -382,3 +382,27 @@ import_pob_riesgo <- function(event, year) {
   }
   return(pob_riesgo_event)
 }
+
+#' @title Importar el Shapefile del mapa de Colombia
+#' @description Función que importa el Shapefile del mapa de Colombia.
+#' @return Un objeto `sf` que contiene los elementos del shapefile
+#' del mapa.
+#' @keywords internal
+import_shape_map <- function() {
+  ruta_extdata <- system.file("extdata", package = "sivirep")
+  archivo_config <- system.file("extdata", "config.yml", package = "sivirep")
+  archivo_zip <- config::get(file = archivo_config, "map_shape_zip_file")
+  ruta_zip <- file.path(ruta_extdata, archivo_zip)
+  if (!file.exists(ruta_zip)) {
+    url_base <- config::get(file = archivo_config, "map_shape_path")
+    utils::download.file(url_base, ruta_zip)
+    utils::unzip(zipfile = ruta_zip, exdir = ruta_extdata)
+  }
+  carpeta_base <- config::get(file = archivo_config, "map_shape_folder")
+  ruta_base <- file.path("extdata", carpeta_base,
+                         config::get(file = archivo_config, "map_shape_file"))
+  dsn <-  system.file(ruta_base,
+                      package = "sivirep")
+  shp <- sf::st_read(dsn = dsn, quiet = TRUE)
+  return(shp)
+}
