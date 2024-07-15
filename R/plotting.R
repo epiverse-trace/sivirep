@@ -1161,15 +1161,18 @@ plot_tabla_incidencia_sex <- function(data_agrupada,
                            nombre_evento = data_agrupada$nombre_evento,
                            sexo = data_agrupada$sexo,
                            incidencia = data_agrupada$incidencia)
-  tabla_sex <- knitr::kable(data_tabla,
-                            col.names = c(etiqueta_cod,
-                                          "Evento",
-                                          etiqueta_sex,
-                                          "Incidencia"),
-                             align = "c",
-                             caption = caption_tabla) %>%
-    kableExtra::row_spec(0, color = "white", background = "#2274BB") %>%
-    kableExtra::kable_styling(full_width = FALSE,
-                              latex_options = "HOLD_position")
+  tabla_sex <- kableExtra::kbl(data_tabla,
+                               col.names = c(etiqueta_cod,
+                                             "Evento",
+                                             etiqueta_sex,
+                                             "Incidencia"),
+                               align = "c",
+                               caption = caption_tabla)
+    tabla_sex <- kableExtra::row_spec(tabla_sex,
+                                      0, color = "white",
+                                      background = "#2274BB")
+    tabla_sex <- kableExtra::kable_styling(tabla_sex,
+                                           full_width = FALSE,
+                                           latex_options = "HOLD_position")
   return(tabla_sex)
 }
