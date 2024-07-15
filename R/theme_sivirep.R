@@ -1,11 +1,6 @@
-#' Tema \pkg{ggplot2} personalizado para los reportes de \pkg{sivirep}
-#' @return Un objecto tema de \pkg{ggplot2}
-#' @examples
-#' library(ggplot2)
-#' ggplot(mtcars, ggplot2::aes(wt, mpg)) +
-#'   ggplot2::geom_point() +
-#'   ggplot2::labs(title = "La economia") +
-#'   tema_sivirep()
+#' @title Tema sivirep
+#' @description Tema \pkg{ggplot2} personalizado para los reportes
+#' de \pkg{sivirep}.
 #' @return Un objecto tema de \pkg{ggplot2}.
 #' @keywords internal
 tema_sivirep <- function() {

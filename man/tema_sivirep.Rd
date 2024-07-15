@@ -2,7 +2,7 @@
 % Please edit documentation in R/theme_sivirep.R
 \name{tema_sivirep}
 \alias{tema_sivirep}
-\title{Tema \pkg{ggplot2} personalizado para los reportes de \pkg{sivirep}.}
+\title{Tema sivirep}
 \usage{
 tema_sivirep()
 }
@@ -10,6 +10,7 @@ tema_sivirep()
 Un objecto tema de \pkg{ggplot2}.
 }
 \description{
-Tema \pkg{ggplot2} personalizado para los reportes de \pkg{sivirep}.
+Tema \pkg{ggplot2} personalizado para los reportes
+de \pkg{sivirep}.
 }
 \keyword{internal}
