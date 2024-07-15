@@ -1068,11 +1068,7 @@ plot_tabla_incidencia_geo <- function(data_agrupada,
   validar_data_agrupada(data_agrupada)
   nomb_cols <- obtener_tip_ocurren_geo(data_agrupada$nombre_evento[1])
   etiqueta_geo <- "Departamento"
-  etiqueta_cod <- config::get(file =
-                                system.file("extdata",
-                                            "config.yml",
-                                            package = "sivirep"),
-                              "label_code")
+  etiqueta_cod <- obtener_val_config("label_code")
   if (is.null(col_geo)) {
     col_geo <- nomb_cols[1:2]
   }
@@ -1083,11 +1079,7 @@ plot_tabla_incidencia_geo <- function(data_agrupada,
   }
   cond_incidencia <-
     obtener_cond_inciden_event(cod_eve = data_agrupada$cod_eve[1])
-  caption_tabla <- config::get(file =
-                                 system.file("extdata",
-                                             "config.yml",
-                                             package = "sivirep"),
-                               "caption_geo_incidence")
+  caption_tabla <- obtener_val_config("caption_geo_incidence")
   caption_tabla <- paste0(caption_tabla, nomb_cols[5], " por ",
                           cond_incidencia$coeficiente,
                           " habitantes")
