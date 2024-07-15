@@ -952,26 +952,10 @@ plot_tipo_caso_years <- function(data_agrupada,
     fuente_data <-
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
   }
-  etiquetas <- config::get(file =
-                             system.file("extdata",
-                                         "config.yml",
-                                         package = "sivirep"),
-                           "labels_cas_tip")
-  etiqueta_year <- config::get(file =
-                                 system.file("extdata",
-                                             "config.yml",
-                                             package = "sivirep"),
-                               "label_year")
-  etiqueta_casos <- config::get(file =
-                                  system.file("extdata",
-                                              "config.yml",
-                                              package = "sivirep"),
-                                "label_cases")
-  etiqueta_tipo <- config::get(file =
-                                 system.file("extdata",
-                                             "config.yml",
-                                             package = "sivirep"),
-                               "label_type_case")
+  etiquetas <- obtener_val_config("labels_cas_tip")
+  etiqueta_year <- obtener_val_config("label_year")
+  etiqueta_casos <- obtener_val_config("label_cases")
+  etiqueta_tipo <- obtener_val_config("label_type_case")
   clasificacion <- unique(data_agrupada[[col_tipo]])
   escala <- length(unique(data_agrupada[[col_tipo]]))
   etiquetas <- etiquetas[as.character(clasificacion)]
