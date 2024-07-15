@@ -89,3 +89,19 @@ validar_format_fecha <- function(format_fecha) {
   stopifnot("El parametro format_fecha debe ser una cadena de caracteres" =
               is.character(format_fecha))
 }
+
+#' @title Validar párametro `col_sex`
+#' @description Función que realiza las validaciones correspondientes
+#' del párametro `col_sex`.
+#' @param data_event Un `data.frame` que contiene los datos de una enfermedad
+#' o evento.
+#' @param col_sex Un `character` (cadena de caracteres) con el nombre
+#' de la columna que contiene el sexo en los datos de la enfermedad o evento.
+#' @noRd
+validar_sex <- function(data_event, col_sex) {
+  stopifnot("El parametro col_sex debe ser una cadena de caracteres" =
+              is.character(col_sex),
+            "La columna o variable del parametro col_sex no
+            se encuentra en los datos de la enfermedad o evento" =
+            col_sex %in% colnames(data_event))
+}
