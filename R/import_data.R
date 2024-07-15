@@ -14,9 +14,9 @@
 realizar_peticion_http <- function(url) {
   request_timeout <- obtener_val_config("request_timeout")
   return(tryCatch(
-    httr2::request(url) %>%
-    httr2::req_timeout(request_timeout) %>%
-    httr2::req_perform(),
+    httr2::req_perform(
+      httr2::req_timeout(httr2::request(url),
+                         request_timeout)),
     httr2_failure = function(e) {
       stop(
         "No se pudo conectar al servidor de SIVIGILA para descargar los datos")
@@ -88,12 +88,12 @@ list_events <- function() {
   ruta_consulta_event_year <-
     obtener_val_config("query_diseases_by_year_path")
   conten_consulta_event_year <-
-    realizar_peticion_http(ruta_consulta_event_year) %>%
-    httr2::resp_body_xml()
-  children <- xml2::xml_children(conten_consulta_event_year) %>%
-    xml2::xml_children() %>%
-    xml2::xml_children() %>%
-    xml2::xml_children()
+    realizar_peticion_http(ruta_consulta_event_year)
+  conten_consulta_event_year <- httr2::resp_body_xml(conten_consulta_event_year)
+  children <- xml2::xml_children(conten_consulta_event_year)
+  children <-  xml2::xml_children(children)
+  children <-  xml2::xml_children(children)
+  children <-  xml2::xml_children(children)
   text_children <- xml2::xml_text(children)
 
   i <- 2
