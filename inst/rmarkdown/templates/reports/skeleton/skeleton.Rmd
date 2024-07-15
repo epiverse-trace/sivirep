@@ -426,7 +426,7 @@ La incidencia para cada sexo por `r cond_incidencia$coeficiente` habitantes, se 
 
 ```{r incidencia-sex, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
 nomb_dpto <- NULL
-if (params$departmento != "") { 
+if (params$departmento != "") {
   nomb_dpto <- params$departmento
 }
 incidencias_sex <-
