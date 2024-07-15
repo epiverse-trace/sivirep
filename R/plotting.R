@@ -284,16 +284,11 @@ plot_sex <- function(data_agrupada,
                      col_distribucion = "casos",
                      porcentaje = TRUE,
                      fuente_data = NULL) {
-  stopifnot("El parametro data_agrupada es obligatorio" =
-              !missing(data_agrupada),
-            "El parametro data_agrupada debe ser un data.frame" =
-              is.data.frame(data_agrupada),
-            "El parametro data_agrupada no debe estar vacio" =
-              nrow(data_agrupada) > 0,
             "El parametro col_sex debe ser una cadena de caracteres" =
               is.character(col_sex),
             "El parametro porcentaje debe ser un booleano" =
               is.logical(porcentaje))
+  validar_data_agrupada(data_agrupada)
   if (is.null(fuente_data)) {
     fuente_data <-
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
