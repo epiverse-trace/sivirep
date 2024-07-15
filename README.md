@@ -86,7 +86,8 @@ Cucunubá](https://github.com/zmcucunuba), Jennifer A. Mendez-Romero y
 [Claudia Huguett-Aragón](https://github.com/chuguett)
 
 **Contribuyentes**: [Hugo Gruson](https://github.com/Bisaloo), [Juanita
-Romero-Garcés](https://github.com/juanitaromerog), [Andrés
+Romero-Garcés](https://github.com/juanitaromerog), [Jaime A.
+Pavlich-Mariscal](https://github.com/jpavlich), [Andrés
 Moreno](https://github.com/andresmore), [Miguel
 Gámez](https://github.com/megamezl), [Laura
 Gómez-Bermeo](https://github.com/lgbermeo), Johan Calderón, Lady
