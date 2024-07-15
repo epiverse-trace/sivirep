@@ -783,16 +783,18 @@ plot_tabla_tipos_event <- function(data_agrupada,
   caption_tabla <- obtener_val_config("caption_table_events")
   data_agrupada[[col_event]] <-
     stringr::str_to_title(data_agrupada[[col_event]])
-  tabla_tipos <- knitr::kable(data_agrupada[, c("cod_eve",
+  tabla_tipos <- kableExtra::kbl(data_agrupada[, c("cod_eve",
                                                 col_event,
                                                 "casos")],
-                              col.names = c(etiqueta_cod,
-                                            "Evento", "Casos"),
-                              align = "c",
-                              caption = caption_tabla) %>%
-    kableExtra::row_spec(0, color = "white", background = "#2274BB") %>%
-    kableExtra::kable_styling(full_width = FALSE,
-                              latex_options = "HOLD_position")
+                                 col.names = c(etiqueta_cod,
+                                               "Evento", "Casos"),
+                                 align = "c",
+                                 caption = caption_tabla)
+   tabla_tipos <- kableExtra::row_spec(tabla_tipos, 0, color = "white",
+                                       background = "#2274BB")
+   tabla_tipos <-
+     kableExtra::kable_styling(tabla_tipos, full_width = FALSE,
+                               latex_options = "HOLD_position")
   return(tabla_tipos)
 }
 
