@@ -166,3 +166,20 @@ validar_years <- function(data_event, col_year) {
             se encuentra en los datos de la enfermedad o evento" =
             col_year %in% colnames(data_event))
 }
+
+#' @title Validar párametro `cols_etn`
+#' @description Función que realiza las validaciones correspondientes
+#' del párametro `cols_etn`.
+#' @param data_event Un `data.frame` que contiene los datos de una enfermedad
+#' o evento.
+#' @param cols_etn Un `character` (cadena de caracteres) con el nombre de
+#' las columna(s) que contiene(n) la pertenencia étnica en los datos de la
+#' enfermedad o evento.
+#' @noRd
+validar_per_etn <- function(data_event, cols_etn) {
+  stopifnot("El parametro cols_etn debe ser una cadena de caracteres"
+            = is.character(cols_etn),
+            "La(s) columna(s) o variable(s) del parametro cols_etn no
+            se encuentra(n) en los datos de la enfermedad o evento" =
+            cols_etn %in% colnames(data_event))
+}
