@@ -269,6 +269,7 @@ plot_fecha_inisintomas <- function(data_agrupada,
 #' leyenda o fuente de información de los datos; su valor por defecto es `NULL`.
 #' @return Un `plot` o gráfico de distribución de casos por sexo.
 #' @examples
+#' \donttest{
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(dengue2020)
 #' data_agrupada <- agrupar_sex(data_event = data_limpia,
@@ -276,6 +277,7 @@ plot_fecha_inisintomas <- function(data_agrupada,
 #' plot_sex(data_agrupada = data_agrupada,
 #'          col_sex = "sexo",
 #'          porcentaje = TRUE)
+#' }
 #' @export
 plot_sex <- function(data_agrupada,
                      col_sex = "sexo",
