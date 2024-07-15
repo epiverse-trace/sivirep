@@ -543,9 +543,10 @@ plot_dptos <- function(data_agrupada,
   if (num_eventos > 3) {
     pos_leyenda <- ggplot2::theme(legend.position = "bottom")
   }
-  data_agrupada <- data_agrupada %>%
-    group_by_at(col_dptos) %>%
-    dplyr::summarise(casos = sum(.data[["casos"]]), .groups = "drop")
+  data_agrupada <- group_by_at(data_agrupada, col_dptos)
+  data_agrupada <-
+    dplyr::summarise(data_agrupada,
+                     casos = sum(.data[["casos"]]), .groups = "drop")
   plot_casos_dptos <-
     ggplot2::ggplot(data_agrupada,
                     ggplot2::aes(x = stats::reorder(.data[[col_dptos]],
