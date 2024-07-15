@@ -285,8 +285,8 @@ import_pob_incidencia <- function(poblacion = "riesgo", event, year) {
 #' proyecciones poblacionales DANE.
 #' @return Un `data.frame` con las proyecciones poblacionales DANE.
 #' @examples
-#' \dontrun{
-#' import_pob_proyecciones()
+#' \donttest{
+#' import_pob_proyecciones(year = 2020)
 #' }
 #' @export
 import_pob_proyecciones <- function(year) {
