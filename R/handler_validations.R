@@ -116,3 +116,19 @@ validar_porcentaje <- function(porcentaje) {
    stopifnot("El parametro porcentaje debe ser un booleano" =
               is.logical(porcentaje))
 }
+
+#' @title Validar párametro `col_edad`
+#' @description Función que realiza las validaciones correspondientes
+#' del párametro `col_edad`.
+#' @param data_event Un `data.frame` que contiene los datos de una enfermedad
+#' o evento.
+#' @param col_edad Un `character` (cadena de caracteres) con el nombre de la
+#' columna que contiene las edades en los datos de la enfermdedad o evento.
+#' @noRd
+validar_edad <- function(data_event, col_edad) {
+  stopifnot("El parametro col_edad debe ser una cadena de caracteres"
+            = is.character(col_edad),
+            "La columna o variable del parametro col_edad no
+            se encuentra en los datos de la enfermedad o evento" =
+            col_edad %in% colnames(data_event))
+}
