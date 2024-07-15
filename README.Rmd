@@ -142,14 +142,14 @@ install.packages("sivirep", repos = c("https://epiverse-trace.r-universe.dev", "
 Puedes iniciar importando el paquete después de finalizada su
 instalación con el siguiente comando:
 
-```{r import_sivirep, eval = FALSE}
+```{r import-sivirep, eval = FALSE}
 library(sivirep)
 ```
 
 Puedes revisar las enfermedades y los años disponibles para su descarga
 de forma libre utilizando:
 
-```{r list_events}
+```{r list-events}
 lista_eventos <- list_events()
 knitr::kable(lista_eventos)
 ```
