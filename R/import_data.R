@@ -269,7 +269,7 @@ import_pob_incidencia <- function(poblacion = "riesgo", event, year) {
             "Valor invalido para el parametro poblacion" =
               (poblacion %in% c("riesgo", "proyecciones")))
   if (poblacion == "proyecciones") {
-    poblacion <- import_pob_proyecciones()
+    poblacion <- import_pob_proyecciones(year = year)
   } else {
     poblacion <- import_pob_riesgo(event = event, year = year)
   }
@@ -287,7 +287,7 @@ import_pob_incidencia <- function(poblacion = "riesgo", event, year) {
 #' import_pob_proyecciones()
 #' }
 #' @export
-import_pob_proyecciones <- function() {
+import_pob_proyecciones <- function(year) {
   proyecciones <- NULL
   proyecs_2005_2035 <- NULL
   nomb_proyecs <- obtener_val_config("projections_file_name")
