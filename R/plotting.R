@@ -59,12 +59,7 @@ plot_map <- function(data_agrupada,
                      fuente_data = NULL,
                      dpto = NULL,
                      mpio = NULL) {
-  stopifnot("El parametro data_agrupada es obligatorio" =
-              !missing(data_agrupada),
-            "El parametro data_agrupada debe ser un data.frame" =
-              is.data.frame(data_agrupada),
-            "El parametro data_agrupada no debe estar vacio" =
-              nrow(data_agrupada) > 0)
+  validar_data_agrupada(data_agrupada)
   titulo <- "Colombia"
   subtitulo <-  config::get(file =
                               system.file("extdata",
