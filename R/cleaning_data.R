@@ -360,10 +360,7 @@ limpiar_val_atipic <- function(data_event) {
 limpiar_data_sivigila <- function(data_event) {
   validar_data_event(data_event)
   data_event <- limpiar_encabezado(data_event)
-  nom_cols_fechas <- config::get(file = system.file("extdata",
-                                                    "config.yml",
-                                                    package = "sivirep"),
-                                 "dates_column_names")
+  nom_cols_fechas <- obtener_val_config("dates_column_names")
   year <- names(sort(table(data_event$ano), decreasing = TRUE)[1])
   data_limpia <- format_fecha(data_event,
                                   nomb_cols = nom_cols_fechas)
