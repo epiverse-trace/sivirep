@@ -26,3 +26,24 @@ validar_data_agrupada <- function(data_agrupada) {
             "El parametro data_agrupada no debe estar vacio" =
               nrow(data_agrupada) > 0)
 }
+
+#' @title Validar párametro `nomb_cols`
+#' @description Función que realiza las validaciones correspondientes
+#' del párametro `nomb_cols`.
+#' @param data_event Un `data.frame` que contiene los datos de
+#' una enfermedad o evento.
+#' @param nomb_cols Un `character` (cadena de caracteres) o
+#' `array (arreglo) de character` que contiene el nombre de
+#' la(s) columna(s) en los datos de la enfermedad o evento.
+#' @noRd
+validar_nomb_cols <- function(data_event, nomb_cols) {
+  stopifnot("El parametro nomb_cols es obligatorio"
+            = !missing(nomb_cols),
+            "El parametro nomb_cols debe ser una cadena de caracteres
+            o un arreglo de cadenas de caracteres "
+            = (is.character(nomb_cols) && !is.array(nomb_cols)) ||
+              (!is.character(nomb_cols) && is.array(nomb_cols)),
+            "La(s) columna(s) o variable(s) del parametro nomb_cols no
+            se encuentra(n) en los datos de la enfermedad o evento" =
+            nomb_cols %in% colnames(data_event))
+}
