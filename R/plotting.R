@@ -779,16 +779,8 @@ plot_tabla_tipos_event <- function(data_agrupada,
   validar_data_agrupada(data_agrupada)
   stopifnot("El parametro col_event debe ser una cadena de caracteres"
             = is.character(col_event))
-  etiqueta_cod <- config::get(file =
-                              system.file("extdata",
-                                          "config.yml",
-                                          package = "sivirep"),
-                              "label_code")
-  caption_tabla <- config::get(file =
-                                 system.file("extdata",
-                                             "config.yml",
-                                             package = "sivirep"),
-                               "caption_table_events")
+  etiqueta_cod <- obtener_val_config("label_code")
+  caption_tabla <- obtener_val_config("caption_table_events")
   data_agrupada[[col_event]] <-
     stringr::str_to_title(data_agrupada[[col_event]])
   tabla_tipos <- knitr::kable(data_agrupada[, c("cod_eve",
