@@ -548,7 +548,7 @@ obtener_pob_incidencia <- function(data_incidencia = NULL,
       } else {
         poblacion <- "proyecciones"
         data_incidencia <- import_pob_incidencia(poblacion = poblacion)
-        warning("Las incidencias se calcularan con las proyecciones ",
+        message("Las incidencias se calcularan con las proyecciones ",
                 "poblacionales DANE. Si usted cuenta con la ",
                 "poblacion a riesgo definida por el Ministerio de ",
                 "Salud para el ", year, " puede hacer uso de ella, ",
