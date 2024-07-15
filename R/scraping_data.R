@@ -10,13 +10,12 @@
 #' fuente SIVIGILA.
 #' @keywords internal
 obtener_ruta_data_event_year <- function(nombre_event, year) {
-  archivo_config <- system.file("extdata", "config.yml", package = "sivirep")
-  ruta_base <- config::get(file = archivo_config, "base_path_microdata")
-  ruta_archivo <- config::get(file = archivo_config, "file_path_microdata")
-  ruta_archivo_params <- config::get(file = archivo_config,
-                                     "file_path_parameters_microdata")
-  ruta_microdata <- config::get(file = archivo_config, "path_microdata")
-  ruta_query <- config::get(file = archivo_config, "query_path_microdata")
+  ruta_base <- obtener_val_config("base_path_microdata")
+  ruta_archivo <- obtener_val_config("file_path_microdata")
+  ruta_archivo_params <-
+  obtener_val_config("file_path_parameters_microdata")
+  ruta_microdata <- obtener_val_config("path_microdata")
+  ruta_query <- obtener_val_config("query_path_microdata")
   year <- as.character(year)
   nombre_event <- utils::URLencode(nombre_event)
   ruta_query <- stringr::str_replace(ruta_query, stringr::fixed("_year_"),
