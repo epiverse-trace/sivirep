@@ -475,10 +475,9 @@ plot_edad_sex <- function(data_agrupada,
                           col_edad = "edad",
                           col_sex = "sexo",
                           fuente_data = NULL) {
-            "El parametro col_sex debe ser una cadena de caracteres"
-            = is.character(col_sex))
   validar_data_agrupada(data_agrupada)
   validar_edad(data_agrupada, col_edad)
+  validar_sex(data_agrupada, col_sex)
   if (is.null(fuente_data)) {
     fuente_data <-
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
