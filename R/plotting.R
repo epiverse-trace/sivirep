@@ -128,13 +128,17 @@ plot_map <- function(data_agrupada,
           los codigos de los departamentos o municipios en el
           parametro col_codigos")
   }
-  data_agrupada <- data_agrupada %>%
-    group_by_at(c("id", nombres_col)) %>%
-    dplyr::summarise(casos = sum(.data[[col_distribucion]]), .groups = "drop")
+  polygon_seleccionado <- config_map$poligono
+  data_agrupada <- group_by_at(data_agrupada, c("id", nombres_col))
+  data_agrupada <-  dplyr::summarise(data_agrupada,
+                                     casos =
+                                       sum(.data[[col_distribucion]]),
+                                     .groups = "drop")
+  data_agrupada <- data_agrupada[order(data_agrupada[["casos"]],
+                                       decreasing = FALSE), ]
   polygon_seleccionado <- ggplot2::fortify(polygon_seleccionado, region = "id")
-  polygon_seleccionado$indice <- seq_len(nrow(polygon_seleccionado))
-  polygon_seleccionado <- polygon_seleccionado %>%
-    dplyr::left_join(data_agrupada, by = "id")
+  polygon_seleccionado <- dplyr::left_join(polygon_seleccionado,
+                                           data_agrupada, by = "id")
   polygon_seleccionado <-
     cbind(polygon_seleccionado,
           sf::st_coordinates(sf::st_centroid(polygon_seleccionado$geometry)))
