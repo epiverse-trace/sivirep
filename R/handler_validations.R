@@ -150,3 +150,19 @@ validar_area_geo <- function(data_event, col_area, porcentaje) {
             se encuentra en los datos de la enfermedad o evento" =
             col_area %in% colnames(data_event))
 }
+
+#' @title Validar párametro `col_year`
+#' @description Función que realiza las validaciones correspondientes
+#' del párametro `col_year`.
+#' @param data_event Un `data.frame` que contiene los datos de una enfermedad
+#' o evento.
+#' @param col_year Un `character` (cadena de carácteres) con el nombre de
+#' la columna que contiene el año en los datos de la enfermedad o evento.
+#' @noRd
+validar_years <- function(data_event, col_year) {
+  stopifnot("El parametro col_year debe ser una cadena de caracteres"
+            = is.character(col_year),
+            "La columna o variable del parametro col_year no
+            se encuentra en los datos de la enfermedad o evento" =
+            col_year %in% colnames(data_event))
+}
