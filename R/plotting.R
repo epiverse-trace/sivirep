@@ -995,11 +995,13 @@ plot_tipo_caso_years <- function(data_agrupada,
 #' @return Un `plot` o gráfico de la distribución de casos por la pertenencia
 #' étnica.
 #' @examples
+#' \donttest{
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(dengue2020)
 #' data_agrupada <- agrupar_per_etn(data_event = data_limpia)
 #' plot_per_etn(data_agrupada,
 #'              col_etn = "per_etn")
+#' }
 #' @export
 plot_per_etn <- function(data_agrupada,
                          col_etn = "per_etn",
