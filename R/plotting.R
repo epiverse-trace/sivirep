@@ -44,7 +44,7 @@
 #'          col_codigos = "cod_mun_o",
 #'          col_distribucion = "casos",
 #'          dpto = "Antioquia",
-#'          mpio = "Envigado")
+#'          mpio = "Medellin")
 #' # Mapa con la incidencia por municipios de un departamento específico
 #' incidencia_dpto <-
 #'     calcular_incidencia_geo(data_agrupada = data_espacial_dpto)
