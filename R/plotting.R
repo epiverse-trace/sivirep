@@ -718,21 +718,9 @@ plot_top_area_geo <- function(data_agrupada,
   cols_geo_ocurrencia <-
     obtener_tip_ocurren_geo(nombre_event =
                               data_agrupada[["nombre_evento"]][1])
-  etiquetas_areas <- config::get(file =
-                                   system.file("extdata",
-                                               "config.yml",
-                                               package = "sivirep"),
-                           "labels_geo_areas")
-  etiqueta_casos <- config::get(file =
-                                  system.file("extdata",
-                                              "config.yml",
-                                              package = "sivirep"),
-                                "label_cases")
-  etiqueta_area_geo <- config::get(file =
-                                     system.file("extdata",
-                                                 "config.yml",
-                                                 package = "sivirep"),
-                                   "label_geo_area")
+  etiquetas_areas <- obtener_val_config("labels_geo_areas")
+  etiqueta_casos <- obtener_val_config("label_cases")
+  etiqueta_area_geo <- obtener_val_config("label_geo_area")
   nomb_cols <- NULL
   if (length(cols_geo_ocurrencia) > 1) {
       if (cols_geo_ocurrencia[4] %in% names(data_agrupada)) {
