@@ -61,13 +61,10 @@ plot_map <- function(data_agrupada,
                      mpio = NULL) {
   validar_data_agrupada(data_agrupada)
   titulo <- "Colombia"
-  subtitulo <-  config::get(file =
-                              system.file("extdata",
-                                          "config.yml",
-                                          package = "sivirep"),
-                            "label_geo_analysis")
+  subtitulo <-  obtener_val_config("label_geo_analysis")
   cols_geo_ocurrencia <- NULL
   nombres_col <- NULL
+  pos_col <- NULL
   etiqueta_relleno <- "Casos"
   shp <- import_shape_map()
   if (is.null(fuente_data)) {
