@@ -62,13 +62,19 @@ default:
   dpto_shape_file: "depto.shp"
   divipola_data_path: "divipoladata.rda"
   labels_geo_areas: ["Cabecera municipal", "Centro poblado", "Rural disperso"]
-  labels_per_etn: {"1": "Indigena", "2": "ROM/ Gitano", "3": "Raizal", "4": "Palenquero", "5": "Negro/ Mulato/ Afrocolombiano", "6": "Otro"}
   labels_cas_tip:
     '1': Sospechoso
     '2': Probable
     '3': Confirmado por laboratorio
     '4': Confirmado por clinica
     '5': Confirmado por nexo epidemiologico
+  labels_per_etn:
+    '1': Indigena
+    '2': ROM/ Gitano
+    '3': Raizal
+    '4': Palenquero
+    '5': Negro/ Mulato/ Afrocolombiano
+    '6': Otro
   label_year: "Año"
   label_cases: "Número de casos"
   label_incidence: "Incidencia"
