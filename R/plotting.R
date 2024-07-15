@@ -184,12 +184,9 @@ plot_fecha_inisintomas <- function(data_agrupada,
                                    uni_marca = "semanaepi",
                                    tipo = "barras",
                                    fuente_data = NULL) {
-  fechas_column_nombres <- config::get(file = system.file("extdata",
-                                                          "config.yml",
-                                                          package = "sivirep"),
-                                       "dates_column_names")
   validar_data_agrupada(data_agrupada)
   validar_fecha_inisintomas(data_agrupada, col_fecha, uni_marca, tipo)
+  fechas_column_nombres <- obtener_val_config("dates_column_names")
   var_x <- col_fecha
   num_eventos <- length(unique(data_agrupada[["nombre_evento"]]))
   data_plot <- data_agrupada
@@ -217,17 +214,9 @@ plot_fecha_inisintomas <- function(data_agrupada,
                                                     "nombre_evento")) %>%
       dplyr::summarise(casos = sum(.data$casos), .groups = "drop")
   }
-  etiqueta_fecha <- config::get(file =
-                                  system.file("extdata",
-                                              "config.yml",
-                                              package = "sivirep"),
-                                "label_date_ini")
+  etiqueta_fecha <- obtener_val_config("label_date_ini")
   etiqueta_x <- paste0("\n", etiqueta_fecha, " por ", uni_marca, "\n")
-  etiqueta_casos <- config::get(file =
-                                  system.file("extdata",
-                                              "config.yml",
-                                              package = "sivirep"),
-                                "label_cases")
+  etiqueta_casos <- obtener_val_config("label_cases")
   pos_leyenda <- ggplot2::theme(legend.position = "right")
   if (num_eventos > 3) {
     pos_leyenda <- ggplot2::theme(legend.position = "bottom")
