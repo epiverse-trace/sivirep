@@ -25,15 +25,6 @@ tema_sivirep <- function() {
 #' @param nombre Un `character` (cadena de caracteres) que contiene el nombre
 #' de la escala.
 #' @param etiquetas Un `character` (cadena de caracteres) que contiene las
-#' etiquetas de la escala
-#' @returns Un objeto `scale_fill_manual` de \pkg{ggplot2}
-#' @examples
-#' library(ggplot2)
-#' ggplot(mtcars, ggplot2::aes(wt, mpg)) +
-#'   ggplot2::geom_point() +
-#'   ggplot2::labs(title = "La economia") +
-#'   tema_sivirep()
-#' @export
 #' etiquetas de la escala.
 #' @returns Un objeto `scale_fill_manual` de \pkg{ggplot2}.
 #' @keywords internal
