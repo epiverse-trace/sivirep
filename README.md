@@ -102,12 +102,29 @@ Al contribuir a este proyecto, aceptas cumplir con sus términos.
 
 ## Instalación
 
-Puedes instalar la versión de desarrollo de `sivirep` desde GitHub con
-el siguiente comando:
+Puedes instalar `sivirep` desde CRAN utilizando:
+
+``` r
+install.packages("sivirep")
+```
+
+Si deseas instalar la versión de desarrollo de `sivirep` desde GitHub
+puedes hacerlos con el siguiente comando:
 
 ``` r
 install.packages("pak")
 pak::pak("epiverse-trace/sivirep")
+```
+
+También, puedes utilizar cualquiera de estas dos opciones:
+
+``` r
+install.packages("remotes")
+remotes::install_github("epiverse-trace/sivirep")
+```
+
+``` r
+install.packages("sivirep", repos = c("https://epiverse-trace.r-universe.dev", "https://cloud.r-project.org"))
 ```
 
 ## Inicio rápido
