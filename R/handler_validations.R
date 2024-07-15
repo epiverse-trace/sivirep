@@ -183,3 +183,17 @@ validar_per_etn <- function(data_event, cols_etn) {
             se encuentra(n) en los datos de la enfermedad o evento" =
             cols_etn %in% colnames(data_event))
 }
+
+#' @title Validar párametro `data_incidencia`
+#' @description Función que realiza las validaciones correspondientes
+#' del párametro `data_incidencia`.
+#' @param data_incidencia Un `data.frame` que contiene la proyecciones
+#' poblacionales del DANE o las poblaciones a riesgo de la enfermedad
+#' o evento.
+#' @noRd
+validar_data_incidencia <- function(data_incidencia) {
+  stopifnot("El parametro data_incidencia debe ser un data.frame" =
+                is.data.frame(data_incidencia),
+              "El parametro data_incidencia no debe estar vacio" =
+                nrow(data_incidencia) > 0)
+}
