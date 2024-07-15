@@ -342,9 +342,9 @@ casos_edad_sex <- agrupar_edad_sex(data_event = data_event_filtrada,
 plot_edad_sex(data_agrupada = casos_edad_sex)
 ```
 
-`r if(params$mpio_distribution && params$departmento != "") {"# Distribución de casos por municipio"} else {"# Distribución de casos por departamento"}`
+`r if(params$mpio_distribution && params$departmento != "" && params$municipio == "") {"# Distribución de casos por municipio"} else if(params$municipio == "") {"# Distribución de casos por departamento"}`
 
-```{r group_distribution_municipios, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
+```{r casos-geo, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
 geo_ocurrencia <- obtener_tip_ocurren_geo(nombre_event = params$nombre_evento)
 if (params$departmento != "") {
   dist_espacial_dpto <- agrupar_mpio(data_event = data_event_filtrada,
@@ -364,19 +364,19 @@ if (isTRUE(length(unique(
 }
 ```
 
-`r if(params$mpio_distribution && params$departmento != "") {paste0("Los casos se distribuyen a lo largo de ", nrow(dist_espacial_dpto), " municipios del departamento de ", params$departmento, " teniendo un mayor reporte el municipio de ", stringr::str_to_title(espacial_mayor_casos[[col_geo]]), " con ", espacial_mayor_casos$casos, " casos (Ver Figura 9).")} else {paste0("Los casos se distribuyen a lo largo de ", nrow(dist_espacial_dpto), " departamentos de ", params$pais, " teniendo un mayor reporte el departamento de ", stringr::str_to_title(espacial_mayor_casos[[col_geo]]), " con ", espacial_mayor_casos$casos, " casos (Ver Figura 9).")}`
+`r if(params$mpio_distribution && params$departmento != "" && params$municipio == "") {paste0("Los casos se distribuyen a lo largo de ", nrow(dist_espacial_dpto), " municipios del departamento de ", params$departmento, " teniendo un mayor reporte el municipio de ", stringr::str_to_title(espacial_mayor_casos[[col_geo]]), " con ", espacial_mayor_casos$casos, " casos (Ver Figura 9).")} else if(params$municipio == "") {paste0("Los casos se distribuyen a lo largo de ", nrow(dist_espacial_dpto), " departamentos de ", params$pais, " teniendo un mayor reporte el departamento de ", stringr::str_to_title(espacial_mayor_casos[[col_geo]]), " con ", espacial_mayor_casos$casos, " casos (Ver Figura 9).")}`
 
-```{r plot_distribution_municipios, fig.height = altura_fig_espacial, fig.width = 10, fig.cap = paste0("Distribución de casos por ", text_fig_geo), include = params$mpio_distribution && params$departmento != "", eval = params$mpio_distribution && params$departmento != ""}
+```{r grafica-casos-mpios, fig.height = altura_fig_espacial, fig.width = 10, fig.cap = paste0("Distribución de casos por ", text_fig_geo), include = params$mpio_distribution && params$departmento != "" && params$municipio == "", eval = params$mpio_distribution && params$departmento != ""}
 plot_mpios <- plot_mpios(data_agrupada = dist_espacial_dpto)
 plot_mpios
 ```
 
-```{r plot_distribution_dptos, fig.height = altura_fig_espacial, fig.width = 10, fig.cap = paste0("Distribución de casos por ", text_fig_geo), eval = params$departmento == "", include = params$departmento == ""}
+```{r grafica-casos-dptos, fig.height = altura_fig_espacial, fig.width = 10, fig.cap = paste0("Distribución de casos por ", text_fig_geo), eval = params$departmento == "", include = params$departmento == ""}
 plot_dptos <- plot_dptos(data_agrupada = dist_espacial_dpto)
 plot_dptos
 ```
 
-\newpage
+`r if (!knitr::is_html_output() && params$municipio == "") {paste0("\\newpage")}`
 
 `r if(params$mpio_distribution) {"# Distribución de casos por área geográfica"}`
 
