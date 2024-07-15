@@ -80,13 +80,8 @@ obtener_meses_mas_casos <- function(data_event,
 obtener_fila_mas_casos <- function(data_event,
                                    nomb_col = "casos",
                                    porcentaje = TRUE) {
-  stopifnot("El parametro data_event es obligatorio" =
-              !missing(data_event),
-            "El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event),
-            "El parametro data_agrupada no debe estar vacio" =
-              nrow(data_event) > 0,
-            "El parametro nomb_col debe ser una cadena de caracteres"
+  validar_data_event(data_event)
+  stopifnot("El parametro nomb_col debe ser una cadena de caracteres"
             = is.character(nomb_col),
             "El parametro porcentaje debe ser booleano"
             = is.logical(porcentaje))
