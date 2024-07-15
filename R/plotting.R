@@ -426,9 +426,8 @@ plot_sex_semanaepi <- function(data_agrupada,
 plot_edad <- function(data_agrupada,
                       col_edad = "edad",
                       fuente_data = NULL) {
-            "El parametro col_edad debe ser una cadena de caracteres"
-            = is.character(col_edad))
   validar_data_agrupada(data_agrupada)
+  validar_edad(data_agrupada, col_edad)
   if (is.null(fuente_data)) {
     fuente_data <-
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
