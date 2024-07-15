@@ -184,21 +184,12 @@ plot_fecha_inisintomas <- function(data_agrupada,
                                    uni_marca = "semanaepi",
                                    tipo = "barras",
                                    fuente_data = NULL) {
-            "El parametro col_fecha debe ser una cadena de caracteres" =
-              is.character(col_fecha),
-            "El parametro uni_marca debe ser una cadena de caracteres" =
-              is.character(uni_marca),
-            "Valor invalido para el parametro uni_marca" =
-              uni_marca %in% c("dia", "semanaepi", "mes"),
-            "El parametro tipo debe ser una cadena de caracteres" =
-              is.character(tipo),
-            "Valor invalido para el parametro tipo" =
-              tipo %in% c("barras", "tendencia"))
   fechas_column_nombres <- config::get(file = system.file("extdata",
                                                           "config.yml",
                                                           package = "sivirep"),
                                        "dates_column_names")
   validar_data_agrupada(data_agrupada)
+  validar_fecha_inisintomas(data_agrupada, col_fecha, uni_marca, tipo)
   var_x <- col_fecha
   num_eventos <- length(unique(data_agrupada[["nombre_evento"]]))
   data_plot <- data_agrupada
