@@ -1129,10 +1129,9 @@ plot_tabla_incidencia_geo <- function(data_agrupada,
 #' @export
 plot_tabla_incidencia_sex <- function(data_agrupada,
                                       col_sex = "sexo") {
-  stopifnot("El parametro data_agrupada debe ser un data.frame"
-            = is.data.frame(data_agrupada),
             "El parametro col_sex debe ser una cadena de caracteres"
             = is.character(col_sex))
+  validar_data_agrupada(data_agrupada)
   etiqueta_sex <- "Sexo"
   etiqueta_cod <- config::get(file =
                                 system.file("extdata",
