@@ -451,23 +451,23 @@ plot_sex(data_agrupada = incidencias_sex,
 
 `r if(params$spatial_distribution) {"# Incidencia según distribución geográfica"}`
 
-`r if(params$spatial_distribution && params$departmento != "") {paste0("La incidencia para cada uno de los municipios del departamento del ", params$departmento, " por ", cond_incidencia$coeficiente, " habitantes es la siguiente:")} else {paste0("La incidencia para cada uno de los departamentos de ", params$pais, " por ", cond_incidencia$coeficiente, " habitantes es la siguiente:")}`
+`r if(params$spatial_distribution && params$departmento != "" && params$municipio == "") {paste0("La incidencia para cada uno de los municipios del departamento del ", params$departmento, " por ", cond_incidencia$coeficiente, " habitantes es la siguiente:")} else if(params$municipio == "") {paste0("La incidencia para cada uno de los departamentos de ", params$pais, " por ", cond_incidencia$coeficiente, " habitantes es la siguiente:")} else {paste0("La incidencia para el municipio de ", params$municipio, " por ", cond_incidencia$coeficiente, " habitantes es la siguiente:")}`
 
-```{r geo_incidence, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
+```{r incidencia-geo, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
 dist_espacial_dpto <-
   calcular_incidencia_geo(data_agrupada =
                             dist_espacial_dpto)
 ```
 
-```{r table_geo_incidence, echo = FALSE, error = FALSE, fig.height=5, fig.width = 10, warning = FALSE, include = TRUE, message = FALSE, fig.pos = "H"} 
+```{r tabla-incidencia-geo, echo = FALSE, error = FALSE, fig.height=5, fig.width = 10, warning = FALSE, include = TRUE, message = FALSE, fig.pos = "H"} 
 plot_tabla_incidencia_geo(dist_espacial_dpto)
 ```
 
-```{r plot_distribution_spatial, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
+```{r mapa-casos, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
 mapa <- plot_map(data_agrupada = dist_espacial_dpto)
 ```
 
-```{r map_distribution_spatial, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, cache = FALSE, results = FALSE, comment = FALSE, fig.height = 18, fig.width = 16, fig.cap = paste0("Incidencia según distribución geográfica - ", text_ext_geo), include = params$spatial_distribution}
+```{r mapa, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, cache = FALSE, results = FALSE, comment = FALSE, fig.height = 18, fig.width = 16, fig.cap = paste0("Incidencia según distribución geográfica - ", text_ext_geo), include = params$spatial_distribution}
 mapa
 ```
 
