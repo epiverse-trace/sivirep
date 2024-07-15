@@ -78,3 +78,14 @@ validar_fecha_inisintomas <- function(data_event, col_fecha,
             "Valor invalido para el parametro tipo" =
               tipo %in% c("barras", "tendencia"))
 }
+
+#' @title Validar párametro `format_fecha`
+#' @description Función que realiza las validaciones correspondientes
+#' del párametro `format_fecha`.
+#' @param format_fecha Un `character` (cadena de caracteres)
+#' que contiene  el formato deseado de la fecha.
+#' @noRd
+validar_format_fecha <- function(format_fecha) {
+  stopifnot("El parametro format_fecha debe ser una cadena de caracteres" =
+              is.character(format_fecha))
+}
