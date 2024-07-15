@@ -1132,21 +1132,9 @@ plot_tabla_incidencia_sex <- function(data_agrupada,
   validar_data_agrupada(data_agrupada)
   validar_sex(data_agrupada, col_sex)
   etiqueta_sex <- "Sexo"
-  etiqueta_cod <- config::get(file =
-                                system.file("extdata",
-                                            "config.yml",
-                                            package = "sivirep"),
-                              "label_code")
-  caption_tabla <- config::get(file =
-                                 system.file("extdata",
-                                             "config.yml",
-                                             package = "sivirep"),
-                               "caption_sex_incidence")
-  event_especiales <- config::get(file =
-                                  system.file("extdata",
-                                              "config.yml",
-                                              package = "sivirep"),
-                                  "special_events")
+  etiqueta_cod <- obtener_val_config("label_code")
+  caption_tabla <- obtener_val_config("caption_sex_incidence")
+  event_especiales <- obtener_val_config("special_events")
   cond_incidencia <-
     obtener_cond_inciden_event(cod_eve = data_agrupada$cod_eve[1])
   caption_tabla <- paste0(caption_tabla, " por ",
