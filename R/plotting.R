@@ -944,9 +944,8 @@ plot_tipo_caso_years <- function(data_agrupada,
                                  col_tipo = "tip_cas",
                                  col_year = "ano",
                                  fuente_data = NULL) {
-            "El parametro col_year debe ser una cadena de caracteres"
-            = is.character(col_year))
   validar_data_agrupada(data_agrupada)
+  validar_years(data_agrupada, col_year)
   stopifnot("El parametro col_tipo debe ser una cadena de caracteres"
             = is.character(col_tipo))
   if (is.null(fuente_data)) {
