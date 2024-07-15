@@ -815,9 +815,9 @@ plot_tabla_tipos_event <- function(data_agrupada,
 #' data_agrupada <- agrupar_years(data_event = data_limpia)
 #' plot_years(data_agrupada,
 #'            col_year = "ano")
-#' \dontrun{
-#' data_years <- import_data_event(nombre_event = "DENGUE",
-#'                                 years = seq(2007, 2020))
+#' \donttest{
+#' data_years <- import_data_event(nombre_event = "ZIKA",
+#'                                 years = c(2019, 2020))
 #' data_limpia <- limpiar_data_sivigila(data_years)
 #' data_agrupada <- agrupar_years(data_event = data_limpia)
 #' plot_years(data_agrupada,
