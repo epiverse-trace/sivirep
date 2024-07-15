@@ -94,56 +94,22 @@ plot_map <- function(data_agrupada,
                                as.integer(cond_incidencia$coeficiente),
                                " habitantes")
   }
+  config_map <- obtener_config_map(data_agrupada, dpto, mpio,
+                                   cols_geo_ocurrencia, shp)
+  pos_col <- which(colnames(data_agrupada) %in%
+                     cols_geo_ocurrencia[1])
+  nombres_col <- cols_geo_ocurrencia[2]
+  if (!is.null(config_map$dpto)) {
+    titulo <- paste0("Departamento de ",
+                     stringr::str_to_title(config_map$dpto))
   }
-  if (is.null(dpto)) {
-    nomb_cols <- colnames(data_agrupada)
-    pos_col_dpto <- which(stringr::str_detect(nomb_cols,
-                                              stringr::fixed("departamento")))
-    pos_col_mpio <- which(stringr::str_detect(nomb_cols,
-                                              stringr::fixed("municipio")))
-    if (length(pos_col_dpto) > 0) {
-      aux_dpto <- unique(data_agrupada[[nomb_cols[pos_col_dpto]]])
-      aux_mpio <- NULL
-      if (length(pos_col_mpio) > 0) {
-        aux_mpio <- unique(data_agrupada[[nomb_cols[pos_col_mpio]]])
-        if (length(aux_mpio) == 1) {
-          mpio <- aux_mpio
-        }
-      }
-      if (length(aux_dpto) == 1) {
-        dpto <- aux_dpto
-      } else {
-        ruta_base <- file.path("extdata", carpeta_base,
-                               config::get(file = archivo_config,
-                                           "dpto_shape_file"))
-      }
-    }
-  }
-  dsn <-  system.file(ruta_base,
-                      package = "sivirep")
-  shp <- sf::st_read(dsn = dsn, quiet = TRUE)
-  polygon_seleccionado <- shp
-  if (!is.null(dpto)) {
-    stopifnot("El parametro dpto debe ser un cadena de caracteres"
-              = is.character(dpto))
-    data_dept <- obtener_info_depts(dpto, mpio)
-    data_dept <- data_dept[1, ]
-    titulo <- paste0("Departamento de ", stringr::str_to_title(dpto))
-    polygon_seleccionado <- shp[shp$DPTO_CCDGO ==
-                                  data_dept$codigo_departamento, ]
-    polygon_seleccionado$MPIO_CCDGO <- paste0(polygon_seleccionado$DPTO_CCDGO,
-                                              polygon_seleccionado$MPIO_CCDGO)
-    if (!is.null(mpio)) {
-      stopifnot("El parametro mpio debe ser un cadena de caracteres"
-                = is.character(mpio))
-      titulo <- paste0(titulo, " , ", mpio)
-      color_min <- "#be0000"
-    }
-    colnames(polygon_seleccionado)[colnames(polygon_seleccionado) ==
-                                     "MPIO_CCDGO"] <- "id"
-  } else {
-    colnames(polygon_seleccionado)[colnames(polygon_seleccionado) ==
-                                     "DPTO"] <- "id"
+  if (!is.null(config_map$mpio)) {
+    titulo <- paste0(titulo, ", ",
+                     stringr::str_to_title(config_map$mpio))
+    color_min <- "#be0000"
+    pos_col <- which(colnames(data_agrupada) %in%
+                       cols_geo_ocurrencia[3])
+    nombres_col <- cols_geo_ocurrencia[4]
   }
   if (!is.null(col_codigos)) {
     colnames(data_agrupada)[colnames(data_agrupada) ==

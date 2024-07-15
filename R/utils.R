@@ -702,3 +702,62 @@ obtener_val_config <- function(llave) {
                        llave)
   return(valor)
 }
+
+#' @title Obtener la configuración del mapa
+#' @description Función que obtiene el departamento, municipio y
+#' el poligono requeridos para generar el mapa.
+#' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
+#' agrupados por departamento y número de casos.
+#' @param dpto Un `character` (cadena de caracteres) que contiene el
+#' nombre del departamento.
+#' @param mpio Un `character` (cadena de caracteres) que contiene el
+#' nombre del municipio.
+#' @param geo_ocurrencia Un `data.frame` con las columnas de ocurrencia
+#' geográfica de los datos de la enfermedad o evento.
+#' @param shp Objeto que contiene el`Shapefile` del mapa.
+#' @return Una `named list` (lista nombrada) que contiene el departamento,
+#' municipio y el poligono para generar el mapa con los siguientes
+#' nombres para cada uno de estos elementos: `dpto`, `mpio` y `poligono`.
+#' @keywords internal
+obtener_config_map <- function(data_agrupada, dpto, mpio,
+                               geo_ocurrencia, shp) {
+  polygon_seleccionado <- shp
+  if (is.null(dpto) &&
+      geo_ocurrencia[1] %in% names(data_agrupada)) {
+    aux_dpto <- unique(data_agrupada[[geo_ocurrencia[1]]])
+    aux_mpio <- NULL
+    if (is.null(mpio) &&
+        geo_ocurrencia[3] %in% names(data_agrupada)) {
+      aux_mpio <- unique(data_agrupada[[geo_ocurrencia[3]]])
+      if (length(aux_mpio) == 1) {
+        mpio <- aux_mpio
+      }
+    }
+    if (length(aux_dpto) == 1) {
+      dpto <- aux_dpto
+    }
+  }
+  if (!is.null(dpto)) {
+    stopifnot("El parametro dpto debe ser un cadena de caracteres"
+              = is.character(dpto))
+    data_dept <- obtener_info_depts(dpto, mpio)
+    data_dept <- data_dept[1, ]
+    dpto <- data_dept$nombre_departamento
+    if (!is.null(mpio)) {
+      mpio <- data_dept$nombre_municipio
+    }
+    polygon_seleccionado <- shp[shp$DPTO_CCDGO ==
+                                  data_dept$codigo_departamento, ]
+    polygon_seleccionado$MPIO_CCDGO <-
+      paste0(polygon_seleccionado$DPTO_CCDGO,
+             polygon_seleccionado$MPIO_CCDGO)
+    colnames(polygon_seleccionado)[colnames(polygon_seleccionado) ==
+                                     "MPIO_CCDGO"] <- "id"
+  } else if (is.null(mpio)) {
+    colnames(polygon_seleccionado)[colnames(polygon_seleccionado) ==
+                                     "DPTO_CCDGO"] <- "id"
+  }
+  config_map <- list(dpto = dpto, mpio = mpio,
+                     poligono = polygon_seleccionado)
+  return(config_map)
+}
