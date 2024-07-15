@@ -877,9 +877,8 @@ plot_years <- function(data_agrupada,
 plot_tipo_caso <- function(data_agrupada,
                            col_tipo = "tip_cas",
                            fuente_data = NULL) {
-  stopifnot("El parametro data_agrupada debe ser un data.frame"
-            = is.data.frame(data_agrupada),
-            "El parametro col_tipo debe ser una cadena de caracteres"
+  validar_data_agrupada(data_agrupada)
+  stopifnot("El parametro col_tipo debe ser una cadena de caracteres"
             = is.character(col_tipo))
   if (is.null(fuente_data)) {
     fuente_data <-
