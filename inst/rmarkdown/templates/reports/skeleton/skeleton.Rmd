@@ -393,9 +393,9 @@ plot_areas_geo
 dist_top_areas_geo <- agrupar_top_area_geo(data_event = data_event_filtrada)
 ```
 
-Los 10 `r etiqueta_geo` que presentaron mayor número de casos por área geográfica son los siguientes:
+`r if(params$municipio == "") { paste0("Los 10 ", etiqueta_geo, " que presentaron mayor número de casos por área geográfica son los siguientes:") }`
 
-```{r plot_top_areas, fig.height = 5, fig.width = 10, fig.cap = paste0("Distribución de los 10 municipios con más casos por área geográfica - ", text_ext_geo), include = params$areas_distribution, fig.pos = "H"}
+```{r grafica-casos-top-area, fig.height = 5, fig.width = 10, fig.cap = paste0("Distribución de los 10 municipios con más casos por área geográfica - ", text_ext_geo), include = params$areas_distribution && params$municipio == "", fig.pos = "H", eval = params$areas_distribution && params$municipio == ""}
 plot_top_areas_geo <- plot_top_area_geo(data_agrupada = dist_top_areas_geo)
 plot_top_areas_geo
 ```
