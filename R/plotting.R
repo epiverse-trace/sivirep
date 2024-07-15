@@ -376,16 +376,8 @@ plot_sex_semanaepi <- function(data_agrupada,
   max_casos <- max(data_agrupada$casos)
   data_agrupada$semana <- as.numeric(data_agrupada$semana)
   max_semana <- max(data_agrupada$semana)
-  etiqueta_episemana <- config::get(file =
-                                  system.file("extdata",
-                                              "config.yml",
-                                              package = "sivirep"),
-                                "label_epiweek")
-  etiqueta_casos <- config::get(file =
-                                  system.file("extdata",
-                                              "config.yml",
-                                              package = "sivirep"),
-                                "label_cases")
+  etiqueta_episemana <- obtener_val_config("label_epiweek")
+  etiqueta_casos <- obtener_val_config("label_cases")
   plot_casos_sex_semanaepi <-
     ggplot2::ggplot(data_agrupada,
                     ggplot2::aes(x = .data[[col_semanaepi]],
