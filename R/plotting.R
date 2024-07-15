@@ -661,21 +661,9 @@ plot_area_geo <- function(data_agrupada,
     fuente_data <-
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
   }
-  etiquetas_areas <- config::get(file =
-                                   system.file("extdata",
-                                               "config.yml",
-                                               package = "sivirep"),
-                                 "labels_geo_areas")
-  etiqueta_casos <- config::get(file =
-                                  system.file("extdata",
-                                              "config.yml",
-                                              package = "sivirep"),
-                                "label_cases")
-  etiqueta_area_geo <- config::get(file =
-                                     system.file("extdata",
-                                                 "config.yml",
-                                                 package = "sivirep"),
-                                   "label_geo_area")
+  etiquetas_areas <- obtener_val_config("labels_geo_areas")
+  etiqueta_casos <- obtener_val_config("label_cases")
+  etiqueta_area_geo <- obtener_val_config("label_geo_area")
   pos_leyenda <- ggplot2::theme(legend.position = "right")
   plot_casos_area <-
     ggplot2::ggplot(data_agrupada,
