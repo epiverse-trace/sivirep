@@ -284,10 +284,11 @@ plot_sex <- function(data_agrupada,
                      col_distribucion = "casos",
                      porcentaje = TRUE,
                      fuente_data = NULL) {
-            "El parametro porcentaje debe ser un booleano" =
-              is.logical(porcentaje))
   validar_data_agrupada(data_agrupada)
   validar_sex(data_agrupada, col_sex)
+  validar_porcentaje(porcentaje)
+  stopifnot("Valor invalido para el parametro col_distribucion" =
+            col_distribucion %in% c("casos", "incidencia"))
   if (is.null(fuente_data)) {
     fuente_data <-
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
