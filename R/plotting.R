@@ -776,8 +776,8 @@ plot_top_area_geo <- function(data_agrupada,
 #' @export
 plot_tabla_tipos_event <- function(data_agrupada,
                                    col_event = "nombre_evento") {
-            "El parametro col_event debe ser una cadena de caracteres"
   validar_data_agrupada(data_agrupada)
+  stopifnot("El parametro col_event debe ser una cadena de caracteres"
             = is.character(col_event))
   etiqueta_cod <- config::get(file =
                               system.file("extdata",
