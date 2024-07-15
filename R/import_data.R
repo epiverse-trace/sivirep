@@ -256,8 +256,10 @@ import_sep_data <- function(ruta_data = NULL, cache = TRUE) {
 #' @return Un `data.frame` con la población a riesgo o las proyecciones
 #' poblacionaldes DANE.
 #' @examples
-#'  \dontrun{
-#' import_pob_incidencia(poblacion = "proyecciones")
+#'  \donttest{
+#' # Importación proyecciones poblaciones DANE
+#' import_pob_incidencia(poblacion = "proyecciones", year = 2020)
+#' # Importación población a riesgo de Dengue del año 2020
 #' import_pob_incidencia(poblacion = "riesgo", event = "dengue", year = 2020)
 #' }
 #' @export
