@@ -329,16 +329,12 @@ limpiar_edad_event <- function(data_event, col_edad = "edad") {
 #' data_limpia <- limpiar_encabezado(data_event = dengue2020)
 #' @export
 limpiar_val_atipic <- function(data_event) {
-  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
-            "El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event),
-            "El parametro data_event no debe estar vacio" =
-              nrow(data_event) > 0)
   cols_events <- config::get(file =
                                system.file("extdata",
                                            "config.yml",
                                            package = "sivirep"),
                              "diseases_exceptions")
+  validar_data_event(data_event)
   cod_event <- data_event$cod_eve[1]
   if (cod_event > 0) {
     for (event in cols_events) {
