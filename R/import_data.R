@@ -167,11 +167,7 @@ import_data_event <- function(nombre_event,
             = is.logical(cache))
   data_event <- data.frame()
   nombre_event <- stringr::str_to_title(nombre_event)
-  cols_remover <- config::get(file =
-                                system.file("extdata",
-                                            "config.yml",
-                                            package = "sivirep"),
-                              "cols_remover")
+  cols_remover <- obtener_val_config("cols_remover")
   grupo_events <- obtener_eventos_relacionados(nombre_event, years)
   for (year in years) {
     for (event in grupo_events$enfermedad) {
