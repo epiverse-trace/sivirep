@@ -210,9 +210,10 @@ plot_fecha_inisintomas <- function(data_agrupada,
     data_plot[[var_x]] <- as.numeric(data_agrupada[[var_x]])
   }
   if (tipo == "tendencia" && uni_marca != "day") {
-    data_plot <- data_plot %>% dplyr::group_by_at(c(var_x,
-                                                    "nombre_evento")) %>%
-      dplyr::summarise(casos = sum(.data$casos), .groups = "drop")
+    data_plot <- dplyr::group_by_at(data_plot,
+                                    c(var_x, "nombre_evento"))
+    data_plot <- dplyr::summarise(data_plot, casos = sum(.data$casos),
+                                  .groups = "drop")
   }
   etiqueta_fecha <- obtener_val_config("label_date_ini")
   etiqueta_x <- paste0("\n", etiqueta_fecha, " por ", uni_marca, "\n")
