@@ -730,9 +730,10 @@ plot_top_area_geo <- function(data_agrupada,
       }
   }
   pos_leyenda <- ggplot2::theme(legend.position = "right")
-  data_agrupada_area <- data_agrupada %>%
-    group_by_at(nomb_cols) %>%
-    dplyr::summarise(casos = sum(.data[["casos"]]), .groups = "drop")
+  data_agrupada_area <- group_by_at(data_agrupada, nomb_cols)
+  data_agrupada_area <- dplyr::summarise(data_agrupada_area,
+                                         casos = sum(.data[["casos"]]),
+                                         .groups = "drop")
   plot_casos_area <-
     ggplot2::ggplot(data_agrupada_area,
                     ggplot2::aes(x = .data[[nomb_cols[2]]],
