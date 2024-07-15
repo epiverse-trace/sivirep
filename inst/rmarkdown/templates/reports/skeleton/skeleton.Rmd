@@ -473,8 +473,11 @@ mapa
 
 ```{r conclusiones, echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE, cache = FALSE, results = FALSE, comment = FALSE}
 text_geo <- params$pais
-if (params$spatial_distribution && params$departmento != "") {
+if (params$spatial_distribution && params$departmento != ""
+    && params$municipio == "") {
   text_geo <- paste0("el departamento de ", params$departmento)
+} else if (params$municipio != "") {
+    text_geo <- paste0("el municipio de ", params$municipio)
 }
 text_casos_totales <- paste0("*   Los casos totales reportados de ",
                              stringr::str_to_title(params$nombre_evento),
