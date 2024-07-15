@@ -132,3 +132,21 @@ validar_edad <- function(data_event, col_edad) {
             se encuentra en los datos de la enfermedad o evento" =
             col_edad %in% colnames(data_event))
 }
+
+
+#' @title Validar párametro `col_area`
+#' @description Función que realiza las validaciones correspondientes
+#' del párametro `col_area`.
+#' @param data_event Un `data.frame` que contiene los datos de una enfermedad
+#' o evento.
+#' @param col_area Un `character` (cadena de carácteres) con el nombre de
+#' la columna con el área geografica en los datos de la enfermedad
+#' o evento.
+#' @noRd
+validar_area_geo <- function(data_event, col_area, porcentaje) {
+  stopifnot("El parametro col_area debe ser una cadena de caracteres"
+            = is.character(col_area),
+            "La columna o variable del parametro col_area no
+            se encuentra en los datos de la enfermedad o evento" =
+            col_area %in% colnames(data_event))
+}
