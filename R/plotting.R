@@ -1005,9 +1005,8 @@ plot_per_etn <- function(data_agrupada,
                          col_etn = "per_etn",
                          porcentaje = TRUE,
                          fuente_data = NULL) {
-  stopifnot("El parametro data_agrupada debe ser un data.frame"
-            = is.data.frame(data_agrupada),
-            "El parametro col_etn debe ser una cadena de caracteres"
+  validar_data_agrupada(data_agrupada)
+  stopifnot("El parametro col_etn debe ser una cadena de caracteres"
             = is.character(col_etn))
   if (is.null(fuente_data)) {
     fuente_data <-
