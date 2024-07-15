@@ -944,12 +944,11 @@ plot_tipo_caso_years <- function(data_agrupada,
                                  col_tipo = "tip_cas",
                                  col_year = "ano",
                                  fuente_data = NULL) {
-  stopifnot("El parametro data_agrupada debe ser un data.frame"
-            = is.data.frame(data_agrupada),
-            "El parametro col_tipo debe ser una cadena de caracteres"
-            = is.character(col_tipo),
             "El parametro col_year debe ser una cadena de caracteres"
             = is.character(col_year))
+  validar_data_agrupada(data_agrupada)
+  stopifnot("El parametro col_tipo debe ser una cadena de caracteres"
+            = is.character(col_tipo))
   if (is.null(fuente_data)) {
     fuente_data <-
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
