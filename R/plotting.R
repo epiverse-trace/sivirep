@@ -537,11 +537,7 @@ plot_dptos <- function(data_agrupada,
     stopifnot("El parametro col_dptos debe ser una cadena de caracteres"
               = is.character(col_dptos))
   }
-  etiqueta_casos <- config::get(file =
-                                  system.file("extdata",
-                                              "config.yml",
-                                              package = "sivirep"),
-                                "label_cases")
+  etiqueta_casos <- obtener_val_config("label_cases")
   num_eventos <- length(unique(data_agrupada[["nombre_evento"]]))
   pos_leyenda <- ggplot2::theme(legend.position = "right")
   if (num_eventos > 3) {
