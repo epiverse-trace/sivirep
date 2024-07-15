@@ -105,3 +105,14 @@ validar_sex <- function(data_event, col_sex) {
             se encuentra en los datos de la enfermedad o evento" =
             col_sex %in% colnames(data_event))
 }
+
+#' @title Validar párametro `porcentaje`
+#' @description Función que realiza las validaciones correspondientes
+#' del párametro `porcentaje`.
+#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica
+#' si se debe agregar o tener una columna con el porcentaje de casos.
+#' @noRd
+validar_porcentaje <- function(porcentaje) {
+   stopifnot("El parametro porcentaje debe ser un booleano" =
+              is.logical(porcentaje))
+}
