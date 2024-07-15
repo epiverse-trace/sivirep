@@ -317,14 +317,13 @@ limpiar_edad_event <- function(data_event, col_edad = "edad") {
   data_event_years <- remove_val_nin(data_event_years, col_edad)
 }
 
-#' Limpiar los valores atipicos de los datos
-#'
-#' Función que limpia los valores atipicos de los datos de una
-#' enfermedad o evento del SIVIGILA
+#' @title Limpiar los valores atipicos de los datos
+#' @description Función que limpia los valores atipicos de los datos
+#' de una enfermedad o evento del SIVIGILA.
 #' @param data_event Un `data.frame` que contiene los datos de una
-#' enfermedad o evento
+#' enfermedad o evento.
 #' @return Un `data.frame` con los datos de una enfermedad o
-#' evento con los valores atípicos limpios (NA)
+#' evento con los valores atípicos limpios (NA).
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_encabezado(data_event = dengue2020)
