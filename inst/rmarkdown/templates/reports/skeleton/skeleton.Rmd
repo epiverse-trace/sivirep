@@ -181,6 +181,8 @@ if (params$departmento == "") {
   etiqueta_geo <- "departamentos"
   text_fig_geo <- paste0("departamento - ", params$pais)
   text_ext_geo <- params$pais
+} else if (params$municipio != "") {
+  text_ext_geo <- params$municipio
 }
 text_fig_geo <- paste0(text_fig_geo, " ", params$year)
 text_ext_geo <- paste0(text_ext_geo, " ", params$year)
