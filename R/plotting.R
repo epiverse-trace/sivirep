@@ -1085,21 +1085,23 @@ plot_tabla_incidencia_geo <- function(data_agrupada,
                           " habitantes")
   data_agrupada[[col_geo[2]]] <-
     stringr::str_to_title(data_agrupada[[col_geo[2]]])
-  data_tabla <- data_agrupada %>%
-    group_by_at(c(col_geo, "incidencia")) %>%
-    dplyr::summarise(incidencia = sum(.data[["incidencia"]]),
-                     .groups = "drop")
+  data_tabla <- group_by_at(data_agrupada, c(col_geo, "incidencia"))
+  data_tabla <- dplyr::summarise(data_tabla,
+                                 incidencia = sum(.data[["incidencia"]]),
+                                 .groups = "drop")
   data_tabla <- data_tabla[order(data_tabla$incidencia,
                                    decreasing = TRUE), ]
-  tabla_geo <- knitr::kable(data_tabla,
-                            col.names = c(etiqueta_cod,
-                                          etiqueta_geo,
-                                          "Incidencia"),
-                            align = "c",
-                            caption = caption_tabla,
-                            longtable = TRUE) %>%
-    kableExtra::row_spec(0, color = "white", background = "#2274BB") %>%
-    kableExtra::kable_styling(full_width = FALSE,
+  tabla_geo <- kableExtra::kbl(data_tabla,
+                               col.names = c(etiqueta_cod,
+                                             etiqueta_geo,
+                                             "Incidencia"),
+                               align = "c",
+                               caption = caption_tabla,
+                               longtable = TRUE)
+  tabla_geo <- kableExtra::row_spec(tabla_geo, 0, color = "white",
+                                    background = "#2274BB")
+  tabla_geo <-
+    kableExtra::kable_styling(tabla_geo, full_width = FALSE,
                               latex_options = "HOLD_position")
   return(tabla_geo)
 }
