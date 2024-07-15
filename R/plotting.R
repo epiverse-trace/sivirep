@@ -81,8 +81,14 @@ plot_map <- function(data_agrupada,
   stopifnot("El parametro fuente_data debe ser un cadena de caracteres"
             = is.character(fuente_data))
   color_min <- "#fcebfc"
-  nombre_events <- unique(data_agrupada$nombre_evento)[1]
-  cols_geo_ocurrencia <- obtener_tip_ocurren_geo(nombre_event = nombre_events)
+  if ("nombre_evento" %in% names(data_agrupada)) {
+    nombre_events <- unique(data_agrupada$nombre_evento)[1]
+    cols_geo_ocurrencia <- obtener_tip_ocurren_geo(nombre_event = nombre_events)
+  }
+  if ("cod_eve" %in% names(data_agrupada)) {
+    cod_event <- unique(data_agrupada$cod_eve)[1]
+    cols_geo_ocurrencia <- obtener_tip_ocurren_geo(cod_event = cod_event)
+  }
   if (length(cols_geo_ocurrencia) > 1) {
     subtitulo <- paste0(subtitulo, cols_geo_ocurrencia[5])
   }
