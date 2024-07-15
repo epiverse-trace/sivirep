@@ -47,3 +47,34 @@ validar_nomb_cols <- function(data_event, nomb_cols) {
             se encuentra(n) en los datos de la enfermedad o evento" =
             nomb_cols %in% colnames(data_event))
 }
+
+#' @title Validar los párametros de la lógica de fecha de inicio de sintomas
+#' @description Función que realiza las validaciones correspondientes a los
+#' parametros relacionados a lógica y análisis que se efectua sobre
+#' la variable de fecha de inicio de sintoma.
+#' @param data_event Un `data.frame` que contiene los datos de una enfermedad
+#' o evento.
+#' @param uni_marca Un `character` (cadena de caracteres) que contiene
+#' la unidad de las marcas del gráfico (`"dia"`, `"semanaepi"` y `"mes"``).
+#' @param col_fecha Un `character` (cadena de caracteres) que contiene el
+#' nombre de la columna con las fechas de notificación en los datos de la
+#' enfermedad o evento.
+#' @param tipo Un `character` (cadena de caracteres) que contiene el tipo de
+#' gráfico (`"barras"` o `"tendencia"`).
+#' @noRd
+validar_fecha_inisintomas <- function(data_event, col_fecha,
+                                             uni_marca, tipo) {
+  stopifnot("El parametro col_fecha debe ser una cadena de caracteres" =
+              is.character(col_fecha),
+            "La columna o variable del parametro col_fecha no
+            se encuentra en los datos de la enfermedad o evento" =
+            col_fecha %in% colnames(data_event),
+            "El parametro uni_marca debe ser una cadena de caracteres" =
+              is.character(uni_marca),
+            "Valor invalido para el parametro uni_marca" =
+              uni_marca %in% c("dia", "semanaepi", "mes"),
+            "El parametro tipo debe ser una cadena de caracteres" =
+              is.character(tipo),
+            "Valor invalido para el parametro tipo" =
+              tipo %in% c("barras", "tendencia"))
+}
