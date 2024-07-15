@@ -1116,7 +1116,7 @@ plot_tabla_incidencia_geo <- function(data_agrupada,
 #' o evento; su valor por defecto es `"sexo"`.
 #' @return Una `kable` (tabla gráfica) con la incidencia por sexo.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 #' data_agrupada_sex <- agrupar_sex(data_limpia)
