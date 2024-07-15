@@ -184,12 +184,6 @@ plot_fecha_inisintomas <- function(data_agrupada,
                                    uni_marca = "semanaepi",
                                    tipo = "barras",
                                    fuente_data = NULL) {
-  stopifnot("El parametro data_agrupada es obligatorio" =
-              !missing(data_agrupada),
-            "El parametro data_agrupada debe ser un data.frame" =
-              is.data.frame(data_agrupada),
-            "El parametro data_agrupada no debe estar vacio" =
-              nrow(data_agrupada) > 0,
             "El parametro col_fecha debe ser una cadena de caracteres" =
               is.character(col_fecha),
             "El parametro uni_marca debe ser una cadena de caracteres" =
@@ -204,6 +198,7 @@ plot_fecha_inisintomas <- function(data_agrupada,
                                                           "config.yml",
                                                           package = "sivirep"),
                                        "dates_column_names")
+  validar_data_agrupada(data_agrupada)
   var_x <- col_fecha
   num_eventos <- length(unique(data_agrupada[["nombre_evento"]]))
   data_plot <- data_agrupada
