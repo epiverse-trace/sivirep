@@ -120,26 +120,13 @@ plot_map <- function(data_agrupada,
   if (!is.null(col_codigos)) {
     colnames(data_agrupada)[colnames(data_agrupada) ==
                               col_codigos] <- "id"
-  } else {
-    pos_col <- NULL
-    if (is.null(dpto)) {
-      pos_col <- which(colnames(data_agrupada) %in%
-                         cols_geo_ocurrencia[1])
-      nombres_col <- cols_geo_ocurrencia[2]
-    } else {
-      pos_col <- which(colnames(data_agrupada) %in%
-                         cols_geo_ocurrencia[3])
-      nombres_col <- cols_geo_ocurrencia[4]
-    }
-    if (length(pos_col) == 1) {
+  } else if (length(pos_col) == 1) {
       colnames(data_agrupada)[pos_col] <- "id"
       col_codigos <- "id"
-    } else {
-      stopifnot("Debe ingresar el nombre de la columna que contiene
-                los codigos de los departamentos o municipios en el
-                parametro col_codigos" =
-                  length(pos_col) == 1)
-    }
+  } else {
+    stop("Debe ingresar el nombre de la columna que contiene
+          los codigos de los departamentos o municipios en el
+          parametro col_codigos")
   }
   data_agrupada <- data_agrupada %>%
     group_by_at(c("id", nombres_col)) %>%
