@@ -28,13 +28,8 @@ obtener_meses_mas_casos <- function(data_event,
                                     col_casos = "casos",
                                     top = 1,
                                     concat_vals = TRUE) {
-  stopifnot("El parametro data_event es obligatorio" =
-              !missing(data_event),
-            "El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event),
-            "El parametro data_event no debe estar vacio" =
-              nrow(data_event) > 0,
-            "El parametro col_fechas es obligatorio"
+  validar_data_event(data_event)
+  stopifnot("El parametro col_fechas es obligatorio"
             = !missing(col_fechas),
             "El parametro col_fechas debe ser una cadena de caracteres"
             = is.character(col_fechas),
