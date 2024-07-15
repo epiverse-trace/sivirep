@@ -827,18 +827,10 @@ plot_tabla_tipos_event <- function(data_agrupada,
 plot_years <- function(data_agrupada,
                        col_year = "ano",
                        fuente_data = NULL) {
-  etiqueta_year <- config::get(file =
-                             system.file("extdata",
-                                         "config.yml",
-                                         package = "sivirep"),
-                             "label_year")
-  etiqueta_casos <- config::get(file =
-                                 system.file("extdata",
-                                             "config.yml",
-                                             package = "sivirep"),
-                               "label_cases")
   validar_data_agrupada(data_agrupada)
   validar_years(data_agrupada, col_year)
+  etiqueta_year <- obtener_val_config("label_year")
+  etiqueta_casos <- obtener_val_config("label_cases")
   if (is.null(fuente_data)) {
     fuente_data <-
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
