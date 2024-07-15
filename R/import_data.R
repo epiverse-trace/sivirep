@@ -352,9 +352,16 @@ import_pob_riesgo <- function(event, year) {
       years_disponibles <- pop_riesgo$years
       if (year %in% pop_riesgo$years) {
         pop_event <- pop_riesgo
-        pop_event_ruta <- file.path(ruta_extdata, paste0(pop_riesgo$file_name,
-                                                         pop_riesgo$extension))
+        pop_event$file_name <-
+          stringr::str_replace(pop_event$file_name, stringr::fixed("{year}"),
+                               year)
+        pop_event_ruta <- file.path(ruta_extdata,
+                                    paste0(pop_event$file_name,
+                                           pop_event$extension))
         if (!file.exists(pop_event_ruta)) {
+          pop_event$url <-
+            stringr::str_replace(pop_event$url, stringr::fixed("{year}"),
+                                 year)
           utils::download.file(pop_event$url, pop_event_ruta)
         }
         break
