@@ -708,9 +708,8 @@ plot_area_geo <- function(data_agrupada,
 plot_top_area_geo <- function(data_agrupada,
                           col_area = "area",
                           fuente_data = NULL) {
-  stopifnot("El parametro data_agrupada debe ser un data.frame"
-            = is.data.frame(data_agrupada),
-            "El parametro col_area debe ser una cadena de caracteres"
+  validar_data_agrupada(data_agrupada)
+  stopifnot("El parametro col_area debe ser una cadena de caracteres"
             = is.character(col_area))
   if (is.null(fuente_data)) {
     fuente_data <-
