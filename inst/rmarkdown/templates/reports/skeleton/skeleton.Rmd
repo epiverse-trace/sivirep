@@ -12,7 +12,7 @@ header-includes:
   - \usepackage{fancyhdr}
   - \pagestyle{fancy}
   - \usepackage[utf8]{inputenc}
-  - \usepackage[spanish]{babel}
+  - \usepackage[spanish, provide=*]{babel}
   - \fancyfoot[R]{\includegraphics[width=1.1cm]{logo.png}}
   - \usepackage[defaultfam,tabular,lining]{montserrat}
   - \usepackage{tikz}
