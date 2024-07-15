@@ -358,11 +358,7 @@ limpiar_val_atipic <- function(data_event) {
 #' limpiar_data_sivigila(data_event = dengue2020)
 #' @export
 limpiar_data_sivigila <- function(data_event) {
-  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
-            "El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event),
-            "El parametro data_event no debe estar vacio" =
-              nrow(data_event) > 0)
+  validar_data_event(data_event)
   data_event <- limpiar_encabezado(data_event)
   nom_cols_fechas <- config::get(file = system.file("extdata",
                                                     "config.yml",
