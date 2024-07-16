@@ -117,7 +117,7 @@ obtener_fila_mas_casos <- function(data_event,
 concatenar_vals_token <- function(vals,
                                   longitud = 3,
                                   princ_token = ", ",
-                                  final_token = "y ") {
+                                  final_token = "y") {
   stopifnot("El parametro vals es obligatorio" =
               !missing(vals),
             "El parametro vals debe ser una cadena de caracteres o
@@ -127,16 +127,8 @@ concatenar_vals_token <- function(vals,
             = is.character(princ_token),
             "El parametro final_token debe ser una cadena de caracteres"
             = is.character(final_token))
-  final_val <- ""
-  i <- 1
-  for (value in vals) {
-    if (i != longitud) {
-      final_val <- paste0(final_val, value, princ_token)
-    } else {
-      final_val <- paste0(final_val, final_token, value)
-    }
-    i <- i + 1
-  }
+  final_val <- paste(vals[seq_len(longitud-1)], collapse = princ_token)
+  final_val <- paste(final_val, final_token, vals[longitud])
   return(final_val)
 }
 
