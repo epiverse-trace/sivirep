@@ -273,12 +273,12 @@ limpiar_fecha_event <- function(data_event,
   validar_format_fecha(format_fecha)
   data_event_fecha_ini <- data_event
   if (!is.null(col_comp)) {
+    stopifnot("El parametro col_comp debe ser una cadena de caracteres" =
+                is.character(col_comp))
     data_event_fecha_ini <-
       remove_error_fecha(data_event_fecha_ini,
                          col_fecha,
                          col_comp)
-    stopifnot("El parametro col_comp debe ser una cadena de caracteres" =
-              is.character(col_comp))
   }
   data_event_fecha_ini[order(data_event_fecha_ini[[col_fecha]],
                              decreasing = TRUE), ]
