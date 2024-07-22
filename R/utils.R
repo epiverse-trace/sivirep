@@ -85,11 +85,9 @@ obtener_fila_mas_casos <- function(data_event,
             = is.character(nomb_col),
             "El parametro porcentaje debe ser booleano"
             = is.logical(porcentaje))
-  data_mas_casos <- data_event[order(data_event[[nomb_col]],
-                                     decreasing = TRUE), ]
-  data_mas_casos <- data_mas_casos[1, ]
+  data_mas_casos <- data_event[which.max(data_event[[nomb_col]]), ]
   if (porcentaje) {
-    value_per <- data_mas_casos$casos[1] / sum(data_event[[nomb_col]])
+    value_per <- data_mas_casos$casos / sum(data_event[[nomb_col]])
     data_mas_casos$porcentaje <- round(value_per * 100, 2)
   }
   return(data_mas_casos)
