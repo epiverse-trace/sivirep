@@ -243,7 +243,7 @@ agrupar_fecha_inisintomas <- function(data_event,
   }
   stopifnot("El parametro col_fecha debe ser una cadena de caracteres"
             = is.character(col_fecha))
-  nomb_cols <- append(col_fecha, "semana")
+  nomb_cols <- c(col_fecha, "semana")
   data_agrupada_fecha_ini <- agrupar_cols_casos(data_event,
                                                 nomb_cols = nomb_cols)
   return(data_agrupada_fecha_ini)
@@ -491,8 +491,8 @@ agrupar_mpio <- function(data_event,
   cols_geo_ocurrencia <- data.frame()
   cod_events <- unique(data_event$cod_eve)
   for (cod in cod_events) {
-    cols_geo_ocurrencia <- append(cols_geo_ocurrencia,
-                                  obtener_tip_ocurren_geo(cod))
+    cols_geo_ocurrencia <- c(cols_geo_ocurrencia,
+                             obtener_tip_ocurren_geo(cod))
   }
   nomb_cols <- obtener_tip_ocurren_geo(data_event$cod_eve[1])
   data_event_muns <- data_event
@@ -596,8 +596,8 @@ agrupar_top_area_geo <- function(data_event,
   validar_data_event(data_event)
   validar_area_geo(data_event, col_area)
   validar_porcentaje(porcentaje)
-  nomb_cols <- append(col_area,
-                      obtener_tip_ocurren_geo(data_event$cod_eve[1])[1:4])
+  nomb_cols <- c(col_area,
+                 obtener_tip_ocurren_geo(data_event$cod_eve[1])[1:4])
   data_event_area <- data_event
   if (!is.null(dpto)) {
       aux_dpto <- unique(data_event_area[[nomb_cols[2]]])
@@ -953,7 +953,7 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
                                         poblacion = poblacion,
                                         dpto = dpto_fila[[nomb_cols[1]]],
                                         year = year)
-      incidencia_dptos <- append(incidencia_dptos, incidencia)
+      incidencia_dptos <- c(incidencia_dptos, incidencia)
     }
     geo_incidencia <- data.frame(incidencia = incidencia_dptos)
     data_geo_incidencia <- cbind(data_agrupada, geo_incidencia)
@@ -975,7 +975,7 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
                                         dpto = mpio_fila[[nomb_cols[1]]],
                                         mpio = mpio_fila[[nomb_cols[3]]],
                                         year = year)
-      incidencia_mpios <- append(incidencia_mpios, incidencia)
+      incidencia_mpios <- c(incidencia_mpios, incidencia)
     }
     geo_incidencia <- data.frame(incidencia = incidencia_mpios)
     data_geo_incidencia <- cbind(data_agrupada, geo_incidencia)
@@ -1082,7 +1082,7 @@ calcular_incidencia_sex <- function(data_incidencia = NULL,
                                           mpio = mpio,
                                           sex = sex_fila[["sexo"]],
                                           year = year)
-    incidencia <- append(incidencia, incidencia_sex)
+    incidencia <- c(incidencia, incidencia_sex)
   }
   data_incidencia_sex <- cbind(data_agrupada, incidencia)
   if (!is.null(dpto) && is.null(data_incidencia_sex)) {
