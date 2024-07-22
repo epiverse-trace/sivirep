@@ -944,8 +944,8 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
                                       casos =
                                         sum(.data[["casos"]]),
                                       .groups = "drop")
-    data_agrupada$nombre_evento <- rep(nombre_evento, nrow(data_agrupada))
-    data_agrupada$cod_eve <- rep(cod_evento, nrow(data_agrupada))
+    data_agrupada$nombre_evento <- nombre_evento
+    data_agrupada$cod_eve <- cod_evento
     for (fila in seq_len(nrow(data_agrupada))) {
       dpto_fila <- data_agrupada[fila, ]
       incidencia <- calcular_incidencia(data_incidencia = data_incidencia,
@@ -965,9 +965,9 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
                                       casos =
                                         sum(.data[["casos"]]),
                                       .groups = "drop")
-    data_agrupada$nombre_evento <- rep(nombre_evento, nrow(data_agrupada))
-    data_agrupada$cod_eve <- rep(cod_evento, nrow(data_agrupada))
     for (fila in seq_len(nrow(data_agrupada))) {
+    data_agrupada$nombre_evento <- nombre_evento
+    data_agrupada$cod_eve <- cod_evento
       mpio_fila <- data_agrupada[fila, ]
       incidencia <- calcular_incidencia(data_incidencia = data_incidencia,
                                         data_agrupada = mpio_fila,
@@ -1068,11 +1068,8 @@ calcular_incidencia_sex <- function(data_incidencia = NULL,
   data_agrupada <- dplyr::summarise(data_agrupada,
                                     casos = sum(.data[["casos"]]),
                                     .groups = "drop")
-  cols_eve <- data.frame(cod_eve = rep(cod_eve,
-                                       nrow(data_agrupada)),
-                         nombre_evento = rep(nombre_evento,
-                                              nrow(data_agrupada)))
-  data_agrupada <- cbind(data_agrupada, cols_eve)
+  data_agrupada$cod_eve <- cod_eve
+  data_agrupada$nombre_evento <- nombre_evento
   for (fila in seq_len(nrow(data_agrupada))) {
     sex_fila <- data_agrupada[fila, ]
     incidencia_sex <- calcular_incidencia(data_incidencia = data_incidencia,
@@ -1086,16 +1083,11 @@ calcular_incidencia_sex <- function(data_incidencia = NULL,
   }
   data_incidencia_sex <- cbind(data_agrupada, incidencia)
   if (!is.null(dpto) && is.null(data_incidencia_sex)) {
-    nomb_dpto <- rep(dept_data$nombre_departamento[1],
-                     nrow(data_incidencia_sex))
-    cod_dpto <- rep(dpto, nrow(data_incidencia_sex))
-    data_incidencia_sex["nombre_departamento"] <- nomb_dpto
-    data_incidencia_sex["codigo_departamento"] <- cod_dpto
+    data_incidencia_sex["nombre_departamento"] <- dept_data$nombre_departamento[1]
+    data_incidencia_sex["codigo_departamento"] <- dpto
     if (!is.null(mpio)) {
-      nomb_mpio <- rep(dept_data$nombre_municipio[1], nrow(data_incidencia_sex))
-      cod_mpio <- rep(mpio, nrow(data_incidencia_sex))
-      data_incidencia_sex["nombre_municipio"] <- nomb_mpio
-      data_incidencia_sex["codigo_municipio"] <- cod_mpio
+      data_incidencia_sex["nombre_municipio"] <- dept_data$nombre_municipio[1]
+      data_incidencia_sex["codigo_municipio"] <- mpio
     }
   }
   return(data_incidencia_sex)
