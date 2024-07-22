@@ -59,7 +59,7 @@ default:
   map_shape_zip_file: "depto_adm_shp_simp.zip"
   map_shape_path: "https://raw.githubusercontent.com/TRACE-LAC/sivirep_resources/main/depto_adm_shp_simp.zip"
   dpto_shape_file: "depto.shp"
-  divipola_data_path: "divipoladata.rda"
+  divipola_data_path: "divipoladata.rds"
   labels_geo_areas: ["Cabecera municipal", "Centro poblado", "Rural disperso"]
   labels_cas_tip:
     '1': Sospechoso
@@ -88,57 +88,57 @@ default:
   label_etn_groups: "Pertenencia étnica"
   projections_population:
     url: >-
-      https://raw.githubusercontent.com/TRACE-LAC/sivirep_incidence/main/data/proyecciones/proyecciones_{year}.rda
+      https://raw.githubusercontent.com/TRACE-LAC/sivirep_incidence/main/data/proyecciones/proyecciones_{year}.rds
     file_name: 'proyecciones_{year}'
-    extension: .rda
+    extension: .rds
     start_year: 2005
     final_year: 2035
   risk_population:
   - cod_eve: 210
     event: dengue
     url: >-
-      https://raw.githubusercontent.com/TRACE-LAC/sivirep_incidence/main/data/poblacion_riesgo/210_dengue/pob_riesgo_210_dengue_{year}.rda
+      https://raw.githubusercontent.com/TRACE-LAC/sivirep_incidence/main/data/poblacion_riesgo/210_dengue/pob_riesgo_210_dengue_{year}.rds
     years:
       - 2022
       - 2021
       - 2020
     file_name: 'pob_riesgo_210_dengue_{year}'
-    extension: .rda
+    extension: .rds
   - cod_eve: 465
     event: malaria
     url: >-
-      https://raw.githubusercontent.com/TRACE-LAC/sivirep_incidence/main/data/poblacion_riesgo/465_malaria/pob_riesgo_465_malaria_{year}.rda
+      https://raw.githubusercontent.com/TRACE-LAC/sivirep_incidence/main/data/poblacion_riesgo/465_malaria/pob_riesgo_465_malaria_{year}.rds
     years:
       - 2023
       - 2022
       - 2021
     file_name: 'pob_riesgo_465_malaria_{year}'
-    extension: .rda
+    extension: .rds
   - cod_eve: 420
     event: leishmaniasis_cutanea
     url: >-
-      https://raw.githubusercontent.com/TRACE-LAC/sivirep_incidence/main/data/poblacion_riesgo/420_leishmaniasis_cutanea/pob_riesgo_420_leishmaniasis_cutanea_{year}.rda
+      https://raw.githubusercontent.com/TRACE-LAC/sivirep_incidence/main/data/poblacion_riesgo/420_leishmaniasis_cutanea/pob_riesgo_420_leishmaniasis_cutanea_{year}.rds
     years:
       - 2023
     file_name: 'pob_riesgo_420_leishmaniasis_cutanea_{year}'
-    extension: .rda
+    extension: .rds
   - cod_eve: 430
     event: leishmaniasis_mucosa
     url: >-
-      https://raw.githubusercontent.com/TRACE-LAC/sivirep_incidence/main/data/poblacion_riesgo/430_leishmaniasis_mucosa/pob_riesgo_430_leishmaniasis_mucosa_{year}.rda
+      https://raw.githubusercontent.com/TRACE-LAC/sivirep_incidence/main/data/poblacion_riesgo/430_leishmaniasis_mucosa/pob_riesgo_430_leishmaniasis_mucosa_{year}.rds
     years:
       - 2023
     file_name: 'pob_riesgo_430_leishmaniasis_mucosa_{year}'
-    extension: .rda
+    extension: .rds
   - cod_eve: 440
     event: leishmaniasis_visceral
     url: >-
-      https://raw.githubusercontent.com/TRACE-LAC/sivirep_incidence/main/data/poblacion_riesgo/440_leishmaniasis_visceral/pob_riesgo_440_leishmaniasis_visceral_{year}.rda
+      https://raw.githubusercontent.com/TRACE-LAC/sivirep_incidence/main/data/poblacion_riesgo/440_leishmaniasis_visceral/pob_riesgo_440_leishmaniasis_visceral_{year}.rds
     years:
       - 2023
     file_name: 'pob_riesgo_440_leishmaniasis_visceral_{year}'
-    extension: .rda
-  incidence_events_file_name: "incidencia_eventos.rda"
+    extension: .rds
+  incidence_events_file_name: "incidencia_eventos.rds"
   caption_geo_incidence: "Incidencia por geografía de "
   caption_sex_incidence: "Incidencia por sexo"
   months: ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"]
