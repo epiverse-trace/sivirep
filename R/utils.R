@@ -156,12 +156,10 @@ obtener_tip_ocurren_geo <- function(cod_event = NULL, nombre_event = NULL) {
             = is.character(nombre_event))
     param_busqueda <- nombre_event
   }
-  if (length(grep(param_busqueda, geo_occurren$cod_dpto_n)) == 1
-      && grep(param_busqueda, geo_occurren$cod_dpto_n) > 0) {
+  if (length(grep(param_busqueda, geo_occurren$cod_dpto_n)) == 1) {
     col_ocurren <- c("cod_dpto_n", "departamento_notificacion",
                      "cod_mun_n", "municipio_notificacion", "notificacion")
-  } else if (length(grep(param_busqueda, geo_occurren$cod_dpto_r)) == 1
-             && grep(param_busqueda, geo_occurren$cod_dpto_r) > 0) {
+  } else if (length(grep(param_busqueda, geo_occurren$cod_dpto_r)) == 1) {
     col_ocurren <- c("cod_dpto_r", "departamento_residencia",
                      "cod_mun_r", "municipio_residencia", "residencia")
   } else {
