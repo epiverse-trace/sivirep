@@ -66,33 +66,17 @@ convert_edad <- function(data_event,
   validar_edad(data_event, col_edad)
   stopifnot("El parametro col_uni_med debe ser una cadena de caracteres" =
               is.character(col_uni_med))
-  data_event$uni_med <- as.numeric(data_event$uni_med)
-  data_event$edad <- as.numeric(data_event$edad)
+  data_event[[col_uni_med]] <- as.numeric(data_event[[col_uni_med]])
+  data_event[[col_edad]] <- as.numeric(data_event[[col_edad]])
   data_event_years <-
-    dplyr::mutate(data_event,
-                  edad = dplyr::case_when(eval(parse(text =
-                                                       col_uni_med)) == 1 ~
-                                            round(eval(parse(text = col_edad)),
-                                                  3),
-                                          eval(parse(text = col_uni_med)) == 2 ~
-                                            round((eval(parse(text =
-                                                                col_edad))
-                                                   / 12),
-                                                  3),
-                                          eval(parse(text = col_uni_med)) == 3 ~
-                                            round((eval(parse(text = col_edad))
-                                                   / 876),
-                                                  3),
-                                          eval(parse(text = col_uni_med)) == 4 ~
-                                            round((eval(parse(text =
-                                                                col_edad))
-                                                   / 525960),
-                                                  3),
-                                          eval(parse(text = col_uni_med)) == 5 ~
-                                            round((eval(parse(text =
-                                                                col_edad))
-                                                   / 3.156e+7),
-                                                  3)))
+    dplyr::mutate(
+      data_event,
+      col_edad := dplyr::case_when(col_uni_med == 1 ~ round(.data[[col_edad]], 3),
+                                   col_uni_med == 2 ~ round(.data[[col_edad]] / 12, 3),
+                                   col_uni_med == 3 ~ round(.data[[col_edad]] / 876, 3),
+                                   col_uni_med == 4 ~ round(.data[[col_edad]] / 525960, 3),
+                                   col_uni_med == 5 ~ round(.data[[col_edad]] / 3.156e+7, 3))
+    )
   return(data_event_years)
 }
 
@@ -108,15 +92,10 @@ convert_edad <- function(data_event,
 #' @keywords internal
 remove_val_nin <- function(data_event, nomb_col) {
   validar_data_event(data_event)
-  stopifnot("El parametro nomb_col es obligatorio" = !missing(nomb_col),
-            "El parametro nomb_col debe ser una cadena de caracteres" =
-              is.character(nomb_col))
-  ref_col <- paste0("data_event$", nomb_col)
-  data_event_del <- data_event
-  del_rows <- is.na(eval(parse(text = ref_col))) |
-    is.nan(eval(parse(text = ref_col))) |
-    is.infinite(eval(parse(text = ref_col)))
-  if (any(del_rows)) data_event_del <- data_event[!del_rows]
+  del_rows <- is.na(data_event[[nomb_col]]) |
+    is.nan(data_event[[nomb_col]]) |
+    is.infinite(data_event[[nomb_col]])
+  data_event_del <- data_event[!del_rows]
   return(data_event_del)
 }
 
@@ -340,7 +319,7 @@ limpiar_val_atipic <- function(data_event) {
         cols <- event[as.character(cod_event)]
         for (nom_cols in cols) {
           for (col in nom_cols) {
-            data_event[eval(parse(text = col))] <- NA
+            data_event[, col] <- NA
           }
         }
       }

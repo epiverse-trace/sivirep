@@ -38,7 +38,7 @@ obtener_meses_mas_casos <- function(data_event,
             "El parametro top debe ser numerico"
             = is.numeric(top))
   data_mas_casos <-
-    data_event[order(eval(parse(text = paste0("data_event$", col_casos))),
+    data_event[order(data_event[[col_casos]],
                      decreasing = TRUE), ]
   if (nrow(data_mas_casos) < top) {
     top <- nrow(data_mas_casos)
@@ -85,16 +85,11 @@ obtener_fila_mas_casos <- function(data_event,
             = is.character(nomb_col),
             "El parametro porcentaje debe ser booleano"
             = is.logical(porcentaje))
-  data_mas_casos <- data_event[order(eval(parse(text =
-                                                  paste0("data_event$",
-                                                         nomb_col))),
+  data_mas_casos <- data_event[order(data_event[[nomb_col]],
                                      decreasing = TRUE), ]
   data_mas_casos <- data_mas_casos[1, ]
   if (porcentaje) {
-    value_per <-
-      data_mas_casos$casos[1] / sum(eval(parse(text =
-                                                 paste0("data_event$",
-                                                        nomb_col))))
+    value_per <- data_mas_casos$casos[1] / sum(data_event[[nomb_col]])
     data_mas_casos$porcentaje <- round(value_per * 100, 2)
   }
   return(data_mas_casos)
