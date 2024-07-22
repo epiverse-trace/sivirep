@@ -117,10 +117,6 @@ remove_error_fecha <- function(data_event,
                                col_ini = "ini_sin",
                                col_comp = "fec_hos") {
   validar_data_event(data_event)
-  stopifnot("El parametro col_ini debe ser una cadena de caracteres" =
-              is.character(col_ini),
-            "El parametro col_comp debe ser una cadena de caracteres" =
-              is.character(col_comp))
   del_rows <- which(data_event[[col_comp]] <= data_event[[col_ini]])
   data_event_del <- data_event[-del_rows, ]
   return(data_event_del)
@@ -143,12 +139,6 @@ format_fecha <- function(data_event,
                          nomb_cols = NULL) {
   validar_data_event(data_event)
   validar_format_fecha(format_fecha)
-  stopifnot("El parametro nomb_cols no debe estar vacio" =
-              !is.null(nomb_cols),
-            "El parametro nomb_cols debe ser una cadena de caracteres o 
-            un arreglo de cadenas de caracteres" =
-              (is.character(nomb_cols) && !is.array(nomb_cols)) ||
-              (!is.character(nomb_cols) && is.array(nomb_cols)))
   data_limpia <- data_event
   if (!is.null(nomb_cols)) {
     for (name in nomb_cols) {
