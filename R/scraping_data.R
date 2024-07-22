@@ -23,8 +23,8 @@ obtener_ruta_data_event_year <- function(nombre_event, year) {
   ruta_query <- stringr::str_replace(ruta_query, stringr::fixed("_disease_"),
                                      nombre_event)
   ruta_query_event <- paste0(ruta_base,
-                             paste0(ruta_microdata,
-                                    ruta_query))
+                             ruta_microdata,
+                             ruta_query)
   get_query_event <- realizar_peticion_http(ruta_query_event)
   respuesta_query_event <- httr2::resp_body_string(get_query_event)
   respuesta_document <- xml2::as_xml_document(respuesta_query_event)
