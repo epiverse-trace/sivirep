@@ -165,28 +165,27 @@ import_data_event <- function(nombre_event,
   nombre_event <- stringr::str_to_title(nombre_event)
   cols_remover <- obtener_val_config("cols_remover")
   grupo_events <- obtener_eventos_relacionados(nombre_event, years)
+  # Malaria dataset is formatted differently
+  grupo_events$enfermedad <- setdiff(grupo_events$enfermedad, "Malaria")
   for (year in years) {
     for (event in grupo_events$enfermedad) {
-      if (event != "Malaria") {
-        data_url <- obtener_ruta_data_event_year(nombre_event = event,
-                                                 year = year)
-        data_import <- import_sep_data(data_url, cache)
-        data_import <- limpiar_encabezado(data_import)
-        data_import$fec_def <- as.character(data_import$fec_def)
+      data_url <- obtener_ruta_data_event_year(nombre_event = event,
+                                               year = year)
+      data_import <- import_sep_data(data_url, cache)
+      data_import <- limpiar_encabezado(data_import)
+      data_import$fec_def <- as.character(data_import$fec_def)
+      nombre_cols <- names(data_import)
+      indice_cols_eve <- which(stringr::str_detect(nombre_cols,
+                                                  stringr::fixed("cod_eve_")))
+      if (length(indice_cols_eve) != 0) {
+        names(data_import)[indice_cols_eve[1]] <- "cod_eve"
+        indice_cols_eve[1] <- indice_cols_eve[-1]
+        data_import <-
+          data_import[, -indice_cols_eve]
         nombre_cols <- names(data_import)
-        indice_cols_eve <- which(stringr::str_detect(nombre_cols,
-                                                    stringr::fixed("cod_eve_")))
-        if (!identical(indice_cols_eve,
-                       integer(0))) {
-          names(data_import)[indice_cols_eve[1]] <- "cod_eve"
-          indice_cols_eve[1] <- indice_cols_eve[-1]
-          data_import <-
-            data_import[, -indice_cols_eve]
-          nombre_cols <- names(data_import)
-        }
-        nombre_cols <- nombre_cols[-which(nombre_cols %in% cols_remover)]
-        data_event <- rbind(data_event, data_import[, nombre_cols])
       }
+      nombre_cols <- nombre_cols[-which(nombre_cols %in% cols_remover)]
+      data_event <- rbind(data_event, data_import[, nombre_cols])
     }
   }
   return(data_event)
