@@ -313,8 +313,7 @@ plot_sex <- function(data_agrupada,
     ggplot2::geom_bar(width = 0.5,
                       stat = "identity") +
     ggplot2::labs(x = "\nSexo\n", y = paste0(etiqueta_eje, "\n"),
-                  caption = fuente_data) +
-    ggplot2::theme_classic() + {
+                  caption = fuente_data) + {
       if (porcentaje) {
             ggplot2::geom_text(ggplot2::aes(label =
                                               paste0(.data[[col_distribucion]],
@@ -395,7 +394,6 @@ plot_sex_semanaepi <- function(data_agrupada,
       ggplot2::scale_y_continuous(breaks = seq(0, max_casos, 1))
     } +
     ggplot2::scale_x_continuous(breaks = seq(1, max_semana, 1)) +
-    ggplot2::theme_classic() +
     obtener_estetica_escala(escala = 2, nombre = "Sexo") +
     tema_sivirep() +
     ggplot2::facet_wrap(facets = ~nombre_evento,
@@ -446,7 +444,6 @@ plot_edad <- function(data_agrupada,
     ggplot2::labs(x = "\nGrupo de edad\n",
                   y = paste0(etiqueta_casos, "\n"),
                   caption = fuente_data) +
-    ggplot2::theme_classic() +
     tema_sivirep()
   return(plot_casos_edad)
 }
@@ -495,7 +492,6 @@ plot_edad_sex <- function(data_agrupada,
                       stat = "identity") +
     ggplot2::labs(x = "\nGrupo de edad\n", y = paste0(etiqueta_casos, "\n"),
                   caption = fuente_data) +
-    ggplot2::theme_classic() +
     obtener_estetica_escala(escala = 2, nombre = "Sexo") +
     tema_sivirep()
   return(plot_casos_edad_sexo)
@@ -562,7 +558,6 @@ plot_dptos <- function(data_agrupada,
     ggplot2::labs(x = "\nDepartamento\n",
                   y = paste0(etiqueta_casos, "\n"),
                   caption = fuente_data) +
-    ggplot2::theme_classic() +
     tema_sivirep() +
     pos_leyenda +
     ggplot2::coord_flip()
@@ -631,7 +626,6 @@ plot_mpios <- function(data_agrupada,
     ggplot2::labs(x = "\nMunicipio\n",
                   y = paste0(etiqueta_casos, "\n"),
                   caption = fuente_data) +
-    ggplot2::theme_classic() +
     tema_sivirep() +
     pos_leyenda +
     ggplot2::coord_flip()
@@ -682,7 +676,6 @@ plot_area_geo <- function(data_agrupada,
     ggplot2::labs(x = paste0("\n", etiqueta_area_geo),
                   y = paste0(etiqueta_casos, "\n"),
                   caption = fuente_data) +
-    ggplot2::theme_classic() +
     tema_sivirep() +
     ggplot2::scale_x_discrete(labels = etiquetas_areas) +
     pos_leyenda
@@ -751,7 +744,6 @@ plot_top_area_geo <- function(data_agrupada,
     ggplot2::labs(x = "\nDepartamento\n",
                   y = paste0("\n", etiqueta_casos),
                   caption = fuente_data) +
-    ggplot2::theme_classic() +
     obtener_estetica_escala(escala = 3,
                             nombre = paste0(etiqueta_area_geo, "\n"),
                             etiquetas = etiquetas_areas) +
@@ -851,7 +843,6 @@ plot_years <- function(data_agrupada,
     ggplot2::labs(x = paste0("\n", etiqueta_year, "\n"),
                   y = paste0(etiqueta_casos, "\n"),
                   caption = fuente_data) +
-    ggplot2::theme_classic() +
     obtener_estetica_escala(escala = eventos, nombre = "Eventos\n") +
     tema_sivirep() +
     ggplot2::theme(legend.position = "right")
@@ -909,7 +900,6 @@ plot_tipo_caso <- function(data_agrupada,
     ggplot2::labs(x = paste0("\n", etiqueta_tipo, "\n"),
                   y = paste0(etiqueta_casos, "\n"),
                   caption = fuente_data) +
-    ggplot2::theme_classic() +
     obtener_estetica_escala(escala = escala, nombre = "Eventos\n") +
     ggplot2::scale_x_discrete(labels = etiquetas)
     tema_sivirep() +
@@ -975,7 +965,6 @@ plot_tipo_caso_years <- function(data_agrupada,
     ggplot2::labs(x = paste0("\n", etiqueta_year, "\n"),
                   y = paste0(etiqueta_casos, "\n"),
                   caption = fuente_data) +
-    ggplot2::theme_classic() +
     obtener_estetica_escala(escala = escala,
                             nombre = paste0(etiqueta_tipo, "\n"),
                             etiquetas = etiquetas) +
@@ -1039,7 +1028,6 @@ plot_per_etn <- function(data_agrupada,
     ggplot2::labs(x = paste0(etiqueta_etn, "\n"),
                   y = paste0("\n", etiqueta_casos),
                   caption = fuente_data) +
-    ggplot2::theme_classic() +
     ggplot2::scale_x_discrete(labels = stringr::str_wrap(etiquetas,
                                                          5)) +
     tema_sivirep() +
