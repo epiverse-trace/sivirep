@@ -310,8 +310,7 @@ plot_sex <- function(data_agrupada,
                                                  y =
                                                    .data[[col_distribucion]],
                                                  fill = .data[[col_sex]])) +
-    ggplot2::geom_bar(width = 0.5,
-                      stat = "identity") +
+    ggplot2::geom_col(width = 0.5) +
     ggplot2::labs(x = "\nSexo\n", y = paste0(etiqueta_eje, "\n"),
                   caption = fuente_data) + {
       if (porcentaje) {
@@ -385,8 +384,7 @@ plot_sex_semanaepi <- function(data_agrupada,
                     ggplot2::aes(x = .data[[col_semanaepi]],
                                  y = .data[["casos"]],
                                  fill = .data[[col_sex]])) +
-    ggplot2::geom_bar(width = 0.5,
-                      stat = "identity") +
+    ggplot2::geom_col(width = 0.5) +
     ggplot2::labs(x = paste0("\n", etiqueta_episemana, "\n"),
                   y = paste0(etiqueta_casos, "\n"),
                   caption = fuente_data) + {
@@ -438,8 +436,7 @@ plot_edad <- function(data_agrupada,
     ggplot2::ggplot(data_agrupada,
                     ggplot2::aes(x = .data[[col_edad]],
                                  y = .data[["casos"]])) +
-    ggplot2::geom_bar(width = 0.7,
-                      stat = "identity",
+    ggplot2::geom_col(width = 0.7,
                       fill = "#2274BB") +
     ggplot2::labs(x = "\nGrupo de edad\n",
                   y = paste0(etiqueta_casos, "\n"),
@@ -488,8 +485,7 @@ plot_edad_sex <- function(data_agrupada,
                     ggplot2::aes(x = .data[[col_edad]],
                                  y = .data[["casos"]],
                                  fill = .data[[col_sex]])) +
-    ggplot2::geom_bar(width = 0.7,
-                      stat = "identity") +
+    ggplot2::geom_col(width = 0.7) +
     ggplot2::labs(x = "\nGrupo de edad\n", y = paste0(etiqueta_casos, "\n"),
                   caption = fuente_data) +
     obtener_estetica_escala(escala = 2, nombre = "Sexo") +
@@ -552,8 +548,7 @@ plot_dptos <- function(data_agrupada,
                     ggplot2::aes(x = stats::reorder(.data[[col_dptos]],
                                                     .data[["casos"]]),
                                  y = .data[["casos"]])) +
-    ggplot2::geom_bar(width = 0.5,
-                      stat = "identity",
+    ggplot2::geom_col(width = 0.5,
                       fill = "#2274BB") +
     ggplot2::labs(x = "\nDepartamento\n",
                   y = paste0(etiqueta_casos, "\n"),
@@ -620,8 +615,7 @@ plot_mpios <- function(data_agrupada,
                     ggplot2::aes(x = stats::reorder(.data[[col_mpios]],
                                                     .data[["casos"]]),
                                  y = .data[["casos"]])) +
-    ggplot2::geom_bar(width = 0.5,
-                      stat = "identity",
+    ggplot2::geom_col(width = 0.5,
                       fill = "#2274BB") +
     ggplot2::labs(x = "\nMunicipio\n",
                   y = paste0(etiqueta_casos, "\n"),
@@ -670,8 +664,7 @@ plot_area_geo <- function(data_agrupada,
     ggplot2::ggplot(data_agrupada,
                     ggplot2::aes(x = .data[[col_area]],
                                  y = .data[["casos"]])) +
-    ggplot2::geom_bar(stat = "identity",
-                      fill = "#2274BB",
+    ggplot2::geom_col(fill = "#2274BB",
                       width = 0.3) +
     ggplot2::labs(x = paste0("\n", etiqueta_area_geo),
                   y = paste0(etiqueta_casos, "\n"),
@@ -740,7 +733,7 @@ plot_top_area_geo <- function(data_agrupada,
                     ggplot2::aes(x = .data[[nomb_cols[2]]],
                                  y = .data[["casos"]],
                                  fill = .data[[nomb_cols[1]]])) +
-    ggplot2::geom_bar(stat = "identity") +
+    ggplot2::geom_col() +
     ggplot2::labs(x = "\nDepartamento\n",
                   y = paste0("\n", etiqueta_casos),
                   caption = fuente_data) +
@@ -839,7 +832,7 @@ plot_years <- function(data_agrupada,
                     ggplot2::aes(x = .data[[col_year]],
                                  y = .data[["casos"]],
                                  fill = .data[["nombre_evento"]])) +
-    ggplot2::geom_bar(stat = "identity") +
+    ggplot2::geom_col() +
     ggplot2::labs(x = paste0("\n", etiqueta_year, "\n"),
                   y = paste0(etiqueta_casos, "\n"),
                   caption = fuente_data) +
@@ -896,7 +889,7 @@ plot_tipo_caso <- function(data_agrupada,
                     ggplot2::aes(x = .data[[nomb_cols[1]]],
                                  y = .data[["casos"]],
                                  fill = .data[[nomb_cols[2]]])) +
-    ggplot2::geom_bar(stat = "identity", width = 0.5) +
+    ggplot2::geom_col(width = 0.5) +
     ggplot2::labs(x = paste0("\n", etiqueta_tipo, "\n"),
                   y = paste0(etiqueta_casos, "\n"),
                   caption = fuente_data) +
@@ -961,7 +954,7 @@ plot_tipo_caso_years <- function(data_agrupada,
                     ggplot2::aes(x = .data[[col_year]],
                                  y = .data[["casos"]],
                                  fill = .data[[col_tipo]])) +
-    ggplot2::geom_bar(stat = "identity") +
+    ggplot2::geom_col() +
     ggplot2::labs(x = paste0("\n", etiqueta_year, "\n"),
                   y = paste0(etiqueta_casos, "\n"),
                   caption = fuente_data) +
@@ -1023,8 +1016,7 @@ plot_per_etn <- function(data_agrupada,
     ggplot2::ggplot(data_agrupada,
                     ggplot2::aes(x = .data[[col_etn]],
                                  y = .data[["casos"]])) +
-    ggplot2::geom_bar(stat = "identity",
-                      fill = "#2274BB") +
+    ggplot2::geom_col(fill = "#2274BB") +
     ggplot2::labs(x = paste0(etiqueta_etn, "\n"),
                   y = paste0("\n", etiqueta_casos),
                   caption = fuente_data) +
