@@ -140,13 +140,9 @@ format_fecha <- function(data_event,
   validar_data_event(data_event)
   validar_format_fecha(format_fecha)
   data_limpia <- data_event
-  if (!is.null(nomb_cols)) {
-    for (name in nomb_cols) {
-      if (!is.null(name)) {
-        data_limpia[[name]] <- as.Date(data_event[[name]],
-                                           format = format_fecha)
-      }
-    }
+  for (name in nomb_cols) {
+    data_limpia[[name]] <- as.Date(data_event[[name]],
+                                       format = format_fecha)
   }
   return(data_limpia)
 }
