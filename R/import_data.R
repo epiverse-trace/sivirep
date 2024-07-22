@@ -118,7 +118,7 @@ list_events <- function() {
   }
   events_adicionales <- obtener_val_config("additional_diseases")
   nomb_events <- c(stringr::str_to_title(nomb_events), events_adicionales)
-  years_events <- c(years_events, "", "", "")
+  years_events <- c(years_events, rep_len("", length(events_adicionales)))
   list_events <- data.frame(enfermedad = nomb_events,
                             aa = years_events)
   list_events <- list_events[order(list_events$enfermedad,
