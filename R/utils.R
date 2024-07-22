@@ -196,7 +196,6 @@ obtener_info_depts <- function(dpto = NULL, mpio = NULL) {
             un numero" =
               is.character(dpto) || is.numeric(dpto))
   data_geo <- import_geo_cods()
-  data_dpto <- NULL
   dpto_busqueda <- dpto
   col_dpto <- "nombre_departamento"
   if (is.numeric(dpto_busqueda) ||
@@ -426,8 +425,6 @@ obtener_cond_inciden_event <- function(cod_eve) {
             un numerico" =
               (is.numeric(cod_eve) && !is.character(cod_eve)) ||
               (!is.numeric(cod_eve) && is.character(cod_eve)))
-  incidencia_eventos <- NULL
-  condiciones <- NULL
   ruta_extdata <- system.file("extdata", package = "sivirep")
   ruta_data <- obtener_val_config(llave = "incidence_events_file_name")
   condiciones <- readRDS(file.path(ruta_extdata, ruta_data))
@@ -559,7 +556,6 @@ obtener_pob_incidencia <- function(data_incidencia = NULL,
 #' enfermedad o evento.
 #' @keywords internal
 obtener_year <- function(data_event) {
-  year <- NULL
   nomb_col <- "ano"
   if (nomb_col %in% colnames(data_event)) {
     year <- unique(data_event[[nomb_col]])
@@ -569,10 +565,9 @@ obtener_year <- function(data_event) {
               parametro year" =
                 length(year) == 1)
   } else {
-    stopifnot("Los datos del evento o enfermedad no contienen la variable
-              o columna ano. Por favor indique el valor en el parametro year
-              para ejecutar la funcion" =
-                length(year) == 1)
+    stop("Los datos del evento o enfermedad no contienen la variable ",
+         "o columna ano. Por favor indique el valor en el parametro year ",
+         "para ejecutar la funcion")
   }
   return(year)
 }
@@ -602,7 +597,6 @@ obtener_text_sex <- function(data_agrupada,
   femenino <- 0
   masculino <- 0
   tam <- seq_len(nrow(data_agrupada))
-  text_sex <- NULL
   if (stringr::str_detect(nombre_evento,
                           stringr::fixed("malaria"))) {
     for (fila in tam) {

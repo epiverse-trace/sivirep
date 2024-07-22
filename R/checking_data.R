@@ -194,7 +194,6 @@ agrupar_rango_edad <- function(data_event,
                                paso,
                                porcentaje = TRUE) {
   validar_data_event(data_event)
-  data_vals_rango <- data.frame()
   validar_edad(data_event, col_edad)
   total_casos <- sum(data_event$casos)
   data_vals_rango <-
@@ -496,7 +495,6 @@ agrupar_mpio <- function(data_event,
   }
   nomb_cols <- obtener_tip_ocurren_geo(data_event$cod_eve[1])
   data_event_muns <- data_event
-  dept_data <- NULL
   if (!is.null(dpto)) {
     aux_dpto <- unique(data_event_muns[[nomb_cols[1]]])
     if (length(aux_dpto) > 1) {
@@ -811,7 +809,6 @@ calcular_incidencia <- function(data_incidencia = NULL, data_agrupada,
   data_incidencia <- pop_incidencia$data_incidencia
   poblacion <- pop_incidencia$poblacion
   poblacion_incidencia <- data_incidencia
-  total_casos <- NULL
   total_poblacion <- NULL
   incidencia <- 0.00
   nomb_cols <- obtener_tip_ocurren_geo(data_agrupada$nombre_evento[1])
@@ -958,7 +955,6 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
     geo_incidencia <- data.frame(incidencia = incidencia_dptos)
     data_geo_incidencia <- cbind(data_agrupada, geo_incidencia)
   } else if (nomb_cols[3] %in% colnames(data_agrupada)) {
-    incidencia_mpios <- NULL
     data_agrupada <- group_by(data_agrupada, 
                               dplyr::across(dplyr::all_of(nomb_cols[1:4])))
     data_agrupada <- dplyr::summarise(data_agrupada,
@@ -1028,7 +1024,6 @@ calcular_incidencia_sex <- function(data_incidencia = NULL,
                                     year = NULL, dpto = NULL,
                                     mpio = NULL) {
   validar_data_agrupada(data_agrupada)
-  data_incidencia_sex <- NULL
   incidencia <- NULL
   dept_data <- NULL
   nombre_evento <- data_agrupada$nombre_evento[1]
