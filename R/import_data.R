@@ -67,8 +67,7 @@ import_geo_cods <- function(descargar = FALSE) {
     divipoladata <- NULL
     ruta_extdata <- system.file("extdata", package = "sivirep")
     ruta_data <- obtener_val_config("divipola_data_path")
-    load(file.path(ruta_extdata, ruta_data))
-    data_geo <- divipoladata
+    data_geo <- readRDS(ruta_extdata, ruta_data)
   }
   return(data_geo)
 }
@@ -309,8 +308,7 @@ import_pob_proyecciones <- function(year) {
                              year)
       utils::download.file(url_proyecs, ruta_proyecs)
     }
-    load(ruta_proyecs)
-    proyecciones <- eval(parse(text = nomb_proyecs))
+    proyecciones <- readRDS(ruta_proyecs)
   }
   return(proyecciones)
 }
@@ -368,8 +366,7 @@ import_pob_riesgo <- function(event, year) {
     }
   }
   if (!is.null(pop_event) && !is.null(pop_event_ruta)) {
-      load(pop_event_ruta)
-      pob_riesgo_event <- eval(parse(text = pop_event$file_name))
+      pob_riesgo_event <- readRDS(pop_event_ruta)
   } else if (!is.null(years_disponibles)) {
     warning("Para el ", year, " la poblacion a riesgo no esta disponible.",
             " Los ", etiqueta_year, " disponibles para la enfermedad o ",

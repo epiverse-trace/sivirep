@@ -439,8 +439,7 @@ obtener_cond_inciden_event <- function(cod_eve) {
   condiciones <- NULL
   ruta_extdata <- system.file("extdata", package = "sivirep")
   ruta_data <- obtener_val_config(llave = "incidence_events_file_name")
-  load(file.path(ruta_extdata, ruta_data))
-  condiciones <- incidencia_eventos
+  condiciones <- readRDS(file.path(ruta_extdata, ruta_data))
   vals_event <- condiciones[condiciones$cod_eve == as.numeric(cod_eve), ]
   if (nrow(vals_event) == 0) {
     aux_event <-
