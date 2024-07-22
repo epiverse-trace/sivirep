@@ -298,7 +298,6 @@ plot_sex <- function(data_agrupada,
   }
   stopifnot("El parametro fuente_data debe ser un cadena de caracteres"
             = is.character(fuente_data))
-  etiqueta_eje <- NULL
   if (col_distribucion == "casos") {
     etiqueta_eje <- obtener_val_config("label_cases")
   } else {

@@ -56,7 +56,6 @@ realizar_peticion_http <- function(url) {
 #' import_geo_cods(descargar = FALSE)
 #' @export
 import_geo_cods <- function(descargar = FALSE) {
-  data_geo <- NULL
   stopifnot("El parametro descargar debe ser un booleano"
             = is.logical(descargar))
   if (descargar) {
@@ -64,7 +63,6 @@ import_geo_cods <- function(descargar = FALSE) {
     data_geo <- utils::read.csv(ruta_data)
     names(data_geo) <- epitrix::clean_labels(names(data_geo))
   } else {
-    divipoladata <- NULL
     ruta_extdata <- system.file("extdata", package = "sivirep")
     ruta_data <- obtener_val_config("divipola_data_path")
     data_geo <- readRDS(ruta_extdata, ruta_data)
@@ -287,7 +285,6 @@ import_pob_incidencia <- function(poblacion = c("riesgo", "proyecciones"), event
 #' @export
 import_pob_proyecciones <- function(year) {
   proyecciones <- NULL
-  nomb_proyecs <- NULL
   ruta_proyecciones <- obtener_val_config("projections_population")
   years_disp <- seq(ruta_proyecciones$start_year,
                     ruta_proyecciones$final_year)
