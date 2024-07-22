@@ -103,13 +103,13 @@ list_events <- function() {
   text_children <- text_children[-base::seq(3, length(text_children), 3)]
   while (i < base::length(children)) {
     event <- xml2::xml_text(children[i])
-    nomb_events <- base::append(nomb_events, event)
+    nomb_events <- c(nomb_events, event)
     events <- base::which(text_children == event)
     years <- events - 1
     years_events <-
-      base::append(years_events,
-                   base::toString(base::sort(text_children[years],
-                                             decreasing = FALSE)))
+      c(years_events,
+        base::toString(base::sort(text_children[years],
+                                  decreasing = FALSE)))
     children <- children[-years]
     text_children <- text_children[-(events - 1)]
     children <- children[-base::which(text_children == event)]
@@ -117,9 +117,8 @@ list_events <- function() {
     i <- i + 2
   }
   events_adicionales <- obtener_val_config("additional_diseases")
-  nomb_events <- base::append(stringr::str_to_title(nomb_events),
-                              events_adicionales)
-  years_events <- base::append(years_events, c("", "", ""))
+  nomb_events <- c(stringr::str_to_title(nomb_events), events_adicionales)
+  years_events <- c(years_events, "", "", "")
   list_events <- data.frame(enfermedad = nomb_events,
                             aa = years_events)
   list_events <- list_events[order(list_events$enfermedad,
