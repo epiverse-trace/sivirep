@@ -121,7 +121,8 @@ plot_map <- function(data_agrupada,
           parametro col_codigos")
   }
   polygon_seleccionado <- config_map$poligono
-  data_agrupada <- group_by_at(data_agrupada, c("id", nombres_col))
+  data_agrupada <- group_by(data_agrupada, 
+                            dplyr::across(dplyr::all_of(c("id", nombres_col))))
   data_agrupada <-  dplyr::summarise(data_agrupada,
                                      casos =
                                        sum(.data[[col_distribucion]]),
@@ -210,8 +211,10 @@ plot_fecha_inisintomas <- function(data_agrupada,
     data_plot[[var_x]] <- as.numeric(data_agrupada[[var_x]])
   }
   if (tipo == "tendencia" && uni_marca != "day") {
-    data_plot <- dplyr::group_by_at(data_plot,
-                                    c(var_x, "nombre_evento"))
+    data_plot <- dplyr::group_by(
+      data_plot,
+      dplyr::across(dplyr::all_of(c(var_x, "nombre_evento")))
+    )
     data_plot <- dplyr::summarise(data_plot, casos = sum(.data$casos),
                                   .groups = "drop")
   }
@@ -543,7 +546,8 @@ plot_dptos <- function(data_agrupada,
   if (num_eventos > 3) {
     pos_leyenda <- ggplot2::theme(legend.position = "bottom")
   }
-  data_agrupada <- group_by_at(data_agrupada, col_dptos)
+  data_agrupada <- group_by(data_agrupada, 
+                            dplyr::across(dplyr::all_of(col_dptos)))
   data_agrupada <-
     dplyr::summarise(data_agrupada,
                      casos = sum(.data[["casos"]]), .groups = "drop")
@@ -611,7 +615,8 @@ plot_mpios <- function(data_agrupada,
   if (num_eventos > 3) {
     pos_leyenda <- ggplot2::theme(legend.position = "bottom")
   }
-  data_agrupada <- group_by_at(data_agrupada, col_mpios)
+  data_agrupada <- group_by(data_agrupada, 
+                            dplyr::across(dplyr::all_of(col_mpios)))
   data_agrupada <-
     dplyr::summarise(data_agrupada,
                      casos = sum(.data[["casos"]]), .groups = "drop")
@@ -732,7 +737,8 @@ plot_top_area_geo <- function(data_agrupada,
       }
   }
   pos_leyenda <- ggplot2::theme(legend.position = "right")
-  data_agrupada_area <- group_by_at(data_agrupada, nomb_cols)
+  data_agrupada_area <- group_by(data_agrupada, 
+                                 dplyr::across(dplyr::all_of(nomb_cols)))
   data_agrupada_area <- dplyr::summarise(data_agrupada_area,
                                          casos = sum(.data[["casos"]]),
                                          .groups = "drop")
@@ -1085,7 +1091,8 @@ plot_tabla_incidencia_geo <- function(data_agrupada,
                           " habitantes")
   data_agrupada[[col_geo[2]]] <-
     stringr::str_to_title(data_agrupada[[col_geo[2]]])
-  data_tabla <- group_by_at(data_agrupada, c(col_geo, "incidencia"))
+  data_tabla <- group_by(data_agrupada, 
+                         dplyr::across(dplyr::all_of(c(col_geo, "incidencia"))))
   data_tabla <- dplyr::summarise(data_tabla,
                                  incidencia = sum(.data[["incidencia"]]),
                                  .groups = "drop")

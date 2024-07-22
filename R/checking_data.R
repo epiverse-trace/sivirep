@@ -74,7 +74,10 @@ agrupar_semanaepi <- function(data_event,
   validar_data_event(data_event)
   stopifnot("El parametro col_semanaepi debe ser una cadena de caracteres" =
               is.character(col_semanaepi))
-  data_event_agrupada <- dplyr::group_by_at(data_event, col_semanaepi)
+  data_event_agrupada <- dplyr::group_by(
+    data_event, 
+    dplyr::across(dplyr::all_of(col_semanaepi))
+  )
   data_event_agrupada <- dplyr::summarise(data_event_agrupada,
                                           casos = sum(.data$uni_med))
   data_event_agrupada <- data_event_agrupada[1:53, ]
@@ -120,13 +123,19 @@ agrupar_cols_casos <- function(data_event,
   validar_nomb_cols(data_event, nomb_cols)
   validar_porcentaje(porcentaje)
   if (estandar) {
-    nomb_cols <- append(nomb_cols, c("cod_eve", "nombre_evento", "ano"))
-    data_event_agrupada <- dplyr::group_by_at(data_event, nomb_cols)
+    nomb_cols <- c(nomb_cols, c("cod_eve", "nombre_evento", "ano"))
+    data_event_agrupada <- dplyr::group_by(
+      data_event, 
+      dplyr::across(dplyr::all_of(nomb_cols))
+    )
     data_event_agrupada <- dplyr::summarise(data_event_agrupada,
                                             casos = dplyr::n(),
                                             .groups = "drop")
   } else {
-    data_event_agrupada <- dplyr::group_by_at(data_event, nomb_cols)
+    data_event_agrupada <- dplyr::group_by(
+      data_event, 
+      dplyr::across(dplyr::all_of(nomb_cols))
+    )
     data_event_agrupada <- dplyr::summarise(data_event_agrupada,
                                             casos = sum(.data[["casos"]]),
                                             .groups = "drop")
@@ -196,8 +205,10 @@ agrupar_rango_edad <- function(data_event,
       data_event[[col_edad]],
       seq(min_val, max_val, paso)
     ))
-  data_vals_rango <- dplyr::group_by_at(data_vals_rango,
-                                        c("ranges", col_adicional))
+  data_vals_rango <- dplyr::group_by(
+    data_vals_rango,
+    dplyr::across(dplyr::all_of(c("ranges", col_adicional)))
+  )
   data_vals_rango <- dplyr::summarize(data_vals_rango,
                                       casos = sum(.data$casos),
                                       .groups = "drop")
@@ -928,7 +939,10 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
   if (nomb_cols[1] %in% colnames(data_agrupada) &&
       !(nomb_cols[3] %in% colnames(data_agrupada))) {
     incidencia_dptos <- NULL
-    data_agrupada <- group_by_at(data_agrupada, nomb_cols[1:2])
+    data_agrupada <- group_by(
+      data_agrupada, 
+      dplyr::across(dplyr::all_of(nomb_cols[1:2]))
+    )
     data_agrupada <- dplyr::summarise(data_agrupada,
                                       casos =
                                         sum(.data[["casos"]]),
@@ -948,8 +962,8 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
     data_geo_incidencia <- cbind(data_agrupada, geo_incidencia)
   } else if (nomb_cols[3] %in% colnames(data_agrupada)) {
     incidencia_mpios <- NULL
-    data_agrupada <- group_by_at(data_agrupada, c(nomb_cols[3:4],
-                                                  nomb_cols[1:2]))
+    data_agrupada <- group_by(data_agrupada, 
+                              dplyr::across(dplyr::all_of(nomb_cols[1:4])))
     data_agrupada <- dplyr::summarise(data_agrupada,
                                       casos =
                                         sum(.data[["casos"]]),
@@ -1050,7 +1064,10 @@ calcular_incidencia_sex <- function(data_incidencia = NULL,
     }
   }
   cod_eve <- data_agrupada$cod_eve[1]
-  data_agrupada <- group_by_at(data_agrupada, "sexo")
+  data_agrupada <- group_by(
+    data_agrupada, 
+    "sexo"
+  )
   data_agrupada <- dplyr::summarise(data_agrupada,
                                     casos = sum(.data[["casos"]]),
                                     .groups = "drop")
