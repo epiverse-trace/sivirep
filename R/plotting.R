@@ -545,17 +545,17 @@ plot_dptos <- function(data_agrupada,
                      casos = sum(.data[["casos"]]), .groups = "drop")
   plot_casos_dptos <-
     ggplot2::ggplot(data_agrupada,
-                    ggplot2::aes(x = stats::reorder(.data[[col_dptos]],
-                                                    .data[["casos"]]),
-                                 y = .data[["casos"]])) +
+                    ggplot2::aes(x = .data[["casos"]],
+                                 y = stats::reorder(.data[[col_dptos]],
+                                                    .data[["casos"]]))) +
     ggplot2::geom_col(width = 0.5,
-                      fill = "#2274BB") +
+                      fill = "#2274BB",
+                      orientation = "y") +
     ggplot2::labs(x = "\nDepartamento\n",
                   y = paste0(etiqueta_casos, "\n"),
                   caption = fuente_data) +
     tema_sivirep() +
     pos_leyenda +
-    ggplot2::coord_flip()
   return(plot_casos_dptos)
 }
 
@@ -612,17 +612,17 @@ plot_mpios <- function(data_agrupada,
                      casos = sum(.data[["casos"]]), .groups = "drop")
   plot_casos_muns <-
     ggplot2::ggplot(data_agrupada,
-                    ggplot2::aes(x = stats::reorder(.data[[col_mpios]],
-                                                    .data[["casos"]]),
-                                 y = .data[["casos"]])) +
+                    ggplot2::aes(x = .data[["casos"]],
+                                 y = stats::reorder(.data[[col_mpios]],
+                                                    .data[["casos"]]))) +
     ggplot2::geom_col(width = 0.5,
-                      fill = "#2274BB") +
+                      fill = "#2274BB",
+                      orientation = "y") +
     ggplot2::labs(x = "\nMunicipio\n",
                   y = paste0(etiqueta_casos, "\n"),
                   caption = fuente_data) +
     tema_sivirep() +
-    pos_leyenda +
-    ggplot2::coord_flip()
+    pos_leyenda
   return(plot_casos_muns)
 }
 
@@ -730,10 +730,10 @@ plot_top_area_geo <- function(data_agrupada,
                                          .groups = "drop")
   plot_casos_area <-
     ggplot2::ggplot(data_agrupada_area,
-                    ggplot2::aes(x = .data[[nomb_cols[2]]],
-                                 y = .data[["casos"]],
+                    ggplot2::aes(x = .data[["casos"]],
+                                 y = .data[[nomb_cols[2]]],
                                  fill = .data[[nomb_cols[1]]])) +
-    ggplot2::geom_col() +
+    ggplot2::geom_col(orientation = "y") +
     ggplot2::labs(x = "\nDepartamento\n",
                   y = paste0("\n", etiqueta_casos),
                   caption = fuente_data) +
@@ -741,8 +741,7 @@ plot_top_area_geo <- function(data_agrupada,
                             nombre = paste0(etiqueta_area_geo, "\n"),
                             etiquetas = etiquetas_areas) +
     tema_sivirep() +
-    pos_leyenda +
-    ggplot2::coord_flip()
+    pos_leyenda
   return(plot_casos_area)
 }
 
@@ -1014,16 +1013,15 @@ plot_per_etn <- function(data_agrupada,
                                       estandar = FALSE)
   plot_per_etn <-
     ggplot2::ggplot(data_agrupada,
-                    ggplot2::aes(x = .data[[col_etn]],
-                                 y = .data[["casos"]])) +
-    ggplot2::geom_col(fill = "#2274BB") +
+                    ggplot2::aes(x = .data[["casos"]],
+                                 y = .data[[col_etn]])) +
+    ggplot2::geom_col(fill = "#2274BB", orientation = "y") +
     ggplot2::labs(x = paste0(etiqueta_etn, "\n"),
                   y = paste0("\n", etiqueta_casos),
                   caption = fuente_data) +
     ggplot2::scale_x_discrete(labels = stringr::str_wrap(etiquetas,
                                                          5)) +
     tema_sivirep() +
-    ggplot2::coord_flip()
   return(plot_per_etn)
 }
 
