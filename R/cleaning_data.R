@@ -205,10 +205,9 @@ format_cod_geo <- function(cod_geo, etiqueta, digitos, tam) {
                           width = digitos,
                           format = "d",
                           flag = "0")
-    etiqueta <- paste0("El codigo del ", etiqueta,
-                       " debe tener maximo ", tam, " digitos")
     if (nchar(cod_geo) > tam) {
-      stop(etiqueta)
+      stop("El codigo del ", etiqueta,
+           " debe tener maximo ", tam, " digitos")
     }
     if (nchar(cod_format) == tam - 1) {
       cod_format <- paste0("0", cod_format)
