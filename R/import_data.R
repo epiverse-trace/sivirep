@@ -210,30 +210,28 @@ import_sep_data <- function(ruta_data = NULL, cache = TRUE) {
             = is.logical(cache))
   data_archivo <- data.frame()
   ruta_extdata <- system.file("extdata", package = "sivirep")
-  if (!is.null(ruta_data)) {
-    ini_nomb_archivo <-
-      stringr::str_locate(ruta_data,
-                          stringr::fixed("Microdatos/"))[2] + 1
-    fin_nomb_archivo <-
-      stringr::str_locate(ruta_data, stringr::fixed("value"))[1] - 5
-    nomb_archivo <- stringr::str_sub(ruta_data, ini_nomb_archivo,
-                                     fin_nomb_archivo)
-    ruta_archivo <- file.path(ruta_extdata, nomb_archivo)
-    if (!file.exists(ruta_archivo) || !cache) {
-      respuesta_archivo <- realizar_peticion_http(ruta_data)
-      if (httr2::resp_status(respuesta_archivo) == 200) {
-        conten_archivo <- httr2::resp_body_raw(respuesta_archivo)
-        con_archivo <- file(ruta_archivo, "wb")
-        if (length(conten_archivo) > 0) {
-          writeBin(conten_archivo, con_archivo)
-        }
-        close(con_archivo)
+  ini_nomb_archivo <-
+    stringr::str_locate(ruta_data,
+                        stringr::fixed("Microdatos/"))[2] + 1
+  fin_nomb_archivo <-
+    stringr::str_locate(ruta_data, stringr::fixed("value"))[1] - 5
+  nomb_archivo <- stringr::str_sub(ruta_data, ini_nomb_archivo,
+                                   fin_nomb_archivo)
+  ruta_archivo <- file.path(ruta_extdata, nomb_archivo)
+  if (!file.exists(ruta_archivo) || !cache) {
+    respuesta_archivo <- realizar_peticion_http(ruta_data)
+    if (httr2::resp_status(respuesta_archivo) == 200) {
+      conten_archivo <- httr2::resp_body_raw(respuesta_archivo)
+      con_archivo <- file(ruta_archivo, "wb")
+      if (length(conten_archivo) > 0) {
+        writeBin(conten_archivo, con_archivo)
       }
+      close(con_archivo)
     }
-    if (stringr::str_detect(nomb_archivo, ".xls")) {
-      data_archivo <- readxl::read_excel(ruta_archivo,
-                                         col_types = "text")
-    }
+  }
+  if (stringr::str_detect(nomb_archivo, ".xls")) {
+    data_archivo <- readxl::read_excel(ruta_archivo,
+                                       col_types = "text")
   }
   return(data_archivo)
 }
@@ -344,7 +342,7 @@ import_pob_riesgo <- function(event, year) {
   event_min <- tolower(event)
   for (pop_riesgo in rutas_pop_riesgo) {
     if (stringr::str_detect(event_min, pop_riesgo$event) ||
-        stringr::str_detect(as.character(event_min),
+        stringr::str_detect(event_min,
                             as.character(pop_riesgo$cod_eve))) {
       years_disponibles <- pop_riesgo$years
       if (year %in% pop_riesgo$years) {

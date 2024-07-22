@@ -561,20 +561,18 @@ obtener_pob_incidencia <- function(data_incidencia = NULL,
 obtener_year <- function(data_event) {
   year <- NULL
   nomb_col <- "ano"
-  if (!is.null(data_event)) {
-    if (nomb_col %in% colnames(data_event)) {
-      year <- unique(data_event[[nomb_col]])
-      stopifnot("Los datos del evento o enfermedad tienen informacion de mas
-                de un year, no es posible inferir el year que debe tomar la
-                funcion para su ejecucion. Por favor indique el valor en el
-                parametro year" =
-                  length(year) == 1)
-    } else {
-      stopifnot("Los datos del evento o enfermedad no contienen la variable
-                o columna ano. Por favor indique el valor en el parametro year
-                para ejecutar la funcion" =
-                  length(year) == 1)
-    }
+  if (nomb_col %in% colnames(data_event)) {
+    year <- unique(data_event[[nomb_col]])
+    stopifnot("Los datos del evento o enfermedad tienen informacion de mas
+              de un year, no es posible inferir el year que debe tomar la
+              funcion para su ejecucion. Por favor indique el valor en el
+              parametro year" =
+                length(year) == 1)
+  } else {
+    stopifnot("Los datos del evento o enfermedad no contienen la variable
+              o columna ano. Por favor indique el valor en el parametro year
+              para ejecutar la funcion" =
+                length(year) == 1)
   }
   return(year)
 }
