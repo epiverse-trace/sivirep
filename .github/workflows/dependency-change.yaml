@@ -1,0 +1,82 @@
+# Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
+# Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
+on:
+  pull_request:
+    paths:
+      - 'DESCRIPTION'
+
+name: Analyze dependency changes
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  pull-requests: write
+
+jobs:
+  dependency-changes:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Setup R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+
+      - name: Install dependencies
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages: any::pak, glue, gh
+
+      - name: Analyze dependency changes
+        shell: Rscript {0}
+        run: |
+          deps_base <- pak::pkg_deps("${{ github.repository }}@${{ github.base_ref }}", dependencies = TRUE) |>
+            subset(!directpkg) |>
+            subset(is.na(priority))
+          # We install from PR number rather than branch to deal with the case
+          # of PR coming from forks
+          deps_head <- pak::pkg_deps("${{ github.repository }}#${{ github.event.number }}", dependencies = TRUE) |>
+            subset(!directpkg) |>
+            subset(is.na(priority))
+
+          deps_added <- deps_head |>
+            subset(!ref %in% deps_base$ref)
+
+          deps_removed <- deps_base |>
+            subset(!ref %in% deps_head$ref)
+
+          if (nrow(deps_added) + nrow(deps_removed) > 0) {
+
+            message("Dependencies have changed! Analyzing...")
+
+            if (nrow(deps_added) > 0) {
+              nudge <- "Reach out on slack (`#code-review` or `#help` channels) to double check if there are base R alternatives to the new dependencies.\n"
+            } else {
+              nudge <- ""
+            }
+
+            msg <- glue::glue(
+              .sep = "\n",
+              "This pull request:",
+              "- Adds {nrow(deps_added)} new dependencies (direct and indirect)",
+              "- Adds {length(unique(deps_added$sysreqs))} new system dependencies",
+              "- Removes {nrow(deps_removed)} existing dependencies (direct and indirect)",
+              "- Removes {length(unique(deps_removed$sysreqs))} existing system dependencies",
+              "",
+              nudge,
+              "(Note that results may be inaccurate if you branched from an outdated version of the target branch.)"
+            )
+
+            message("Posting results as a pull request comment.")
+
+            gh::gh(
+              "POST /repos/{repo}/issues/{issue_number}/comments",
+              repo = "${{ github.repository }}",
+              issue_number = "${{ github.event.number }}",
+              body = msg
+            )
+
+          }
