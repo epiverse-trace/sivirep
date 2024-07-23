@@ -4,7 +4,7 @@
 \alias{import_pob_incidencia}
 \title{Importar la población para efectuar el cálculo de la incidencia}
 \usage{
-import_pob_incidencia(poblacion = "riesgo", event, year)
+import_pob_incidencia(poblacion = c("riesgo", "proyecciones"), event, year)
 }
 \arguments{
 \item{poblacion}{Un `character` (cadena de caracteres) con el tipo de

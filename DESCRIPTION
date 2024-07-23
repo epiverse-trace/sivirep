@@ -35,7 +35,7 @@ Description: Provides functions for data wrangling and automated reports
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Imports: 
     config,
     dplyr,

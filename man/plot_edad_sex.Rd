@@ -16,7 +16,7 @@ plot_edad_sex(
 enfermedad o evento agrupados.}
 
 \item{col_edad}{Un `character` (cadena de caracteres) con el nombre de la
-columna que contiene las edades en los datos agrupados de la enfermdedad o
+columna que contiene las edades en los datos agrupados de la enfermedad o
 evento; su valor por defecto es `"edad`.}
 
 \item{col_sex}{Un `character` (cadena de caracteres) con el nombre de la

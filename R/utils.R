@@ -498,7 +498,7 @@ obtener_dpto_mpio <- function(data_agrupada, nomb_cols,
 #' @param data_incidencia Un `data.frame` que contiene la población a riesgo o
 #' las proyecciones poblaciones DANE. Si este parámetro está vacío importará
 #' la población a riesgo o las proyecciones dependiendo de la disponibilidad de
-#' la información y las condiciones del evento o engermedad; su valor por
+#' la información y las condiciones del evento o enfermedad; su valor por
 #' defecto es `NULL`.
 #' @param poblacion Un `character` (cadena de caracteres) con el tipo de
 #' población que se desea obtener. Indica si se desea obtener la población

@@ -6,7 +6,7 @@
 \usage{
 agrupar_rango_edad(
   data_event,
-  col_edad,
+  col_edad = "edad",
   col_adicional = NULL,
   min_val,
   max_val,

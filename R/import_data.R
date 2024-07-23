@@ -70,8 +70,8 @@ import_geo_cods <- function(descargar = FALSE) {
   return(data_geo)
 }
 
-#' @title Importar las enfermedades y años disponibles disposibles
-#' para su descarga desde los microdatos del SIVIGILA
+#' @title Importar las enfermedades y años disponibles para
+#' su descarga desde los microdatos del SIVIGILA
 #' @description Función que obtiene las enfermedades y los años
 #' disponibles para su descarga desde los microdatos del SIVIGILA.
 #' @return Una `list` con las enfermedades y los años disponibles

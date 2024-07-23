@@ -8,7 +8,7 @@ concatenar_vals_token(
   vals,
   longitud = 3,
   princ_token = ", ",
-  final_token = "y "
+  final_token = "y"
 )
 }
 \arguments{
