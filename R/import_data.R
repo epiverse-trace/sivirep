@@ -220,10 +220,10 @@ import_sep_data <- function(ruta_data = NULL, cache = TRUE) {
     if (httr2::resp_status(respuesta_archivo) == 200) {
       conten_archivo <- httr2::resp_body_raw(respuesta_archivo)
       con_archivo <- file(ruta_archivo, "wb")
+      on.exit(close(con_archivo))
       if (length(conten_archivo) > 0) {
         writeBin(conten_archivo, con_archivo)
       }
-      close(con_archivo)
     }
   }
   if (stringr::str_detect(nomb_archivo, ".xls")) {
