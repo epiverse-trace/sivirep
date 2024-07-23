@@ -283,27 +283,27 @@ import_pob_incidencia <- function(poblacion = c("riesgo", "proyecciones"), event
 #' }
 #' @export
 import_pob_proyecciones <- function(year) {
-  proyecciones <- NULL
   ruta_proyecciones <- obtener_val_config("projections_population")
   years_disp <- seq(ruta_proyecciones$start_year,
                     ruta_proyecciones$final_year)
-  if (year %in% years_disp) {
-    nomb_proyecs <-
-      stringr::str_replace(ruta_proyecciones$file_name,
-                           stringr::fixed("{year}"),
-                           year)
-    ruta_extdata <- system.file("extdata", package = "sivirep")
-    ruta_proyecs <- file.path(ruta_extdata,
-                              paste0(nomb_proyecs,
-                                     ruta_proyecciones$extension))
-    if (!file.exists(ruta_proyecs)) {
-      url_proyecs <-
-        stringr::str_replace(ruta_proyecciones$url, stringr::fixed("{year}"),
-                             year)
-      utils::download.file(url_proyecs, ruta_proyecs)
-    }
-    proyecciones <- readRDS(ruta_proyecs)
+  if (!year %in% years_disp) {
+    return(NULL)
   }
+  nomb_proyecs <-
+    stringr::str_replace(ruta_proyecciones$file_name,
+                         stringr::fixed("{year}"),
+                         year)
+  ruta_extdata <- system.file("extdata", package = "sivirep")
+  ruta_proyecs <- file.path(ruta_extdata,
+                            paste0(nomb_proyecs,
+                                   ruta_proyecciones$extension))
+  if (!file.exists(ruta_proyecs)) {
+    url_proyecs <-
+      stringr::str_replace(ruta_proyecciones$url, stringr::fixed("{year}"),
+                           year)
+    utils::download.file(url_proyecs, ruta_proyecs)
+  }
+  proyecciones <- readRDS(ruta_proyecs)
   return(proyecciones)
 }
 
