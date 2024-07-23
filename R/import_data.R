@@ -161,7 +161,7 @@ import_data_event <- function(nombre_event,
             = is.character(nombre_event),
             "El parametro cache debe ser un booleano"
             = is.logical(cache))
-  data_event <- data.frame()
+  data_event <- list()
   nombre_event <- stringr::str_to_title(nombre_event)
   cols_remover <- obtener_val_config("cols_remover")
   grupo_events <- obtener_eventos_relacionados(nombre_event, years)
@@ -185,9 +185,10 @@ import_data_event <- function(nombre_event,
         nombre_cols <- names(data_import)
       }
       nombre_cols <- nombre_cols[-which(nombre_cols %in% cols_remover)]
-      data_event <- rbind(data_event, data_import[, nombre_cols])
+      data_event <- c(data_event, list(data_import[, nombre_cols]))
     }
   }
+  data_event <- dplyr::bind_rows(data_event)
   return(data_event)
 }
 

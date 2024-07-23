@@ -932,7 +932,6 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
   nomb_cols <- obtener_tip_ocurren_geo(nombre_evento)
   if (nomb_cols[1] %in% colnames(data_agrupada) &&
       !(nomb_cols[3] %in% colnames(data_agrupada))) {
-    incidencia_dptos <- NULL
     data_agrupada <- group_by(
       data_agrupada, 
       dplyr::across(dplyr::all_of(nomb_cols[1:2]))
@@ -943,16 +942,17 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
                                       .groups = "drop")
     data_agrupada$nombre_evento <- nombre_evento
     data_agrupada$cod_eve <- cod_evento
-    for (fila in seq_len(nrow(data_agrupada))) {
+  
+    geo_incidencia <- rep_len(NA_real_, nrow(data_agrupada))
+    for (fila in seq_along(geo_incidencia)) {
       dpto_fila <- data_agrupada[fila, ]
       incidencia <- calcular_incidencia(data_incidencia = data_incidencia,
                                         data_agrupada = dpto_fila,
                                         poblacion = poblacion,
                                         dpto = dpto_fila[[nomb_cols[1]]],
                                         year = year)
-      incidencia_dptos <- c(incidencia_dptos, incidencia)
+      geo_incidencia[fila] <- incidencia
     }
-    geo_incidencia <- data.frame(incidencia = incidencia_dptos)
     data_geo_incidencia <- cbind(data_agrupada, geo_incidencia)
   } else if (nomb_cols[3] %in% colnames(data_agrupada)) {
     data_agrupada <- group_by(data_agrupada, 
@@ -961,9 +961,11 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
                                       casos =
                                         sum(.data[["casos"]]),
                                       .groups = "drop")
-    for (fila in seq_len(nrow(data_agrupada))) {
     data_agrupada$nombre_evento <- nombre_evento
     data_agrupada$cod_eve <- cod_evento
+    
+    geo_incidencia <- rep_len(NA_real_, nrow(data_agrupada))
+    for (fila in seq_along(geo_incidencia)) {
       mpio_fila <- data_agrupada[fila, ]
       incidencia <- calcular_incidencia(data_incidencia = data_incidencia,
                                         data_agrupada = mpio_fila,
@@ -971,9 +973,8 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
                                         dpto = mpio_fila[[nomb_cols[1]]],
                                         mpio = mpio_fila[[nomb_cols[3]]],
                                         year = year)
-      incidencia_mpios <- c(incidencia_mpios, incidencia)
+      geo_incidencia[fila] <- incidencia
     }
-    geo_incidencia <- data.frame(incidencia = incidencia_mpios)
     data_geo_incidencia <- cbind(data_agrupada, geo_incidencia)
   }
   return(data_geo_incidencia)
@@ -1024,7 +1025,6 @@ calcular_incidencia_sex <- function(data_incidencia = NULL,
                                     year = NULL, dpto = NULL,
                                     mpio = NULL) {
   validar_data_agrupada(data_agrupada)
-  incidencia <- NULL
   dept_data <- NULL
   nombre_evento <- data_agrupada$nombre_evento[1]
   if (is.null(year)) {
@@ -1065,7 +1065,9 @@ calcular_incidencia_sex <- function(data_incidencia = NULL,
                                     .groups = "drop")
   data_agrupada$cod_eve <- cod_eve
   data_agrupada$nombre_evento <- nombre_evento
-  for (fila in seq_len(nrow(data_agrupada))) {
+  
+  incidencia <- rep_len(NA_real_, nrow(data_agrupada))
+  for (fila in seq_along(incidencia)) {
     sex_fila <- data_agrupada[fila, ]
     incidencia_sex <- calcular_incidencia(data_incidencia = data_incidencia,
                                           data_agrupada = sex_fila,
@@ -1074,7 +1076,7 @@ calcular_incidencia_sex <- function(data_incidencia = NULL,
                                           mpio = mpio,
                                           sex = sex_fila[["sexo"]],
                                           year = year)
-    incidencia <- c(incidencia, incidencia_sex)
+    incidencia[fila] <- incidencia_sex
   }
   data_incidencia_sex <- cbind(data_agrupada, incidencia)
   if (!is.null(dpto) && is.null(data_incidencia_sex)) {

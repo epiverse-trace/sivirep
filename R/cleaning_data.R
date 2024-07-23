@@ -142,7 +142,7 @@ format_fecha <- function(data_event,
   data_limpia <- data_event
   for (name in nomb_cols) {
     data_limpia[[name]] <- as.Date(data_event[[name]],
-                                       format = format_fecha)
+                                   format = format_fecha)
   }
   return(data_limpia)
 }
