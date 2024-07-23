@@ -398,10 +398,11 @@ obtener_eventos_relacionados <- function(nombre_event, years) {
                   event,
                   "no esta disponible para su descarga", call. = FALSE)
         } else {
-          grupo_events <- rbind(grupo_events, grupo_events_relacionados)
+          grupo_events <- c(grupo_events, list(grupo_events_relacionados))
         }
       }
     }
+    grupo_events <- dplyr::bind_rows(grupo_events)
   }
   return(grupo_events)
 }
