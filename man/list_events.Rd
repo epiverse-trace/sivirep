@@ -2,8 +2,8 @@
 % Please edit documentation in R/import_data.R
 \name{list_events}
 \alias{list_events}
-\title{Importar las enfermedades y años disponibles disposibles
-para su descarga desde los microdatos del SIVIGILA}
+\title{Importar las enfermedades y años disponibles para
+su descarga desde los microdatos del SIVIGILA}
 \usage{
 list_events()
 }

@@ -10,7 +10,7 @@ obtener_pob_incidencia(data_incidencia = NULL, poblacion, event, year)
 \item{data_incidencia}{Un `data.frame` que contiene la población a riesgo o
 las proyecciones poblaciones DANE. Si este parámetro está vacío importará
 la población a riesgo o las proyecciones dependiendo de la disponibilidad de
-la información y las condiciones del evento o engermedad; su valor por
+la información y las condiciones del evento o enfermedad; su valor por
 defecto es `NULL`.}
 
 \item{poblacion}{Un `character` (cadena de caracteres) con el tipo de

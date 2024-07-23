@@ -21,7 +21,7 @@ knitr::kable(lista_eventos,
              col.names = c("Enfermedad", "Año"))
 ```
 
-## División Política y Admnistrativa de Colombia
+## División Política y Administrativa de Colombia
 
 A continuación, encontrarás el listado de códigos y nombres que utiliza `sivirep` para generar la distribución espacial de casos, filtrar por departamento o municipio y producir el mapa nacional, departamental y municipal, según el estándar nacional que codifica y lista las entidades territoriales denominado DIVIPOLA.
 

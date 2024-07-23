@@ -450,7 +450,7 @@ plot_edad <- function(data_agrupada,
 #' @param data_agrupada Un `data.frame` que contiene los datos de la
 #' enfermedad o evento agrupados.
 #' @param col_edad Un `character` (cadena de caracteres) con el nombre de la
-#' columna que contiene las edades en los datos agrupados de la enfermdedad o
+#' columna que contiene las edades en los datos agrupados de la enfermedad o
 #' evento; su valor por defecto es `"edad`.
 #' @param col_sex Un `character` (cadena de caracteres) con el nombre de la
 #' columna que contiene el sexo en los datos agrupados de la enfermdedad o
