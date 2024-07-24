@@ -44,8 +44,10 @@ importación de datos desde la fuente de SIVIGILA utilizando un formato
 parametrizado basado en la enfermedad y el año.
 
 ```{r import-data-event}
-data_event <- import_data_event(year = 2020,
-                                nombre_event = "Dengue")
+data_event <- import_data_event(
+  year = 2020,
+  nombre_event = "Dengue"
+)
 ```
 
 > 💡 **Tip**: Evita retrasos en el tiempo al importar los datos
@@ -104,8 +106,10 @@ subnacional, seleccionando casos específicos basados en la ubicación
 geográfica.
 
 ```{r geo-filtro}
-data_event_filtrada <- geo_filtro(data_event = data_event,
-                                  dpto = "Choco")
+data_event_filtrada <- geo_filtro(
+  data_event = data_event,
+  dpto = "Choco"
+)
 ```
 
 ### 4. Distribución temporal de casos
@@ -123,8 +127,10 @@ proporciona una función que permite esta agrupación llamada
 `agrupar_fecha_inisintomas`.
 
 ```{r agrupar-fecha-inicio-sintomas}
-casos_ini_sintomas <- agrupar_fecha_inisintomas(data_event =
-                                                  data_event)
+casos_ini_sintomas <- agrupar_fecha_inisintomas(
+  data_event =
+    data_event
+)
 ```
 
 > 💡 **Tip**: Obtén los primeros n meses con más casos
@@ -140,8 +146,10 @@ agrupado los datos por día, es posible que prefieras representarlo por
 semana epidemiológica, como en:
 
 ```{r plot-fecha-inicio-sintomas, fig.height = 4, fig.width = 8}
-plot_fecha_inisintomas(data_agrupada = casos_ini_sintomas,
-                       uni_marca = "semanaepi")
+plot_fecha_inisintomas(
+  data_agrupada = casos_ini_sintomas,
+  uni_marca = "semanaepi"
+)
 ```
 
 ### 5. Edad y sexo
@@ -156,8 +164,10 @@ embargo, la fuente de SIVIGILA solo registra el sexo.
 los porcentajes por sexo después del proceso de limpieza.
 
 ```{r agrupar-sexo}
-casos_sex <- agrupar_sex(data_event = data_event,
-                         porcentaje = TRUE)
+casos_sex <- agrupar_sex(
+  data_event = data_event,
+  porcentaje = TRUE
+)
 ```
 
 Además, `sivirep` cuenta con una función para generar el gráfico por
@@ -216,9 +226,10 @@ simultánea y obtener el número de casos y los porcentajes
 correspondientes. Además, permite personalizar el intervalo de edad.
 
 ```{r agrupar-edad-sexo}
-casos_edad_sex <- agrupar_edad_sex(data_event = data_event,
-                                   interval_edad = 10)
-
+casos_edad_sex <- agrupar_edad_sex(
+  data_event = data_event,
+  interval_edad = 10
+)
 ```
 
 La función de visualización correspondiente es `plot_edad_sex`.
@@ -239,8 +250,10 @@ llamadas departamentos. `sivirep` proporciona una función llamada
 departamento o municipio.
 
 ```{r agrupar-municipios}
-dist_esp_dept <- agrupar_mpio(data_event = data_event_filtrada,
-                             dpto = "Choco")
+dist_esp_dept <- agrupar_mpio(
+  data_event = data_event_filtrada,
+  dpto = "Choco"
+)
 ```
 
 Actualmente, con la función llamada `plot_map`, el usuario puede generar
@@ -248,8 +261,10 @@ un mapa estático de Colombia que muestra la distribución de casos por
 departamentos y municipios.
 
 ```{r plot-mapa, results = 'hide', echo = TRUE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
-mapa <- plot_map(data_agrupada = dist_esp_dept, dpto = "Choco",
-                 col_distribucion = "casos")
+mapa <- plot_map(
+  data_agrupada = dist_esp_dept, dpto = "Choco",
+  col_distribucion = "casos"
+)
 ```
 
 ```{r mapa, fig.height = 14, fig.width = 10}

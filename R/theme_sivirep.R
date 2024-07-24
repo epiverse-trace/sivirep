@@ -7,13 +7,17 @@ tema_sivirep <- function() {
   sysfonts::font_add_google("Montserrat", "Montserrat")
   showtext::showtext_auto()
   tema <- ggplot2::theme_classic() +
-    ggplot2::theme(legend.position = "right",
-                   legend.direction = "vertical",
-                   plot.caption = ggplot2::element_text(size = 8),
-                   text = ggplot2::element_text(family = "Montserrat",
-                                                size = 13),
-                   axis.title = ggplot2::element_text(face = "bold"),
-                   legend.title = ggplot2::element_text(face = "bold"))
+    ggplot2::theme(
+      legend.position = "right",
+      legend.direction = "vertical",
+      plot.caption = ggplot2::element_text(size = 8),
+      text = ggplot2::element_text(
+        family = "Montserrat",
+        size = 13
+      ),
+      axis.title = ggplot2::element_text(face = "bold"),
+      legend.title = ggplot2::element_text(face = "bold")
+    )
   return(tema)
 }
 
@@ -30,12 +34,16 @@ tema_sivirep <- function() {
 #' @keywords internal
 obtener_estetica_escala <- function(escala = 0, nombre,
                                     etiquetas = NULL) {
-  colores <- c("#2274BB", "#5ab4ac", "#d8b365", "#AC6DAD", "#D49392",
-               "#19AFE5", "#87C762", "#9DB2D0")
+  colores <- c(
+    "#2274BB", "#5ab4ac", "#d8b365", "#AC6DAD", "#D49392",
+    "#19AFE5", "#87C762", "#9DB2D0"
+  )
   colores <- colores[1:escala]
   if (escala > 0) {
-    relleno_escala <- ggplot2::scale_fill_manual(values = colores,
-                                                 name = nombre)
+    relleno_escala <- ggplot2::scale_fill_manual(
+      values = colores,
+      name = nombre
+    )
     if (!is.null(etiquetas)) {
       relleno_escala$labels <- etiquetas
     }

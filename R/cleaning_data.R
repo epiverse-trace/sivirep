@@ -17,22 +17,28 @@ estandarizar_geo_cods <- function(data_event) {
   for (column in geo_columns) {
     if (stringr::str_detect(column, stringr::fixed("dpto"))) {
       data_event[[column]] <- formatC(data_event[[column]],
-                                      width = 2,
-                                      format = "d",
-                                      flag = "0")
+        width = 2,
+        format = "d",
+        flag = "0"
+      )
     }
     if (stringr::str_detect(column, stringr::fixed("mun"))) {
       data_event[[column]] <- formatC(data_event[[column]],
-                                      width = 3,
-                                      format = "d",
-                                      flag = "0")
-      col_dpto <- stringr::str_replace(column, stringr::fixed("_mun_"),
-                                       "_dpto_")
+        width = 3,
+        format = "d",
+        flag = "0"
+      )
+      col_dpto <- stringr::str_replace(
+        column, stringr::fixed("_mun_"),
+        "_dpto_"
+      )
       # formatC() will sometimes return elements longer than 3, even though we
       # specified width = 3, because it will not truncate longer strings
       if (max(nchar(data_event[[column]])) == 3) {
-        data_event[[column]] <- paste0(data_event[[col_dpto]],
-                                       data_event[[column]])
+        data_event[[column]] <- paste0(
+          data_event[[col_dpto]],
+          data_event[[column]]
+        )
       }
     }
   }
@@ -55,27 +61,33 @@ estandarizar_geo_cods <- function(data_event) {
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
-#' convert_edad(data_event = data_limpia,
-#'              col_edad = "edad",
-#'              col_uni_med = "uni_med")
+#' convert_edad(
+#'   data_event = data_limpia,
+#'   col_edad = "edad",
+#'   col_uni_med = "uni_med"
+#' )
 #' @export
 convert_edad <- function(data_event,
                          col_edad = "edad",
                          col_uni_med = "uni_med") {
   validar_data_event(data_event)
   validar_edad(data_event, col_edad)
-  stopifnot("El parametro col_uni_med debe ser una cadena de caracteres" =
-              is.character(col_uni_med))
+  stopifnot(
+    "El parametro col_uni_med debe ser una cadena de caracteres" =
+      is.character(col_uni_med)
+  )
   data_event[[col_uni_med]] <- as.numeric(data_event[[col_uni_med]])
   data_event[[col_edad]] <- as.numeric(data_event[[col_edad]])
   data_event_years <-
     dplyr::mutate(
       data_event,
-      col_edad := dplyr::case_when(col_uni_med == 1 ~ round(.data[[col_edad]], 3),
-                                   col_uni_med == 2 ~ round(.data[[col_edad]] / 12, 3),
-                                   col_uni_med == 3 ~ round(.data[[col_edad]] / 876, 3),
-                                   col_uni_med == 4 ~ round(.data[[col_edad]] / 525960, 3),
-                                   col_uni_med == 5 ~ round(.data[[col_edad]] / 3.156e+7, 3))
+      col_edad := dplyr::case_when(
+        col_uni_med == 1 ~ round(.data[[col_edad]], 3),
+        col_uni_med == 2 ~ round(.data[[col_edad]] / 12, 3),
+        col_uni_med == 3 ~ round(.data[[col_edad]] / 876, 3),
+        col_uni_med == 4 ~ round(.data[[col_edad]] / 525960, 3),
+        col_uni_med == 5 ~ round(.data[[col_edad]] / 3.156e+7, 3)
+      )
     )
   return(data_event_years)
 }
@@ -142,7 +154,8 @@ format_fecha <- function(data_event,
   data_limpia <- data_event
   for (name in nomb_cols) {
     data_limpia[[name]] <- as.Date(data_event[[name]],
-                                   format = format_fecha)
+      format = format_fecha
+    )
   }
   return(data_limpia)
 }
@@ -165,14 +178,17 @@ format_fecha <- function(data_event,
 format_cod_geo <- function(cod_geo, etiqueta, digitos, tam) {
   cod_format <- NULL
   if (is.numeric(cod_geo) ||
-      !is.na(suppressWarnings(as.numeric(cod_geo)))) {
+    !is.na(suppressWarnings(as.numeric(cod_geo)))) {
     cod_format <- formatC(cod_geo,
-                          width = digitos,
-                          format = "d",
-                          flag = "0")
+      width = digitos,
+      format = "d",
+      flag = "0"
+    )
     if (nchar(cod_geo) > tam) {
-      stop("El codigo del ", etiqueta,
-           " debe tener maximo ", tam, " digitos")
+      stop(
+        "El codigo del ", etiqueta,
+        " debe tener maximo ", tam, " digitos"
+      )
     }
     if (nchar(cod_format) == tam - 1) {
       cod_format <- paste0("0", cod_format)
@@ -217,11 +233,13 @@ limpiar_encabezado <- function(data_event) {
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
-#' limpiar_fecha_event(data_event = data_limpia,
-#'                     year = 2020,
-#'                     format_fecha = "%Y-%m-%d",
-#'                     col_fecha = "ini_sin",
-#'                     col_comp = "fec_hos")
+#' limpiar_fecha_event(
+#'   data_event = data_limpia,
+#'   year = 2020,
+#'   format_fecha = "%Y-%m-%d",
+#'   col_fecha = "ini_sin",
+#'   col_comp = "fec_hos"
+#' )
 #' @export
 limpiar_fecha_event <- function(data_event,
                                 year,
@@ -229,28 +247,37 @@ limpiar_fecha_event <- function(data_event,
                                 col_fecha = "ini_sin",
                                 col_comp = NULL) {
   validar_data_event(data_event)
-  stopifnot("El parametro year es obligatorio" = !missing(year),
-            "El parametro year debe ser una cadena de caracteres
+  stopifnot(
+    "El parametro year es obligatorio" = !missing(year),
+    "El parametro year debe ser una cadena de caracteres
             o numerico" =
-            (is.numeric(year) && !is.character(year)) ||
-            (!is.numeric(year) && is.character(year)),
-            "El parametro col_fecha debe ser una cadena de caracteres" =
-              is.character(col_fecha))
+      (is.numeric(year) && !is.character(year)) ||
+        (!is.numeric(year) && is.character(year)),
+    "El parametro col_fecha debe ser una cadena de caracteres" =
+      is.character(col_fecha)
+  )
   validar_format_fecha(format_fecha)
   data_event_fecha_ini <- data_event
   if (!is.null(col_comp)) {
-    stopifnot("El parametro col_comp debe ser una cadena de caracteres" =
-                is.character(col_comp))
+    stopifnot(
+      "El parametro col_comp debe ser una cadena de caracteres" =
+        is.character(col_comp)
+    )
     data_event_fecha_ini <-
-      remove_error_fecha(data_event_fecha_ini,
-                         col_fecha,
-                         col_comp)
+      remove_error_fecha(
+        data_event_fecha_ini,
+        col_fecha,
+        col_comp
+      )
   }
   data_event_fecha_ini[order(data_event_fecha_ini[[col_fecha]],
-                             decreasing = TRUE), ]
+    decreasing = TRUE
+  ), ]
   data_event_fecha_ini <-
-    data_event_fecha_ini[format(data_event_fecha_ini[[col_fecha]],
-                                "%Y") == year, ]
+    data_event_fecha_ini[format(
+      data_event_fecha_ini[[col_fecha]],
+      "%Y"
+    ) == year, ]
   return(data_event_fecha_ini)
 }
 
@@ -329,19 +356,23 @@ limpiar_data_sivigila <- function(data_event) {
   nom_cols_fechas <- obtener_val_config("dates_column_names")
   year <- names(sort(table(data_event$ano), decreasing = TRUE)[1])
   data_limpia <- format_fecha(data_event,
-                                  nomb_cols = nom_cols_fechas)
+    nomb_cols = nom_cols_fechas
+  )
   nombre <- unique(data_event$nombre_evento)
   if (length(nombre) == 1 &&
-      !stringr::str_detect(nombre, stringr::fixed("MORTALIDAD"))) {
+    !stringr::str_detect(nombre, stringr::fixed("MORTALIDAD"))) {
     data_limpia <- limpiar_fecha_event(data_limpia, year,
-                                       col_fecha = nom_cols_fechas[3],
-                                       col_comp = nom_cols_fechas[4])
+      col_fecha = nom_cols_fechas[3],
+      col_comp = nom_cols_fechas[4]
+    )
     data_limpia <- limpiar_fecha_event(data_limpia, year,
-                                       col_fecha = nom_cols_fechas[2])
+      col_fecha = nom_cols_fechas[2]
+    )
   }
   data_limpia <- estandarizar_geo_cods(data_limpia)
   data_limpia <- convert_edad(data_limpia,
-                              col_edad = "edad",
-                              col_uni_med = "uni_med")
+    col_edad = "edad",
+    col_uni_med = "uni_med"
+  )
   return(data_limpia)
 }
