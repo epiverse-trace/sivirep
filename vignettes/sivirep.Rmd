@@ -106,7 +106,8 @@ de forma libre utilizando:
 ```{r list_events}
 lista_eventos <- list_events()
 knitr::kable(lista_eventos,
-             col.names = c("Enfermedad", "Año"))
+  col.names = c("Enfermedad", "Año")
+)
 ```
 
 ## Reporte automatizado

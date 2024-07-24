@@ -5,11 +5,13 @@
 #' una enfermedad o evento.
 #' @noRd
 validar_data_event <- function(data_event) {
-  stopifnot("El parametro data_event es obligatorio" = !missing(data_event),
-            "El parametro data_event debe ser un data.frame" =
-              is.data.frame(data_event),
-            "El parametro data_event no debe estar vacio" =
-              nrow(data_event) > 0)
+  stopifnot(
+    "El parametro data_event es obligatorio" = !missing(data_event),
+    "El parametro data_event debe ser un data.frame" =
+      is.data.frame(data_event),
+    "El parametro data_event no debe estar vacio" =
+      nrow(data_event) > 0
+  )
 }
 
 #' @title Validar párametro `data_agrupada`
@@ -19,12 +21,14 @@ validar_data_event <- function(data_event) {
 #' enfermedad o evento agrupados.
 #' @noRd
 validar_data_agrupada <- function(data_agrupada) {
-  stopifnot("El parametro data_agrupada es obligatorio" =
-              !missing(data_agrupada),
-            "El parametro data_agrupada debe ser un data.frame" =
-              is.data.frame(data_agrupada),
-            "El parametro data_agrupada no debe estar vacio" =
-              nrow(data_agrupada) > 0)
+  stopifnot(
+    "El parametro data_agrupada es obligatorio" =
+      !missing(data_agrupada),
+    "El parametro data_agrupada debe ser un data.frame" =
+      is.data.frame(data_agrupada),
+    "El parametro data_agrupada no debe estar vacio" =
+      nrow(data_agrupada) > 0
+  )
 }
 
 #' @title Validar párametro `nomb_cols`
@@ -37,15 +41,15 @@ validar_data_agrupada <- function(data_agrupada) {
 #' la(s) columna(s) en los datos de la enfermedad o evento.
 #' @noRd
 validar_nomb_cols <- function(data_event, nomb_cols) {
-  stopifnot("El parametro nomb_cols es obligatorio"
-            = !missing(nomb_cols),
-            "El parametro nomb_cols debe ser una cadena de caracteres
-            o un arreglo de cadenas de caracteres "
-            = (is.character(nomb_cols) && !is.array(nomb_cols)) ||
-              (!is.character(nomb_cols) && is.array(nomb_cols)),
-            "La(s) columna(s) o variable(s) del parametro nomb_cols no
+  stopifnot(
+    "El parametro nomb_cols es obligatorio" = !missing(nomb_cols),
+    "El parametro nomb_cols debe ser una cadena de caracteres
+            o un arreglo de cadenas de caracteres " = (is.character(nomb_cols) && !is.array(nomb_cols)) ||
+      (!is.character(nomb_cols) && is.array(nomb_cols)),
+    "La(s) columna(s) o variable(s) del parametro nomb_cols no
             se encuentra(n) en los datos de la enfermedad o evento" =
-            nomb_cols %in% colnames(data_event))
+      nomb_cols %in% colnames(data_event)
+  )
 }
 
 #' @title Validar los párametros de la lógica de fecha de inicio de sintomas
@@ -63,20 +67,22 @@ validar_nomb_cols <- function(data_event, nomb_cols) {
 #' gráfico (`"barras"` o `"tendencia"`).
 #' @noRd
 validar_fecha_inisintomas <- function(data_event, col_fecha,
-                                             uni_marca, tipo) {
-  stopifnot("El parametro col_fecha debe ser una cadena de caracteres" =
-              is.character(col_fecha),
-            "La columna o variable del parametro col_fecha no
+                                      uni_marca, tipo) {
+  stopifnot(
+    "El parametro col_fecha debe ser una cadena de caracteres" =
+      is.character(col_fecha),
+    "La columna o variable del parametro col_fecha no
             se encuentra en los datos de la enfermedad o evento" =
-            col_fecha %in% colnames(data_event),
-            "El parametro uni_marca debe ser una cadena de caracteres" =
-              is.character(uni_marca),
-            "Valor invalido para el parametro uni_marca" =
-              uni_marca %in% c("dia", "semanaepi", "mes"),
-            "El parametro tipo debe ser una cadena de caracteres" =
-              is.character(tipo),
-            "Valor invalido para el parametro tipo" =
-              tipo %in% c("barras", "tendencia"))
+      col_fecha %in% colnames(data_event),
+    "El parametro uni_marca debe ser una cadena de caracteres" =
+      is.character(uni_marca),
+    "Valor invalido para el parametro uni_marca" =
+      uni_marca %in% c("dia", "semanaepi", "mes"),
+    "El parametro tipo debe ser una cadena de caracteres" =
+      is.character(tipo),
+    "Valor invalido para el parametro tipo" =
+      tipo %in% c("barras", "tendencia")
+  )
 }
 
 #' @title Validar párametro `format_fecha`
@@ -86,8 +92,10 @@ validar_fecha_inisintomas <- function(data_event, col_fecha,
 #' que contiene  el formato deseado de la fecha.
 #' @noRd
 validar_format_fecha <- function(format_fecha) {
-  stopifnot("El parametro format_fecha debe ser una cadena de caracteres" =
-              is.character(format_fecha))
+  stopifnot(
+    "El parametro format_fecha debe ser una cadena de caracteres" =
+      is.character(format_fecha)
+  )
 }
 
 #' @title Validar párametro `col_sex`
@@ -99,11 +107,13 @@ validar_format_fecha <- function(format_fecha) {
 #' de la columna que contiene el sexo en los datos de la enfermedad o evento.
 #' @noRd
 validar_sex <- function(data_event, col_sex) {
-  stopifnot("El parametro col_sex debe ser una cadena de caracteres" =
-              is.character(col_sex),
-            "La columna o variable del parametro col_sex no
+  stopifnot(
+    "El parametro col_sex debe ser una cadena de caracteres" =
+      is.character(col_sex),
+    "La columna o variable del parametro col_sex no
             se encuentra en los datos de la enfermedad o evento" =
-            col_sex %in% colnames(data_event))
+      col_sex %in% colnames(data_event)
+  )
 }
 
 #' @title Validar párametro `porcentaje`
@@ -113,8 +123,10 @@ validar_sex <- function(data_event, col_sex) {
 #' si se debe agregar o tener una columna con el porcentaje de casos.
 #' @noRd
 validar_porcentaje <- function(porcentaje) {
-   stopifnot("El parametro porcentaje debe ser un booleano" =
-              is.logical(porcentaje))
+  stopifnot(
+    "El parametro porcentaje debe ser un booleano" =
+      is.logical(porcentaje)
+  )
 }
 
 #' @title Validar párametro `col_edad`
@@ -126,11 +138,12 @@ validar_porcentaje <- function(porcentaje) {
 #' columna que contiene las edades en los datos de la enfermdedad o evento.
 #' @noRd
 validar_edad <- function(data_event, col_edad) {
-  stopifnot("El parametro col_edad debe ser una cadena de caracteres"
-            = is.character(col_edad),
-            "La columna o variable del parametro col_edad no
+  stopifnot(
+    "El parametro col_edad debe ser una cadena de caracteres" = is.character(col_edad),
+    "La columna o variable del parametro col_edad no
             se encuentra en los datos de la enfermedad o evento" =
-            col_edad %in% colnames(data_event))
+      col_edad %in% colnames(data_event)
+  )
 }
 
 
@@ -144,11 +157,12 @@ validar_edad <- function(data_event, col_edad) {
 #' o evento.
 #' @noRd
 validar_area_geo <- function(data_event, col_area, porcentaje) {
-  stopifnot("El parametro col_area debe ser una cadena de caracteres"
-            = is.character(col_area),
-            "La columna o variable del parametro col_area no
+  stopifnot(
+    "El parametro col_area debe ser una cadena de caracteres" = is.character(col_area),
+    "La columna o variable del parametro col_area no
             se encuentra en los datos de la enfermedad o evento" =
-            col_area %in% colnames(data_event))
+      col_area %in% colnames(data_event)
+  )
 }
 
 #' @title Validar párametro `col_year`
@@ -160,11 +174,12 @@ validar_area_geo <- function(data_event, col_area, porcentaje) {
 #' la columna que contiene el año en los datos de la enfermedad o evento.
 #' @noRd
 validar_years <- function(data_event, col_year) {
-  stopifnot("El parametro col_year debe ser una cadena de caracteres"
-            = is.character(col_year),
-            "La columna o variable del parametro col_year no
+  stopifnot(
+    "El parametro col_year debe ser una cadena de caracteres" = is.character(col_year),
+    "La columna o variable del parametro col_year no
             se encuentra en los datos de la enfermedad o evento" =
-            col_year %in% colnames(data_event))
+      col_year %in% colnames(data_event)
+  )
 }
 
 #' @title Validar párametro `cols_etn`
@@ -177,11 +192,12 @@ validar_years <- function(data_event, col_year) {
 #' enfermedad o evento.
 #' @noRd
 validar_per_etn <- function(data_event, cols_etn) {
-  stopifnot("El parametro cols_etn debe ser una cadena de caracteres"
-            = is.character(cols_etn),
-            "La(s) columna(s) o variable(s) del parametro cols_etn no
+  stopifnot(
+    "El parametro cols_etn debe ser una cadena de caracteres" = is.character(cols_etn),
+    "La(s) columna(s) o variable(s) del parametro cols_etn no
             se encuentra(n) en los datos de la enfermedad o evento" =
-            cols_etn %in% colnames(data_event))
+      cols_etn %in% colnames(data_event)
+  )
 }
 
 #' @title Validar párametro `data_incidencia`
@@ -192,8 +208,10 @@ validar_per_etn <- function(data_event, cols_etn) {
 #' o evento.
 #' @noRd
 validar_data_incidencia <- function(data_incidencia) {
-  stopifnot("El parametro data_incidencia debe ser un data.frame" =
-                is.data.frame(data_incidencia),
-              "El parametro data_incidencia no debe estar vacio" =
-                nrow(data_incidencia) > 0)
+  stopifnot(
+    "El parametro data_incidencia debe ser un data.frame" =
+      is.data.frame(data_incidencia),
+    "El parametro data_incidencia no debe estar vacio" =
+      nrow(data_incidencia) > 0
+  )
 }
