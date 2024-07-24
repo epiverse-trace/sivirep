@@ -10,7 +10,7 @@ obtener_ruta_data_event_year(nombre_event, year)
 \item{nombre_event}{Un `character` (cadena de caracteres) con el nombre de
 la enfermedad o evento.}
 
-\item{years}{Un `numeric` (numerico) con el año o años deseado(s) para
+\item{year}{Un `numeric` (numerico) con el año o años deseado(s) para
 la descarga de los datos.}
 }
 \value{
