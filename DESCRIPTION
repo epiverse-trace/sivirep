@@ -46,6 +46,7 @@ Imports:
     epitrix,
     sf,
     readxl,
+    rlang,
     sysfonts,
     showtext,
     kableExtra
