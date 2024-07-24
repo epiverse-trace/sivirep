@@ -65,7 +65,7 @@ import_geo_cods <- function(descargar = FALSE) {
   } else {
     ruta_extdata <- system.file("extdata", package = "sivirep")
     ruta_data <- obtener_val_config("divipola_data_path")
-    data_geo <- readRDS(ruta_extdata, ruta_data)
+    data_geo <- readRDS(file.path(ruta_extdata, ruta_data))
   }
   return(data_geo)
 }
