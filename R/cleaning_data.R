@@ -66,6 +66,7 @@ estandarizar_geo_cods <- function(data_event) {
 #'   col_edad = "edad",
 #'   col_uni_med = "uni_med"
 #' )
+#' @importFrom rlang :=
 #' @export
 convert_edad <- function(data_event,
                          col_edad = "edad",
@@ -81,7 +82,7 @@ convert_edad <- function(data_event,
   data_event_years <-
     dplyr::mutate(
       data_event,
-      col_edad := dplyr::case_when(
+      {{ col_edad }} := dplyr::case_when(
         col_uni_med == 1 ~ round(.data[[col_edad]], 3),
         col_uni_med == 2 ~ round(.data[[col_edad]] / 12, 3),
         col_uni_med == 3 ~ round(.data[[col_edad]] / 876, 3),
