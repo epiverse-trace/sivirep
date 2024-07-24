@@ -25,6 +25,8 @@ o evento.
 \examples{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
-agrupar_years(data_event = data_limpia,
-              col_year = "ano")
+agrupar_years(
+  data_event = data_limpia,
+  col_year = "ano"
+)
 }

@@ -26,8 +26,11 @@ por tipo de enfermedad o evento.
 \examples{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(dengue2020)
-data_agrupada <- agrupar_eventos(data_event = data_limpia,
-                                 col_event = "cod_eve")
+data_agrupada <- agrupar_eventos(
+  data_event = data_limpia,
+  col_event = "cod_eve"
+)
 plot_tabla_tipos_event(data_agrupada,
-                       col_event = "nombre_evento")
+  col_event = "nombre_evento"
+)
 }

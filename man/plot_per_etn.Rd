@@ -41,6 +41,7 @@ data(dengue2020)
 data_limpia <- limpiar_data_sivigila(dengue2020)
 data_agrupada <- agrupar_per_etn(data_event = data_limpia)
 plot_per_etn(data_agrupada,
-             col_etn = "per_etn")
+  col_etn = "per_etn"
+)
 }
 }

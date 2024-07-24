@@ -26,6 +26,8 @@ por semana epidemiológica y número de casos.
 \examples{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
-agrupar_semanaepi(data_event = data_limpia,
-                  col_semanaepi = "semana")
+agrupar_semanaepi(
+  data_event = data_limpia,
+  col_semanaepi = "semana"
+)
 }

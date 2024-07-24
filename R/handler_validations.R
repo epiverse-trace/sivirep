@@ -44,7 +44,8 @@ validar_nomb_cols <- function(data_event, nomb_cols) {
   stopifnot(
     "El parametro nomb_cols es obligatorio" = !missing(nomb_cols),
     "El parametro nomb_cols debe ser una cadena de caracteres
-            o un arreglo de cadenas de caracteres " = (is.character(nomb_cols) && !is.array(nomb_cols)) ||
+            o un arreglo de cadenas de caracteres " =
+      (is.character(nomb_cols) && !is.array(nomb_cols)) ||
       (!is.character(nomb_cols) && is.array(nomb_cols)),
     "La(s) columna(s) o variable(s) del parametro nomb_cols no
             se encuentra(n) en los datos de la enfermedad o evento" =
@@ -139,7 +140,8 @@ validar_porcentaje <- function(porcentaje) {
 #' @noRd
 validar_edad <- function(data_event, col_edad) {
   stopifnot(
-    "El parametro col_edad debe ser una cadena de caracteres" = is.character(col_edad),
+    "El parametro col_edad debe ser una cadena de caracteres" =
+      is.character(col_edad),
     "La columna o variable del parametro col_edad no
             se encuentra en los datos de la enfermedad o evento" =
       col_edad %in% colnames(data_event)
@@ -158,7 +160,8 @@ validar_edad <- function(data_event, col_edad) {
 #' @noRd
 validar_area_geo <- function(data_event, col_area, porcentaje) {
   stopifnot(
-    "El parametro col_area debe ser una cadena de caracteres" = is.character(col_area),
+    "El parametro col_area debe ser una cadena de caracteres" =
+      is.character(col_area),
     "La columna o variable del parametro col_area no
             se encuentra en los datos de la enfermedad o evento" =
       col_area %in% colnames(data_event)
@@ -175,7 +178,8 @@ validar_area_geo <- function(data_event, col_area, porcentaje) {
 #' @noRd
 validar_years <- function(data_event, col_year) {
   stopifnot(
-    "El parametro col_year debe ser una cadena de caracteres" = is.character(col_year),
+    "El parametro col_year debe ser una cadena de caracteres" =
+      is.character(col_year),
     "La columna o variable del parametro col_year no
             se encuentra en los datos de la enfermedad o evento" =
       col_year %in% colnames(data_event)
@@ -193,7 +197,8 @@ validar_years <- function(data_event, col_year) {
 #' @noRd
 validar_per_etn <- function(data_event, cols_etn) {
   stopifnot(
-    "El parametro cols_etn debe ser una cadena de caracteres" = is.character(cols_etn),
+    "El parametro cols_etn debe ser una cadena de caracteres" =
+      is.character(cols_etn),
     "La(s) columna(s) o variable(s) del parametro cols_etn no
             se encuentra(n) en los datos de la enfermedad o evento" =
       cols_etn %in% colnames(data_event)

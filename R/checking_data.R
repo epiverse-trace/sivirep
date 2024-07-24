@@ -268,7 +268,8 @@ agrupar_fecha_inisintomas <- function(data_event,
     col_fecha <- fechas_cols_nombres[3]
   }
   stopifnot(
-    "El parametro col_fecha debe ser una cadena de caracteres" = is.character(col_fecha)
+    "El parametro col_fecha debe ser una cadena de caracteres" =
+      is.character(col_fecha)
   )
   nomb_cols <- c(col_fecha, "semana")
   data_agrupada_fecha_ini <- agrupar_cols_casos(data_event,
@@ -338,7 +339,8 @@ agrupar_sex_semanaepi <- function(data_event,
   validar_data_event(data_event)
   stopifnot(
     "El parametro cols_sex debe ser una cadena de caracteres
-            o un arreglo de cadenas de caracteres " = (is.character(cols_sex) && !is.array(cols_sex)) ||
+            o un arreglo de cadenas de caracteres " =
+      (is.character(cols_sex) && !is.array(cols_sex)) ||
       (!is.character(cols_sex) && is.array(cols_sex))
   )
   data_event_sex_semanaepi <- agrupar_cols_casos(
@@ -482,7 +484,8 @@ agrupar_dpto <- function(data_event,
                          porcentaje = FALSE) {
   validar_data_event(data_event)
   stopifnot(
-    "El parametro col_dpto debe ser una cadena de caracteres" = is.character(col_dpto),
+    "El parametro col_dpto debe ser una cadena de caracteres" =
+      is.character(col_dpto),
     "El parametro porcentaje debe ser un booleano (TRUE o FALSE)" =
       is.logical(porcentaje)
   )
@@ -540,7 +543,8 @@ agrupar_mpio <- function(data_event,
                          porcentaje = FALSE) {
   validar_data_event(data_event)
   stopifnot(
-    "El parametro col_mpio debe ser una cadena de caracteres" = is.character(col_mpio),
+    "El parametro col_mpio debe ser una cadena de caracteres" =
+      is.character(col_mpio),
     "El parametro porcentaje debe ser un booleano (TRUE o FALSE)" =
       is.logical(porcentaje)
   )
@@ -716,7 +720,8 @@ agrupar_top_area_geo <- function(data_event,
 agrupar_eventos <- function(data_event, col_event = "cod_eve") {
   validar_data_event(data_event)
   stopifnot(
-    "El parametro col_event debe ser una cadena de caracteres" = is.character(col_event)
+    "El parametro col_event debe ser una cadena de caracteres" =
+      is.character(col_event)
   )
   data_event_tipos <- agrupar_cols_casos(data_event, nomb_cols = col_event)
   return(data_event_tipos)
@@ -773,7 +778,8 @@ agrupar_years <- function(data_event, col_year = "ano") {
 agrupar_tipo_caso <- function(data_event, cols_tipo = "tip_cas") {
   validar_data_event(data_event)
   stopifnot(
-    "El parametro cols_tipo debe ser una cadena de caracteres" = is.character(cols_tipo)
+    "El parametro cols_tipo debe ser una cadena de caracteres" =
+      is.character(cols_tipo)
   )
   if (length(cols_tipo) == 1) {
     cols_tipo <- c(cols_tipo, "cod_eve")
@@ -1189,7 +1195,8 @@ calcular_incidencia_sex <- function(data_incidencia = NULL,
     )
     dept_data <- obtener_info_depts(dpto, mpio)
     stopifnot(
-      "El departamento o municipio ingresado no existe" = seq_len(nrow(dept_data)) > 0
+      "El departamento o municipio ingresado no existe" =
+        seq_len(nrow(dept_data)) > 0
     )
     dept_data <- dept_data[1, ]
     dpto <- dept_data$codigo_departamento
@@ -1225,11 +1232,11 @@ calcular_incidencia_sex <- function(data_incidencia = NULL,
   }
   data_incidencia_sex <- cbind(data_agrupada, incidencia)
   if (!is.null(dpto) && is.null(data_incidencia_sex)) {
-    data_incidencia_sex["nombre_departamento"] <- dept_data$nombre_departamento[1]
-    data_incidencia_sex["codigo_departamento"] <- dpto
+    data_incidencia_sex$nombre_departamento <- dept_data$nombre_departamento[1]
+    data_incidencia_sex$codigo_departamento <- dpto
     if (!is.null(mpio)) {
-      data_incidencia_sex["nombre_municipio"] <- dept_data$nombre_municipio[1]
-      data_incidencia_sex["codigo_municipio"] <- mpio
+      data_incidencia_sex$nombre_municipio <- dept_data$nombre_municipio[1]
+      data_incidencia_sex$codigo_municipio <- mpio
     }
   }
   return(data_incidencia_sex)

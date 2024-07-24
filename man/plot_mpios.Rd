@@ -29,8 +29,11 @@ municipios.
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(dengue2020)
 data_limpia <- estandarizar_geo_cods(data_limpia)
-data_agrupada <- agrupar_mpio(data_event = data_limpia,
-                              dpto = "Antioquia")
+data_agrupada <- agrupar_mpio(
+  data_event = data_limpia,
+  dpto = "Antioquia"
+)
 plot_mpios(data_agrupada,
-           col_mpios = "municipio_ocurrencia")
+  col_mpios = "municipio_ocurrencia"
+)
 }

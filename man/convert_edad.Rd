@@ -29,7 +29,9 @@ medida del SIVIGILA.
 \examples{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
-convert_edad(data_event = data_limpia,
-             col_edad = "edad",
-             col_uni_med = "uni_med")
+convert_edad(
+  data_event = data_limpia,
+  col_edad = "edad",
+  col_uni_med = "uni_med"
+)
 }

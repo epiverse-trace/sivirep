@@ -257,14 +257,18 @@ import_sep_data <- function(ruta_data = NULL, cache = TRUE) {
 #' import_pob_incidencia(poblacion = "riesgo", event = "dengue", year = 2020)
 #' }
 #' @export
-import_pob_incidencia <- function(poblacion = c("riesgo", "proyecciones"), event, year) {
+import_pob_incidencia <- function(
+    poblacion = c("riesgo", "proyecciones"),
+    event,
+    year
+  ) {
   stopifnot("El parametro poblacion no debe estar vacio" =
               !missing(poblacion),
             "El parametro poblacion debe ser una cadena de caracteres" =
               is.character(poblacion))
   poblacion <- match.arg(poblacion)
-  
-  if (poblacion == "proyecciones") {
+
+    if (poblacion == "proyecciones") {
     poblacion <- import_pob_proyecciones(year = year)
   } else {
     poblacion <- import_pob_riesgo(event = event, year = year)

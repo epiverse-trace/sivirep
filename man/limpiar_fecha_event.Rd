@@ -40,9 +40,11 @@ de una enfermedad o evento.
 \examples{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
-limpiar_fecha_event(data_event = data_limpia,
-                    year = 2020,
-                    format_fecha = "\%Y-\%m-\%d",
-                    col_fecha = "ini_sin",
-                    col_comp = "fec_hos")
+limpiar_fecha_event(
+  data_event = data_limpia,
+  year = 2020,
+  format_fecha = "\%Y-\%m-\%d",
+  col_fecha = "ini_sin",
+  col_comp = "fec_hos"
+)
 }

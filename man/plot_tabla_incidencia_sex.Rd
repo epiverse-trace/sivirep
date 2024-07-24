@@ -27,9 +27,13 @@ data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 data_agrupada_sex <- agrupar_sex(data_limpia)
 incidencia_mpios <-
-     calcular_incidencia_sex(data_agrupada = data_agrupada_sex,
-                             dpto = "Antioquia")
- plot_tabla_incidencia_sex(data_agrupada = incidencia_mpios,
-                           col_sex = "sexo")
+  calcular_incidencia_sex(
+    data_agrupada = data_agrupada_sex,
+    dpto = "Antioquia"
+  )
+plot_tabla_incidencia_sex(
+  data_agrupada = incidencia_mpios,
+  col_sex = "sexo"
+)
 }
 }

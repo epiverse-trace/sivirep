@@ -51,30 +51,42 @@ data_limpia <- limpiar_data_sivigila(dengue2020)
 data_estandar <- estandarizar_geo_cods(data_limpia)
 # Mapa por departamentos
 data_espacial <- agrupar_dpto(data_event = data_estandar)
-plot_map(data_agrupada = data_espacial,
-         col_distribucion = "casos")
+plot_map(
+  data_agrupada = data_espacial,
+  col_distribucion = "casos"
+)
 # Mapa por municipios de un departamento especifico
-data_filtrada_dpto <- geo_filtro(data_event = data_estandar,
-                                 dpto = "Cundinamarca")
+data_filtrada_dpto <- geo_filtro(
+  data_event = data_estandar,
+  dpto = "Cundinamarca"
+)
 data_espacial_dpto <- agrupar_mpio(data_event = data_filtrada_dpto)
-plot_map(data_agrupada = data_espacial_dpto,
-         col_codigos = "cod_mun_o",
-         col_distribucion = "casos")
+plot_map(
+  data_agrupada = data_espacial_dpto,
+  col_codigos = "cod_mun_o",
+  col_distribucion = "casos"
+)
 # Mapa por municipio especifico
-data_filtrada_mpio <- geo_filtro(data_event = data_estandar,
-                                 dpto = "Antioquia",
-                                 mpio = "Medellin")
+data_filtrada_mpio <- geo_filtro(
+  data_event = data_estandar,
+  dpto = "Antioquia",
+  mpio = "Medellin"
+)
 data_espacial_mpio <- agrupar_mpio(data_event = data_filtrada_mpio)
-plot_map(data_agrupada = data_espacial_mpio,
-         col_codigos = "cod_mun_o",
-         col_distribucion = "casos",
-         dpto = "Antioquia",
-         mpio = "Medellin")
+plot_map(
+  data_agrupada = data_espacial_mpio,
+  col_codigos = "cod_mun_o",
+  col_distribucion = "casos",
+  dpto = "Antioquia",
+  mpio = "Medellin"
+)
 # Mapa con la incidencia por municipios de un departamento específico
 incidencia_dpto <-
-    calcular_incidencia_geo(data_agrupada = data_espacial_dpto)
-plot_map(data_agrupada = incidencia_dpto,
-         col_codigos = "cod_mun_o",
-         col_distribucion = "incidencia")
+  calcular_incidencia_geo(data_agrupada = data_espacial_dpto)
+plot_map(
+  data_agrupada = incidencia_dpto,
+  col_codigos = "cod_mun_o",
+  col_distribucion = "incidencia"
+)
 }
 }

@@ -29,7 +29,9 @@ Función que agrupa los datos de una enfermedad o evento por
 \examples{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
-agrupar_area_geo(data_event = data_limpia,
-                 col_area = "area",
-                 porcentaje = FALSE)
+agrupar_area_geo(
+  data_event = data_limpia,
+  col_area = "area",
+  porcentaje = FALSE
+)
 }

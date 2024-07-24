@@ -25,9 +25,12 @@ Colombia a partir de su código geográfico.
 \examples{
 data_geo <- import_geo_cods()
 obtener_nombre_dpto(data_geo,
-                    cod_dpto = "05")
+  cod_dpto = "05"
+)
 obtener_nombre_dpto(data_geo,
-                    cod_dpto = 05)
+  cod_dpto = 05
+)
 obtener_nombre_dpto(data_geo,
-                    cod_dpto = 5)
+  cod_dpto = 5
+)
 }

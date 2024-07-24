@@ -40,7 +40,9 @@ y semana epidemiológica.
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(dengue2020)
 data_agrupada <- agrupar_sex_semanaepi(data_event = data_limpia)
-plot_sex_semanaepi(data_agrupada = data_agrupada,
-                   col_sex = "sexo",
-                   col_semanaepi = "semana")
+plot_sex_semanaepi(
+  data_agrupada = data_agrupada,
+  col_sex = "sexo",
+  col_semanaepi = "semana"
+)
 }

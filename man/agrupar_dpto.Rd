@@ -29,7 +29,9 @@ número de casos.
 \examples{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
-agrupar_dpto(data_event = data_limpia,
-             col_dpto = "cod_dpto_o",
-             porcentaje = FALSE)
+agrupar_dpto(
+  data_event = data_limpia,
+  col_dpto = "cod_dpto_o",
+  porcentaje = FALSE
+)
 }

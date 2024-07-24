@@ -26,12 +26,15 @@ partir de su código geográfico
 \examples{
 data_geo <- import_geo_cods()
 obtener_nombre_mpio(data_geo,
-                    cod_dpto = "05",
-                    cod_mpio = "001")
+  cod_dpto = "05",
+  cod_mpio = "001"
+)
 obtener_nombre_mpio(data_geo,
-                    cod_dpto = 05,
-                    cod_mpio = 001)
+  cod_dpto = 05,
+  cod_mpio = 001
+)
 obtener_nombre_mpio(data_geo,
-                    cod_dpto = 5,
-                    cod_mpio = 1)
+  cod_dpto = 5,
+  cod_mpio = 1
+)
 }

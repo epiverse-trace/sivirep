@@ -28,6 +28,8 @@ Función que agrupa los casos por la pertenencia étnica
 \examples{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
-agrupar_per_etn(data_event = data_limpia,
-                cols_etn = "per_etn")
+agrupar_per_etn(
+  data_event = data_limpia,
+  cols_etn = "per_etn"
+)
 }

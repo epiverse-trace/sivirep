@@ -45,19 +45,27 @@ data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 # Cálculo de la incidencia con proyecciones poblacionales por sexo y
 # departamento
-data_filtrada <-  geo_filtro(data_event = data_limpia,
-                             dpto = "05")
+data_filtrada <- geo_filtro(
+  data_event = data_limpia,
+  dpto = "05"
+)
 data_agrupada <- agrupar_sex(data_filtrada)
-calcular_incidencia_sex(data_agrupada = data_agrupada,
-                        dpto = "05",
-                        year = 2020)
+calcular_incidencia_sex(
+  data_agrupada = data_agrupada,
+  dpto = "05",
+  year = 2020
+)
 #' Cálculo de la incidencia con proyecciones poblacionales por sexo y
 # municipio
-data_filtrada <-  geo_filtro(data_event = data_limpia,
-                             dpto = "05",
-                             mpio = "Medellin")
-calcular_incidencia_sex(data_agrupada = data_agrupada,
-                        dpto = "05",
-                        mpio = "Medellin")
+data_filtrada <- geo_filtro(
+  data_event = data_limpia,
+  dpto = "05",
+  mpio = "Medellin"
+)
+calcular_incidencia_sex(
+  data_agrupada = data_agrupada,
+  dpto = "05",
+  mpio = "Medellin"
+)
 }
 }
