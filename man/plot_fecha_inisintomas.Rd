@@ -44,8 +44,11 @@ por fecha de inicio de síntomas.
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(dengue2020)
 data_agrupada <- agrupar_fecha_inisintomas(
-                                     data_event = data_limpia)
-plot_fecha_inisintomas(data_agrupada = data_agrupada,
-                       col_fecha = "ini_sin",
-                       uni_marca = "semanaepi")
+  data_event = data_limpia
+)
+plot_fecha_inisintomas(
+  data_agrupada = data_agrupada,
+  col_fecha = "ini_sin",
+  uni_marca = "semanaepi"
+)
 }

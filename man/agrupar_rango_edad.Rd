@@ -51,13 +51,17 @@ rango de edad y número de casos.
 \examples{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
-data_edad <- agrupar_cols_casos(data_event = data_limpia,
-                                c("edad", "semana"),
-                                porcentaje = TRUE)
-agrupar_rango_edad(data_event = data_edad,
-                   col_edad = "edad",
-                   min_val = 0,
-                   max_val = max(data_edad$edad),
-                   paso = 10,
-                   porcentaje = TRUE)
+data_edad <- agrupar_cols_casos(
+  data_event = data_limpia,
+  c("edad", "semana"),
+  porcentaje = TRUE
+)
+agrupar_rango_edad(
+  data_event = data_edad,
+  col_edad = "edad",
+  min_val = 0,
+  max_val = max(data_edad$edad),
+  paso = 10,
+  porcentaje = TRUE
+)
 }

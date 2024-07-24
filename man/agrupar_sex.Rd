@@ -29,7 +29,9 @@ por sexo y número de casos.
 \examples{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
-agrupar_sex(data_event = data_limpia,
-            col_sex = "sexo",
-            porcentaje = TRUE)
+agrupar_sex(
+  data_event = data_limpia,
+  col_sex = "sexo",
+  porcentaje = TRUE
+)
 }

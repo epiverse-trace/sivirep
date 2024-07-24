@@ -33,8 +33,10 @@ obtener_meses_mas_casos <- function(data_event,
   validar_data_event(data_event)
   stopifnot(
     "El parametro col_fechas es obligatorio" = !missing(col_fechas),
-    "El parametro col_fechas debe ser una cadena de caracteres" = is.character(col_fechas),
-    "El parametro col_casos debe ser una cadena de caracteres" = is.character(col_casos),
+    "El parametro col_fechas debe ser una cadena de caracteres" =
+      is.character(col_fechas),
+    "El parametro col_casos debe ser una cadena de caracteres" =
+      is.character(col_casos),
     "El parametro top debe ser numerico" = is.numeric(top)
   )
   data_mas_casos <-
@@ -87,7 +89,8 @@ obtener_fila_mas_casos <- function(data_event,
                                    porcentaje = TRUE) {
   validar_data_event(data_event)
   stopifnot(
-    "El parametro nomb_col debe ser una cadena de caracteres" = is.character(nomb_col),
+    "El parametro nomb_col debe ser una cadena de caracteres" =
+      is.character(nomb_col),
     "El parametro porcentaje debe ser booleano" = is.logical(porcentaje)
   )
   data_mas_casos <- data_event[which.max(data_event[[nomb_col]]), ]
@@ -121,8 +124,10 @@ concatenar_vals_token <- function(vals,
       !missing(vals),
     "El parametro vals debe ser una cadena de caracteres o
             un arreglo de cadenas de caracteres" = is.character(vals),
-    "El parametro princ_token debe ser una cadena de caracteres" = is.character(princ_token),
-    "El parametro final_token debe ser una cadena de caracteres" = is.character(final_token)
+    "El parametro princ_token debe ser una cadena de caracteres" =
+      is.character(princ_token),
+    "El parametro final_token debe ser una cadena de caracteres" =
+      is.character(final_token)
   )
   final_val <- paste(vals[seq_len(longitud - 1)], collapse = princ_token)
   final_val <- paste(final_val, final_token, vals[longitud])
@@ -144,7 +149,8 @@ concatenar_vals_token <- function(vals,
 #' @export
 obtener_tip_ocurren_geo <- function(cod_event = NULL, nombre_event = NULL) {
   stopifnot(
-    "Debe ingresar algun valor en cod_event o nombre_event" = !(is.null(cod_event) && is.null(nombre_event))
+    "Debe ingresar algun valor en cod_event o nombre_event" =
+      !(is.null(cod_event) && is.null(nombre_event))
   )
   geo_occurren <- obtener_val_config(llave = "occurrence_geo_diseases")
   col_ocurren <- c("cod_dpto_o", "cod_mun_o", "ocurrencia")
@@ -160,7 +166,8 @@ obtener_tip_ocurren_geo <- function(cod_event = NULL, nombre_event = NULL) {
   }
   if (!is.null(nombre_event)) {
     stopifnot(
-      "El parametro nombre_event debe ser una cadena de caracteres" = is.character(nombre_event)
+      "El parametro nombre_event debe ser una cadena de caracteres" =
+        is.character(nombre_event)
     )
     param_busqueda <- nombre_event
   }
@@ -638,22 +645,21 @@ obtener_pob_incidencia <- function(data_incidencia = NULL,
 #' @keywords internal
 obtener_year <- function(data_event) {
   nomb_col <- "ano"
-  if (nomb_col %in% colnames(data_event)) {
-    year <- unique(data_event[[nomb_col]])
-    stopifnot(
-      "Los datos del evento o enfermedad tienen informacion de mas
-              de un year, no es posible inferir el year que debe tomar la
-              funcion para su ejecucion. Por favor indique el valor en el
-              parametro year" =
-        length(year) == 1
-    )
-  } else {
+  if (!nomb_col %in% colnames(data_event)) {
     stop(
       "Los datos del evento o enfermedad no contienen la variable ",
       "o columna ano. Por favor indique el valor en el parametro year ",
       "para ejecutar la funcion"
     )
   }
+  year <- unique(data_event[[nomb_col]])
+  stopifnot(
+    "Los datos del evento o enfermedad tienen informacion de mas
+            de un year, no es posible inferir el year que debe tomar la
+            funcion para su ejecucion. Por favor indique el valor en el
+            parametro year" =
+      length(year) == 1
+  )
   return(year)
 }
 

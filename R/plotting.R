@@ -83,7 +83,8 @@ plot_map <- function(data_agrupada,
     fuente_data <- "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
   }
   stopifnot(
-    "El parametro fuente_data debe ser un cadena de caracteres" = is.character(fuente_data)
+    "El parametro fuente_data debe ser un cadena de caracteres" =
+      is.character(fuente_data)
   )
   color_min <- "#fcebfc"
   if ("nombre_evento" %in% names(data_agrupada)) {
@@ -238,7 +239,8 @@ plot_fecha_inisintomas <- function(data_agrupada,
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
   }
   stopifnot(
-    "El parametro fuente_data debe ser un cadena de caracteres" = is.character(fuente_data)
+    "El parametro fuente_data debe ser un cadena de caracteres" =
+      is.character(fuente_data)
   )
   uni_marca <- switch(uni_marca,
     mes = "month",
@@ -363,7 +365,8 @@ plot_sex <- function(data_agrupada,
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
   }
   stopifnot(
-    "El parametro fuente_data debe ser un cadena de caracteres" = is.character(fuente_data)
+    "El parametro fuente_data debe ser un cadena de caracteres" =
+      is.character(fuente_data)
   )
   if (col_distribucion == "casos") {
     etiqueta_eje <- obtener_val_config("label_cases")
@@ -648,7 +651,8 @@ plot_dptos <- function(data_agrupada,
     }
   } else {
     stopifnot(
-      "El parametro col_dptos debe ser una cadena de caracteres" = is.character(col_dptos)
+      "El parametro col_dptos debe ser una cadena de caracteres" =
+        is.character(col_dptos)
     )
   }
   etiqueta_casos <- obtener_val_config("label_cases")
@@ -734,7 +738,8 @@ plot_mpios <- function(data_agrupada,
     }
   } else {
     stopifnot(
-      "El parametro col_mpios debe ser una cadena de caracteres" = is.character(col_mpios)
+      "El parametro col_mpios debe ser una cadena de caracteres" =
+        is.character(col_mpios)
     )
   }
   etiqueta_casos <- obtener_val_config("label_cases")
@@ -803,7 +808,8 @@ plot_area_geo <- function(data_agrupada,
                           fuente_data = NULL) {
   validar_data_agrupada(data_agrupada)
   stopifnot(
-    "El parametro col_area debe ser una cadena de caracteres" = is.character(col_area)
+    "El parametro col_area debe ser una cadena de caracteres" =
+      is.character(col_area)
   )
   if (is.null(fuente_data)) {
     fuente_data <-
@@ -867,7 +873,8 @@ plot_top_area_geo <- function(data_agrupada,
                               fuente_data = NULL) {
   validar_data_agrupada(data_agrupada)
   stopifnot(
-    "El parametro col_area debe ser una cadena de caracteres" = is.character(col_area)
+    "El parametro col_area debe ser una cadena de caracteres" =
+      is.character(col_area)
   )
   if (is.null(fuente_data)) {
     fuente_data <-
@@ -949,7 +956,8 @@ plot_tabla_tipos_event <- function(data_agrupada,
                                    col_event = "nombre_evento") {
   validar_data_agrupada(data_agrupada)
   stopifnot(
-    "El parametro col_event debe ser una cadena de caracteres" = is.character(col_event)
+    "El parametro col_event debe ser una cadena de caracteres" =
+      is.character(col_event)
   )
   etiqueta_cod <- obtener_val_config("label_code")
   caption_tabla <- obtener_val_config("caption_table_events")
@@ -1071,7 +1079,8 @@ plot_tipo_caso <- function(data_agrupada,
                            fuente_data = NULL) {
   validar_data_agrupada(data_agrupada)
   stopifnot(
-    "El parametro col_tipo debe ser una cadena de caracteres" = is.character(col_tipo)
+    "El parametro col_tipo debe ser una cadena de caracteres" =
+      is.character(col_tipo)
   )
   if (is.null(fuente_data)) {
     fuente_data <-
@@ -1150,7 +1159,8 @@ plot_tipo_caso_years <- function(data_agrupada,
   validar_data_agrupada(data_agrupada)
   validar_years(data_agrupada, col_year)
   stopifnot(
-    "El parametro col_tipo debe ser una cadena de caracteres" = is.character(col_tipo)
+    "El parametro col_tipo debe ser una cadena de caracteres" =
+      is.character(col_tipo)
   )
   if (is.null(fuente_data)) {
     fuente_data <-
@@ -1221,7 +1231,8 @@ plot_per_etn <- function(data_agrupada,
                          fuente_data = NULL) {
   validar_data_agrupada(data_agrupada)
   stopifnot(
-    "El parametro col_etn debe ser una cadena de caracteres" = is.character(col_etn)
+    "El parametro col_etn debe ser una cadena de caracteres" =
+      is.character(col_etn)
   )
   if (is.null(fuente_data)) {
     fuente_data <-

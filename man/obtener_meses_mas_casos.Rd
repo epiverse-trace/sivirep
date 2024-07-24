@@ -40,9 +40,11 @@ Función que obtiene los meses con el mayor número de casos
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(dengue2020)
 casos_inisintomas <- agrupar_fecha_inisintomas(data_limpia)
-obtener_meses_mas_casos(data_event= casos_inisintomas,
-                        col_fechas = "ini_sin",
-                        col_casos = "casos",
-                        top = 3,
-                        concat_vals = TRUE)
+obtener_meses_mas_casos(
+  data_event = casos_inisintomas,
+  col_fechas = "ini_sin",
+  col_casos = "casos",
+  top = 3,
+  concat_vals = TRUE
+)
 }

@@ -37,7 +37,9 @@ edad y número de casos.
 \examples{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
-agrupar_edad(data_event = data_limpia,
-             col_edad = "edad",
-             porcentaje = FALSE)
+agrupar_edad(
+  data_event = data_limpia,
+  col_edad = "edad",
+  porcentaje = FALSE
+)
 }

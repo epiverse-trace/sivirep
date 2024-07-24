@@ -38,7 +38,9 @@ edad y sexo.
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(dengue2020)
 data_agrupada <- agrupar_edad_sex(data_event = data_limpia)
-plot_edad_sex(data_agrupada = data_agrupada,
-              col_edad = "edad",
-              col_sex = "sexo")
+plot_edad_sex(
+  data_agrupada = data_agrupada,
+  col_edad = "edad",
+  col_sex = "sexo"
+)
 }

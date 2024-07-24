@@ -37,16 +37,22 @@ código de municipios y número de casos.
 \examples{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
-agrupar_mpio(data_event = data_limpia,
-             dpto = "ANTIOQUIA",
-             col_mpio = "cod_mun_o",
-             porcentaje = FALSE)
-agrupar_mpio(data_event = data_limpia,
-             dpto = "05",
-             col_mpio = "cod_mun_o",
-             porcentaje = FALSE)
-agrupar_mpio(data_event = data_limpia,
-             dpto = 05,
-             col_mpio = "cod_mun_o",
-             porcentaje = TRUE)
+agrupar_mpio(
+  data_event = data_limpia,
+  dpto = "ANTIOQUIA",
+  col_mpio = "cod_mun_o",
+  porcentaje = FALSE
+)
+agrupar_mpio(
+  data_event = data_limpia,
+  dpto = "05",
+  col_mpio = "cod_mun_o",
+  porcentaje = FALSE
+)
+agrupar_mpio(
+  data_event = data_limpia,
+  dpto = 05,
+  col_mpio = "cod_mun_o",
+  porcentaje = TRUE
+)
 }

@@ -24,6 +24,8 @@ Función que agrupa los casos por tipo de enfermedad o evento.
 \examples{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
-agrupar_eventos(data_event = data_limpia,
-                col_event = "cod_eve")
+agrupar_eventos(
+  data_event = data_limpia,
+  col_event = "cod_eve"
+)
 }

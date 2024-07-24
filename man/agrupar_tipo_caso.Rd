@@ -25,6 +25,8 @@ del caso.
 \examples{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
-agrupar_tipo_caso(data_event = data_limpia,
-                  cols_tipo = "tip_cas")
+agrupar_tipo_caso(
+  data_event = data_limpia,
+  cols_tipo = "tip_cas"
+)
 }
