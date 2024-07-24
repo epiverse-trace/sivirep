@@ -83,11 +83,11 @@ convert_edad <- function(data_event,
     dplyr::mutate(
       data_event,
       {{ col_edad }} := dplyr::case_when(
-        col_uni_med == 1 ~ round(.data[[col_edad]], 3),
-        col_uni_med == 2 ~ round(.data[[col_edad]] / 12, 3),
-        col_uni_med == 3 ~ round(.data[[col_edad]] / 876, 3),
-        col_uni_med == 4 ~ round(.data[[col_edad]] / 525960, 3),
-        col_uni_med == 5 ~ round(.data[[col_edad]] / 3.156e+7, 3)
+        .data[[col_uni_med]] == 1 ~ round(.data[[col_edad]], 3),
+        .data[[col_uni_med]] == 2 ~ round(.data[[col_edad]] / 12, 3),
+        .data[[col_uni_med]] == 3 ~ round(.data[[col_edad]] / 876, 3),
+        .data[[col_uni_med]] == 4 ~ round(.data[[col_edad]] / 525960, 3),
+        .data[[col_uni_med]] == 5 ~ round(.data[[col_edad]] / 3.156e+7, 3)
       )
     )
   return(data_event_years)
