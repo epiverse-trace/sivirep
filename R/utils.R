@@ -148,7 +148,7 @@ concatenar_vals_token <- function(vals,
 #' @export
 obtener_tip_ocurren_geo <- function(cod_event = NULL, nombre_event = NULL) {
   stopifnot(
-    "Debe ingresar algun valor en cod_event o nombre_event" =
+    "El parametro cod_event o nombre_event no debe estar vacio" =
       !(is.null(cod_event) && is.null(nombre_event))
   )
   geo_occurren <- obtener_val_config(llave = "occurrence_geo_diseases")
@@ -214,7 +214,7 @@ obtener_info_depts <- function(dpto = NULL, mpio = NULL) {
     "El parametro dpto es obligatorio" =
       !missing(dpto),
     "El parametro dpto debe ser una cadena de caracteres o
-            un numero" =
+            numerico" =
       is.character(dpto) || is.numeric(dpto)
   )
   data_geo <- import_geo_cods()
@@ -251,8 +251,8 @@ obtener_info_depts <- function(dpto = NULL, mpio = NULL) {
   }
   if (!is.null(mpio)) {
     stopifnot(
-      "El parametro mpio debe ser una cadena de caracteres o un
-              numero" = is.character(mpio) || is.numeric(mpio)
+      "El parametro mpio debe ser una cadena de caracteres o 
+              numerico" = is.character(mpio) || is.numeric(mpio)
     )
     mpio_busqueda <- mpio
     col_mpio <- "nombre_municipio"
@@ -598,7 +598,7 @@ obtener_pob_incidencia <- function(data_incidencia = NULL,
     if (poblacion == "riesgo") {
       if (!is.null(data_incidencia)) {
         message(
-          "Las incidencias se calcularan con la poblacion a ",
+          "Las incidencias se calcularon con la poblacion a ",
           "riesgo definida por el Ministerio de Salud para ",
           "el ", year
         )
@@ -606,7 +606,7 @@ obtener_pob_incidencia <- function(data_incidencia = NULL,
         poblacion <- "proyecciones"
         data_incidencia <- import_pob_incidencia(poblacion = poblacion)
         message(
-          "Las incidencias se calcularan con las proyecciones ",
+          "Las incidencias se calcularon con las proyecciones ",
           "poblacionales DANE. Si usted cuenta con la ",
           "poblacion a riesgo definida por el Ministerio de ",
           "Salud para el ", year, " puede hacer uso de ella, ",
@@ -687,7 +687,7 @@ obtener_text_sex <- function(data_agrupada,
                              year, figura) {
   validar_data_agrupada(data_agrupada)
   stopifnot(
-    "El parametro year debe ser un numerico" = is.numeric(year)
+    "El parametro year debe ser numerico" = is.numeric(year)
   )
   nombre_evento <- tolower(data_agrupada$nombre_evento[1])
   femenino <- 0
