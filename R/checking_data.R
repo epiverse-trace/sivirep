@@ -205,7 +205,7 @@ agrupar_cols_casos <- function(data_event,
 #'   data_event = data_edad,
 #'   col_edad = "edad",
 #'   min_val = 0,
-#'   max_val = max(data_edad$edad),
+#'   max_val = max(data_edad$edad, na.rm = TRUE),
 #'   paso = 10,
 #'   porcentaje = TRUE
 #' )
