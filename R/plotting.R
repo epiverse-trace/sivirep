@@ -196,6 +196,15 @@ plot_map <- function(data_agrupada,
       plot.caption = ggplot2::element_text(size = 12),
     ) +
     ggplot2::labs(caption = fuente_data, fill = etiqueta_relleno) +
+    ggplot2::guides(
+      fill =
+        ggplot2::guide_colourbar(
+          barwidth =
+            ggplot2::unit(0.04, "npc"),
+          barheight =
+            ggplot2::unit(0.5, "npc")
+        )
+    )
   return(map)
 }
 
