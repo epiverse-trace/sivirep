@@ -225,27 +225,8 @@ import_sep_data <- function(ruta_data = NULL,
                             cache = FALSE,
                             consentimiento = NULL) {
   data_archivo <- data.frame()
-  if (is.null(ruta_dir) &&
-      toupper(consentimiento) == "SI") {
-    ruta_dir <- tools::R_user_dir("sivirep", which = "cache")
-    if (!dir.exists(ruta_dir)) {
-      creado <- dir.create(ruta_dir, recursive = TRUE)
-      if (!creado) {
-        stop("Por favor indique en el parametro ruta_dir la ruta donde
-             desea almacenar temporalmente los datos de la enfermedad o
-             evento")
-      }
-    }
-  } else if (cache && !is.null(consentimiento) &&
-             toupper(consentimiento) == "NO") {
-    stop("Por favor indique la ruta donde desea almacenar los datos
-         de la enfermedad o evento")
-  } else if (!is.null(consentimiento) &&
-             toupper(consentimiento) == "NO") {
-    stop("Por favor indique en el parametro ruta_dir la ruta donde
-             desea almacenar temporalmente los datos de la enfermedad o
-             evento")
-  } else if (!dir.exists(ruta_dir)) {
+  ruta_dir <- obtener_ruta_dir(ruta_dir, cache, consentimiento)
+  if (!dir.exists(ruta_dir)) {
     stop("La ruta ingresada en el parametro ruta_dir no existe")
   }
   if (!is.null(ruta_data)) {
