@@ -20,7 +20,7 @@ Una `kable` (tabla gráfica) con la incidencia según
 distribución geográfica.
 }
 \description{
-Función que genera la tabla con la incidencia según
+Función que genera la tabla con la incidencia según la
 distribución geográfica.
 }
 \examples{

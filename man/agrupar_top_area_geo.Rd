@@ -32,7 +32,7 @@ o evento; su valor por defecto es `"cod_mun_o"`.}
 agregar una columna con el porcentaje de casos; su valor por
 defecto es `FALSE`.}
 
-\item{top}{Un `numeric` (númerico) que indica la cantidad de departamentos o
+\item{top}{Un `numeric` (numérico) que indica la cantidad de departamentos o
 municipios con mayor número de casos que se deben retornar; su valor
 por defecto es `10`.}
 }

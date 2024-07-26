@@ -8,20 +8,20 @@ import_pob_incidencia(poblacion = c("riesgo", "proyecciones"), event, year)
 }
 \arguments{
 \item{poblacion}{Un `character` (cadena de caracteres) con el tipo de
-población que se desea importar. Indica si se desea descargar la población
-a riesgo del evento `"riesgo"` o las proyecciones poblacionales DANE
-`"proyecciones"`; su valor por defecto es `"riesgo"`.}
+población que se desea importar. Puede ser `"riesgo"` para la población
+a riesgo del evento o `"proyecciones"` para las proyecciones poblacionales
+DANE; su valor por defecto es `"riesgo"`.}
 
-\item{event}{Un `character` (cadena de caracteres) o un `numeric` (númerico)
+\item{event}{Un `character` (cadena de caracteres) o un `numeric` (numérico)
 con el nombre o código de la enfermedad o evento. Es obligatorio para
 importar la población a riesgo.}
 
-\item{year}{Un `numeric` (númerico) con el año deseado de la población a
+\item{year}{Un `numeric` (numérico) con el año deseado de la población a
 riesgo. Es obligatorio para importar la población a riesgo.}
 }
 \value{
 Un `data.frame` con la población a riesgo o las proyecciones
-poblacionaldes DANE.
+poblacionales DANE.
 }
 \description{
 Función que importa la población a riesgo de un evento o

@@ -8,7 +8,7 @@ enfermedad o evento}
 obtener_cond_inciden_event(cod_eve)
 }
 \arguments{
-\item{cod_eve}{Un `numeric` (númerico) o `character` (cadena de
+\item{cod_eve}{Un `numeric` (numérico) o `character` (cadena de
 caracteres) que contiene el código de una enfermedad o evento.}
 }
 \value{

@@ -19,7 +19,7 @@ poblacionales del DANE; su valor por defecto es `NULL`.}
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la enfermedad
 agrupados por departamento o municipio y número de casos.}
 
-\item{year}{Un `numeric` (númerico) con el año que se debe tomar en la
+\item{year}{Un `numeric` (numérico) con el año que se debe tomar en la
 población a riesgo o en las proyecciones poblacionales DANE; su valor por
 defecto es `NULL`.}
 

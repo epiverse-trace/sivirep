@@ -2,14 +2,14 @@
 % Please edit documentation in R/plotting.R
 \name{plot_tipo_caso}
 \alias{plot_tipo_caso}
-\title{Generar gráfico de distribución de casos por la clasificacion
+\title{Generar gráfico de distribución de casos por la clasificación
 inicial del caso}
 \usage{
 plot_tipo_caso(data_agrupada, col_tipo = "tip_cas", fuente_data = NULL)
 }
 \arguments{
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la
-enfermedad o evento agrupados por la clasificación inicial de los casos.}
+enfermedad o evento agrupados según la clasificación inicial de los casos.}
 
 \item{col_tipo}{Un `character` (cadena de caracteres) con el nombre de
 la columna que contiene la clasificación inicial de los casos en los
@@ -21,12 +21,12 @@ leyenda o fuente de información de los datos; su valor por defecto
 es `NULL`.}
 }
 \value{
-Un `plot` o gráfico de distribución de casos por la clasificación
-inicial.
+Un `plot` o gráfico de distribución de casos según su
+clasificación inicial.
 }
 \description{
-Función que genera el gráfico de distribución por la
-clasificación inicial de los casos.
+Función que genera un gráfico de distribución de casos
+según su clasificación inicial.
 }
 \examples{
 data(dengue2020)

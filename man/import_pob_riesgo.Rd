@@ -7,10 +7,10 @@
 import_pob_riesgo(event, year)
 }
 \arguments{
-\item{event}{Un `character` (cadena de caracteres) o un `numeric` (númerico)
+\item{event}{Un `character` (cadena de caracteres) o un `numeric` (numérico)
 con el nombre o código de la enfermedad o evento.}
 
-\item{year}{Un `numeric` (númerico) con el año deseado de la población a
+\item{year}{Un `numeric` (numérico) con el año deseado de la población a
 riesgo.}
 }
 \value{
@@ -18,7 +18,7 @@ Un `data.frame` con la población a riesgo de un año específico.
 }
 \description{
 Función que importa la población a riesgo de un evento
-o enfermedad de un año específico.
+o enfermedad para un año específico.
 }
 \examples{
 \donttest{

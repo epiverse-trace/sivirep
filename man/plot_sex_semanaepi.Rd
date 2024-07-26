@@ -33,7 +33,7 @@ Un `plot` o gráfico de distribución de casos por sexo y semana
 epidemiológica.
 }
 \description{
-Función que genera el gráfico de distribución de casos por sexo
+Función que genera un gráfico de distribución de casos por sexo
 y semana epidemiológica.
 }
 \examples{

@@ -7,11 +7,11 @@
 obtener_info_depts(dpto = NULL, mpio = NULL)
 }
 \arguments{
-\item{dpto}{Un `character` (cadena de caracteres) o `numeric` (númerico)
+\item{dpto}{Un `character` (cadena de caracteres) o `numeric` (numérico)
 que contiene el nombre o código del departamento; su valor por defecto
 es `NULL`.}
 
-\item{mpio}{Un `character` (cadena de caracteres) o `numeric` (númerico)
+\item{mpio}{Un `character` (cadena de caracteres) o `numeric` (numérico)
 que contiene el nombre o código del municipio; su valor por defecto
 es `NULL`.}
 }

@@ -18,16 +18,16 @@ población que se desea obtener. Indica si se desea obtener la población
 a riesgo del evento `"riesgo"` o las proyecciones poblacionales DANE
 `"proyecciones"`.}
 
-\item{event}{Un `character` (cadena de caracteres) o un `numeric` (númerico)
+\item{event}{Un `character` (cadena de caracteres) o un `numeric` (numérico)
 con el nombre o código de la enfermedad o evento. Es obligatorio para
 obtener la población a riesgo.}
 
-\item{year}{Un `numeric` (númerico) con el año deseado de la población a
+\item{year}{Un `numeric` (numérico) con el año deseado de la población a
 riesgo. Es obligatorio para obtener la población a riesgo.}
 }
 \value{
 Un `data.frame` con la población a riesgo o las proyecciones
-poblacionaldes DANE.
+poblacionales DANE.
 }
 \description{
 Función que obtiene la población a riesgo de un evento o

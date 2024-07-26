@@ -7,7 +7,7 @@
 import_shape_map()
 }
 \value{
-Un objeto `sf` que contiene los elementos del shapefile
+Un objeto `sf` que contiene los elementos del Shapefile
 del mapa.
 }
 \description{

@@ -2,7 +2,7 @@
 % Please edit documentation in R/import_data.R
 \name{import_sep_data}
 \alias{import_sep_data}
-\title{Importar datos con un separador específico.}
+\title{Importar datos con un separador específico}
 \usage{
 import_sep_data(
   ruta_data = NULL,
@@ -16,12 +16,12 @@ import_sep_data(
 la URL de los datos de SIVIGILA.}
 
 \item{ruta_dir}{Un `character` (cadena de caracteres) que contiene la ruta
-del directorio donde se almacenaran los datos del evento o enfermedad. Si
+del directorio donde se almacenarán los datos del evento o enfermedad. Si
 no se proporciona ningún valor en este parámetro, el usuario debe dar su
 consentimiento para que los datos sean almacenados temporalmente en el
-directorio de usuario de R (`R user dir`). Su valor por defecto es `NULL`.}
+directorio del paquete (`extdata`). Su valor por defecto es `NULL`.}
 
-\item{cache}{Un `logical` (`TRUE` o `FALSE`) que indica si los datos.
+\item{cache}{Un `logical` (`TRUE` o `FALSE`) que indica si los datos
 descargados deben ser almacenados en caché; su valor por defecto es `FALSE`.}
 
 \item{consentimiento}{Un `character` (cadena de caracteres) que indica si

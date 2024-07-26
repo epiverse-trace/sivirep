@@ -163,15 +163,15 @@ format_fecha <- function(data_event,
 
 #' @title Formatear código geográfico
 #' @description Función que da el formato deseado a un código geográfico.
-#' @param cod_geo Un `numeric` (númerico) o `character`
+#' @param cod_geo Un `numeric` (numérico) o `character`
 #' (cadena de caracteres) que contiene el código geográfico.
 #' @param etiqueta Un `character` (cadena de caracteres) con el nombre
 #' de la etiqueta de la validación relacionada a la longitud máxima del
 #' código geográfico; se refiere al tipo de división geográfica ("municipio",
 #' "departamento").
-#' @param digitos Un `numeric` (númerico) que contiene el número de digitos
+#' @param digitos Un `numeric` (numérico) que contiene el número de digitos
 #' que debe tener individualmente el código geográfico.
-#' @param tam Un `numeric` (númerico) que contiende el tamaño o la longitud
+#' @param tam Un `numeric` (numérico) que contiende el tamaño o la longitud
 #' máxima que debe tener el código geográfico.
 #' @return Un `character` (cadena de caracteres) con el código geográfico
 #' formateado.
@@ -220,7 +220,7 @@ limpiar_encabezado <- function(data_event) {
 #' de una enfermedad o evento.
 #' @param data_event Un `data.frame` que contiene los datos de
 #' una enfermedad o evento.
-#' @param year Un `numeric` (númerico) o `character` (cadena de caracteres)
+#' @param year Un `numeric` (numérico) o `character` (cadena de caracteres)
 #' que contiene el año de los datos de una enfermedad o evento.
 #' @param format_fecha Un `character` (cadena de caracteres) que contiene
 #' el formato deseado de fecha; su valor por defecto es "\%AAAA-\%MM-\%DD".

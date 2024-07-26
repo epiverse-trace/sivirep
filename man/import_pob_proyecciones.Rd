@@ -7,8 +7,8 @@
 import_pob_proyecciones(year)
 }
 \arguments{
-\item{year}{Un `numeric` (númerico) con el año a importar de las
-proyecciones poblacionales DANE.}
+\item{year}{Un `numeric` (numérico) con el año de las proyecciones
+poblacionales DANE que desea importar.}
 }
 \value{
 Un `data.frame` con las proyecciones poblacionales DANE.

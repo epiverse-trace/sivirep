@@ -15,7 +15,7 @@ concatenar_vals_token(
 \item{vals}{Un `array` (arreglo) de character (cadena de caracteres)
 que contiene los valores que se desean concatenar.}
 
-\item{longitud}{Un `numeric` (númerico) que contiene la longitud de
+\item{longitud}{Un `numeric` (numérico) que contiene la longitud de
 los valores que se desean concatenar; su valor por defecto es `3`.}
 
 \item{princ_token}{Un `character` (cadena de caracteres) que contiene el

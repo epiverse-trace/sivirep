@@ -4,12 +4,12 @@
 #' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
 #' agrupados por departamento y número de casos.
 #' @param col_distribucion Un `character` (cadena de caracteres) que contiene el
-#' nombre de la columna que tiene los valores de la distribución, por número de
-#' casos o incidencia; su valor por defecto es `"incidencia"`.
+#' nombre de la columna que tiene los valores de la distribución, ya sea por
+#' número de casos o incidencia; su valor por defecto es `"incidencia"`.
 #' @param col_codigos Un `character` (cadena de caracteres) que contiene el
-#' nombre de la columna con los códigos de los departamentos o municipios, se
-#' utilizan para obtener los poligonos de las áreas geográficas del archivo
-#' geoespacial o de figuras (Shapefile); su valor por defecto `NULL`.
+#' nombre de la columna con los códigos de los departamentos o municipios, los
+#' cuales se utilizan para obtener los poligonos de las áreas geográficas del
+#' archivo geoespacial o Shapefile; su valor por defecto `NULL`.
 #' @param fuente_data Un `character` (cadena de caracteres) que contiene la
 #' leyenda o fuente de información de los datos de la enfermedad o evento;
 #' su valor por defecto `NULL`.
@@ -18,7 +18,7 @@
 #' @param mpio Un `character` (cadena de caracteres) que contiene el
 #' nombre del municipio; su valor por defecto `NULL`.
 #' @return Un `plot` o mapa por departamentos o municipios con el número de
-#' casos o incidencia de una enfermedad específica.
+#' casos o incidencia de un evento o enfermedad específica.
 #' @examples
 #' \dontrun{
 #' data(dengue2020)
@@ -210,12 +210,12 @@ plot_map <- function(data_agrupada,
 
 #' @title Generar gráfico de distribución de casos por fecha de inicio de
 #' síntomas
-#' @description Función que genera el gráfico de distribución de casos
+#' @description Función que genera un gráfico de distribución de casos
 #' por fecha de inicio de síntomas.
 #' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
 #' o evento agrupados.
 #' @param uni_marca Un `character` (cadena de caracteres) que contiene la unidad
-#' de las marcas del gráfico (`"dia"`, `"semanaepi"` y `"mes"``);
+#' de las marcas del gráfico (`"dia"`, `"semanaepi"` y `"mes"`);
 #' su valor por defecto es `"semanaepi"`.
 #' @param col_fecha Un `character` (cadena de caracteres) que contiene el
 #' nombre de la columna con las fechas de notificación en los datos de la
@@ -335,7 +335,7 @@ plot_fecha_inisintomas <- function(data_agrupada,
 }
 
 #' @title Generar gráfico de distribución de casos por sexo
-#' @description Función que genera el gráfico de distribución de casos por sexo.
+#' @description Función que genera un gráfico de distribución de casos por sexo.
 #' @param data_agrupada Un `data.frame` que contiene los datos de la
 #' enfermedad o evento agrupados.
 #' @param col_sex Un `character` (cadena de caracteres) con el nombre de la
@@ -344,7 +344,7 @@ plot_fecha_inisintomas <- function(data_agrupada,
 #' @param col_distribucion Un `character` (cadena de caracteres) que contiene el
 #' nombre de la columna que tiene los valores de la distribución, por número de
 #' casos o incidencia; su valor por defecto es `"incidencia"`.
-#' @param porcentaje Un `logical` (TRUE/FALSE) que indica si los datos
+#' @param porcentaje Un `logical` (`TRUE` o `FALSE`) que indica si los datos
 #' tienen porcentajes; su valor por defecto es `TRUE`.
 #' @param fuente_data Un `character` (cadena de caracteres) que contiene la
 #' leyenda o fuente de información de los datos; su valor por defecto es `NULL`.
@@ -440,7 +440,7 @@ plot_sex <- function(data_agrupada,
 
 #' @title Generar gráfico de distribución de casos por sexo y semana
 #' epidemiológica
-#' @description Función que genera el gráfico de distribución de casos por sexo
+#' @description Función que genera un gráfico de distribución de casos por sexo
 #' y semana epidemiológica.
 #' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
 #' o evento agrupados.
@@ -520,7 +520,7 @@ plot_sex_semanaepi <- function(data_agrupada,
 }
 
 #' @title Generar gráfico de distribución de casos por edad
-#' @description Función que genera el gráfico de distribución de casos
+#' @description Función que genera un gráfico de distribución de casos
 #' por edad.
 #' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
 #' o evento agrupados.
@@ -572,7 +572,7 @@ plot_edad <- function(data_agrupada,
 }
 
 #' @title Generar gráfico de distribución de casos por edad y sexo
-#' @description Función que genera el gráfico de distribución de casos por
+#' @description Función que genera un gráfico de distribución de casos por
 #' edad y sexo.
 #' @param data_agrupada Un `data.frame` que contiene los datos de la
 #' enfermedad o evento agrupados.
@@ -712,7 +712,7 @@ plot_dptos <- function(data_agrupada,
 }
 
 #' @title Generar gráfico de distribución de casos por municipios
-#' @description Función que genera el gráfico de distribución de casos por
+#' @description Función que genera un gráfico de distribución de casos por
 #' municipios.
 #' @param data_agrupada Un `data.frame` que contiene los datos de la
 #' enfermedad o evento agrupados por municipios.
@@ -865,8 +865,8 @@ plot_area_geo <- function(data_agrupada,
 #' @param data_agrupada Un `data.frame` que contiene los datos de la
 #' enfermedad o evento agrupados.
 #' @param col_area Un `character` (cadena de caracteres) con el nombre de
-#' la columna con el área geográfica en los datos agrupados de la enfermedad
-#' o evento; su valor por defecto es `"area"`.
+#' la columna que contiene el área geográfica en los datos agrupados de la
+#' enfermedad o evento; su valor por defecto es `"area"`.
 #' @param fuente_data Un `character` (cadena de caracteres) que contiene la
 #' leyenda o fuente de información de los datos; su valor por defecto
 #' es `NULL`.
@@ -1005,12 +1005,13 @@ plot_tabla_tipos_event <- function(data_agrupada,
 }
 
 #' @title Generar gráfico de distribución de casos por año
-#' @description Función que genera el gráfico de casos por año.
+#' @description Función que genera un gráfico de distribución de casos
+#' por año.
 #' @param data_agrupada Un `data.frame` que contiene los datos de la
 #' enfermedad o evento agrupados por año.
 #' @param col_year Un `character` (cadena de caracteres) con el nombre de
 #' la columna que contiene los años en los datos agrupados de la enfermedad
-#' o evento por año; su valor por defecto es `"ano"`.
+#' o evento; su valor por defecto es `"ano"`.
 #' @param fuente_data Un `character` (cadena de caracteres) que contiene la
 #' leyenda o fuente de información de los datos; su valor por defecto
 #' es `NULL`.
@@ -1068,12 +1069,12 @@ plot_years <- function(data_agrupada,
   return(plot_casos_years)
 }
 
-#' @title Generar gráfico de distribución de casos por la clasificacion
+#' @title Generar gráfico de distribución de casos por la clasificación
 #' inicial del caso
-#' @description Función que genera el gráfico de distribución por la
-#' clasificación inicial de los casos.
+#' @description Función que genera un gráfico de distribución de casos
+#' según su clasificación inicial.
 #' @param data_agrupada Un `data.frame` que contiene los datos de la
-#' enfermedad o evento agrupados por la clasificación inicial de los casos.
+#' enfermedad o evento agrupados según la clasificación inicial de los casos.
 #' @param col_tipo Un `character` (cadena de caracteres) con el nombre de
 #' la columna que contiene la clasificación inicial de los casos en los
 #' datos agrupados de la enfermedad o evento; su valor por defecto es
@@ -1081,8 +1082,8 @@ plot_years <- function(data_agrupada,
 #' @param fuente_data Un `character` (cadena de caracteres) que contiene la
 #' leyenda o fuente de información de los datos; su valor por defecto
 #' es `NULL`.
-#' @return Un `plot` o gráfico de distribución de casos por la clasificación
-#' inicial.
+#' @return Un `plot` o gráfico de distribución de casos según su
+#' clasificación inicial.
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(dengue2020)
@@ -1134,10 +1135,10 @@ plot_tipo_caso <- function(data_agrupada,
   return(plot_tipo_casos)
 }
 
-#' @title Generar gráfico de distribución de casos por la clasificacion
+#' @title Generar gráfico de distribución de casos por la clasificación
 #' inicial del caso y los años seleccionados
-#' @description Función que genera el gráfico por la clasificación inicial
-#' de los casos y los años seleccionados.
+#' @description Función que genera un gráfico de distribución de casos
+#' según su clasificación inicial y los años seleccionados.
 #' @param data_agrupada Un `data.frame` que contiene los datos de la
 #' enfermedad o evento, agrupados por la clasificación inicial y los años
 #' seleccionados.
@@ -1151,7 +1152,7 @@ plot_tipo_caso <- function(data_agrupada,
 #' @param fuente_data Un `character` (cadena de caracteres) que contiene la
 #' leyenda o fuente de información de los datos; su valor por defecto
 #' es `NULL`.
-#' @return Un `plot` o gráfico de distribución de casos por la clasificación
+#' @return Un `plot` o gráfico de distribución de casos seguín su clasificación
 #' inicial y los años seleccionados.
 #' @examples
 #' data(dengue2020)
@@ -1215,21 +1216,20 @@ plot_tipo_caso_years <- function(data_agrupada,
   return(plot_casos_years)
 }
 
-#' @title Generar gráfico de distribución de casos por la pertenencia
-#' étnica
+#' @title Generar gráfico de distribución de casos por pertenencia étnica
 #' @description Función que genera el gráfico de la distribución de casos
-#' por la pertenencia étnica.
+#' por pertenencia étnica.
 #' @param data_agrupada Un `data.frame` que contiene los datos de la
-#' enfermedad o evento agrupados por la pertenencia étnica.
+#' enfermedad o evento agrupados por pertenencia étnica.
 #' @param col_etn Un `character` (cadena de caracteres) con el nombre de
 #' la columna que contiene la pertenencia étnica en los datos agrupados de
 #' la enfermedad o evento; su valor por defecto es `"per_etn"`.
-#' @param porcentaje Un `logical` (TRUE/FALSE) que indica si los datos
+#' @param porcentaje Un `logical` (`TRUE` o `FALSE`) que indica si los datos
 #' tienen porcentajes; su valor por defecto es `TRUE`.
 #' @param fuente_data Un `character` (cadena de caracteres) que contiene la
 #' leyenda o fuente de información de los datos; su valor por defecto
 #' es `NULL`.
-#' @return Un `plot` o gráfico de la distribución de casos por la pertenencia
+#' @return Un `plot` o gráfico de la distribución de casos por pertenencia
 #' étnica.
 #' @examples
 #' \donttest{
@@ -1290,7 +1290,7 @@ plot_per_etn <- function(data_agrupada,
 }
 
 #' @title Generar tabla con la incidencia
-#' @description Función que genera la tabla con la incidencia según
+#' @description Función que genera la tabla con la incidencia según la
 #' distribución geográfica.
 #' @param data_agrupada Un `data.frame` que contiene los datos de la
 #' enfermedad o evento agrupados por departamento o municipio.
@@ -1373,7 +1373,7 @@ plot_tabla_incidencia_geo <- function(data_agrupada,
 }
 
 #' @title Generar tabla con la incidencia por sexo
-#' @description Función que genera la tabla con la incidencia según por
+#' @description Función que genera la tabla con la incidencia por
 #' sexo.
 #' @param data_agrupada Un `data.frame` que contiene los datos de la
 #' enfermedad o evento agrupados por departamento o municipio.

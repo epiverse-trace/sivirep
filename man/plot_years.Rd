@@ -12,7 +12,7 @@ enfermedad o evento agrupados por año.}
 
 \item{col_year}{Un `character` (cadena de caracteres) con el nombre de
 la columna que contiene los años en los datos agrupados de la enfermedad
-o evento por año; su valor por defecto es `"ano"`.}
+o evento; su valor por defecto es `"ano"`.}
 
 \item{fuente_data}{Un `character` (cadena de caracteres) que contiene la
 leyenda o fuente de información de los datos; su valor por defecto
@@ -22,7 +22,8 @@ es `NULL`.}
 Un `plot` o gráfico de distribución de casos por año.
 }
 \description{
-Función que genera el gráfico de casos por año.
+Función que genera un gráfico de distribución de casos
+por año.
 }
 \examples{
 data(dengue2020)

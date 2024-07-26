@@ -8,7 +8,7 @@ import_geo_cods(descargar = FALSE)
 }
 \arguments{
 \item{descargar}{Un `logical` (`TRUE` o `FALSE`) que indica si los
-datos se deben descargar desde la API de datos abiertos de Colombia;
+datos deben descargarse desde la API de datos abiertos de Colombia;
 su valor por defecto es `FALSE`.}
 }
 \value{

@@ -7,7 +7,7 @@
 tema_sivirep()
 }
 \value{
-Un objecto tema de \pkg{ggplot2}.
+Un objeto tema de \pkg{ggplot2}.
 }
 \description{
 Tema \pkg{ggplot2} personalizado para los reportes

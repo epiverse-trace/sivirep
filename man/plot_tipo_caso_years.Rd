@@ -2,7 +2,7 @@
 % Please edit documentation in R/plotting.R
 \name{plot_tipo_caso_years}
 \alias{plot_tipo_caso_years}
-\title{Generar gráfico de distribución de casos por la clasificacion
+\title{Generar gráfico de distribución de casos por la clasificación
 inicial del caso y los años seleccionados}
 \usage{
 plot_tipo_caso_years(
@@ -31,12 +31,12 @@ leyenda o fuente de información de los datos; su valor por defecto
 es `NULL`.}
 }
 \value{
-Un `plot` o gráfico de distribución de casos por la clasificación
+Un `plot` o gráfico de distribución de casos seguín su clasificación
 inicial y los años seleccionados.
 }
 \description{
-Función que genera el gráfico por la clasificación inicial
-de los casos y los años seleccionados.
+Función que genera un gráfico de distribución de casos
+según su clasificación inicial y los años seleccionados.
 }
 \examples{
 data(dengue2020)

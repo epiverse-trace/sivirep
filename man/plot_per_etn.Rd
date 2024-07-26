@@ -2,8 +2,7 @@
 % Please edit documentation in R/plotting.R
 \name{plot_per_etn}
 \alias{plot_per_etn}
-\title{Generar gráfico de distribución de casos por la pertenencia
-étnica}
+\title{Generar gráfico de distribución de casos por pertenencia étnica}
 \usage{
 plot_per_etn(
   data_agrupada,
@@ -14,13 +13,13 @@ plot_per_etn(
 }
 \arguments{
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la
-enfermedad o evento agrupados por la pertenencia étnica.}
+enfermedad o evento agrupados por pertenencia étnica.}
 
 \item{col_etn}{Un `character` (cadena de caracteres) con el nombre de
 la columna que contiene la pertenencia étnica en los datos agrupados de
 la enfermedad o evento; su valor por defecto es `"per_etn"`.}
 
-\item{porcentaje}{Un `logical` (TRUE/FALSE) que indica si los datos
+\item{porcentaje}{Un `logical` (`TRUE` o `FALSE`) que indica si los datos
 tienen porcentajes; su valor por defecto es `TRUE`.}
 
 \item{fuente_data}{Un `character` (cadena de caracteres) que contiene la
@@ -28,12 +27,12 @@ leyenda o fuente de información de los datos; su valor por defecto
 es `NULL`.}
 }
 \value{
-Un `plot` o gráfico de la distribución de casos por la pertenencia
+Un `plot` o gráfico de la distribución de casos por pertenencia
 étnica.
 }
 \description{
 Función que genera el gráfico de la distribución de casos
-por la pertenencia étnica.
+por pertenencia étnica.
 }
 \examples{
 \donttest{

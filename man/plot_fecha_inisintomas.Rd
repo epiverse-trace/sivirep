@@ -22,7 +22,7 @@ nombre de la columna con las fechas de notificación en los datos de la
 enfermedad o evento agrupados; su valor por defecto es `"ini_sin"`.}
 
 \item{uni_marca}{Un `character` (cadena de caracteres) que contiene la unidad
-de las marcas del gráfico (`"dia"`, `"semanaepi"` y `"mes"``);
+de las marcas del gráfico (`"dia"`, `"semanaepi"` y `"mes"`);
 su valor por defecto es `"semanaepi"`.}
 
 \item{tipo}{Un `character` (cadena de caracteres) que contiene el tipo de
@@ -37,7 +37,7 @@ Un `plot` o gráfico de la distribución de casos por fecha de inicio
 de síntomas.
 }
 \description{
-Función que genera el gráfico de distribución de casos
+Función que genera un gráfico de distribución de casos
 por fecha de inicio de síntomas.
 }
 \examples{

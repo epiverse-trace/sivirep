@@ -1,7 +1,7 @@
 #' @title Tema sivirep
 #' @description Tema \pkg{ggplot2} personalizado para los reportes
 #' de \pkg{sivirep}.
-#' @return Un objecto tema de \pkg{ggplot2}.
+#' @return Un objeto tema de \pkg{ggplot2}.
 #' @keywords internal
 tema_sivirep <- function() {
   sysfonts::font_add_google("Montserrat", "Montserrat")
@@ -25,16 +25,16 @@ tema_sivirep <- function() {
   return(tema)
 }
 
-#' @title Obtener la estetica de una escala para un grafico de \pkg{sivirep}
+#' @title Obtener la estética de una escala para un gráfico de \pkg{sivirep}
 #' @description Función que genera la estética de una escala para un gráfico
 #' de \pkg{sivirep}.
-#' @param escala Un `numeric` (númerico) que indica la cantidad de valores que
+#' @param escala Un `numeric` (numérico) que indica la cantidad de valores que
 #' contiene la escala.
 #' @param nombre Un `character` (cadena de caracteres) que contiene el nombre
 #' de la escala.
 #' @param etiquetas Un `character` (cadena de caracteres) que contiene las
 #' etiquetas de la escala.
-#' @returns Un objeto `scale_fill_manual` de \pkg{ggplot2}.
+#' @return Un objeto `scale_fill_manual` de \pkg{ggplot2}.
 #' @keywords internal
 obtener_estetica_escala <- function(escala = 0, nombre,
                                     etiquetas = NULL) {

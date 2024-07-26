@@ -18,13 +18,13 @@ plot_map(
 agrupados por departamento y número de casos.}
 
 \item{col_distribucion}{Un `character` (cadena de caracteres) que contiene el
-nombre de la columna que tiene los valores de la distribución, por número de
-casos o incidencia; su valor por defecto es `"incidencia"`.}
+nombre de la columna que tiene los valores de la distribución, ya sea por
+número de casos o incidencia; su valor por defecto es `"incidencia"`.}
 
 \item{col_codigos}{Un `character` (cadena de caracteres) que contiene el
-nombre de la columna con los códigos de los departamentos o municipios, se
-utilizan para obtener los poligonos de las áreas geográficas del archivo
-geoespacial o de figuras (Shapefile); su valor por defecto `NULL`.}
+nombre de la columna con los códigos de los departamentos o municipios, los
+cuales se utilizan para obtener los poligonos de las áreas geográficas del
+archivo geoespacial o Shapefile; su valor por defecto `NULL`.}
 
 \item{fuente_data}{Un `character` (cadena de caracteres) que contiene la
 leyenda o fuente de información de los datos de la enfermedad o evento;
@@ -38,7 +38,7 @@ nombre del municipio; su valor por defecto `NULL`.}
 }
 \value{
 Un `plot` o mapa por departamentos o municipios con el número de
-casos o incidencia de una enfermedad específica.
+casos o incidencia de un evento o enfermedad específica.
 }
 \description{
 Función que genera el mapa por departamentos o municipios con el
