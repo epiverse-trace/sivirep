@@ -702,8 +702,8 @@ plot_dptos <- function(data_agrupada,
       orientation = "y"
     ) +
     ggplot2::labs(
-      x = "\nDepartamento\n",
-      y = paste0(etiqueta_casos, "\n"),
+      x = paste0(etiqueta_casos, "\n"),
+      y = "\nDepartamento\n",
       caption = fuente_data
     ) +
     tema_sivirep() +
@@ -789,8 +789,8 @@ plot_mpios <- function(data_agrupada,
       orientation = "y"
     ) +
     ggplot2::labs(
-      x = "\nMunicipio\n",
-      y = paste0(etiqueta_casos, "\n"),
+      x = paste0(etiqueta_casos, "\n"),
+      y = "\nMunicipio\n",
       caption = fuente_data
     ) +
     tema_sivirep() +
@@ -848,8 +848,8 @@ plot_area_geo <- function(data_agrupada,
       width = 0.3
     ) +
     ggplot2::labs(
-      x = paste0("\n", etiqueta_area_geo),
-      y = paste0(etiqueta_casos, "\n"),
+      x = paste0(etiqueta_casos, "\n"),
+      y = paste0("\n", etiqueta_area_geo),
       caption = fuente_data
     ) +
     tema_sivirep() +
@@ -932,8 +932,8 @@ plot_top_area_geo <- function(data_agrupada,
     ) +
     ggplot2::geom_col(orientation = "y") +
     ggplot2::labs(
-      x = "\nDepartamento\n",
-      y = paste0("\n", etiqueta_casos),
+      x = paste0("\n", etiqueta_casos),
+      y = "\nDepartamento\n",
       caption = fuente_data
     ) +
     obtener_estetica_escala(
@@ -1277,8 +1277,8 @@ plot_per_etn <- function(data_agrupada,
     ) +
     ggplot2::geom_col(fill = "#2274BB", orientation = "y") +
     ggplot2::labs(
-      x = paste0(etiqueta_etn, "\n"),
-      y = paste0("\n", etiqueta_casos),
+      x = paste0("\n", etiqueta_casos),
+      y = paste0(etiqueta_etn, "\n"),
       caption = fuente_data
     ) +
     ggplot2::scale_x_discrete(labels = stringr::str_wrap(
