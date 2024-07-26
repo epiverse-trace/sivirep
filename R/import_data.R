@@ -206,29 +206,53 @@ import_sep_data <- function(ruta_data = NULL,
                             cache = FALSE,
                             consentimiento) {
   data_archivo <- data.frame()
-  ruta_extdata <- system.file("extdata", package = "sivirep")
-  ini_nomb_archivo <-
-    stringr::str_locate(ruta_data,
-                        stringr::fixed("Microdatos/"))[2] + 1
-  fin_nomb_archivo <-
-    stringr::str_locate(ruta_data, stringr::fixed("value"))[1] - 5
-  nomb_archivo <- stringr::str_sub(ruta_data, ini_nomb_archivo,
-                                   fin_nomb_archivo)
-  ruta_archivo <- file.path(ruta_extdata, nomb_archivo)
-  if (!file.exists(ruta_archivo) || !cache) {
-    respuesta_archivo <- realizar_peticion_http(ruta_data)
-    if (httr2::resp_status(respuesta_archivo) == 200) {
-      conten_archivo <- httr2::resp_body_raw(respuesta_archivo)
-      con_archivo <- file(ruta_archivo, "wb")
       on.exit(close(con_archivo))
-      if (length(conten_archivo) > 0) {
-        writeBin(conten_archivo, con_archivo)
+  if (is.null(ruta_dir) &&
+      toupper(consentimiento) == "SI") {
+    ruta_dir <- tools::R_user_dir("sivirep", which = "cache")
+    if (!dir.exists(ruta_dir)) {
+      creado <- dir.create(ruta_dir, recursive = TRUE)
+      if (!creado) {
+        stop("Por favor indique en el parametro ruta_dir la ruta donde
+             desea almacenar temporalmente los datos de la enfermedad o
+             evento")
       }
     }
+  } else if (cache && !is.null(consentimiento) &&
+             toupper(consentimiento) == "NO") {
+    stop("Por favor indique la ruta donde desea almacenar los datos
+         de la enfermedad o evento")
+  } else if (!is.null(consentimiento) &&
+             toupper(consentimiento) == "NO") {
+    stop("Por favor indique en el parametro ruta_dir la ruta donde
+             desea almacenar temporalmente los datos de la enfermedad o
+             evento")
+  } else if (!dir.exists(ruta_dir)) {
+    stop("La ruta ingresada en el parametro ruta_dir no existe")
   }
-  if (stringr::str_detect(nomb_archivo, ".xls")) {
-    data_archivo <- readxl::read_excel(ruta_archivo,
-                                       col_types = "text")
+  if (!is.null(ruta_data)) {
+    ini_nomb_archivo <-
+      stringr::str_locate(ruta_data,
+                          stringr::fixed("Microdatos/"))[2] + 1
+    fin_nomb_archivo <-
+      stringr::str_locate(ruta_data, stringr::fixed("value"))[1] - 5
+    nomb_archivo <- stringr::str_sub(ruta_data, ini_nomb_archivo,
+                                     fin_nomb_archivo)
+    ruta_archivo <- file.path(ruta_dir, nomb_archivo)
+    if (!file.exists(ruta_archivo) || !cache) {
+      respuesta_archivo <- realizar_peticion_http(ruta_data)
+      if (httr2::resp_status(respuesta_archivo) == 200) {
+        conten_archivo <- httr2::resp_body_raw(respuesta_archivo)
+        con_archivo <- file(ruta_archivo, "wb")
+        if (length(conten_archivo) > 0) {
+          writeBin(conten_archivo, con_archivo)
+        }
+      }
+    }
+    if (stringr::str_detect(nomb_archivo, ".xls")) {
+      data_archivo <- readxl::read_excel(ruta_archivo,
+                                         col_types = "text")
+    }
   }
   return(data_archivo)
 }
