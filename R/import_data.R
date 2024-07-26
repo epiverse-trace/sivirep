@@ -133,6 +133,10 @@ list_events <- function() {
 #' la descarga de los datos.
 #' @param cache Un `boolean` (`TRUE` o `FALSE`) que indica si los datos
 #' descargados deben ser almacenados en caché; su valor por defecto es `TRUE`.
+#' @param ruta_dir Un `character` (cadena de caracteres) que contiene la ruta
+#' del directorio donde se almacenaran los datos del evento o enfermedad. Si
+#' no se proporciona ningún valor en este parámetro, el usuario debe dar su
+#' consentimiento para que los datos sean almacenados temporalmente en el
 #' @return Un `data.frame` con los datos del año de la enfermedad o evento
 #' seleccionado desde los microdatos del SIVIGILA.
 #' @examples
@@ -153,6 +157,7 @@ list_events <- function() {
 import_data_event <- function(nombre_event,
                               years,
                               cache = TRUE) {
+                              ruta_dir = NULL,
   stopifnot("El parametro years no debe estar vacio" = !missing(years),
             "El parametro years debe ser numerico" = is.numeric(years),
             "El parametro nombre_event no debe estar vacio"
@@ -171,7 +176,8 @@ import_data_event <- function(nombre_event,
     for (event in grupo_events$enfermedad) {
       data_url <- obtener_ruta_data_event_year(nombre_event = event,
                                                year = year)
-      data_import <- import_sep_data(data_url, cache)
+      data_import <- import_sep_data(ruta_data = data_url,
+                                     ruta_dir = ruta_dir,
       data_import <- limpiar_encabezado(data_import)
       data_import$fec_def <- as.character(data_import$fec_def)
       nombre_cols <- names(data_import)
