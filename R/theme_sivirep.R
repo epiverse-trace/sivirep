@@ -16,7 +16,11 @@ tema_sivirep <- function() {
         size = 14.5
       ),
       axis.title = ggplot2::element_text(face = "bold"),
-      legend.title = ggplot2::element_text(face = "bold")
+      legend.title = ggplot2::element_text(face = "bold"),
+      plot.background = ggplot2::element_blank(),
+      panel.grid.major = ggplot2::element_blank(),
+      panel.grid.minor = ggplot2::element_blank(),
+      panel.border = ggplot2::element_blank()
     )
   return(tema)
 }
