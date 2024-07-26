@@ -10,7 +10,7 @@ plot_tabla_incidencia_geo(data_agrupada, col_geo = NULL)
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la
 enfermedad o evento agrupados por departamento o municipio.}
 
-\item{col_geo}{Un `character` (cadena de carácteres) con el nombre de
+\item{col_geo}{Un `character` (cadena de caracteres) con el nombre de
 la columna que contiene los nombres de los departamentos o municipios
 en los datos agrupados de la enfermedad o evento; su valor por
 defecto es `NULL`.}

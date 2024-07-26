@@ -27,7 +27,7 @@ de casos; su valor por defecto es `"casos"`.}
 \item{top}{Un `numeric` (númerico) que contiene la cantidad máxima
 de meses a retornar; su valor por defecto es `3`.}
 
-\item{concat_vals}{Un `boolean` (TRUE/FALSE) que indica si se requiere
+\item{concat_vals}{Un `logical` (TRUE/FALSE) que indica si se requiere
 concatenar los meses como una cadena; su valor por defecto es `TRUE`.}
 }
 \value{

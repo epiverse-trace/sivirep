@@ -344,7 +344,7 @@ plot_fecha_inisintomas <- function(data_agrupada,
 #' @param col_distribucion Un `character` (cadena de caracteres) que contiene el
 #' nombre de la columna que tiene los valores de la distribución, por número de
 #' casos o incidencia; su valor por defecto es `"incidencia"`.
-#' @param porcentaje Un `boolean` (TRUE/FALSE) que indica si los datos
+#' @param porcentaje Un `logical` (TRUE/FALSE) que indica si los datos
 #' tienen porcentajes; su valor por defecto es `TRUE`.
 #' @param fuente_data Un `character` (cadena de caracteres) que contiene la
 #' leyenda o fuente de información de los datos; su valor por defecto es `NULL`.
@@ -524,7 +524,7 @@ plot_sex_semanaepi <- function(data_agrupada,
 #' por edad.
 #' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
 #' o evento agrupados.
-#' @param col_edad Un `character` (cadena de carácteres) con el nombre de
+#' @param col_edad Un `character` (cadena de caracteres) con el nombre de
 #' la columna que contiene las edades en los datos agrupados de la enfermedad o
 #' evento; su valor por defecto es `"edad"`.
 #' @param fuente_data Un `character` (cadena de caracteres) que contiene la
@@ -580,7 +580,7 @@ plot_edad <- function(data_agrupada,
 #' columna que contiene las edades en los datos agrupados de la enfermedad o
 #' evento; su valor por defecto es `"edad`.
 #' @param col_sex Un `character` (cadena de caracteres) con el nombre de la
-#' columna que contiene el sexo en los datos agrupados de la enfermdedad o
+#' columna que contiene el sexo en los datos agrupados de la enfermedad o
 #' evento; su valor por defecto es `"sexo`.
 #' @param fuente_data Un `character` (cadena de caracteres) que contiene la
 #' leyenda o fuente de información de los datos; su valor por defecto
@@ -632,7 +632,7 @@ plot_edad_sex <- function(data_agrupada,
 #' departamentos.
 #' @param data_agrupada Un `data.frame` que contiene los datos de la
 #' enfermedad o evento agrupados por departamentos.
-#' @param col_dptos Un `character` (cadena de carácteres) con el nombre de
+#' @param col_dptos Un `character` (cadena de caracteres) con el nombre de
 #' la columna que contiene los departamenos en los datos agrupados de la
 #' enfermedad o evento; su valor por defecto es `NULL`.
 #' @param fuente_data Un `character` (cadena de caracteres) que contiene la
@@ -716,7 +716,7 @@ plot_dptos <- function(data_agrupada,
 #' municipios.
 #' @param data_agrupada Un `data.frame` que contiene los datos de la
 #' enfermedad o evento agrupados por municipios.
-#' @param col_mpios Un `character` (cadena de carácteres) con el nombre de
+#' @param col_mpios Un `character` (cadena de caracteres) con el nombre de
 #' la columna que contiene los municipios en los datos agrupados de la
 #' enfermedad o evento; su valor por defecto es `NULL`.
 #' @param fuente_data Un `character` (cadena de caracteres) que contiene la
@@ -802,8 +802,8 @@ plot_mpios <- function(data_agrupada,
 #' @description Función que genera el gráfico de casos por área geográfica.
 #' @param data_agrupada Un `data.frame` que contiene los datos de la
 #' enfermedad o evento agrupados.
-#' @param col_area Un `character` (cadena de carácteres) con el nombre de
-#' la columna con el área geografica en los datos agrupados de la enfermedad
+#' @param col_area Un `character` (cadena de caracteres) con el nombre de
+#' la columna con el área geográfica en los datos agrupados de la enfermedad
 #' o evento; su valor por defecto es `"area"`.
 #' @param fuente_data Un `character` (cadena de caracteres) que contiene la
 #' leyenda o fuente de información de los datos; su valor por defecto
@@ -864,8 +864,8 @@ plot_area_geo <- function(data_agrupada,
 #' nivel departamental o municipal.
 #' @param data_agrupada Un `data.frame` que contiene los datos de la
 #' enfermedad o evento agrupados.
-#' @param col_area Un `character` (cadena de carácteres) con el nombre de
-#' la columna con el área geografica en los datos agrupados de la enfermedad
+#' @param col_area Un `character` (cadena de caracteres) con el nombre de
+#' la columna con el área geográfica en los datos agrupados de la enfermedad
 #' o evento; su valor por defecto es `"area"`.
 #' @param fuente_data Un `character` (cadena de caracteres) que contiene la
 #' leyenda o fuente de información de los datos; su valor por defecto
@@ -952,7 +952,7 @@ plot_top_area_geo <- function(data_agrupada,
 #' por tipo de enfermedad o evento.
 #' @param data_agrupada Un `data.frame` que contiene los datos de la
 #' enfermedad o evento agrupados por tipo.
-#' @param col_event Un `character` (cadena de carácteres) con el nombre de
+#' @param col_event Un `character` (cadena de caracteres) con el nombre de
 #' la columna que contiene el tipo de evento en los datos agrupados de
 #' la enfermedad o evento; su valor por defecto es `"nombre_evento"`.
 #' @return Una `kable` (tabla gráfica) con la distribución de casos
@@ -1008,7 +1008,7 @@ plot_tabla_tipos_event <- function(data_agrupada,
 #' @description Función que genera el gráfico de casos por año.
 #' @param data_agrupada Un `data.frame` que contiene los datos de la
 #' enfermedad o evento agrupados por año.
-#' @param col_year Un `character` (cadena de carácteres) con el nombre de
+#' @param col_year Un `character` (cadena de caracteres) con el nombre de
 #' la columna que contiene los años en los datos agrupados de la enfermedad
 #' o evento por año; su valor por defecto es `"ano"`.
 #' @param fuente_data Un `character` (cadena de caracteres) que contiene la
@@ -1074,7 +1074,7 @@ plot_years <- function(data_agrupada,
 #' clasificación inicial de los casos.
 #' @param data_agrupada Un `data.frame` que contiene los datos de la
 #' enfermedad o evento agrupados por la clasificación inicial de los casos.
-#' @param col_tipo Un `character` (cadena de carácteres) con el nombre de
+#' @param col_tipo Un `character` (cadena de caracteres) con el nombre de
 #' la columna que contiene la clasificación inicial de los casos en los
 #' datos agrupados de la enfermedad o evento; su valor por defecto es
 #' `"tip_cas"`.
@@ -1141,11 +1141,11 @@ plot_tipo_caso <- function(data_agrupada,
 #' @param data_agrupada Un `data.frame` que contiene los datos de la
 #' enfermedad o evento, agrupados por la clasificación inicial y los años
 #' seleccionados.
-#' @param col_tipo Un `character` (cadena de carácteres) con el nombre de
+#' @param col_tipo Un `character` (cadena de caracteres) con el nombre de
 #' la columna que contiene la clasificación inicial del caso en los datos
 #' agrupados de la enfermedad o evento; su valor por defecto es
 #' `"tip_cas"`.
-#' @param col_year Un `character` (cadena de carácteres) con el nombre de
+#' @param col_year Un `character` (cadena de caracteres) con el nombre de
 #' la columna que contiene el año en los datos agrupados de la enfermedad
 #' o evento; su valor por defecto es `"ano"`.
 #' @param fuente_data Un `character` (cadena de caracteres) que contiene la
@@ -1221,10 +1221,10 @@ plot_tipo_caso_years <- function(data_agrupada,
 #' por la pertenencia étnica.
 #' @param data_agrupada Un `data.frame` que contiene los datos de la
 #' enfermedad o evento agrupados por la pertenencia étnica.
-#' @param col_etn Un `character` (cadena de carácteres) con el nombre de
+#' @param col_etn Un `character` (cadena de caracteres) con el nombre de
 #' la columna que contiene la pertenencia étnica en los datos agrupados de
 #' la enfermedad o evento; su valor por defecto es `"per_etn"`.
-#' @param porcentaje Un `boolean` (TRUE/FALSE) que indica si los datos
+#' @param porcentaje Un `logical` (TRUE/FALSE) que indica si los datos
 #' tienen porcentajes; su valor por defecto es `TRUE`.
 #' @param fuente_data Un `character` (cadena de caracteres) que contiene la
 #' leyenda o fuente de información de los datos; su valor por defecto
@@ -1294,7 +1294,7 @@ plot_per_etn <- function(data_agrupada,
 #' distribución geográfica.
 #' @param data_agrupada Un `data.frame` que contiene los datos de la
 #' enfermedad o evento agrupados por departamento o municipio.
-#' @param col_geo Un `character` (cadena de carácteres) con el nombre de
+#' @param col_geo Un `character` (cadena de caracteres) con el nombre de
 #' la columna que contiene los nombres de los departamentos o municipios
 #' en los datos agrupados de la enfermedad o evento; su valor por
 #' defecto es `NULL`.
@@ -1377,7 +1377,7 @@ plot_tabla_incidencia_geo <- function(data_agrupada,
 #' sexo.
 #' @param data_agrupada Un `data.frame` que contiene los datos de la
 #' enfermedad o evento agrupados por departamento o municipio.
-#' @param col_sex Un `character` (cadena de carácteres) con el nombre de
+#' @param col_sex Un `character` (cadena de caracteres) con el nombre de
 #' la columna que contiene el sexo en los datos agrupados de la enfermedad
 #' o evento; su valor por defecto es `"sexo"`.
 #' @return Una `kable` (tabla gráfica) con la incidencia por sexo.

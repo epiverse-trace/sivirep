@@ -102,17 +102,17 @@ agrupar_semanaepi <- function(data_event,
 #' @param nomb_cols Un `character` (cadena de caracteres) o
 #' `array (arreglo) de character` que contiene el nombre de
 #' la(s) columna(s) en los datos de la enfermedad o evento.
-#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica
+#' @param porcentaje Un `logical` (TRUE o FALSE) que indica
 #' si se debe agregar una columna con el porcentaje de casos;
 #' su valor por defecto es `FALSE`.
-#' @param estandar Un `boolean` (TRUE o FALSE) que indica
+#' @param estandar Un `logical` (TRUE o FALSE) que indica
 #' si se debe utilizar el estándar de agrupación de los datos
 #' del evento o enfermedad propuesto por el paquete, es decir,
 #' que se incluyan estas columnas o variables como parte del
 #' resultado `c("cod_eve", "nombre_evento", "ano")`; su valor
 #' por defecto es `TRUE`, si su valor es `FALSE` agrupará los
 #' datos solamente por las columnas o variables enviadas en el
-#' párametro `nomb_cols`.
+#' parámetro `nomb_cols`.
 #' @return Un `data.frame` con los datos de una enfermedad
 #' o evento agrupados por el nombre de la(s) columna(s) y el
 #' número de casos.
@@ -188,7 +188,7 @@ agrupar_cols_casos <- function(data_event,
 #' con la que debe finalizar el rango de edades.
 #' @param paso Un `numeric` (numérico) que contiene el valor del paso
 #' para generar el rango de edades.
-#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si se debe
+#' @param porcentaje Un `logical` (TRUE o FALSE) que indica si se debe
 #' agregar una columna con el porcentaje de casos; su valor por
 #' defecto es `TRUE`.
 #' @return Un `data.frame` con los datos de la enfermedad o evento
@@ -286,7 +286,7 @@ agrupar_fecha_inisintomas <- function(data_event,
 #' @param col_sex Un `character` (cadena de caracteres) con el nombre
 #' de la columna que contiene el sexo en los datos de la enfermedad o evento;
 #' su valor por defecto es `"sexo"`.
-#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si se debe
+#' @param porcentaje Un `logical` (TRUE o FALSE) que indica si se debe
 #' agregar una columna con el porcentaje de casos; su valor por
 #' defecto es `TRUE`.
 #' @return Un `data.frame` con los datos de la enfermedad o evento
@@ -319,7 +319,7 @@ agrupar_sex <- function(data_event,
 #' `array` (arreglo) de `character` con el nombre de la(s)
 #' columna(s) que contienen el sexo y las semanas
 #' epidemiológicas; su valor por defecto es `c("sexo", "semana")`.
-#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si se debe
+#' @param porcentaje Un `logical` (TRUE o FALSE) que indica si se debe
 #' agregar una columna con el porcentaje de casos; su valor por
 #' defecto es `TRUE`.
 #' @return Un `data.frame` con los datos de la enfermedad o evento
@@ -359,7 +359,7 @@ agrupar_sex_semanaepi <- function(data_event,
 #' @param col_edad Un `character` (cadena de caracteres) con el nombre
 #' de la columna que contiene las edades en los datos de la enfermedad o
 #' evento; su valor por defecto es `"edad"`.
-#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si se debe
+#' @param porcentaje Un `logical` (TRUE o FALSE) que indica si se debe
 #' agregar una columna con el porcentaje de casos; su valor por
 #' defecto es `FALSE`.
 #' @param interval_edad Un `numeric` (numérico) que contiene el intervalo del
@@ -414,7 +414,7 @@ agrupar_edad <- function(data_event,
 #' @param col_sex Un `character` (cadena de caracteres) con el nombre de la
 #' columna que contiene el sexo en los datos de la enfermedad o evento;
 #' su valor por defecto es `"sexo`.
-#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si se debe
+#' @param porcentaje Un `logical` (TRUE o FALSE) que indica si se debe
 #' agregar una columna con el porcentaje de casos; su valor por
 #' defecto es `TRUE`.
 #' @param interval_edad Un `numeric` (numérico) que contiene el intervalo del
@@ -469,7 +469,7 @@ agrupar_edad_sex <- function(data_event,
 #' @param col_dpto Un `character` (cadena de caracteres) con el nombre
 #' de la columna que contiene los códigos de los departamentos en los
 #' datos de la enfermedad o evento; su valor por defecto es `"cod_dpto_o"`.
-#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si se debe
+#' @param porcentaje Un `logical` (TRUE o FALSE) que indica si se debe
 #' agregar una columna con el porcentaje de casos; su valor por
 #' defecto es `FALSE`.
 #' @return Un `data.frame` con los datos de la enfermedad o evento agrupados
@@ -514,7 +514,7 @@ agrupar_dpto <- function(data_event,
 #' @param col_mpio Un `character` (cadena de caracteres) con el nombre de
 #' la columna que contiene los códigos de los municipios en los datos de la
 #' enfermedad o evento; su valor por defecto es `"cod_mun_o"`.
-#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si se debe
+#' @param porcentaje Un `logical` (TRUE o FALSE) que indica si se debe
 #' agregar una columna con el porcentaje de casos; su valor por
 #' defecto es `FALSE`.
 #' @return Un `data.frame` con los datos de la enfermedad o evento agrupados
@@ -601,7 +601,7 @@ agrupar_mpio <- function(data_event,
 #' @param col_area Un `character` (cadena de caracteres) con el nombre de
 #' la columna que contiene las áreas geográficas en los datos de la enfermedad
 #' o evento; su valor por defecto es `"area"`.
-#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si se debe
+#' @param porcentaje Un `logical` (TRUE o FALSE) que indica si se debe
 #' agregar una columna con el porcentaje de casos; su valor por
 #' defecto es `FALSE`.
 #' @return Un `data.frame` con los datos de la enfermedad o evento agrupados
@@ -647,7 +647,7 @@ agrupar_area_geo <- function(data_event,
 #' @param col_area Un `character` (cadena de caracteres) con el nombre de
 #' la columna que contiene las áreas geográficas en los datos de la enfermedad
 #' o evento; su valor por defecto es `"cod_mun_o"`.
-#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si se debe
+#' @param porcentaje Un `logical` (TRUE o FALSE) que indica si se debe
 #' agregar una columna con el porcentaje de casos; su valor por
 #' defecto es `FALSE`.
 #' @param top Un `numeric` (númerico) que indica la cantidad de departamentos o
@@ -807,10 +807,10 @@ agrupar_tipo_caso <- function(data_event, cols_tipo = "tip_cas") {
 #' @param data_event Un `data.frame` que contiene los datos de la
 #' enfermedad o evento.
 #' @param cols_etn Un `character` (cadena de caracteres) o un `array` de
-#' `character` con el nombre de las columna(s) que contiene(n) la
+#' `character` con el nombre de la(s) columna(s) que contiene(n) la
 #' pertenencia étnica en los datos de la enfermedad o evento;
 #' su valor por defecto es `"per_etn"`
-#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica
+#' @param porcentaje Un `logical` (TRUE o FALSE) que indica
 #' si se debe agregar una columna con el porcentaje de casos;
 #' su valor por defecto es `TRUE`.
 #' @return Un `data.frame` con los datos de la enfermedad o evento agrupados
@@ -1137,7 +1137,7 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
 #' @description Función que calcula la incidencia de una enfermedad o evento
 #' para todos los departamentos de Colombia o los municipios de un departamento
 #' por cada sexo.
-#' @param data_incidencia Un `data.frame` que contiene la proyecciones
+#' @param data_incidencia Un `data.frame` que contiene las proyecciones
 #' poblacionales del DANE; su valor por defecto es `NULL`.
 #' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
 #' agrupados por departamento o municipio y número de casos.

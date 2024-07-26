@@ -1,6 +1,6 @@
-#' @title Validar párametro `data_event`
+#' @title Validar parámetro `data_event`
 #' @description Función que realiza las validaciones correspondientes
-#' del párametro `data_event`.
+#' del parámetro `data_event`.
 #' @param data_event Un `data.frame` que contiene los datos de
 #' una enfermedad o evento.
 #' @noRd
@@ -14,9 +14,9 @@ validar_data_event <- function(data_event) {
   )
 }
 
-#' @title Validar párametro `data_agrupada`
+#' @title Validar parámetro `data_agrupada`
 #' @description Función que realiza las validaciones correspondientes
-#' del párametro `data_agrupada`.
+#' del parámetro `data_agrupada`.
 #' @param data_agrupada Un `data.frame` que contiene los datos de la
 #' enfermedad o evento agrupados.
 #' @noRd
@@ -31,13 +31,13 @@ validar_data_agrupada <- function(data_agrupada) {
   )
 }
 
-#' @title Validar párametro `nomb_cols`
+#' @title Validar parámetro `nomb_cols`
 #' @description Función que realiza las validaciones correspondientes
-#' del párametro `nomb_cols`.
+#' del parámetro `nomb_cols`.
 #' @param data_event Un `data.frame` que contiene los datos de
 #' una enfermedad o evento.
-#' @param nomb_cols Un `character` (cadena de caracteres) o
-#' `array (arreglo) de character` que contiene el nombre de
+#' @param nomb_cols Un `character` (cadena de caracteres) o un
+#' `array` (arreglo) de `character` que contiene el nombre de
 #' la(s) columna(s) en los datos de la enfermedad o evento.
 #' @noRd
 validar_nomb_cols <- function(data_event, nomb_cols) {
@@ -53,14 +53,14 @@ validar_nomb_cols <- function(data_event, nomb_cols) {
   )
 }
 
-#' @title Validar los párametros de la lógica de fecha de inicio de sintomas
+#' @title Validar los parámetros de la lógica de fecha de inicio de síntomas
 #' @description Función que realiza las validaciones correspondientes a los
-#' parametros relacionados a lógica y análisis que se efectua sobre
-#' la variable de fecha de inicio de sintoma.
+#' parámetros relacionados a lógica y análisis que se efectua sobre
+#' la variable de fecha de inicio de síntomas.
 #' @param data_event Un `data.frame` que contiene los datos de una enfermedad
 #' o evento.
 #' @param uni_marca Un `character` (cadena de caracteres) que contiene
-#' la unidad de las marcas del gráfico (`"dia"`, `"semanaepi"` y `"mes"``).
+#' la unidad de las marcas del gráfico (`"dia"`, `"semanaepi"` y `"mes"`).
 #' @param col_fecha Un `character` (cadena de caracteres) que contiene el
 #' nombre de la columna con las fechas de notificación en los datos de la
 #' enfermedad o evento.
@@ -86,11 +86,11 @@ validar_fecha_inisintomas <- function(data_event, col_fecha,
   )
 }
 
-#' @title Validar párametro `format_fecha`
+#' @title Validar parámetro `format_fecha`
 #' @description Función que realiza las validaciones correspondientes
-#' del párametro `format_fecha`.
+#' del parámetro `format_fecha`.
 #' @param format_fecha Un `character` (cadena de caracteres)
-#' que contiene  el formato deseado de la fecha.
+#' que contiene el formato deseado de la fecha.
 #' @noRd
 validar_format_fecha <- function(format_fecha) {
   stopifnot(
@@ -99,9 +99,9 @@ validar_format_fecha <- function(format_fecha) {
   )
 }
 
-#' @title Validar párametro `col_sex`
+#' @title Validar parámetro `col_sex`
 #' @description Función que realiza las validaciones correspondientes
-#' del párametro `col_sex`.
+#' del parámetro `col_sex`.
 #' @param data_event Un `data.frame` que contiene los datos de una enfermedad
 #' o evento.
 #' @param col_sex Un `character` (cadena de caracteres) con el nombre
@@ -117,10 +117,10 @@ validar_sex <- function(data_event, col_sex) {
   )
 }
 
-#' @title Validar párametro `porcentaje`
+#' @title Validar parámetro `porcentaje`
 #' @description Función que realiza las validaciones correspondientes
-#' del párametro `porcentaje`.
-#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica
+#' del parámetro `porcentaje`.
+#' @param porcentaje Un `logical` (TRUE o FALSE) que indica
 #' si se debe agregar o tener una columna con el porcentaje de casos.
 #' @noRd
 validar_porcentaje <- function(porcentaje) {
@@ -130,13 +130,13 @@ validar_porcentaje <- function(porcentaje) {
   )
 }
 
-#' @title Validar párametro `col_edad`
+#' @title Validar parámetro `col_edad`
 #' @description Función que realiza las validaciones correspondientes
-#' del párametro `col_edad`.
+#' del parámetro `col_edad`.
 #' @param data_event Un `data.frame` que contiene los datos de una enfermedad
 #' o evento.
 #' @param col_edad Un `character` (cadena de caracteres) con el nombre de la
-#' columna que contiene las edades en los datos de la enfermdedad o evento.
+#' columna que contiene las edades en los datos de la enfermedad o evento.
 #' @noRd
 validar_edad <- function(data_event, col_edad) {
   stopifnot(
@@ -149,13 +149,13 @@ validar_edad <- function(data_event, col_edad) {
 }
 
 
-#' @title Validar párametro `col_area`
+#' @title Validar parámetro `col_area`
 #' @description Función que realiza las validaciones correspondientes
-#' del párametro `col_area`.
+#' del parámetro `col_area`.
 #' @param data_event Un `data.frame` que contiene los datos de una enfermedad
 #' o evento.
-#' @param col_area Un `character` (cadena de carácteres) con el nombre de
-#' la columna con el área geografica en los datos de la enfermedad
+#' @param col_area Un `character` (cadena de caracteres) con el nombre de
+#' la columna con el área geográfica en los datos de la enfermedad
 #' o evento.
 #' @noRd
 validar_area_geo <- function(data_event, col_area, porcentaje) {
@@ -168,12 +168,12 @@ validar_area_geo <- function(data_event, col_area, porcentaje) {
   )
 }
 
-#' @title Validar párametro `col_year`
+#' @title Validar parámetro `col_year`
 #' @description Función que realiza las validaciones correspondientes
-#' del párametro `col_year`.
+#' del parámetro `col_year`.
 #' @param data_event Un `data.frame` que contiene los datos de una enfermedad
 #' o evento.
-#' @param col_year Un `character` (cadena de carácteres) con el nombre de
+#' @param col_year Un `character` (cadena de caracteres) con el nombre de
 #' la columna que contiene el año en los datos de la enfermedad o evento.
 #' @noRd
 validar_years <- function(data_event, col_year) {
@@ -186,13 +186,13 @@ validar_years <- function(data_event, col_year) {
   )
 }
 
-#' @title Validar párametro `cols_etn`
+#' @title Validar parámetro `cols_etn`
 #' @description Función que realiza las validaciones correspondientes
-#' del párametro `cols_etn`.
+#' del parámetro `cols_etn`.
 #' @param data_event Un `data.frame` que contiene los datos de una enfermedad
 #' o evento.
 #' @param cols_etn Un `character` (cadena de caracteres) con el nombre de
-#' las columna(s) que contiene(n) la pertenencia étnica en los datos de la
+#' la(s) columna(s) que contiene(n) la pertenencia étnica en los datos de la
 #' enfermedad o evento.
 #' @noRd
 validar_per_etn <- function(data_event, cols_etn) {
@@ -205,10 +205,10 @@ validar_per_etn <- function(data_event, cols_etn) {
   )
 }
 
-#' @title Validar párametro `data_incidencia`
+#' @title Validar parámetro `data_incidencia`
 #' @description Función que realiza las validaciones correspondientes
-#' del párametro `data_incidencia`.
-#' @param data_incidencia Un `data.frame` que contiene la proyecciones
+#' del parámetro `data_incidencia`.
+#' @param data_incidencia Un `data.frame` que contiene las proyecciones
 #' poblacionales del DANE o las poblaciones a riesgo de la enfermedad
 #' o evento.
 #' @noRd

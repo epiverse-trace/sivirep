@@ -14,7 +14,7 @@ enfermedad o evento.}
 nombre de la columna que contiene el número de casos en los datos de
 la enfermedad o evento.}
 
-\item{porcentaje}{Un `boolean` (TRUE/FALSE) que indica si se
+\item{porcentaje}{Un `logical` (TRUE/FALSE) que indica si se
 requiere agregar un porcentaje de casos como columna.}
 }
 \value{

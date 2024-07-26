@@ -36,7 +36,7 @@ con la que debe finalizar el rango de edades.}
 \item{paso}{Un `numeric` (numérico) que contiene el valor del paso
 para generar el rango de edades.}
 
-\item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica si se debe
+\item{porcentaje}{Un `logical` (TRUE o FALSE) que indica si se debe
 agregar una columna con el porcentaje de casos; su valor por
 defecto es `TRUE`.}
 }

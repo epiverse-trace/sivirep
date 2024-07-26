@@ -22,7 +22,7 @@ que contiene el nombre del departamento; su valor por defecto es `NULL`.}
 la columna que contiene los códigos de los municipios en los datos de la
 enfermedad o evento; su valor por defecto es `"cod_mun_o"`.}
 
-\item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica si se debe
+\item{porcentaje}{Un `logical` (TRUE o FALSE) que indica si se debe
 agregar una columna con el porcentaje de casos; su valor por
 defecto es `FALSE`.}
 }

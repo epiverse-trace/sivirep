@@ -11,11 +11,11 @@ agrupar_per_etn(data_event, cols_etn = "per_etn", porcentaje = TRUE)
 enfermedad o evento.}
 
 \item{cols_etn}{Un `character` (cadena de caracteres) o un `array` de
-`character` con el nombre de las columna(s) que contiene(n) la
+`character` con el nombre de la(s) columna(s) que contiene(n) la
 pertenencia étnica en los datos de la enfermedad o evento;
 su valor por defecto es `"per_etn"`}
 
-\item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica
+\item{porcentaje}{Un `logical` (TRUE o FALSE) que indica
 si se debe agregar una columna con el porcentaje de casos;
 su valor por defecto es `TRUE`.}
 }

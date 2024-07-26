@@ -22,7 +22,7 @@ evento; su valor por defecto es `"edad"`.}
 \item{interval_edad}{Un `numeric` (numérico) que contiene el intervalo del
 rango de edades; su valor por defecto es `10`.}
 
-\item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica si se debe
+\item{porcentaje}{Un `logical` (TRUE o FALSE) que indica si se debe
 agregar una columna con el porcentaje de casos; su valor por
 defecto es `FALSE`.}
 }

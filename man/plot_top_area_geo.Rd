@@ -11,8 +11,8 @@ plot_top_area_geo(data_agrupada, col_area = "area", fuente_data = NULL)
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la
 enfermedad o evento agrupados.}
 
-\item{col_area}{Un `character` (cadena de carácteres) con el nombre de
-la columna con el área geografica en los datos agrupados de la enfermedad
+\item{col_area}{Un `character` (cadena de caracteres) con el nombre de
+la columna con el área geográfica en los datos agrupados de la enfermedad
 o evento; su valor por defecto es `"area"`.}
 
 \item{fuente_data}{Un `character` (cadena de caracteres) que contiene la

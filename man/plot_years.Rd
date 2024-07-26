@@ -10,7 +10,7 @@ plot_years(data_agrupada, col_year = "ano", fuente_data = NULL)
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la
 enfermedad o evento agrupados por año.}
 
-\item{col_year}{Un `character` (cadena de carácteres) con el nombre de
+\item{col_year}{Un `character` (cadena de caracteres) con el nombre de
 la columna que contiene los años en los datos agrupados de la enfermedad
 o evento por año; su valor por defecto es `"ano"`.}
 
