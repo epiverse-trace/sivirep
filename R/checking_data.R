@@ -650,11 +650,11 @@ agrupar_area_geo <- function(data_event,
 #' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si se debe
 #' agregar una columna con el porcentaje de casos; su valor por
 #' defecto es `FALSE`.
-#' @param top Un `numeric` (numerico) que indica la cantidad de departamentos o
+#' @param top Un `numeric` (númerico) que indica la cantidad de departamentos o
 #' municipios con mayor número de casos que se deben retornar; su valor
 #' por defecto es `10`.
-#' @return Un `data.frame` con los datos de la enfermedad o evento agrupados
-#' por códigos de municipios y número de casos.
+#' @return Un `data.frame` con el top 10 de los datos de la enfermedad o evento
+#' agrupados por áreas geográficas y número de casos.
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
@@ -712,7 +712,7 @@ agrupar_top_area_geo <- function(data_event,
 #' la columna que contiene los códigos de los eventos o de las enfermedades
 #' en los datos; su valor por defecto es `"cod_eve"`.
 #' @return Un `data.frame` con los datos de la enfermedad o evento agrupados
-#' por sus tipos.
+#' por tipo.
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
@@ -870,6 +870,7 @@ agrupar_per_etn <- function(data_event, cols_etn = "per_etn",
 #' @param sex Un `character` (cadena de caracteres) que contiene el sexo`"F"`
 #' para Femenino y `"M"` Masculino; su valor por defecto es `NULL`.
 #' @return Un `numeric` con el calculo de la incidencia para todo Colombia, un
+#' @return Un `numeric` con el cálculo de la incidencia para todo Colombia, un
 #' departamento, municipio o sexo especifico.
 #' @examples
 #' \donttest{
@@ -1014,6 +1015,7 @@ calcular_incidencia <- function(data_incidencia = NULL, data_agrupada,
 #' @param year Un `numeric` (numerico) con el año que se debe tomar de las
 #' proyecciones poblacionales.
 #' @return Un `data.frame` con el calculo de la incidencia para todos los
+#' @return Un `data.frame` con el cálculo de la incidencia para todos los
 #' departamentos de Colombia o los municipios de un departamento.
 #' @examples
 #' \donttest{
@@ -1135,8 +1137,8 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
 #' @param mpio Un `character` (cadena de caracteres) o `numeric` (numérico)
 #' que contiene el código o nombre del municipio; su valor por defecto
 #' es `NULL`.
-#' @return Un `data.frame` con el calculo de la incidencia para todos los
-#' departamentos de Colombia o los municipios de un departamento.
+#' @return Un `data.frame` con el cálculo de la incidencia para todos los
+#' departamentos de Colombia o los municipios de un departamento por sexo.
 #' @examples
 #' \donttest{
 #' data(dengue2020)
