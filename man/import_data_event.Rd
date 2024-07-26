@@ -32,7 +32,7 @@ descargados deben ser almacenados en caché; su valor por defecto es `FALSE`.}
 \item{consentimiento}{Un `character` (cadena de caracteres) que indica si
 el usuario acepta almacenar los datos de la enfermedad o evento en el
 directorio de usuario de R `R user dir`. Esto es útil si se desea que los
-datos se almacenen en caché y no se ha proporcionado ningún valor en el 
+datos se almacenen en caché y no se ha proporcionado ningún valor en el
 parámetro `ruta_dir`. Los valores permitidos son `"Si"` o `"No"`. Si se
 proporciona `"Si"`, los datos se guardarán en el directorio de usuario.
 Si se proporciona `"No"`, los datos no se guardarán y se solicitará
