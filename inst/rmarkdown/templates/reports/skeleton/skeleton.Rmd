@@ -366,9 +366,9 @@ if (isTRUE(length(unique(
 }
 ```
 
-`r if(params$mpio_distribution && params$departmento != "" && params$municipio == "") {paste0("Los casos se distribuyen a lo largo de ", nrow(dist_espacial_dpto), " municipios del departamento de ", params$departmento, " teniendo un mayor reporte el municipio de ", stringr::str_to_title(espacial_mayor_casos[[col_geo]]), " con ", espacial_mayor_casos$casos, " casos (Ver Figura 9).")} else if(params$municipio == "") {paste0("Los casos se distribuyen a lo largo de ", nrow(dist_espacial_dpto), " departamentos de ", params$pais, " teniendo un mayor reporte el departamento de ", stringr::str_to_title(espacial_mayor_casos[[col_geo]]), " con ", espacial_mayor_casos$casos, " casos (Ver Figura 9).")}`
+`r if(params$mpio_distribution && params$departamento != "" && params$municipio == "") {paste0("Los casos se distribuyen a lo largo de ", nrow(dist_espacial_dpto), " municipios del departamento de ", params$departamento, " teniendo un mayor reporte el municipio de ", stringr::str_to_title(espacial_mayor_casos[[col_geo]]), " con ", espacial_mayor_casos$casos, " casos (Ver Figura 9).")} else if(params$municipio == "") {paste0("Los casos se distribuyen a lo largo de ", nrow(dist_espacial_dpto), " departamentos de ", params$pais, " teniendo un mayor reporte el departamento de ", stringr::str_to_title(espacial_mayor_casos[[col_geo]]), " con ", espacial_mayor_casos$casos, " casos (Ver Figura 9).")}`
 
-```{r grafica-casos-mpios, fig.height = altura_fig_espacial, fig.width = 10, fig.cap = paste0("Distribución de casos por ", text_fig_geo), include = params$mpio_distribution && params$departmento != "" && params$municipio == "", eval = params$mpio_distribution && params$departmento != ""}
+```{r grafica-casos-mpios, fig.height = altura_fig_espacial, fig.width = 10, fig.cap = paste0("Distribución de casos por ", text_fig_geo), include = params$mpio_distribution && params$departamento != "" && params$municipio == "", eval = params$mpio_distribution && params$departamento != ""}
 plot_mpios <- plot_mpios(data_agrupada = dist_espacial_dpto)
 plot_mpios
 ```
@@ -420,53 +420,76 @@ cond_incidencia <-
   obtener_cond_inciden_event(cod_eve = dist_espacial_dpto$cod_eve[1])
 ```
 
-`r if(params$mpio_distribution && params$departmento != "" && params$municipio == "") {paste0("La incidencia para el departamento de ", params$departmento, " es ", incidencia_dpto, " por ", cond_incidencia$coeficiente, " habitantes.")} else if (params$departmento == "") {paste0("La incidencia para ", params$pais, " es ", incidencia_dpto, " por ", cond_incidencia$coeficiente, " habitantes.")} else {paste0("La incidencia para el municipio ", params$municipio, " es ", incidencia_dpto, " por ", cond_incidencia$coeficiente, " habitantes.")}`
+`r if(params$mpio_distribution && params$departamento != "" && params$municipio == "") {paste0("La incidencia para el departamento de ", params$departamento, " es ", incidencia_total$incidencia, " por ", cond_incidencia$coeficiente, " habitantes. Fue calculada con ",  text_incidencia_total, ".")} else if (params$departamento == "") {paste0("La incidencia para ", params$pais, " es ", incidencia_total$incidencia, " por ", cond_incidencia$coeficiente, " habitantes. Fue calculada con ", text_incidencia_total, ".")} else {paste0("La incidencia para el municipio ", params$municipio, " es ", incidencia_total$incidencia, " por ",  cond_incidencia$coeficiente, " habitantes. Fue calculada con ", text_incidencia_total, ".")}`
 
 ## Incidencia por sexo
 
-La incidencia para cada sexo por `r cond_incidencia$coeficiente` habitantes, se puede visualizar en la tabla 2 y figura 13.
-
 ```{r incidencia-sex, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
 nomb_dpto <- NULL
-if (params$departmento != "") {
-  nomb_dpto <- params$departmento
+if (params$departamento != "") {
+  nomb_dpto <- params$departamento
 }
 incidencias_sex <-
   calcular_incidencia_sex(data_agrupada = casos_sex,
                           dpto = nomb_dpto)
 incidencia_mayor_sex <- obtener_fila_mas_casos(data_event =
-                                                incidencias_sex,
+                                                incidencias_sex$data_incidencia,
                                                nomb_col = "incidencia ")
 ```
 
+```{r text-pop-incidencia-sex}
+text_incidencia_sex <- "la población a riesgo"
+if (incidencias_sex$poblacion == "proyecciones") {
+  text_incidencia_sex <- "las proyecciones poblacionales DANE"
+}
+```
+
+La incidencia fue calculada con `r text_incidencia_sex` para cada sexo por `r cond_incidencia$coeficiente` habitantes, se puede visualizar en la tabla 2 y figura 13.
+
 ```{r tabla-incidencia-sex, echo = FALSE, error = FALSE, fig.height=5, fig.width = 10, warning = FALSE, include = TRUE, message = FALSE, fig.pos = "H"} 
-plot_tabla_incidencia_sex(incidencias_sex)
+plot_tabla_incidencia_sex(incidencias_sex$data_incidencia)
 ```
 
 ```{r grafica-incidencia-sex, fig.height = 3, fig.width = 7, fig.cap = paste0("Incidencia por sexo - ", text_ext_geo), include = params$epi_sex_distribution}
-plot_sex(data_agrupada = incidencias_sex,
+plot_sex(data_agrupada = incidencias_sex$data_incidencia,
          col_distribucion = "incidencia",
          porcentaje = FALSE)
 ```
+
+```{r incidencia-geo, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
+incidencias_geo <-
+  calcular_incidencia_geo(data_agrupada =
+                            dist_espacial_dpto)
+```
+
+```{r text-pop-incidencia-geo}
+text_incidencia_geo <- "la población a riesgo"
+if (incidencias_geo$poblacion == "proyecciones") {
+  text_incidencia_geo <- "las proyecciones poblacionales DANE"
+}
+```
+
 
 \newpage
 
 `r if(params$spatial_distribution) {"# Incidencia según distribución geográfica"}`
 
-`r if(params$spatial_distribution && params$departmento != "" && params$municipio == "") {paste0("La incidencia para cada uno de los municipios del departamento del ", params$departmento, " por ", cond_incidencia$coeficiente, " habitantes es la siguiente:")} else if(params$municipio == "") {paste0("La incidencia para cada uno de los departamentos de ", params$pais, " por ", cond_incidencia$coeficiente, " habitantes es la siguiente:")} else {paste0("La incidencia para el municipio de ", params$municipio, " por ", cond_incidencia$coeficiente, " habitantes es la siguiente:")}`
-
-```{r incidencia-geo, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
-dist_espacial_dpto <-
-  calcular_incidencia_geo(data_agrupada =
-                            dist_espacial_dpto)
-```
+`r if(params$spatial_distribution && params$departamento != "" && params$municipio == "") {paste0("La incidencia fue calculada con ", text_incidencia_geo, " para cada uno de los municipios del departamento del ", params$departamento, " por ", cond_incidencia$coeficiente, " habitantes es la siguiente:")} else if(params$municipio == "") {paste0("La incidencia fue calculada con ", text_incidencia_geo, " para cada uno de los departamentos de ", params$pais, " por ", cond_incidencia$coeficiente, " habitantes es la siguiente:")} else {paste0("La incidencia para el municipio de ", params$municipio, " por ", cond_incidencia$coeficiente, " habitantes es la siguiente:")}`
 
 ```{r tabla-incidencia-geo, echo = FALSE, error = FALSE, fig.height=5, fig.width = 10, warning = FALSE, include = TRUE, message = FALSE, fig.pos = "H"} 
-plot_tabla_incidencia_geo(dist_espacial_dpto)
+plot_tabla_incidencia_geo(incidencias_geo$data_incidencia)
 ```
 
 ```{r mapa-casos, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
-mapa <- plot_map(data_agrupada = dist_espacial_dpto)
+if (params$departamento != "" && params$municipio == "") {
+  dist_espacial_mpios <- agrupar_dpto(data_event_filtrada,
+                                      col_dpto = geo_ocurrencia[3])
+  incidencias_geo <-
+  calcular_incidencia_geo(data_agrupada =
+                            dist_espacial_mpios)
+}
+
+mapa <- plot_map(data_agrupada = incidencias_geo$data_incidencia)
 ```
 
 ```{r mapa, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, cache = FALSE, results = FALSE, comment = FALSE, fig.height = 18, fig.width = 16, fig.cap = paste0("Incidencia según distribución geográfica - ", text_ext_geo), include = params$spatial_distribution}
@@ -496,4 +519,4 @@ text_casos_totales <- paste0("*   Los casos totales reportados de ",
 *  El mes de `r mes_mayor_casos` tuvo el mayor reporte.
 *  El reporte de casos de `r stringr::str_to_title(params$nombre_evento)` a lo largo de `r params$year` predominó en la población de `r age_most_cases$edad` años.
 *  El reporte de casos de `r stringr::str_to_title(params$nombre_evento)` predominó a lo largo del año en el sexo `r vals_sex$mayor[1]`.
-* La incidencia para `r text_geo` es de `r incidencia_dpto` por  `r cond_incidencia$coeficiente` habitantes.
+* La incidencia para `r text_geo` es de `r incidencia_total$incidencia` por  `r cond_incidencia$coeficiente` habitantes.
