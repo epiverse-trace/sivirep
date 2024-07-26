@@ -33,7 +33,7 @@ llamada `Reporte Básico {sivirep}`, la cual contiene 12 secciones y recibe los 
 
 Con esta plantilla podrás generar reportes a nivel nacional, departamental o municipal en Colombia y descargar la información sobre la enfermedad o evento de interés directamente de los microdatos del [SIVIGILA](https://www.ins.gov.co/Direcciones/Vigilancia/Paginas/SIVIGILA.aspx) (Sistema Nacional de Vigilancia en Salud Pública de Colombia), según los valores que ingreses en estos parámetros.
 
-Para hacer uso de la plantilla del reporte puedes iniciar importando el
+Para hacer uso de la plantilla del reporte primero debes importar el
 paquete después de finalizada su
 [instalación](https://epiverse-trace.github.io/sivirep/articles/sivirep.html#instalación) con el comando:
 
