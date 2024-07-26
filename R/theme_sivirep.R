@@ -24,7 +24,7 @@ tema_sivirep <- function() {
 #' @title Obtener la estetica de una escala para un grafico de \pkg{sivirep}
 #' @description Función que genera la estética de una escala para un gráfico
 #' de \pkg{sivirep}.
-#' @param escala Un `numeric` (numerico) que indica la cantidad de valores que
+#' @param escala Un `numeric` (númerico) que indica la cantidad de valores que
 #' contiene la escala.
 #' @param nombre Un `character` (cadena de caracteres) que contiene el nombre
 #' de la escala.

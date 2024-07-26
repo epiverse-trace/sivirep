@@ -46,7 +46,7 @@ validar_nomb_cols <- function(data_event, nomb_cols) {
     "El parametro nomb_cols debe ser una cadena de caracteres
             o un arreglo de cadenas de caracteres " =
       (is.character(nomb_cols) && !is.array(nomb_cols)) ||
-      (!is.character(nomb_cols) && is.array(nomb_cols)),
+        (!is.character(nomb_cols) && is.array(nomb_cols)),
     "La(s) columna(s) o variable(s) del parametro nomb_cols no
             se encuentra(n) en los datos de la enfermedad o evento" =
       nomb_cols %in% colnames(data_event)
