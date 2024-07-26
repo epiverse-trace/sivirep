@@ -201,11 +201,10 @@ import_data_event <- function(nombre_event,
 #' descargados deben ser almacenados en caché; su valor por defecto es `TRUE`.
 #' @return Un `data.frame` con los datos tabulados.
 #' @keywords internal
-import_sep_data <- function(ruta_data = NULL, cache = TRUE) {
-  stopifnot("El parametro ruta_data debe ser una cadena de caracteres" =
-              is.character(ruta_data),
-            "El parametro cache debe ser un booleano"
-            = is.logical(cache))
+import_sep_data <- function(ruta_data = NULL,
+                            ruta_dir = NULL,
+                            cache = FALSE,
+                            consentimiento) {
   data_archivo <- data.frame()
   ruta_extdata <- system.file("extdata", package = "sivirep")
   ini_nomb_archivo <-
