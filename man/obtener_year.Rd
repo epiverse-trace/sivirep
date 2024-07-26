@@ -10,6 +10,10 @@ obtener_year(data_event)
 \item{data_event}{Un `data.frame` que contiene los datos de la
 enfermedad o evento.}
 }
+\value{
+Un `numeric` (numérico) que representa el año de los datos de la
+enfermedad o evento.
+}
 \description{
 Función que obtiene el año de los datos de una enfermedad o
 evento.

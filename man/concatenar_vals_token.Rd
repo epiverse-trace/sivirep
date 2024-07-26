@@ -21,7 +21,7 @@ los valores que se desean concatenar; su valor por defecto es `3`.}
 \item{princ_token}{Un `character` (cadena de caracteres) que contiene el
 separador o token principal; su valor por defecto es `", "`.}
 
-\item{final_token}{Un `character` (cadena de caracteres) que contien el
+\item{final_token}{Un `character` (cadena de caracteres) que contiene el
 separador o token final; su valor por defecto es `"y "`.}
 }
 \value{

@@ -3,7 +3,7 @@
 \name{obtener_ruta_dir}
 \alias{obtener_ruta_dir}
 \title{Obtener la ruta del directorio donde se almacenarán
-los datos del evento o enfermedad.}
+los datos del evento o enfermedad}
 \usage{
 obtener_ruta_dir(ruta_dir = NULL, cache = FALSE, consentimiento = NULL)
 }

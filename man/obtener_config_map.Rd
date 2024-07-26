@@ -23,7 +23,7 @@ geográfica de los datos de la enfermedad o evento.}
 }
 \value{
 Una `named list` (lista nombrada) que contiene el departamento,
-municipio y el poligono para generar el mapa con los siguientes
+municipio y el polígono para generar el mapa con los siguientes
 nombres para cada uno de estos elementos: `dpto`, `mpio` y `poligono`.
 }
 \description{

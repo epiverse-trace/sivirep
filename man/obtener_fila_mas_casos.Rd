@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{obtener_fila_mas_casos}
 \alias{obtener_fila_mas_casos}
-\title{Obtener fila con mayor número de casos}
+\title{Obtener la fila con mayor número de casos}
 \usage{
 obtener_fila_mas_casos(data_event, nomb_col = "casos", porcentaje = TRUE)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{obtener_text_sex}
 \alias{obtener_text_sex}
-\title{Obtener el parráfo de la distribución de casos por sexo}
+\title{Obtener el párrafo de la distribución de casos por sexo}
 \usage{
 obtener_text_sex(data_agrupada, year, figura)
 }
@@ -16,8 +16,12 @@ agrupados por sexo.}
 \item{figura}{Un `numeric` (numérico) con el número de la
 figura de la distribución de casos por sexo.}
 }
+\value{
+Un `character` (cadena de caracteres) con el párrafo descriptivo
+de la distribución de casos por sexo.
+}
 \description{
-Función que obtiene el parráfo descriptivo de la sección
+Función que obtiene el párrafo descriptivo de la sección
 de distribución de casos por sexo de la plantilla del reporte.
 }
 \examples{

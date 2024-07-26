@@ -14,7 +14,7 @@ obtener_meses_mas_casos(
 }
 \arguments{
 \item{data_event}{Un `data.frame` con los datos de la enfermedad
-o vento.}
+o evento.}
 
 \item{col_fechas}{Un `array` (arreglo) de `character` (cadena de caracteres)
 con los nombres de las columnas que contienen las fechas en los datos de la
