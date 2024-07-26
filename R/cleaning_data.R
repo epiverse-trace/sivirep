@@ -321,6 +321,7 @@ limpiar_edad_event <- function(data_event, col_edad = "edad") {
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_encabezado(data_event = dengue2020)
+#' limpiar_val_atipic(data_limpia)
 #' @export
 limpiar_val_atipic <- function(data_event) {
   validar_data_event(data_event)
