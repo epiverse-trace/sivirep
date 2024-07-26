@@ -1092,7 +1092,7 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
         dpto = dpto_fila[[nomb_cols[1]]],
         year = year
       )
-      geo_incidencia[fila] <- incidencia
+      geo_incidencia[fila] <- incidencia$incidencia
     }
     data_geo_incidencia <- cbind(data_agrupada, geo_incidencia)
   } else if (nomb_cols[3] %in% colnames(data_agrupada)) {
@@ -1119,7 +1119,7 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
         mpio = mpio_fila[[nomb_cols[3]]],
         year = year
       )
-      geo_incidencia[fila] <- incidencia
+      geo_incidencia[fila] <- incidencia$incidencia
     }
     data_geo_incidencia <- cbind(data_agrupada, geo_incidencia)
   }
@@ -1244,7 +1244,7 @@ calcular_incidencia_sex <- function(data_incidencia = NULL,
       sex = sex_fila[["sexo"]],
       year = year
     )
-    incidencia[fila] <- incidencia_sex
+    incidencia[fila] <- incidencia_sex$incidencia
   }
   data_incidencia_sex <- cbind(data_agrupada, incidencia)
   if (!is.null(dpto) && is.null(data_incidencia_sex)) {
