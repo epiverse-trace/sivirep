@@ -414,10 +414,16 @@ plot_per_etn(data_agrupada = casos_per_etn)
 # Incidencia
 
 ```{r incidencia-total, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
-incidencia_dpto <- calcular_incidencia(data_agrupada =
+incidencia_total <- calcular_incidencia(data_agrupada =
                                          dist_espacial_dpto)
 cond_incidencia <-
   obtener_cond_inciden_event(cod_eve = dist_espacial_dpto$cod_eve[1])
+```
+```{r text-pop-incidencia-total}
+text_incidencia_total <- "la población a riesgo"
+if (incidencia_total$poblacion == "proyecciones") {
+  text_incidencia_total <- "las proyecciones poblacionales DANE"
+}
 ```
 
 `r if(params$mpio_distribution && params$departamento != "" && params$municipio == "") {paste0("La incidencia para el departamento de ", params$departamento, " es ", incidencia_total$incidencia, " por ", cond_incidencia$coeficiente, " habitantes. Fue calculada con ",  text_incidencia_total, ".")} else if (params$departamento == "") {paste0("La incidencia para ", params$pais, " es ", incidencia_total$incidencia, " por ", cond_incidencia$coeficiente, " habitantes. Fue calculada con ", text_incidencia_total, ".")} else {paste0("La incidencia para el municipio ", params$municipio, " es ", incidencia_total$incidencia, " por ",  cond_incidencia$coeficiente, " habitantes. Fue calculada con ", text_incidencia_total, ".")}`
