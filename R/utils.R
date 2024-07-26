@@ -652,7 +652,7 @@ obtener_year <- function(data_event) {
       "para ejecutar la funcion"
     )
   }
-  year <- unique(data_event[[nomb_col]])
+  year <- unique(data_event[[nomb_col]][!is.na(data_event[[nomb_col]])])
   stopifnot(
     "Los datos del evento o enfermedad tienen informacion de mas
             de un year, no es posible inferir el year que debe tomar la
