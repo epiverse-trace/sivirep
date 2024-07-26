@@ -33,7 +33,7 @@ incidencia_mpios <- calcular_incidencia_geo(
     data_agrupada
 )
 plot_tabla_incidencia_geo(
-  data_agrupada = incidencia_mpios,
+  data_agrupada = incidencia_mpios$data_incidencia,
   col_geo = "municipio_ocurrencia"
 )
 }

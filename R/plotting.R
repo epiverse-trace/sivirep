@@ -59,7 +59,7 @@
 #' incidencia_dpto <-
 #'   calcular_incidencia_geo(data_agrupada = data_espacial_dpto)
 #' plot_map(
-#'   data_agrupada = incidencia_dpto,
+#'   data_agrupada = incidencia_dpto$data_incidencia,
 #'   col_codigos = "cod_mun_o",
 #'   col_distribucion = "incidencia"
 #' )
@@ -1293,7 +1293,7 @@ plot_per_etn <- function(data_agrupada,
 #'     data_agrupada
 #' )
 #' plot_tabla_incidencia_geo(
-#'   data_agrupada = incidencia_mpios,
+#'   data_agrupada = incidencia_mpios$data_incidencia,
 #'   col_geo = "municipio_ocurrencia"
 #' )
 #' }
@@ -1375,7 +1375,7 @@ plot_tabla_incidencia_geo <- function(data_agrupada,
 #'     dpto = "Antioquia"
 #'   )
 #' plot_tabla_incidencia_sex(
-#'   data_agrupada = incidencia_mpios,
+#'   data_agrupada = incidencia_mpios$data_incidencia,
 #'   col_sex = "sexo"
 #' )
 #' }
