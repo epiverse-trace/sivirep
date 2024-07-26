@@ -450,7 +450,9 @@ agrupar_edad_sex <- function(data_event,
     nomb_cols[2],
     min_val = 0,
     max_val =
-      max(data_event_edad_sex[[nomb_cols[1]]]),
+      max(data_event_edad_sex[[nomb_cols[1]]],
+        na.rm = TRUE
+      ),
     paso = interval_edad,
     porcentaje = porcentaje
   )
