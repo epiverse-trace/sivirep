@@ -8,8 +8,8 @@ import_geo_cods(descargar = FALSE)
 }
 \arguments{
 \item{descargar}{Un `boolean` (`TRUE` o `FALSE`) que indica si los
-datos se deben descargar desde la API de datos abiertos; su valor por
-defecto es `FALSE`.}
+datos se deben descargar desde la API de datos abiertos de Colombia;
+su valor por defecto es `FALSE`.}
 }
 \value{
 Un `data.frame` con los nombres y códigos de los departamentos
