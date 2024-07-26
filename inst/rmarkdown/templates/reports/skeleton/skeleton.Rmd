@@ -40,7 +40,7 @@ params:
     input: select
     label: País
     choices: ["Colombia"]
-  departmento:
+  departamento:
     value: "" 
     label: Departamento
     input: select
@@ -102,13 +102,13 @@ showtext::showtext_auto()
 ```{r titulo, include = FALSE, echo = FALSE}
 titulo <- paste0("Reporte Automatizado para ",
                  stringr::str_to_title(params$nombre_evento), " ",
-                 params$departmento, " - Colombia",
+                 params$departamento, " - Colombia",
                  ", ", params$year)
 if (params$municipio != "") {
   titulo <- paste0("Reporte Automatizado para ",
                  stringr::str_to_title(params$nombre_evento), " ",
                  params$municipio, ", ",
-                 params$departmento, " - Colombia",
+                 params$departamento, " - Colombia",
                  ", ", params$year)
 }
 fuente <- "Fuente SIVIGILA, Datos libres"
@@ -175,9 +175,9 @@ mostrar_sex <- stringr::str_detect(tolower(params$nombre_evento),
                                    stringr::fixed("materna"))
 etiqueta_geo <- "municipios"
 text_intro_geo <- "."
-text_fig_geo <- paste0("municipio - ", params$departmento)
-text_ext_geo <- params$departmento
-if (params$departmento == "") {
+text_fig_geo <- paste0("municipio - ", params$departamento)
+text_ext_geo <- params$departamento
+if (params$departamento == "") {
   etiqueta_geo <- "departamentos"
   text_fig_geo <- paste0("departamento - ", params$pais)
   text_ext_geo <- params$pais
@@ -194,16 +194,16 @@ data_limpia <- limpiar_data_sivigila(data_event)
 
 ```{r filtrar-data, include = FALSE}
 data_event_filtrada <- data_limpia
-if (params$departmento != "") {
+if (params$departamento != "") {
 data_event_filtrada <- geo_filtro(data_event = data_limpia,
-                                  dpto = params$departmento)
+                                  dpto = params$departamento)
 text_init_geo <- paste0(", en el departamento del ",
-                        params$departmento)
+                        params$departamento)
   if (params$municipio != "") {
     text_init_geo <- paste0(", en el municipio del ",
                             params$municipio)
     data_event_filtrada <- geo_filtro(data_event = data_event_filtrada,
-                                  dpto = params$departmento,
+                                  dpto = params$departamento,
                                   mpio = params$municipio)
   }
 text_intro_geo <- paste0(text_init_geo,
@@ -238,9 +238,9 @@ data_event_years <- import_data_event(nombre_event = params$nombre_evento,
                                                    params$year))
 data_years_limpia <- limpiar_data_sivigila(data_event_years)
 data_years_filtrada <- data_years_limpia
-if (params$departmento != "") {
+if (params$departamento != "") {
 data_years_filtrada <- geo_filtro(data_event = data_years_limpia,
-                                  dpto = params$departmento)
+                                  dpto = params$departamento)
 }
 casos_years <- agrupar_years(data_event = data_years_filtrada)
 altura_fig_years <- 5
@@ -342,13 +342,13 @@ casos_edad_sex <- agrupar_edad_sex(data_event = data_event_filtrada,
 plot_edad_sex(data_agrupada = casos_edad_sex)
 ```
 
-`r if(params$mpio_distribution && params$departmento != "" && params$municipio == "") {"# Distribución de casos por municipio"} else if(params$municipio == "") {"# Distribución de casos por departamento"}`
+`r if(params$mpio_distribution && params$departamento != "" && params$municipio == "") {"# Distribución de casos por municipio"} else if(params$municipio == "") {"# Distribución de casos por departamento"}`
 
 ```{r casos-geo, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
 geo_ocurrencia <- obtener_tip_ocurren_geo(nombre_event = params$nombre_evento)
-if (params$departmento != "") {
+if (params$departamento != "") {
   dist_espacial_dpto <- agrupar_mpio(data_event = data_event_filtrada,
-                                   dpto = params$departmento)
+                                   dpto = params$departamento)
   col_geo <- geo_ocurrencia[4]
 } else {
   dist_espacial_dpto <- agrupar_dpto(data_event = data_event_filtrada)
@@ -371,7 +371,7 @@ plot_mpios <- plot_mpios(data_agrupada = dist_espacial_dpto)
 plot_mpios
 ```
 
-```{r grafica-casos-dptos, fig.height = altura_fig_espacial, fig.width = 10, fig.cap = paste0("Distribución de casos por ", text_fig_geo), eval = params$departmento == "", include = params$departmento == ""}
+```{r grafica-casos-dptos, fig.height = altura_fig_espacial, fig.width = 10, fig.cap = paste0("Distribución de casos por ", text_fig_geo), eval = params$departamento == "", include = params$departamento == ""}
 plot_dptos <- plot_dptos(data_agrupada = dist_espacial_dpto)
 plot_dptos
 ```
@@ -473,9 +473,9 @@ mapa
 
 ```{r conclusiones, echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE, cache = FALSE, results = FALSE, comment = FALSE}
 text_geo <- params$pais
-if (params$spatial_distribution && params$departmento != ""
+if (params$spatial_distribution && params$departamento != ""
     && params$municipio == "") {
-  text_geo <- paste0("el departamento de ", params$departmento)
+  text_geo <- paste0("el departamento de ", params$departamento)
 } else if (params$municipio != "") {
     text_geo <- paste0("el municipio de ", params$municipio)
 }
@@ -490,7 +490,7 @@ text_casos_totales <- paste0("*   Los casos totales reportados de ",
 # Conclusiones
 
 *  Los casos totales reportados de `r stringr::str_to_title(params$nombre_evento)` en Colombia en el año `r params$year` fueron `r nrow(data_event)`.
-`r if(params$spatial_distribution && params$departmento != "") text_casos_totales`
+`r if(params$spatial_distribution && params$departamento != "") text_casos_totales`
 *  El mes de `r mes_mayor_casos` tuvo el mayor reporte.
 *  El reporte de casos de `r stringr::str_to_title(params$nombre_evento)` a lo largo de `r params$year` predominó en la población de `r age_most_cases$edad` años.
 *  El reporte de casos de `r stringr::str_to_title(params$nombre_evento)` predominó a lo largo del año en el sexo `r vals_sex$mayor[1]`.
