@@ -1095,7 +1095,7 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
       geo_incidencia[fila] <- incidencia$incidencia
     }
     data_geo_incidencia <- cbind(data_agrupada,
-      "incidencia" = geo_incidencia
+      incidencia = geo_incidencia
     )
   } else if (nomb_cols[3] %in% colnames(data_agrupada)) {
     data_agrupada <- group_by(
@@ -1123,7 +1123,7 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
       geo_incidencia[fila] <- incidencia$incidencia
     }
     data_geo_incidencia <- cbind(data_agrupada,
-      "incidencia" = geo_incidencia
+      incidencia = geo_incidencia
     )
   }
   pop_data_incidencia <- list(
