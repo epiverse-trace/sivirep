@@ -231,7 +231,7 @@ total_casos_eventos <- agrupar_eventos(data_event = data_event_filtrada,
 plot_tabla_tipos_event(total_casos_eventos)
 ```
 
-Durante el período comprendido entre el año `r (params$year - 5)` y `r params$year`, se observó la siguiente distribución de casos:
+Durante el período comprendido entre el año `r (params$year - 4)` y `r params$year`, se observó la siguiente distribución de casos:
 
 ```{r casos-years, echo = FALSE, error = FALSE, fig.height=5, fig.width = 10, warning = FALSE, include = TRUE, message = FALSE}
 data_event_years <- import_data_event(nombre_event = params$nombre_evento,
