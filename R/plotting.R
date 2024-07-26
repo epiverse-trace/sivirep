@@ -1129,9 +1129,8 @@ plot_tipo_caso <- function(data_agrupada,
       caption = fuente_data
     ) +
     obtener_estetica_escala(escala = escala, nombre = "Eventos\n") +
-    ggplot2::scale_x_discrete(labels = etiquetas)
-  tema_sivirep() +
-    ggplot2::theme(legend.position = "right")
+    ggplot2::scale_x_discrete(labels = etiquetas) +
+    tema_sivirep()
   return(plot_tipo_casos)
 }
 
