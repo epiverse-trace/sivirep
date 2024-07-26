@@ -857,11 +857,12 @@ agrupar_per_etn <- function(data_event, cols_etn = "per_etn",
 #' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
 #' agrupados por departamento o municipio y número de casos.
 #' @param poblacion Un `character` (cadena de caracteres) con el tipo de
-#' @param year Un `numeric` (numerico) con el año que se debe tomar de las
-#' proyecciones poblacionales; su valor por defecto es `NULL`.
 #' población para calcular la incidencia. Puede ser `"riesgo"` para la población
 #' a riesgo o `"proyecciones"` para las proyecciones poblacionales DANE;
 #' su valor por defecto es `NULL`.
+#' @param year Un `numeric` (númerico) con el año que se debe tomar en la
+#' población a riesgo o en las proyecciones poblacionales DANE; su valor por
+#' defecto es `NULL`.
 #' @param dpto Un `character` (cadena de caracteres) o `numeric` (numérico)
 #' que contiene el código o nombre del departamento; su valor por
 #' defecto es `NULL`.
@@ -1009,12 +1010,12 @@ calcular_incidencia <- function(data_incidencia = NULL, data_agrupada,
 #' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
 #' agrupados por departamento o municipio y número de casos.
 #' @param poblacion Un `character` (cadena de caracteres) con el tipo de
-#' @param year Un `numeric` (numerico) con el año que se debe tomar de las
-#' proyecciones poblacionales.
-#' @return Un `data.frame` con el calculo de la incidencia para todos los
 #' población para calcular la incidencia. Puede ser `"riesgo"` para la población
 #' a riesgo o `"proyecciones"` para las proyecciones poblacionales DANE;
 #' su valor por defecto es `NULL`.
+#' @param year Un `numeric` (númerico) con el año que se debe tomar en la
+#' población a riesgo o en las proyecciones poblacionales DANE; su valor por
+#' defecto es `NULL`.
 #' @return Un `data.frame` con el cálculo de la incidencia para todos los
 #' departamentos de Colombia o los municipios de un departamento.
 #' @examples
@@ -1129,8 +1130,9 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
 #' poblacionales del DANE; su valor por defecto es `NULL`.
 #' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
 #' agrupados por departamento o municipio y número de casos.
-#' @param year Un `numeric` (numerico) con el año que se debe tomar de las
-#' proyecciones poblacionales; valor por defecto es `NULL`.
+#' @param year Un `numeric` (númerico) con el año que se debe tomar en la
+#' población a riesgo o en las proyecciones poblacionales DANE; su valor por
+#' defecto es `NULL`.
 #' @param dpto Un `character` (cadena de caracteres) o `numeric` (numérico)
 #' que contiene el código o nombre del departamento; su valor por
 #' defecto es `NULL`.
