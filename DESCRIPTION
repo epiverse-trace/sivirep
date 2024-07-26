@@ -31,7 +31,7 @@ Authors@R:
     person("Pontificia Universidad Javeriana", role = "cph")
   )
 Description: Provides functions for data wrangling and automated reports 
-    from 'SIVIGILA' source.
+    from 'SIVIGILA' epidemiological surveillance system data from Colombia.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
