@@ -252,6 +252,9 @@ import_sep_data <- function(ruta_data = NULL,
     if (stringr::str_detect(nomb_archivo, ".xls")) {
       data_archivo <- readxl::read_excel(ruta_archivo,
                                          col_types = "text")
+      if (!cache) {
+        file.remove(ruta_archivo)
+      }
     }
   }
   return(data_archivo)
