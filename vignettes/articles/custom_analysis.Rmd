@@ -46,7 +46,8 @@ parametrizado basado en la enfermedad y el año.
 ```{r import-data-event}
 data_event <- import_data_event(
   year = 2020,
-  nombre_event = "Dengue"
+  nombre_event = "Dengue",
+  consentimiento = "Si"
 )
 ```
 
