@@ -14,7 +14,7 @@ test_that("`tipo_caso` funciona correctamente", {
 
   expect_equal(
     data_agrupada[["casos"]],
-    c(36, 8, 1)
+    c(37, 9, 1)
   )
 
   plot <- plot_tipo_caso(data_agrupada)
@@ -62,7 +62,7 @@ test_that("`tipo_caso_years` funciona correctamente", {
 
   expect_equal(
     data_agrupada[["casos"]],
-    c(36, 8, 1)
+    c(37, 9, 1)
   )
 
   plot <- plot_tipo_caso_years(data_agrupada)

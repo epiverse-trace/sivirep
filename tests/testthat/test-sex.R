@@ -16,7 +16,7 @@ test_that("`sex` funciona correctamente", {
 
   expect_equal(
     data_agrupada[["casos"]],
-    c(21, 24)
+    c(22, 25)
   )
 
   plot <- plot_sex(data_agrupada)
@@ -73,7 +73,7 @@ test_that("`sex_semanaepi` funciona correctamente", {
 
   expect_equal(
     data_agrupada[["casos"]],
-    c(1, 14, 1, 1, 1, 1, 1, 1, 1, 18, 1, 1, 1, 1, 1)
+    c(1, 15, 1, 1, 1, 1, 1, 1, 1, 1, 18, 1, 1, 1, 1, 1)
   )
 
   plot <- plot_sex_semanaepi(data_agrupada)

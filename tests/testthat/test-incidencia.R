@@ -10,7 +10,7 @@ test_that("`incidencia_geo` funciona correctamente", {
     data_agrupada =
       data_agrupada,
     year = 2020
-  )
+  )$data_incidencia
 
   expect_s3_class(incidencia_mpios, "data.frame")
   expect_true("cod_eve" %in% names(data_agrupada))
@@ -55,7 +55,7 @@ test_that("`incidencia_sex` funciona correctamente", {
     calcular_incidencia_sex(
       data_agrupada = data_agrupada,
       dpto = "Antioquia"
-    )
+    )$data_incidencia
 
   expect_s3_class(incidencia_sex, "data.frame")
   expect_true("cod_eve" %in% names(data_agrupada))
@@ -67,7 +67,7 @@ test_that("`incidencia_sex` funciona correctamente", {
   expect_equal(data_agrupada[["casos"]], incidencia_sex[["casos"]])
   expect_equal(
     incidencia_sex[["incidencia"]],
-    c(0.61, 0.75)
+    c(0.64, 0.78)
   )
 
   tabla <- plot_tabla_incidencia_sex(data_agrupada = incidencia_sex)

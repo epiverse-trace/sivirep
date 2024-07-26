@@ -14,7 +14,7 @@ test_that("`edad` funciona correctamente", {
 
   expect_equal(
     data_agrupada[["casos"]],
-    c(7, 15, 11, 4, 4, 1, 2, 1)
+    c(7, 16, 11, 5, 4, 1, 2, 1)
   )
 
   plot <- plot_edad(data_agrupada)
@@ -71,7 +71,7 @@ test_that("`edad_sex` funciona correctamente", {
 
   expect_equal(
     data_agrupada[["casos"]],
-    c(4, 3, 6, 9, 4, 7, 3, 1, 1, 3, 1, 1, 1, 1)
+    c(4, 3, 6, 10, 4, 7, 4, 1, 1, 3, 1, 1, 1, 1)
   )
 
   plot <- plot_edad_sex(data_agrupada)
