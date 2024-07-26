@@ -1094,7 +1094,9 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
       )
       geo_incidencia[fila] <- incidencia$incidencia
     }
-    data_geo_incidencia <- cbind(data_agrupada, geo_incidencia)
+    data_geo_incidencia <- cbind(data_agrupada,
+      "incidencia" = geo_incidencia
+    )
   } else if (nomb_cols[3] %in% colnames(data_agrupada)) {
     data_agrupada <- group_by(
       data_agrupada,
@@ -1107,7 +1109,6 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
     )
     data_agrupada$nombre_evento <- nombre_evento
     data_agrupada$cod_eve <- cod_evento
-
     geo_incidencia <- rep_len(NA_real_, nrow(data_agrupada))
     for (fila in seq_along(geo_incidencia)) {
       mpio_fila <- data_agrupada[fila, ]
@@ -1121,7 +1122,9 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
       )
       geo_incidencia[fila] <- incidencia$incidencia
     }
-    data_geo_incidencia <- cbind(data_agrupada, geo_incidencia)
+    data_geo_incidencia <- cbind(data_agrupada,
+      "incidencia" = geo_incidencia
+    )
   }
   pop_data_incidencia <- list(
     data_incidencia = data_geo_incidencia,
