@@ -1009,7 +1009,8 @@ plot_tabla_tipos_event <- function(data_agrupada,
 #' \donttest{
 #' data_years <- import_data_event(
 #'   nombre_event = "ZIKA",
-#'   years = c(2019, 2020)
+#'   years = c(2019, 2020),
+#'   consentimiento = "Si"
 #' )
 #' data_limpia <- limpiar_data_sivigila(data_years)
 #' data_agrupada <- agrupar_years(data_event = data_limpia)
