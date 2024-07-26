@@ -766,9 +766,10 @@ agrupar_years <- function(data_event, col_year = "ano") {
 #' del caso.
 #' @param data_event Un `data.frame` que contiene los datos de la
 #' enfermedad o evento.
-#' @param cols_tipo Un `character` (cadena de caracteres) con el nombre de
-#' las columna(s) que contiene la clasificación inicial del caso en los datos
-#' de la enfermedad o evento; su valor por defecto es `"tip_cas"`.
+#' @param cols_tipo Un `character` (cadena de caracteres) o `array` (arreglo)
+#' de `character` con el nombre de las columna(s) que contiene la clasificación
+#' inicial del caso en los datos de la enfermedad o evento; su valor por
+#' defecto es `"tip_cas"`.
 #' @return Un `data.frame` con los datos de la enfermedad o evento agrupados
 #' por la clasificación inicial del caso y/u otras variables como los años.
 #' @examples
