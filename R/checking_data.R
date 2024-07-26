@@ -1226,7 +1226,7 @@ calcular_incidencia_sex <- function(data_incidencia = NULL,
   cod_eve <- data_agrupada$cod_eve[1]
   data_agrupada <- group_by(
     data_agrupada,
-    "sexo"
+    .data$sexo
   )
   data_agrupada <- dplyr::summarise(data_agrupada,
     casos = sum(.data[["casos"]]),
@@ -1234,7 +1234,6 @@ calcular_incidencia_sex <- function(data_incidencia = NULL,
   )
   data_agrupada$cod_eve <- cod_eve
   data_agrupada$nombre_evento <- nombre_evento
-
   incidencia <- rep_len(NA_real_, nrow(data_agrupada))
   for (fila in seq_along(incidencia)) {
     sex_fila <- data_agrupada[fila, ]
