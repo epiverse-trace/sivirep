@@ -4,9 +4,9 @@ Type: Package
 Version: 1.0.0
 Authors@R: 
   c(
-    person(given = "Geraldine", family = "Gómez-Millán", email = "geralidine.gomez@javeriana.edu.co", role = c("aut", "ctb"),
+    person(given = "Geraldine", family = "Gómez-Millán", email = "geralidine.gomez@javeriana.edu.co", role = c("aut", "cre", "ctb"),
         comment = c(ORCID = "0009-0007-8701-0568")),
-    person(given = "Zulma M.", family = "Cucunubá", email = "zulma.cucunuba@javeriana.edu.co", role = c("aut", "cre", "ctb"),
+    person(given = "Zulma M.", family = "Cucunubá", email = "zulma.cucunuba@javeriana.edu.co", role = c("aut", "ctb"),
         comment = c(ORCID = "0000-0002-8165-3198")),
     person(given = "Jennifer A.", family = "Mendez-Romero", email = "jenniferk2@hotmail.com", role = c("aut", "ctb"),
         comment = c(ORCID = "0009-0001-6138-0225")),
