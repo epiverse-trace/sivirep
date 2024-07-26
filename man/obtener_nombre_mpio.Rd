@@ -21,7 +21,7 @@ Un `character` (cadena de caracteres) con el nombre del municipio.
 }
 \description{
 Función que obtiene el nombre de un municipio de Colombia a
-partir de su código geográfico
+partir de su código geográfico.
 }
 \examples{
 data_geo <- import_geo_cods()

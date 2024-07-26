@@ -14,9 +14,9 @@ la información y las condiciones del evento o enfermedad; su valor por
 defecto es `NULL`.}
 
 \item{poblacion}{Un `character` (cadena de caracteres) con el tipo de
-población que se desea obtener. Indica si se desea obtener la población
-a riesgo del evento `"riesgo"` o las proyecciones poblacionales DANE
-`"proyecciones"`.}
+población que se desea obtener. Puede ser `"riesgo"` para la población
+a riesgo del evento o `"proyecciones"` para las proyecciones poblacionales
+DANE.}
 
 \item{event}{Un `character` (cadena de caracteres) o un `numeric` (numérico)
 con el nombre o código de la enfermedad o evento. Es obligatorio para
@@ -32,10 +32,9 @@ poblacionales DANE.
 \description{
 Función que obtiene la población a riesgo de un evento o
 enfermedad o las proyecciones poblacionales DANE desde el año 2005 hasta
-el 2035.
-Si no hay población a riesgo disponible del evento o enfermedad para el año
-seleccionado se obtendrá las proyecciones poblacionales DANE y se mostrarán
-mensajes de advertencia al usuario dependendiendo del tipo de población
+el 2035. Si no hay población a riesgo disponible del evento o enfermedad
+para el año seleccionado, se obtendrán las proyecciones poblacionales DANE
+y se mostrarán mensajes al usuario dependendiendo del tipo de población
 obtenida.
 }
 \keyword{internal}

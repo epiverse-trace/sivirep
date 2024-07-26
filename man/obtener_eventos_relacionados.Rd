@@ -10,7 +10,7 @@ obtener_eventos_relacionados(nombre_event, years)
 \item{nombre_event}{Un `character` (cadena de caracteres) con el
 nombre de la enfermedad o evento.}
 
-\item{years}{Un `numeric` (numérico) el año  o años deseados para
+\item{years}{Un `numeric` (numérico) con el año o años deseados para
 la descarga de los datos.}
 }
 \value{

@@ -1,7 +1,7 @@
 #' @title Obtener los meses con mayor número de casos
 #' @description Función que obtiene los meses con el mayor número de casos
 #' @param data_event Un `data.frame` con los datos de la enfermedad
-#' o vento.
+#' o evento.
 #' @param col_fechas Un `array` (arreglo) de `character` (cadena de caracteres)
 #' con los nombres de las columnas que contienen las fechas en los datos de la
 #' enfermedad o evento.
@@ -60,8 +60,7 @@ obtener_meses_mas_casos <- function(data_event,
   return(etiquetas)
 }
 
-#' @title Obtener fila con mayor número de casos
-#'
+#' @title Obtener la fila con mayor número de casos
 #' @description Función que obtiene la fila con el mayor número de casos.
 #' @param data_event Un `data.frame` que contiene los datos de la
 #' enfermedad o evento.
@@ -110,7 +109,7 @@ obtener_fila_mas_casos <- function(data_event,
 #' los valores que se desean concatenar; su valor por defecto es `3`.
 #' @param princ_token Un `character` (cadena de caracteres) que contiene el
 #' separador o token principal; su valor por defecto es `", "`.
-#' @param final_token Un `character` (cadena de caracteres) que contien el
+#' @param final_token Un `character` (cadena de caracteres) que contiene el
 #' separador o token final; su valor por defecto es `"y "`.
 #' @return Un `character` (cadena de caracteres) con el valor final
 #' concatenado.
@@ -358,7 +357,7 @@ obtener_nombre_dpto <- function(data_geo, cod_dpto) {
 
 #' @title Obtener el nombre de un municipio de Colombia
 #' @description Función que obtiene el nombre de un municipio de Colombia a
-#' partir de su código geográfico
+#' partir de su código geográfico.
 #' @param data_geo Un `data.frame` que contiene los códigos geográficos
 #' (departamentos y municipios de Colombia).
 #' @param cod_dpto Un `numeric` (numérico) o `character` (cadena de caracteres)
@@ -422,7 +421,7 @@ obtener_nombre_mpio <- function(data_geo, cod_dpto, cod_mpio) {
 #' @title Obtener los eventos relacionados
 #' @description Función que obtiene los eventos relacionados o tipos de un
 #' evento principal.
-#' @param years Un `numeric` (numérico) el año  o años deseados para
+#' @param years Un `numeric` (numérico) con el año o años deseados para
 #' la descarga de los datos.
 #' @param nombre_event Un `character` (cadena de caracteres) con el
 #' nombre de la enfermedad o evento.
@@ -565,10 +564,9 @@ obtener_dpto_mpio <- function(data_agrupada, nomb_cols,
 #' @title Obtener la población para efectuar el cálculo de la incidencia
 #' @description Función que obtiene la población a riesgo de un evento o
 #' enfermedad o las proyecciones poblacionales DANE desde el año 2005 hasta
-#' el 2035.
-#' Si no hay población a riesgo disponible del evento o enfermedad para el año
-#' seleccionado se obtendrá las proyecciones poblacionales DANE y se mostrarán
-#' mensajes de advertencia al usuario dependendiendo del tipo de población
+#' el 2035. Si no hay población a riesgo disponible del evento o enfermedad
+#' para el año seleccionado, se obtendrán las proyecciones poblacionales DANE
+#' y se mostrarán mensajes al usuario dependendiendo del tipo de población
 #' obtenida.
 #' @param data_incidencia Un `data.frame` que contiene la población a riesgo o
 #' las proyecciones poblaciones DANE. Si este parámetro está vacío importará
@@ -576,9 +574,9 @@ obtener_dpto_mpio <- function(data_agrupada, nomb_cols,
 #' la información y las condiciones del evento o enfermedad; su valor por
 #' defecto es `NULL`.
 #' @param poblacion Un `character` (cadena de caracteres) con el tipo de
-#' población que se desea obtener. Indica si se desea obtener la población
-#' a riesgo del evento `"riesgo"` o las proyecciones poblacionales DANE
-#' `"proyecciones"`.
+#' población que se desea obtener. Puede ser `"riesgo"` para la población
+#' a riesgo del evento o `"proyecciones"` para las proyecciones poblacionales
+#' DANE.
 #' @param event Un `character` (cadena de caracteres) o un `numeric` (numérico)
 #' con el nombre o código de la enfermedad o evento. Es obligatorio para
 #' obtener la población a riesgo.
@@ -642,6 +640,8 @@ obtener_pob_incidencia <- function(data_incidencia = NULL,
 #' evento.
 #' @param data_event Un `data.frame` que contiene los datos de la
 #' enfermedad o evento.
+#' @return Un `numeric` (numérico) que representa el año de los datos de la
+#' enfermedad o evento.
 #' @keywords internal
 obtener_year <- function(data_event) {
   nomb_col <- "ano"
@@ -663,8 +663,8 @@ obtener_year <- function(data_event) {
   return(year)
 }
 
-#' @title Obtener el parráfo de la distribución de casos por sexo
-#' @description Función que obtiene el parráfo descriptivo de la sección
+#' @title Obtener el párrafo de la distribución de casos por sexo
+#' @description Función que obtiene el párrafo descriptivo de la sección
 #' de distribución de casos por sexo de la plantilla del reporte.
 #' @param data_agrupada Un `data.frame` que contiene los datos
 #' de la enfermedad o evento agrupados por sexo.
@@ -672,6 +672,8 @@ obtener_year <- function(data_event) {
 #' agrupados por sexo.
 #' @param figura Un `numeric` (numérico) con el número de la
 #' figura de la distribución de casos por sexo.
+#' @return Un `character` (cadena de caracteres) con el párrafo descriptivo
+#' de la distribución de casos por sexo.
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(dengue2020)
@@ -797,7 +799,7 @@ obtener_val_config <- function(llave) {
 #' geográfica de los datos de la enfermedad o evento.
 #' @param shp Objeto que contiene el`Shapefile` del mapa.
 #' @return Una `named list` (lista nombrada) que contiene el departamento,
-#' municipio y el poligono para generar el mapa con los siguientes
+#' municipio y el polígono para generar el mapa con los siguientes
 #' nombres para cada uno de estos elementos: `dpto`, `mpio` y `poligono`.
 #' @keywords internal
 obtener_config_map <- function(data_agrupada, dpto, mpio,
@@ -849,7 +851,7 @@ obtener_config_map <- function(data_agrupada, dpto, mpio,
 }
 
 #' @title Obtener la ruta del directorio donde se almacenarán
-#' los datos del evento o enfermedad.
+#' los datos del evento o enfermedad
 #' @description Función que obtiene la ruta del directorio donde
 #' se almacenarán los datos del evento o enfermedad.
 #' @inheritParams import_data_event
