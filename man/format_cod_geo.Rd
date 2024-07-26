@@ -15,7 +15,7 @@ de la etiqueta de la validación relacionada a la longitud máxima del
 código geográfico; se refiere al tipo de división geográfica ("municipio",
 "departamento").}
 
-\item{digitos}{Un `numeric` (númerico) que contiende el número de digitos
+\item{digitos}{Un `numeric` (númerico) que contiene el número de digitos
 que debe tener individualmente el código geográfico.}
 
 \item{tam}{Un `numeric` (númerico) que contiende el tamaño o la longitud

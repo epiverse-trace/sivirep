@@ -20,14 +20,16 @@ con las edades limpias.
 }
 \description{
 Función que limpia y estandariza las edades de los datos
-de una enfermedad o evento, conviertiendolas en años, según la
+de una enfermedad o evento, convirtiéndolas en años, según la
 clasificación del Instituto Nacional de Salud:
-No aplica = 0
-Años = 1
-Meses = 2
-Días = 3
-Horas = 4
-Minutos = 5.
+\itemize{
+  \item No aplica = 0
+  \item Años = 1
+  \item Meses = 2
+  \item Días = 3
+  \item Horas = 4
+  \item Minutos = 5
+}
 }
 \examples{
 data(dengue2020)

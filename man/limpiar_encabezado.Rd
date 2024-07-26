@@ -12,7 +12,7 @@ enfermedad o evento.}
 }
 \value{
 Un `data.frame` con las etiquetas del encabezado formateadas
-con guión bajo (_).
+con guiones bajos (_).
 }
 \description{
 Función que limpia las etiquetas del encabezado de los
