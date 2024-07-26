@@ -869,9 +869,9 @@ agrupar_per_etn <- function(data_event, cols_etn = "per_etn",
 #' @param mpio Un `character` (cadena de caracteres) o `numeric` (numérico)
 #' que contiene el código o nombre del municipio; su valor por defecto
 #' es `NULL`.
-#' @param sex Un `character` (cadena de caracteres) que contiene el sexo`"F"`
-#' para Femenino y `"M"` Masculino; su valor por defecto es `NULL`.
-#' @return Un `numeric` con el calculo de la incidencia para todo Colombia, un
+#' @param sex Un `character` (cadena de caracteres) que especifica el
+#' sexo: `"F"` para Femenino y `"M"` para Masculino; su valor por defecto
+#' es `NULL`.
 #' @return Un `numeric` con el cálculo de la incidencia para todo Colombia, un
 #' departamento, municipio o sexo especifico.
 #' @examples
