@@ -851,8 +851,8 @@ agrupar_per_etn <- function(data_event, cols_etn = "per_etn",
 #' @description Función que calcula la incidencia de una enfermedad o evento
 #' para todo Colombia, departamento o municipio.
 #' @param data_incidencia Un `data.frame` que contiene la población a riesgo o
-#' las proyecciones poblaciones DANE. Si este parámetro está vacío importará
-#' la población a riesgo o las proyecciones dependiendo de la disponibilidad de
+#' las proyecciones poblaciones DANE. Si este parámetro está vacío, se importará
+#' la población a riesgo o las proyecciones, dependiendo de la disponibilidad de
 #' la información; su valor por defecto es `NULL`.
 #' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
 #' agrupados por departamento o municipio y número de casos.
