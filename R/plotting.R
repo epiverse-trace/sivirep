@@ -1281,7 +1281,8 @@ plot_per_etn <- function(data_agrupada,
       y = paste0(etiqueta_etn, "\n"),
       caption = fuente_data
     ) +
-    ggplot2::scale_x_discrete(labels = stringr::str_wrap(
+    ggplot2::theme_classic() +
+    ggplot2::scale_y_discrete(labels = stringr::str_wrap(
       etiquetas,
       5
     )) +
