@@ -135,7 +135,7 @@ list_events <- function() {
 #' del directorio donde se almacenaran los datos del evento o enfermedad. Si
 #' no se proporciona ningún valor en este parámetro, el usuario debe dar su
 #' consentimiento para que los datos sean almacenados temporalmente en el
-#' directorio de usuario de R (`R user dir`).
+#' directorio de usuario de R (`R user dir`). Su valor por defecto es `NULL`.
 #' @param cache Un `boolean` (`TRUE` o `FALSE`) que indica si los datos.
 #' descargados deben ser almacenados en caché; su valor por defecto es `FALSE`.
 #' @param consentimiento Un `character` (cadena de caracteres) que indica si
@@ -145,7 +145,8 @@ list_events <- function() {
 #' parámetro `ruta_dir`. Los valores permitidos son `"Si"` o `"No"`. Si se
 #' proporciona `"Si"`, los datos se guardarán en el directorio de usuario.
 #' Si se proporciona `"No"`, los datos no se guardarán y se solicitará
-#' especificar un valor para el parámetro `ruta_dir`.
+#' especificar un valor para el parámetro `ruta_dir`. Su valor por defecto
+#' es `NULL`.
 #' @return Un `data.frame` con los datos del año de la enfermedad o evento
 #' seleccionado desde los microdatos del SIVIGILA.
 #' @examples
@@ -222,7 +223,7 @@ import_data_event <- function(nombre_event,
 import_sep_data <- function(ruta_data = NULL,
                             ruta_dir = NULL,
                             cache = FALSE,
-                            consentimiento) {
+                            consentimiento = NULL) {
   data_archivo <- data.frame()
   if (is.null(ruta_dir) &&
       toupper(consentimiento) == "SI") {
