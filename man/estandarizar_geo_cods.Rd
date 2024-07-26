@@ -9,15 +9,15 @@ estandarizar_geo_cods(data_event)
 }
 \arguments{
 \item{data_event}{Un `data.frame` que contiene los datos de una
-enfermedad o evento.}
+enfermedad o evento con códigos geográficos.}
 }
 \value{
-Un `data.frame` que contiene los códigos geográficos estandarizados
+Un `data.frame` con los códigos geográficos estandarizados
 de los datos de una enfermedad o evento según la codificación del DIVIPOLA.
 }
 \description{
 Función que estandariza los códigos geográficos de los datos
-de una enfermedad o evento según la codificación del DIVIPOLA
+de una enfermedad o evento según la codificación del DIVIPOLA.
 }
 \examples{
 data(dengue2020)
