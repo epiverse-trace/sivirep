@@ -28,7 +28,7 @@ población para calcular la incidencia. Puede ser `"riesgo"` para la población
 a riesgo o `"proyecciones"` para las proyecciones poblacionales DANE;
 su valor por defecto es `NULL`.}
 
-\item{year}{Un `numeric` (númerico) con el año que se debe tomar en la
+\item{year}{Un `numeric` (numérico) con el año que se debe tomar en la
 población a riesgo o en las proyecciones poblacionales DANE; su valor por
 defecto es `NULL`.}
 

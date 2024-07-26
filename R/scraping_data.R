@@ -1,9 +1,9 @@
 #' @title Obtener la ruta de descarga de una enfermedad por un año específico
-#' @description Función que obtiene la ruta o URL del servicio SIVIGILA para
+#' @description Función que obtiene la ruta o URL de la API del SIVIGILA para
 #' descargar los datos de una enfermedad o evento para un año específico.
 #' @param nombre_event Un `character` (cadena de caracteres) con el nombre de
 #' la enfermedad o evento.
-#' @param year Un `numeric` (númerico) con el año o años deseado(s) para
+#' @param year Un `numeric` (numérico) con el año o años deseado(s) para
 #' la descarga de los datos.
 #' @return Un `character` (cadena de caracteres) con la ruta o URL para
 #' descargar los datos de una enfermedad o evento por un año específico de la

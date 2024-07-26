@@ -18,7 +18,7 @@ o evento; su valor por defecto es `"sexo"`.}
 Una `kable` (tabla gráfica) con la incidencia por sexo.
 }
 \description{
-Función que genera la tabla con la incidencia según por
+Función que genera la tabla con la incidencia por
 sexo.
 }
 \examples{

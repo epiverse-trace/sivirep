@@ -22,7 +22,7 @@ es `NULL`.}
 Un `plot` o gráfico de distribución de casos por edad.
 }
 \description{
-Función que genera el gráfico de distribución de casos
+Función que genera un gráfico de distribución de casos
 por edad.
 }
 \examples{

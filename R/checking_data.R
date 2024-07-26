@@ -650,7 +650,7 @@ agrupar_area_geo <- function(data_event,
 #' @param porcentaje Un `logical` (TRUE o FALSE) que indica si se debe
 #' agregar una columna con el porcentaje de casos; su valor por
 #' defecto es `FALSE`.
-#' @param top Un `numeric` (númerico) que indica la cantidad de departamentos o
+#' @param top Un `numeric` (numérico) que indica la cantidad de departamentos o
 #' municipios con mayor número de casos que se deben retornar; su valor
 #' por defecto es `10`.
 #' @return Un `data.frame` con el top 10 de los datos de la enfermedad o evento
@@ -860,7 +860,7 @@ agrupar_per_etn <- function(data_event, cols_etn = "per_etn",
 #' población para calcular la incidencia. Puede ser `"riesgo"` para la población
 #' a riesgo o `"proyecciones"` para las proyecciones poblacionales DANE;
 #' su valor por defecto es `NULL`.
-#' @param year Un `numeric` (númerico) con el año que se debe tomar en la
+#' @param year Un `numeric` (numérico) con el año que se debe tomar en la
 #' población a riesgo o en las proyecciones poblacionales DANE; su valor por
 #' defecto es `NULL`.
 #' @param dpto Un `character` (cadena de caracteres) o `numeric` (numérico)
@@ -1017,7 +1017,7 @@ calcular_incidencia <- function(data_incidencia = NULL, data_agrupada,
 #' población para calcular la incidencia. Puede ser `"riesgo"` para la población
 #' a riesgo o `"proyecciones"` para las proyecciones poblacionales DANE;
 #' su valor por defecto es `NULL`.
-#' @param year Un `numeric` (númerico) con el año que se debe tomar en la
+#' @param year Un `numeric` (numérico) con el año que se debe tomar en la
 #' población a riesgo o en las proyecciones poblacionales DANE; su valor por
 #' defecto es `NULL`.
 #' @return Un `data.frame` con el cálculo de la incidencia para todos los
@@ -1141,7 +1141,7 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
 #' poblacionales del DANE; su valor por defecto es `NULL`.
 #' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
 #' agrupados por departamento o municipio y número de casos.
-#' @param year Un `numeric` (númerico) con el año que se debe tomar en la
+#' @param year Un `numeric` (numérico) con el año que se debe tomar en la
 #' población a riesgo o en las proyecciones poblacionales DANE; su valor por
 #' defecto es `NULL`.
 #' @param dpto Un `character` (cadena de caracteres) o `numeric` (numérico)

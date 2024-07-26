@@ -1,9 +1,9 @@
 #' @title Realizar petición HTTP
-#' @description Función que gestiona las peticiones HTTP al API del
+#' @description Función que gestiona las peticiones HTTP a la API del
 #' SIVIGILA.
-#' @param url La dirección HTTP desde donde descargar la información.
+#' @param url La dirección HTTP desde donde se descargará la información.
 #' @return Si la petición es exitosa, retorna una respuesta HTTP.
-#' De lo contrario arroja un mensaje de error explicando el problema
+#' De lo contrario, arroja un mensaje de error explicando el problema
 #' y finaliza la ejecución del programa.
 #' @examples
 #' \donttest{
@@ -48,7 +48,7 @@ realizar_peticion_http <- function(url) {
 #' @description Función que importa los nombres y códigos de
 #' los departamentos y municipios de Colombia a través de una URL.
 #' @param descargar Un `logical` (`TRUE` o `FALSE`) que indica si los
-#' datos se deben descargar desde la API de datos abiertos de Colombia;
+#' datos deben descargarse desde la API de datos abiertos de Colombia;
 #' su valor por defecto es `FALSE`.
 #' @return Un `data.frame` con los nombres y códigos de los departamentos
 #' y municipios de Colombia.
@@ -70,7 +70,7 @@ import_geo_cods <- function(descargar = FALSE) {
   return(data_geo)
 }
 
-#' @title Importar las enfermedades y años disponibles para
+#' @title Importar enfermedades y años disponibles para
 #' su descarga desde los microdatos del SIVIGILA
 #' @description Función que obtiene las enfermedades y los años
 #' disponibles para su descarga desde los microdatos del SIVIGILA.
@@ -129,14 +129,14 @@ list_events <- function() {
 #' año desde los microdatos del SIVIGILA.
 #' @param nombre_event Un `character` (cadena de caracteres) con el nombre de
 #' la enfermedad o evento.
-#' @param years Un `numeric` (númerico) con el año o años deseado(s) para
+#' @param years Un `numeric` (numérico) con el año o años deseado(s) para
 #' la descarga de los datos.
 #' @param ruta_dir Un `character` (cadena de caracteres) que contiene la ruta
-#' del directorio donde se almacenaran los datos del evento o enfermedad. Si
+#' del directorio donde se almacenarán los datos del evento o enfermedad. Si
 #' no se proporciona ningún valor en este parámetro, el usuario debe dar su
 #' consentimiento para que los datos sean almacenados temporalmente en el
-#' directorio de usuario de R (`R user dir`). Su valor por defecto es `NULL`.
-#' @param cache Un `logical` (`TRUE` o `FALSE`) que indica si los datos.
+#' directorio del paquete (`extdata`). Su valor por defecto es `NULL`.
+#' @param cache Un `logical` (`TRUE` o `FALSE`) que indica si los datos
 #' descargados deben ser almacenados en caché; su valor por defecto es `FALSE`.
 #' @param consentimiento Un `character` (cadena de caracteres) que indica si
 #' el usuario acepta almacenar los datos de la enfermedad o evento en el
@@ -212,7 +212,7 @@ import_data_event <- function(nombre_event,
   return(data_event)
 }
 
-#' @title Importar datos con un separador específico.
+#' @title Importar datos con un separador específico
 #' @description Función que importa e identifica el separador que tiene los
 #' datos para tabularlos.
 #' @param ruta_data Un `character` (cadena de caracteres) que contiene
@@ -265,16 +265,16 @@ import_sep_data <- function(ruta_data = NULL,
 #' enfermedad o las proyecciones poblacionales DANE desde el año 2005 hasta
 #' el 2035.
 #' @param poblacion Un `character` (cadena de caracteres) con el tipo de
-#' población que se desea importar. Indica si se desea descargar la población
-#' a riesgo del evento `"riesgo"` o las proyecciones poblacionales DANE
-#' `"proyecciones"`; su valor por defecto es `"riesgo"`.
-#' @param event Un `character` (cadena de caracteres) o un `numeric` (númerico)
+#' población que se desea importar. Puede ser `"riesgo"` para la población
+#' a riesgo del evento o `"proyecciones"` para las proyecciones poblacionales
+#' DANE; su valor por defecto es `"riesgo"`.
+#' @param event Un `character` (cadena de caracteres) o un `numeric` (numérico)
 #' con el nombre o código de la enfermedad o evento. Es obligatorio para
 #' importar la población a riesgo.
-#' @param year Un `numeric` (númerico) con el año deseado de la población a
+#' @param year Un `numeric` (numérico) con el año deseado de la población a
 #' riesgo. Es obligatorio para importar la población a riesgo.
 #' @return Un `data.frame` con la población a riesgo o las proyecciones
-#' poblacionaldes DANE.
+#' poblacionales DANE.
 #' @examples
 #'  \donttest{
 #' # Importación proyecciones poblaciones DANE
@@ -305,8 +305,8 @@ import_pob_incidencia <- function(
 #' @title Importar las proyecciones DANE del año 2005 hasta el 2035
 #' @description Función que importa las proyecciones poblacionales
 #' DANE desde el año 2005 hasta el 2035.
-#' @param year Un `numeric` (númerico) con el año a importar de las
-#' proyecciones poblacionales DANE.
+#' @param year Un `numeric` (numérico) con el año de las proyecciones
+#' poblacionales DANE que desea importar.
 #' @return Un `data.frame` con las proyecciones poblacionales DANE.
 #' @examples
 #' \donttest{
@@ -340,10 +340,10 @@ import_pob_proyecciones <- function(year) {
 
 #' @title Importar la población a riesgo de un evento o enfermedad
 #' @description Función que importa la población a riesgo de un evento
-#'o enfermedad de un año específico.
-#' @param event Un `character` (cadena de caracteres) o un `numeric` (númerico)
+#'o enfermedad para un año específico.
+#' @param event Un `character` (cadena de caracteres) o un `numeric` (numérico)
 #' con el nombre o código de la enfermedad o evento.
-#' @param year Un `numeric` (númerico) con el año deseado de la población a
+#' @param year Un `numeric` (numérico) con el año deseado de la población a
 #' riesgo.
 #' @return Un `data.frame` con la población a riesgo de un año específico.
 #' @examples
@@ -406,7 +406,7 @@ import_pob_riesgo <- function(event, year) {
 
 #' @title Importar el Shapefile del mapa de Colombia
 #' @description Función que importa el Shapefile del mapa de Colombia.
-#' @return Un objeto `sf` que contiene los elementos del shapefile
+#' @return Un objeto `sf` que contiene los elementos del Shapefile
 #' del mapa.
 #' @keywords internal
 import_shape_map <- function() {

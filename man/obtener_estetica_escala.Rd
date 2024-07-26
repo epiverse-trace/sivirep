@@ -2,12 +2,12 @@
 % Please edit documentation in R/theme_sivirep.R
 \name{obtener_estetica_escala}
 \alias{obtener_estetica_escala}
-\title{Obtener la estetica de una escala para un grafico de \pkg{sivirep}}
+\title{Obtener la estética de una escala para un gráfico de \pkg{sivirep}}
 \usage{
 obtener_estetica_escala(escala = 0, nombre, etiquetas = NULL)
 }
 \arguments{
-\item{escala}{Un `numeric` (númerico) que indica la cantidad de valores que
+\item{escala}{Un `numeric` (numérico) que indica la cantidad de valores que
 contiene la escala.}
 
 \item{nombre}{Un `character` (cadena de caracteres) que contiene el nombre

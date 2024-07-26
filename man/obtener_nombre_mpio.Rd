@@ -10,10 +10,10 @@ obtener_nombre_mpio(data_geo, cod_dpto, cod_mpio)
 \item{data_geo}{Un `data.frame` que contiene los códigos geográficos
 (departamentos y municipios de Colombia).}
 
-\item{cod_dpto}{Un `numeric` (númerico) o `character` (cadena de caracteres)
+\item{cod_dpto}{Un `numeric` (numérico) o `character` (cadena de caracteres)
 que contiene el código del departamento.}
 
-\item{cod_mpio}{Un `numeric` (númerico) o `character`
+\item{cod_mpio}{Un `numeric` (numérico) o `character`
 (cadena de caracteres) que contiene el código del municipio.}
 }
 \value{

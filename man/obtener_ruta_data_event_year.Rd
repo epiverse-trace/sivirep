@@ -10,7 +10,7 @@ obtener_ruta_data_event_year(nombre_event, year)
 \item{nombre_event}{Un `character` (cadena de caracteres) con el nombre de
 la enfermedad o evento.}
 
-\item{year}{Un `numeric` (númerico) con el año o años deseado(s) para
+\item{year}{Un `numeric` (numérico) con el año o años deseado(s) para
 la descarga de los datos.}
 }
 \value{
@@ -19,7 +19,7 @@ descargar los datos de una enfermedad o evento por un año específico de la
 fuente SIVIGILA.
 }
 \description{
-Función que obtiene la ruta o URL del servicio SIVIGILA para
+Función que obtiene la ruta o URL de la API del SIVIGILA para
 descargar los datos de una enfermedad o evento para un año específico.
 }
 \keyword{internal}
