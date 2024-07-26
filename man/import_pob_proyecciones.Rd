@@ -7,7 +7,7 @@
 import_pob_proyecciones(year)
 }
 \arguments{
-\item{year}{Un `numeric` (numerico) con el año a importar de las
+\item{year}{Un `numeric` (númerico) con el año a importar de las
 proyecciones poblacionales DANE.}
 }
 \value{

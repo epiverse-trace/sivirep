@@ -7,7 +7,7 @@
 obtener_estetica_escala(escala = 0, nombre, etiquetas = NULL)
 }
 \arguments{
-\item{escala}{Un `numeric` (numerico) que indica la cantidad de valores que
+\item{escala}{Un `numeric` (númerico) que indica la cantidad de valores que
 contiene la escala.}
 
 \item{nombre}{Un `character` (cadena de caracteres) que contiene el nombre

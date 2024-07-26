@@ -19,8 +19,9 @@ poblacionales del DANE; su valor por defecto es `NULL`.}
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la enfermedad
 agrupados por departamento o municipio y número de casos.}
 
-\item{year}{Un `numeric` (numerico) con el año que se debe tomar de las
-proyecciones poblacionales; valor por defecto es `NULL`.}
+\item{year}{Un `numeric` (númerico) con el año que se debe tomar en la
+población a riesgo o en las proyecciones poblacionales DANE; su valor por
+defecto es `NULL`.}
 
 \item{dpto}{Un `character` (cadena de caracteres) o `numeric` (numérico)
 que contiene el código o nombre del departamento; su valor por
@@ -31,13 +32,13 @@ que contiene el código o nombre del municipio; su valor por defecto
 es `NULL`.}
 }
 \value{
-Un `data.frame` con el calculo de la incidencia para todos los
-departamentos de Colombia o los municipios de un departamento.
+Un `data.frame` con el cálculo de la incidencia para todos los
+departamentos de Colombia o los municipios de un departamento por sexo.
 }
 \description{
 Función que calcula la incidencia de una enfermedad o evento
 para todos los departamentos de Colombia o los municipios de un departamento
-por sexo.
+por cada sexo.
 }
 \examples{
 \donttest{

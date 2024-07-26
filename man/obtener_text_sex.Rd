@@ -10,10 +10,10 @@ obtener_text_sex(data_agrupada, year, figura)
 \item{data_agrupada}{Un `data.frame` que contiene los datos
 de la enfermedad o evento agrupados por sexo.}
 
-\item{year}{Un `numeric` (numerico) con el año de los datos
+\item{year}{Un `numeric` (númerico) con el año de los datos
 agrupados por sexo.}
 
-\item{figura}{Un `numeric` (numerico) con el número de la
+\item{figura}{Un `numeric` (númerico) con el número de la
 figura de la distribución de casos por sexo.}
 }
 \description{

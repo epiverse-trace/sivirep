@@ -19,11 +19,11 @@ de la columna que contiene las unidades de medida en los datos de una
 enfermedad o evento; su valor por defecto es `"uni_med"`.}
 }
 \value{
-Un `data.frame` con las edades en años según las unidades de medida
-del SIVIGILA.
+Un `data.frame` con las edades convertidas en años según las
+unidades de medida del SIVIGILA.
 }
 \description{
-Función que convierte las edades en años según las unidades de
+Función que convierte las edades a años según las unidades de
 medida del SIVIGILA.
 }
 \examples{

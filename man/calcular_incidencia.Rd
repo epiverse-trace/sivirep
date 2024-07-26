@@ -16,21 +16,21 @@ calcular_incidencia(
 }
 \arguments{
 \item{data_incidencia}{Un `data.frame` que contiene la población a riesgo o
-las proyecciones poblaciones DANE. Si este parámetro está vacío importará
-la población a riesgo o las proyecciones dependiendo de la disponibilidad de
+las proyecciones poblaciones DANE. Si este parámetro está vacío, se importará
+la población a riesgo o las proyecciones, dependiendo de la disponibilidad de
 la información; su valor por defecto es `NULL`.}
 
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la enfermedad
 agrupados por departamento o municipio y número de casos.}
 
 \item{poblacion}{Un `character` (cadena de caracteres) con el tipo de
-población para efectuar el calculo de la incidencia. Indica si se
-va a utilizar la población a riesgo del evento `"riesgo"` o las
-proyecciones poblacionales DANE `"proyecciones"`; su valor por defecto
-es `NULL`.}
+población para calcular la incidencia. Puede ser `"riesgo"` para la población
+a riesgo o `"proyecciones"` para las proyecciones poblacionales DANE;
+su valor por defecto es `NULL`.}
 
-\item{year}{Un `numeric` (numerico) con el año que se debe tomar de las
-proyecciones poblacionales; su valor por defecto es `NULL`.}
+\item{year}{Un `numeric` (númerico) con el año que se debe tomar en la
+población a riesgo o en las proyecciones poblacionales DANE; su valor por
+defecto es `NULL`.}
 
 \item{dpto}{Un `character` (cadena de caracteres) o `numeric` (numérico)
 que contiene el código o nombre del departamento; su valor por
@@ -40,16 +40,17 @@ defecto es `NULL`.}
 que contiene el código o nombre del municipio; su valor por defecto
 es `NULL`.}
 
-\item{sex}{Un `character` (cadena de caracteres) que contiene el sexo`"F"`
-para Femenino y `"M"` Masculino; su valor por defecto es `NULL`.}
+\item{sex}{Un `character` (cadena de caracteres) que especifica el
+sexo: `"F"` para Femenino y `"M"` para Masculino; su valor por defecto
+es `NULL`.}
 }
 \value{
-Un `numeric` con el calculo de la incidencia para todo Colombia, un
+Un `numeric` con el cálculo de la incidencia para todo Colombia, un
 departamento, municipio o sexo especifico.
 }
 \description{
 Función que calcula la incidencia de una enfermedad o evento
-para todo Colombia, departamento o municipio.
+para todo Colombia, un departamento o un municipio.
 }
 \examples{
 \donttest{

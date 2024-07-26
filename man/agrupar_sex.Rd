@@ -19,7 +19,7 @@ agregar una columna con el porcentaje de casos; su valor por
 defecto es `TRUE`.}
 }
 \value{
-Un data.frame con los datos de la enfermedad o evento
+Un `data.frame` con los datos de la enfermedad o evento
 agrupados por sexo y número de casos.
 }
 \description{

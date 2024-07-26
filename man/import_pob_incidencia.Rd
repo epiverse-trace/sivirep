@@ -12,11 +12,11 @@ población que se desea importar. Indica si se desea descargar la población
 a riesgo del evento `"riesgo"` o las proyecciones poblacionales DANE
 `"proyecciones"`; su valor por defecto es `"riesgo"`.}
 
-\item{event}{Un `character` (cadena de caracteres) o un `numeric` (numerico)
+\item{event}{Un `character` (cadena de caracteres) o un `numeric` (númerico)
 con el nombre o código de la enfermedad o evento. Es obligatorio para
 importar la población a riesgo.}
 
-\item{year}{Un `numeric` (numerico) con el año deseado de la población a
+\item{year}{Un `numeric` (númerico) con el año deseado de la población a
 riesgo. Es obligatorio para importar la población a riesgo.}
 }
 \value{
