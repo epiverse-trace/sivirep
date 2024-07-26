@@ -179,16 +179,23 @@ plot_map <- function(data_agrupada,
     ggplot2::theme(
       plot.title = ggplot2::element_text(
         hjust = 0.5,
-        face = "bold"
+        face = "bold",
+        size = 18
       ),
       plot.subtitle = ggplot2::element_text(
         hjust = 0.5,
+        face = "bold",
+        size = 16
+      ),
+      text = ggplot2::element_text(size = 16),
+      legend.text = ggplot2::element_text(size = 14),
+      legend.title = ggplot2::element_text(
+        size = 16,
         face = "bold"
       ),
-      text = ggplot2::element_text(size = 14),
-      legend.title = ggplot2::element_text(face = "bold")
+      plot.caption = ggplot2::element_text(size = 12),
     ) +
-    ggplot2::labs(caption = fuente_data, fill = etiqueta_relleno)
+    ggplot2::labs(caption = fuente_data, fill = etiqueta_relleno) +
   return(map)
 }
 
