@@ -308,7 +308,7 @@ limpiar_edad_event <- function(data_event, col_edad = "edad") {
   validar_data_event(data_event)
   validar_edad(data_event, col_edad)
   data_event_years <- convert_edad(data_event)
-  data_event_years <- remove_val_nin(data_event_years, col_edad)
+  return(data_event_years)
 }
 
 #' @title Limpiar los valores atipicos de los datos
