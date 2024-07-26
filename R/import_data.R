@@ -206,7 +206,6 @@ import_sep_data <- function(ruta_data = NULL,
                             cache = FALSE,
                             consentimiento) {
   data_archivo <- data.frame()
-      on.exit(close(con_archivo))
   if (is.null(ruta_dir) &&
       toupper(consentimiento) == "SI") {
     ruta_dir <- tools::R_user_dir("sivirep", which = "cache")
@@ -247,6 +246,7 @@ import_sep_data <- function(ruta_data = NULL,
         if (length(conten_archivo) > 0) {
           writeBin(conten_archivo, con_archivo)
         }
+        close(con_archivo)
       }
     }
     if (stringr::str_detect(nomb_archivo, ".xls")) {
