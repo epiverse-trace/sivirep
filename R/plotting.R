@@ -707,8 +707,8 @@ plot_dptos <- function(data_agrupada,
       caption = fuente_data
     ) +
     tema_sivirep() +
-    pos_leyenda +
-    return(plot_casos_dptos)
+    pos_leyenda
+  return(plot_casos_dptos)
 }
 
 #' @title Generar gráfico de distribución de casos por municipios
@@ -1285,8 +1285,8 @@ plot_per_etn <- function(data_agrupada,
       etiquetas,
       5
     )) +
-    tema_sivirep() +
-    return(plot_per_etn)
+    tema_sivirep()
+  return(plot_per_etn)
 }
 
 #' @title Generar tabla con la incidencia
