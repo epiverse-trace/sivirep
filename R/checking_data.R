@@ -312,7 +312,7 @@ agrupar_sex <- function(data_event,
 
 #' @title Agrupar por sexo, semana epidemiológica y casos
 #' @description Función que agrupa los datos de enfermedades por sexo,
-#' semana, epidemiológica y número de casos.
+#' semana epidemiológica y número de casos.
 #' @param data_event Un `data.frame` que contiene los datos de
 #' la enfermedad o evento.
 #' @param cols_sex Un `character` (cadena de caracteres) o
@@ -341,7 +341,7 @@ agrupar_sex_semanaepi <- function(data_event,
     "El parametro cols_sex debe ser una cadena de caracteres
             o un arreglo de cadenas de caracteres " =
       (is.character(cols_sex) && !is.array(cols_sex)) ||
-      (!is.character(cols_sex) && is.array(cols_sex))
+        (!is.character(cols_sex) && is.array(cols_sex))
   )
   data_event_sex_semanaepi <- agrupar_cols_casos(
     data_event,
