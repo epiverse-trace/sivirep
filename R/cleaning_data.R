@@ -360,7 +360,7 @@ limpiar_data_sivigila <- function(data_event) {
   data_limpia <- format_fecha(data_event,
     nomb_cols = nom_cols_fechas
   )
-  nombre <- unique(data_event$nombre_evento)
+  nombre <- unique(data_event$nombre_evento[!is.na(data_event$nombre_evento)])
   if (length(nombre) == 1 &&
     !stringr::str_detect(nombre, stringr::fixed("MORTALIDAD"))) {
     data_limpia <- limpiar_fecha_event(data_limpia, year,
