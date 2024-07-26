@@ -131,33 +131,44 @@ list_events <- function() {
 #' la enfermedad o evento.
 #' @param years Un `numeric` (númerico) con el año o años deseado(s) para
 #' la descarga de los datos.
-#' @param cache Un `boolean` (`TRUE` o `FALSE`) que indica si los datos
-#' descargados deben ser almacenados en caché; su valor por defecto es `TRUE`.
 #' @param ruta_dir Un `character` (cadena de caracteres) que contiene la ruta
 #' del directorio donde se almacenaran los datos del evento o enfermedad. Si
 #' no se proporciona ningún valor en este parámetro, el usuario debe dar su
 #' consentimiento para que los datos sean almacenados temporalmente en el
+#' directorio de usuario de R (`R user dir`).
+#' @param cache Un `boolean` (`TRUE` o `FALSE`) que indica si los datos.
+#' descargados deben ser almacenados en caché; su valor por defecto es `FALSE`.
+#' @param consentimiento Un `character` (cadena de caracteres) que indica si
+#' el usuario acepta almacenar los datos de la enfermedad o evento en el
+#' directorio de usuario de R `R user dir`. Esto es útil si se desea que los
+#' datos se almacenen en caché y no se ha proporcionado ningún valor en el 
+#' parámetro `ruta_dir`. Los valores permitidos son `"Si"` o `"No"`. Si se
+#' proporciona `"Si"`, los datos se guardarán en el directorio de usuario.
+#' Si se proporciona `"No"`, los datos no se guardarán y se solicitará
+#' especificar un valor para el parámetro `ruta_dir`.
 #' @return Un `data.frame` con los datos del año de la enfermedad o evento
 #' seleccionado desde los microdatos del SIVIGILA.
 #' @examples
 #' \donttest{
 #' import_data_event(nombre_event = "DENGUE",
 #'                   years = 2020,
-#'                   cache = TRUE)
+#'                   consentimiento = "Si")
 #' }
 #' \donttest{
 #' import_data_event(nombre_event = "ZIKA",
 #'                   years = c(2019, 2020),
+#'                   consentimiento = "Si",
 #'                   cache = TRUE)
 #' import_data_event(nombre_event = "ZIKA",
 #'                   years = seq(2018, 2020),
-#'                   cache = TRUE)
+#'                   consentimiento = "Si")
 #' }
 #' @export
 import_data_event <- function(nombre_event,
                               years,
-                              cache = TRUE) {
                               ruta_dir = NULL,
+                              cache = FALSE,
+                              consentimiento = NULL) {
   stopifnot("El parametro years no debe estar vacio" = !missing(years),
             "El parametro years debe ser numerico" = is.numeric(years),
             "El parametro nombre_event no debe estar vacio"
@@ -178,6 +189,8 @@ import_data_event <- function(nombre_event,
                                                year = year)
       data_import <- import_sep_data(ruta_data = data_url,
                                      ruta_dir = ruta_dir,
+                                     cache = cache,
+                                     consentimiento = consentimiento)
       data_import <- limpiar_encabezado(data_import)
       data_import$fec_def <- as.character(data_import$fec_def)
       nombre_cols <- names(data_import)
