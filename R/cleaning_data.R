@@ -364,10 +364,6 @@ limpiar_data_sivigila <- function(data_event) {
   if (length(nombre) == 1 &&
     !stringr::str_detect(nombre, stringr::fixed("MORTALIDAD"))) {
     data_limpia <- limpiar_fecha_event(data_limpia, year,
-      col_fecha = nom_cols_fechas[3],
-      col_comp = nom_cols_fechas[4]
-    )
-    data_limpia <- limpiar_fecha_event(data_limpia, year,
       col_fecha = nom_cols_fechas[2]
     )
   }
