@@ -24,7 +24,7 @@ evento; su valor por defecto es `"sexo"`.}
 nombre de la columna que tiene los valores de la distribución, por número de
 casos o incidencia; su valor por defecto es `"incidencia"`.}
 
-\item{porcentaje}{Un `boolean` (TRUE/FALSE) que indica si los datos
+\item{porcentaje}{Un `logical` (TRUE/FALSE) que indica si los datos
 tienen porcentajes; su valor por defecto es `TRUE`.}
 
 \item{fuente_data}{Un `character` (cadena de caracteres) que contiene la

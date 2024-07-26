@@ -47,7 +47,7 @@ realizar_peticion_http <- function(url) {
 #' @title Importar datos geográficos de Colombia
 #' @description Función que importa los nombres y códigos de
 #' los departamentos y municipios de Colombia a través de una URL.
-#' @param descargar Un `boolean` (`TRUE` o `FALSE`) que indica si los
+#' @param descargar Un `logical` (`TRUE` o `FALSE`) que indica si los
 #' datos se deben descargar desde la API de datos abiertos de Colombia;
 #' su valor por defecto es `FALSE`.
 #' @return Un `data.frame` con los nombres y códigos de los departamentos
@@ -136,7 +136,7 @@ list_events <- function() {
 #' no se proporciona ningún valor en este parámetro, el usuario debe dar su
 #' consentimiento para que los datos sean almacenados temporalmente en el
 #' directorio de usuario de R (`R user dir`). Su valor por defecto es `NULL`.
-#' @param cache Un `boolean` (`TRUE` o `FALSE`) que indica si los datos.
+#' @param cache Un `logical` (`TRUE` o `FALSE`) que indica si los datos.
 #' descargados deben ser almacenados en caché; su valor por defecto es `FALSE`.
 #' @param consentimiento Un `character` (cadena de caracteres) que indica si
 #' el usuario acepta almacenar los datos de la enfermedad o evento en el

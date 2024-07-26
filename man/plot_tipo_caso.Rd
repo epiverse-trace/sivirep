@@ -11,7 +11,7 @@ plot_tipo_caso(data_agrupada, col_tipo = "tip_cas", fuente_data = NULL)
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la
 enfermedad o evento agrupados por la clasificación inicial de los casos.}
 
-\item{col_tipo}{Un `character` (cadena de carácteres) con el nombre de
+\item{col_tipo}{Un `character` (cadena de caracteres) con el nombre de
 la columna que contiene la clasificación inicial de los casos en los
 datos agrupados de la enfermedad o evento; su valor por defecto es
 `"tip_cas"`.}

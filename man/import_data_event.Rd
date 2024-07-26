@@ -26,7 +26,7 @@ no se proporciona ningún valor en este parámetro, el usuario debe dar su
 consentimiento para que los datos sean almacenados temporalmente en el
 directorio de usuario de R (`R user dir`). Su valor por defecto es `NULL`.}
 
-\item{cache}{Un `boolean` (`TRUE` o `FALSE`) que indica si los datos.
+\item{cache}{Un `logical` (`TRUE` o `FALSE`) que indica si los datos.
 descargados deben ser almacenados en caché; su valor por defecto es `FALSE`.}
 
 \item{consentimiento}{Un `character` (cadena de caracteres) que indica si

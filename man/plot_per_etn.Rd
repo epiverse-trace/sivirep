@@ -16,11 +16,11 @@ plot_per_etn(
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la
 enfermedad o evento agrupados por la pertenencia étnica.}
 
-\item{col_etn}{Un `character` (cadena de carácteres) con el nombre de
+\item{col_etn}{Un `character` (cadena de caracteres) con el nombre de
 la columna que contiene la pertenencia étnica en los datos agrupados de
 la enfermedad o evento; su valor por defecto es `"per_etn"`.}
 
-\item{porcentaje}{Un `boolean` (TRUE/FALSE) que indica si los datos
+\item{porcentaje}{Un `logical` (TRUE/FALSE) que indica si los datos
 tienen porcentajes; su valor por defecto es `TRUE`.}
 
 \item{fuente_data}{Un `character` (cadena de caracteres) que contiene la

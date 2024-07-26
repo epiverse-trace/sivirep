@@ -20,7 +20,7 @@ columna que contiene las edades en los datos agrupados de la enfermedad o
 evento; su valor por defecto es `"edad`.}
 
 \item{col_sex}{Un `character` (cadena de caracteres) con el nombre de la
-columna que contiene el sexo en los datos agrupados de la enfermdedad o
+columna que contiene el sexo en los datos agrupados de la enfermedad o
 evento; su valor por defecto es `"sexo`.}
 
 \item{fuente_data}{Un `character` (cadena de caracteres) que contiene la

@@ -11,7 +11,7 @@ plot_tabla_tipos_event(data_agrupada, col_event = "nombre_evento")
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la
 enfermedad o evento agrupados por tipo.}
 
-\item{col_event}{Un `character` (cadena de carácteres) con el nombre de
+\item{col_event}{Un `character` (cadena de caracteres) con el nombre de
 la columna que contiene el tipo de evento en los datos agrupados de
 la enfermedad o evento; su valor por defecto es `"nombre_evento"`.}
 }

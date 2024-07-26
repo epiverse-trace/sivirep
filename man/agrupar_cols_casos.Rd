@@ -14,18 +14,18 @@ una enfermedad o evento.}
 `array (arreglo) de character` que contiene el nombre de
 la(s) columna(s) en los datos de la enfermedad o evento.}
 
-\item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica
+\item{porcentaje}{Un `logical` (TRUE o FALSE) que indica
 si se debe agregar una columna con el porcentaje de casos;
 su valor por defecto es `FALSE`.}
 
-\item{estandar}{Un `boolean` (TRUE o FALSE) que indica
+\item{estandar}{Un `logical` (TRUE o FALSE) que indica
 si se debe utilizar el estándar de agrupación de los datos
 del evento o enfermedad propuesto por el paquete, es decir,
 que se incluyan estas columnas o variables como parte del
 resultado `c("cod_eve", "nombre_evento", "ano")`; su valor
 por defecto es `TRUE`, si su valor es `FALSE` agrupará los
 datos solamente por las columnas o variables enviadas en el
-párametro `nomb_cols`.}
+parámetro `nomb_cols`.}
 }
 \value{
 Un `data.frame` con los datos de una enfermedad

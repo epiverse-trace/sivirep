@@ -10,7 +10,7 @@ plot_mpios(data_agrupada, col_mpios = NULL, fuente_data = NULL)
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la
 enfermedad o evento agrupados por municipios.}
 
-\item{col_mpios}{Un `character` (cadena de carácteres) con el nombre de
+\item{col_mpios}{Un `character` (cadena de caracteres) con el nombre de
 la columna que contiene los municipios en los datos agrupados de la
 enfermedad o evento; su valor por defecto es `NULL`.}
 

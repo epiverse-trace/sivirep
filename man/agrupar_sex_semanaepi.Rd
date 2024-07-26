@@ -19,7 +19,7 @@ la enfermedad o evento.}
 columna(s) que contienen el sexo y las semanas
 epidemiológicas; su valor por defecto es `c("sexo", "semana")`.}
 
-\item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica si se debe
+\item{porcentaje}{Un `logical` (TRUE o FALSE) que indica si se debe
 agregar una columna con el porcentaje de casos; su valor por
 defecto es `TRUE`.}
 }

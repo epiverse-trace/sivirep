@@ -10,7 +10,7 @@
 #' de casos; su valor por defecto es `"casos"`.
 #' @param top Un `numeric` (númerico) que contiene la cantidad máxima
 #' de meses a retornar; su valor por defecto es `3`.
-#' @param concat_vals Un `boolean` (TRUE/FALSE) que indica si se requiere
+#' @param concat_vals Un `logical` (TRUE/FALSE) que indica si se requiere
 #' concatenar los meses como una cadena; su valor por defecto es `TRUE`.
 #' @return Un `data.frame` que contiene los meses con mayor número de casos.
 #' @examples
@@ -68,7 +68,7 @@ obtener_meses_mas_casos <- function(data_event,
 #' @param nomb_col Un `character` (cadena de caracteres) con el
 #' nombre de la columna que contiene el número de casos en los datos de
 #' la enfermedad o evento.
-#' @param porcentaje Un `boolean` (TRUE/FALSE) que indica si se
+#' @param porcentaje Un `logical` (TRUE/FALSE) que indica si se
 #' requiere agregar un porcentaje de casos como columna.
 #' @return Un `data.frame` que contiene la fila con mayor número de casos.
 #' @examples

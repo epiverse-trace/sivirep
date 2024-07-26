@@ -13,7 +13,7 @@ calcular_incidencia_sex(
 )
 }
 \arguments{
-\item{data_incidencia}{Un `data.frame` que contiene la proyecciones
+\item{data_incidencia}{Un `data.frame` que contiene las proyecciones
 poblacionales del DANE; su valor por defecto es `NULL`.}
 
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la enfermedad
