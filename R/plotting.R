@@ -479,9 +479,9 @@ plot_sex_semanaepi <- function(data_agrupada,
     fuente_data <-
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
   }
-  max_casos <- max(data_agrupada$casos)
+  max_casos <- max(data_agrupada$casos, na.rm = TRUE)
   data_agrupada$semana <- as.numeric(data_agrupada$semana)
-  max_semana <- max(data_agrupada$semana)
+  max_semana <- max(data_agrupada$semana, na.rm = TRUE)
   etiqueta_episemana <- obtener_val_config("label_epiweek")
   etiqueta_casos <- obtener_val_config("label_cases")
   plot_casos_sex_semanaepi <-
