@@ -999,7 +999,11 @@ calcular_incidencia <- function(data_incidencia = NULL, data_agrupada,
       2
     )
   }
-  return(incidencia)
+  pop_incidencia_total <- list(
+    incidencia = incidencia,
+    poblacion = poblacion
+  )
+  return(pop_incidencia_total)
 }
 
 #' @title Calcular incidencia según distribución geográfica
@@ -1119,7 +1123,11 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
     }
     data_geo_incidencia <- cbind(data_agrupada, geo_incidencia)
   }
-  return(data_geo_incidencia)
+  pop_data_incidencia <- list(
+    data_incidencia = data_geo_incidencia,
+    poblacion = poblacion
+  )
+  return(pop_data_incidencia)
 }
 
 #' @title Calcular incidencia por sexo
@@ -1247,5 +1255,9 @@ calcular_incidencia_sex <- function(data_incidencia = NULL,
       data_incidencia_sex$codigo_municipio <- mpio
     }
   }
-  return(data_incidencia_sex)
+  pop_data_incidencia <- list(
+    data_incidencia = data_incidencia_sex,
+    poblacion = "proyecciones"
+  )
+  return(pop_data_incidencia)
 }
