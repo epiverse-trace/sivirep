@@ -80,6 +80,10 @@ jobs:
           extra-packages: any::rcmdcheck
           needs: check
 
+      - name: Install system dependencies
+        run: |
+            sudo apt-get install -y hunspell hunspell-es
+      
       - uses: r-lib/actions/check-r-package@v2
         id: rcmdcheck
         with:
