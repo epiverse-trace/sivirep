@@ -82,23 +82,12 @@ jobs:
 
       - name: Install system dependencies
         run: |
-          if ($env:RUNNER_OS -eq 'Windows') {
-            choco install hunspell
-            # Download and install Spanish dictionary manually
-            Invoke-WebRequest -Uri "https://github.com/LibreOffice/dictionaries/releases/download/7.2.0/es-ES.zip" -OutFile "es-ES.zip"
-            Expand-Archive -Path "es-ES.zip" -DestinationPath "$env:LOCALAPPDATA/hunspell/dictionaries"
-            Remove-Item "es-ES.zip"
-          } elseif ($env:RUNNER_OS -eq 'Linux') {
-            sudo apt-get update
+          if [[ $RUNNER_OS == 'Linux' ]]; then
             sudo apt-get install -y hunspell hunspell-es
-          } elseif ($env:RUNNER_OS -eq 'macOS') {
-            brew install hunspell
-            # Download and install Spanish dictionary manually
-            curl -L -o "es-ES.zip" "https://github.com/LibreOffice/dictionaries/releases/download/7.2.0/es-ES.zip"
-            unzip es-ES.zip -d /usr/local/share/hunspell
-            rm es-ES.zip
-          }
-
+          elif [[ $RUNNER_OS == 'macOS' ]]; then
+            sudo port install hunspell-dict-es_ES
+          fi
+      
       - uses: r-lib/actions/check-r-package@v2
         id: rcmdcheck
         with:
