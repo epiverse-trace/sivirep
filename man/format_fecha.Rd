@@ -14,9 +14,9 @@ de un evento o enfermedad.}
 que contiene  el formato deseado de la fecha; su valor por
 defecto es `"\%Y-\%m-\%d"`.}
 
-\item{nomb_cols}{Un `character` (cadena de caracteres) que
-contiene los nombres de la columna a formatear en los datos de
-una enfermedad o evento; su valor por defecto es `NULL`.}
+\item{nomb_cols}{Un `character` (cadena de caracteres) o `array` de
+`character` que contiene los nombres de la columnas a formatear en
+los datos de una enfermedad o evento; su valor por defecto es `NULL`.}
 }
 \value{
 Un `data.frame` con los datos con las fechas formateadas.

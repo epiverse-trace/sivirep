@@ -142,9 +142,9 @@ remove_error_fecha <- function(data_event,
 #' @param format_fecha Un `character` (cadena de caracteres)
 #' que contiene  el formato deseado de la fecha; su valor por
 #' defecto es `"\%Y-\%m-\%d"`.
-#' @param nomb_cols Un `character` (cadena de caracteres) que
-#' contiene los nombres de la columna a formatear en los datos de
-#' una enfermedad o evento; su valor por defecto es `NULL`.
+#' @param nomb_cols Un `character` (cadena de caracteres) o `array` de
+#' `character` que contiene los nombres de la columnas a formatear en
+#' los datos de una enfermedad o evento; su valor por defecto es `NULL`.
 #' @return Un `data.frame` con los datos con las fechas formateadas.
 #' @keywords internal
 format_fecha <- function(data_event,
@@ -169,7 +169,7 @@ format_fecha <- function(data_event,
 #' de la etiqueta de la validación relacionada a la longitud máxima del
 #' código geográfico; se refiere al tipo de división geográfica ("municipio",
 #' "departamento").
-#' @param digitos Un `numeric` (númerico) que contiende el número de digitos
+#' @param digitos Un `numeric` (númerico) que contiene el número de digitos
 #' que debe tener individualmente el código geográfico.
 #' @param tam Un `numeric` (númerico) que contiende el tamaño o la longitud
 #' máxima que debe tener el código geográfico.
@@ -204,7 +204,7 @@ format_cod_geo <- function(cod_geo, etiqueta, digitos, tam) {
 #' @param data_event Un `data.frame` que contiene los datos de una
 #' enfermedad o evento.
 #' @return Un `data.frame` con las etiquetas del encabezado formateadas
-#' con guión bajo (_).
+#' con guiones bajos (_).
 #' @examples
 #' data(dengue2020)
 #' limpiar_encabezado(data_event = dengue2020)
@@ -228,7 +228,7 @@ limpiar_encabezado <- function(data_event) {
 #' el nombre de la columna con la fecha que se desea limpiar en los datos
 #' de la enfermedad o evento.
 #' @param col_comp Un `character` (cadena de caracteres) que contiene el
-#' nombre de la columna con la cual se va a comparar la columna `nomb_col`
+#' nombre de la columna con la cual se va a comparar la columna `col_fecha`
 #' para limpiarla, estandarizarla o aplicar las reglas definidas.
 #' @return Un `data.frame` con las fechas limpias.
 #' @examples
@@ -284,14 +284,16 @@ limpiar_fecha_event <- function(data_event,
 
 #' @title Limpiar las edades de los datos de una enfermedad o evento
 #' @description Función que limpia y estandariza las edades de los datos
-#' de una enfermedad o evento, conviertiendolas en años, según la
+#' de una enfermedad o evento, convirtiéndolas en años, según la
 #' clasificación del Instituto Nacional de Salud:
-#' No aplica = 0
-#' Años = 1
-#' Meses = 2
-#' Días = 3
-#' Horas = 4
-#' Minutos = 5.
+#' \itemize{
+#'   \item No aplica = 0
+#'   \item Años = 1
+#'   \item Meses = 2
+#'   \item Días = 3
+#'   \item Horas = 4
+#'   \item Minutos = 5
+#' }
 #' @param data_event Un `data.frame` que contiene los datos de una
 #' enfermedad o evento.
 #' @param col_edad Un `character` (cadena de caracteres) con
@@ -311,13 +313,13 @@ limpiar_edad_event <- function(data_event, col_edad = "edad") {
   return(data_event_years)
 }
 
-#' @title Limpiar los valores atipicos de los datos
-#' @description Función que limpia los valores atipicos de los datos
+#' @title Limpiar los valores atípicos de los datos
+#' @description Función que limpia los valores atípicos de los datos
 #' de una enfermedad o evento del SIVIGILA.
 #' @param data_event Un `data.frame` que contiene los datos de una
 #' enfermedad o evento.
 #' @return Un `data.frame` con los datos de una enfermedad o
-#' evento con los valores atípicos limpios (NA).
+#' evento con los valores atípicos limpios (convertidos a `NA`).
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_encabezado(data_event = dengue2020)
@@ -344,7 +346,7 @@ limpiar_val_atipic <- function(data_event) {
 
 #' @title Limpiar datos de SIVIGILA
 #' @description Función que limpia los datos seleccionados de una enfermedad
-#' o evento de la fuente SIVIGILA.
+#' o evento provenientes de la fuente SIVIGILA.
 #' @param data_event Un `data.frame` que contiene los datos de
 #' una enfermedad o evento.
 #' @return Un `data.frame` con los datos limpios de la enfermedad o evento.

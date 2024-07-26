@@ -15,7 +15,7 @@ Un `data.frame` con los datos limpios de la enfermedad o evento.
 }
 \description{
 Función que limpia los datos seleccionados de una enfermedad
-o evento de la fuente SIVIGILA.
+o evento provenientes de la fuente SIVIGILA.
 }
 \examples{
 data(dengue2020)

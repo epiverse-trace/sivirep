@@ -2,7 +2,7 @@
 % Please edit documentation in R/cleaning_data.R
 \name{limpiar_val_atipic}
 \alias{limpiar_val_atipic}
-\title{Limpiar los valores atipicos de los datos}
+\title{Limpiar los valores atípicos de los datos}
 \usage{
 limpiar_val_atipic(data_event)
 }
@@ -12,10 +12,10 @@ enfermedad o evento.}
 }
 \value{
 Un `data.frame` con los datos de una enfermedad o
-evento con los valores atípicos limpios (NA).
+evento con los valores atípicos limpios (convertidos a `NA`).
 }
 \description{
-Función que limpia los valores atipicos de los datos
+Función que limpia los valores atípicos de los datos
 de una enfermedad o evento del SIVIGILA.
 }
 \examples{

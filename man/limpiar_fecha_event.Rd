@@ -27,7 +27,7 @@ el nombre de la columna con la fecha que se desea limpiar en los datos
 de la enfermedad o evento.}
 
 \item{col_comp}{Un `character` (cadena de caracteres) que contiene el
-nombre de la columna con la cual se va a comparar la columna `nomb_col`
+nombre de la columna con la cual se va a comparar la columna `col_fecha`
 para limpiarla, estandarizarla o aplicar las reglas definidas.}
 }
 \value{
