@@ -394,7 +394,9 @@ agrupar_edad <- function(data_event,
       col_edad,
       min_val = 0,
       max_val =
-        max(data_event_edad[[col_edad]]),
+        max(data_event_edad[[col_edad]],
+          na.rm = TRUE
+        ),
       paso = interval_edad,
       porcentaje = porcentaje
     )
