@@ -91,7 +91,7 @@ test_that("`mapa_indicidencia_colombia` funciona correctamente", {
   incidencia_dptos <- calcular_incidencia_geo(
     data_agrupada =
       data_agrupada
-  )
+  )$data_incidencia
   expect_s3_class(incidencia_dptos, "data.frame")
   expect_true("cod_eve" %in% names(incidencia_dptos))
   expect_true("nombre_evento" %in% names(incidencia_dptos))
@@ -112,7 +112,7 @@ test_that("`mapa_indicidencia_dpto` funciona correctamente", {
   incidencia_dpto <- calcular_incidencia_geo(
     data_agrupada =
       data_agrupada
-  )
+  )$data_incidencia
   expect_s3_class(incidencia_dpto, "data.frame")
   expect_true("nombre_evento" %in% names(incidencia_dpto))
   expect_true("cod_dpto_o" %in% names(incidencia_dpto))
@@ -139,7 +139,7 @@ test_that("`mapa_indicidencia_mpio` funciona correctamente", {
   incidencia_mpio <- calcular_incidencia_geo(
     data_agrupada =
       data_agrupada
-  )
+  )$data_incidencia
   expect_s3_class(incidencia_mpio, "data.frame")
   expect_true("nombre_evento" %in% names(incidencia_mpio))
   expect_true("cod_dpto_o" %in% names(incidencia_mpio))

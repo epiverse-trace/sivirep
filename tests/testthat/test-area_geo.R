@@ -11,7 +11,7 @@ test_that("`area_geo` funciona correctamente", {
   expect_true("area" %in% names(data_agrupada))
   expect_true("casos" %in% names(data_agrupada))
 
-  expect_equal(data_agrupada[["casos"]], c(36, 5, 4))
+  expect_equal(data_agrupada[["casos"]], c(37, 5, 5))
 
   plot <- plot_area_geo(data_agrupada)
   expect_s3_class(plot, "ggplot")

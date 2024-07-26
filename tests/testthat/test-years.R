@@ -10,7 +10,7 @@ test_that("`year` funciona correctamente", {
   expect_true("ano" %in% names(data_agrupada))
   expect_true("casos" %in% names(data_agrupada))
 
-  expect_equal(data_agrupada[["casos"]], 45)
+  expect_equal(data_agrupada[["casos"]], 47)
 
   plot <- plot_years(data_agrupada)
   expect_s3_class(plot, "ggplot")
@@ -19,7 +19,8 @@ test_that("`year` funciona correctamente", {
 test_that("`years` funciona correctamente", {
   data_years <- import_data_event(
     nombre_event = "MORTALIDAD MATERNA",
-    years = seq(2019, 2020)
+    years = seq(2019, 2020),
+    consentimiento = "Si"
   )
   data_limpia <- limpiar_data_sivigila(data_years)
   data_agrupada <- agrupar_years(data_event = data_limpia)

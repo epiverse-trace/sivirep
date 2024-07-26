@@ -9,7 +9,7 @@ test_that("`tipos_event` funciona correctamente", {
   expect_true("ano" %in% names(data_agrupada))
   expect_true("casos" %in% names(data_agrupada))
 
-  expect_equal(data_agrupada[["casos"]], 45)
+  expect_equal(data_agrupada[["casos"]], 47)
 
   plot <- plot_tabla_tipos_event(data_agrupada)
   expect_s3_class(plot, "kableExtra")

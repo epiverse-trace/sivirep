@@ -14,7 +14,7 @@ test_that("`fecha_inisintomas` funciona correctamente", {
 
   expect_equal(
     data_agrupada[["casos"]],
-    c(1, 1, 7, 2, 4, 6, 6, 2, 5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+    c(1, 1, 1, 7, 2, 4, 6, 6, 3, 5, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
   )
 
   plot <- plot_fecha_inisintomas(data_agrupada = data_agrupada)

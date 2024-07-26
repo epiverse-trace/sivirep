@@ -9,7 +9,7 @@ test_that("`agrupar_semanaepi` funciona correctamente", {
   expect_equal(
     data_agrupada[["casos"]],
     c(
-      1, 1, 32, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+      2, 1, 33, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
       rep(NA, 39)
     )
   )

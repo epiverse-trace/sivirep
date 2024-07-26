@@ -41,7 +41,7 @@ test_that("`obtener_fila_mas_casos` funciona correctamente", {
   result_fila <- obtener_fila_mas_casos(data_event = casos_sex)
   expect_s3_class(result_fila, "data.frame")
 
-  expect_equal(result_fila$casos, 24)
+  expect_equal(result_fila$casos, 25)
 })
 
 test_that("`obtener_fila_mas_casos` maneja errores correctamente", {
@@ -210,8 +210,8 @@ test_that("`obtener_text_sex` funciona correctamente", {
     paste0(
       "En el total de casos para 2020 se ",
       "observa una predominancia del sexo ",
-      "masculino con 53.33% respecto al sexo ",
-      "femenino con 46.67% (Ver Figura 3)."
+      "masculino con 53.19% respecto al sexo ",
+      "femenino con 46.81% (Ver Figura 3)."
     )
   )
 })

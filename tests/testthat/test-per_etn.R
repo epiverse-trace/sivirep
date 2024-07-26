@@ -13,7 +13,7 @@ test_that("`per_etn` funciona correctamente", {
   expect_true("casos" %in% names(data_agrupada))
   expect_true("porcentaje" %in% names(data_agrupada))
 
-  expect_equal(data_agrupada[["casos"]], c(1, 1, 43))
+  expect_equal(data_agrupada[["casos"]], c(1, 1, 45))
 
   plot <- plot_per_etn(data_agrupada)
   expect_s3_class(plot, "ggplot")
