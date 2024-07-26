@@ -8,7 +8,7 @@
 #' @param col_casos Un `character` (cadena de caracteres) con el nombre de la
 #' columna de los datos de la enfermedad o evento que contiene el número
 #' de casos; su valor por defecto es `"casos"`.
-#' @param top Un `numeric` (numerico) que contiene la cantidad máxima
+#' @param top Un `numeric` (númerico) que contiene la cantidad máxima
 #' de meses a retornar; su valor por defecto es `3`.
 #' @param concat_vals Un `boolean` (TRUE/FALSE) que indica si se requiere
 #' concatenar los meses como una cadena; su valor por defecto es `TRUE`.
@@ -106,7 +106,7 @@ obtener_fila_mas_casos <- function(data_event,
 #' específico.
 #' @param vals Un `array` (arreglo) de character (cadena de caracteres)
 #' que contiene los valores que se desean concatenar.
-#' @param longitud Un `numeric` (numerico) que contiene la longitud de
+#' @param longitud Un `numeric` (númerico) que contiene la longitud de
 #' los valores que se desean concatenar; su valor por defecto es `3`.
 #' @param princ_token Un `character` (cadena de caracteres) que contiene el
 #' separador o token principal; su valor por defecto es `", "`.
@@ -138,7 +138,7 @@ concatenar_vals_token <- function(vals,
 #' enfermedad o evento
 #' @description Función que obtiene las columnas de ocurrencia geográfica
 #' de los datos de la enfermedad o evento.
-#' @param cod_event Un `numeric` (numerico) o `character`
+#' @param cod_event Un `numeric` (númerico) o `character`
 #' (cadena de caracteres) que contiene el código de la enfermedad o evento.
 #' @param nombre_event Un `character` (cadena de caracteres) con el nombre de
 #' la enfermedad o evento.
@@ -193,10 +193,10 @@ obtener_tip_ocurren_geo <- function(cod_event = NULL, nombre_event = NULL) {
 #' @title Obtener información geográfica de los datos de la enfermedad o evento
 #' @description Función que obtiene la información geográfica de los datos de
 #' la enfermedad o evento.
-#' @param dpto Un `character` (cadena de caracteres) o `numeric` (numerico)
+#' @param dpto Un `character` (cadena de caracteres) o `numeric` (númerico)
 #' que contiene el nombre o código del departamento; su valor por defecto
 #' es `NULL`.
-#' @param mpio Un `character` (cadena de caracteres) o `numeric` (numerico)
+#' @param mpio Un `character` (cadena de caracteres) o `numeric` (númerico)
 #' que contiene el nombre o código del municipio; su valor por defecto
 #' es `NULL`.
 #' @return Un `data.frame` con la información geográfica de los datos de
@@ -312,7 +312,7 @@ obtener_dptos <- function() {
 #' Colombia a partir de su código geográfico.
 #' @param data_geo Un `data.frame` que contiene los códigos
 #' geográficos (departamentos y municipios de Colombia).
-#' @param cod_dpto Un `numeric` (numerico) o `character`
+#' @param cod_dpto Un `numeric` (númerico) o `character`
 #' (cadena de caracteres) que contiene el código
 #' del departamento.
 #' @return Un `character` (cadena de caracteres) con el nombre del
@@ -361,9 +361,9 @@ obtener_nombre_dpto <- function(data_geo, cod_dpto) {
 #' partir de su código geográfico
 #' @param data_geo Un `data.frame` que contiene los códigos geográficos
 #' (departamentos y municipios de Colombia).
-#' @param cod_dpto Un `numeric` (numerico) o `character` (cadena de caracteres)
+#' @param cod_dpto Un `numeric` (númerico) o `character` (cadena de caracteres)
 #' que contiene el código del departamento.
-#' @param cod_mpio Un `numeric` (numerico) o `character`
+#' @param cod_mpio Un `numeric` (númerico) o `character`
 #' (cadena de caracteres) que contiene el código del municipio.
 #' @return Un `character` (cadena de caracteres) con el nombre del municipio.
 #' @examples
@@ -422,7 +422,7 @@ obtener_nombre_mpio <- function(data_geo, cod_dpto, cod_mpio) {
 #' @title Obtener los eventos relacionados
 #' @description Función que obtiene los eventos relacionados o tipos de un
 #' evento principal.
-#' @param years Un `numeric` (numerico) el año  o años deseados para
+#' @param years Un `numeric` (númerico) el año  o años deseados para
 #' la descarga de los datos.
 #' @param nombre_event Un `character` (cadena de caracteres) con el
 #' nombre de la enfermedad o evento.
@@ -482,7 +482,7 @@ obtener_eventos_relacionados <- function(nombre_event, years) {
 #' @description Función que obtiene las condiciones del numerador,
 #' denominador y coeficiente de múltiplicación para calcular la incidencia
 #' de un evento.
-#' @param cod_eve Un `numeric` (numerico) o `character` (cadena de
+#' @param cod_eve Un `numeric` (númerico) o `character` (cadena de
 #' caracteres) que contiene el código de una enfermedad o evento.
 #' @return Un `data.frame` con las condiciones para calcular la
 #' incidencia de una enfermedad o evento.
@@ -579,10 +579,10 @@ obtener_dpto_mpio <- function(data_agrupada, nomb_cols,
 #' población que se desea obtener. Indica si se desea obtener la población
 #' a riesgo del evento `"riesgo"` o las proyecciones poblacionales DANE
 #' `"proyecciones"`.
-#' @param event Un `character` (cadena de caracteres) o un `numeric` (numerico)
+#' @param event Un `character` (cadena de caracteres) o un `numeric` (númerico)
 #' con el nombre o código de la enfermedad o evento. Es obligatorio para
 #' obtener la población a riesgo.
-#' @param year Un `numeric` (numerico) con el año deseado de la población a
+#' @param year Un `numeric` (númerico) con el año deseado de la población a
 #' riesgo. Es obligatorio para obtener la población a riesgo.
 #' @return Un `data.frame` con la población a riesgo o las proyecciones
 #' poblacionaldes DANE.
@@ -668,9 +668,9 @@ obtener_year <- function(data_event) {
 #' de distribución de casos por sexo de la plantilla del reporte.
 #' @param data_agrupada Un `data.frame` que contiene los datos
 #' de la enfermedad o evento agrupados por sexo.
-#' @param year Un `numeric` (numerico) con el año de los datos
+#' @param year Un `numeric` (númerico) con el año de los datos
 #' agrupados por sexo.
-#' @param figura Un `numeric` (numerico) con el número de la
+#' @param figura Un `numeric` (númerico) con el número de la
 #' figura de la distribución de casos por sexo.
 #' @examples
 #' data(dengue2020)
