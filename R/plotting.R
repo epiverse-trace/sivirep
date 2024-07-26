@@ -193,7 +193,7 @@ plot_map <- function(data_agrupada,
         size = 16,
         face = "bold"
       ),
-      plot.caption = ggplot2::element_text(size = 12),
+      plot.caption = ggplot2::element_text(size = 12)
     ) +
     ggplot2::labs(caption = fuente_data, fill = etiqueta_relleno) +
     ggplot2::guides(
