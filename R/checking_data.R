@@ -806,10 +806,11 @@ agrupar_tipo_caso <- function(data_event, cols_tipo = "tip_cas") {
 #' @description Función que agrupa los casos por la pertenencia étnica.
 #' @param data_event Un `data.frame` que contiene los datos de la
 #' enfermedad o evento.
-#' @param cols_etn Un `character` (cadena de caracteres) con el nombre de
-#' las columna(s) que contiene(n) la pertenencia étnica en los datos de la
-#' enfermedad o evento; su valor por defecto es `"per_etn"`
-#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica.
+#' @param cols_etn Un `character` (cadena de caracteres) o un `array` de
+#' `character` con el nombre de las columna(s) que contiene(n) la
+#' pertenencia étnica en los datos de la enfermedad o evento;
+#' su valor por defecto es `"per_etn"`
+#' @param porcentaje Un `boolean` (TRUE o FALSE) que indica
 #' si se debe agregar una columna con el porcentaje de casos;
 #' su valor por defecto es `TRUE`.
 #' @return Un `data.frame` con los datos de la enfermedad o evento agrupados
