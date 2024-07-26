@@ -32,7 +32,7 @@ incidencia_mpios <-
     dpto = "Antioquia"
   )
 plot_tabla_incidencia_sex(
-  data_agrupada = incidencia_mpios,
+  data_agrupada = incidencia_mpios$data_incidencia,
   col_sex = "sexo"
 )
 }
