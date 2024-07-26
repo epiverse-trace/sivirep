@@ -10,10 +10,10 @@ tema_sivirep <- function() {
     ggplot2::theme(
       legend.position = "right",
       legend.direction = "vertical",
-      plot.caption = ggplot2::element_text(size = 8),
+      plot.caption = ggplot2::element_text(size = 12),
       text = ggplot2::element_text(
         family = "Montserrat",
-        size = 13
+        size = 14.5
       ),
       axis.title = ggplot2::element_text(face = "bold"),
       legend.title = ggplot2::element_text(face = "bold")
