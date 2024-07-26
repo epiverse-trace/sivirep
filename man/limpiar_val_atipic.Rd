@@ -21,4 +21,5 @@ de una enfermedad o evento del SIVIGILA.
 \examples{
 data(dengue2020)
 data_limpia <- limpiar_encabezado(data_event = dengue2020)
+limpiar_val_atipic(data_limpia)
 }
