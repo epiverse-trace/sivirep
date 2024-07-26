@@ -4,14 +4,34 @@
 \alias{import_sep_data}
 \title{Importar datos con un separador específico.}
 \usage{
-import_sep_data(ruta_data = NULL, cache = TRUE)
+import_sep_data(
+  ruta_data = NULL,
+  ruta_dir = NULL,
+  cache = FALSE,
+  consentimiento
+)
 }
 \arguments{
 \item{ruta_data}{Un `character` (cadena de caracteres) que contiene
 la URL de los datos de SIVIGILA.}
 
+\item{ruta_dir}{Un `character` (cadena de caracteres) que contiene la ruta
+del directorio donde se almacenaran los datos del evento o enfermedad. Si
+no se proporciona ningún valor en este parámetro, el usuario debe dar su
+consentimiento para que los datos sean almacenados temporalmente en el
+directorio de usuario de R (`R user dir`).}
+
 \item{cache}{Un `boolean` (`TRUE` o `FALSE`) que indica si los datos.
-descargados deben ser almacenados en caché; su valor por defecto es `TRUE`.}
+descargados deben ser almacenados en caché; su valor por defecto es `FALSE`.}
+
+\item{consentimiento}{Un `character` (cadena de caracteres) que indica si
+el usuario acepta almacenar los datos de la enfermedad o evento en el
+directorio de usuario de R `R user dir`. Esto es útil si se desea que los
+datos se almacenen en caché y no se ha proporcionado ningún valor en el 
+parámetro `ruta_dir`. Los valores permitidos son `"Si"` o `"No"`. Si se
+proporciona `"Si"`, los datos se guardarán en el directorio de usuario.
+Si se proporciona `"No"`, los datos no se guardarán y se solicitará
+especificar un valor para el parámetro `ruta_dir`.}
 }
 \value{
 Un `data.frame` con los datos tabulados.

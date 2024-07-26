@@ -216,8 +216,7 @@ import_data_event <- function(nombre_event,
 #' datos para tabularlos.
 #' @param ruta_data Un `character` (cadena de caracteres) que contiene
 #' la URL de los datos de SIVIGILA.
-#' @param cache Un `boolean` (`TRUE` o `FALSE`) que indica si los datos.
-#' descargados deben ser almacenados en caché; su valor por defecto es `TRUE`.
+#' @inheritParams import_data_event
 #' @return Un `data.frame` con los datos tabulados.
 #' @keywords internal
 import_sep_data <- function(ruta_data = NULL,
