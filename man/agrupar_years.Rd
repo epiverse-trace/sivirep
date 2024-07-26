@@ -2,7 +2,7 @@
 % Please edit documentation in R/checking_data.R
 \name{agrupar_years}
 \alias{agrupar_years}
-\title{Agrupar por los años de una enfermedad o evento}
+\title{Agrupar por años de una enfermedad o evento}
 \usage{
 agrupar_years(data_event, col_year = "ano")
 }
@@ -16,7 +16,7 @@ su valor por defecto es `"ano"`.}
 }
 \value{
 Un `data.frame` con los datos de la enfermedad o evento agrupados
-por sus años.
+por año.
 }
 \description{
 Función que agrupa los casos por los años de una enfermedad

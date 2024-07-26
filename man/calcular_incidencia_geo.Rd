@@ -13,22 +13,22 @@ calcular_incidencia_geo(
 }
 \arguments{
 \item{data_incidencia}{Un `data.frame` que contiene las proyecciones
-poblaciones del DANE; su valor por defecto es `NULL`.}
+poblacionales del DANE; su valor por defecto es `NULL`.}
 
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la enfermedad
 agrupados por departamento o municipio y número de casos.}
 
 \item{poblacion}{Un `character` (cadena de caracteres) con el tipo de
-población para efectuar el calculo de la incidencia. Indica si se
-desea utilizar la población a riesgo del evento `"riesgo"` o las
-proyecciones poblacionales DANE `"proyecciones"`; su valor por defecto
-es `NULL`.}
+población para calcular la incidencia. Puede ser `"riesgo"` para la población
+a riesgo o `"proyecciones"` para las proyecciones poblacionales DANE;
+su valor por defecto es `NULL`.}
 
-\item{year}{Un `numeric` (numerico) con el año que se debe tomar de las
-proyecciones poblacionales.}
+\item{year}{Un `numeric` (númerico) con el año que se debe tomar en la
+población a riesgo o en las proyecciones poblacionales DANE; su valor por
+defecto es `NULL`.}
 }
 \value{
-Un `data.frame` con el calculo de la incidencia para todos los
+Un `data.frame` con el cálculo de la incidencia para todos los
 departamentos de Colombia o los municipios de un departamento.
 }
 \description{

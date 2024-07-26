@@ -7,7 +7,7 @@
 format_cod_geo(cod_geo, etiqueta, digitos, tam)
 }
 \arguments{
-\item{cod_geo}{Un `numeric` (numerico) o `character`
+\item{cod_geo}{Un `numeric` (númerico) o `character`
 (cadena de caracteres) que contiene el código geográfico.}
 
 \item{etiqueta}{Un `character` (cadena de caracteres) con el nombre
@@ -15,10 +15,10 @@ de la etiqueta de la validación relacionada a la longitud máxima del
 código geográfico; se refiere al tipo de división geográfica ("municipio",
 "departamento").}
 
-\item{digitos}{Un `numeric` (numerico) que contiende el número de digitos
+\item{digitos}{Un `numeric` (númerico) que contiende el número de digitos
 que debe tener individualmente el código geográfico.}
 
-\item{tam}{Un `numeric` (numerico) que contiende el tamaño o la longitud
+\item{tam}{Un `numeric` (númerico) que contiende el tamaño o la longitud
 máxima que debe tener el código geográfico.}
 }
 \value{

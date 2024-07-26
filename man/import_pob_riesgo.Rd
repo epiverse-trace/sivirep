@@ -7,10 +7,10 @@
 import_pob_riesgo(event, year)
 }
 \arguments{
-\item{event}{Un `character` (cadena de caracteres) o un `numeric` (numerico)
+\item{event}{Un `character` (cadena de caracteres) o un `numeric` (númerico)
 con el nombre o código de la enfermedad o evento.}
 
-\item{year}{Un `numeric` (numerico) con el año deseado de la población a
+\item{year}{Un `numeric` (númerico) con el año deseado de la población a
 riesgo.}
 }
 \value{

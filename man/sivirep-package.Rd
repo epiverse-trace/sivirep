@@ -18,11 +18,11 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Zulma M. Cucunubá \email{zulma.cucunuba@javeriana.edu.co} (\href{https://orcid.org/0000-0002-8165-3198}{ORCID}) [contributor]
+\strong{Maintainer}: Geraldine Gómez-Millán \email{geralidine.gomez@javeriana.edu.co} (\href{https://orcid.org/0009-0007-8701-0568}{ORCID}) [contributor]
 
 Authors:
 \itemize{
-  \item Geraldine Gómez-Millán \email{geralidine.gomez@javeriana.edu.co} (\href{https://orcid.org/0009-0007-8701-0568}{ORCID}) [contributor]
+  \item Zulma M. Cucunubá \email{zulma.cucunuba@javeriana.edu.co} (\href{https://orcid.org/0000-0002-8165-3198}{ORCID}) [contributor]
   \item Jennifer A. Mendez-Romero \email{jenniferk2@hotmail.com} (\href{https://orcid.org/0009-0001-6138-0225}{ORCID}) [contributor]
   \item Claudia Huguett-Aragón \email{chuguett@hotmail.com} (\href{https://orcid.org/0000-0002-9814-2386}{ORCID}) [contributor]
 }

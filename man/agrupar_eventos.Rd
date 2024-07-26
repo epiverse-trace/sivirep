@@ -16,7 +16,7 @@ en los datos; su valor por defecto es `"cod_eve"`.}
 }
 \value{
 Un `data.frame` con los datos de la enfermedad o evento agrupados
-por sus tipos.
+por tipo.
 }
 \description{
 Función que agrupa los casos por tipo de enfermedad o evento.

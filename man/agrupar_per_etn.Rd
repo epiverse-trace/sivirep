@@ -10,11 +10,12 @@ agrupar_per_etn(data_event, cols_etn = "per_etn", porcentaje = TRUE)
 \item{data_event}{Un `data.frame` que contiene los datos de la
 enfermedad o evento.}
 
-\item{cols_etn}{Un `character` (cadena de caracteres) con el nombre de
-las columna(s) que contiene(n) la pertenencia étnica en los datos de la
-enfermedad o evento; su valor por defecto es `"per_etn"`}
+\item{cols_etn}{Un `character` (cadena de caracteres) o un `array` de
+`character` con el nombre de las columna(s) que contiene(n) la
+pertenencia étnica en los datos de la enfermedad o evento;
+su valor por defecto es `"per_etn"`}
 
-\item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica.
+\item{porcentaje}{Un `boolean` (TRUE o FALSE) que indica
 si se debe agregar una columna con el porcentaje de casos;
 su valor por defecto es `TRUE`.}
 }
@@ -23,7 +24,7 @@ Un `data.frame` con los datos de la enfermedad o evento agrupados
 por la pertenencia étnica.
 }
 \description{
-Función que agrupa los casos por la pertenencia étnica
+Función que agrupa los casos por la pertenencia étnica.
 }
 \examples{
 data(dengue2020)

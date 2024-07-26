@@ -10,7 +10,7 @@ obtener_nombre_dpto(data_geo, cod_dpto)
 \item{data_geo}{Un `data.frame` que contiene los códigos
 geográficos (departamentos y municipios de Colombia).}
 
-\item{cod_dpto}{Un `numeric` (numerico) o `character`
+\item{cod_dpto}{Un `numeric` (númerico) o `character`
 (cadena de caracteres) que contiene el código
 del departamento.}
 }

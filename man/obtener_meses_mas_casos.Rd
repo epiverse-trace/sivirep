@@ -24,7 +24,7 @@ enfermedad o evento.}
 columna de los datos de la enfermedad o evento que contiene el número
 de casos; su valor por defecto es `"casos"`.}
 
-\item{top}{Un `numeric` (numerico) que contiene la cantidad máxima
+\item{top}{Un `numeric` (númerico) que contiene la cantidad máxima
 de meses a retornar; su valor por defecto es `3`.}
 
 \item{concat_vals}{Un `boolean` (TRUE/FALSE) que indica si se requiere

@@ -15,7 +15,7 @@ agrupar_sex_semanaepi(
 la enfermedad o evento.}
 
 \item{cols_sex}{Un `character` (cadena de caracteres) o
-`array (arreglo) de character` con el nombre de la(s)
+`array` (arreglo) de `character` con el nombre de la(s)
 columna(s) que contienen el sexo y las semanas
 epidemiológicas; su valor por defecto es `c("sexo", "semana")`.}
 
@@ -29,7 +29,7 @@ agrupados por sexo, semana epidemiológica y número de casos.
 }
 \description{
 Función que agrupa los datos de enfermedades por sexo,
-semana, epidemiológica y número de casos.
+semana epidemiológica y número de casos.
 }
 \examples{
 data(dengue2020)

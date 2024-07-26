@@ -17,11 +17,11 @@ agrupar_top_area_geo(
 enfermedad o evento.}
 
 \item{dpto}{Un `character` (cadena de caracteres) que contiene
-el nombre del departamento; su valor por defecto es `NULL`; si se ingresa
+el nombre del departamento; su valor por defecto es `NULL`. Si se ingresa
 un valor en este parámetro se procederá agrupar los datos por los
-municipios del departamento y sus áreas geográficas; si no se
+municipios del departamento y sus áreas geográficas. Si no se
 ingresa un valor en este parámetro validará si los datos ya están
-filtrados por algún departamento, si no lo están generará la agrupación
+filtrados por algún departamento; si no lo están generará la agrupación
 por departamento.}
 
 \item{col_area}{Un `character` (cadena de caracteres) con el nombre de
@@ -32,13 +32,13 @@ o evento; su valor por defecto es `"cod_mun_o"`.}
 agregar una columna con el porcentaje de casos; su valor por
 defecto es `FALSE`.}
 
-\item{top}{Un `numeric` (numerico) que indica la cantidad de departamentos o
+\item{top}{Un `numeric` (númerico) que indica la cantidad de departamentos o
 municipios con mayor número de casos que se deben retornar; su valor
 por defecto es `10`.}
 }
 \value{
-Un `data.frame` con los datos de la enfermedad o evento agrupados
-por códigos de municipios y número de casos.
+Un `data.frame` con el top 10 de los datos de la enfermedad o evento
+agrupados por áreas geográficas y número de casos.
 }
 \description{
 Función que agrupa los datos de una enfermedad o evento por

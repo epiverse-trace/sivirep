@@ -106,11 +106,11 @@ agrupar_semanaepi <- function(data_event,
 #' si se debe agregar una columna con el porcentaje de casos;
 #' su valor por defecto es `FALSE`.
 #' @param estandar Un `boolean` (TRUE o FALSE) que indica
-#' si se debe utilizar el estandar de agrupación de los datos
-#' del evento o enfermedad propuesto por el paquete, es decir
+#' si se debe utilizar el estándar de agrupación de los datos
+#' del evento o enfermedad propuesto por el paquete, es decir,
 #' que se incluyan estas columnas o variables como parte del
 #' resultado `c("cod_eve", "nombre_evento", "ano")`; su valor
-#' por defecto es `TRUE`, si su valor es `FALSE` agrupara los
+#' por defecto es `TRUE`, si su valor es `FALSE` agrupará los
 #' datos solamente por las columnas o variables enviadas en el
 #' párametro `nomb_cols`.
 #' @return Un `data.frame` con los datos de una enfermedad
@@ -289,7 +289,7 @@ agrupar_fecha_inisintomas <- function(data_event,
 #' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si se debe
 #' agregar una columna con el porcentaje de casos; su valor por
 #' defecto es `TRUE`.
-#' @return Un data.frame con los datos de la enfermedad o evento
+#' @return Un `data.frame` con los datos de la enfermedad o evento
 #' agrupados por sexo y número de casos.
 #' @examples
 #' data(dengue2020)
@@ -316,7 +316,7 @@ agrupar_sex <- function(data_event,
 #' @param data_event Un `data.frame` que contiene los datos de
 #' la enfermedad o evento.
 #' @param cols_sex Un `character` (cadena de caracteres) o
-#' `array (arreglo) de character` con el nombre de la(s)
+#' `array` (arreglo) de `character` con el nombre de la(s)
 #' columna(s) que contienen el sexo y las semanas
 #' epidemiológicas; su valor por defecto es `c("sexo", "semana")`.
 #' @param porcentaje Un `boolean` (TRUE o FALSE) que indica si se debe
@@ -408,7 +408,7 @@ agrupar_edad <- function(data_event,
 #' o evento.
 #' @param col_edad Un `character` (cadena de caracteres) con el nombre de la
 #' columna que contiene las edades en los datos de la enfermedad o evento;
-#' su valor por defecto es `"edad`.
+#' su valor por defecto es `"edad"`.
 #' @param col_sex Un `character` (cadena de caracteres) con el nombre de la
 #' columna que contiene el sexo en los datos de la enfermedad o evento;
 #' su valor por defecto es `"sexo`.
@@ -634,11 +634,11 @@ agrupar_area_geo <- function(data_event,
 #' @param data_event Un `data.frame` que contiene los datos de la
 #' enfermedad o evento.
 #' @param dpto Un `character` (cadena de caracteres) que contiene
-#' el nombre del departamento; su valor por defecto es `NULL`; si se ingresa
+#' el nombre del departamento; su valor por defecto es `NULL`. Si se ingresa
 #' un valor en este parámetro se procederá agrupar los datos por los
-#' municipios del departamento y sus áreas geográficas; si no se
+#' municipios del departamento y sus áreas geográficas. Si no se
 #' ingresa un valor en este parámetro validará si los datos ya están
-#' filtrados por algún departamento, si no lo están generará la agrupación
+#' filtrados por algún departamento; si no lo están generará la agrupación
 #' por departamento.
 #' @param col_area Un `character` (cadena de caracteres) con el nombre de
 #' la columna que contiene las áreas geográficas en los datos de la enfermedad
@@ -727,7 +727,7 @@ agrupar_eventos <- function(data_event, col_event = "cod_eve") {
   return(data_event_tipos)
 }
 
-#' @title Agrupar por los años de una enfermedad o evento
+#' @title Agrupar por años de una enfermedad o evento
 #' @description Función que agrupa los casos por los años de una enfermedad
 #' o evento.
 #' @param data_event Un `data.frame` que contiene los datos de la
@@ -736,7 +736,7 @@ agrupar_eventos <- function(data_event, col_event = "cod_eve") {
 #' la columna que contiene los años en los datos de la enfermedad o evento;
 #' su valor por defecto es `"ano"`.
 #' @return Un `data.frame` con los datos de la enfermedad o evento agrupados
-#' por sus años.
+#' por año.
 #' @examples
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
@@ -798,7 +798,7 @@ agrupar_tipo_caso <- function(data_event, cols_tipo = "tip_cas") {
 }
 
 #' @title Agrupar por la pertenencia étnica
-#' @description Función que agrupa los casos por la pertenencia étnica
+#' @description Función que agrupa los casos por la pertenencia étnica.
 #' @param data_event Un `data.frame` que contiene los datos de la
 #' enfermedad o evento.
 #' @param cols_etn Un `character` (cadena de caracteres) con el nombre de
@@ -999,7 +999,7 @@ calcular_incidencia <- function(data_incidencia = NULL, data_agrupada,
 #' @description Función que calcula la incidencia de una enfermedad o evento
 #' para todos los departamentos de Colombia o los municipios de un departamento.
 #' @param data_incidencia Un `data.frame` que contiene las proyecciones
-#' poblaciones del DANE; su valor por defecto es `NULL`.
+#' poblacionales del DANE; su valor por defecto es `NULL`.
 #' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
 #' agrupados por departamento o municipio y número de casos.
 #' @param poblacion Un `character` (cadena de caracteres) con el tipo de
@@ -1118,7 +1118,7 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
 #' @title Calcular incidencia por sexo
 #' @description Función que calcula la incidencia de una enfermedad o evento
 #' para todos los departamentos de Colombia o los municipios de un departamento
-#' por sexo.
+#' por cada sexo.
 #' @param data_incidencia Un `data.frame` que contiene la proyecciones
 #' poblacionales del DANE; su valor por defecto es `NULL`.
 #' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad

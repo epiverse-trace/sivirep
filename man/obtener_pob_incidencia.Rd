@@ -18,11 +18,11 @@ población que se desea obtener. Indica si se desea obtener la población
 a riesgo del evento `"riesgo"` o las proyecciones poblacionales DANE
 `"proyecciones"`.}
 
-\item{event}{Un `character` (cadena de caracteres) o un `numeric` (numerico)
+\item{event}{Un `character` (cadena de caracteres) o un `numeric` (númerico)
 con el nombre o código de la enfermedad o evento. Es obligatorio para
 obtener la población a riesgo.}
 
-\item{year}{Un `numeric` (numerico) con el año deseado de la población a
+\item{year}{Un `numeric` (númerico) con el año deseado de la población a
 riesgo. Es obligatorio para obtener la población a riesgo.}
 }
 \value{

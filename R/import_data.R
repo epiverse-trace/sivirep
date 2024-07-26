@@ -129,7 +129,7 @@ list_events <- function() {
 #' año desde los microdatos del SIVIGILA.
 #' @param nombre_event Un `character` (cadena de caracteres) con el nombre de
 #' la enfermedad o evento.
-#' @param years Un `numeric` (numerico) con el año o años deseado(s) para
+#' @param years Un `numeric` (númerico) con el año o años deseado(s) para
 #' la descarga de los datos.
 #' @param cache Un `boolean` (`TRUE` o `FALSE`) que indica si los datos
 #' descargados deben ser almacenados en caché; su valor por defecto es `TRUE`.
@@ -242,10 +242,10 @@ import_sep_data <- function(ruta_data = NULL, cache = TRUE) {
 #' población que se desea importar. Indica si se desea descargar la población
 #' a riesgo del evento `"riesgo"` o las proyecciones poblacionales DANE
 #' `"proyecciones"`; su valor por defecto es `"riesgo"`.
-#' @param event Un `character` (cadena de caracteres) o un `numeric` (numerico)
+#' @param event Un `character` (cadena de caracteres) o un `numeric` (númerico)
 #' con el nombre o código de la enfermedad o evento. Es obligatorio para
 #' importar la población a riesgo.
-#' @param year Un `numeric` (numerico) con el año deseado de la población a
+#' @param year Un `numeric` (númerico) con el año deseado de la población a
 #' riesgo. Es obligatorio para importar la población a riesgo.
 #' @return Un `data.frame` con la población a riesgo o las proyecciones
 #' poblacionaldes DANE.
@@ -279,7 +279,7 @@ import_pob_incidencia <- function(
 #' @title Importar las proyecciones DANE del año 2005 hasta el 2035
 #' @description Función que importa las proyecciones poblacionales
 #' DANE desde el año 2005 hasta el 2035.
-#' @param year Un `numeric` (numerico) con el año a importar de las
+#' @param year Un `numeric` (númerico) con el año a importar de las
 #' proyecciones poblacionales DANE.
 #' @return Un `data.frame` con las proyecciones poblacionales DANE.
 #' @examples
@@ -315,9 +315,9 @@ import_pob_proyecciones <- function(year) {
 #' @title Importar la población a riesgo de un evento o enfermedad
 #' @description Función que importa la población a riesgo de un evento
 #'o enfermedad de un año específico.
-#' @param event Un `character` (cadena de caracteres) o un `numeric` (numerico)
+#' @param event Un `character` (cadena de caracteres) o un `numeric` (númerico)
 #' con el nombre o código de la enfermedad o evento.
-#' @param year Un `numeric` (numerico) con el año deseado de la población a
+#' @param year Un `numeric` (númerico) con el año deseado de la población a
 #' riesgo.
 #' @return Un `data.frame` con la población a riesgo de un año específico.
 #' @examples
