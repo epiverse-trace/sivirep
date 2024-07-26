@@ -863,7 +863,7 @@ obtener_ruta_dir <- function(ruta_dir = NULL,
   if (!is.null(consentimiento)) {
     if (is.null(ruta_dir) &&
         toupper(consentimiento) == "SI") {
-      ruta_dir <- tools::R_user_dir("sivirep", which = "cache")
+      ruta_dir <- system.file("extdata", package = "sivirep")
       if (!dir.exists(ruta_dir)) {
         creado <- dir.create(ruta_dir, recursive = TRUE)
         if (!creado) {

@@ -47,7 +47,6 @@ Imports:
     sf,
     readxl,
     rlang,
-    tools,
     sysfonts,
     showtext,
     kableExtra
