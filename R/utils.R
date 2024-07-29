@@ -503,7 +503,8 @@ obtener_cond_inciden_event <- function(cod_eve) {
   vals_event <- condiciones[condiciones$cod_eve == as.numeric(cod_eve), ]
   if (nrow(vals_event) == 0) {
     aux_event <-
-      data.frame(cod_eve, "casos", "NA", "proyecciones", "NA", "10000",
+      data.frame(cod_eve, "casos", "NA", "proyecciones", "NA",
+                 as.integer(10000),
         stringsAsFactors = FALSE
       )
     names(aux_event) <- names(vals_event)
