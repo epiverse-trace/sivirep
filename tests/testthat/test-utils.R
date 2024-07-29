@@ -63,6 +63,14 @@ test_that("`obtener_tip_ocurren_geo` funciona correctamente", {
   ))
 })
 
+test_that("`obtener_tip_ocurren_geo` noficacion funciona correctamente", {
+  result_tip <- obtener_tip_ocurren_geo(cod_event = 351)
+  expect_equal(result_tip, c(
+    "cod_dpto_n", "departamento_notificacion",
+    "cod_mun_n", "municipio_notificacion",
+    "notificacion"
+  ))
+})
 test_that("`obtener_tip_ocurren_geo` maneja errores correctamente", {
   expect_error(
     obtener_tip_ocurren_geo(),
