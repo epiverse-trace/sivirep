@@ -223,7 +223,7 @@ test_that("`obtener_cond_inciden_event` por defecto funciona correctamente", {
   
   expect_equal(condicion_incidencia$numerador, "casos")
   expect_equal(condicion_incidencia$denominador, "proyecciones")
-  expect_equal(condicion_incidencia$coeficiente, 100000)
+  expect_equal(condicion_incidencia$coeficiente, 10000)
 })
 
 test_that("`obtener_cond_inciden_event` maneja errores correctamente", {
