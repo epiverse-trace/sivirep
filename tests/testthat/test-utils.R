@@ -209,6 +209,23 @@ test_that("`obtener_cond_inciden_event` funciona correctamente", {
   expect_equal(condicion_incidencia$coeficiente, 100000)
 })
 
+test_that("`obtener_cond_inciden_event` por defecto funciona correctamente", {
+  condicion_incidencia <- obtener_cond_inciden_event(cod_eve = 150)
+  
+  expect_s3_class(condicion_incidencia, "data.frame")
+  
+  expect_true("cod_eve" %in% names(condicion_incidencia))
+  expect_true("numerador" %in% names(condicion_incidencia))
+  expect_true("condiciones_numerador" %in% names(condicion_incidencia))
+  expect_true("denominador" %in% names(condicion_incidencia))
+  expect_true("condiciones_denominador" %in% names(condicion_incidencia))
+  expect_true("coeficiente" %in% names(condicion_incidencia))
+  
+  expect_equal(condicion_incidencia$numerador, "casos")
+  expect_equal(condicion_incidencia$denominador, "proyecciones")
+  expect_equal(condicion_incidencia$coeficiente, 100000)
+})
+
 test_that("`obtener_cond_inciden_event` maneja errores correctamente", {
   expect_error(
     obtener_cond_inciden_event(),
