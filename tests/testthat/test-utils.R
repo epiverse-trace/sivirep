@@ -66,7 +66,7 @@ test_that("`obtener_tip_ocurren_geo` funciona correctamente", {
 test_that("`obtener_tip_ocurren_geo` maneja errores correctamente", {
   expect_error(
     obtener_tip_ocurren_geo(),
-    "Debe ingresar algun valor en cod_event o nombre_event"
+    "El parametro cod_event o nombre_event no debe estar vacio"
   )
 })
 
