@@ -240,3 +240,15 @@ test_that("`obtener_text_sex` maneja errores correctamente", {
     "El parametro cod_eve es obligatorio"
   )
 })
+
+test_that("`concatenar_vals_token` funciona correctamente", {
+  data_agrupada <- agrupar_sex(
+    data_event = data_limpia,
+    porcentaje = TRUE
+  )
+  text_token <- concatenar_vals_token(c("Hola", "mundo", "prueba"))
+  
+  expect_equal(
+    text_token, "Hola, mundo y prueba"
+  )
+})
