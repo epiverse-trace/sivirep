@@ -925,7 +925,8 @@ calcular_incidencia <- function(data_incidencia = NULL, data_agrupada,
       data_incidencia = data_incidencia,
       poblacion = poblacion,
       event = nombre_evento,
-      year = year
+      year = year,
+      cache = FALSE
     )
   data_incidencia <- pop_incidencia$data_incidencia
   poblacion <- pop_incidencia$poblacion
