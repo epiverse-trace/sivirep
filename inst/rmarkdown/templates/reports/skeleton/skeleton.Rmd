@@ -92,7 +92,16 @@ knitr::opts_chunk$set(include = TRUE,
                       warning = FALSE,
                       message = FALSE)
 knitr::opts_knit$set(eval.after = "fig.cap")
-library(sivirep)
+#library(sivirep)
+source('C:/Users/geral/Documents/TRACE/review/sivirep/R/checking_data.R')
+source('C:/Users/geral/Documents/TRACE/review/sivirep/R/cleaning_data.R')
+source('C:/Users/geral/Documents/TRACE/review/sivirep/R/utils.R')
+source('C:/Users/geral/Documents/TRACE/review/sivirep/R/import_data.R')
+source('C:/Users/geral/Documents/TRACE/review/sivirep/R/plotting.R')
+source('C:/Users/geral/Documents/TRACE/review/sivirep/R/theme_sivirep.R')
+source('C:/Users/geral/Documents/TRACE/review/sivirep/R/scraping_data.R')
+source('C:/Users/geral/Documents/TRACE/review/sivirep/R/handler_validations.R')
+library(dplyr)
 sysfonts::font_add_google("Montserrat", "Montserrat")
 showtext::showtext_auto()
 ```
@@ -251,7 +260,7 @@ if (length(eventos) > 3) {
 }
 ```
 
-```{r grafica-casos-years, fig.height = altura_fig_years, fig.width = 11, fig.cap = paste0("Distribución de casos en los últimos 6 años - ", text_ext_geo)}
+```{r grafica-casos-years, fig.height = altura_fig_years, fig.width = 11, fig.cap = paste0("Distribución de casos en los últimos 5 años - ", text_ext_geo)}
 plot_years(casos_years)
 ```
 
