@@ -19,8 +19,7 @@ test_that("`year` funciona correctamente", {
 test_that("`years` funciona correctamente", {
   data_years <- import_data_event(
     nombre_event = "MORTALIDAD MATERNA",
-    years = seq(2019, 2020),
-    consentimiento = "Si"
+    years = seq(2019, 2020)
   )
   data_limpia <- limpiar_data_sivigila(data_years)
   data_agrupada <- agrupar_years(data_event = data_limpia)
