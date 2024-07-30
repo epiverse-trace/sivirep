@@ -355,7 +355,9 @@ import_pob_proyecciones <- function(year,
 #' import_pob_riesgo(event = "Dengue", year = 2020)
 #' }
 #' @export
-import_pob_riesgo <- function(event, year) {
+import_pob_riesgo <- function(event, year,
+                              ruta_dir = NULL,
+                              cache = FALSE) {
   stopifnot("El parametro event no debe estar vacio" =
               !missing(event),
             "El parametro event debe ser una cadena de caracteres" =
@@ -365,7 +367,9 @@ import_pob_riesgo <- function(event, year) {
   rutas_pop_riesgo <- obtener_val_config("risk_population")
   etiqueta_year <- obtener_val_config("label_year")
   etiqueta_year <- paste0(tolower(etiqueta_year), "s")
-  ruta_extdata <- system.file("extdata", package = "sivirep")
+  ruta_dir <-
+    obtener_ruta_dir(ruta_dir,
+                     "las poblaciones a riesgo")
   pop_event <- NULL
   years_disponibles <- NULL
   pob_riesgo_event <- NULL
@@ -381,7 +385,7 @@ import_pob_riesgo <- function(event, year) {
         pop_event$file_name <-
           stringr::str_replace(pop_event$file_name, stringr::fixed("{year}"),
                                year)
-        pop_event_ruta <- file.path(ruta_extdata,
+        pop_event_ruta <- file.path(ruta_dir,
                                     paste0(pop_event$file_name,
                                            pop_event$extension))
         if (!file.exists(pop_event_ruta)) {
