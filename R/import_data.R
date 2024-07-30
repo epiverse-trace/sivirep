@@ -335,6 +335,9 @@ import_pob_proyecciones <- function(year,
     utils::download.file(url_proyecs, ruta_proyecs)
   }
   proyecciones <- readRDS(ruta_proyecs)
+  if (!cache) {
+    file.remove(ruta_proyecs)
+  }
   return(proyecciones)
 }
 
