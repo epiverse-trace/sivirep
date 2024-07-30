@@ -37,7 +37,8 @@ tema_sivirep <- function() {
 #' @return Un objeto `scale_fill_manual` de \pkg{ggplot2}.
 #' @keywords internal
 obtener_estetica_escala <- function(escala = 0, nombre,
-                                    etiquetas = NULL) {
+                                    etiquetas = NULL,
+                                    ajustar_texto = FALSE) {
   colores <- c(
     "#2274BB", "#5ab4ac", "#d8b365", "#AC6DAD", "#D49392",
     "#19AFE5", "#87C762", "#9DB2D0"
@@ -49,7 +50,12 @@ obtener_estetica_escala <- function(escala = 0, nombre,
       name = nombre
     )
     if (!is.null(etiquetas)) {
-      relleno_escala$labels <- etiquetas
+      if (ajustar_texto) {
+        relleno_escala$labels <-
+          stringr::str_wrap(etiquetas, 5)
+      } else {
+        relleno_escala$labels <- etiquetas
+      }
     }
   }
   return(relleno_escala)
