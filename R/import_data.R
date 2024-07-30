@@ -309,7 +309,9 @@ import_pob_incidencia <- function(
 #' import_pob_proyecciones(year = 2020)
 #' }
 #' @export
-import_pob_proyecciones <- function(year) {
+import_pob_proyecciones <- function(year,
+                                    ruta_dir = NULL,
+                                    cache = FALSE) {
   ruta_proyecciones <- obtener_val_config("projections_population")
   years_disp <- seq(ruta_proyecciones$start_year,
                     ruta_proyecciones$final_year)
@@ -320,8 +322,10 @@ import_pob_proyecciones <- function(year) {
     stringr::str_replace(ruta_proyecciones$file_name,
                          stringr::fixed("{year}"),
                          year)
-  ruta_extdata <- system.file("extdata", package = "sivirep")
-  ruta_proyecs <- file.path(ruta_extdata,
+  ruta_dir <-
+    obtener_ruta_dir(ruta_dir,
+                     "las proyeciones poblacionales DANE")
+  ruta_proyecs <- file.path(ruta_dir,
                             paste0(nomb_proyecs,
                                    ruta_proyecciones$extension))
   if (!file.exists(ruta_proyecs)) {
