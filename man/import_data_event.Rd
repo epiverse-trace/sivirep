@@ -5,13 +5,7 @@
 \title{Importar los datos de una enfermedad o evento por año
 desde los microdatos del SIVIGILA}
 \usage{
-import_data_event(
-  nombre_event,
-  years,
-  ruta_dir = NULL,
-  cache = FALSE,
-  consentimiento = NULL
-)
+import_data_event(nombre_event, years, ruta_dir = NULL, cache = FALSE)
 }
 \arguments{
 \item{nombre_event}{Un `character` (cadena de caracteres) con el nombre de
@@ -21,23 +15,12 @@ la enfermedad o evento.}
 la descarga de los datos.}
 
 \item{ruta_dir}{Un `character` (cadena de caracteres) que contiene la ruta
-del directorio donde se almacenarán los datos del evento o enfermedad. Si
-no se proporciona ningún valor en este parámetro, el usuario debe dar su
-consentimiento para que los datos sean almacenados temporalmente en el
-directorio del paquete (`extdata`). Su valor por defecto es `NULL`.}
+del directorio donde se almacenarán los datos del evento o enfermedad.
+Su valor por defecto es `NULL`.}
 
 \item{cache}{Un `logical` (`TRUE` o `FALSE`) que indica si los datos
-descargados deben ser almacenados en caché; su valor por defecto es `FALSE`.}
-
-\item{consentimiento}{Un `character` (cadena de caracteres) que indica si
-el usuario acepta almacenar los datos de la enfermedad o evento en el
-directorio del paquete `extdata`. Esto es útil si se desea que los
-datos se almacenen en caché y no se ha proporcionado ningún valor en el
-parámetro `ruta_dir`. Los valores permitidos son `"Si"` o `"No"`. Si se
-proporciona `"Si"`, los datos se guardarán en el directorio del paquete.
-Si se proporciona `"No"`, los datos no se guardarán y se solicitará
-especificar un valor para el parámetro `ruta_dir`. Su valor por defecto
-es `NULL`.}
+descargados deben ser almacenados en caché. Su valor por defecto
+es `FALSE`.}
 }
 \value{
 Un `data.frame` con los datos del año de la enfermedad o evento
@@ -51,15 +34,14 @@ año desde los microdatos del SIVIGILA.
 \donttest{
 import_data_event(nombre_event = "DENGUE",
                   years = 2020,
-                  consentimiento = "Si")
+                  cache = TRUE)
 }
 \donttest{
 import_data_event(nombre_event = "ZIKA",
                   years = c(2019, 2020),
-                  consentimiento = "Si",
                   cache = TRUE)
 import_data_event(nombre_event = "ZIKA",
                   years = seq(2018, 2020),
-                  consentimiento = "Si")
+                  cache = TRUE)
 }
 }

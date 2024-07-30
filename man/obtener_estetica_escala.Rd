@@ -4,7 +4,12 @@
 \alias{obtener_estetica_escala}
 \title{Obtener la estética de una escala para un gráfico de \pkg{sivirep}}
 \usage{
-obtener_estetica_escala(escala = 0, nombre, etiquetas = NULL)
+obtener_estetica_escala(
+  escala = 0,
+  nombre,
+  etiquetas = NULL,
+  ajustar_texto = FALSE
+)
 }
 \arguments{
 \item{escala}{Un `numeric` (numérico) que indica la cantidad de valores que
