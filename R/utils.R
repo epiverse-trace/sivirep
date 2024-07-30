@@ -583,13 +583,16 @@ obtener_dpto_mpio <- function(data_agrupada, nomb_cols,
 #' obtener la población a riesgo.
 #' @param year Un `numeric` (numérico) con el año deseado de la población a
 #' riesgo. Es obligatorio para obtener la población a riesgo.
+#' @inheritParams import_pob_incidencia
 #' @return Un `data.frame` con la población a riesgo o las proyecciones
 #' poblacionales DANE.
 #' @keywords internal
 obtener_pob_incidencia <- function(data_incidencia = NULL,
                                    poblacion,
                                    event,
-                                   year) {
+                                   year,
+                                   ruta_dir = NULL,
+                                   cache = FALSE) {
   if (is.null(data_incidencia)) {
     data_incidencia <- import_pob_incidencia(
       poblacion = poblacion,
@@ -605,7 +608,10 @@ obtener_pob_incidencia <- function(data_incidencia = NULL,
         )
       } else {
         poblacion <- "proyecciones"
-        data_incidencia <- import_pob_incidencia(poblacion = poblacion)
+        data_incidencia <- import_pob_incidencia(
+          poblacion = poblacion,
+          cache = cache
+        )
         message(
           "Las incidencias se calcularon con las proyecciones ",
           "poblacionales DANE. Si usted cuenta con la ",
