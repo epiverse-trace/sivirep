@@ -112,9 +112,9 @@ plot_map <- function(data_agrupada,
     data_agrupada, dpto, mpio,
     cols_geo_ocurrencia, shp
   )
-  pos_col <- which(colnames(data_agrupada) %in%
-    cols_geo_ocurrencia[1])
-  nombres_col <- cols_geo_ocurrencia[2]
+  pos_col <- which(colnames(data_agrupada)
+  %in% cols_geo_ocurrencia[3])
+  nombres_col <- cols_geo_ocurrencia[4]
   if (!is.null(config_map$dpto)) {
     titulo <- paste0(
       "Departamento de ",
@@ -127,9 +127,6 @@ plot_map <- function(data_agrupada,
       stringr::str_to_title(config_map$mpio)
     )
     color_min <- "#be0000"
-    pos_col <- which(colnames(data_agrupada) %in%
-      cols_geo_ocurrencia[3])
-    nombres_col <- cols_geo_ocurrencia[4]
   }
   if (!is.null(col_codigos)) {
     colnames(data_agrupada)[colnames(data_agrupada) ==
@@ -143,7 +140,7 @@ plot_map <- function(data_agrupada,
           parametro col_codigos")
   }
   polygon_seleccionado <- config_map$poligono
-  data_agrupada <- group_by(
+  data_agrupada <- dplyr::group_by(
     data_agrupada,
     dplyr::across(dplyr::all_of(c("id", nombres_col)))
   )
