@@ -261,6 +261,12 @@ import_sep_data <- function(ruta_data = NULL,
 #' importar la población a riesgo.
 #' @param year Un `numeric` (numérico) con el año deseado de la población a
 #' riesgo. Es obligatorio para importar la población a riesgo.
+#' @param ruta_dir Un `character` (cadena de caracteres) que especifica la ruta
+#' del directorio donde se almacenarán la población a riesgo o las proyecciones
+#' poblacionales DANE. Su valor por defecto es `NULL`.
+#' @param cache Un `logical` (`TRUE` o `FALSE`) que indica si la población a
+#' riesgo o las proyecciones poblacionales DANE descargadas deben ser
+#' almacenados en caché. Su valor por defecto es `FALSE`.
 #' @return Un `data.frame` con la población a riesgo o las proyecciones
 #' poblacionales DANE.
 #' @examples
@@ -274,7 +280,9 @@ import_sep_data <- function(ruta_data = NULL,
 import_pob_incidencia <- function(
     poblacion = c("riesgo", "proyecciones"),
     event,
-    year
+    year,
+    ruta_dir = NULL,
+    cache = NULL
   ) {
   stopifnot("El parametro poblacion no debe estar vacio" =
               !missing(poblacion),
