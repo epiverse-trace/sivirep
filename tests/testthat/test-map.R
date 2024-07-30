@@ -1,6 +1,8 @@
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(dengue2020)
 data_estandar <- estandarizar_geo_cods(data_limpia)
+geo_ocurrencia <-
+  obtener_tip_ocurren_geo(nombre_event = "Dengue")
 
 test_that("`mapa` maneja errores correctamente", {
   expect_error(
@@ -14,7 +16,8 @@ test_that("`mapa` maneja errores correctamente", {
 })
 
 test_that("`mapa_colombia` funciona correctamente", {
-  data_espacial <- agrupar_dpto(data_event = data_estandar)
+  data_espacial <- agrupar_dpto(data_event = data_estandar,
+                                geo_ocurrencia[1:4])
 
   expect_s3_class(data_espacial, "data.frame")
   expect_true("cod_eve" %in% names(data_espacial))
@@ -87,7 +90,8 @@ test_that("`mapa_mpio` funciona correctamente", {
 })
 
 test_that("`mapa_indicidencia_colombia` funciona correctamente", {
-  data_agrupada <- agrupar_dpto(data_event = data_estandar)
+  data_agrupada <- agrupar_dpto(data_event = data_estandar,
+                                geo_ocurrencia[1:4])
   incidencia_dptos <- calcular_incidencia_geo(
     data_agrupada =
       data_agrupada
