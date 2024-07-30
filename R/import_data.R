@@ -398,8 +398,11 @@ import_pob_riesgo <- function(event, year,
       }
     }
   }
-  if (!is.null(pop_event) && !is.null(pop_event_ruta)) {
+  if (!is.null(pop_event_ruta)) {
       pob_riesgo_event <- readRDS(pop_event_ruta)
+      if (!cache) {
+        file.remove(pop_event_ruta)
+      }
   } else if (!is.null(years_disponibles)) {
     warning("Para el ", year, " la poblacion a riesgo no esta disponible.",
             " Los ", etiqueta_year, " disponibles para la enfermedad o ",
