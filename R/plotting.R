@@ -1160,7 +1160,7 @@ plot_tipo_caso <- function(data_agrupada,
 #' @param fuente_data Un `character` (cadena de caracteres) que contiene la
 #' leyenda o fuente de información de los datos; su valor por defecto
 #' es `NULL`.
-#' @return Un `plot` o gráfico de distribución de casos seguín su clasificación
+#' @return Un `plot` o gráfico de distribución de casos según su clasificación
 #' inicial y los años seleccionados.
 #' @examples
 #' data(dengue2020)
