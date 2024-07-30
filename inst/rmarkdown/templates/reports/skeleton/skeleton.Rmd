@@ -433,9 +433,9 @@ plot_per_etn(data_agrupada = casos_per_etn)
 
 ```{r incidencia-total, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
 incidencia_total <- calcular_incidencia(data_agrupada =
-                                         dist_espacial_dpto)
+                                         dist_espacial)
 cond_incidencia <-
-  obtener_cond_inciden_event(cod_eve = dist_espacial_dpto$cod_eve[1])
+  obtener_cond_inciden_event(cod_eve = dist_espacial$cod_eve[1])
 ```
 ```{r text-pop-incidencia-total}
 text_incidencia_total <- "la población a riesgo"
@@ -468,7 +468,7 @@ if (incidencias_sex$poblacion == "proyecciones") {
 }
 ```
 
-La incidencia fue calculada con `r text_incidencia_sex` para cada sexo por `r cond_incidencia$coeficiente` habitantes, se puede visualizar en la tabla 2 y figura 13.
+La incidencia fue calculada con `r text_incidencia_sex` para cada sexo por `r cond_incidencia$coeficiente` habitantes, se puede visualizar en la tabla 2 y figura 14.
 
 ```{r tabla-incidencia-sex, echo = FALSE, error = FALSE, fig.height=5, fig.width = 10, warning = FALSE, include = TRUE, message = FALSE, fig.pos = "H"} 
 plot_tabla_incidencia_sex(incidencias_sex$data_incidencia)
@@ -483,7 +483,7 @@ plot_sex(data_agrupada = incidencias_sex$data_incidencia,
 ```{r incidencia-geo, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
 incidencias_geo <-
   calcular_incidencia_geo(data_agrupada =
-                            dist_espacial_dpto)
+                            dist_espacial)
 ```
 
 ```{r text-pop-incidencia-geo}
@@ -504,19 +504,22 @@ if (incidencias_geo$poblacion == "proyecciones") {
 plot_tabla_incidencia_geo(incidencias_geo$data_incidencia)
 ```
 
-```{r mapa-casos, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
-if (params$departamento != "" && params$municipio == "") {
+```{r plot-mapa-incidencias, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
+text_mapa_inciden <- "por municipio"
+if (params$departamento == "" && params$municipio == "") {
   dist_espacial_mpios <- agrupar_dpto(data_event_filtrada,
-                                      col_dpto = geo_ocurrencia[3])
+                                      col_dpto = geo_ocurrencia[1:4])
   incidencias_geo <-
   calcular_incidencia_geo(data_agrupada =
                             dist_espacial_mpios)
 }
-
+if (params$municipio != "") {
+  text_mapa_inciden <- ""
+}
 mapa <- plot_map(data_agrupada = incidencias_geo$data_incidencia)
 ```
 
-```{r mapa, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, cache = FALSE, results = FALSE, comment = FALSE, fig.height = 18, fig.width = 16, fig.cap = paste0("Incidencia según distribución geográfica - ", text_ext_geo), include = params$spatial_distribution}
+```{r mapa-incidencias, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, cache = FALSE, results = FALSE, comment = FALSE, fig.height = 18, fig.width = 16, fig.cap = paste0("Incidencia según distribución geográfica ", text_mapa_inciden, " - ", text_ext_geo), include = params$spatial_distribution}
 mapa
 ```
 
