@@ -168,7 +168,7 @@ obtener_tip_ocurren_geo <- function(cod_event = NULL, nombre_event = NULL) {
       "El parametro nombre_event debe ser una cadena de caracteres" =
         is.character(nombre_event)
     )
-    param_busqueda <- nombre_event
+    param_busqueda <- toupper(nombre_event)
   }
   if (length(grep(param_busqueda, geo_occurren$cod_dpto_n)) == 1) {
     col_ocurren <- c(
@@ -251,7 +251,7 @@ obtener_info_depts <- function(dpto = NULL, mpio = NULL) {
   }
   if (!is.null(mpio)) {
     stopifnot(
-      "El parametro mpio debe ser una cadena de caracteres o 
+      "El parametro mpio debe ser una cadena de caracteres o
               numerico" = is.character(mpio) || is.numeric(mpio)
     )
     mpio_busqueda <- mpio
