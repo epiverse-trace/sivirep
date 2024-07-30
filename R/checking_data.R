@@ -494,13 +494,16 @@ agrupar_dpto <- function(data_event,
       is.logical(porcentaje)
   )
   data_event_cods_dpto <- data_event
-  nomb_cols <- obtener_tip_ocurren_geo(data_event_cods_dpto$cod_eve[1])
+  if (length(col_dpto) == 1) {
+    nomb_cols <- obtener_tip_ocurren_geo(data_event_cods_dpto$cod_eve[1])
+    nomb_cols <- nomb_cols[1:2]
+  } else {
+    nomb_cols <- col_dpto
+  }
   data_event_cods_dpto <- agrupar_cols_casos(data_event_cods_dpto,
-    nomb_cols = nomb_cols[1:2],
+    nomb_cols = nomb_cols,
     porcentaje = porcentaje
   )
-  data_event_cods_dpto[[nomb_cols[1]]] <-
-    as.character(data_event_cods_dpto[[nomb_cols[1]]])
   return(data_event_cods_dpto)
 }
 
