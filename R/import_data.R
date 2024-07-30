@@ -303,6 +303,7 @@ import_pob_incidencia <- function(
 #' DANE desde el año 2005 hasta el 2035.
 #' @param year Un `numeric` (numérico) con el año de las proyecciones
 #' poblacionales DANE que desea importar.
+#' @inheritParams import_pob_incidencia
 #' @return Un `data.frame` con las proyecciones poblacionales DANE.
 #' @examples
 #' \donttest{

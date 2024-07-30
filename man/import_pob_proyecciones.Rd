@@ -4,11 +4,19 @@
 \alias{import_pob_proyecciones}
 \title{Importar las proyecciones DANE del año 2005 hasta el 2035}
 \usage{
-import_pob_proyecciones(year)
+import_pob_proyecciones(year, ruta_dir = NULL, cache = FALSE)
 }
 \arguments{
 \item{year}{Un `numeric` (numérico) con el año de las proyecciones
 poblacionales DANE que desea importar.}
+
+\item{ruta_dir}{Un `character` (cadena de caracteres) que especifica la ruta
+del directorio donde se almacenarán la población a riesgo o las proyecciones
+poblacionales DANE. Su valor por defecto es `NULL`.}
+
+\item{cache}{Un `logical` (`TRUE` o `FALSE`) que indica si la población a
+riesgo o las proyecciones poblacionales DANE descargadas deben ser
+almacenados en caché. Su valor por defecto es `FALSE`.}
 }
 \value{
 Un `data.frame` con las proyecciones poblacionales DANE.
