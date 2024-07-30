@@ -56,7 +56,7 @@ Suggests:
     rmarkdown,
     spelling,
     testthat (>= 3.0.0)
-Depends: R (>= 3.5.0)
+Depends: R (>= 4.0.0)
 Config/Needs/website:
     r-lib/pkgdown,
     epiverse-trace/epiversetheme
