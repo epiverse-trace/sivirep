@@ -5,27 +5,18 @@
 \title{Obtener la ruta del directorio donde se almacenarán
 los datos del evento o enfermedad}
 \usage{
-obtener_ruta_dir(ruta_dir = NULL, cache = FALSE, consentimiento = NULL)
+obtener_ruta_dir(ruta_dir = NULL, mensaje_error)
 }
 \arguments{
 \item{ruta_dir}{Un `character` (cadena de caracteres) que contiene la ruta
-del directorio donde se almacenarán los datos del evento o enfermedad. Si
-no se proporciona ningún valor en este parámetro, el usuario debe dar su
-consentimiento para que los datos sean almacenados temporalmente en el
-directorio del paquete (`extdata`). Su valor por defecto es `NULL`.}
+del directorio donde se almacenarán los datos del evento o enfermedad.
+Su valor por defecto es `NULL`.}
 
-\item{cache}{Un `logical` (`TRUE` o `FALSE`) que indica si los datos
-descargados deben ser almacenados en caché; su valor por defecto es `FALSE`.}
-
-\item{consentimiento}{Un `character` (cadena de caracteres) que indica si
-el usuario acepta almacenar los datos de la enfermedad o evento en el
-directorio del paquete `extdata`. Esto es útil si se desea que los
-datos se almacenen en caché y no se ha proporcionado ningún valor en el
-parámetro `ruta_dir`. Los valores permitidos son `"Si"` o `"No"`. Si se
-proporciona `"Si"`, los datos se guardarán en el directorio del paquete.
-Si se proporciona `"No"`, los datos no se guardarán y se solicitará
-especificar un valor para el parámetro `ruta_dir`. Su valor por defecto
-es `NULL`.}
+\item{mensaje_error}{Un `character` (cadena de caracteres) con
+el mensaje de error que se debe mostrar en caso de que no se
+encuentre la dirección del directorio especificada en el
+parámetro`ruta_dir` o no sea posible crear o almacenar los
+datos en el directorio de caché de `sivirep`.}
 }
 \value{
 Un `character` (cadena de caracteres) con la ruta
