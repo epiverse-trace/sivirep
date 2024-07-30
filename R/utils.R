@@ -610,7 +610,8 @@ obtener_pob_incidencia <- function(data_incidencia = NULL,
         poblacion <- "proyecciones"
         data_incidencia <- import_pob_incidencia(
           poblacion = poblacion,
-          cache = cache
+          cache = cache,
+          year = year
         )
         message(
           "Las incidencias se calcularon con las proyecciones ",
