@@ -853,33 +853,25 @@ obtener_config_map <- function(data_agrupada, dpto, mpio,
 #' @description Función que obtiene la ruta del directorio donde
 #' se almacenarán los datos del evento o enfermedad.
 #' @inheritParams import_data_event
+#' @param mensaje_error Un `character` (cadena de caracteres) con
+#' el mensaje de error que se debe mostrar en caso de que no se
+#' encuentre la dirección del directorio especificada en el
+#' parámetro`ruta_dir` o no sea posible crear o almacenar los
+#' datos en el directorio de caché de `sivirep`.
 #' @return Un `character` (cadena de caracteres) con la ruta
 #' del directorio donde se almacenarán los datos del evento o
 #' enfermedad.
 #' @keywords internal
 obtener_ruta_dir <- function(ruta_dir = NULL,
-                             cache = FALSE,
-                             consentimiento = NULL) {
-  if (!is.null(consentimiento)) {
-    if (is.null(ruta_dir) &&
-        toupper(consentimiento) == "SI") {
-      ruta_dir <- system.file("extdata", package = "sivirep")
-      if (!dir.exists(ruta_dir)) {
-        creado <- dir.create(ruta_dir, recursive = TRUE)
-        if (!creado) {
-          stop("Por favor indique en el parametro ruta_dir la ruta donde
-             desea almacenar temporalmente los datos de la enfermedad o
-             evento")
-        }
+                             mensaje_error) {
+  if (is.null(ruta_dir)) {
+    ruta_dir <- tools::R_user_dir("sivirep", which = "cache")
+    if (!dir.exists(ruta_dir)) {
+      creado <- dir.create(ruta_dir, recursive = TRUE)
+      if (!creado) {
+        stop("Por favor indique en el parametro ruta_dir la ruta donde
+             desea almacenar temporalmente ", mensaje_error)
       }
-    } else if (cache &&
-               toupper(consentimiento) == "NO") {
-      stop("Por favor indique la ruta donde desea almacenar los datos
-         de la enfermedad o evento")
-    } else if (toupper(consentimiento) == "NO") {
-      stop("Por favor indique en el parametro ruta_dir la ruta donde
-             desea almacenar temporalmente los datos de la enfermedad o
-             evento")
     }
   }
   return(ruta_dir)
