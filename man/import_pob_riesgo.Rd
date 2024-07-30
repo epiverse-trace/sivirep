@@ -4,7 +4,7 @@
 \alias{import_pob_riesgo}
 \title{Importar la población a riesgo de un evento o enfermedad}
 \usage{
-import_pob_riesgo(event, year)
+import_pob_riesgo(event, year, ruta_dir = NULL, cache = FALSE)
 }
 \arguments{
 \item{event}{Un `character` (cadena de caracteres) o un `numeric` (numérico)
@@ -12,6 +12,14 @@ con el nombre o código de la enfermedad o evento.}
 
 \item{year}{Un `numeric` (numérico) con el año deseado de la población a
 riesgo.}
+
+\item{ruta_dir}{Un `character` (cadena de caracteres) que especifica la ruta
+del directorio donde se almacenarán la población a riesgo o las proyecciones
+poblacionales DANE. Su valor por defecto es `NULL`.}
+
+\item{cache}{Un `logical` (`TRUE` o `FALSE`) que indica si la población a
+riesgo o las proyecciones poblacionales DANE descargadas deben ser
+almacenados en caché. Su valor por defecto es `FALSE`.}
 }
 \value{
 Un `data.frame` con la población a riesgo de un año específico.

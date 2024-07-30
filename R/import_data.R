@@ -349,6 +349,7 @@ import_pob_proyecciones <- function(year,
 #' con el nombre o código de la enfermedad o evento.
 #' @param year Un `numeric` (numérico) con el año deseado de la población a
 #' riesgo.
+#' @inheritParams import_pob_incidencia
 #' @return Un `data.frame` con la población a riesgo de un año específico.
 #' @examples
 #' \donttest{
