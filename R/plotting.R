@@ -280,9 +280,9 @@ plot_fecha_inisintomas <- function(data_agrupada,
   etiqueta_fecha <- obtener_val_config("label_date_ini")
   etiqueta_x <- paste0("\n", etiqueta_fecha, " por ", uni_marca, "\n")
   etiqueta_casos <- obtener_val_config("label_cases")
-  pos_leyenda <- ggplot2::theme(legend.position = "right")
+  ajustar_texto <- FALSE
   if (num_eventos > 3) {
-    pos_leyenda <- ggplot2::theme(legend.position = "bottom")
+    ajustar_texto <- TRUE
   }
   plot_casos_inisintomas <-
     ggplot2::ggplot(
@@ -308,9 +308,17 @@ plot_fecha_inisintomas <- function(data_agrupada,
       y = paste0(etiqueta_casos, "\n"),
       caption = fuente_data
     ) +
-    obtener_estetica_escala(escala = num_eventos, nombre = "Eventos") +
+    obtener_estetica_escala(
+      escala = num_eventos, nombre = "Eventos",
+      etiquetas = unique(data_plot[["nombre_evento"]]),
+      ajustar_texto = ajustar_texto
+    ) +
     tema_sivirep() +
-    pos_leyenda +
+    ggplot2::theme(
+      legend.position = "bottom",
+      legend.box = "horizontal",
+      legend.direction = "horizontal"
+    ) +
     {
       if (uni_marca != "semana") {
         ggplot2::scale_x_date(
@@ -324,10 +332,14 @@ plot_fecha_inisintomas <- function(data_agrupada,
         ggplot2::scale_x_continuous(breaks = seq(
           1,
           53,
-          2
+          1
         ))
       }
-    }
+    } +
+    ggplot2::theme(axis.text.x = ggplot2::element_text(
+      angle = 90,
+      hjust = 1
+    ))
   return(plot_casos_inisintomas)
 }
 
