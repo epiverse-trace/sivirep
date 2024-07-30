@@ -358,14 +358,16 @@ limpiar_data_sivigila <- function(data_event) {
   validar_data_event(data_event)
   data_event <- limpiar_encabezado(data_event)
   nom_cols_fechas <- obtener_val_config("dates_column_names")
-  year <- names(sort(table(data_event$ano), decreasing = TRUE)[1])
+  years <- names(sort(table(data_event$ano), decreasing = TRUE))
   data_limpia <- format_fecha(data_event,
     nomb_cols = nom_cols_fechas
   )
   nombre <- unique(data_event$nombre_evento[!is.na(data_event$nombre_evento)])
   if (length(nombre) == 1 &&
-    !stringr::str_detect(nombre, stringr::fixed("MORTALIDAD"))) {
-    data_limpia <- limpiar_fecha_event(data_limpia, year,
+    !stringr::str_detect(nombre, stringr::fixed("MORTALIDAD")) &&
+    length(years) == 1) {
+    data_limpia <- limpiar_fecha_event(data_limpia,
+      years,
       col_fecha = nom_cols_fechas[2]
     )
   }
