@@ -833,17 +833,14 @@ obtener_config_map <- function(data_agrupada, dpto, mpio,
     }
     polygon_seleccionado <- shp[shp$DPTO_CCDGO ==
       data_dept$codigo_departamento, ]
-    polygon_seleccionado$MPIO_CCDGO <-
-      paste0(
-        polygon_seleccionado$DPTO_CCDGO,
-        polygon_seleccionado$MPIO_CCDGO
-      )
-    colnames(polygon_seleccionado)[colnames(polygon_seleccionado) ==
-      "MPIO_CCDGO"] <- "id"
-  } else if (is.null(mpio)) {
-    colnames(polygon_seleccionado)[colnames(polygon_seleccionado) ==
-      "DPTO_CCDGO"] <- "id"
   }
+  polygon_seleccionado$MPIO_CCDGO <-
+    paste0(
+      polygon_seleccionado$DPTO_CCDGO,
+      polygon_seleccionado$MPIO_CCDGO
+    )
+  colnames(polygon_seleccionado)[colnames(polygon_seleccionado) ==
+    "MPIO_CCDGO"] <- "id"
   config_map <- list(
     dpto = dpto, mpio = mpio,
     poligono = polygon_seleccionado
