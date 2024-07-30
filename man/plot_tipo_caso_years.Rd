@@ -31,7 +31,7 @@ leyenda o fuente de información de los datos; su valor por defecto
 es `NULL`.}
 }
 \value{
-Un `plot` o gráfico de distribución de casos seguín su clasificación
+Un `plot` o gráfico de distribución de casos según su clasificación
 inicial y los años seleccionados.
 }
 \description{
