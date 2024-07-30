@@ -272,7 +272,7 @@ casos_tip_cas_years <- agrupar_tipo_caso(data_event = data_years_filtrada,
                                          cols_tipo = c("tip_cas", "ano"))
 ```
 
-```{r grafica-casos-tip-cas-years, fig.height = 7, fig.width = 13, fig.cap = paste0("Distribución de casos en los últimos 6 años - ", text_ext_geo)}
+```{r grafica-casos-tip-cas-years, fig.height = 7, fig.width = 13, fig.cap = paste0("Distribución de casos en los últimos 5 años - ", text_ext_geo)}
 plot_tipo_caso_years(casos_tip_cas_years)
 ```
 
