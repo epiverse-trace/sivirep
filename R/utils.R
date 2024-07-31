@@ -455,11 +455,10 @@ obtener_eventos_relacionados <- function(nombre_event, years) {
             event,
             " no esta disponible para su descarga",
             call. = FALSE
-          )
+          ) 
         } else if (!stringr::str_detect(
           grupo_events_relacionados$aa,
-          as.character(year)
-        )) {
+          as.character(year))) {
           warning("El year: ", year,
             " de la enfermedad o evento relacionado: ",
             event,
