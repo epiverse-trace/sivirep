@@ -174,7 +174,7 @@ import_data_event <- function(nombre_event,
   if (toupper(nombre_event) == "MALARIA") {
     grupo_events <-
       grupo_events[-which(grupo_events$enfermedad == nombre_event), ]
-    eventos_disponibles <- 
+    eventos_disponibles <-
       eventos_disponibles[-which(eventos_disponibles$enfermedad
                                 == nombre_event), ]
   }
