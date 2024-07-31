@@ -170,8 +170,14 @@ import_data_event <- function(nombre_event,
   nombre_event <- stringr::str_to_title(nombre_event)
   cols_remover <- obtener_val_config("cols_remover")
   grupo_events <- obtener_eventos_relacionados(nombre_event, years)
-  # Malaria dataset is formatted differently
-  grupo_events$enfermedad <- setdiff(grupo_events$enfermedad, "Malaria")
+  eventos_disponibles <- list_events()
+  if (toupper(nombre_event) == "MALARIA") {
+    grupo_events <-
+      grupo_events[-which(grupo_events$enfermedad == nombre_event), ]
+    eventos_disponibles <- 
+      eventos_disponibles[-which(eventos_disponibles$enfermedad
+                                == nombre_event), ]
+  }
   for (year in years) {
     for (event in grupo_events$enfermedad) {
       pos_event <- which(eventos_disponibles$enfermedad
