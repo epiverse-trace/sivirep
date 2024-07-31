@@ -95,10 +95,8 @@ jobs:
             Invoke-WebRequest -Uri "https://cgit.freedesktop.org/libreoffice/dictionaries/tree/es/es_ES.dic" -OutFile "es-ES.dic"
             Expand-Archive -Path "es-ES.aff" -DestinationPath "$env:LOCALAPPDATA/hunspell/dictionaries"
             Expand-Archive -Path "es-ES.dic" -DestinationPath "$env:LOCALAPPDATA/hunspell/dictionaries"
-          else
-              echo "$RUNNER_OS not supported"
-              exit 1
           fi
+        shell: bash
       - uses: r-lib/actions/check-r-package@v2
         id: rcmdcheck
         with:
