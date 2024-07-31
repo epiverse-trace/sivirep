@@ -92,16 +92,7 @@ knitr::opts_chunk$set(include = TRUE,
                       warning = FALSE,
                       message = FALSE)
 knitr::opts_knit$set(eval.after = "fig.cap")
-#library(sivirep)
-source('C:/Users/geral/Documents/TRACE/review/sivirep/R/checking_data.R')
-source('C:/Users/geral/Documents/TRACE/review/sivirep/R/cleaning_data.R')
-source('C:/Users/geral/Documents/TRACE/review/sivirep/R/utils.R')
-source('C:/Users/geral/Documents/TRACE/review/sivirep/R/import_data.R')
-source('C:/Users/geral/Documents/TRACE/review/sivirep/R/plotting.R')
-source('C:/Users/geral/Documents/TRACE/review/sivirep/R/theme_sivirep.R')
-source('C:/Users/geral/Documents/TRACE/review/sivirep/R/scraping_data.R')
-source('C:/Users/geral/Documents/TRACE/review/sivirep/R/handler_validations.R')
-library(dplyr)
+library(sivirep)
 sysfonts::font_add_google("Montserrat", "Montserrat")
 showtext::showtext_auto()
 ```
