@@ -558,4 +558,4 @@ text_casos_totales <- paste0("*   Los casos totales reportados de ",
 *  El mes de `r mes_mayor_casos` tuvo el mayor reporte.
 *  El reporte de casos de `r stringr::str_to_title(params$nombre_evento)` a lo largo de `r params$year` predominó en la población de `r age_most_cases$edad` años.
 *  El reporte de casos de `r stringr::str_to_title(params$nombre_evento)` predominó a lo largo del año en el sexo `r vals_sex$mayor[1]`.
-* La incidencia para `r text_geo` es de `r incidencia_total$incidencia` por  `r cond_incidencia$coeficiente` habitantes.
+* La incidencia para `r text_geo` en el año `r params$year` es de `r incidencia_total$incidencia` por  `r cond_incidencia$coeficiente` habitantes.
