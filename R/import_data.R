@@ -174,6 +174,21 @@ import_data_event <- function(nombre_event,
   grupo_events$enfermedad <- setdiff(grupo_events$enfermedad, "Malaria")
   for (year in years) {
     for (event in grupo_events$enfermedad) {
+      pos_event <- which(eventos_disponibles$enfermedad
+                         == event)
+      if (length(pos_event) > 0 &&
+          !stringr::str_detect(
+            eventos_disponibles[pos_event, ]$aa,
+        as.character(year)
+      )) {
+        warning("El year: ", year,
+                " de la enfermedad o evento: ",
+                event,
+                " no esta disponible para su descarga",
+                call. = FALSE
+        )
+        break
+      }
       data_url <- obtener_ruta_data_event_year(nombre_event = event,
                                                year = year)
       data_import <- import_sep_data(ruta_data = data_url,
