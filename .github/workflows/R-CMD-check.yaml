@@ -86,9 +86,9 @@ jobs:
             sudo apt-get install -y hunspell hunspell-es
           elif [[ $RUNNER_OS == 'macOS' ]]; then
             brew install hunspell
-            curl -L -o "es-ES.zip" "https://github.com/LibreOffice/dictionaries/releases/download/7.2.0/es-ES.zip"
-            unzip es-ES.zip -d /usr/local/share/hunspell
-            rm es-ES.zip
+            curl -L -o "es-ES.aff" https://raw.githubusercontent.com/wooorm/dictionaries/main/dictionaries/es/index.aff
+            curl -L -o "es-ES.dic" https://raw.githubusercontent.com/wooorm/dictionaries/main/dictionaries/es/index.dic
+            mv es-ES.aff es-ES.dic ~/Library/Spelling/
           fi
       
       - uses: r-lib/actions/check-r-package@v2
