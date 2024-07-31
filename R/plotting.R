@@ -112,8 +112,8 @@ plot_map <- function(data_agrupada,
     data_agrupada, dpto, mpio,
     cols_geo_ocurrencia, shp
   )
-  pos_col <- which(colnames(data_agrupada)
-  %in% cols_geo_ocurrencia[3])
+  pos_col <-
+    which(colnames(data_agrupada) %in% cols_geo_ocurrencia[3])
   nombres_col <- cols_geo_ocurrencia[4]
   if (!is.null(config_map$dpto)) {
     titulo <- paste0(
