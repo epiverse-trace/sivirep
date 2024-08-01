@@ -280,7 +280,6 @@ plot_fecha_inisintomas <- function(data_agrupada,
   etiqueta_fecha <- obtener_val_config("label_date_ini")
   etiqueta_x <- paste0("\n", etiqueta_fecha, " por ", uni_marca, "\n")
   etiqueta_casos <- obtener_val_config("label_cases")
-  ajustar_texto <- FALSE
   if (num_eventos > 3) {
     ajustar_texto <- TRUE
   }
@@ -313,7 +312,7 @@ plot_fecha_inisintomas <- function(data_agrupada,
     ) +
     ggplot2::scale_colour_discrete(labels =
                                      function(x)
-                                       ggplot2::str_wrap(x,
+                                       stringr::str_wrap(x,
                                                          width = 5)) +
     tema_sivirep() +
     ggplot2::theme(
