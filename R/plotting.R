@@ -309,10 +309,12 @@ plot_fecha_inisintomas <- function(data_agrupada,
       caption = fuente_data
     ) +
     obtener_estetica_escala(
-      escala = num_eventos, nombre = "Eventos",
-      etiquetas = unique(data_plot[["nombre_evento"]]),
-      ajustar_texto = ajustar_texto
+      escala = num_eventos, nombre = "Eventos"
     ) +
+    ggplot2::scale_colour_discrete(labels =
+                                     function(x)
+                                       ggplot2::str_wrap(x,
+                                                         width = 5)) +
     tema_sivirep() +
     ggplot2::theme(
       legend.position = "bottom",
