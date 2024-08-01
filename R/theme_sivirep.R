@@ -20,7 +20,9 @@ tema_sivirep <- function() {
       plot.background = ggplot2::element_blank(),
       panel.grid.major = ggplot2::element_blank(),
       panel.grid.minor = ggplot2::element_blank(),
-      panel.border = ggplot2::element_blank()
+      panel.border = ggplot2::element_blank(),
+      plot.subtitle = ggplot2::element_text(face = "bold",
+                                            hjust = 0.5)
     )
   return(tema)
 }
