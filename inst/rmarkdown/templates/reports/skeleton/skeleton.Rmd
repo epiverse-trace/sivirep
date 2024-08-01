@@ -275,7 +275,7 @@ casos_tip_cas_years <- agrupar_tipo_caso(data_event = data_years_filtrada,
                                          cols_tipo = c("tip_cas", "ano"))
 ```
 
-```{r grafica-casos-tip-cas-years, fig.height = 7, fig.width = 13, fig.cap = paste0("Distribución de casos en los últimos 5 años - ", text_ext_geo)}
+```{r grafica-casos-tip-cas-years, fig.height = 7, fig.width = 13, fig.cap = paste0("Distribución de casos en los últimos ",  years_text, " años - ", text_ext_geo)}
 plot_tipo_caso_years(casos_tip_cas_years)
 ```
 
@@ -402,13 +402,13 @@ mapa
 
 `r if (!knitr::is_html_output()) {paste0("\\newpage")}`
 
-`r if(params$mpio_distribution) {"# Distribución de casos por área geográfica"}`
+`r if(params$mpio_distribution) {"# Distribución de casos por área  geográfica de ocurrencia"}`
 
 ```{r casos-area,  results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
 dist_areas_geo <- agrupar_area_geo(data_event = data_event_filtrada)
 ```
 
-```{r grafica-casos-area, fig.height = 3, fig.width = 7, fig.cap = paste0("Distribución de casos por área geográfica - ", text_ext_geo), include = params$areas_distribution, fig.pos = "H"}
+```{r grafica-casos-area, fig.height = 3, fig.width = 7, fig.cap = paste0("Distribución de casos por área geográfica de ocurrencia - ", text_ext_geo), include = params$areas_distribution, fig.pos = "H"}
 plot_areas_geo <- plot_area_geo(data_agrupada = dist_areas_geo)
 plot_areas_geo
 ```
@@ -417,9 +417,9 @@ plot_areas_geo
 dist_top_areas_geo <- agrupar_top_area_geo(data_event = data_event_filtrada)
 ```
 
-`r if(params$municipio == "") { paste0("Los 10 ", etiqueta_geo, " que presentaron mayor número de casos por área geográfica son los siguientes:") }`
+`r if(params$municipio == "") { paste0("Los 10 ", etiqueta_geo, " que presentaron mayor número de casos por área geográfica de ocurrencia son los siguientes:") }`
 
-```{r grafica-casos-top-area, fig.height = 5, fig.width = 10, fig.cap = paste0("Distribución de los 10 ", etiqueta_geo, " con más casos por área geográfica - ", text_ext_geo), include = params$areas_distribution && params$municipio == "", fig.pos = "H", eval = params$areas_distribution && params$municipio == ""}
+```{r grafica-casos-top-area, fig.height = 5, fig.width = 10, fig.cap = paste0("Distribución de los 10 ", etiqueta_geo, " con más casos por área geográfica de ocurrencia - ", text_ext_geo), include = params$areas_distribution && params$municipio == "", fig.pos = "H", eval = params$areas_distribution && params$municipio == ""}
 plot_top_areas_geo <- plot_top_area_geo(data_agrupada = dist_top_areas_geo)
 plot_top_areas_geo
 ```
