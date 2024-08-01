@@ -663,16 +663,16 @@ plot_dptos <- function(data_agrupada,
                        col_dptos = NULL,
                        fuente_data = NULL) {
   validar_data_agrupada(data_agrupada)
+  cols_geo_ocurrencia <-
+    obtener_tip_ocurren_geo(
+      nombre_event =
+        data_agrupada[["nombre_evento"]][1]
+    )
   if (is.null(fuente_data)) {
     fuente_data <-
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
   }
   if (is.null(col_dptos)) {
-    cols_geo_ocurrencia <-
-      obtener_tip_ocurren_geo(
-        nombre_event =
-          data_agrupada[["nombre_evento"]][1]
-      )
     if (length(cols_geo_ocurrencia) > 1) {
       col_dptos <- cols_geo_ocurrencia[2]
     }
@@ -681,6 +681,11 @@ plot_dptos <- function(data_agrupada,
       "El parametro col_dptos debe ser una cadena de caracteres" =
         is.character(col_dptos)
     )
+  }
+  subtitulo <- obtener_val_config("label_geo_analysis")
+  if (length(cols_geo_ocurrencia) > 1) {
+    subtitulo <- paste0(subtitulo, cols_geo_ocurrencia[5],
+                        "\n")
   }
   etiqueta_casos <- obtener_val_config("label_cases")
   num_eventos <- length(unique(data_agrupada[["nombre_evento"]]))
@@ -712,6 +717,7 @@ plot_dptos <- function(data_agrupada,
       fill = "#2274BB",
       orientation = "y"
     ) +
+    ggplot2::ggtitle(label = "", subtitle = subtitulo) +
     ggplot2::labs(
       x = paste0(etiqueta_casos, "\n"),
       y = "\nDepartamento\n",
@@ -750,16 +756,16 @@ plot_mpios <- function(data_agrupada,
                        col_mpios = NULL,
                        fuente_data = NULL) {
   validar_data_agrupada(data_agrupada)
+  cols_geo_ocurrencia <-
+    obtener_tip_ocurren_geo(
+      nombre_event =
+        data_agrupada[["nombre_evento"]][1]
+    )
   if (is.null(fuente_data)) {
     fuente_data <-
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
   }
   if (is.null(col_mpios)) {
-    cols_geo_ocurrencia <-
-      obtener_tip_ocurren_geo(
-        nombre_event =
-          data_agrupada[["nombre_evento"]][1]
-      )
     if (length(cols_geo_ocurrencia) > 1) {
       col_mpios <- cols_geo_ocurrencia[4]
     }
@@ -768,6 +774,11 @@ plot_mpios <- function(data_agrupada,
       "El parametro col_mpios debe ser una cadena de caracteres" =
         is.character(col_mpios)
     )
+  }
+  subtitulo <- obtener_val_config("label_geo_analysis")
+  if (length(cols_geo_ocurrencia) > 1) {
+    subtitulo <- paste0(subtitulo, cols_geo_ocurrencia[5],
+                        "\n")
   }
   etiqueta_casos <- obtener_val_config("label_cases")
   num_eventos <- length(unique(data_agrupada[["nombre_evento"]]))
@@ -799,6 +810,7 @@ plot_mpios <- function(data_agrupada,
       fill = "#2274BB",
       orientation = "y"
     ) +
+    ggplot2::ggtitle(label = "", subtitle = subtitulo) +
     ggplot2::labs(
       x = paste0(etiqueta_casos, "\n"),
       y = "\nMunicipio\n",
@@ -988,6 +1000,8 @@ plot_tabla_tipos_event <- function(data_agrupada,
   )
   etiqueta_cod <- obtener_val_config("label_code")
   caption_tabla <- obtener_val_config("caption_table_events")
+  data_agrupada <- data_agrupada[order(data_agrupada[["casos"]],
+                                       decreasing = TRUE), ]
   data_agrupada[[col_event]] <-
     stringr::str_to_title(data_agrupada[[col_event]])
   tabla_tipos <- kableExtra::kbl(
