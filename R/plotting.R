@@ -280,9 +280,6 @@ plot_fecha_inisintomas <- function(data_agrupada,
   etiqueta_fecha <- obtener_val_config("label_date_ini")
   etiqueta_x <- paste0("\n", etiqueta_fecha, " por ", uni_marca, "\n")
   etiqueta_casos <- obtener_val_config("label_cases")
-  if (num_eventos > 3) {
-    ajustar_texto <- TRUE
-  }
   plot_casos_inisintomas <-
     ggplot2::ggplot(
       data_plot,
