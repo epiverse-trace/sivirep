@@ -247,6 +247,7 @@ data_years_filtrada <- geo_filtro(data_event = data_years_limpia,
                                   dpto = params$departamento)
 }
 casos_years <- agrupar_years(data_event = data_years_filtrada)
+years_text <- length(unique(casos_years[["ano"]]))
 altura_fig_years <- 5
 eventos <- unique(casos_years[["cod_eve"]])
 if (length(eventos) > 3) {
@@ -254,7 +255,7 @@ if (length(eventos) > 3) {
 }
 ```
 
-```{r grafica-casos-years, fig.height = altura_fig_years, fig.width = 11, fig.cap = paste0("Distribución de casos en los últimos 5 años - ", text_ext_geo)}
+```{r grafica-casos-years, fig.height = altura_fig_years, fig.width = 11, fig.cap = paste0("Distribución de casos en los últimos ",  years_text, " años - ", text_ext_geo)}
 plot_years(casos_years)
 ```
 
