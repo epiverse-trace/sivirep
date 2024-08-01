@@ -455,8 +455,18 @@ import_shape_map <- function() {
   carpeta_base <- config::get(file = archivo_config, "map_shape_folder")
   ruta_base <- file.path("extdata", carpeta_base,
                          config::get(file = archivo_config, "map_shape_file"))
+  if (!file.exists(ruta_base) && file.exists(ruta_zip)) {
+    utils::unzip(zipfile = ruta_zip, exdir = ruta_extdata)
+  }
   dsn <-  system.file(ruta_base,
                       package = "sivirep")
-  shp <- sf::st_read(dsn = dsn, quiet = TRUE)
+  if (!file.exists(dsn) && file.exists(ruta_zip)) {
+    utils::unzip(zipfile = ruta_zip, exdir = ruta_extdata)
+  }
+  if (file.exists(dsn)) {
+    shp <- sf::st_read(dsn = dsn, quiet = TRUE)
+  } else {
+    stop("No es posible obtener el Shapefile del mapa")
+  }
   return(shp)
 }
