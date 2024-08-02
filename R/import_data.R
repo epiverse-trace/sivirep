@@ -146,10 +146,10 @@ list_events <- function() {
 #'                   cache = TRUE)
 #' }
 #' \donttest{
-#' import_data_event(nombre_event = "ZIKA",
+#' import_data_event(nombre_event = "CHAGAS",
 #'                   years = c(2019, 2020),
 #'                   cache = TRUE)
-#' import_data_event(nombre_event = "ZIKA",
+#' import_data_event(nombre_event = "CHAGAS",
 #'                   years = seq(2018, 2020),
 #'                   cache = TRUE)
 #' }
