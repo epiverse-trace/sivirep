@@ -876,7 +876,7 @@ obtener_ruta_dir <- function(ruta_dir = NULL,
       creado <- dir.create(ruta_dir, recursive = TRUE)
       if (!creado) {
         stop("Por favor indique en el parametro ruta_dir la ruta donde
-             desea almacenar temporalmente ", mensaje_error)
+             desea almacenar ", mensaje_error)
       }
     }
   }
