@@ -17,6 +17,7 @@
 #' nombre del departamento; su valor por defecto `NULL`.
 #' @param mpio Un `character` (cadena de caracteres) que contiene el
 #' nombre del municipio; su valor por defecto `NULL`.
+#' @inheritParams import_shape_map
 #' @return Un `plot` o mapa por departamentos o municipios con el número de
 #' casos o incidencia de un evento o enfermedad específica.
 #' @examples
@@ -70,7 +71,9 @@ plot_map <- function(data_agrupada,
                      col_codigos = NULL,
                      fuente_data = NULL,
                      dpto = NULL,
-                     mpio = NULL) {
+                     mpio = NULL,
+                     ruta_dir = NULL,
+                     cache = FALSE) {
   validar_data_agrupada(data_agrupada)
   titulo <- "Colombia"
   subtitulo <- obtener_val_config("label_geo_analysis")
@@ -78,7 +81,7 @@ plot_map <- function(data_agrupada,
   nombres_col <- NULL
   pos_col <- NULL
   etiqueta_relleno <- "Casos"
-  shp <- import_shape_map()
+  shp <- import_shape_map(ruta_dir, cache)
   if (is.null(fuente_data)) {
     fuente_data <- "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
   }

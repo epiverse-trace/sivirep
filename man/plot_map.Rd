@@ -10,7 +10,9 @@ plot_map(
   col_codigos = NULL,
   fuente_data = NULL,
   dpto = NULL,
-  mpio = NULL
+  mpio = NULL,
+  ruta_dir = NULL,
+  cache = FALSE
 )
 }
 \arguments{
@@ -35,6 +37,14 @@ nombre del departamento; su valor por defecto `NULL`.}
 
 \item{mpio}{Un `character` (cadena de caracteres) que contiene el
 nombre del municipio; su valor por defecto `NULL`.}
+
+\item{ruta_dir}{Un `character` (cadena de caracteres) que contiene la
+ruta del directorio donde se almacenará el Shapefile del mapa de
+Colombia. Su valor por defecto es `NULL`.}
+
+\item{cache}{Un `logical` (`TRUE` o `FALSE`) que indica si el Shapefile
+del mapa de Colombia debe ser almacenado en caché. Su valor por defecto
+es `FALSE`.}
 }
 \value{
 Un `plot` o mapa por departamentos o municipios con el número de
