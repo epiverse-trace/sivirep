@@ -52,12 +52,11 @@ obtener_estetica_escala <- function(escala = 0, nombre,
       name = nombre
     )
     if (!is.null(etiquetas)) {
-      if (ajustar_texto) {
-        relleno_escala$labels <-
-          stringr::str_wrap(etiquetas, 5)
-      } else {
         relleno_escala$labels <- etiquetas
-      }
+    }
+    if (ajustar_texto) {
+      relleno_escala$labels <- function(x) 
+        stringr::str_wrap(x, width = 5)
     }
   }
   return(relleno_escala)
