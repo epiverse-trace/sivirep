@@ -4,7 +4,16 @@
 \alias{import_shape_map}
 \title{Importar el Shapefile del mapa de Colombia}
 \usage{
-import_shape_map()
+import_shape_map(ruta_dir = NULL, cache = FALSE)
+}
+\arguments{
+\item{ruta_dir}{Un `character` (cadena de caracteres) que contiene la
+ruta del directorio donde se almacenará el Shapefile del mapa de
+Colombia. Su valor por defecto es `NULL`.}
+
+\item{cache}{Un `logical` (`TRUE` o `FALSE`) que indica si el Shapefile
+del mapa de Colombia debe ser almacenado en caché. Su valor por defecto
+es `FALSE`.}
 }
 \value{
 Un objeto `sf` que contiene los elementos del Shapefile
