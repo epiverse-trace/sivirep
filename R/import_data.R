@@ -442,10 +442,14 @@ import_pob_riesgo <- function(event, year,
 #' @param ruta_dir Un `character` (cadena de caracteres) que contiene la
 #' ruta del directorio donde se almacenará el Shapefile del mapa de
 #' Colombia. Su valor por defecto es `NULL`.
+#' @param cache Un `logical` (`TRUE` o `FALSE`) que indica si el Shapefile
+#' del mapa de Colombia debe ser almacenado en caché. Su valor por defecto
+#' es `FALSE`.
 #' @return Un objeto `sf` que contiene los elementos del Shapefile
 #' del mapa.
 #' @keywords internal
 import_shape_map <- function(ruta_dir = NULL,
+                             cache = FALSE) {
   ruta_dir <- obtener_ruta_dir(ruta_dir = ruta_dir,
                                "el Shapefile del mapa")
   archivo_zip <- obtener_val_config("map_shape_zip_file")
@@ -462,6 +466,10 @@ import_shape_map <- function(ruta_dir = NULL,
     shp <- sf::st_read(dsn = ruta_shape, quiet = TRUE)
   } else {
     stop("No es posible obtener el Shapefile del mapa")
+  }
+  if (!cache) {
+    unlink(file.path(ruta_dir, carpeta_base), recursive = TRUE)
+    file.remove(file.path(ruta_dir, ruta_zip))
   }
   return(shp)
 }
