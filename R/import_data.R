@@ -468,7 +468,6 @@ import_shape_map <- function(ruta_dir = NULL,
     stop("No es posible obtener el Shapefile del mapa")
   }
   if (!cache) {
-    unlink(file.path(ruta_dir, carpeta_base), recursive = TRUE)
     file.remove(file.path(ruta_dir, ruta_zip))
   }
   return(shp)
