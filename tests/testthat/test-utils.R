@@ -111,6 +111,14 @@ test_that("`obtener_info_depts` funciona correctamente", {
   )
   expect_s3_class(result_mpio, "data.frame")
   expect_equal(nrow(result_mpio), 1)
+  
+  result_mpio <- obtener_info_depts(
+    dpto = "bogota dc",
+    mpio = "bogota dc"
+  )
+  expect_s3_class(result_mpio, "data.frame")
+  expect_equal(nrow(result_mpio), 1)
+  
 })
 
 test_that("`obtener_info_depts` maneja errores correctamente", {
