@@ -439,32 +439,27 @@ import_pob_riesgo <- function(event, year,
 
 #' @title Importar el Shapefile del mapa de Colombia
 #' @description Función que importa el Shapefile del mapa de Colombia.
+#' @param ruta_dir Un `character` (cadena de caracteres) que contiene la
+#' ruta del directorio donde se almacenará el Shapefile del mapa de
+#' Colombia. Su valor por defecto es `NULL`.
 #' @return Un objeto `sf` que contiene los elementos del Shapefile
 #' del mapa.
 #' @keywords internal
-import_shape_map <- function() {
-  ruta_extdata <- system.file("extdata", package = "sivirep")
-  archivo_config <- system.file("extdata", "config.yml", package = "sivirep")
-  archivo_zip <- config::get(file = archivo_config, "map_shape_zip_file")
-  ruta_zip <- file.path(ruta_extdata, archivo_zip)
+import_shape_map <- function(ruta_dir = NULL,
+  ruta_dir <- obtener_ruta_dir(ruta_dir = ruta_dir,
+                               "el Shapefile del mapa")
+  archivo_zip <- obtener_val_config("map_shape_zip_file")
+  ruta_zip <- file.path(ruta_dir, archivo_zip)
   if (!file.exists(ruta_zip)) {
-    url_base <- config::get(file = archivo_config, "map_shape_path")
+    url_base <- obtener_val_config("map_shape_path")
     utils::download.file(url_base, ruta_zip)
-    utils::unzip(zipfile = ruta_zip, exdir = ruta_extdata)
+    utils::unzip(zipfile = ruta_zip, exdir = ruta_dir)
   }
-  carpeta_base <- config::get(file = archivo_config, "map_shape_folder")
-  ruta_base <- file.path("extdata", carpeta_base,
-                         config::get(file = archivo_config, "map_shape_file"))
-  if (!file.exists(ruta_base) && file.exists(ruta_zip)) {
-    utils::unzip(zipfile = ruta_zip, exdir = ruta_extdata)
-  }
-  dsn <-  system.file(ruta_base,
-                      package = "sivirep")
-  if (!file.exists(dsn) && file.exists(ruta_zip)) {
-    utils::unzip(zipfile = ruta_zip, exdir = ruta_extdata)
-  }
-  if (file.exists(dsn)) {
-    shp <- sf::st_read(dsn = dsn, quiet = TRUE)
+  carpeta_base <- obtener_val_config("map_shape_folder")
+  ruta_shape <- file.path(ruta_dir, carpeta_base,
+                          obtener_val_config("map_shape_file"))
+  if (file.exists(ruta_shape)) {
+    shp <- sf::st_read(dsn = ruta_shape, quiet = TRUE)
   } else {
     stop("No es posible obtener el Shapefile del mapa")
   }
