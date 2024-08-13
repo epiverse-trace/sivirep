@@ -28,7 +28,7 @@ title: \textcolor{colortitle}{.}
 subtitle: ""
 params:
   nombre_evento:
-    value: "Dengue"
+    value: "Chagas"
     label: Enfermedad
     input: select
     choices: !r sivirep::list_events()$enfermedad
