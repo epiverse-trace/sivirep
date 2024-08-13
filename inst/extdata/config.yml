@@ -9,7 +9,16 @@ default:
   cols_remover: ["particion", "consecutive", "consecutive2", "separacion"]
   geo_data_path: "https://www.datos.gov.co/api/views/gdxc-w37w/rows.csv?accessType=DOWNLOAD"
   data_folder: "data/"
-  additional_diseases: ["Malaria", "Intento De Suicidio", "Zika"]
+  additional_diseases:
+  - event: "Malaria"
+    start_year: 2007
+    final_year: 2023
+  - event: "Intento De Suicidio"
+    start_year: 2016
+    final_year: 2023
+  - event: "Zika"
+    start_year: 2015
+    final_year: 2023
   related_diseases: {"MORTALIDAD MATERNA": "MORBILIDAD MATERNA EXTREMA"}
   dates_column_names: ["fecha_nto", "fec_not", "ini_sin", "fec_hos", "fec_def", "fec_con"]
   depto_column_names: ["cod_dpto_o", "cod_dpto_r"]

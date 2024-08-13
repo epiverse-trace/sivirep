@@ -114,8 +114,16 @@ list_events <- function() {
     i <- i + 2
   }
   events_adicionales <- obtener_val_config("additional_diseases")
-  nomb_events <- c(stringr::str_to_title(nomb_events), events_adicionales)
-  years_events <- c(years_events, rep_len("", length(events_adicionales)))
+  nomb_events_ad <- list()
+  years_ad <- list()
+  for (adicional in events_adicionales) {
+    nomb_events_ad[[length(nomb_events_ad) + 1]] <- adicional$event
+    years_ad[[length(years_ad) + 1]] <- paste(seq(adicional$start_year,
+              adicional$final_year), collapse = ", ")
+  }
+  nomb_events <- c(stringr::str_to_title(nomb_events),
+                   unlist(nomb_events_ad))
+  years_events <- c(years_events, unlist(years_ad))
   list_events <- data.frame(enfermedad = nomb_events,
                             aa = years_events)
   list_events <- list_events[order(list_events$enfermedad,
@@ -193,7 +201,7 @@ import_data_event <- function(nombre_event,
                 " no esta disponible para su descarga",
                 call. = FALSE
         )
-        next
+        #next
       }
       data_url <- obtener_ruta_data_event_year(nombre_event = event,
                                                year = year)
@@ -212,7 +220,10 @@ import_data_event <- function(nombre_event,
           data_import[, -indice_cols_eve]
         nombre_cols <- names(data_import)
       }
-      nombre_cols <- nombre_cols[-which(nombre_cols %in% cols_remover)]
+      indices_cols_remov <- which(nombre_cols %in% cols_remover)
+      if (length(indices_cols_remov) != 0) {
+        nombre_cols <- nombre_cols[-indices_cols_remov]
+      }
       data_event <- c(data_event, list(data_import[, nombre_cols]))
     }
   }
@@ -466,9 +477,6 @@ import_shape_map <- function(ruta_dir = NULL,
     shp <- sf::st_read(dsn = ruta_shape, quiet = TRUE)
   } else {
     stop("No es posible obtener el Shapefile del mapa")
-  }
-  if (!cache) {
-    file.remove(file.path(ruta_dir, ruta_zip))
   }
   return(shp)
 }
