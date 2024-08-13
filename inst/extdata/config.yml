@@ -6,7 +6,7 @@ default:
   query_path_microdata: "items?$select=*,FileRef&$filter=(A_x00f1_o%20eq%20%27_year_%27)and(NombreEvento%20eq%20%27_disease_%27)"
   query_diseases_by_year_path: "https://portalsivigila.ins.gov.co/_api/web/lists/GetByTitle('Microdatos')/items?$select=Evento,A_x00f1_o,NombreEvento&$orderby=NombreEvento%20asc&$top=1000"
   data_delim: ["|", "," , ";", ":", "-"]
-  cols_remover: ["particion", "consecutive", "consecutive2", "separacion"]
+  cols_remover: ["particion", "consecutive", "consecutive2", "separacion", "consecutive_12"]
   geo_data_path: "https://www.datos.gov.co/api/views/gdxc-w37w/rows.csv?accessType=DOWNLOAD"
   data_folder: "data/"
   additional_diseases:
