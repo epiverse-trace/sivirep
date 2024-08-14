@@ -8,7 +8,7 @@ lang: es
 reference:
 - title: Importacion de datos
   contents: 
-    - contains("importar")
+    - contains("import")
     - contains("list_events")
 - title: Limpieza de datos
   contents: 
@@ -18,7 +18,9 @@ reference:
     - contains("remove")
     - contains("convert")
 - title: Distribuciones y agrupaciones por variable
-  contents: contains("agrupar")
+  contents: 
+    - contains("agrupar")
+    - contains("filtro")
 - title: Cálculo de la incidencia
   contents: contains("calcular")
 - title: Generación de gráficas, mapas y tablas
