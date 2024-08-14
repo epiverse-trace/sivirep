@@ -201,7 +201,7 @@ import_data_event <- function(nombre_event,
                 " no esta disponible para su descarga",
                 call. = FALSE
         )
-        #next
+        next
       }
       data_url <- obtener_ruta_data_event_year(nombre_event = event,
                                                year = year)
