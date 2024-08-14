@@ -118,8 +118,8 @@ list_events <- function() {
   years_ad <- list()
   for (adicional in events_adicionales) {
     nomb_events_ad[[length(nomb_events_ad) + 1]] <- adicional$event
-    years_ad[[length(years_ad) + 1]] <- paste(seq(adicional$start_year,
-              adicional$final_year), collapse = ", ")
+    years_ad[[length(years_ad) + 1]] <- toString(seq(adicional$start_year,
+              adicional$final_year))
   }
   nomb_events <- c(stringr::str_to_title(nomb_events),
                    unlist(nomb_events_ad))
