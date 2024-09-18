@@ -31,7 +31,7 @@ geo_filtro <- function(data_event, dpto = NULL, mpio = NULL) {
       "El departamento o municipio ingresado no existe" = nrow(dept_data) > 0
     )
     dept_data <- dept_data[1, ]
-    cols_ocurren <- obtener_tip_ocurren_geo(data_event$cod_eve[1])
+    cols_ocurren <- obtener_tip_ocurren_geo(data_event[["cod_eve"]][1])
   }
   if (!is.null(dept_data)) {
     data_dept_filt <-
