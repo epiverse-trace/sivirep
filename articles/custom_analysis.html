@@ -33,7 +33,7 @@
     <a href="https://epiverse-trace.github.io/" class="external-link"><img src="https://epiverse-trace.github.io/blueprints/logo_white.svg" id="logo" alt="Epiverse-TRACE"></a>
     <a class="navbar-brand me-2" href="../index.html">sivirep</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Versión publicada">0.0.9</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Versión publicada">1.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Cambiar la navegación">
@@ -52,6 +52,7 @@
     <li><a class="dropdown-item" href="../articles/resources.html">Recursos</a></li>
   </ul>
 </li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">Registro de cambios</a></li>
       </ul>
 <ul class="navbar-nav">
 <li class="nav-item"><form class="form-inline" role="search">
@@ -119,8 +120,10 @@ obtener la información, <code>import_data_event</code> es la función que
 permite la importación de datos desde la fuente de SIVIGILA utilizando
 un formato parametrizado basado en la enfermedad y el año.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">data_event</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/import_data_event.html">import_data_event</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2020</span>,</span>
-<span>                                nombre_event <span class="op">=</span> <span class="st">"Dengue"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">data_event</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/import_data_event.html">import_data_event</a></span><span class="op">(</span></span>
+<span>  year <span class="op">=</span> <span class="fl">2020</span>,</span>
+<span>  nombre_event <span class="op">=</span> <span class="st">"Dengue"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <blockquote>
 <p>💡 <strong>Tip</strong>: Evita retrasos en el tiempo al importar los
 datos</p>
@@ -176,8 +179,10 @@ datos de enfermedades por departamento o nombre del municipio llamada
 nivel subnacional, seleccionando casos específicos basados en la
 ubicación geográfica.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">data_event_filtrada</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geo_filtro.html">geo_filtro</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_event</span>,</span>
-<span>                                  dpto <span class="op">=</span> <span class="st">"Choco"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">data_event_filtrada</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geo_filtro.html">geo_filtro</a></span><span class="op">(</span></span>
+<span>  data_event <span class="op">=</span> <span class="va">data_event</span>,</span>
+<span>  dpto <span class="op">=</span> <span class="st">"Choco"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="distribución-temporal-de-casos">4. Distribución temporal de casos<a class="anchor" aria-label="anchor" href="#distribuci%C3%B3n-temporal-de-casos"></a>
@@ -195,8 +200,10 @@ síntomas, es necesario agrupar los datos por estas variables.
 <code>sivirep</code> proporciona una función que permite esta agrupación
 llamada <code>agrupar_fecha_inisintomas</code>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">casos_ini_sintomas</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/agrupar_fecha_inisintomas.html">agrupar_fecha_inisintomas</a></span><span class="op">(</span>data_event <span class="op">=</span></span>
-<span>                                                  <span class="va">data_event</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">casos_ini_sintomas</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/agrupar_fecha_inisintomas.html">agrupar_fecha_inisintomas</a></span><span class="op">(</span></span>
+<span>  data_event <span class="op">=</span></span>
+<span>    <span class="va">data_event</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <blockquote>
 <p>💡 <strong>Tip</strong>: Obtén los primeros n meses con más casos</p>
 <p>Al construir una sección del reporte o analizar estos datos, puede
@@ -209,8 +216,10 @@ con la función <code>plot_fecha_inisintomas</code>. Ten en cuenta que,
 incluso si has agrupado los datos por día, es posible que prefieras
 representarlo por semana epidemiológica, como en:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_fecha_inisintomas.html">plot_fecha_inisintomas</a></span><span class="op">(</span>data_agrupada <span class="op">=</span> <span class="va">casos_ini_sintomas</span>,</span>
-<span>                       uni_marca <span class="op">=</span> <span class="st">"semanaepi"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_fecha_inisintomas.html">plot_fecha_inisintomas</a></span><span class="op">(</span></span>
+<span>  data_agrupada <span class="op">=</span> <span class="va">casos_ini_sintomas</span>,</span>
+<span>  uni_marca <span class="op">=</span> <span class="st">"semanaepi"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p><img src="custom_analysis_files/figure-html/plot-fecha-inicio-sintomas-1.png" width="768"></p>
 </div>
 </div>
@@ -228,8 +237,10 @@ embargo, la fuente de SIVIGILA solo registra el sexo.</p>
 automáticamente los porcentajes por sexo después del proceso de
 limpieza.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">casos_sex</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/agrupar_sex.html">agrupar_sex</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_event</span>,</span>
-<span>                         porcentaje <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">casos_sex</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/agrupar_sex.html">agrupar_sex</a></span><span class="op">(</span></span>
+<span>  data_event <span class="op">=</span> <span class="va">data_event</span>,</span>
+<span>  porcentaje <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p>Además, <code>sivirep</code> cuenta con una función para generar el
 gráfico por esta variable llamada <code>plot_sex</code>:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
@@ -279,8 +290,10 @@ enfermedades por rangos de edad y sexo de forma simultánea y obtener el
 número de casos y los porcentajes correspondientes. Además, permite
 personalizar el intervalo de edad.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">casos_edad_sex</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/agrupar_edad_sex.html">agrupar_edad_sex</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_event</span>,</span>
-<span>                                   interval_edad <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">casos_edad_sex</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/agrupar_edad_sex.html">agrupar_edad_sex</a></span><span class="op">(</span></span>
+<span>  data_event <span class="op">=</span> <span class="va">data_event</span>,</span>
+<span>  interval_edad <span class="op">=</span> <span class="fl">10</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p>La función de visualización correspondiente es
 <code>plot_edad_sex</code>.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
@@ -298,8 +311,10 @@ llamadas departamentos. <code>sivirep</code> proporciona una función
 llamada <code>agrupar_mpio</code> que permite obtener un data.frame de
 casos agrupados por departamento o municipio.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">dist_esp_dept</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/agrupar_mpio.html">agrupar_mpio</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_event_filtrada</span>,</span>
-<span>                             dpto <span class="op">=</span> <span class="st">"Choco"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">dist_esp_dept</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/agrupar_mpio.html">agrupar_mpio</a></span><span class="op">(</span></span>
+<span>  data_event <span class="op">=</span> <span class="va">data_event_filtrada</span>,</span>
+<span>  dpto <span class="op">=</span> <span class="st">"Choco"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 <p>Actualmente, con la función llamada <code>plot_map</code>, el usuario
 puede generar un mapa estático de Colombia que muestra la distribución
 de casos por departamentos y municipios.</p>
@@ -325,11 +340,11 @@ agregación.</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Desarrollado por Geraldine Gómez-Millán, Zulma M. Cucunubá, Jennifer A. Mendez-Romero, Claudia Huguett-Aragón.</p>
+  <p>Desarrollado por Geraldine Gómez-Millán, Zulma M. Cucunubá, Jennifer A. Mendez-Romero, Claudia Huguett-Aragón, International Development Research Center (IDRC).</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Sitio creado con <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.9000.</p>
+  <p>Sitio creado con <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.9000.</p>
 </div>
 
     </footer>

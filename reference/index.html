@@ -13,7 +13,7 @@
     <a href="https://epiverse-trace.github.io/" class="external-link"><img src="https://epiverse-trace.github.io/blueprints/logo_white.svg" id="logo" alt="Epiverse-TRACE"></a>
     <a class="navbar-brand me-2" href="../index.html">sivirep</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Versión publicada">0.0.9</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Versión publicada">1.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Cambiar la navegación">
@@ -29,6 +29,7 @@
     <li><a class="dropdown-item" href="../articles/custom_analysis.html">Análisis personalizados</a></li>
     <li><a class="dropdown-item" href="../articles/resources.html">Recursos</a></li>
   </ul></li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">Registro de cambios</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Buscar" data-search-index="../search.json"></form></li>
 <li class="nav-item"><a class="external-link nav-link" href="https://github.com/epiverse-trace/sivirep/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
@@ -49,7 +50,107 @@
     </div>
 
     <div class="section level2">
-      <h2 id="todas-las-funciones">Todas las funciones<a class="anchor" aria-label="anchor" href="#todas-las-funciones"></a></h2>
+      <h2 id="importacion-de-datos">Importacion de datos<a class="anchor" aria-label="anchor" href="#importacion-de-datos"></a></h2>
+
+
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="import_data_event.html">import_data_event()</a></code>
+
+        </dt>
+        <dd>Importar los datos de una enfermedad o evento por año desde los microdatos del SIVIGILA</dd>
+      </dl><dl><dt>
+
+          <code><a href="import_geo_cods.html">import_geo_cods()</a></code>
+
+        </dt>
+        <dd>Importar datos geográficos de Colombia</dd>
+      </dl><dl><dt>
+
+          <code><a href="import_pob_incidencia.html">import_pob_incidencia()</a></code>
+
+        </dt>
+        <dd>Importar la población para efectuar el cálculo de la incidencia</dd>
+      </dl><dl><dt>
+
+          <code><a href="import_pob_proyecciones.html">import_pob_proyecciones()</a></code>
+
+        </dt>
+        <dd>Importar las proyecciones DANE del año 2005 hasta el 2035</dd>
+      </dl><dl><dt>
+
+          <code><a href="import_pob_riesgo.html">import_pob_riesgo()</a></code>
+
+        </dt>
+        <dd>Importar la población a riesgo de un evento o enfermedad</dd>
+      </dl><dl><dt>
+
+          <code><a href="list_events.html">list_events()</a></code>
+
+        </dt>
+        <dd>Importar enfermedades y años disponibles para su descarga desde los microdatos del SIVIGILA</dd>
+      </dl></div><div class="section level2">
+      <h2 id="limpieza-de-datos">Limpieza de datos<a class="anchor" aria-label="anchor" href="#limpieza-de-datos"></a></h2>
+
+
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="limpiar_data_sivigila.html">limpiar_data_sivigila()</a></code>
+
+        </dt>
+        <dd>Limpiar datos de SIVIGILA</dd>
+      </dl><dl><dt>
+
+          <code><a href="limpiar_edad_event.html">limpiar_edad_event()</a></code>
+
+        </dt>
+        <dd>Limpiar las edades de los datos de una enfermedad o evento</dd>
+      </dl><dl><dt>
+
+          <code><a href="limpiar_encabezado.html">limpiar_encabezado()</a></code>
+
+        </dt>
+        <dd>Limpiar las etiquetas del encabezado</dd>
+      </dl><dl><dt>
+
+          <code><a href="limpiar_fecha_event.html">limpiar_fecha_event()</a></code>
+
+        </dt>
+        <dd>Limpiar fechas de los datos de una enfermedad o evento</dd>
+      </dl><dl><dt>
+
+          <code><a href="limpiar_val_atipic.html">limpiar_val_atipic()</a></code>
+
+        </dt>
+        <dd>Limpiar los valores atípicos de los datos</dd>
+      </dl><dl><dt>
+
+          <code><a href="estandarizar_geo_cods.html">estandarizar_geo_cods()</a></code>
+
+        </dt>
+        <dd>Estandarizar códigos geográficos de los datos de una enfermedad o evento</dd>
+      </dl><dl><dt>
+
+          <code><a href="convert_edad.html">convert_edad()</a></code>
+
+        </dt>
+        <dd>Convertir edad a años</dd>
+      </dl></div><div class="section level2">
+      <h2 id="distribuciones-y-agrupaciones-por-variable">Distribuciones y agrupaciones por variable<a class="anchor" aria-label="anchor" href="#distribuciones-y-agrupaciones-por-variable"></a></h2>
 
 
 
@@ -154,8 +255,25 @@
           <code><a href="agrupar_years.html">agrupar_years()</a></code>
 
         </dt>
-        <dd>Agrupar por los años de una enfermedad o evento</dd>
+        <dd>Agrupar por años de una enfermedad o evento</dd>
       </dl><dl><dt>
+
+          <code><a href="geo_filtro.html">geo_filtro()</a></code>
+
+        </dt>
+        <dd>Filtrar por departamentos y municipios</dd>
+      </dl></div><div class="section level2">
+      <h2 id="c-lculo-de-la-incidencia">Cálculo de la incidencia<a class="anchor" aria-label="anchor" href="#c-lculo-de-la-incidencia"></a></h2>
+
+
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
 
           <code><a href="calcular_incidencia.html">calcular_incidencia()</a></code>
 
@@ -173,163 +291,18 @@
 
         </dt>
         <dd>Calcular incidencia por sexo</dd>
-      </dl><dl><dt>
+      </dl></div><div class="section level2">
+      <h2 id="generaci-n-de-gr-ficas-mapas-y-tablas">Generación de gráficas, mapas y tablas<a class="anchor" aria-label="anchor" href="#generaci-n-de-gr-ficas-mapas-y-tablas"></a></h2>
 
-          <code><a href="convert_edad.html">convert_edad()</a></code>
 
-        </dt>
-        <dd>Convertir edad a años</dd>
-      </dl><dl><dt>
 
-          <code><a href="dengue2020.html">dengue2020</a></code>
 
-        </dt>
-        <dd>Datos Dengue 2020 del SIVIGILA en sivirep</dd>
-      </dl><dl><dt>
+    </div><div class="section level2">
 
-          <code><a href="divipoladata.html">divipoladata</a></code>
 
-        </dt>
-        <dd>Códigos e información geografica del DIVIPOLA en sivirep</dd>
-      </dl><dl><dt>
 
-          <code><a href="estandarizar_geo_cods.html">estandarizar_geo_cods()</a></code>
 
-        </dt>
-        <dd>Estandarizar códigos geográficos de los datos de una enfermedad o evento</dd>
-      </dl><dl><dt>
-
-          <code><a href="geo_filtro.html">geo_filtro()</a></code>
-
-        </dt>
-        <dd>Filtrar por departamentos y municipios</dd>
-      </dl><dl><dt>
-
-          <code><a href="import_data_event.html">import_data_event()</a></code>
-
-        </dt>
-        <dd>Importar los datos de una enfermedad o evento por año desde los microdatos del SIVIGILA</dd>
-      </dl><dl><dt>
-
-          <code><a href="import_geo_cods.html">import_geo_cods()</a></code>
-
-        </dt>
-        <dd>Importar datos geográficos de Colombia</dd>
-      </dl><dl><dt>
-
-          <code><a href="import_pob_incidencia.html">import_pob_incidencia()</a></code>
-
-        </dt>
-        <dd>Importar la población para efectuar el cálculo de la incidencia</dd>
-      </dl><dl><dt>
-
-          <code><a href="import_pob_proyecciones.html">import_pob_proyecciones()</a></code>
-
-        </dt>
-        <dd>Importar las proyecciones DANE del año 2005 hasta el 2035</dd>
-      </dl><dl><dt>
-
-          <code><a href="import_pob_riesgo.html">import_pob_riesgo()</a></code>
-
-        </dt>
-        <dd>Importar la población a riesgo de un evento o enfermedad</dd>
-      </dl><dl><dt>
-
-          <code><a href="limpiar_data_sivigila.html">limpiar_data_sivigila()</a></code>
-
-        </dt>
-        <dd>Limpiar datos de SIVIGILA</dd>
-      </dl><dl><dt>
-
-          <code><a href="limpiar_edad_event.html">limpiar_edad_event()</a></code>
-
-        </dt>
-        <dd>Limpiar las edades de los datos de una enfermedad o evento</dd>
-      </dl><dl><dt>
-
-          <code><a href="limpiar_encabezado.html">limpiar_encabezado()</a></code>
-
-        </dt>
-        <dd>Limpiar las etiquetas del encabezado</dd>
-      </dl><dl><dt>
-
-          <code><a href="limpiar_fecha_event.html">limpiar_fecha_event()</a></code>
-
-        </dt>
-        <dd>Limpiar fechas de los datos de una enfermedad o evento</dd>
-      </dl><dl><dt>
-
-          <code><a href="limpiar_val_atipic.html">limpiar_val_atipic()</a></code>
-
-        </dt>
-        <dd>Limpiar los valores atipicos de los datos</dd>
-      </dl><dl><dt>
-
-          <code><a href="list_events.html">list_events()</a></code>
-
-        </dt>
-        <dd>Importar las enfermedades y años disponibles disposibles para su descarga desde los microdatos del SIVIGILA</dd>
-      </dl><dl><dt>
-
-          <code><a href="obtener_cond_inciden_event.html">obtener_cond_inciden_event()</a></code>
-
-        </dt>
-        <dd>Obtener las condiciones para calcular la incidencia de una enfermedad o evento</dd>
-      </dl><dl><dt>
-
-          <code><a href="obtener_dptos.html">obtener_dptos()</a></code>
-
-        </dt>
-        <dd>Obtener departamentos de Colombia</dd>
-      </dl><dl><dt>
-
-          <code><a href="obtener_estetica_escala.html">obtener_estetica_escala()</a></code>
-
-        </dt>
-        <dd>Obtener la estetica de una escala para un grafico de <span class="pkg">sivirep</span> Función que genera la estética de una escala para un gráfico de <span class="pkg">sivirep</span></dd>
-      </dl><dl><dt>
-
-          <code><a href="obtener_fila_mas_casos.html">obtener_fila_mas_casos()</a></code>
-
-        </dt>
-        <dd>Obtener fila con mayor número de casos</dd>
-      </dl><dl><dt>
-
-          <code><a href="obtener_info_depts.html">obtener_info_depts()</a></code>
-
-        </dt>
-        <dd>Obtener información geográfica de los datos de la enfermedad o evento</dd>
-      </dl><dl><dt>
-
-          <code><a href="obtener_meses_mas_casos.html">obtener_meses_mas_casos()</a></code>
-
-        </dt>
-        <dd>Obtener los meses con mayor número de casos</dd>
-      </dl><dl><dt>
-
-          <code><a href="obtener_nombre_dpto.html">obtener_nombre_dpto()</a></code>
-
-        </dt>
-        <dd>Obtener el nombre de un departamento de Colombia</dd>
-      </dl><dl><dt>
-
-          <code><a href="obtener_nombre_mpio.html">obtener_nombre_mpio()</a></code>
-
-        </dt>
-        <dd>Obtener el nombre de un municipio de Colombia</dd>
-      </dl><dl><dt>
-
-          <code><a href="obtener_text_sex.html">obtener_text_sex()</a></code>
-
-        </dt>
-        <dd>Obtener el parráfo de la distribución de casos por sexo</dd>
-      </dl><dl><dt>
-
-          <code><a href="obtener_tip_ocurren_geo.html">obtener_tip_ocurren_geo()</a></code>
-
-        </dt>
-        <dd>Obtener columnas de ocurrencia geográfica de los datos de la enfermedad o evento</dd>
-      </dl><dl><dt>
+      <dl><dt>
 
           <code><a href="plot_area_geo.html">plot_area_geo()</a></code>
 
@@ -364,7 +337,7 @@
           <code><a href="plot_map.html">plot_map()</a></code>
 
         </dt>
-        <dd>Función que genera el mapa por departamentos o municipios con el número de casos o la incidencia de una enfermedad o evento</dd>
+        <dd>Generar mapa</dd>
       </dl><dl><dt>
 
           <code><a href="plot_mpios.html">plot_mpios()</a></code>
@@ -376,7 +349,7 @@
           <code><a href="plot_per_etn.html">plot_per_etn()</a></code>
 
         </dt>
-        <dd>Generar gráfico de distribución de casos por la pertenencia étnica</dd>
+        <dd>Generar gráfico de distribución de casos por pertenencia étnica</dd>
       </dl><dl><dt>
 
           <code><a href="plot_sex.html">plot_sex()</a></code>
@@ -412,13 +385,13 @@
           <code><a href="plot_tipo_caso.html">plot_tipo_caso()</a></code>
 
         </dt>
-        <dd>Generar gráfico de distribución de casos por la clasificacion inicial del caso</dd>
+        <dd>Generar gráfico de distribución de casos por la clasificación inicial del caso</dd>
       </dl><dl><dt>
 
           <code><a href="plot_tipo_caso_years.html">plot_tipo_caso_years()</a></code>
 
         </dt>
-        <dd>Generar gráfico de distribución de casos por la clasificacion inicial del caso y los años seleccionados</dd>
+        <dd>Generar gráfico de distribución de casos por la clasificación inicial del caso y los años seleccionados</dd>
       </dl><dl><dt>
 
           <code><a href="plot_top_area_geo.html">plot_top_area_geo()</a></code>
@@ -431,22 +404,111 @@
 
         </dt>
         <dd>Generar gráfico de distribución de casos por año</dd>
-      </dl><dl><dt>
+      </dl></div><div class="section level2">
+      <h2 id="utilidades">Utilidades<a class="anchor" aria-label="anchor" href="#utilidades"></a></h2>
 
-          <code><a href="tema_sivirep.html">tema_sivirep()</a></code>
+
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="obtener_cond_inciden_event.html">obtener_cond_inciden_event()</a></code>
 
         </dt>
-        <dd>Tema <span class="pkg">ggplot2</span> personalizado para los reportes de <span class="pkg">sivirep</span></dd>
+        <dd>Obtener las condiciones para calcular la incidencia de una enfermedad o evento</dd>
+      </dl><dl><dt>
+
+          <code><a href="obtener_dptos.html">obtener_dptos()</a></code>
+
+        </dt>
+        <dd>Obtener departamentos de Colombia</dd>
+      </dl><dl><dt>
+
+          <code><a href="obtener_fila_mas_casos.html">obtener_fila_mas_casos()</a></code>
+
+        </dt>
+        <dd>Obtener la fila con mayor número de casos</dd>
+      </dl><dl><dt>
+
+          <code><a href="obtener_info_depts.html">obtener_info_depts()</a></code>
+
+        </dt>
+        <dd>Obtener información geográfica de los datos de la enfermedad o evento</dd>
+      </dl><dl><dt>
+
+          <code><a href="obtener_meses_mas_casos.html">obtener_meses_mas_casos()</a></code>
+
+        </dt>
+        <dd>Obtener los meses con mayor número de casos</dd>
+      </dl><dl><dt>
+
+          <code><a href="obtener_nombre_dpto.html">obtener_nombre_dpto()</a></code>
+
+        </dt>
+        <dd>Obtener el nombre de un departamento de Colombia</dd>
+      </dl><dl><dt>
+
+          <code><a href="obtener_nombre_mpio.html">obtener_nombre_mpio()</a></code>
+
+        </dt>
+        <dd>Obtener el nombre de un municipio de Colombia</dd>
+      </dl><dl><dt>
+
+          <code><a href="obtener_text_sex.html">obtener_text_sex()</a></code>
+
+        </dt>
+        <dd>Obtener el párrafo de la distribución de casos por sexo</dd>
+      </dl><dl><dt>
+
+          <code><a href="obtener_tip_ocurren_geo.html">obtener_tip_ocurren_geo()</a></code>
+
+        </dt>
+        <dd>Obtener columnas de ocurrencia geográfica de los datos de la enfermedad o evento</dd>
+      </dl><dl><dt>
+
+          <code><a href="obtener_val_config.html">obtener_val_config()</a></code>
+
+        </dt>
+        <dd>Obtener valor del archivo de configuración</dd>
+      </dl></div><div class="section level2">
+      <h2 id="datos-del-paquete">Datos del paquete<a class="anchor" aria-label="anchor" href="#datos-del-paquete"></a></h2>
+
+
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="dengue2020.html">dengue2020</a></code>
+
+        </dt>
+        <dd>Datos Dengue 2020 del SIVIGILA en sivirep</dd>
+      </dl><dl><dt>
+
+          <code><a href="divipoladata.html">divipoladata</a></code>
+
+        </dt>
+        <dd>Códigos e información geografica del DIVIPOLA en sivirep</dd>
       </dl></div>
-  </main></div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Índice de contenidos"><h2>En esta página</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Desarrollado por Geraldine Gómez-Millán, Zulma M. Cucunubá, Jennifer A. Mendez-Romero, Claudia Huguett-Aragón.</p>
+  <p>Desarrollado por Geraldine Gómez-Millán, Zulma M. Cucunubá, Jennifer A. Mendez-Romero, Claudia Huguett-Aragón, International Development Research Center (IDRC).</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Sitio creado con <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.9000.</p>
+  <p>Sitio creado con <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.9000.</p>
 </div>
 
     </footer></div>
