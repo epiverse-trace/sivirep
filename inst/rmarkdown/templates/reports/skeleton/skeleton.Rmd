@@ -438,7 +438,8 @@ plot_per_etn(data_agrupada = casos_per_etn)
 
 ```{r incidencia-total, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
 incidencia_total <- calcular_incidencia(data_agrupada =
-                                         dist_espacial)
+                                         dist_espacial,
+                                        cache = TRUE)
 cond_incidencia <-
   obtener_cond_inciden_event(cod_eve = dist_espacial$cod_eve[1])
 ```
@@ -461,7 +462,8 @@ if (params$departamento != "") {
 }
 incidencias_sex <-
   calcular_incidencia_sex(data_agrupada = casos_sex,
-                          dpto = nomb_dpto)
+                          dpto = nomb_dpto,
+                          cache = TRUE)
 incidencia_mayor_sex <- obtener_fila_mas_casos(data_event =
                                                 incidencias_sex$data_incidencia,
                                                nomb_col = "incidencia ")
