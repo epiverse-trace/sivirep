@@ -209,7 +209,9 @@ import_data_event <- function(nombre_event,
                                      ruta_dir = ruta_dir,
                                      cache = cache)
       data_import <- limpiar_encabezado(data_import)
-      data_import$fec_def <- as.character(data_import$fec_def)
+      if ("fec_def" %in% names(data_import)) {
+        data_import$fec_def <- as.character(data_import$fec_def)
+      }
       nombre_cols <- names(data_import)
       indice_cols_eve <- which(stringr::str_detect(nombre_cols,
                                                   stringr::fixed("cod_eve_")))
