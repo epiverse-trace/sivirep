@@ -502,7 +502,7 @@ agrupar_dpto <- function(data_event,
   )
   data_event_cods_dpto <- data_event
   if (length(col_dpto) == 1) {
-    nomb_cols <- obtener_tip_ocurren_geo(data_event_cods_dpto$cod_eve[1])
+    nomb_cols <- obtener_tip_ocurren_geo(data_event_cods_dpto[["cod_eve"]][1])
     nomb_cols <- nomb_cols[1:2]
   } else {
     nomb_cols <- col_dpto
@@ -563,14 +563,14 @@ agrupar_mpio <- function(data_event,
       is.logical(porcentaje)
   )
   cols_geo_ocurrencia <- data.frame()
-  cod_events <- unique(data_event$cod_eve)
+  cod_events <- unique(data_event[["cod_eve"]])
   for (cod in cod_events) {
     cols_geo_ocurrencia <- c(
       cols_geo_ocurrencia,
       obtener_tip_ocurren_geo(cod)
     )
   }
-  nomb_cols <- obtener_tip_ocurren_geo(data_event$cod_eve[1])
+  nomb_cols <- obtener_tip_ocurren_geo(data_event[["cod_eve"]][1])
   data_event_muns <- data_event
   if (!is.null(dpto)) {
     aux_dpto <- unique(data_event_muns[[nomb_cols[1]]])
@@ -686,7 +686,7 @@ agrupar_top_area_geo <- function(data_event,
   validar_porcentaje(porcentaje)
   nomb_cols <- c(
     col_area,
-    obtener_tip_ocurren_geo(data_event$cod_eve[1])[1:4]
+    obtener_tip_ocurren_geo(data_event[["cod_eve"]][1])[1:4]
   )
   data_event_area <- data_event
   if (!is.null(dpto)) {
@@ -940,7 +940,7 @@ calcular_incidencia <- function(data_incidencia = NULL, data_agrupada,
   poblacion_incidencia <- data_incidencia
   total_poblacion <- NULL
   incidencia <- 0.00
-  nomb_cols <- obtener_tip_ocurren_geo(data_agrupada$nombre_evento[1])
+  nomb_cols <- obtener_tip_ocurren_geo(data_agrupada[["cod_eve"]][1])
   unidades_geo <- obtener_dpto_mpio(
     data_agrupada = data_agrupada,
     nomb_cols = nomb_cols,
@@ -1059,8 +1059,8 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
                                     year = NULL) {
   validar_data_agrupada(data_agrupada)
   data_geo_incidencia <- NULL
-  nombre_evento <- data_agrupada$nombre_evento[1]
-  cod_evento <- data_agrupada$cod_eve[1]
+  nombre_evento <- data_agrupada[["nombre_evento"]][1]
+  cod_evento <- data_agrupada[["cod_eve"]][1]
   if (is.null(year)) {
     year <- as.numeric(obtener_year(data_agrupada))
   }
@@ -1078,7 +1078,7 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
     )
   data_incidencia <- pop_incidencia$data_incidencia
   poblacion <- pop_incidencia$poblacion
-  nomb_cols <- obtener_tip_ocurren_geo(nombre_evento)
+  nomb_cols <- obtener_tip_ocurren_geo(cod_evento)
   if (nomb_cols[1] %in% colnames(data_agrupada) &&
     !(nomb_cols[3] %in% colnames(data_agrupada))) {
     data_agrupada <- group_by(
