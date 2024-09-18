@@ -59,6 +59,9 @@ estandarizar_geo_cods <- function(data_event) {
 #' @param col_uni_med Un `character` (cadena de caracteres) con el nombre
 #' de la columna que contiene las unidades de medida en los datos de una
 #' enfermedad o evento; su valor por defecto es `"uni_med"`.
+#' @param uni_med Un `numeric` (numérico) o `character`(cadena de
+#' caracteres) que contiene la unidad de medida a la que se debe
+#' estandarizar la edad; su valor por defecto es `1`.
 #' @return Un `data.frame` con las edades convertidas en años según las
 #' unidades de medida del SIVIGILA.
 #' @examples
@@ -67,33 +70,93 @@ estandarizar_geo_cods <- function(data_event) {
 #' convert_edad(
 #'   data_event = data_limpia,
 #'   col_edad = "edad",
-#'   col_uni_med = "uni_med"
+#'   col_uni_med = "uni_med",
+#'   uni_med = 1
 #' )
 #' @importFrom rlang :=
 #' @export
 convert_edad <- function(data_event,
                          col_edad = "edad",
-                         col_uni_med = "uni_med") {
+                         col_uni_med = "uni_med",
+                         uni_med = 1) {
   validar_data_event(data_event)
   validar_edad(data_event, col_edad)
   stopifnot(
     "El parametro col_uni_med debe ser una cadena de caracteres" =
-      is.character(col_uni_med)
+      is.character(col_uni_med),
+    "El parametro uni_med debe ser numerico o una cadena de
+     caracteres" =
+      (is.numeric(uni_med) && !is.character(uni_med)) ||
+      (!is.numeric(uni_med) && is.character(uni_med))
   )
   data_event[[col_uni_med]] <- as.numeric(data_event[[col_uni_med]])
   data_event[[col_edad]] <- as.numeric(data_event[[col_edad]])
-  data_event_years <-
-    dplyr::mutate(
-      data_event,
-      {{ col_edad }} := dplyr::case_when(
-        .data[[col_uni_med]] == 1 ~ round(.data[[col_edad]], 3),
-        .data[[col_uni_med]] == 2 ~ round(.data[[col_edad]] / 12, 3),
-        .data[[col_uni_med]] == 3 ~ round(.data[[col_edad]] / 876, 3),
-        .data[[col_uni_med]] == 4 ~ round(.data[[col_edad]] / 525960, 3),
-        .data[[col_uni_med]] == 5 ~ round(.data[[col_edad]] / 3.156e+7, 3)
+  if (is.character(uni_med)) {
+    uni_med <- is.numeric(uni_med)
+  }
+  data_event_uni_med <- NULL
+  if (uni_med == 1) {
+    data_event_uni_med <-
+      dplyr::mutate(
+        data_event,
+        {{ col_edad }} := dplyr::case_when(
+          .data[[col_uni_med]] == 1 ~ round(.data[[col_edad]], 3),
+          .data[[col_uni_med]] == 2 ~ round(.data[[col_edad]] / 12, 3),
+          .data[[col_uni_med]] == 3 ~ round(.data[[col_edad]] / 876, 3),
+          .data[[col_uni_med]] == 4 ~ round(.data[[col_edad]] / 525960, 3),
+          .data[[col_uni_med]] == 5 ~ round(.data[[col_edad]] / 3.156e+7, 3)
+        )
       )
-    )
-  return(data_event_years)
+  } else if (uni_med == 2) {
+    data_event_uni_med <-
+      dplyr::mutate(
+        data_event,
+        {{ col_edad }} := dplyr::case_when(
+          .data[[col_uni_med]] == 1 ~ round(.data[[col_edad]] * 12, 3),
+          .data[[col_uni_med]] == 2 ~ round(.data[[col_edad]], 3),
+          .data[[col_uni_med]] == 3 ~ round(.data[[col_edad]] / 30, 3),
+          .data[[col_uni_med]] == 4 ~ round(.data[[col_edad]] / 730.5, 3),
+          .data[[col_uni_med]] == 5 ~ round(.data[[col_edad]] / 43830, 3)
+        )
+      )
+  } else if (uni_med == 3) {
+    data_event_uni_med <-
+      dplyr::mutate(
+        data_event,
+        {{ col_edad }} := dplyr::case_when(
+          .data[[col_uni_med]] == 1 ~ round(.data[[col_edad]] * 365, 3),
+          .data[[col_uni_med]] == 2 ~ round(.data[[col_edad]] * 30, 3),
+          .data[[col_uni_med]] == 3 ~ round(.data[[col_edad]], 3),
+          .data[[col_uni_med]] == 4 ~ round(.data[[col_edad]] / 24, 3),
+          .data[[col_uni_med]] == 5 ~ round(.data[[col_edad]] / 1440, 3)
+        )
+      )
+  } else if (uni_med == 4) {
+    data_event_uni_med <-
+      dplyr::mutate(
+        data_event,
+        {{ col_edad }} := dplyr::case_when(
+          .data[[col_uni_med]] == 1 ~ round(.data[[col_edad]] * 365 * 24, 3),
+          .data[[col_uni_med]] == 2 ~ round(.data[[col_edad]] * 30 * 24, 3),
+          .data[[col_uni_med]] == 3 ~ round(.data[[col_edad]] * 24, 3),
+          .data[[col_uni_med]] == 4 ~ round(.data[[col_edad]], 3),
+          .data[[col_uni_med]] == 5 ~ round(.data[[col_edad]] / 60, 3)
+        )
+      )
+  } else if (uni_med == 5) {
+    data_event_uni_med <-
+      dplyr::mutate(
+        data_event,
+        {{ col_edad }} := dplyr::case_when(
+          .data[[col_uni_med]] == 1 ~ round(.data[[col_edad]] * 365 * 24 * 60, 3),
+          .data[[col_uni_med]] == 2 ~ round(.data[[col_edad]] * 30 * 24 * 60, 3),
+          .data[[col_uni_med]] == 3 ~ round(.data[[col_edad]] * 24 * 60, 3),
+          .data[[col_uni_med]] == 4 ~ round(.data[[col_edad]] * 60, 3),
+          .data[[col_uni_med]] == 5 ~ round(.data[[col_edad]], 3)
+        )
+      )
+  }
+  return(data_event_uni_med)
 }
 
 #' @title Eliminar valores NIN (NA, Infinito, NaN)
