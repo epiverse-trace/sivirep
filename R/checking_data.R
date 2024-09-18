@@ -389,14 +389,21 @@ agrupar_edad <- function(data_event,
     data_event,
     col_edad
   )
+  max_edad <- max(data_event_edad[[col_edad]],
+                  na.rm = TRUE)
+  min_edad <- min(data_event_edad[[col_edad]],
+                  na.rm = TRUE)
+  if (max_edad < interval_edad) {
+    interval_edad <- max_edad / 3
+  }
+  if (interval_edad < min_edad) {
+    interval_edad <- min_edad
+  }
   data_event_edad <-
     agrupar_rango_edad(data_event_edad,
-      col_edad,
+      col_edad = col_edad,
       min_val = 0,
-      max_val =
-        max(data_event_edad[[col_edad]],
-          na.rm = TRUE
-        ),
+      max_val = max_edad,
       paso = interval_edad,
       porcentaje = porcentaje
     )
