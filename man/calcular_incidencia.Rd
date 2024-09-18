@@ -6,6 +6,7 @@
 \usage{
 calcular_incidencia(
   data_incidencia = NULL,
+  cache = FALSE,
   data_agrupada,
   poblacion = NULL,
   year = NULL,
@@ -19,6 +20,10 @@ calcular_incidencia(
 las proyecciones poblaciones DANE. Si este parámetro está vacío, se importará
 la población a riesgo o las proyecciones, dependiendo de la disponibilidad de
 la información; su valor por defecto es `NULL`.}
+
+\item{cache}{Un `logical` (`TRUE` o `FALSE`) que indica si la población a
+riesgo o las proyecciones poblacionales DANE descargadas deben ser
+almacenados en caché. Su valor por defecto es `FALSE`.}
 
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la enfermedad
 agrupados por departamento o municipio y número de casos.}
