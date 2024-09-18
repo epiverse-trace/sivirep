@@ -665,7 +665,7 @@ plot_dptos <- function(data_agrupada,
   cols_geo_ocurrencia <-
     obtener_tip_ocurren_geo(
       nombre_event =
-        data_agrupada[["nombre_evento"]][1]
+        data_agrupada[["cod_eve"]][1]
     )
   if (is.null(fuente_data)) {
     fuente_data <-
@@ -758,7 +758,7 @@ plot_mpios <- function(data_agrupada,
   cols_geo_ocurrencia <-
     obtener_tip_ocurren_geo(
       nombre_event =
-        data_agrupada[["nombre_evento"]][1]
+        data_agrupada[["cod_eve"]][1]
     )
   if (is.null(fuente_data)) {
     fuente_data <-
@@ -921,7 +921,7 @@ plot_top_area_geo <- function(data_agrupada,
   cols_geo_ocurrencia <-
     obtener_tip_ocurren_geo(
       nombre_event =
-        data_agrupada[["nombre_evento"]][1]
+        data_agrupada[["cod_eve"]][1]
     )
   etiquetas_areas <- obtener_val_config("labels_geo_areas")
   etiqueta_casos <- obtener_val_config("label_cases")
@@ -1345,7 +1345,7 @@ plot_per_etn <- function(data_agrupada,
 plot_tabla_incidencia_geo <- function(data_agrupada,
                                       col_geo = NULL) {
   validar_data_agrupada(data_agrupada)
-  nomb_cols <- obtener_tip_ocurren_geo(data_agrupada$nombre_evento[1])
+  nomb_cols <- obtener_tip_ocurren_geo(data_agrupada[["cod_eve"]][1])
   etiqueta_geo <- "Departamento"
   etiqueta_cod <- obtener_val_config("label_code")
   if (is.null(col_geo)) {
@@ -1357,7 +1357,7 @@ plot_tabla_incidencia_geo <- function(data_agrupada,
     col_geo <- nomb_cols[3:4]
   }
   cond_incidencia <-
-    obtener_cond_inciden_event(cod_eve = data_agrupada$cod_eve[1])
+    obtener_cond_inciden_event(cod_eve = data_agrupada[["cod_eve"]][1])
   caption_tabla <- obtener_val_config("caption_geo_incidence")
   caption_tabla <- paste0(
     caption_tabla, nomb_cols[5], " por ",
