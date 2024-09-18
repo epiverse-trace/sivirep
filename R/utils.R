@@ -433,7 +433,7 @@ obtener_eventos_relacionados <- function(nombre_event, years) {
   grupo_events <-
     list_events[which(stringr::str_detect(
       list_events$enfermedad,
-      gsub("([()])", "\\\\\\1",substr(
+      gsub("([()])", "\\\\\\1", substr(
         nombre_event,
         1,
         nchar(nombre_event) - 1

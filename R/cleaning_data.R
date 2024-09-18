@@ -148,8 +148,10 @@ convert_edad <- function(data_event,
       dplyr::mutate(
         data_event,
         {{ col_edad }} := dplyr::case_when(
-          .data[[col_uni_med]] == 1 ~ round(.data[[col_edad]] * 365 * 24 * 60, 3),
-          .data[[col_uni_med]] == 2 ~ round(.data[[col_edad]] * 30 * 24 * 60, 3),
+          .data[[col_uni_med]] == 1 ~
+            round(.data[[col_edad]] * 365 * 24 * 60, 3),
+          .data[[col_uni_med]] == 2 ~
+            round(.data[[col_edad]] * 30 * 24 * 60, 3),
           .data[[col_uni_med]] == 3 ~ round(.data[[col_edad]] * 24 * 60, 3),
           .data[[col_uni_med]] == 4 ~ round(.data[[col_edad]] * 60, 3),
           .data[[col_uni_med]] == 5 ~ round(.data[[col_edad]], 3)
