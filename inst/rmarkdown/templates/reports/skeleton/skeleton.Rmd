@@ -352,8 +352,8 @@ plot_edad_sex(data_agrupada = casos_edad_sex)
 `r if(params$mpio_distribution && params$departamento != "" && params$municipio == "") {"## Distribución de casos por municipio"} else if(params$municipio == "") {"## Distribución de casos por departamento"}`
 
 ```{r casos-geo, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
-nomb_event <- unique(data_event_filtrada$nombre_evento)[1]
-geo_ocurrencia <- obtener_tip_ocurren_geo(nombre_event = nomb_event)
+cod_event <- unique(data_event_filtrada[["cod_eve"]])[1]
+geo_ocurrencia <- obtener_tip_ocurren_geo(nombre_event = cod_event)
 if (params$departamento != "") {
   dist_espacial <- agrupar_mpio(data_event = data_event_filtrada,
                                    dpto = params$departamento)
