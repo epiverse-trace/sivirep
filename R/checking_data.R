@@ -864,6 +864,9 @@ agrupar_per_etn <- function(data_event, cols_etn = "per_etn",
 #' las proyecciones poblaciones DANE. Si este parámetro está vacío, se importará
 #' la población a riesgo o las proyecciones, dependiendo de la disponibilidad de
 #' la información; su valor por defecto es `NULL`.
+#' @param cache Un `logical` (`TRUE` o `FALSE`) que indica si la población a
+#' riesgo o las proyecciones poblacionales DANE descargadas deben ser
+#' almacenados en caché. Su valor por defecto es `FALSE`.
 #' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
 #' agrupados por departamento o municipio y número de casos.
 #' @param poblacion Un `character` (cadena de caracteres) con el tipo de
@@ -913,13 +916,15 @@ agrupar_per_etn <- function(data_event, cols_etn = "per_etn",
 #' )
 #' }
 #' @export
-calcular_incidencia <- function(data_incidencia = NULL, data_agrupada,
+calcular_incidencia <- function(data_incidencia = NULL,
+                                cache = FALSE, data_agrupada,
                                 poblacion = NULL, year = NULL,
                                 dpto = NULL, mpio = NULL,
                                 sex = NULL) {
   validar_data_agrupada(data_agrupada)
   nombre_evento <- data_agrupada$nombre_evento[1]
-  vals_event <- obtener_cond_inciden_event(cod_eve = data_agrupada$cod_eve[1])
+  vals_event <-
+  obtener_cond_inciden_event(cod_eve = data_agrupada[["cod_eve"]][1])
   coeficiente <- as.integer(vals_event$coeficiente)
   if (is.null(year)) {
     year <- as.numeric(obtener_year(data_agrupada))
@@ -933,7 +938,7 @@ calcular_incidencia <- function(data_incidencia = NULL, data_agrupada,
       poblacion = poblacion,
       event = nombre_evento,
       year = year,
-      cache = FALSE
+      cache = cache
     )
   data_incidencia <- pop_incidencia$data_incidencia
   poblacion <- pop_incidencia$poblacion
@@ -1022,6 +1027,9 @@ calcular_incidencia <- function(data_incidencia = NULL, data_agrupada,
 #' para todos los departamentos de Colombia o los municipios de un departamento.
 #' @param data_incidencia Un `data.frame` que contiene las proyecciones
 #' poblacionales del DANE; su valor por defecto es `NULL`.
+#' @param cache Un `logical` (`TRUE` o `FALSE`) que indica si la población a
+#' riesgo o las proyecciones poblacionales DANE descargadas deben ser
+#' almacenados en caché. Su valor por defecto es `FALSE`.
 #' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
 #' agrupados por departamento o municipio y número de casos.
 #' @param poblacion Un `character` (cadena de caracteres) con el tipo de
@@ -1054,6 +1062,7 @@ calcular_incidencia <- function(data_incidencia = NULL, data_agrupada,
 #' }
 #' @export
 calcular_incidencia_geo <- function(data_incidencia = NULL,
+                                    cache = FALSE,
                                     data_agrupada,
                                     poblacion = NULL,
                                     year = NULL) {
@@ -1074,7 +1083,8 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
       data_incidencia = data_incidencia,
       poblacion = poblacion,
       event = nombre_evento,
-      year = year
+      year = year,
+      cache = cache
     )
   data_incidencia <- pop_incidencia$data_incidencia
   poblacion <- pop_incidencia$poblacion
@@ -1150,6 +1160,9 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
 #' por cada sexo.
 #' @param data_incidencia Un `data.frame` que contiene las proyecciones
 #' poblacionales del DANE; su valor por defecto es `NULL`.
+#' @param cache Un `logical` (`TRUE` o `FALSE`) que indica si la población a
+#' riesgo o las proyecciones poblacionales DANE descargadas deben ser
+#' almacenados en caché. Su valor por defecto es `FALSE`.
 #' @param data_agrupada Un `data.frame` que contiene los datos de la enfermedad
 #' agrupados por departamento o municipio y número de casos.
 #' @param year Un `numeric` (numérico) con el año que se debe tomar en la
@@ -1194,6 +1207,7 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
 #' }
 #' @export
 calcular_incidencia_sex <- function(data_incidencia = NULL,
+                                    cache = FALSE,
                                     data_agrupada,
                                     year = NULL, dpto = NULL,
                                     mpio = NULL) {
@@ -1205,7 +1219,8 @@ calcular_incidencia_sex <- function(data_incidencia = NULL,
   }
   if (is.null(data_incidencia)) {
     data_incidencia <-
-      import_pob_incidencia(poblacion = "proyecciones", year = year)
+      import_pob_incidencia(poblacion = "proyecciones", year = year,
+                            cache = cache)
     message(
       "Las incidencias se calcularon con las proyecciones ",
       "poblacionales DANE. Si usted cuenta con la poblacion ",
