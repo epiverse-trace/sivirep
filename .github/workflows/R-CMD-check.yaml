@@ -80,24 +80,6 @@ jobs:
           extra-packages: any::rcmdcheck
           needs: check
 
-      - name: Install hunspell and es_ES dictionary
-        run: |
-          if [[ $RUNNER_OS == 'Linux' ]]; then
-            sudo apt-get install -y hunspell hunspell-es
-          elif [[ $RUNNER_OS == 'macOS' ]]; then
-            brew install hunspell
-            curl -L -o "es-ES.aff" https://cgit.freedesktop.org/libreoffice/dictionaries/tree/es/es_ES.aff
-            curl -L -o "es-ES.dic" https://cgit.freedesktop.org/libreoffice/dictionaries/tree/es/es_ES.dic
-            mkdir -p ~/Library/Spelling
-            mv es-ES.aff es-ES.dic ~/Library/Spelling/
-          elif [[ $RUNNER_OS == 'Windows' ]]; then
-            choco install hunspell.portable
-            curl -L -o "es-ES.aff" https://cgit.freedesktop.org/libreoffice/dictionaries/tree/es/es_ES.aff
-            curl -L -o "es-ES.dic" https://cgit.freedesktop.org/libreoffice/dictionaries/tree/es/es_ES.dic
-            mv es-ES.aff "C:\Program Files\Hunspell\Dictionaries"
-            mv es-ES.dic "C:\Program Files\Hunspell\Dictionaries"
-          fi
-        shell: bash
       - uses: r-lib/actions/check-r-package@v2
         id: rcmdcheck
         with:
