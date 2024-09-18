@@ -349,16 +349,22 @@ limpiar_val_atipic <- function(data_event) {
 #' o evento provenientes de la fuente SIVIGILA.
 #' @param data_event Un `data.frame` que contiene los datos de
 #' una enfermedad o evento.
+#' @param uni_med_edad Un `numeric` (numérico) o `character`(cadena de
+#' caracteres) que contiene la unidad de medida a la que se debe estandarizar
+#' la edad; su valor por defecto es `1`.
 #' @return Un `data.frame` con los datos limpios de la enfermedad o evento.
 #' @examples
 #' data(dengue2020)
 #' limpiar_data_sivigila(data_event = dengue2020)
 #' @export
-limpiar_data_sivigila <- function(data_event) {
+limpiar_data_sivigila <- function(data_event,
+                                  uni_med_edad = 1) {
   validar_data_event(data_event)
   data_event <- limpiar_encabezado(data_event)
   nom_cols_fechas <- obtener_val_config("dates_column_names")
   years <- names(sort(table(data_event$ano), decreasing = TRUE))
+  nom_cols_fechas <-
+    nom_cols_fechas[which(nom_cols_fechas %in% names(data_event))]
   data_limpia <- format_fecha(data_event,
     nomb_cols = nom_cols_fechas
   )
@@ -371,10 +377,20 @@ limpiar_data_sivigila <- function(data_event) {
       col_fecha = nom_cols_fechas[2]
     )
   }
+  nomb_cols <- names(data_limpia)
   data_limpia <- estandarizar_geo_cods(data_limpia)
-  data_limpia <- convert_edad(data_limpia,
-    col_edad = "edad",
-    col_uni_med = "uni_med"
-  )
+  if ("edad" %in% nomb_cols &&
+      "uni_med" %in% nomb_cols) {
+    if (!is.null(uni_med_edad)) {
+      data_limpia <- convert_edad(data_limpia,
+                                  col_edad = "edad",
+                                  col_uni_med = "uni_med",
+                                  uni_med = uni_med_edad
+      )
+    } else {
+      data_limpia[["edad"]] <- as.numeric(data_limpia[["edad"]])
+      data_limpia[["uni_med"]] <- as.numeric(data_limpia[["uni_med"]])
+    }
+  }
   return(data_limpia)
 }
