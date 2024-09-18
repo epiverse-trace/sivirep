@@ -396,6 +396,7 @@ plot_sex <- function(data_agrupada,
   } else {
     etiqueta_eje <- obtener_val_config("label_incidence")
   }
+  num_sexos <- length(unique(data_agrupada[[col_sex]]))
   plot_casos_sex <- ggplot2::ggplot(
     data_agrupada,
     ggplot2::aes(
@@ -435,7 +436,7 @@ plot_sex <- function(data_agrupada,
         )
       }
     } +
-    obtener_estetica_escala(escala = 2, nombre = "Sexo") +
+    obtener_estetica_escala(escala = num_sexos, nombre = "Sexo") +
     tema_sivirep() +
     ggplot2::facet_wrap(
       facets = ~nombre_evento,
@@ -491,6 +492,7 @@ plot_sex_semanaepi <- function(data_agrupada,
   max_semana <- max(data_agrupada$semana, na.rm = TRUE)
   etiqueta_episemana <- obtener_val_config("label_epiweek")
   etiqueta_casos <- obtener_val_config("label_cases")
+  num_sexos <- length(unique(data_agrupada[[col_sex]]))
   plot_casos_sex_semanaepi <-
     ggplot2::ggplot(
       data_agrupada,
@@ -512,7 +514,7 @@ plot_sex_semanaepi <- function(data_agrupada,
       }
     } +
     ggplot2::scale_x_continuous(breaks = seq(1, max_semana, 1)) +
-    obtener_estetica_escala(escala = 2, nombre = "Sexo") +
+    obtener_estetica_escala(escala = num_sexos, nombre = "Sexo") +
     tema_sivirep() +
     ggplot2::facet_wrap(
       facets = ~nombre_evento,
@@ -615,6 +617,7 @@ plot_edad_sex <- function(data_agrupada,
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
   }
   etiqueta_casos <- obtener_val_config("label_cases")
+  num_sexos <- length(unique(data_agrupada[[col_sex]]))
   plot_casos_edad_sexo <-
     ggplot2::ggplot(
       data_agrupada,
@@ -629,7 +632,7 @@ plot_edad_sex <- function(data_agrupada,
       x = "\nGrupo de edad\n", y = paste0(etiqueta_casos, "\n"),
       caption = fuente_data
     ) +
-    obtener_estetica_escala(escala = 2, nombre = "Sexo") +
+    obtener_estetica_escala(escala = num_sexos, nombre = "Sexo") +
     tema_sivirep()
   return(plot_casos_edad_sexo)
 }
@@ -932,6 +935,7 @@ plot_top_area_geo <- function(data_agrupada,
     }
   }
   pos_leyenda <- ggplot2::theme(legend.position = "right")
+  num_areas <- length(unique(data_agrupada[[col_area]]))
   data_agrupada_area <- group_by(
     data_agrupada,
     dplyr::across(dplyr::all_of(nomb_cols))
@@ -956,7 +960,7 @@ plot_top_area_geo <- function(data_agrupada,
       caption = fuente_data
     ) +
     obtener_estetica_escala(
-      escala = 3,
+      escala = num_areas,
       nombre = paste0(etiqueta_area_geo, "\n"),
       etiquetas = etiquetas_areas
     ) +
@@ -1067,7 +1071,7 @@ plot_years <- function(data_agrupada,
     fuente_data <-
       "Fuente: SIVIGILA, Instituto Nacional de Salud, Colombia"
   }
-  eventos <- length(unique(data_agrupada[["nombre_evento"]]))
+  num_eventos <- length(unique(data_agrupada[["nombre_evento"]]))
   plot_casos_years <-
     ggplot2::ggplot(
       data_agrupada,
@@ -1083,7 +1087,7 @@ plot_years <- function(data_agrupada,
       y = paste0(etiqueta_casos, "\n"),
       caption = fuente_data
     ) +
-    obtener_estetica_escala(escala = eventos, nombre = "Eventos\n") +
+    obtener_estetica_escala(escala = num_eventos, nombre = "Eventos\n") +
     tema_sivirep() +
     ggplot2::theme(legend.position = "right")
   return(plot_casos_years)
@@ -1211,7 +1215,7 @@ plot_tipo_caso_years <- function(data_agrupada,
   etiqueta_casos <- obtener_val_config("label_cases")
   etiqueta_tipo <- obtener_val_config("label_type_case")
   clasificacion <- unique(data_agrupada[[col_tipo]])
-  escala <- length(unique(data_agrupada[[col_tipo]]))
+  num_tipos <- length(unique(data_agrupada[[col_tipo]]))
   etiquetas <- etiquetas[as.character(clasificacion)]
   etiquetas <- unlist(etiquetas)
   plot_casos_years <-
@@ -1230,7 +1234,7 @@ plot_tipo_caso_years <- function(data_agrupada,
       caption = fuente_data
     ) +
     obtener_estetica_escala(
-      escala = escala,
+      escala = num_tipos,
       nombre = paste0(etiqueta_tipo, "\n"),
       etiquetas = etiquetas
     ) +
