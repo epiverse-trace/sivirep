@@ -14,15 +14,18 @@
 estandarizar_geo_cods <- function(data_event) {
   validar_data_event(data_event)
   geo_columns <- obtener_val_config("geo_column_names")
+  nomb_cols <- names(data_event)
   for (column in geo_columns) {
-    if (stringr::str_detect(column, stringr::fixed("dpto"))) {
+    if (stringr::str_detect(column, stringr::fixed("dpto"))
+        && column %in% nomb_cols) {
       data_event[[column]] <- formatC(data_event[[column]],
         width = 2,
         format = "d",
         flag = "0"
       )
     }
-    if (stringr::str_detect(column, stringr::fixed("mun"))) {
+    if (stringr::str_detect(column, stringr::fixed("mun"))
+        && column %in% nomb_cols) {
       data_event[[column]] <- formatC(data_event[[column]],
         width = 3,
         format = "d",
