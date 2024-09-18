@@ -6,6 +6,7 @@
 \usage{
 calcular_incidencia_geo(
   data_incidencia = NULL,
+  cache = FALSE,
   data_agrupada,
   poblacion = NULL,
   year = NULL
@@ -14,6 +15,10 @@ calcular_incidencia_geo(
 \arguments{
 \item{data_incidencia}{Un `data.frame` que contiene las proyecciones
 poblacionales del DANE; su valor por defecto es `NULL`.}
+
+\item{cache}{Un `logical` (`TRUE` o `FALSE`) que indica si la población a
+riesgo o las proyecciones poblacionales DANE descargadas deben ser
+almacenados en caché. Su valor por defecto es `FALSE`.}
 
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la enfermedad
 agrupados por departamento o municipio y número de casos.}

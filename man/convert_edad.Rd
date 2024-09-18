@@ -4,7 +4,12 @@
 \alias{convert_edad}
 \title{Convertir edad a años}
 \usage{
-convert_edad(data_event, col_edad = "edad", col_uni_med = "uni_med")
+convert_edad(
+  data_event,
+  col_edad = "edad",
+  col_uni_med = "uni_med",
+  uni_med = 1
+)
 }
 \arguments{
 \item{data_event}{Un `data.frame` que contiene los datos de una
@@ -17,6 +22,10 @@ la enfermedad o evento; su valor por defecto es `"edad"`.}
 \item{col_uni_med}{Un `character` (cadena de caracteres) con el nombre
 de la columna que contiene las unidades de medida en los datos de una
 enfermedad o evento; su valor por defecto es `"uni_med"`.}
+
+\item{uni_med}{Un `numeric` (numérico) o `character`(cadena de
+caracteres) que contiene la unidad de medida a la que se debe
+estandarizar la edad; su valor por defecto es `1`.}
 }
 \value{
 Un `data.frame` con las edades convertidas en años según las
@@ -32,6 +41,7 @@ data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 convert_edad(
   data_event = data_limpia,
   col_edad = "edad",
-  col_uni_med = "uni_med"
+  col_uni_med = "uni_med",
+  uni_med = 1
 )
 }

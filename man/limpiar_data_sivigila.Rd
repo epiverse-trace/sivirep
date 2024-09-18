@@ -4,11 +4,15 @@
 \alias{limpiar_data_sivigila}
 \title{Limpiar datos de SIVIGILA}
 \usage{
-limpiar_data_sivigila(data_event)
+limpiar_data_sivigila(data_event, uni_med_edad = 1)
 }
 \arguments{
 \item{data_event}{Un `data.frame` que contiene los datos de
 una enfermedad o evento.}
+
+\item{uni_med_edad}{Un `numeric` (numérico) o `character`(cadena de
+caracteres) que contiene la unidad de medida a la que se debe estandarizar
+la edad; su valor por defecto es `1`.}
 }
 \value{
 Un `data.frame` con los datos limpios de la enfermedad o evento.
