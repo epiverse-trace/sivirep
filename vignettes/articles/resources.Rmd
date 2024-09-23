@@ -36,4 +36,6 @@ knitr::kable(lista_geo,
 )
 ```
 
+## Diccionario de datos del SIVIGILA
 
+Este enlace encontrarás el [diccionario de datos del SIVIGILA](https://www.dssa.gov.co/images/documentos/sivigila2017/Anexo%202%20Diccionario%20datos.pdf), que contiene las variables, su definición, valores permitidos, reglas y restricciones, las cuales toma `sivirep` para efectuar los análisis y reportes automatizados.
