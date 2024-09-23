@@ -432,7 +432,7 @@ if (isTRUE(length(unique(
   dist_espacial[[col_geo]])) < 15)) {
   altura_fig_espacial <- 10
 }
-if (knitr::is_html_output()) { 
+if (knitr::is_html_output()) {
   altura_fig_espacial <- 10
 }
 ```
