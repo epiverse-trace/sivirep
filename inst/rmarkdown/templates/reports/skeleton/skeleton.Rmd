@@ -114,6 +114,68 @@ if (params$municipio != "") {
 fuente <- "Fuente SIVIGILA, Datos libres"
 ```
 
+```{r tam_graficos}
+casos_years_hg <- 5
+gr_casos_years_wd <- 11
+gr_tip_cas_al <- 5
+gr_tip_cas_an <- 11
+gr_tip_cas_years_al <- 7
+gr_tip_cas_years_an <- 13
+gr_ini_sin_al <- 5
+gr_ini_sin_an <- 11
+gr_sex_al <- 5.5
+gr_sex_an <- 9.5
+gr_sex_semana_al <- 6
+gr_sex_semana_an <- 10
+gr_edad_al <- 3
+gr_edad_an <- 8
+gr_edad_sex_al <- 3
+gr_edad_sex_an <- 9
+gr_mapa_al <- 18
+gr_mapa_an <- 16
+gr_area_al <- 3
+gr_area_an <- 7
+gr_top_area_al <- 5
+gr_top_area_an <- 10
+gr_per_etn_al <- 3
+gr_per_etn_an <- 8
+gr_sex_incid_al <- 3
+gr_sex_incid_an <- 7
+gr_map_incid_al <- 18
+gr_map_incid_an <- 16
+
+if (knitr::is_html_output()) {
+  casos_years_hg <- 5
+  gr_casos_years_wd <- 4
+  gr_tip_cas_al <- 4
+  gr_tip_cas_an <- 7.5
+  gr_tip_cas_years_al <- 5
+  gr_tip_cas_years_an <- 8.5
+  gr_ini_sin_al <- 4
+  gr_ini_sin_an <- 8
+  gr_sex_al <- 4
+  gr_sex_an <- 6
+  gr_sex_semana_al <- 4
+  gr_sex_semana_an <- 8
+  gr_edad_al <- 3
+  gr_edad_an <- 7
+  gr_edad_sex_al <- 3
+  gr_edad_sex_an <- 7
+  gr_mapa_al <- 9
+  gr_mapa_an <- 9
+  gr_area_al <- 3
+  gr_area_an <- 6
+  gr_top_area_al <- 4
+  gr_top_area_an <- 7
+  gr_per_etn_al <- 3
+  gr_per_etn_an <- 6
+  gr_sex_incid_al <- 4
+  gr_sex_incid_an <- 6
+  gr_map_incid_al <- 9
+  gr_map_incid_an <- 9
+}
+```
+
 ```{=tex}
 \AddToHookNext{shipout/background}{
    \begin{tikzpicture}[remember picture,overlay]
@@ -225,7 +287,7 @@ En este reporte se presenta el comportamiento del `r stringr::str_to_title(param
 
 La distribución de casos por tipo es la siguiente:
 
-```{r casos-totales, echo = FALSE, error = FALSE, fig.height=5, fig.width = 10, warning = FALSE, include = TRUE, message = FALSE, fig.pos = "H"} 
+```{r casos-totales, echo = FALSE, error = FALSE, fig.height = 5, fig.width = 10, warning = FALSE, include = TRUE, message = FALSE, fig.pos = "H"} 
 total_casos_eventos <- agrupar_eventos(data_event = data_event_filtrada,
                                        col_event = "cod_eve")
 plot_tabla_tipos_event(total_casos_eventos)
@@ -233,7 +295,7 @@ plot_tabla_tipos_event(total_casos_eventos)
 
 Durante el período comprendido entre el año `r (params$year - 4)` y `r params$year`, se observó la siguiente distribución de casos:
 
-```{r casos-years, echo = FALSE, error = FALSE, fig.height=5, fig.width = 10, warning = FALSE, include = TRUE, message = FALSE}
+```{r casos-years, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE}
 data_event_years <-
   import_data_event(nombre_event = params$nombre_evento,
                     years = seq(params$year - 4,
@@ -255,17 +317,17 @@ if (length(eventos) > 3) {
 }
 ```
 
-```{r grafica-casos-years, fig.height = altura_fig_years, fig.width = 11, fig.cap = paste0("Distribución de casos en los últimos ",  years_text, " años - ", text_ext_geo)}
+```{r grafica-casos-years, fig.height = altura_fig_years, fig.width = gr_casos_years_wd, fig.align = 'center', fig.cap = paste0("Distribución de casos en los últimos ",  years_text, " años - ", text_ext_geo)}
 plot_years(casos_years)
 ```
 
 # Distribución de casos por clasificación
 
-```{r casos-tip-cas, echo = FALSE, error = FALSE, fig.height=5, fig.width = 10, warning = FALSE, include = TRUE, message = FALSE}
+```{r casos-tip-cas, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE}
 casos_tip_cas <- agrupar_tipo_caso(data_event = data_event_filtrada)
 ```
 
-```{r grafica-casos-tip-cas, fig.height = 5, fig.width = 11, fig.cap = paste0("Distribución de casos por clasificación - ", text_ext_geo)}
+```{r grafica-casos-tip-cas, fig.height = gr_tip_cas_al, fig.width = gr_tip_cas_an, fig.align = 'center', fig.cap = paste0("Distribución de casos por clasificación - ", text_ext_geo)}
 plot_tipo_caso(casos_tip_cas)
 ```
 
@@ -276,7 +338,7 @@ casos_tip_cas_years <- agrupar_tipo_caso(data_event = data_years_filtrada,
                                          cols_tipo = c("tip_cas", "ano"))
 ```
 
-```{r grafica-casos-tip-cas-years, fig.height = 7, fig.width = 13, fig.cap = paste0("Distribución de casos en los últimos ",  years_text, " años - ", text_ext_geo)}
+```{r grafica-casos-tip-cas-years, fig.height = gr_tip_cas_years_al, fig.width = gr_tip_cas_years_an, fig.align = 'center', fig.cap = paste0("Distribución de casos en los últimos ",  years_text, " años - ", text_ext_geo)}
 plot_tipo_caso_years(casos_tip_cas_years)
 ```
 
@@ -294,7 +356,7 @@ mes_mayor_casos <- obtener_meses_mas_casos(data_event =
 
 \newpage
 
-```{r grafica-casos-inicio-sintomas, fig.height = 5, fig.width = 11, fig.cap = paste0("Distribución de casos por fecha de inicio de sintomas - ", text_ext_geo), include = params$temporal_distribution, eval = params$temporal_distribution}
+```{r grafica-casos-inicio-sintomas, fig.height = gr_ini_sin_al, fig.width = gr_ini_sin_an, fig.align = 'center', fig.cap = paste0("Distribución de casos por fecha de inicio de sintomas - ", text_ext_geo), include = params$temporal_distribution, eval = params$temporal_distribution}
 plot_fecha_inisintomas(data_agrupada = casos_iniciosin_dia,
                        uni_marca = "semanaepi")
 ```
@@ -308,7 +370,7 @@ vals_sex <- obtener_text_sex(casos_sex, params$year,  4)
 
 `r if (params$epi_sex_distribution && !mostrar_sex) {vals_sex$text}`
 
-```{r grafica-casos-sex, fig.height = 5.5, fig.width = 9.5, fig.cap = paste0("Distribución de casos por sexo - ", text_ext_geo), include = params$epi_sex_distribution}
+```{r grafica-casos-sex, fig.height = gr_sex_al, fig.width = gr_sex_an, fig.align = 'center', fig.cap = paste0("Distribución de casos por sexo - ", text_ext_geo), include = params$epi_sex_distribution}
 plot_sex(data_agrupada = casos_sex)
 ```
 
@@ -320,7 +382,7 @@ casos_sex_semanaepi <- agrupar_sex_semanaepi(data_event = data_event_filtrada)
 
 `r if (params$epi_sex_distribution) {paste0("Esta predominancia de casos del sexo ", vals_sex$mayor[1], " se mantuvo a lo largo de la mayoria de semanas epidemiológicas (Ver figura 6). ")}`
 
-```{r grafica-casos-semanaepi, fig.height = 6, fig.width = 10, fig.cap =  paste0("Distribución de casos por sexo y semana epidemiológica - ", text_ext_geo), include = params$epi_sex_distribution, fig.pos = "H"}
+```{r grafica-casos-semanaepi, fig.height = gr_sex_semana_al, fig.width = gr_sex_semana_an, fig.align = 'center', fig.cap =  paste0("Distribución de casos por sexo y semana epidemiológica - ", text_ext_geo), include = params$epi_sex_distribution, fig.pos = "H"}
 plot_sex_semanaepi(data_agrupada = casos_sex_semanaepi)
 ```
 
@@ -333,7 +395,7 @@ age_most_cases <- obtener_fila_mas_casos(data_event = casos_edad)
 
 `r if (params$age_distribution) {paste0("La distribución de los casos por grupos de edad muestra que la población de ", age_most_cases$edad, " años representó el ",  age_most_cases$porcentaje, " % de todos los casos de ", stringr::str_to_title(params$nombre_evento), " (Ver figura 7).")}`
 
-```{r grafica-casos-edad, fig.height = 3, fig.width = 8, fig.cap =  paste0("Distribución de casos por edad - ", text_ext_geo), include = params$age_distribution}
+```{r grafica-casos-edad, fig.height = gr_edad_al, fig.width = gr_edad_an, fig.align = 'center', fig.cap =  paste0("Distribución de casos por edad - ", text_ext_geo), include = params$age_distribution}
 plot_edad(data_agrupada = casos_edad)
 ```
 
@@ -341,7 +403,7 @@ plot_edad(data_agrupada = casos_edad)
 
 `r if(params$age_sex_distribution && !mostrar_sex) {"# Distribución de casos por edad y sexo"}`
 
-```{r casos-edad-sex, fig.height = 3, fig.width = 9, fig.cap =  paste0("Distribución de casos por edad y sexo - ", text_ext_geo), include = params$age_sex_distribution && !mostrar_sex}
+```{r casos-edad-sex, fig.height = gr_edad_sex_al, fig.width = gr_edad_sex_an, fig.align = 'center', fig.cap =  paste0("Distribución de casos por edad y sexo - ", text_ext_geo), include = params$age_sex_distribution && !mostrar_sex}
 casos_edad_sex <- agrupar_edad_sex(data_event = data_event_filtrada,
                                    interval_edad = 10)
 plot_edad_sex(data_agrupada = casos_edad_sex)
@@ -370,11 +432,14 @@ if (isTRUE(length(unique(
   dist_espacial[[col_geo]])) < 15)) {
   altura_fig_espacial <- 10
 }
+if (knitr::is_html_output()) { 
+  altura_fig_espacial <- 10
+}
 ```
 
 `r if(params$mpio_distribution && params$departamento != "" && params$municipio == "") {paste0("Los casos se distribuyen a lo largo de ", nrow(dist_espacial), " municipios del departamento de ", params$departamento, " teniendo un mayor reporte el municipio de ", stringr::str_to_title(espacial_mayor_casos[[col_geo]]), " con ", espacial_mayor_casos$casos, " casos (Ver Figura 9).")} else if(params$municipio == "") {paste0("Los casos se distribuyen a lo largo de ", nrow(dist_espacial), " departamentos de ", params$pais, " teniendo un mayor reporte el departamento de ", stringr::str_to_title(espacial_mayor_casos[[col_geo]]), " con ", espacial_mayor_casos$casos, " casos (Ver Figura 9).")} else {paste0("Los casos para el municio de ", params$municipio, " son: ", nrow(data_event_filtrada))}`
 
-```{r grafica-casos-mpios, fig.height = altura_fig_espacial, fig.width = 10, fig.cap = paste0("Distribución de casos por ", text_fig_geo), include = params$mpio_distribution && params$departamento != "" && params$municipio == "", eval = params$mpio_distribution && params$departamento != ""}
+```{r grafica-casos-mpios, fig.height = altura_fig_espacial, fig.width = 8, fig.align = 'center', fig.cap = paste0("Distribución de casos por ", text_fig_geo), include = params$mpio_distribution && params$departamento != "" && params$municipio == "", eval = params$mpio_distribution && params$departamento != ""}
 plot_mpios <- plot_mpios(data_agrupada = dist_espacial)
 plot_mpios
 ```
@@ -397,7 +462,7 @@ mapa <- plot_map(data_agrupada = dist_espacial_casos,
                  col_distribucion = "casos")
 ```
 
-```{r mapa-casos, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, cache = FALSE, results = FALSE, comment = FALSE, fig.height = 18, fig.width = 16, fig.cap = paste0("Distribución espacial de casos ", text_mapa_casos , " - ", text_ext_geo), include = params$spatial_distribution}
+```{r mapa-casos, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, cache = FALSE, results = FALSE, comment = FALSE, fig.height = gr_mapa_al, fig.width = gr_mapa_an, fig.align = 'center', fig.cap = paste0("Distribución espacial de casos ", text_mapa_casos , " - ", text_ext_geo), include = params$spatial_distribution}
 mapa
 ```
 
@@ -409,7 +474,7 @@ mapa
 dist_areas_geo <- agrupar_area_geo(data_event = data_event_filtrada)
 ```
 
-```{r grafica-casos-area, fig.height = 3, fig.width = 7, fig.cap = paste0("Distribución de casos por área geográfica de ocurrencia - ", text_ext_geo), include = params$areas_distribution, fig.pos = "H"}
+```{r grafica-casos-area, fig.height = gr_area_al, fig.width = gr_area_an, fig.align = 'center', fig.cap = paste0("Distribución de casos por área geográfica de ocurrencia - ", text_ext_geo), include = params$areas_distribution, fig.pos = "H"}
 plot_areas_geo <- plot_area_geo(data_agrupada = dist_areas_geo)
 plot_areas_geo
 ```
@@ -420,7 +485,7 @@ dist_top_areas_geo <- agrupar_top_area_geo(data_event = data_event_filtrada)
 
 `r if(params$municipio == "") { paste0("Los 10 ", etiqueta_geo, " que presentaron mayor número de casos por área geográfica de ocurrencia son los siguientes:") }`
 
-```{r grafica-casos-top-area, fig.height = 5, fig.width = 10, fig.cap = paste0("Distribución de los 10 ", etiqueta_geo, " con más casos por área geográfica de ocurrencia - ", text_ext_geo), include = params$areas_distribution && params$municipio == "", fig.pos = "H", eval = params$areas_distribution && params$municipio == ""}
+```{r grafica-casos-top-area, fig.height = gr_top_area_al, fig.width = gr_top_area_an, fig.align = 'center', fig.cap = paste0("Distribución de los 10 ", etiqueta_geo, " con más casos por área geográfica de ocurrencia - ", text_ext_geo), include = params$areas_distribution && params$municipio == "", fig.pos = "H", eval = params$areas_distribution && params$municipio == ""}
 plot_top_areas_geo <- plot_top_area_geo(data_agrupada = dist_top_areas_geo)
 plot_top_areas_geo
 ```
@@ -429,7 +494,7 @@ plot_top_areas_geo
 
 \newpage
 
-```{r casos-per-etn, fig.height = 3, fig.width = 8, fig.cap = paste0("Distribución de casos por pertenencia étnica - ", text_ext_geo), include = params$age_sex_distribution}
+```{r casos-per-etn, fig.height = gr_per_etn_al, fig.width = gr_per_etn_an, fig.align = 'center', fig.cap = paste0("Distribución de casos por pertenencia étnica - ", text_ext_geo), include = params$age_sex_distribution}
 casos_per_etn <- agrupar_per_etn(data_event = data_event_filtrada)
 plot_per_etn(data_agrupada = casos_per_etn)
 ```
@@ -482,7 +547,7 @@ La incidencia fue calculada con `r text_incidencia_sex` para cada sexo por `r co
 plot_tabla_incidencia_sex(incidencias_sex$data_incidencia)
 ```
 
-```{r grafica-incidencia-sex, fig.height = 3, fig.width = 7, fig.cap = paste0("Incidencia por sexo - ", text_ext_geo), include = params$epi_sex_distribution}
+```{r grafica-incidencia-sex, fig.height = gr_sex_incid_al, fig.width = gr_sex_incid_an, fig.align = 'center', fig.cap = paste0("Incidencia por sexo - ", text_ext_geo), include = params$epi_sex_distribution}
 plot_sex(data_agrupada = incidencias_sex$data_incidencia,
          col_distribucion = "incidencia",
          porcentaje = FALSE)
@@ -527,7 +592,7 @@ if (params$municipio != "") {
 mapa <- plot_map(data_agrupada = incidencias_geo$data_incidencia)
 ```
 
-```{r mapa-incidencias, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, cache = FALSE, results = FALSE, comment = FALSE, fig.height = 18, fig.width = 16, fig.cap = paste0("Incidencia según distribución geográfica ", text_mapa_inciden, " - ", text_ext_geo), include = params$spatial_distribution}
+```{r mapa-incidencias, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, cache = FALSE, results = FALSE, comment = FALSE, fig.height = gr_map_incid_al, fig.width = gr_map_incid_an, fig.align = 'center', fig.cap = paste0("Incidencia según distribución geográfica ", text_mapa_inciden, " - ", text_ext_geo), include = params$spatial_distribution}
 mapa
 ```
 
