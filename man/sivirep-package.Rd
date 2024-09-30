@@ -4,9 +4,9 @@
 \name{sivirep-package}
 \alias{sivirep}
 \alias{sivirep-package}
-\title{sivirep: Data Wrangling and Automated Reports from 'SIVIGILA' source}
+\title{sivirep: Data Wrangling and Automated Reports from 'SIVIGILA' Source}
 \description{
-Provides functions for data wrangling and automated reports from 'SIVIGILA' epidemiological surveillance system data from Colombia.
+Data wrangling and generating automated reports from Colombia's epidemiological surveillance system, 'SIVIGILA'.
 }
 \seealso{
 Useful links:

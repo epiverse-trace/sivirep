@@ -1,5 +1,5 @@
 Package: sivirep
-Title: Data Wrangling and Automated Reports from 'SIVIGILA' source
+Title: Data Wrangling and Automated Reports from 'SIVIGILA' Source
 Type: Package
 Version: 1.0.0
 Authors@R: 
@@ -30,8 +30,8 @@ Authors@R:
     person("International Development Research Center (IDRC)", role = "fnd"),
     person("Pontificia Universidad Javeriana", role = "cph")
   )
-Description: Provides functions for data wrangling and automated reports 
-    from 'SIVIGILA' epidemiological surveillance system data from Colombia.
+Description: Data wrangling and generating automated reports from Colombia's 
+    epidemiological surveillance system, 'SIVIGILA'.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

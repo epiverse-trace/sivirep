@@ -13,3 +13,5 @@
 ^\.lintr$
 ^vignettes/articles$
 ^CITATION\.cff$
+^cran-comments\.md$
+^sivirep-manual.tex$

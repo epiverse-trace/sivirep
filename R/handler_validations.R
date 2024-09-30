@@ -3,6 +3,7 @@
 #' del parámetro `data_event`.
 #' @param data_event Un `data.frame` que contiene los datos de
 #' una enfermedad o evento.
+#' @return \value{None}
 #' @noRd
 validar_data_event <- function(data_event) {
   stopifnot(
@@ -19,6 +20,7 @@ validar_data_event <- function(data_event) {
 #' del parámetro `data_agrupada`.
 #' @param data_agrupada Un `data.frame` que contiene los datos de la
 #' enfermedad o evento agrupados.
+#' @return \value{None}
 #' @noRd
 validar_data_agrupada <- function(data_agrupada) {
   stopifnot(
@@ -39,6 +41,7 @@ validar_data_agrupada <- function(data_agrupada) {
 #' @param nomb_cols Un `character` (cadena de caracteres) o un
 #' `array` (arreglo) de `character` que contiene el nombre de
 #' la(s) columna(s) en los datos de la enfermedad o evento.
+#' @return \value{None}
 #' @noRd
 validar_nomb_cols <- function(data_event, nomb_cols) {
   stopifnot(
@@ -66,6 +69,7 @@ validar_nomb_cols <- function(data_event, nomb_cols) {
 #' enfermedad o evento.
 #' @param tipo Un `character` (cadena de caracteres) que contiene el tipo de
 #' gráfico (`"barras"` o `"tendencia"`).
+#' @return \value{None}
 #' @noRd
 validar_fecha_inisintomas <- function(data_event, col_fecha,
                                       uni_marca, tipo) {
@@ -91,6 +95,7 @@ validar_fecha_inisintomas <- function(data_event, col_fecha,
 #' del parámetro `format_fecha`.
 #' @param format_fecha Un `character` (cadena de caracteres)
 #' que contiene el formato deseado de la fecha.
+#' @return \value{None}
 #' @noRd
 validar_format_fecha <- function(format_fecha) {
   stopifnot(
@@ -106,6 +111,7 @@ validar_format_fecha <- function(format_fecha) {
 #' o evento.
 #' @param col_sex Un `character` (cadena de caracteres) con el nombre
 #' de la columna que contiene el sexo en los datos de la enfermedad o evento.
+#' @return \value{None}
 #' @noRd
 validar_sex <- function(data_event, col_sex) {
   stopifnot(
@@ -122,6 +128,7 @@ validar_sex <- function(data_event, col_sex) {
 #' del parámetro `porcentaje`.
 #' @param porcentaje Un `logical` (TRUE o FALSE) que indica
 #' si se debe agregar o tener una columna con el porcentaje de casos.
+#' @return \value{None}
 #' @noRd
 validar_porcentaje <- function(porcentaje) {
   stopifnot(
@@ -137,6 +144,7 @@ validar_porcentaje <- function(porcentaje) {
 #' o evento.
 #' @param col_edad Un `character` (cadena de caracteres) con el nombre de la
 #' columna que contiene las edades en los datos de la enfermedad o evento.
+#' @return \value{None}
 #' @noRd
 validar_edad <- function(data_event, col_edad) {
   stopifnot(
@@ -157,6 +165,7 @@ validar_edad <- function(data_event, col_edad) {
 #' @param col_area Un `character` (cadena de caracteres) con el nombre de
 #' la columna con el área geográfica en los datos de la enfermedad
 #' o evento.
+#' @return \value{None}
 #' @noRd
 validar_area_geo <- function(data_event, col_area, porcentaje) {
   stopifnot(
@@ -175,6 +184,7 @@ validar_area_geo <- function(data_event, col_area, porcentaje) {
 #' o evento.
 #' @param col_year Un `character` (cadena de caracteres) con el nombre de
 #' la columna que contiene el año en los datos de la enfermedad o evento.
+#' @return \value{None}
 #' @noRd
 validar_years <- function(data_event, col_year) {
   stopifnot(
@@ -194,6 +204,7 @@ validar_years <- function(data_event, col_year) {
 #' @param cols_etn Un `character` (cadena de caracteres) con el nombre de
 #' la(s) columna(s) que contiene(n) la pertenencia étnica en los datos de la
 #' enfermedad o evento.
+#' @return \value{None}
 #' @noRd
 validar_per_etn <- function(data_event, cols_etn) {
   stopifnot(
@@ -211,6 +222,7 @@ validar_per_etn <- function(data_event, cols_etn) {
 #' @param data_incidencia Un `data.frame` que contiene las proyecciones
 #' poblacionales del DANE o las poblaciones a riesgo de la enfermedad
 #' o evento.
+#' @return \value{None}
 #' @noRd
 validar_data_incidencia <- function(data_incidencia) {
   stopifnot(
