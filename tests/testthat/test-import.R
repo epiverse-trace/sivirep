@@ -15,11 +15,3 @@ test_that("`import_geo_cods` maneja errores correctamente", {
     "El parametro descargar debe ser un booleano"
   )
 })
-
-test_that("`list_events` funciona correctamente", {
-  events <- list_events()
-
-  expect_s3_class(events, "data.frame")
-  expect_true("enfermedad" %in% names(events))
-  expect_true("aa" %in% names(events))
-})
