@@ -650,6 +650,7 @@ plot_edad_sex <- function(data_agrupada,
 #' es `NULL`.
 #' @return Un `plot` o gráfico de distribución de casos por departamentos.
 #' @examples
+#' \donttest{
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(dengue2020)
 #' data_limpia <- estandarizar_geo_cods(data_limpia)
@@ -657,6 +658,7 @@ plot_edad_sex <- function(data_agrupada,
 #' plot_dptos(data_agrupada,
 #'   col_dptos = "departamento_ocurrencia"
 #' )
+#' }
 #' @export
 plot_dptos <- function(data_agrupada,
                        col_dptos = NULL,
