@@ -541,6 +541,7 @@ plot_sex_semanaepi <- function(data_agrupada,
 #' es `NULL`.
 #' @return Un `plot` o gráfico de distribución de casos por edad.
 #' @examples
+#' \donttest{
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(dengue2020)
 #' data_agrupada <- agrupar_edad(data_event = data_limpia)
@@ -548,6 +549,7 @@ plot_sex_semanaepi <- function(data_agrupada,
 #'   data_agrupada = data_agrupada,
 #'   col_edad = "edad"
 #' )
+#' }
 #' @export
 plot_edad <- function(data_agrupada,
                       col_edad = "edad",
@@ -694,7 +696,7 @@ plot_dptos <- function(data_agrupada,
   if (num_eventos > 3) {
     pos_leyenda <- ggplot2::theme(legend.position = "bottom")
   }
-  data_agrupada <- group_by(
+  data_agrupada <- dplyr::group_by(
     data_agrupada,
     dplyr::across(dplyr::all_of(col_dptos))
   )
@@ -787,7 +789,7 @@ plot_mpios <- function(data_agrupada,
   if (num_eventos > 3) {
     pos_leyenda <- ggplot2::theme(legend.position = "bottom")
   }
-  data_agrupada <- group_by(
+  data_agrupada <- dplyr::group_by(
     data_agrupada,
     dplyr::across(dplyr::all_of(col_mpios))
   )
@@ -938,7 +940,7 @@ plot_top_area_geo <- function(data_agrupada,
   }
   pos_leyenda <- ggplot2::theme(legend.position = "right")
   num_areas <- length(unique(data_agrupada[[col_area]]))
-  data_agrupada_area <- group_by(
+  data_agrupada_area <- dplyr::group_by(
     data_agrupada,
     dplyr::across(dplyr::all_of(nomb_cols))
   )
@@ -1368,7 +1370,7 @@ plot_tabla_incidencia_geo <- function(data_agrupada,
   )
   data_agrupada[[col_geo[2]]] <-
     stringr::str_to_title(data_agrupada[[col_geo[2]]])
-  data_tabla <- group_by(
+  data_tabla <- dplyr::group_by(
     data_agrupada,
     dplyr::across(dplyr::all_of(c(col_geo, "incidencia")))
   )

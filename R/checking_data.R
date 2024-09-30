@@ -235,8 +235,9 @@ agrupar_rango_edad <- function(data_event,
   )
   data_vals_rango <- as.data.frame(data_vals_rango)
   if (porcentaje) {
-    data_vals_rango <- data_vals_rango %>%
-      mutate(porcentaje = round(.data$casos / total_casos * 100, 3))
+    data_vals_rango <-
+      dplyr::mutate(data_vals_rango, porcentaje =
+                      round(.data$casos / total_casos * 100, 3))
   }
   names(data_vals_rango)[names(data_vals_rango) == "ranges"] <- col_edad
   return(data_vals_rango)
@@ -1101,7 +1102,7 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
   nomb_cols <- obtener_tip_ocurren_geo(cod_evento)
   if (nomb_cols[1] %in% colnames(data_agrupada) &&
     !(nomb_cols[3] %in% colnames(data_agrupada))) {
-    data_agrupada <- group_by(
+    data_agrupada <- dplyr::group_by(
       data_agrupada,
       dplyr::across(dplyr::all_of(nomb_cols[1:2]))
     )
@@ -1129,7 +1130,7 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
       incidencia = geo_incidencia
     )
   } else if (nomb_cols[3] %in% colnames(data_agrupada)) {
-    data_agrupada <- group_by(
+    data_agrupada <- dplyr::group_by(
       data_agrupada,
       dplyr::across(dplyr::all_of(nomb_cols[1:4]))
     )
@@ -1260,7 +1261,7 @@ calcular_incidencia_sex <- function(data_incidencia = NULL,
     }
   }
   cod_eve <- data_agrupada$cod_eve[1]
-  data_agrupada <- group_by(
+  data_agrupada <- dplyr::group_by(
     data_agrupada,
     .data$sexo
   )
