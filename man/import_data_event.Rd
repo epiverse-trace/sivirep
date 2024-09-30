@@ -31,7 +31,7 @@ Función que importa los datos de una enfermedad o evento por
 año desde los microdatos del SIVIGILA.
 }
 \examples{
-\donttest{
+\dontrun{
 import_data_event(nombre_event = "DENGUE",
                   years = 2020,
                   cache = TRUE)
