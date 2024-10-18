@@ -13,9 +13,6 @@ default:
   - event: "Malaria"
     start_year: 2007
     final_year: 2023
-  - event: "Intento De Suicidio"
-    start_year: 2016
-    final_year: 2023
   - event: "Zika"
     start_year: 2015
     final_year: 2023
