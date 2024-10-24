@@ -32,7 +32,7 @@ data_agrupada <- agrupar_years(data_event = data_limpia)
 plot_years(data_agrupada,
   col_year = "ano"
 )
-\donttest{
+\dontrun{
 data_years <- import_data_event(
   nombre_event = "CHAGAS",
   years = c(2019, 2020),

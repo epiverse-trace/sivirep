@@ -1054,7 +1054,7 @@ plot_tabla_tipos_event <- function(data_agrupada,
 #' plot_years(data_agrupada,
 #'   col_year = "ano"
 #' )
-#' \donttest{
+#' \dontrun{
 #' data_years <- import_data_event(
 #'   nombre_event = "CHAGAS",
 #'   years = c(2019, 2020),
