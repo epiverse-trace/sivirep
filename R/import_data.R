@@ -124,7 +124,19 @@ list_events <- function() {
   nomb_events <- c(stringr::str_to_title(nomb_events),
                    unlist(nomb_events_ad))
   years_events <- c(years_events, unlist(years_ad))
-  list_events <- data.frame(enfermedad = nomb_events,
+  
+  eventos <- obtener_val_config("list_diseases")
+  cod_events <- NULL
+  for (nomb in nomb_events) {
+    for (event in eventos) {
+      if (stringr::str_equal(nomb, event$event)) {
+        cod_events <- c(cod_events, event$cod_eve)          
+      }
+    }
+  }
+  
+  list_events <- data.frame(codigo = cod_events,
+                            enfermedad = nomb_events,
                             aa = years_events)
   list_events <- list_events[order(list_events$enfermedad,
                                    decreasing = FALSE), ]
