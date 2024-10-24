@@ -38,7 +38,7 @@ El uso de esta librería, así como de los datos, reportes generados y otros pro
 
 ## Motivación
 
-América Latina ha progresado en la calidad de sus sistemas de notificación y vigilancia epidemiológica. En particular, Colombia ha mejorado a lo largo de los años la calidad, la accesibilidad y la transparencia de su sistema oficial de vigilancia epidemiológica, [SIVIGILA](https://www.ins.gov.co/Direcciones/Vigilancia/Paginas/SIVIGILA.aspx). Este sistema está regulado por el [Instituto Nacional de Salud](https://www.ins.gov.co) de Colombia y es operado por miles de trabajadores de la salud en las secretarías de salud locales, hospitales y unidades primarias generadoras de datos.
+América Latina ha progresado en la calidad de sus sistemas de notificación y vigilancia epidemiológica. En particular, Colombia ha mejorado a lo largo de los años la calidad, la accesibilidad y la transparencia de su sistema oficial de vigilancia epidemiológica, [SIVIGILA](https://portalsivigila.ins.gov.co/). Este sistema está regulado por el [Instituto Nacional de Salud](https://www.ins.gov.co/Paginas/Inicio.aspx) de Colombia y es operado por miles de trabajadores de la salud en las secretarías de salud locales, hospitales y unidades primarias generadoras de datos.
 
 Sin embargo, todavía existen desafíos, especialmente a nivel local, en cuanto a la oportunidad y la calidad del análisis epidemiológico y de los informes epidemiológicos. Estas tareas pueden requerir una gran cantidad de trabajo manual debido a limitaciones en el entrenamiento para el análisis de datos, el tiempo que se requiere invertir, la tecnología y la calidad del acceso a internet en algunas regiones de Colombia.
 
