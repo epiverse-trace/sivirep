@@ -16,6 +16,27 @@ default:
   - event: "Zika"
     start_year: 2015
     final_year: 2023
+  - event: "Fiebre Amarilla"
+    start_year: 2007
+    final_year: 2009
+  - event: "Desnutrición Aguda En Menores De 5 Años"
+    start_year: 2016
+    final_year: 2023
+  - event: "Rubeola"
+    start_year: 2007
+    final_year: 2012
+  - event: "Tifus Endémico Trasmitido Por Pulgas"
+    start_year: 2013
+    final_year: 2014
+  - event: "Tifus Epidémico Transmitido Por Piojos"
+    start_year: 2014
+    final_year: 2014
+  - event: "Varicela Individual"
+    start_year: 2007
+    final_year: 2023
+  - event: "Vigilancia En Salud Pública De La Violencia De Género E Intrafamiliar"
+    start_year: 2012
+    final_year: 2023
   related_diseases: {"MORTALIDAD MATERNA": "MORBILIDAD MATERNA EXTREMA"}
   dates_column_names: ["fecha_nto", "fec_not", "ini_sin", "fec_hos", "fec_def", "fec_con"]
   depto_column_names: ["cod_dpto_o", "cod_dpto_r"]
