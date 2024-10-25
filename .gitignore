@@ -41,3 +41,6 @@ inst/doc
 /doc/
 /Meta/
 inst/extdata/Datos_*.xls*
+
+# CRAN
+CRAN-SUBMISSION
