@@ -21,12 +21,14 @@
 #' @return Un `plot` o mapa por departamentos o municipios con el número de
 #' casos o incidencia de un evento o enfermedad específica.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(dengue2020)
 #' data_estandar <- estandarizar_geo_cods(data_limpia)
 #' # Mapa por departamentos
-#' data_espacial <- agrupar_dpto(data_event = data_estandar)
+#' geo_ocurrencia <- obtener_tip_ocurren_geo(nombre_event = "dengue")
+#' data_espacial <- agrupar_dpto(data_event = data_estandar,
+#'                               geo_ocurrencia[1:4])
 #' plot_map(
 #'   data_agrupada = data_espacial,
 #'   col_distribucion = "casos"
