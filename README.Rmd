@@ -150,19 +150,30 @@ library(sivirep)
 ```
 
 Puedes revisar las enfermedades y los años disponibles para su descarga
-de forma libre utilizando:
+de forma libre utilizando el comando:
 
-```{r list-events}
+```{r list-events-ms, results = 'hide'}
 lista_eventos <- list_events()
 knitr::kable(lista_eventos)
 ```
+
+`r paste0("<blockquote style=", '"color: #333; cursor:pointer;"', "><details><summary>🦠<b>Listado de enfermedades (haz clic para ver)</b></summary><br>")`
+
+```{r list-events-rs, echo = FALSE}
+knitr::kable(lista_eventos,
+             col.names = c("Codigo", "Enfermedad", "Año"),
+             row.names = FALSE, align = "l")
+```
+
+`r paste0("</details></blockquote>")`
+
 ## Reporte automatizado
 
 Actualmente, `sivirep` provee una plantilla de reporte llamada
 `Reporte Básico {sivirep}`, la cual recibe los siguientes parámetros de
-entrada: el nombre de la enfermedad, el año, el nombre de departamento
-(opcional) y nombre del municipio (opcional) para descargar los datos de
-la fuente de SIVIGILA.
+entrada: el nombre de la enfermedad, el año, el nombre del país, el nombre 
+del departamento (opcional) y el nombre del municipio (opcional) para descargar
+los datos de la fuente de SIVIGILA.
 
 Para hacer uso de la plantilla del reporte puedes seguir los
 siguientes pasos:

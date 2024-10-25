@@ -100,11 +100,22 @@ library(sivirep)
 ```
 
 Puedes revisar las enfermedades y los años disponibles para su descarga
-de forma libre utilizando:
+de forma libre utilizando el comando:
 
-```{r list_events, eval = FALSE}
+```{r list-events-ms, results = 'hide'}
 lista_eventos <- list_events()
+knitr::kable(lista_eventos)
 ```
+
+`r paste0("<blockquote style=", '"color: #333; cursor:pointer;"', "><details><summary>🦠<b>Listado de enfermedades (haz clic para ver)</b></summary><br>")`
+
+```{r list-events-rs, echo = FALSE}
+knitr::kable(lista_eventos,
+             col.names = c("Codigo", "Enfermedad", "Año"),
+             row.names = FALSE, align = "l")
+```
+
+`r paste0("</details></blockquote>")`
 
 ## Reporte automatizado
 
