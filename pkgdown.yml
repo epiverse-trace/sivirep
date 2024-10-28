@@ -1,12 +1,12 @@
 pandoc: 3.1.11
 pkgdown: 2.1.1.9000
-pkgdown_sha: 8d9cba19fe597bba170f8d4c99f351491ab4f4d1
+pkgdown_sha: ffe60d5f60934e95285d416dae12c05e24ed1dac
 articles:
   articles/automated_report: automated_report.html
   articles/custom_analysis: custom_analysis.html
   articles/resources: resources.html
   sivirep: sivirep.html
-last_built: 2024-10-24T19:40Z
+last_built: 2024-10-28T14:30Z
 urls:
   reference: https://epiverse-trace.github.io/sivirep/reference
   article: https://epiverse-trace.github.io/sivirep/articles

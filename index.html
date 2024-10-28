@@ -158,372 +158,418 @@
 <p>Puedes iniciar importando el paquete después de finalizada su instalación con el siguiente comando:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://epiverse-trace.github.io/sivirep/">sivirep</a></span><span class="op">)</span></span></code></pre></div>
-<p>Puedes revisar las enfermedades y los años disponibles para su descarga de forma libre utilizando:</p>
+<p>Puedes revisar las enfermedades y los años disponibles para su descarga de forma libre utilizando los comandos:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lista_eventos</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/list_events.html">list_events</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">lista_eventos</span><span class="op">)</span></span></code></pre></div>
+<blockquote style="color: #333; cursor:pointer;">
+<details><summary>
+🦠<b>Listado de enfermedades (haz clic para ver)</b>
+</summary><p><br></p>
 <table class="table">
 <colgroup>
-<col width="2%">
+<col width="4%">
 <col width="37%">
-<col width="59%">
+<col width="57%">
 </colgroup>
 <thead><tr class="header">
-<th align="left"></th>
-<th align="left">enfermedad</th>
-<th align="left">aa</th>
+<th align="left">Codigo</th>
+<th align="left">Enfermedad</th>
+<th align="left">Año</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">1</td>
+<td align="left">100</td>
 <td align="left">Accidente Ofídico</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="even">
-<td align="left">2</td>
+<td align="left">300</td>
 <td align="left">Agresiones Por Animales Potencialmente Transmisores De Rabia</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="odd">
-<td align="left">3</td>
+<td align="left">735</td>
 <td align="left">Anomalías Congénitas</td>
 <td align="left">2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="even">
-<td align="left">4</td>
+<td align="left">110</td>
 <td align="left">Bajo Peso Al Nacer</td>
 <td align="left">2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
 <tr class="odd">
-<td align="left">5</td>
+<td align="left">155</td>
 <td align="left">Cáncer De La Mama Y Cuello Uterino</td>
 <td align="left">2016, 2017, 2018, 2019, 2020, 2021, 2023</td>
 </tr>
 <tr class="even">
-<td align="left">6</td>
+<td align="left">459</td>
 <td align="left">Cáncer Infantil</td>
 <td align="left">2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="odd">
-<td align="left">7</td>
+<td align="left">205</td>
 <td align="left">Chagas</td>
 <td align="left">2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="even">
-<td align="left">8</td>
+<td align="left">217</td>
 <td align="left">Chikunguya</td>
 <td align="left">2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="odd">
-<td align="left">9</td>
+<td align="left">210</td>
 <td align="left">Dengue</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="even">
-<td align="left">10</td>
+<td align="left">220</td>
 <td align="left">Dengue Grave</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="odd">
-<td align="left">11</td>
+<td align="left">112</td>
+<td align="left">Desnutrición Aguda En Menores De 5 Años</td>
+<td align="left">2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
+</tr>
+<tr class="even">
+<td align="left">230</td>
 <td align="left">Difteria</td>
 <td align="left">2018, 2019, 2021</td>
 </tr>
-<tr class="even">
-<td align="left">12</td>
+<tr class="odd">
+<td align="left">345</td>
 <td align="left">Esi - Irag (Vigilancia Centinela)</td>
 <td align="left">2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
-<tr class="odd">
-<td align="left">13</td>
+<tr class="even">
+<td align="left">349</td>
 <td align="left">Eta Colectivo</td>
 <td align="left">2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
-<tr class="even">
-<td align="left">14</td>
+<tr class="odd">
+<td align="left">298</td>
 <td align="left">Evento Adverso Grave Posterior A La Vacunación</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
-<tr class="odd">
-<td align="left">15</td>
+<tr class="even">
+<td align="left">228</td>
 <td align="left">Exposición A Flúor</td>
 <td align="left">2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019</td>
 </tr>
+<tr class="odd">
+<td align="left">310</td>
+<td align="left">Fiebre Amarilla</td>
+<td align="left">2007, 2008, 2009</td>
+</tr>
 <tr class="even">
-<td align="left">16</td>
+<td align="left">320</td>
 <td align="left">Fiebre Tifoidea Y Paratifoidea</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="odd">
-<td align="left">17</td>
+<td align="left">330</td>
 <td align="left">Hepatitis A</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="even">
-<td align="left">18</td>
+<td align="left">340</td>
 <td align="left">Hepatitis B, C Y Coinfección Hepatitis B Y Delta</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="odd">
-<td align="left">19</td>
+<td align="left">341</td>
 <td align="left">Hepatitis C</td>
 <td align="left">2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="even">
-<td align="left">20</td>
+<td align="left">343</td>
 <td align="left">Hipotiroidismo Congénito</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="odd">
-<td align="left">21</td>
+<td align="left">348</td>
 <td align="left">Infección Respiratoria Aguda Grave Irag Inusitada</td>
 <td align="left">2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="even">
-<td align="left">22</td>
+<td align="left">356</td>
 <td align="left">Intento De Suicidio</td>
 <td align="left">2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="odd">
-<td align="left">23</td>
+<td align="left">412</td>
 <td align="left">Intoxicación Por Gases</td>
 <td align="left">2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="even">
-<td align="left">24</td>
+<td align="left">370</td>
 <td align="left">Intoxicación Por Medicamentos</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="odd">
-<td align="left">25</td>
+<td align="left">390</td>
 <td align="left">Intoxicación Por Metales Pesados</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="even">
-<td align="left">26</td>
+<td align="left">380</td>
 <td align="left">Intoxicación Por Metanol</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="odd">
-<td align="left">27</td>
+<td align="left">410</td>
 <td align="left">Intoxicación Por Otras Sustancias Químicas</td>
 <td align="left">2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="even">
-<td align="left">28</td>
+<td align="left">360</td>
 <td align="left">Intoxicación Por Plaguicidas</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="odd">
-<td align="left">29</td>
+<td align="left">400</td>
 <td align="left">Intoxicación Por Solventes</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="even">
-<td align="left">30</td>
+<td align="left">420</td>
 <td align="left">Leishmaniasis Cutánea</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="odd">
-<td align="left">31</td>
+<td align="left">430</td>
 <td align="left">Leishmaniasis Mucosa</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="even">
-<td align="left">32</td>
+<td align="left">440</td>
 <td align="left">Leishmaniasis Visceral</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="odd">
-<td align="left">33</td>
+<td align="left">450</td>
 <td align="left">Lepra</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="even">
-<td align="left">34</td>
+<td align="left">455</td>
 <td align="left">Leptospirosis</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="odd">
-<td align="left">35</td>
+<td align="left">452</td>
 <td align="left">Lesiones Por Artefactos Explosivos (Pólvora Y Minas Antipersonal)</td>
 <td align="left">2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="even">
-<td align="left">36</td>
+<td align="left">458</td>
 <td align="left">Lesiones Por Pólvora Y Explosivos</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014</td>
 </tr>
 <tr class="odd">
-<td align="left">37</td>
+<td align="left">456</td>
 <td align="left">Leucemia Aguda Pediátrica Linfoide</td>
 <td align="left">2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="even">
-<td align="left">38</td>
+<td align="left">457</td>
 <td align="left">Leucemia Aguda Pediátrica Mieloide</td>
 <td align="left">2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="odd">
-<td align="left">67</td>
+<td align="left">465</td>
 <td align="left">Malaria</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="even">
-<td align="left">39</td>
+<td align="left">460</td>
 <td align="left">Malaria Asociada (Formas Mixtas)</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="odd">
-<td align="left">40</td>
+<td align="left">495</td>
 <td align="left">Malaria Complicada</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="even">
-<td align="left">41</td>
+<td align="left">470</td>
 <td align="left">Malaria Falciparum</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="odd">
-<td align="left">42</td>
+<td align="left">490</td>
 <td align="left">Malaria Vivax</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="even">
-<td align="left">43</td>
+<td align="left">500</td>
 <td align="left">Meningitis Meningocócica</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="odd">
-<td align="left">44</td>
+<td align="left">510</td>
 <td align="left">Meningitis Por Haemophilus Influenzae</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="even">
-<td align="left">45</td>
+<td align="left">520</td>
 <td align="left">Meningitis Por Neumococo</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="odd">
-<td align="left">46</td>
+<td align="left">530</td>
 <td align="left">Meningitis Tuberculosa</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="even">
-<td align="left">47</td>
+<td align="left">549</td>
 <td align="left">Morbilidad Materna Extrema</td>
 <td align="left">2012, 2013, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="odd">
-<td align="left">48</td>
+<td align="left">998</td>
 <td align="left">Morbilidad Por Eda</td>
 <td align="left">2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="even">
-<td align="left">49</td>
+<td align="left">995</td>
 <td align="left">Morbilidad Por Ira</td>
 <td align="left">2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="odd">
-<td align="left">50</td>
+<td align="left">550</td>
 <td align="left">Mortalidad Materna</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="even">
-<td align="left">51</td>
+<td align="left">560</td>
 <td align="left">Mortalidad Perinatal Y Neonatal Tardía</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="odd">
-<td align="left">52</td>
+<td align="left">580</td>
 <td align="left">Mortalidad Por Dengue</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="even">
-<td align="left">53</td>
+<td align="left">590</td>
 <td align="left">Mortalidad Por Eda 0-4 Años</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="odd">
-<td align="left">54</td>
+<td align="left">600</td>
 <td align="left">Mortalidad Por Ira</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="even">
-<td align="left">55</td>
+<td align="left">540</td>
 <td align="left">Mortalidad Por Malaria</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="odd">
-<td align="left">56</td>
+<td align="left">620</td>
 <td align="left">Parotiditis</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 <tr class="even">
-<td align="left">57</td>
+<td align="left">670</td>
 <td align="left">Rabia Humana</td>
 <td align="left">2007, 2008, 2009, 2010, 2012, 2015, 2016, 2017, 2020</td>
 </tr>
 <tr class="odd">
-<td align="left">58</td>
+<td align="left">710</td>
+<td align="left">Rubeola</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012</td>
+</tr>
+<tr class="even">
+<td align="left">730</td>
 <td align="left">Sarampión</td>
 <td align="left">2011, 2012, 2013, 2015, 2018, 2019, 2020</td>
 </tr>
-<tr class="even">
-<td align="left">59</td>
+<tr class="odd">
+<td align="left">739</td>
 <td align="left">Síndrome Inflamatorio Multisistémico En Niños Asociado A Sars-Cov2</td>
 <td align="left">2022, 2023</td>
 </tr>
-<tr class="odd">
-<td align="left">60</td>
+<tr class="even">
+<td align="left">760</td>
 <td align="left">Tétanos Accidental</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
-<tr class="even">
-<td align="left">61</td>
+<tr class="odd">
+<td align="left">770</td>
 <td align="left">Tétanos Neonatal</td>
 <td align="left">2007, 2008, 2009, 2010, 2012, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
+<tr class="even">
+<td align="left">790</td>
+<td align="left">Tifus Endémico Trasmitido Por Pulgas</td>
+<td align="left">2013, 2014</td>
+</tr>
 <tr class="odd">
-<td align="left">62</td>
+<td align="left">780</td>
+<td align="left">Tifus Epidémico Transmitido Por Piojos</td>
+<td align="left">2014</td>
+</tr>
+<tr class="even">
+<td align="left">800</td>
 <td align="left">Tos Ferina</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
-<tr class="even">
-<td align="left">63</td>
+<tr class="odd">
+<td align="left">305</td>
 <td align="left">Tracoma</td>
 <td align="left">2017, 2018, 2019, 2022</td>
 </tr>
-<tr class="odd">
-<td align="left">64</td>
+<tr class="even">
+<td align="left">810</td>
 <td align="left">Tuberculosis Extra Pulmonar</td>
 <td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
-<tr class="even">
-<td align="left">65</td>
+<tr class="odd">
+<td align="left">825</td>
 <td align="left">Tuberculosis Farmacorresistente</td>
 <td align="left">2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
-<tr class="odd">
-<td align="left">66</td>
+<tr class="even">
+<td align="left">820</td>
 <td align="left">Tuberculosis Pulmonar</td>
 <td align="left">2010, 2011, 2016, 2017, 2018, 2019, 2020, 2021, 2022</td>
 </tr>
+<tr class="odd">
+<td align="left">831</td>
+<td align="left">Varicela Individual</td>
+<td align="left">2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
+</tr>
 <tr class="even">
-<td align="left">68</td>
+<td align="left">875</td>
+<td align="left">Vigilancia En Salud Pública De La Violencia De Género E Intrafamiliar</td>
+<td align="left">2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
+</tr>
+<tr class="odd">
+<td align="left">895</td>
 <td align="left">Zika</td>
 <td align="left">2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023</td>
 </tr>
 </tbody>
-</table>
+</table></details>
+</blockquote>
 </div>
 <div class="section level2">
 <h2 id="reporte-automatizado">Reporte automatizado<a class="anchor" aria-label="anchor" href="#reporte-automatizado"></a>
 </h2>
-<p>Actualmente, <code>sivirep</code> provee una plantilla de reporte llamada <code>Reporte Básico {sivirep}</code>, la cual recibe los siguientes parámetros de entrada: el nombre de la enfermedad, el año, el nombre de departamento (opcional) y nombre del municipio (opcional) para descargar los datos de la fuente de SIVIGILA.</p>
+<p>Actualmente, <code>sivirep</code> provee una plantilla de reporte llamada <code>Reporte Básico {sivirep}</code>, la cual recibe los siguientes parámetros de entrada: el nombre de la enfermedad, el año, el nombre del país, el nombre del departamento (opcional) y el nombre del municipio (opcional) para descargar los datos de la fuente de SIVIGILA.</p>
 <p>Para hacer uso de la plantilla del reporte puedes seguir los siguientes pasos:</p>
-<video controls autoplay width="100%" loop><source src="https://github.com/epiverse-trace/sivirep/assets/10783929/acbb0111-4044-4698-8e0c-f8e902ddaba3" type="video/webm" label="fullHD" srcset="NA"></source></video><p>El reporte que obtendrás al utilizar la plantilla de <code>sivirep</code> es este:</p>
-<video controls autoplay width="100%" loop><source src="https://github.com/epiverse-trace/sivirep/assets/10783929/265f9bd5-8da5-45b7-b216-3d7648328037" type="video/webm" label="fullHD" srcset="NA"></source></video><p>Si deseas generar el reporte en formato PDF debes instalar LateX. Puedes instalarlo siguiendo las instrucciones que se encuentran en <a href="https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html" class="external-link">R Markdown Cookbook</a>.</p>
+<blockquote>
+<p>🎥 <a href="https://youtu.be/pqzRw5YhP_g" class="external-link">¿Cómo generar un reporte con sivirep?</a></p>
+</blockquote>
+<p>El reporte que obtendrás al utilizar la plantilla de <code>sivirep</code> es este:</p>
+<blockquote>
+<p>🎥 <a href="https://youtu.be/1t_Di3fC4hM" class="external-link">Reporte sivirep</a></p>
+</blockquote>
+<p>Si deseas generar el reporte en formato PDF debes instalar LateX. Puedes instalarlo siguiendo las instrucciones que se encuentran en <a href="https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html" class="external-link">R Markdown Cookbook</a>.</p>
 </div>
 
   </main><aside class="col-md-3"><div class="enlaces">
