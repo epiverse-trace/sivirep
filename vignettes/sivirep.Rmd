@@ -102,7 +102,7 @@ library(sivirep)
 Puedes revisar las enfermedades y los años disponibles para su descarga
 de forma libre utilizando el comando:
 
-```{r list-events-ms, results = 'hide'}
+```{r list-events-ms, eval = FALSE}
 lista_eventos <- list_events()
 knitr::kable(lista_eventos)
 ```
@@ -110,10 +110,18 @@ knitr::kable(lista_eventos)
 `r paste0("<blockquote style=", '"color: #333; cursor:pointer;"', "><details><summary>🦠<b>Listado de enfermedades (haz clic para ver)</b></summary><br>")`
 
 ```{r list-events-rs, echo = FALSE}
-knitr::kable(lista_eventos,
+lista_eventos <- NULL
+tryCatch({
+  lista_eventos <- list_events()
+  knitr::kable(lista_eventos,
              col.names = c("Codigo", "Enfermedad", "Año"),
              row.names = FALSE, align = "l")
+}, error = function(e) {
+  lista_eventos <- NULL
+})
 ```
+
+`r if (is.null(lista_eventos)) { paste0("<ul><li><a class=", '"external-link"',  " href=", '"https://epiverse-trace.github.io/sivirep/articles/resources.html#enfermedades-y-a%C3%B1os-disponibles-para-su-descarga"', ">Enfermedades</a></li></ul>")}`
 
 `r paste0("</details></blockquote>")`
 
