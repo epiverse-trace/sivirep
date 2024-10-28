@@ -144,7 +144,7 @@ library(sivirep)
 ```
 
 Puedes revisar las enfermedades y los años disponibles para su descarga
-de forma libre utilizando el comando:
+de forma libre utilizando los comandos:
 
 ``` r
 lista_eventos <- list_events()
