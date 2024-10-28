@@ -23,9 +23,8 @@ iniciativa [Epiverse](https://data.org/initiatives/epiverse/).
 
 La versión actual de *sivirep* 1.0.0 proporciona funciones para la
 manipulación de datos y la generación de reportes automatizados basados
-en las bases de datos individualizadas de casos de
-[SIVIGILA](https://portalsivigila.ins.gov.co/), que es el sistema
-oficial de vigilancia epidemiológica de Colombia.
+en las bases de datos individualizadas de casos de SIVIGILA, que es el
+sistema oficial de vigilancia epidemiológica de Colombia.
 
 ## Exclusión de responsabilidad
 
@@ -42,11 +41,10 @@ América Latina ha progresado en la calidad de sus sistemas de
 notificación y vigilancia epidemiológica. En particular, Colombia ha
 mejorado a lo largo de los años la calidad, la accesibilidad y la
 transparencia de su sistema oficial de vigilancia epidemiológica,
-[SIVIGILA](https://portalsivigila.ins.gov.co/). Este sistema está
-regulado por el [Instituto Nacional de
-Salud](https://www.ins.gov.co/Paginas/Inicio.aspx) de Colombia y es
-operado por miles de trabajadores de la salud en las secretarías de
-salud locales, hospitales y unidades primarias generadoras de datos.
+SIVIGILA. Este sistema está regulado por el Instituto Nacional de Salud
+de Colombia y es operado por miles de trabajadores de la salud en las
+secretarías de salud locales, hospitales y unidades primarias
+generadoras de datos.
 
 Sin embargo, todavía existen desafíos, especialmente a nivel local, en
 cuanto a la oportunidad y la calidad del análisis epidemiológico y de
