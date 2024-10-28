@@ -24,4 +24,6 @@ This is a resubmission. In this version:
 * The examples for the functions `import_data_event`, `list_events` and
   `plot_year` are wrapped in a `dontrun` tag because they connect to the
   SIVIGILA API. We have observed that, in some regions, it is not possible to
-  establish a connection with the API for security reasons.
+  establish a connection with the API for security reasons. These functions
+  cannot be wrapped in a `try-catch` block, as this may lead confusion in our
+  users.
