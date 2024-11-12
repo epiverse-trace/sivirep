@@ -6,7 +6,7 @@
 \alias{sivirep-package}
 \title{sivirep: Data Wrangling and Automated Reports from 'SIVIGILA' Source}
 \description{
-Data wrangling and generating automated reports from Colombia's epidemiological surveillance system, 'SIVIGILA'.
+Data wrangling, pre-processing, and generating automated reports from Colombia's epidemiological surveillance system, 'SIVIGILA' \url{https://portalsivigila.ins.gov.co/}. It provides a customizable R Markdown template for analysis and automatic generation of epidemiological reports that can be adapted to local, regional, and national contexts. This tool offers a standardized and reproducible workflow that helps to reduce manual labor and potential errors in report generation, improving their efficiency and consistency.
 }
 \seealso{
 Useful links:
