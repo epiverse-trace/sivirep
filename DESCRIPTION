@@ -30,8 +30,14 @@ Authors@R:
     person("International Development Research Center (IDRC)", role = "fnd"),
     person("Pontificia Universidad Javeriana", role = "cph")
   )
-Description: Data wrangling and generating automated reports from Colombia's 
-    epidemiological surveillance system, 'SIVIGILA'.
+Description: Data wrangling, pre-processing, and generating automated reports 
+    from Colombia's epidemiological surveillance system, 
+    'SIVIGILA' <https://portalsivigila.ins.gov.co/>. It provides a 
+    customizable R Markdown template for analysis and automatic 
+    generation of epidemiological reports that can be adapted to local, 
+    regional, and national contexts. This tool offers a standardized and 
+    reproducible workflow that helps to reduce manual labor and potential 
+    errors in report generation, improving their efficiency and consistency.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
