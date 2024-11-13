@@ -5,12 +5,16 @@
 \title{Obtener la ruta del directorio donde se almacenarán
 los datos del evento o enfermedad}
 \usage{
-obtener_ruta_dir(ruta_dir = NULL, mensaje_error)
+obtener_ruta_dir(ruta_dir = NULL, cache = FALSE, mensaje_error)
 }
 \arguments{
 \item{ruta_dir}{Un `character` (cadena de caracteres) que contiene la ruta
 del directorio donde se almacenarán los datos del evento o enfermedad.
 Su valor por defecto es `NULL`.}
+
+\item{cache}{Un `logical` (`TRUE` o `FALSE`) que indica si los datos
+descargados deben ser almacenados en caché. Su valor por defecto
+es `FALSE`.}
 
 \item{mensaje_error}{Un `character` (cadena de caracteres) con
 el mensaje de error que se debe mostrar en caso de que no se
