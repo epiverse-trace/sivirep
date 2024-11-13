@@ -242,7 +242,7 @@ if (!params$cache) {
 data_event <- import_data_event(nombre_event = params$nombre_evento,
                                 years = params$year,
                                 cache = params$cache,
-                                ruta_dir = tempdir())
+                                ruta_dir = ruta_dir)
 mostrar_sex <- stringr::str_detect(tolower(params$nombre_evento),
                                    stringr::fixed("materna"))
 etiqueta_geo <- "municipios"
@@ -310,7 +310,7 @@ data_event_years <-
                     years = seq(params$year - 4,
                                 params$year - 1),
                     cache = params$cache,
-                    ruta_dir = tempdir())
+                    ruta_dir = ruta_dir)
 data_event_years <- rbind(data_event, data_event_years)
 data_years_limpia <- limpiar_data_sivigila(data_event_years)
 data_years_filtrada <- data_years_limpia
@@ -471,7 +471,7 @@ if (params$departamento == "" && params$municipio == "") {
 mapa <- plot_map(data_agrupada = dist_espacial_casos,
                  col_distribucion = "casos",
                  cache = params$cache,
-                 ruta_dir = tempdir())
+                 ruta_dir = ruta_dir)
 ```
 
 ```{r mapa-casos, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, cache = FALSE, results = FALSE, comment = FALSE, fig.height = gr_mapa_al, fig.width = gr_mapa_an, fig.align = 'center', fig.cap = paste0("Distribución espacial de casos ", text_mapa_casos , " - ", text_ext_geo), include = params$spatial_distribution}
@@ -517,7 +517,7 @@ plot_per_etn(data_agrupada = casos_per_etn)
 incidencia_total <- calcular_incidencia(data_agrupada =
                                          dist_espacial,
                                         cache = params$cache,
-                                        ruta_dir = tempdir())
+                                        ruta_dir = ruta_dir)
 cond_incidencia <-
   obtener_cond_inciden_event(cod_eve = dist_espacial$cod_eve[1])
 ```
@@ -542,7 +542,7 @@ incidencias_sex <-
   calcular_incidencia_sex(data_agrupada = casos_sex,
                           dpto = nomb_dpto,
                           cache = params$cache,
-                          ruta_dir = tempdir())
+                          ruta_dir = ruta_dir)
 incidencia_mayor_sex <- obtener_fila_mas_casos(data_event =
                                                 incidencias_sex$data_incidencia,
                                                nomb_col = "incidencia ")
@@ -572,7 +572,7 @@ incidencias_geo <-
   calcular_incidencia_geo(data_agrupada =
                             dist_espacial,
                           cache = params$cache,
-                          ruta_dir = tempdir())
+                          ruta_dir = ruta_dir)
 ```
 
 ```{r text-pop-incidencia-geo}
@@ -600,14 +600,16 @@ if (params$departamento == "" && params$municipio == "") {
                                       col_dpto = geo_ocurrencia[1:4])
   incidencias_geo <-
   calcular_incidencia_geo(data_agrupada =
-                            dist_espacial_mpios)
+                            dist_espacial_mpios,
+                          cache = params$cache,
+                          ruta_dir = ruta_dir)
 }
 if (params$municipio != "") {
   text_mapa_inciden <- ""
 }
 mapa <- plot_map(data_agrupada = incidencias_geo$data_incidencia,
                  cache = params$cache,
-                 ruta_dir = tempdir())
+                 ruta_dir = ruta_dir)
 ```
 
 ```{r mapa-incidencias, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, cache = FALSE, results = FALSE, comment = FALSE, fig.height = gr_map_incid_al, fig.width = gr_map_incid_an, fig.align = 'center', fig.cap = paste0("Incidencia según distribución geográfica ", text_mapa_inciden, " - ", text_ext_geo), include = params$spatial_distribution}
