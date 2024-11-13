@@ -1108,8 +1108,8 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
       poblacion = poblacion,
       event = nombre_evento,
       year = year,
-      ruta_dir = ruta_dir,
-      cache = cache
+      cache = cache,
+      ruta_dir = ruta_dir
     )
   data_incidencia <- pop_incidencia$data_incidencia
   poblacion <- pop_incidencia$poblacion
@@ -1164,7 +1164,9 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
         poblacion = poblacion,
         dpto = mpio_fila[[nomb_cols[1]]],
         mpio = mpio_fila[[nomb_cols[3]]],
-        year = year
+        year = year,
+        cache = cache,
+        ruta_dir = ruta_dir
       )
       geo_incidencia[fila] <- incidencia$incidencia
     }
@@ -1301,7 +1303,9 @@ calcular_incidencia_sex <- function(data_incidencia = NULL,
       dpto = dpto,
       mpio = mpio,
       sex = sex_fila[["sexo"]],
-      year = year
+      year = year,
+      cache = cache,
+      ruta_dir = ruta_dir
     )
     incidencia[fila] <- incidencia_sex$incidencia
   }
