@@ -869,15 +869,16 @@ obtener_config_map <- function(data_agrupada, dpto, mpio,
 #' enfermedad.
 #' @keywords internal
 obtener_ruta_dir <- function(ruta_dir = NULL,
+                             cache = FALSE,
                              mensaje_error) {
-  if (is.null(ruta_dir)) {
+  if (cache) {
     ruta_dir <- tools::R_user_dir("sivirep", which = "cache")
-    if (!dir.exists(ruta_dir)) {
-      creado <- dir.create(ruta_dir, recursive = TRUE)
-      if (!creado) {
-        stop("Por favor indique en el parametro ruta_dir la ruta donde
+  }
+  if (!dir.exists(ruta_dir)) {
+    creado <- dir.create(ruta_dir, recursive = TRUE)
+    if (!creado) {
+      stop("Por favor indique en el parametro ruta_dir la ruta donde
              desea almacenar ", mensaje_error)
-      }
     }
   }
   return(ruta_dir)
