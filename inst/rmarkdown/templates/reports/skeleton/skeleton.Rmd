@@ -118,7 +118,7 @@ if (params$municipio != "") {
 fuente <- "Fuente SIVIGILA, Datos libres"
 ```
 
-```{r tam_graficos}
+```{r tam-graficos}
 casos_years_hg <- 5
 gr_casos_years_wd <- 11
 gr_tip_cas_al <- 5
@@ -235,9 +235,14 @@ if (knitr::is_html_output()) {
 ```
 
 ```{r import-data, include = FALSE}
+ruta_dir <- NULL
+if (!params$cache) {
+  ruta_dir <- tempdir()
+}
 data_event <- import_data_event(nombre_event = params$nombre_evento,
                                 years = params$year,
-                                cache = TRUE)
+                                cache = params$cache,
+                                ruta_dir = tempdir())
 mostrar_sex <- stringr::str_detect(tolower(params$nombre_evento),
                                    stringr::fixed("materna"))
 etiqueta_geo <- "municipios"
@@ -304,7 +309,8 @@ data_event_years <-
   import_data_event(nombre_event = params$nombre_evento,
                     years = seq(params$year - 4,
                                 params$year - 1),
-                    cache = TRUE)
+                    cache = params$cache,
+                    ruta_dir = tempdir())
 data_event_years <- rbind(data_event, data_event_years)
 data_years_limpia <- limpiar_data_sivigila(data_event_years)
 data_years_filtrada <- data_years_limpia
@@ -463,7 +469,9 @@ if (params$departamento == "" && params$municipio == "") {
   text_mapa_casos <- ""
 }
 mapa <- plot_map(data_agrupada = dist_espacial_casos,
-                 col_distribucion = "casos")
+                 col_distribucion = "casos",
+                 cache = params$cache,
+                 ruta_dir = tempdir())
 ```
 
 ```{r mapa-casos, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, cache = FALSE, results = FALSE, comment = FALSE, fig.height = gr_mapa_al, fig.width = gr_mapa_an, fig.align = 'center', fig.cap = paste0("Distribución espacial de casos ", text_mapa_casos , " - ", text_ext_geo), include = params$spatial_distribution}
@@ -508,7 +516,8 @@ plot_per_etn(data_agrupada = casos_per_etn)
 ```{r incidencia-total, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
 incidencia_total <- calcular_incidencia(data_agrupada =
                                          dist_espacial,
-                                        cache = TRUE)
+                                        cache = params$cache,
+                                        ruta_dir = tempdir())
 cond_incidencia <-
   obtener_cond_inciden_event(cod_eve = dist_espacial$cod_eve[1])
 ```
@@ -532,7 +541,8 @@ if (params$departamento != "") {
 incidencias_sex <-
   calcular_incidencia_sex(data_agrupada = casos_sex,
                           dpto = nomb_dpto,
-                          cache = TRUE)
+                          cache = params$cache,
+                          ruta_dir = tempdir())
 incidencia_mayor_sex <- obtener_fila_mas_casos(data_event =
                                                 incidencias_sex$data_incidencia,
                                                nomb_col = "incidencia ")
@@ -560,7 +570,9 @@ plot_sex(data_agrupada = incidencias_sex$data_incidencia,
 ```{r incidencia-geo, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
 incidencias_geo <-
   calcular_incidencia_geo(data_agrupada =
-                            dist_espacial)
+                            dist_espacial,
+                          cache = params$cache,
+                          ruta_dir = tempdir())
 ```
 
 ```{r text-pop-incidencia-geo}
@@ -593,7 +605,9 @@ if (params$departamento == "" && params$municipio == "") {
 if (params$municipio != "") {
   text_mapa_inciden <- ""
 }
-mapa <- plot_map(data_agrupada = incidencias_geo$data_incidencia)
+mapa <- plot_map(data_agrupada = incidencias_geo$data_incidencia,
+                 cache = params$cache,
+                 ruta_dir = tempdir())
 ```
 
 ```{r mapa-incidencias, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, cache = FALSE, results = FALSE, comment = FALSE, fig.height = gr_map_incid_al, fig.width = gr_map_incid_an, fig.align = 'center', fig.cap = paste0("Incidencia según distribución geográfica ", text_mapa_inciden, " - ", text_ext_geo), include = params$spatial_distribution}
