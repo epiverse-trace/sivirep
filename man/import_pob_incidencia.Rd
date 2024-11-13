@@ -9,7 +9,7 @@ import_pob_incidencia(
   event,
   year,
   ruta_dir = NULL,
-  cache = NULL
+  cache = FALSE
 )
 }
 \arguments{
@@ -45,8 +45,10 @@ el 2035.
 \examples{
  \donttest{
 # Importación proyecciones poblaciones DANE
-import_pob_incidencia(poblacion = "proyecciones", year = 2020)
+import_pob_incidencia(poblacion = "proyecciones", year = 2020,
+                      cache = TRUE)
 # Importación población a riesgo de Dengue del año 2020
-import_pob_incidencia(poblacion = "riesgo", event = "dengue", year = 2020)
+import_pob_incidencia(poblacion = "riesgo", event = "dengue", year = 2020,
+                      ruta_dir = tempdir())
 }
 }

@@ -27,6 +27,6 @@ DANE desde el año 2005 hasta el 2035.
 }
 \examples{
 \donttest{
-import_pob_proyecciones(year = 2020)
+import_pob_proyecciones(year = 2020, ruta_dir = tempdir())
 }
 }
