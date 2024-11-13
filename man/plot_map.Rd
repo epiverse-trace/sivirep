@@ -65,7 +65,8 @@ data_espacial <- agrupar_dpto(data_event = data_estandar,
                               geo_ocurrencia[1:4])
 plot_map(
   data_agrupada = data_espacial,
-  col_distribucion = "casos"
+  col_distribucion = "casos",
+  cache = TRUE
 )
 # Mapa por municipios de un departamento especifico
 data_filtrada_dpto <- geo_filtro(
@@ -76,7 +77,8 @@ data_espacial_dpto <- agrupar_mpio(data_event = data_filtrada_dpto)
 plot_map(
   data_agrupada = data_espacial_dpto,
   col_codigos = "cod_mun_o",
-  col_distribucion = "casos"
+  col_distribucion = "casos",
+  ruta_dir = tempdir()
 )
 # Mapa por municipio especifico
 data_filtrada_mpio <- geo_filtro(
@@ -90,15 +92,18 @@ plot_map(
   col_codigos = "cod_mun_o",
   col_distribucion = "casos",
   dpto = "Antioquia",
-  mpio = "Medellin"
+  mpio = "Medellin",
+  cache = TRUE
 )
 # Mapa con la incidencia por municipios de un departamento específico
 incidencia_dpto <-
-  calcular_incidencia_geo(data_agrupada = data_espacial_dpto)
+  calcular_incidencia_geo(data_agrupada = data_espacial_dpto,
+                          ruta_dir = tempdir())
 plot_map(
   data_agrupada = incidencia_dpto$data_incidencia,
   col_codigos = "cod_mun_o",
-  col_distribucion = "incidencia"
+  col_distribucion = "incidencia",
+  ruta_dir = tempdir()
 )
 }
 }

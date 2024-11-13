@@ -31,7 +31,8 @@
 #'                               geo_ocurrencia[1:4])
 #' plot_map(
 #'   data_agrupada = data_espacial,
-#'   col_distribucion = "casos"
+#'   col_distribucion = "casos",
+#'   cache = TRUE
 #' )
 #' # Mapa por municipios de un departamento especifico
 #' data_filtrada_dpto <- geo_filtro(
@@ -42,7 +43,8 @@
 #' plot_map(
 #'   data_agrupada = data_espacial_dpto,
 #'   col_codigos = "cod_mun_o",
-#'   col_distribucion = "casos"
+#'   col_distribucion = "casos",
+#'   ruta_dir = tempdir()
 #' )
 #' # Mapa por municipio especifico
 #' data_filtrada_mpio <- geo_filtro(
@@ -56,15 +58,18 @@
 #'   col_codigos = "cod_mun_o",
 #'   col_distribucion = "casos",
 #'   dpto = "Antioquia",
-#'   mpio = "Medellin"
+#'   mpio = "Medellin",
+#'   cache = TRUE
 #' )
 #' # Mapa con la incidencia por municipios de un departamento específico
 #' incidencia_dpto <-
-#'   calcular_incidencia_geo(data_agrupada = data_espacial_dpto)
+#'   calcular_incidencia_geo(data_agrupada = data_espacial_dpto,
+#'                           ruta_dir = tempdir())
 #' plot_map(
 #'   data_agrupada = incidencia_dpto$data_incidencia,
 #'   col_codigos = "cod_mun_o",
-#'   col_distribucion = "incidencia"
+#'   col_distribucion = "incidencia",
+#'   ruta_dir = tempdir()
 #' )
 #' }
 #' @export
@@ -1344,7 +1349,8 @@ plot_per_etn <- function(data_agrupada,
 #' data_agrupada <- agrupar_mpio(data_limpia, dpto = "Antioquia")
 #' incidencia_mpios <- calcular_incidencia_geo(
 #'   data_agrupada =
-#'     data_agrupada
+#'     data_agrupada,
+#'   ruta_dir = tempdir()
 #' )
 #' plot_tabla_incidencia_geo(
 #'   data_agrupada = incidencia_mpios$data_incidencia,
@@ -1426,7 +1432,8 @@ plot_tabla_incidencia_geo <- function(data_agrupada,
 #' incidencia_mpios <-
 #'   calcular_incidencia_sex(
 #'     data_agrupada = data_agrupada_sex,
-#'     dpto = "Antioquia"
+#'     dpto = "Antioquia",
+#'     ruta_dir = tempdir()
 #'   )
 #' plot_tabla_incidencia_sex(
 #'   data_agrupada = incidencia_mpios$data_incidencia,

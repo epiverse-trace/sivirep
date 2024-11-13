@@ -29,7 +29,8 @@ data_agrupada_sex <- agrupar_sex(data_limpia)
 incidencia_mpios <-
   calcular_incidencia_sex(
     data_agrupada = data_agrupada_sex,
-    dpto = "Antioquia"
+    dpto = "Antioquia",
+    ruta_dir = tempdir()
   )
 plot_tabla_incidencia_sex(
   data_agrupada = incidencia_mpios$data_incidencia,
