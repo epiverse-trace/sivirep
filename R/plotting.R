@@ -230,6 +230,7 @@ plot_map <- function(data_agrupada,
 #' @return Un `plot` o gráfico de la distribución de casos por fecha de inicio
 #' de síntomas.
 #' @examples
+#' \donttest{
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(dengue2020)
 #' data_agrupada <- agrupar_fecha_inisintomas(
@@ -240,6 +241,7 @@ plot_map <- function(data_agrupada,
 #'   col_fecha = "ini_sin",
 #'   uni_marca = "semanaepi"
 #' )
+#' }
 #' @export
 plot_fecha_inisintomas <- function(data_agrupada,
                                    col_fecha = "ini_sin",
