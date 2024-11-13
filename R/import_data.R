@@ -169,7 +169,7 @@ list_events <- function() {
 #'                   cache = TRUE)
 #' import_data_event(nombre_event = "CHAGAS",
 #'                   years = c(2019, 2020),
-#'                   cache = TRUE)
+#'                   ruta_dir = tempdir())
 #' import_data_event(nombre_event = "CHAGAS",
 #'                   years = seq(2018, 2020),
 #'                   cache = TRUE)
@@ -260,8 +260,8 @@ import_sep_data <- function(ruta_data = NULL,
                             cache = FALSE) {
   data_archivo <- data.frame()
   ruta_dir <-
-    obtener_ruta_dir(ruta_dir,
-                     "los datos de la enfermedad o evento")
+    obtener_ruta_dir(ruta_dir = ruta_dir, cache = cache,
+                     mensaje_error = "los datos de la enfermedad o evento")
   if (!dir.exists(ruta_dir)) {
     stop("La ruta ingresada en el parametro ruta_dir no existe")
   }
@@ -320,9 +320,11 @@ import_sep_data <- function(ruta_data = NULL,
 #' @examples
 #'  \donttest{
 #' # Importación proyecciones poblaciones DANE
-#' import_pob_incidencia(poblacion = "proyecciones", year = 2020)
+#' import_pob_incidencia(poblacion = "proyecciones", year = 2020,
+#'                       cache = TRUE)
 #' # Importación población a riesgo de Dengue del año 2020
-#' import_pob_incidencia(poblacion = "riesgo", event = "dengue", year = 2020)
+#' import_pob_incidencia(poblacion = "riesgo", event = "dengue", year = 2020,
+#'                       ruta_dir = tempdir())
 #' }
 #' @export
 import_pob_incidencia <- function(
@@ -339,9 +341,11 @@ import_pob_incidencia <- function(
   poblacion <- match.arg(poblacion)
 
     if (poblacion == "proyecciones") {
-    poblacion <- import_pob_proyecciones(year = year)
+    poblacion <- import_pob_proyecciones(year = year, cache = cache,
+                                         ruta_dir = ruta_dir)
   } else {
-    poblacion <- import_pob_riesgo(event = event, year = year)
+    poblacion <- import_pob_riesgo(event = event, year = year, cache = cache,
+                                   ruta_dir = ruta_dir)
   }
   return(poblacion)
 }
@@ -355,7 +359,7 @@ import_pob_incidencia <- function(
 #' @return Un `data.frame` con las proyecciones poblacionales DANE.
 #' @examples
 #' \donttest{
-#' import_pob_proyecciones(year = 2020)
+#' import_pob_proyecciones(year = 2020, ruta_dir = tempdir())
 #' }
 #' @export
 import_pob_proyecciones <- function(year,
@@ -372,8 +376,8 @@ import_pob_proyecciones <- function(year,
                          stringr::fixed("{year}"),
                          year)
   ruta_dir <-
-    obtener_ruta_dir(ruta_dir,
-                     "las proyeciones poblacionales DANE")
+    obtener_ruta_dir(ruta_dir = ruta_dir, cache = cache,
+                     mensaje_error = "las proyeciones poblacionales DANE")
   ruta_proyecs <- file.path(ruta_dir,
                             paste0(nomb_proyecs,
                                    ruta_proyecciones$extension))
@@ -401,7 +405,7 @@ import_pob_proyecciones <- function(year,
 #' @return Un `data.frame` con la población a riesgo de un año específico.
 #' @examples
 #' \donttest{
-#' import_pob_riesgo(event = "Dengue", year = 2020)
+#' import_pob_riesgo(event = "Dengue", year = 2020, ruta_dir = tempdir())
 #' }
 #' @export
 import_pob_riesgo <- function(event, year,
@@ -417,8 +421,8 @@ import_pob_riesgo <- function(event, year,
   etiqueta_year <- obtener_val_config("label_year")
   etiqueta_year <- paste0(tolower(etiqueta_year), "s")
   ruta_dir <-
-    obtener_ruta_dir(ruta_dir,
-                     "las poblaciones a riesgo")
+    obtener_ruta_dir(ruta_dir = ruta_dir, cache = cache,
+                     mensaje_error = "las poblaciones a riesgo")
   pop_event <- NULL
   years_disponibles <- NULL
   pob_riesgo_event <- NULL
@@ -477,8 +481,8 @@ import_pob_riesgo <- function(event, year,
 #' @keywords internal
 import_shape_map <- function(ruta_dir = NULL,
                              cache = FALSE) {
-  ruta_dir <- obtener_ruta_dir(ruta_dir = ruta_dir,
-                               "el Shapefile del mapa")
+  ruta_dir <- obtener_ruta_dir(ruta_dir = ruta_dir, cache = cache,
+                               mensaje_error = "el Shapefile del mapa")
   archivo_zip <- obtener_val_config("map_shape_zip_file")
   ruta_zip <- file.path(ruta_dir, archivo_zip)
   if (!file.exists(ruta_zip)) {

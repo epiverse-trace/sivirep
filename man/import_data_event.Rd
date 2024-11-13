@@ -31,15 +31,17 @@ Función que importa los datos de una enfermedad o evento por
 año desde los microdatos del SIVIGILA.
 }
 \examples{
-\dontrun{
+\donttest{
+if (interactive()) {
 import_data_event(nombre_event = "DENGUE",
                   years = 2020,
                   cache = TRUE)
 import_data_event(nombre_event = "CHAGAS",
                   years = c(2019, 2020),
-                  cache = TRUE)
+                  ruta_dir = tempdir())
 import_data_event(nombre_event = "CHAGAS",
                   years = seq(2018, 2020),
                   cache = TRUE)
+ }
 }
 }
