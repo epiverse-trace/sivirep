@@ -79,8 +79,10 @@ import_geo_cods <- function(descargar = FALSE) {
 #' @return Una `list` con las enfermedades y los años disponibles
 #' para su descarga desde los microdatos del SIVIGILA.
 #' @examples
-#' \dontrun{
-#' list_events()
+#' \donttest{
+#' if (interactive()) {
+#'   list_events()
+#'  }
 #' }
 #' @export
 list_events <- function() {
@@ -160,7 +162,8 @@ list_events <- function() {
 #' @return Un `data.frame` con los datos del año de la enfermedad o evento
 #' seleccionado desde los microdatos del SIVIGILA.
 #' @examples
-#' \dontrun{
+#' \donttest{
+#' if (interactive()) {
 #' import_data_event(nombre_event = "DENGUE",
 #'                   years = 2020,
 #'                   cache = TRUE)
@@ -170,6 +173,7 @@ list_events <- function() {
 #' import_data_event(nombre_event = "CHAGAS",
 #'                   years = seq(2018, 2020),
 #'                   cache = TRUE)
+#'  }
 #' }
 #' @export
 import_data_event <- function(nombre_event,
