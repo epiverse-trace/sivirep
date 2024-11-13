@@ -7,6 +7,7 @@
 calcular_incidencia(
   data_incidencia = NULL,
   cache = FALSE,
+  ruta_dir = NULL,
   data_agrupada,
   poblacion = NULL,
   year = NULL,
@@ -24,6 +25,10 @@ la información; su valor por defecto es `NULL`.}
 \item{cache}{Un `logical` (`TRUE` o `FALSE`) que indica si la población a
 riesgo o las proyecciones poblacionales DANE descargadas deben ser
 almacenados en caché. Su valor por defecto es `FALSE`.}
+
+\item{ruta_dir}{Un `character` (cadena de caracteres) que especifica la ruta
+del directorio donde se almacenarán la población a riesgo o las proyecciones
+poblacionales DANE. Su valor por defecto es `NULL`.}
 
 \item{data_agrupada}{Un `data.frame` que contiene los datos de la enfermedad
 agrupados por departamento o municipio y número de casos.}
@@ -67,7 +72,8 @@ calcular_incidencia(
   data_agrupada = data_agrupada_mpios,
   poblacion = "proyecciones",
   dpto = "05",
-  year = 2020
+  year = 2020,
+  cache = TRUE
 )
 # Cálculo de la incidencia con proyecciones poblacionales por municipio
 calcular_incidencia(
@@ -75,14 +81,16 @@ calcular_incidencia(
   poblacion = "proyecciones",
   dpto = "Antioquia",
   mpio = "05001",
-  year = 2020
+  year = 2020,
+  ruta_dir = tempdir()
 )
 # Cálculo de la incidencia con población a riesgo para Colombia
 data_agrupada_dptos <- agrupar_dpto(data_limpia)
 calcular_incidencia(
   poblacion = "riesgo",
   data_agrupada = data_agrupada_dptos,
-  year = 2020
+  year = 2020,
+  cache = TRUE
 )
 }
 }

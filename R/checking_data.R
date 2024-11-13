@@ -875,6 +875,9 @@ agrupar_per_etn <- function(data_event, cols_etn = "per_etn",
 #' las proyecciones poblaciones DANE. Si este parámetro está vacío, se importará
 #' la población a riesgo o las proyecciones, dependiendo de la disponibilidad de
 #' la información; su valor por defecto es `NULL`.
+#' @param ruta_dir Un `character` (cadena de caracteres) que especifica la ruta
+#' del directorio donde se almacenarán la población a riesgo o las proyecciones
+#' poblacionales DANE. Su valor por defecto es `NULL`.
 #' @param cache Un `logical` (`TRUE` o `FALSE`) que indica si la población a
 #' riesgo o las proyecciones poblacionales DANE descargadas deben ser
 #' almacenados en caché. Su valor por defecto es `FALSE`.
@@ -908,7 +911,8 @@ agrupar_per_etn <- function(data_event, cols_etn = "per_etn",
 #'   data_agrupada = data_agrupada_mpios,
 #'   poblacion = "proyecciones",
 #'   dpto = "05",
-#'   year = 2020
+#'   year = 2020,
+#'   cache = TRUE
 #' )
 #' # Cálculo de la incidencia con proyecciones poblacionales por municipio
 #' calcular_incidencia(
@@ -916,22 +920,24 @@ agrupar_per_etn <- function(data_event, cols_etn = "per_etn",
 #'   poblacion = "proyecciones",
 #'   dpto = "Antioquia",
 #'   mpio = "05001",
-#'   year = 2020
+#'   year = 2020,
+#'   ruta_dir = tempdir()
 #' )
 #' # Cálculo de la incidencia con población a riesgo para Colombia
 #' data_agrupada_dptos <- agrupar_dpto(data_limpia)
 #' calcular_incidencia(
 #'   poblacion = "riesgo",
 #'   data_agrupada = data_agrupada_dptos,
-#'   year = 2020
+#'   year = 2020,
+#'   cache = TRUE
 #' )
 #' }
 #' @export
 calcular_incidencia <- function(data_incidencia = NULL,
-                                cache = FALSE, data_agrupada,
-                                poblacion = NULL, year = NULL,
-                                dpto = NULL, mpio = NULL,
-                                sex = NULL) {
+                                cache = FALSE, ruta_dir = NULL,
+                                data_agrupada, poblacion = NULL,
+                                year = NULL, dpto = NULL,
+                                mpio = NULL, sex = NULL) {
   validar_data_agrupada(data_agrupada)
   nombre_evento <- data_agrupada$nombre_evento[1]
   vals_event <-
@@ -949,6 +955,7 @@ calcular_incidencia <- function(data_incidencia = NULL,
       poblacion = poblacion,
       event = nombre_evento,
       year = year,
+      ruta_dir = ruta_dir,
       cache = cache
     )
   data_incidencia <- pop_incidencia$data_incidencia
@@ -1038,6 +1045,9 @@ calcular_incidencia <- function(data_incidencia = NULL,
 #' para todos los departamentos de Colombia o los municipios de un departamento.
 #' @param data_incidencia Un `data.frame` que contiene las proyecciones
 #' poblacionales del DANE; su valor por defecto es `NULL`.
+#' @param ruta_dir Un `character` (cadena de caracteres) que especifica la ruta
+#' del directorio donde se almacenarán la población a riesgo o las proyecciones
+#' poblacionales DANE. Su valor por defecto es `NULL`.
 #' @param cache Un `logical` (`TRUE` o `FALSE`) que indica si la población a
 #' riesgo o las proyecciones poblacionales DANE descargadas deben ser
 #' almacenados en caché. Su valor por defecto es `FALSE`.
@@ -1061,19 +1071,22 @@ calcular_incidencia <- function(data_incidencia = NULL,
 #' calcular_incidencia_geo(
 #'   poblacion = "riesgo",
 #'   data_agrupada = data_agrupada_mpios,
-#'   year = 2020
+#'   year = 2020,
+#'   cache = TRUE
 #' )
 #' data_agrupada_dptos <- agrupar_dpto(data_limpia)
 #' # Cálculo de la incidencia con proyecciones poblacionales para Colombia
 #' calcular_incidencia_geo(
 #'   poblacion = "proyecciones",
 #'   data_agrupada = data_agrupada_dptos,
-#'   year = 2020
+#'   year = 2020,
+#'   ruta_dir = tempdir()
 #' )
 #' }
 #' @export
 calcular_incidencia_geo <- function(data_incidencia = NULL,
                                     cache = FALSE,
+                                    ruta_dir = NULL,
                                     data_agrupada,
                                     poblacion = NULL,
                                     year = NULL) {
@@ -1095,6 +1108,7 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
       poblacion = poblacion,
       event = nombre_evento,
       year = year,
+      ruta_dir = ruta_dir,
       cache = cache
     )
   data_incidencia <- pop_incidencia$data_incidencia
@@ -1171,6 +1185,9 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
 #' por cada sexo.
 #' @param data_incidencia Un `data.frame` que contiene las proyecciones
 #' poblacionales del DANE; su valor por defecto es `NULL`.
+#' @param ruta_dir Un `character` (cadena de caracteres) que especifica la ruta
+#' del directorio donde se almacenarán la población a riesgo o las proyecciones
+#' poblacionales DANE. Su valor por defecto es `NULL`.
 #' @param cache Un `logical` (`TRUE` o `FALSE`) que indica si la población a
 #' riesgo o las proyecciones poblacionales DANE descargadas deben ser
 #' almacenados en caché. Su valor por defecto es `FALSE`.
@@ -1201,7 +1218,8 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
 #' calcular_incidencia_sex(
 #'   data_agrupada = data_agrupada,
 #'   dpto = "05",
-#'   year = 2020
+#'   year = 2020,
+#'   cache = TRUE
 #' )
 #' #' Cálculo de la incidencia con proyecciones poblacionales por sexo y
 #' # municipio
@@ -1213,11 +1231,13 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
 #' calcular_incidencia_sex(
 #'   data_agrupada = data_agrupada,
 #'   dpto = "05",
-#'   mpio = "Medellin"
+#'   mpio = "Medellin",
+#'   ruta_dir = tempdir()
 #' )
 #' }
 #' @export
 calcular_incidencia_sex <- function(data_incidencia = NULL,
+                                    ruta_dir = NULL,
                                     cache = FALSE,
                                     data_agrupada,
                                     year = NULL, dpto = NULL,
@@ -1231,7 +1251,7 @@ calcular_incidencia_sex <- function(data_incidencia = NULL,
   if (is.null(data_incidencia)) {
     data_incidencia <-
       import_pob_incidencia(poblacion = "proyecciones", year = year,
-                            cache = cache)
+                            cache = cache, ruta_dir = ruta_dir)
     message(
       "Las incidencias se calcularon con las proyecciones ",
       "poblacionales DANE. Si usted cuenta con la poblacion ",
