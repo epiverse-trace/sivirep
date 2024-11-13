@@ -264,7 +264,8 @@ departamentos y municipios.
 ```{r plot-mapa, results = 'hide', echo = TRUE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
 mapa <- plot_map(
   data_agrupada = dist_esp_dept, dpto = "Choco",
-  col_distribucion = "casos"
+  col_distribucion = "casos",
+  cache = TRUE
 )
 ```
 
