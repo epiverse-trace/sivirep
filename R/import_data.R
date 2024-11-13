@@ -53,7 +53,9 @@ realizar_peticion_http <- function(url) {
 #' @return Un `data.frame` con los nombres y códigos de los departamentos
 #' y municipios de Colombia.
 #' @examples
+#' \donttest{
 #' import_geo_cods(descargar = FALSE)
+#' }
 #' @export
 import_geo_cods <- function(descargar = FALSE) {
   stopifnot("El parametro descargar debe ser un booleano"

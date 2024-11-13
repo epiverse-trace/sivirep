@@ -20,5 +20,7 @@ Función que importa los nombres y códigos de
 los departamentos y municipios de Colombia a través de una URL.
 }
 \examples{
+\donttest{
 import_geo_cods(descargar = FALSE)
+}
 }
