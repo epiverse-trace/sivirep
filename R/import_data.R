@@ -332,7 +332,7 @@ import_pob_incidencia <- function(
     event,
     year,
     ruta_dir = NULL,
-    cache = NULL
+    cache = FALSE
   ) {
   stopifnot("El parametro poblacion no debe estar vacio" =
               !missing(poblacion),
