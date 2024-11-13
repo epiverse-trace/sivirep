@@ -6,6 +6,7 @@
 \usage{
 calcular_incidencia_sex(
   data_incidencia = NULL,
+  ruta_dir = NULL,
   cache = FALSE,
   data_agrupada,
   year = NULL,
@@ -16,6 +17,10 @@ calcular_incidencia_sex(
 \arguments{
 \item{data_incidencia}{Un `data.frame` que contiene las proyecciones
 poblacionales del DANE; su valor por defecto es `NULL`.}
+
+\item{ruta_dir}{Un `character` (cadena de caracteres) que especifica la ruta
+del directorio donde se almacenarán la población a riesgo o las proyecciones
+poblacionales DANE. Su valor por defecto es `NULL`.}
 
 \item{cache}{Un `logical` (`TRUE` o `FALSE`) que indica si la población a
 riesgo o las proyecciones poblacionales DANE descargadas deben ser
@@ -59,7 +64,8 @@ data_agrupada <- agrupar_sex(data_filtrada)
 calcular_incidencia_sex(
   data_agrupada = data_agrupada,
   dpto = "05",
-  year = 2020
+  year = 2020,
+  cache = TRUE
 )
 #' Cálculo de la incidencia con proyecciones poblacionales por sexo y
 # municipio
@@ -71,7 +77,8 @@ data_filtrada <- geo_filtro(
 calcular_incidencia_sex(
   data_agrupada = data_agrupada,
   dpto = "05",
-  mpio = "Medellin"
+  mpio = "Medellin",
+  ruta_dir = tempdir()
 )
 }
 }
