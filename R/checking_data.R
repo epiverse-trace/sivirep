@@ -1136,7 +1136,9 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
         data_agrupada = dpto_fila,
         poblacion = poblacion,
         dpto = dpto_fila[[nomb_cols[1]]],
-        year = year
+        year = year,
+        cache = cache,
+        ruta_dir = ruta_dir
       )
       geo_incidencia[fila] <- incidencia$incidencia
     }
