@@ -596,7 +596,9 @@ obtener_pob_incidencia <- function(data_incidencia = NULL,
     data_incidencia <- import_pob_incidencia(
       poblacion = poblacion,
       event = event,
-      year = year
+      year = year,
+      cache = cache,
+      ruta_dir = ruta_dir
     )
     if (poblacion == "riesgo") {
       if (!is.null(data_incidencia)) {
@@ -610,7 +612,8 @@ obtener_pob_incidencia <- function(data_incidencia = NULL,
         data_incidencia <- import_pob_incidencia(
           poblacion = poblacion,
           cache = cache,
-          year = year
+          year = year,
+          ruta_dir = ruta_dir
         )
         message(
           "Las incidencias se calcularon con las proyecciones ",
