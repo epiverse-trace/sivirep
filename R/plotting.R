@@ -1063,16 +1063,15 @@ plot_tabla_tipos_event <- function(data_agrupada,
 #' plot_years(data_agrupada,
 #'   col_year = "ano"
 #' )
-#' \dontrun{
+#' \donttest{
+#' if (interactive()) {
 #' data_years <- import_data_event(
 #'   nombre_event = "CHAGAS",
-#'   years = c(2019, 2020),
-#' )
+#'   years = c(2019, 2020))
 #' data_limpia <- limpiar_data_sivigila(data_years)
 #' data_agrupada <- agrupar_years(data_event = data_limpia)
-#' plot_years(data_agrupada,
-#'   col_year = "ano"
-#' )
+#' plot_years(data_agrupada, col_year = "ano")
+#'  }
 #' }
 #' @export
 plot_years <- function(data_agrupada,
