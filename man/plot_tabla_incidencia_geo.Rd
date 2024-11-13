@@ -30,7 +30,8 @@ data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 data_agrupada <- agrupar_mpio(data_limpia, dpto = "Antioquia")
 incidencia_mpios <- calcular_incidencia_geo(
   data_agrupada =
-    data_agrupada
+    data_agrupada,
+  ruta_dir = tempdir()
 )
 plot_tabla_incidencia_geo(
   data_agrupada = incidencia_mpios$data_incidencia,
