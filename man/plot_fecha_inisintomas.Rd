@@ -41,6 +41,7 @@ Función que genera un gráfico de distribución de casos
 por fecha de inicio de síntomas.
 }
 \examples{
+\donttest{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(dengue2020)
 data_agrupada <- agrupar_fecha_inisintomas(
@@ -51,4 +52,5 @@ plot_fecha_inisintomas(
   col_fecha = "ini_sin",
   uni_marca = "semanaepi"
 )
+}
 }
