@@ -48,6 +48,10 @@ params:
   municipio:
     value: ""
     label: Municipio
+  cache:
+    value: FALSE
+    input: checkbox
+    label: Seleccione si desea que los datos descargados del evento e incidencia se almacenen en la caché de la sesión de usuario para evitar redescargas al generar el reporte con los mismos datos
   types_distribution:
     value: TRUE
     input: checkbox
