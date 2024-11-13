@@ -9,7 +9,8 @@ test_that("`incidencia_geo` funciona correctamente", {
   incidencia_mpios <- calcular_incidencia_geo(
     data_agrupada =
       data_agrupada,
-    year = 2020
+    year = 2020,
+    ruta_dir = tempdir()
   )$data_incidencia
 
   expect_s3_class(incidencia_mpios, "data.frame")
@@ -54,7 +55,8 @@ test_that("`incidencia_sex` funciona correctamente", {
   incidencia_sex <-
     calcular_incidencia_sex(
       data_agrupada = data_agrupada,
-      dpto = "Antioquia"
+      dpto = "Antioquia",
+      ruta_dir = tempdir()
     )$data_incidencia
 
   expect_s3_class(incidencia_sex, "data.frame")

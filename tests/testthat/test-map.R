@@ -10,7 +10,8 @@ test_that("`mapa` maneja errores correctamente", {
     "El parametro data_agrupada debe ser un data.frame"
   )
   expect_error(
-    plot_map(data_agrupada = data_limpia, fuente_data = 1),
+    plot_map(data_agrupada = data_limpia, fuente_data = 1,
+             ruta_dir = tempdir()),
     "El parametro fuente_data debe ser un cadena de caracteres"
   )
 })
@@ -29,7 +30,8 @@ test_that("`mapa_colombia` funciona correctamente", {
 
   map <- plot_map(
     data_agrupada = data_espacial,
-    col_distribucion = "casos"
+    col_distribucion = "casos",
+    ruta_dir = tempdir()
   )
 
   expect_s3_class(map, "ggplot")
@@ -55,7 +57,8 @@ test_that("`mapa_dpto` funciona correctamente", {
   map <- plot_map(
     data_agrupada = data_espacial_dpto,
     col_codigos = "cod_mun_o",
-    col_distribucion = "casos"
+    col_distribucion = "casos",
+    ruta_dir = tempdir()
   )
 
   expect_s3_class(map, "ggplot")
@@ -83,7 +86,8 @@ test_that("`mapa_mpio` funciona correctamente", {
     data_agrupada = data_espacial_mpio,
     col_distribucion = "casos",
     dpto = "Antioquia",
-    mpio = "Envigado"
+    mpio = "Envigado",
+    ruta_dir = tempdir()
   )
 
   expect_s3_class(map, "ggplot")
@@ -94,7 +98,8 @@ test_that("`mapa_indicidencia_colombia` funciona correctamente", {
                                 geo_ocurrencia[1:4])
   incidencia_dptos <- calcular_incidencia_geo(
     data_agrupada =
-      data_agrupada
+      data_agrupada,
+    ruta_dir = tempdir()
   )$data_incidencia
   expect_s3_class(incidencia_dptos, "data.frame")
   expect_true("cod_eve" %in% names(incidencia_dptos))
@@ -104,7 +109,8 @@ test_that("`mapa_indicidencia_colombia` funciona correctamente", {
   expect_true("casos" %in% names(incidencia_dptos))
   expect_true("incidencia" %in% names(incidencia_dptos))
 
-  map <- plot_map(data_agrupada = incidencia_dptos)
+  map <- plot_map(data_agrupada = incidencia_dptos,
+                  ruta_dir = tempdir())
   expect_s3_class(map, "ggplot")
 })
 
@@ -115,7 +121,8 @@ test_that("`mapa_indicidencia_dpto` funciona correctamente", {
   )
   incidencia_dpto <- calcular_incidencia_geo(
     data_agrupada =
-      data_agrupada
+      data_agrupada,
+    ruta_dir = tempdir()
   )$data_incidencia
   expect_s3_class(incidencia_dpto, "data.frame")
   expect_true("nombre_evento" %in% names(incidencia_dpto))
@@ -126,7 +133,8 @@ test_that("`mapa_indicidencia_dpto` funciona correctamente", {
   expect_true("casos" %in% names(incidencia_dpto))
   expect_true("incidencia" %in% names(incidencia_dpto))
 
-  map <- plot_map(data_agrupada = incidencia_dpto)
+  map <- plot_map(data_agrupada = incidencia_dpto,
+                  ruta_dir = tempdir())
   expect_s3_class(map, "ggplot")
 })
 
@@ -142,7 +150,8 @@ test_that("`mapa_indicidencia_mpio` funciona correctamente", {
   )
   incidencia_mpio <- calcular_incidencia_geo(
     data_agrupada =
-      data_agrupada
+      data_agrupada,
+    ruta_dir = tempdir()
   )$data_incidencia
   expect_s3_class(incidencia_mpio, "data.frame")
   expect_true("nombre_evento" %in% names(incidencia_mpio))
@@ -153,6 +162,7 @@ test_that("`mapa_indicidencia_mpio` funciona correctamente", {
   expect_true("casos" %in% names(incidencia_mpio))
   expect_true("incidencia" %in% names(incidencia_mpio))
 
-  map <- plot_map(data_agrupada = incidencia_mpio)
+  map <- plot_map(data_agrupada = incidencia_mpio,
+                  ruta_dir = tempdir())
   expect_s3_class(map, "ggplot")
 })
