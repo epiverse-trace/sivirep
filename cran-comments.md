@@ -18,12 +18,25 @@
 
 This is a resubmission. In this version:
 
-* The links in the README file to the pages of Colombia's National Institute of
-  Health have been modified to avoid DNS or regional access issues.
+* Expanded the Description field to provide a more detailed overview of the 
+  package's functionality, benefits and the methods it implements, as requested.
+  
+* Added a direct link to the web services used in the package, formatted with 
+  angle brackets for auto-linking, following the recommended format.
 
-* The examples for the functions `import_data_event`, `list_events` and
-  `plot_year` are wrapped in a `dontrun` tag because they connect to the
-  SIVIGILA API. We have observed that, in some regions, it is not possible to
-  establish a connection with the API for security reasons. These functions
-  cannot be wrapped in a `try-catch` block, as this may lead confusion in our
-  users.
+* Replaced `\dontrun{}` with `\donttest{}` in the examples of the following 
+  functions: `import_data_event()`, `list_events()` and `plot_year()`.
+
+* Added `\donttest{}` in examples of `import_geo_codes` function, since it was
+  involve data downloading and was the only function that did not have 
+  this tag.
+
+* Used `tempdir()` in examples and tests of functions that require data import
+  for execution.
+
+* In the internal function `obtener_ruta_dir()` of `R\utils.R`, the `cache` 
+  parameter was added, and the functions that use it were modified to always 
+  pass it. This parameter requests explicit confirmation from the user if they 
+  want the data to be stored in the respective user directory, which is 
+  obtained from `tools::R_user_dir()`. These files are cleaned up and actively 
+  managed in accordance with CRAN policy.
