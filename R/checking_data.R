@@ -1196,9 +1196,6 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
 #' @param ruta_dir Un `character` (cadena de caracteres) que especifica la ruta
 #' del directorio donde se almacenarán la población a riesgo o las proyecciones
 #' poblacionales DANE. Su valor por defecto es `NULL`.
-#' @param ruta_dir Un `character` (cadena de caracteres) que especifica la ruta
-#' del directorio donde se almacenarán la población a riesgo o las proyecciones
-#' poblacionales DANE. Su valor por defecto es `NULL`.
 #' @param cache Un `logical` (`TRUE` o `FALSE`) que indica si la población a
 #' riesgo o las proyecciones poblacionales DANE descargadas deben ser
 #' almacenados en caché. Su valor por defecto es `FALSE`.
@@ -1226,12 +1223,14 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
 #'   dpto = "05"
 #' )
 #' data_agrupada <- agrupar_sex(data_filtrada)
-#' calcular_incidencia_sex(
-#'   data_agrupada = data_agrupada,
-#'   dpto = "05",
-#'   year = 2020,
-#'   ruta_dir = tempdir()
-#' )
+#' if (interactive()) {
+#'   calcular_incidencia_sex(
+#'     data_agrupada = data_agrupada,
+#'     dpto = "05",
+#'     year = 2020,
+#'     cache = TRUE
+#'   )
+#' }
 #' #' Cálculo de la incidencia con proyecciones poblacionales por sexo y
 #' # municipio
 #' data_filtrada <- geo_filtro(
@@ -1242,8 +1241,6 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
 #' calcular_incidencia_sex(
 #'   data_agrupada = data_agrupada,
 #'   dpto = "05",
-#'   mpio = "Medellin",
-#'   ruta_dir = tempdir()
 #'   mpio = "Medellin",
 #'   ruta_dir = tempdir()
 #' )

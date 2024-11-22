@@ -61,12 +61,14 @@ data_filtrada <- geo_filtro(
   dpto = "05"
 )
 data_agrupada <- agrupar_sex(data_filtrada)
-calcular_incidencia_sex(
-  data_agrupada = data_agrupada,
-  dpto = "05",
-  year = 2020,
-  ruta_dir = tempdir()
-)
+if (interactive()) {
+  calcular_incidencia_sex(
+    data_agrupada = data_agrupada,
+    dpto = "05",
+    year = 2020,
+    cache = TRUE
+  )
+}
 #' Cálculo de la incidencia con proyecciones poblacionales por sexo y
 # municipio
 data_filtrada <- geo_filtro(
