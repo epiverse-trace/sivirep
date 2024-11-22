@@ -15,7 +15,7 @@ para todos los departamentos de Colombia o los municipios de un departamento."><
     <a href="https://epiverse-trace.github.io/" class="external-link"><img src="https://epiverse-trace.github.io/blueprints/logo_white.svg" id="logo" alt="Epiverse-TRACE"></a>
     <a class="navbar-brand me-2" href="../index.html">sivirep</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Versión publicada">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Versión publicada">1.0.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Cambiar la navegación">
@@ -122,38 +122,14 @@ departamentos de Colombia o los municipios de un departamento.</p>
 <span class="r-in"><span><span class="va">data_limpia</span> <span class="op">&lt;-</span> <span class="fu"><a href="limpiar_data_sivigila.html">limpiar_data_sivigila</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">dengue2020</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">data_agrupada_mpios</span> <span class="op">&lt;-</span> <span class="fu"><a href="agrupar_mpio.html">agrupar_mpio</a></span><span class="op">(</span><span class="va">data_limpia</span>, dpto <span class="op">=</span> <span class="st">"Antioquia"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># Cálculo de la incidencia con población a riesgo por departamento</span></span></span>
-<span class="r-in"><span><span class="fu">calcular_incidencia_geo</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  poblacion <span class="op">=</span> <span class="st">"riesgo"</span>,</span></span>
-<span class="r-in"><span>  data_agrupada <span class="op">=</span> <span class="va">data_agrupada_mpios</span>,</span></span>
-<span class="r-in"><span>  year <span class="op">=</span> <span class="fl">2020</span>,</span></span>
-<span class="r-in"><span>  cache <span class="op">=</span> <span class="cn">TRUE</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Las incidencias se calcularon con la poblacion a riesgo definida por el Ministerio de Salud para el 2020</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $data_incidencia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   cod_dpto_o departamento_ocurrencia cod_mun_o municipio_ocurrencia casos</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1         05               ANTIOQUIA     05001             MEDELLIN     4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2         05               ANTIOQUIA     05045             APARTADO     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3         05               ANTIOQUIA     05129               CALDAS     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4         05               ANTIOQUIA     05490              NECOCLI     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5         05               ANTIOQUIA     05591       PUERTO TRIUNFO     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6         05               ANTIOQUIA     05659    SAN JUAN DE URABA     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7         05               ANTIOQUIA     05736              SEGOVIA     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8         05               ANTIOQUIA     05809             TITIRIBI     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9         05               ANTIOQUIA     05837                TURBO     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   nombre_evento cod_eve incidencia</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1        DENGUE     210       0.16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2        DENGUE     210       0.78</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3        DENGUE     210       1.48</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4        DENGUE     210       2.27</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5        DENGUE     210       5.27</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6        DENGUE     210       4.77</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7        DENGUE     210       2.54</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8        DENGUE     210       9.33</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9        DENGUE     210       0.77</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $poblacion</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "riesgo"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="fu">calcular_incidencia_geo</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    poblacion <span class="op">=</span> <span class="st">"riesgo"</span>,</span></span>
+<span class="r-in"><span>    data_agrupada <span class="op">=</span> <span class="va">data_agrupada_mpios</span>,</span></span>
+<span class="r-in"><span>    year <span class="op">=</span> <span class="fl">2020</span>,</span></span>
+<span class="r-in"><span>    cache <span class="op">=</span> <span class="cn">TRUE</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span><span class="va">data_agrupada_dptos</span> <span class="op">&lt;-</span> <span class="fu"><a href="agrupar_dpto.html">agrupar_dpto</a></span><span class="op">(</span><span class="va">data_limpia</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># Cálculo de la incidencia con proyecciones poblacionales para Colombia</span></span></span>
 <span class="r-in"><span><span class="fu">calcular_incidencia_geo</span><span class="op">(</span></span></span>
