@@ -362,7 +362,9 @@ import_pob_incidencia <- function(
 #' @examples
 #' \donttest{
 #' import_pob_proyecciones(year = 2020, ruta_dir = tempdir())
-#' import_pob_proyecciones(year = 2020, ruta_dir = tempdir())
+#' if (interactive()) {
+#'   import_pob_proyecciones(year = 2020, cache = TRUE)
+#'   }
 #' }
 #' @export
 import_pob_proyecciones <- function(year,
