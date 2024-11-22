@@ -1050,9 +1050,6 @@ calcular_incidencia <- function(data_incidencia = NULL,
 #' @param ruta_dir Un `character` (cadena de caracteres) que especifica la ruta
 #' del directorio donde se almacenarán la población a riesgo o las proyecciones
 #' poblacionales DANE. Su valor por defecto es `NULL`.
-#' @param ruta_dir Un `character` (cadena de caracteres) que especifica la ruta
-#' del directorio donde se almacenarán la población a riesgo o las proyecciones
-#' poblacionales DANE. Su valor por defecto es `NULL`.
 #' @param cache Un `logical` (`TRUE` o `FALSE`) que indica si la población a
 #' riesgo o las proyecciones poblacionales DANE descargadas deben ser
 #' almacenados en caché. Su valor por defecto es `FALSE`.
@@ -1073,12 +1070,14 @@ calcular_incidencia <- function(data_incidencia = NULL,
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 #' data_agrupada_mpios <- agrupar_mpio(data_limpia, dpto = "Antioquia")
 #' # Cálculo de la incidencia con población a riesgo por departamento
-#' calcular_incidencia_geo(
-#'   poblacion = "riesgo",
-#'   data_agrupada = data_agrupada_mpios,
-#'   year = 2020,
-#'   ruta_dir = tempdir()
-#' )
+#' if (interactive()) {
+#'   calcular_incidencia_geo(
+#'     poblacion = "riesgo",
+#'     data_agrupada = data_agrupada_mpios,
+#'     year = 2020,
+#'     cache = TRUE
+#'   )
+#' }
 #' data_agrupada_dptos <- agrupar_dpto(data_limpia)
 #' # Cálculo de la incidencia con proyecciones poblacionales para Colombia
 #' calcular_incidencia_geo(
@@ -1086,14 +1085,11 @@ calcular_incidencia <- function(data_incidencia = NULL,
 #'   data_agrupada = data_agrupada_dptos,
 #'   year = 2020,
 #'   ruta_dir = tempdir()
-#'   year = 2020,
-#'   ruta_dir = tempdir()
 #' )
 #' }
 #' @export
 calcular_incidencia_geo <- function(data_incidencia = NULL,
                                     cache = FALSE,
-                                    ruta_dir = NULL,
                                     ruta_dir = NULL,
                                     data_agrupada,
                                     poblacion = NULL,
@@ -1116,8 +1112,6 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
       poblacion = poblacion,
       event = nombre_evento,
       year = year,
-      cache = cache,
-      ruta_dir = ruta_dir
       cache = cache,
       ruta_dir = ruta_dir
     )
@@ -1149,9 +1143,6 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
         year = year,
         cache = cache,
         ruta_dir = ruta_dir
-        year = year,
-        cache = cache,
-        ruta_dir = ruta_dir
       )
       geo_incidencia[fila] <- incidencia$incidencia
     }
@@ -1179,9 +1170,6 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
         poblacion = poblacion,
         dpto = mpio_fila[[nomb_cols[1]]],
         mpio = mpio_fila[[nomb_cols[3]]],
-        year = year,
-        cache = cache,
-        ruta_dir = ruta_dir
         year = year,
         cache = cache,
         ruta_dir = ruta_dir
