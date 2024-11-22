@@ -320,11 +320,11 @@ import_sep_data <- function(ruta_data = NULL,
 #' @examples
 #'  \donttest{
 #' # Importación proyecciones poblaciones DANE
-#' import_pob_incidencia(poblacion = "proyecciones", year = 2020,
-#'                       ruta_dir = tempdir())
+#' if (interactive()) {
+#'   import_pob_incidencia(poblacion = "proyecciones", year = 2020,
+#'                         cache = TRUE)
+#' }
 #' # Importación población a riesgo de Dengue del año 2020
-#' import_pob_incidencia(poblacion = "riesgo", event = "dengue", year = 2020,
-#'                       ruta_dir = tempdir())
 #' import_pob_incidencia(poblacion = "riesgo", event = "dengue", year = 2020,
 #'                       ruta_dir = tempdir())
 #' }
