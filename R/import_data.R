@@ -54,7 +54,6 @@ realizar_peticion_http <- function(url) {
 #' y municipios de Colombia.
 #' @examples
 #' \donttest{
-#' \donttest{
 #' import_geo_cods(descargar = FALSE)
 #' }
 #' @export
@@ -80,10 +79,6 @@ import_geo_cods <- function(descargar = FALSE) {
 #' @return Una `list` con las enfermedades y los años disponibles
 #' para su descarga desde los microdatos del SIVIGILA.
 #' @examples
-#' \donttest{
-#' if (interactive()) {
-#'   list_events()
-#'  }
 #' \donttest{
 #' if (interactive()) {
 #'   list_events()
@@ -169,18 +164,15 @@ list_events <- function() {
 #' @examples
 #' \donttest{
 #' if (interactive()) {
-#' \donttest{
-#' if (interactive()) {
 #' import_data_event(nombre_event = "DENGUE",
 #'                   years = 2020,
-#'                   ruta_dir = tempdir())
+#'                   cache = TRUE)
 #' import_data_event(nombre_event = "CHAGAS",
 #'                   years = c(2019, 2020),
 #'                   ruta_dir = tempdir())
-#'                   ruta_dir = tempdir())
 #' import_data_event(nombre_event = "CHAGAS",
 #'                   years = seq(2018, 2020),
-#'                   ruta_dir = tempdir())
+#'                   cache = TRUE)
 #'  }
 #' }
 #' @export
