@@ -31,5 +31,8 @@ o enfermedad para un año específico.
 \examples{
 \donttest{
 import_pob_riesgo(event = "Dengue", year = 2020, ruta_dir = tempdir())
+if (interactive()) {
+  import_pob_riesgo(event = "Dengue", year = 2020, cache = TRUE)
+  }
 }
 }

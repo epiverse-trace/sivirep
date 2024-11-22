@@ -411,7 +411,9 @@ import_pob_proyecciones <- function(year,
 #' @examples
 #' \donttest{
 #' import_pob_riesgo(event = "Dengue", year = 2020, ruta_dir = tempdir())
-#' import_pob_riesgo(event = "Dengue", year = 2020, ruta_dir = tempdir())
+#' if (interactive()) {
+#'   import_pob_riesgo(event = "Dengue", year = 2020, cache = TRUE)
+#'   }
 #' }
 #' @export
 import_pob_riesgo <- function(event, year,
@@ -487,8 +489,6 @@ import_pob_riesgo <- function(event, year,
 #' @keywords internal
 import_shape_map <- function(ruta_dir = NULL,
                              cache = FALSE) {
-  ruta_dir <- obtener_ruta_dir(ruta_dir = ruta_dir, cache = cache,
-                               mensaje_error = "el Shapefile del mapa")
   ruta_dir <- obtener_ruta_dir(ruta_dir = ruta_dir, cache = cache,
                                mensaje_error = "el Shapefile del mapa")
   archivo_zip <- obtener_val_config("map_shape_zip_file")
