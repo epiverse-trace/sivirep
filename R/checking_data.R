@@ -878,6 +878,9 @@ agrupar_per_etn <- function(data_event, cols_etn = "per_etn",
 #' @param ruta_dir Un `character` (cadena de caracteres) que especifica la ruta
 #' del directorio donde se almacenarán la población a riesgo o las proyecciones
 #' poblacionales DANE. Su valor por defecto es `NULL`.
+#' @param ruta_dir Un `character` (cadena de caracteres) que especifica la ruta
+#' del directorio donde se almacenarán la población a riesgo o las proyecciones
+#' poblacionales DANE. Su valor por defecto es `NULL`.
 #' @param cache Un `logical` (`TRUE` o `FALSE`) que indica si la población a
 #' riesgo o las proyecciones poblacionales DANE descargadas deben ser
 #' almacenados en caché. Su valor por defecto es `FALSE`.
@@ -922,6 +925,8 @@ agrupar_per_etn <- function(data_event, cols_etn = "per_etn",
 #'   mpio = "05001",
 #'   year = 2020,
 #'   ruta_dir = tempdir()
+#'   year = 2020,
+#'   ruta_dir = tempdir()
 #' )
 #' # Cálculo de la incidencia con población a riesgo para Colombia
 #' data_agrupada_dptos <- agrupar_dpto(data_limpia)
@@ -955,6 +960,7 @@ calcular_incidencia <- function(data_incidencia = NULL,
       poblacion = poblacion,
       event = nombre_evento,
       year = year,
+      ruta_dir = ruta_dir,
       ruta_dir = ruta_dir,
       cache = cache
     )
@@ -1048,6 +1054,9 @@ calcular_incidencia <- function(data_incidencia = NULL,
 #' @param ruta_dir Un `character` (cadena de caracteres) que especifica la ruta
 #' del directorio donde se almacenarán la población a riesgo o las proyecciones
 #' poblacionales DANE. Su valor por defecto es `NULL`.
+#' @param ruta_dir Un `character` (cadena de caracteres) que especifica la ruta
+#' del directorio donde se almacenarán la población a riesgo o las proyecciones
+#' poblacionales DANE. Su valor por defecto es `NULL`.
 #' @param cache Un `logical` (`TRUE` o `FALSE`) que indica si la población a
 #' riesgo o las proyecciones poblacionales DANE descargadas deben ser
 #' almacenados en caché. Su valor por defecto es `FALSE`.
@@ -1081,11 +1090,14 @@ calcular_incidencia <- function(data_incidencia = NULL,
 #'   data_agrupada = data_agrupada_dptos,
 #'   year = 2020,
 #'   ruta_dir = tempdir()
+#'   year = 2020,
+#'   ruta_dir = tempdir()
 #' )
 #' }
 #' @export
 calcular_incidencia_geo <- function(data_incidencia = NULL,
                                     cache = FALSE,
+                                    ruta_dir = NULL,
                                     ruta_dir = NULL,
                                     data_agrupada,
                                     poblacion = NULL,
@@ -1108,6 +1120,8 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
       poblacion = poblacion,
       event = nombre_evento,
       year = year,
+      cache = cache,
+      ruta_dir = ruta_dir
       cache = cache,
       ruta_dir = ruta_dir
     )
@@ -1136,6 +1150,9 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
         data_agrupada = dpto_fila,
         poblacion = poblacion,
         dpto = dpto_fila[[nomb_cols[1]]],
+        year = year,
+        cache = cache,
+        ruta_dir = ruta_dir
         year = year,
         cache = cache,
         ruta_dir = ruta_dir
@@ -1169,6 +1186,9 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
         year = year,
         cache = cache,
         ruta_dir = ruta_dir
+        year = year,
+        cache = cache,
+        ruta_dir = ruta_dir
       )
       geo_incidencia[fila] <- incidencia$incidencia
     }
@@ -1189,6 +1209,9 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
 #' por cada sexo.
 #' @param data_incidencia Un `data.frame` que contiene las proyecciones
 #' poblacionales del DANE; su valor por defecto es `NULL`.
+#' @param ruta_dir Un `character` (cadena de caracteres) que especifica la ruta
+#' del directorio donde se almacenarán la población a riesgo o las proyecciones
+#' poblacionales DANE. Su valor por defecto es `NULL`.
 #' @param ruta_dir Un `character` (cadena de caracteres) que especifica la ruta
 #' del directorio donde se almacenarán la población a riesgo o las proyecciones
 #' poblacionales DANE. Su valor por defecto es `NULL`.
@@ -1235,6 +1258,8 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
 #' calcular_incidencia_sex(
 #'   data_agrupada = data_agrupada,
 #'   dpto = "05",
+#'   mpio = "Medellin",
+#'   ruta_dir = tempdir()
 #'   mpio = "Medellin",
 #'   ruta_dir = tempdir()
 #' )

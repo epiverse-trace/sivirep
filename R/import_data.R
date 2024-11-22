@@ -54,6 +54,7 @@ realizar_peticion_http <- function(url) {
 #' y municipios de Colombia.
 #' @examples
 #' \donttest{
+#' \donttest{
 #' import_geo_cods(descargar = FALSE)
 #' }
 #' @export
@@ -79,6 +80,10 @@ import_geo_cods <- function(descargar = FALSE) {
 #' @return Una `list` con las enfermedades y los años disponibles
 #' para su descarga desde los microdatos del SIVIGILA.
 #' @examples
+#' \donttest{
+#' if (interactive()) {
+#'   list_events()
+#'  }
 #' \donttest{
 #' if (interactive()) {
 #'   list_events()
@@ -164,11 +169,14 @@ list_events <- function() {
 #' @examples
 #' \donttest{
 #' if (interactive()) {
+#' \donttest{
+#' if (interactive()) {
 #' import_data_event(nombre_event = "DENGUE",
 #'                   years = 2020,
 #'                   ruta_dir = tempdir())
 #' import_data_event(nombre_event = "CHAGAS",
 #'                   years = c(2019, 2020),
+#'                   ruta_dir = tempdir())
 #'                   ruta_dir = tempdir())
 #' import_data_event(nombre_event = "CHAGAS",
 #'                   years = seq(2018, 2020),
@@ -325,6 +333,8 @@ import_sep_data <- function(ruta_data = NULL,
 #' # Importación población a riesgo de Dengue del año 2020
 #' import_pob_incidencia(poblacion = "riesgo", event = "dengue", year = 2020,
 #'                       ruta_dir = tempdir())
+#' import_pob_incidencia(poblacion = "riesgo", event = "dengue", year = 2020,
+#'                       ruta_dir = tempdir())
 #' }
 #' @export
 import_pob_incidencia <- function(
@@ -359,6 +369,7 @@ import_pob_incidencia <- function(
 #' @return Un `data.frame` con las proyecciones poblacionales DANE.
 #' @examples
 #' \donttest{
+#' import_pob_proyecciones(year = 2020, ruta_dir = tempdir())
 #' import_pob_proyecciones(year = 2020, ruta_dir = tempdir())
 #' }
 #' @export
@@ -405,6 +416,7 @@ import_pob_proyecciones <- function(year,
 #' @return Un `data.frame` con la población a riesgo de un año específico.
 #' @examples
 #' \donttest{
+#' import_pob_riesgo(event = "Dengue", year = 2020, ruta_dir = tempdir())
 #' import_pob_riesgo(event = "Dengue", year = 2020, ruta_dir = tempdir())
 #' }
 #' @export
@@ -481,6 +493,8 @@ import_pob_riesgo <- function(event, year,
 #' @keywords internal
 import_shape_map <- function(ruta_dir = NULL,
                              cache = FALSE) {
+  ruta_dir <- obtener_ruta_dir(ruta_dir = ruta_dir, cache = cache,
+                               mensaje_error = "el Shapefile del mapa")
   ruta_dir <- obtener_ruta_dir(ruta_dir = ruta_dir, cache = cache,
                                mensaje_error = "el Shapefile del mapa")
   archivo_zip <- obtener_val_config("map_shape_zip_file")
