@@ -68,13 +68,15 @@ data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 # Cálculo de la incidencia con proyecciones poblacionales por departamento
 data_agrupada_mpios <- agrupar_mpio(data_limpia, dpto = "Antioquia")
-calcular_incidencia(
-  data_agrupada = data_agrupada_mpios,
-  poblacion = "proyecciones",
-  dpto = "05",
-  year = 2020,
-  ruta_dir = tempdir()
-)
+if (interactive()) {
+  calcular_incidencia(
+    data_agrupada = data_agrupada_mpios,
+    poblacion = "proyecciones",
+    dpto = "05",
+    year = 2020,
+    cache = TRUE
+  )
+}
 # Cálculo de la incidencia con proyecciones poblacionales por municipio
 calcular_incidencia(
   data_agrupada = data_agrupada_mpios,

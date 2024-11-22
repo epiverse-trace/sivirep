@@ -878,9 +878,6 @@ agrupar_per_etn <- function(data_event, cols_etn = "per_etn",
 #' @param ruta_dir Un `character` (cadena de caracteres) que especifica la ruta
 #' del directorio donde se almacenarán la población a riesgo o las proyecciones
 #' poblacionales DANE. Su valor por defecto es `NULL`.
-#' @param ruta_dir Un `character` (cadena de caracteres) que especifica la ruta
-#' del directorio donde se almacenarán la población a riesgo o las proyecciones
-#' poblacionales DANE. Su valor por defecto es `NULL`.
 #' @param cache Un `logical` (`TRUE` o `FALSE`) que indica si la población a
 #' riesgo o las proyecciones poblacionales DANE descargadas deben ser
 #' almacenados en caché. Su valor por defecto es `FALSE`.
@@ -910,21 +907,21 @@ agrupar_per_etn <- function(data_event, cols_etn = "per_etn",
 #' data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
 #' # Cálculo de la incidencia con proyecciones poblacionales por departamento
 #' data_agrupada_mpios <- agrupar_mpio(data_limpia, dpto = "Antioquia")
-#' calcular_incidencia(
-#'   data_agrupada = data_agrupada_mpios,
-#'   poblacion = "proyecciones",
-#'   dpto = "05",
-#'   year = 2020,
-#'   ruta_dir = tempdir()
-#' )
+#' if (interactive()) {
+#'   calcular_incidencia(
+#'     data_agrupada = data_agrupada_mpios,
+#'     poblacion = "proyecciones",
+#'     dpto = "05",
+#'     year = 2020,
+#'     cache = TRUE
+#'   )
+#' }
 #' # Cálculo de la incidencia con proyecciones poblacionales por municipio
 #' calcular_incidencia(
 #'   data_agrupada = data_agrupada_mpios,
 #'   poblacion = "proyecciones",
 #'   dpto = "Antioquia",
 #'   mpio = "05001",
-#'   year = 2020,
-#'   ruta_dir = tempdir()
 #'   year = 2020,
 #'   ruta_dir = tempdir()
 #' )
@@ -960,7 +957,6 @@ calcular_incidencia <- function(data_incidencia = NULL,
       poblacion = poblacion,
       event = nombre_evento,
       year = year,
-      ruta_dir = ruta_dir,
       ruta_dir = ruta_dir,
       cache = cache
     )
