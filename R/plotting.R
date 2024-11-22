@@ -29,11 +29,13 @@
 #' geo_ocurrencia <- obtener_tip_ocurren_geo(nombre_event = "dengue")
 #' data_espacial <- agrupar_dpto(data_event = data_estandar,
 #'                               geo_ocurrencia[1:4])
-#' plot_map(
-#'   data_agrupada = data_espacial,
-#'   col_distribucion = "casos",
-#'   ruta_dir = tempdir()
-#' )
+#' if (interactive()) {
+#'   plot_map(
+#'     data_agrupada = data_espacial,
+#'     col_distribucion = "casos",
+#'     cache = TRUE
+#'   )
+#' }
 #' # Mapa por municipios de un departamento especifico
 #' data_filtrada_dpto <- geo_filtro(
 #'   data_event = data_estandar,
@@ -45,8 +47,6 @@
 #'   col_codigos = "cod_mun_o",
 #'   col_distribucion = "casos",
 #'   ruta_dir = tempdir()
-#'   col_distribucion = "casos",
-#'   ruta_dir = tempdir()
 #' )
 #' # Mapa por municipio especifico
 #' data_filtrada_mpio <- geo_filtro(
@@ -55,25 +55,23 @@
 #'   mpio = "Medellin"
 #' )
 #' data_espacial_mpio <- agrupar_mpio(data_event = data_filtrada_mpio)
-#' plot_map(
-#'   data_agrupada = data_espacial_mpio,
-#'   col_codigos = "cod_mun_o",
-#'   col_distribucion = "casos",
-#'   dpto = "Antioquia",
-#'   mpio = "Medellin",
-#'   ruta_dir = tempdir()
-#' )
+#' if (interactive()) {
+#'   plot_map(
+#'     data_agrupada = data_espacial_mpio,
+#'     col_codigos = "cod_mun_o",
+#'     col_distribucion = "casos",
+#'     dpto = "Antioquia",
+#'     mpio = "Medellin",
+#'     cache = TRUE
+#'   )
+#' }
 #' # Mapa con la incidencia por municipios de un departamento específico
 #' incidencia_dpto <-
-#'   calcular_incidencia_geo(data_agrupada = data_espacial_dpto,
-#'                           ruta_dir = tempdir())
 #'   calcular_incidencia_geo(data_agrupada = data_espacial_dpto,
 #'                           ruta_dir = tempdir())
 #' plot_map(
 #'   data_agrupada = incidencia_dpto$data_incidencia,
 #'   col_codigos = "cod_mun_o",
-#'   col_distribucion = "incidencia",
-#'   ruta_dir = tempdir()
 #'   col_distribucion = "incidencia",
 #'   ruta_dir = tempdir()
 #' )
@@ -242,7 +240,6 @@ plot_map <- function(data_agrupada,
 #' de síntomas.
 #' @examples
 #' \donttest{
-#' \donttest{
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(dengue2020)
 #' data_agrupada <- agrupar_fecha_inisintomas(
@@ -253,7 +250,6 @@ plot_map <- function(data_agrupada,
 #'   col_fecha = "ini_sin",
 #'   uni_marca = "semanaepi"
 #' )
-#' }
 #' }
 #' @export
 plot_fecha_inisintomas <- function(data_agrupada,
@@ -1082,7 +1078,6 @@ plot_tabla_tipos_event <- function(data_agrupada,
 #'  }
 #' }
 #' @export
-
 plot_years <- function(data_agrupada,
                        col_year = "ano",
                        fuente_data = NULL) {
@@ -1440,8 +1435,6 @@ plot_tabla_incidencia_geo <- function(data_agrupada,
 #' incidencia_mpios <-
 #'   calcular_incidencia_sex(
 #'     data_agrupada = data_agrupada_sex,
-#'     dpto = "Antioquia",
-#'     ruta_dir = tempdir()
 #'     dpto = "Antioquia",
 #'     ruta_dir = tempdir()
 #'   )
