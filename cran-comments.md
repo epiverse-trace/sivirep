@@ -22,5 +22,5 @@ This is a resubmission. In this version:
   Specifically, `es_ES` was replaced with `es-ES` as recommended.
   
 * Implemented `tempdir()` for function examples that require data import and 
-  use the `cache` parameter. This change resolves additional `donttest` issues 
-  related to package's size.
+  improved the use of `cache` parameter. These changes resolves additional 
+  `donttest` issues related to package's size.
