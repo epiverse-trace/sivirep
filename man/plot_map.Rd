@@ -66,7 +66,7 @@ data_espacial <- agrupar_dpto(data_event = data_estandar,
 plot_map(
   data_agrupada = data_espacial,
   col_distribucion = "casos",
-  cache = TRUE
+  ruta_dir = tempdir()
 )
 # Mapa por municipios de un departamento especifico
 data_filtrada_dpto <- geo_filtro(
@@ -93,7 +93,7 @@ plot_map(
   col_distribucion = "casos",
   dpto = "Antioquia",
   mpio = "Medellin",
-  cache = TRUE
+  ruta_dir = tempdir()
 )
 # Mapa con la incidencia por municipios de un departamento específico
 incidencia_dpto <-

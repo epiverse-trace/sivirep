@@ -912,7 +912,7 @@ agrupar_per_etn <- function(data_event, cols_etn = "per_etn",
 #'   poblacion = "proyecciones",
 #'   dpto = "05",
 #'   year = 2020,
-#'   cache = TRUE
+#'   ruta_dir = tempdir()
 #' )
 #' # Cálculo de la incidencia con proyecciones poblacionales por municipio
 #' calcular_incidencia(
@@ -929,7 +929,7 @@ agrupar_per_etn <- function(data_event, cols_etn = "per_etn",
 #'   poblacion = "riesgo",
 #'   data_agrupada = data_agrupada_dptos,
 #'   year = 2020,
-#'   cache = TRUE
+#'   ruta_dir = tempdir()
 #' )
 #' }
 #' @export
@@ -1072,7 +1072,7 @@ calcular_incidencia <- function(data_incidencia = NULL,
 #'   poblacion = "riesgo",
 #'   data_agrupada = data_agrupada_mpios,
 #'   year = 2020,
-#'   cache = TRUE
+#'   ruta_dir = tempdir()
 #' )
 #' data_agrupada_dptos <- agrupar_dpto(data_limpia)
 #' # Cálculo de la incidencia con proyecciones poblacionales para Colombia
@@ -1223,7 +1223,7 @@ calcular_incidencia_geo <- function(data_incidencia = NULL,
 #'   data_agrupada = data_agrupada,
 #'   dpto = "05",
 #'   year = 2020,
-#'   cache = TRUE
+#'   ruta_dir = tempdir()
 #' )
 #' #' Cálculo de la incidencia con proyecciones poblacionales por sexo y
 #' # municipio

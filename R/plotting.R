@@ -32,7 +32,7 @@
 #' plot_map(
 #'   data_agrupada = data_espacial,
 #'   col_distribucion = "casos",
-#'   cache = TRUE
+#'   ruta_dir = tempdir()
 #' )
 #' # Mapa por municipios de un departamento especifico
 #' data_filtrada_dpto <- geo_filtro(
@@ -59,7 +59,7 @@
 #'   col_distribucion = "casos",
 #'   dpto = "Antioquia",
 #'   mpio = "Medellin",
-#'   cache = TRUE
+#'   ruta_dir = tempdir()
 #' )
 #' # Mapa con la incidencia por municipios de un departamento específico
 #' incidencia_dpto <-
@@ -1074,6 +1074,7 @@ plot_tabla_tipos_event <- function(data_agrupada,
 #'  }
 #' }
 #' @export
+
 plot_years <- function(data_agrupada,
                        col_year = "ano",
                        fuente_data = NULL) {

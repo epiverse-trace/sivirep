@@ -46,7 +46,7 @@ el 2035.
  \donttest{
 # Importación proyecciones poblaciones DANE
 import_pob_incidencia(poblacion = "proyecciones", year = 2020,
-                      cache = TRUE)
+                      ruta_dir = tempdir())
 # Importación población a riesgo de Dengue del año 2020
 import_pob_incidencia(poblacion = "riesgo", event = "dengue", year = 2020,
                       ruta_dir = tempdir())

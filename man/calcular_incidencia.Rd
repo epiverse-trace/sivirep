@@ -73,7 +73,7 @@ calcular_incidencia(
   poblacion = "proyecciones",
   dpto = "05",
   year = 2020,
-  cache = TRUE
+  ruta_dir = tempdir()
 )
 # Cálculo de la incidencia con proyecciones poblacionales por municipio
 calcular_incidencia(
@@ -90,7 +90,7 @@ calcular_incidencia(
   poblacion = "riesgo",
   data_agrupada = data_agrupada_dptos,
   year = 2020,
-  cache = TRUE
+  ruta_dir = tempdir()
 )
 }
 }

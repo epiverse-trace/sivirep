@@ -166,13 +166,13 @@ list_events <- function() {
 #' if (interactive()) {
 #' import_data_event(nombre_event = "DENGUE",
 #'                   years = 2020,
-#'                   cache = TRUE)
+#'                   ruta_dir = tempdir())
 #' import_data_event(nombre_event = "CHAGAS",
 #'                   years = c(2019, 2020),
 #'                   ruta_dir = tempdir())
 #' import_data_event(nombre_event = "CHAGAS",
 #'                   years = seq(2018, 2020),
-#'                   cache = TRUE)
+#'                   ruta_dir = tempdir())
 #'  }
 #' }
 #' @export
@@ -321,7 +321,7 @@ import_sep_data <- function(ruta_data = NULL,
 #'  \donttest{
 #' # Importación proyecciones poblaciones DANE
 #' import_pob_incidencia(poblacion = "proyecciones", year = 2020,
-#'                       cache = TRUE)
+#'                       ruta_dir = tempdir())
 #' # Importación población a riesgo de Dengue del año 2020
 #' import_pob_incidencia(poblacion = "riesgo", event = "dengue", year = 2020,
 #'                       ruta_dir = tempdir())

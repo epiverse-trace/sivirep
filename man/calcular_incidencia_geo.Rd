@@ -55,7 +55,7 @@ calcular_incidencia_geo(
   poblacion = "riesgo",
   data_agrupada = data_agrupada_mpios,
   year = 2020,
-  cache = TRUE
+  ruta_dir = tempdir()
 )
 data_agrupada_dptos <- agrupar_dpto(data_limpia)
 # Cálculo de la incidencia con proyecciones poblacionales para Colombia

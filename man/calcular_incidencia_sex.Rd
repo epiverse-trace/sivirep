@@ -65,7 +65,7 @@ calcular_incidencia_sex(
   data_agrupada = data_agrupada,
   dpto = "05",
   year = 2020,
-  cache = TRUE
+  ruta_dir = tempdir()
 )
 #' Cálculo de la incidencia con proyecciones poblacionales por sexo y
 # municipio
