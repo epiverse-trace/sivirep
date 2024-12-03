@@ -45,18 +45,20 @@ RoxygenNote: 7.3.2
 Imports: 
     config,
     dplyr,
+    epitrix,
     ggplot2,
     httr2,
-    stringr,
-    xml2,
-    epitrix,
-    sf,
+    kableExtra,
     readxl,
     rlang,
-    tools,
-    sysfonts,
+    sf,
     showtext,
-    kableExtra
+    stats,
+    stringr,
+    sysfonts,
+    tools,
+    utils,
+    xml2
 Suggests: 
     knitr,
     rmarkdown,
