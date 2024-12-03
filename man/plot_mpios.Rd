@@ -26,6 +26,7 @@ Función que genera un gráfico de distribución de casos por
 municipios.
 }
 \examples{
+\donttest{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(dengue2020)
 data_limpia <- estandarizar_geo_cods(data_limpia)
@@ -36,4 +37,5 @@ data_agrupada <- agrupar_mpio(
 plot_mpios(data_agrupada,
   col_mpios = "municipio_ocurrencia"
 )
+}
 }
