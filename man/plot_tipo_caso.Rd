@@ -29,10 +29,12 @@ Función que genera un gráfico de distribución de casos
 según su clasificación inicial.
 }
 \examples{
+\donttest{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(dengue2020)
 data_agrupada <- agrupar_tipo_caso(data_event = data_limpia)
 plot_tipo_caso(data_agrupada,
   col_tipo = "tip_cas"
 )
+}
 }

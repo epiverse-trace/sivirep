@@ -477,6 +477,7 @@ plot_sex <- function(data_agrupada,
 #' @return Un `plot` o gráfico de distribución de casos por sexo y semana
 #' epidemiológica.
 #' @examples
+#' \donttest{
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(dengue2020)
 #' data_agrupada <- agrupar_sex_semanaepi(data_event = data_limpia)
@@ -485,6 +486,7 @@ plot_sex <- function(data_agrupada,
 #'   col_sex = "sexo",
 #'   col_semanaepi = "semana"
 #' )
+#' }
 #' @export
 plot_sex_semanaepi <- function(data_agrupada,
                                col_sex = "sexo",
@@ -759,6 +761,7 @@ plot_dptos <- function(data_agrupada,
 #' es `NULL`.
 #' @return Un `plot` o gráfico de distribución de casos por municipios.
 #' @examples
+#' \donttest{
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(dengue2020)
 #' data_limpia <- estandarizar_geo_cods(data_limpia)
@@ -769,6 +772,7 @@ plot_dptos <- function(data_agrupada,
 #' plot_mpios(data_agrupada,
 #'   col_mpios = "municipio_ocurrencia"
 #' )
+#' }
 #' @export
 plot_mpios <- function(data_agrupada,
                        col_mpios = NULL,
@@ -1061,13 +1065,13 @@ plot_tabla_tipos_event <- function(data_agrupada,
 #' es `NULL`.
 #' @return Un `plot` o gráfico de distribución de casos por año.
 #' @examples
+#' \donttest{
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(dengue2020)
 #' data_agrupada <- agrupar_years(data_event = data_limpia)
 #' plot_years(data_agrupada,
 #'   col_year = "ano"
 #' )
-#' \donttest{
 #' if (interactive()) {
 #' data_years <- import_data_event(
 #'   nombre_event = "CHAGAS",
@@ -1127,12 +1131,14 @@ plot_years <- function(data_agrupada,
 #' @return Un `plot` o gráfico de distribución de casos según su
 #' clasificación inicial.
 #' @examples
+#' \donttest{
 #' data(dengue2020)
 #' data_limpia <- limpiar_data_sivigila(dengue2020)
 #' data_agrupada <- agrupar_tipo_caso(data_event = data_limpia)
 #' plot_tipo_caso(data_agrupada,
 #'   col_tipo = "tip_cas"
 #' )
+#' }
 #' @export
 plot_tipo_caso <- function(data_agrupada,
                            col_tipo = "tip_cas",

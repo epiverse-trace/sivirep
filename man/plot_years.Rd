@@ -26,13 +26,13 @@ Función que genera un gráfico de distribución de casos
 por año.
 }
 \examples{
+\donttest{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(dengue2020)
 data_agrupada <- agrupar_years(data_event = data_limpia)
 plot_years(data_agrupada,
   col_year = "ano"
 )
-\donttest{
 if (interactive()) {
 data_years <- import_data_event(
   nombre_event = "CHAGAS",
