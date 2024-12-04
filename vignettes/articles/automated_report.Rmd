@@ -23,7 +23,7 @@ También, puedes ver el listado de enfermedades en la página [Recursos sivirep.
 
 Actualmente, `sivirep` provee una [plantilla de reporte en R
 Markdown](https://rstudio.github.io/rstudio-extensions/rmarkdown_templates.html)
-llamada `Reporte Básico {sivirep}`, la cual contiene 12 secciones y recibe los siguientes parámetros de entrada: 
+llamada `Reporte Evento {sivirep}`, la cual contiene 12 secciones y recibe los siguientes parámetros de entrada: 
 
 *  Nombre de la enfermedad
 *  Año 
@@ -50,7 +50,7 @@ y seguir los siguientes pasos:
 
 ![](https://raw.githubusercontent.com/epiverse-trace/sivirep/main/inst/images/opcion_rmarkdown.png){.rmarkdown-img align="center" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;" width="560"}
 
-2.  Selecciona la opción del panel izquierdo: *'From Template'*, después el template del reporte llamado: `Reporte Básico {sivirep}`, indica el nombre que deseas para el reporte (i.e. ReporteDengue), la ubicación donde deseas guardarlo y presiona *'Ok'*.
+2.  Selecciona la opción del panel izquierdo: *'From Template'*, después el template del reporte llamado: `Reporte Evento {sivirep}`, indica el nombre que deseas para el reporte (i.e. ReporteDengue), la ubicación donde deseas guardarlo y presiona *'Ok'*.
 
 ![](https://raw.githubusercontent.com/epiverse-trace/sivirep/main/inst/images/template_reporte_basico.png){.rmarkdown-img align="center" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;" width="400"}
 
