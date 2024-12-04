@@ -178,11 +178,11 @@ Para hacer uso de la plantilla del reporte puedes seguir los siguientes
 pasos:
 
 > 🎥 [¿Cómo generar un reporte con
-> sivirep?](https://youtu.be/pqzRw5YhP_g)
+> sivirep?](https://youtu.be/wsgXQKEeg8I)
 
 El reporte que obtendrás al utilizar la plantilla de `sivirep` es este:
 
-> 🎥 [Reporte sivirep](https://youtu.be/1t_Di3fC4hM)
+> 🎥 [Reporte sivirep](https://youtu.be/NRUNwVrs4io)
 
 Si deseas generar el reporte en formato PDF debes instalar LateX. Puedes
 instalarlo siguiendo las instrucciones que se encuentran en [R Markdown
