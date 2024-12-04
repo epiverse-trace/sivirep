@@ -135,19 +135,11 @@ la fuente de SIVIGILA.
 Para hacer uso de la plantilla del reporte puedes seguir los
 siguientes pasos:
 
-```{=html}
-<video controls autoplay width="100%" loop>
-  <source src="`r system.file("video", "template.webm", package = "sivirep")`" type="video/webm" label="fullHD">
-</video>
-```
+> 🎥 [¿Cómo generar un reporte con sivirep?](https://youtu.be/wsgXQKEeg8I)
 
 El reporte que obtendrás al utilizar la plantilla de `sivirep` es este:
 
-```{=html}
-<video controls autoplay width="100%" loop>
-  <source src="`r system.file("video", "template-report.webm", package = "sivirep")`" type="video/webm" label="fullHD">
-</video>
-```
+> 🎥 [Reporte sivirep](https://youtu.be/NRUNwVrs4io)
 
 Si deseas generar el reporte en formato PDF debes instalar LateX. Puedes instalarlo siguiendo las instrucciones que se
 encuentran en [R Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html).

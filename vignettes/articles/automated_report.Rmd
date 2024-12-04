@@ -44,7 +44,7 @@ library(sivirep)
 y seguir los siguientes pasos:
 
 > 🎥 **Tip**: Si deseas ver el paso a paso directamente en RStudio, te
-> recomendamos ver el video [¿Cómo generar un reporte con sivirep?](https://youtu.be/pqzRw5YhP_g)
+> recomendamos ver el video [¿Cómo generar un reporte con sivirep?](https://youtu.be/wsgXQKEeg8I)
 
 1.  En RStudio dirígete a la parte superior izquierda de la ventana, haz clic en el icono de ![](https://raw.githubusercontent.com/epiverse-trace/sivirep/main/inst/images/archivo_nuevo.png){.rmarkdown-img width="40"} y selecciona la opción de *'R Markdown'*:
 
