@@ -49,7 +49,7 @@ por año."><meta property="og:image" content="https://epiverse-trace.github.io/s
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.svg" class="logo" alt=""><h1>Generar gráfico de distribución de casos por año</h1>
-      <small class="dont-index">Código: <a href="https://github.com/epiverse-trace/sivirep/blob/v1.0.0/R/plotting.R" class="external-link"><code>R/plotting.R</code></a></small>
+      <small class="dont-index">Código: <a href="https://github.com/epiverse-trace/sivirep/blob/v1.0.1/R/plotting.R" class="external-link"><code>R/plotting.R</code></a></small>
       <div class="d-none name"><code>plot_years.Rd</code></div>
     </div>
 
@@ -91,14 +91,14 @@ es `NULL`.</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Ejemplos<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">dengue2020</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">dengue2020</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">data_limpia</span> <span class="op">&lt;-</span> <span class="fu"><a href="limpiar_data_sivigila.html">limpiar_data_sivigila</a></span><span class="op">(</span><span class="va">dengue2020</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">data_agrupada</span> <span class="op">&lt;-</span> <span class="fu"><a href="agrupar_years.html">agrupar_years</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_limpia</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">plot_years</span><span class="op">(</span><span class="va">data_agrupada</span>,</span></span>
 <span class="r-in"><span>  col_year <span class="op">=</span> <span class="st">"ano"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plot_years-1.png" alt="" width="768" height="576"></span>
-<span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span><span class="va">data_years</span> <span class="op">&lt;-</span> <span class="fu"><a href="import_data_event.html">import_data_event</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  nombre_event <span class="op">=</span> <span class="st">"CHAGAS"</span>,</span></span>

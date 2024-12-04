@@ -49,7 +49,7 @@ y semana epidemiológica."><meta property="og:image" content="https://epiverse-t
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.svg" class="logo" alt=""><h1>Generar gráfico de distribución de casos por sexo y semana epidemiológica</h1>
-      <small class="dont-index">Código: <a href="https://github.com/epiverse-trace/sivirep/blob/v1.0.0/R/plotting.R" class="external-link"><code>R/plotting.R</code></a></small>
+      <small class="dont-index">Código: <a href="https://github.com/epiverse-trace/sivirep/blob/v1.0.1/R/plotting.R" class="external-link"><code>R/plotting.R</code></a></small>
       <div class="d-none name"><code>plot_sex_semanaepi.Rd</code></div>
     </div>
 
@@ -103,7 +103,8 @@ epidemiológica.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Ejemplos<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">dengue2020</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">dengue2020</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">data_limpia</span> <span class="op">&lt;-</span> <span class="fu"><a href="limpiar_data_sivigila.html">limpiar_data_sivigila</a></span><span class="op">(</span><span class="va">dengue2020</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">data_agrupada</span> <span class="op">&lt;-</span> <span class="fu"><a href="agrupar_sex_semanaepi.html">agrupar_sex_semanaepi</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_limpia</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">plot_sex_semanaepi</span><span class="op">(</span></span></span>
@@ -112,6 +113,7 @@ epidemiológica.</p>
 <span class="r-in"><span>  col_semanaepi <span class="op">=</span> <span class="st">"semana"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plot_sex_semanaepi-1.png" alt="" width="768" height="576"></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Índice de contenidos"><h2>En esta página</h2>
