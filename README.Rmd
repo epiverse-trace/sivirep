@@ -176,7 +176,7 @@ tryCatch({
 ## Reporte automatizado
 
 Actualmente, `sivirep` provee una plantilla de reporte llamada
-`Reporte Básico {sivirep}`, la cual recibe los siguientes parámetros de
+`Reporte Evento {sivirep}`, la cual recibe los siguientes parámetros de
 entrada: el nombre de la enfermedad, el año, el nombre del país, el nombre 
 del departamento (opcional) y el nombre del municipio (opcional) para descargar
 los datos de la fuente de SIVIGILA.
