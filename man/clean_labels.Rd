@@ -18,10 +18,10 @@ clean_labels(
 predeterminado de '_'.}
 
 \item{transformation}{Una cadena que se pasa a
-\code{\link[stringi:stri_trans_general]{stringi::stri_trans_general()}} para la conversión. Por defecto es
+\code{stringi::stri_trans_general()} para la conversión. Por defecto es
 "Any-Latin; Latin-ASCII", lo que convierte cualquier carácter no latino a
 caracteres latinos y luego convierte todos los caracteres acentuados a
-caracteres ASCII. Consulta \code{\link[stringi:stri_trans_list]{stringi::stri_trans_list()}} para una lista
+caracteres ASCII. Consulta \code{stringi::stri_trans_list()} para una lista
 completa de opciones.}
 
 \item{protect}{Una cadena de caracteres que define la puntuación que se debe
@@ -58,14 +58,6 @@ clean_labels(c("energía > 9000", "energía < 9000"), protect = "><")
 # si solo deseas limpiar acentos, transformar a minúsculas y transliterar,
 # puedes especificar "[:punct:][:space:]" para protect:
 clean_labels(input, protect = "[:punct:][:space:]")
-# transliterar adecuadamente las diéresis alemanas
-if (stringi::stri_info()$ICU.system) {
-  # Esto solo será verdadero si tienes instalada la versión correcta de ICU
-
-  clean_labels("'é', 'ê' y 'è' se convierten en 'e', 'ö' se convierte en
-               'oe', etc.",
-               transformation = "Any-Latin; de-ASCII; Latin-ASCII")
-}
 }
 }
 \keyword{internal}

@@ -276,10 +276,10 @@ format_cod_geo <- function(cod_geo, etiqueta, digitos, tam) {
 #' @param sep Una cadena de caracteres utilizada como separador, con un valor
 #' predeterminado de '_'.
 #' @param transformation Una cadena que se pasa a
-#' [stringi::stri_trans_general()] para la conversión. Por defecto es
+#' `stringi::stri_trans_general()` para la conversión. Por defecto es
 #' "Any-Latin; Latin-ASCII", lo que convierte cualquier carácter no latino a
 #' caracteres latinos y luego convierte todos los caracteres acentuados a
-#' caracteres ASCII. Consulta [stringi::stri_trans_list()] para una lista
+#' caracteres ASCII. Consulta `stringi::stri_trans_list()` para una lista
 #' completa de opciones.
 #' @param protect Una cadena de caracteres que define la puntuación que se debe
 #' proteger. Esto ayuda a evitar que se eliminen símbolos significativos
@@ -304,14 +304,6 @@ format_cod_geo <- function(cod_geo, etiqueta, digitos, tam) {
 #' # si solo deseas limpiar acentos, transformar a minúsculas y transliterar,
 #' # puedes especificar "[:punct:][:space:]" para protect:
 #' clean_labels(input, protect = "[:punct:][:space:]")
-#' # transliterar adecuadamente las diéresis alemanas
-#' if (stringi::stri_info()$ICU.system) {
-#'   # Esto solo será verdadero si tienes instalada la versión correcta de ICU
-#'
-#'   clean_labels("'é', 'ê' y 'è' se convierten en 'e', 'ö' se convierte en
-#'                'oe', etc.",
-#'                transformation = "Any-Latin; de-ASCII; Latin-ASCII")
-#' }
 #'}
 #' @note El código original fue escrito por los autores de \pkg{epitrix}.
 #' Consulta \url{https://CRAN.R-project.org/package=epitrix} para más detalles.
