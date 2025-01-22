@@ -266,6 +266,33 @@ format_cod_geo <- function(cod_geo, etiqueta, digitos, tam) {
   return(cod_format)
 }
 
+clean_labels <- function(x, sep = "_",
+                         transformation = "Any-Latin; Latin-ASCII",
+                         protect = "") {
+  x <- as.character(x)
+  ## Sobre el procesamiento de la entrada:
+  ## - conversión a minúsculas
+  ## - reemplazo de caracteres acentuados por sus equivalentes más cercanos
+  ## - reemplazo de signos de puntuación y espacios que no estén en la lista
+  ##   protegida con sep de forma cuidadosa
+  ## - eliminación de separadores al inicio y al final
+  sep <- gsub("([.*?])", "\\\\\\1", sep)
+  out <- tolower(x)
+  out <- stringi::stri_trans_general(out, id = transformation)
+  # Búsqueda anticipada negativa para caracteres alfanuméricos y cualquier
+  # símbolo protegido
+  to_protect <- sprintf("(?![a-z0-9%s])", paste(protect, collapse = ""))
+  # Si la búsqueda anticipada negativa no encuentra lo que está buscando,
+  # entonces realiza el reemplazo.
+  to_replace <- sprintf("%s[[:punct:][:space:]]+?", to_protect)
+  # Función principal
+  out <- gsub(to_replace, sep, out, perl = TRUE)
+  out <- gsub(paste0("(", sep, ")+"), sep, out, perl = TRUE)
+  out <- sub(paste0("^", sep), "", out, perl = TRUE)
+  out <- sub(paste0(sep, "$"), "", out, perl = TRUE)
+  return(out)
+}
+
 #' @title Limpiar las etiquetas del encabezado
 #' @description Función que limpia las etiquetas del encabezado de los
 #' datos de una enfermedad o evento.
