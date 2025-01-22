@@ -47,7 +47,6 @@ RoxygenNote: 7.3.2
 Imports: 
     config,
     dplyr,
-    epitrix,
     ggplot2,
     httr2,
     kableExtra,
