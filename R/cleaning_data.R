@@ -266,6 +266,56 @@ format_cod_geo <- function(cod_geo, etiqueta, digitos, tam) {
   return(cod_format)
 }
 
+#' Estandarizar etiquetas
+#' @description
+#' Código tomado de la función `epitrix::clean_labels()`.
+#' La función `clean_labels()` de \pkg{epitrix} se reutiliza con
+#' permiso y está lincenciada bajo MIT al igual que \pkg{epitrix}.
+#' \pkg{epitrix} está en CRAN.
+#' @param x Un vector de etiquetas, normalmente proporcionado como caracteres.
+#' @param sep Una cadena de caracteres utilizada como separador, con un valor
+#' predeterminado de '_'.
+#' @param transformation Una cadena que se pasa a
+#' [stringi::stri_trans_general()] para la conversión. Por defecto es
+#' "Any-Latin; Latin-ASCII", lo que convierte cualquier carácter no latino a
+#' caracteres latinos y luego convierte todos los caracteres acentuados a
+#' caracteres ASCII. Consulta [stringi::stri_trans_list()] para una lista
+#' completa de opciones.
+#' @param protect Una cadena de caracteres que define la puntuación que se debe
+#' proteger. Esto ayuda a evitar que se eliminen símbolos significativos
+#' como > y <.
+#' @md
+#' @note Debido a diferencias entre el motor de transliteración subyacente
+#' (ICU), las transformaciones predeterminadas no transliterarán correctamente
+#' las diéresis alemanas (umlaute). Puedes agregarlas especificando "de-ASCII"
+#' en la cadena `transformation` después de "Any-Latin".
+#' @examples
+#' \dontrun{
+#' clean_labels("-_-Esto es; Una    Fräse**./extraña...")
+#' clean_labels("-_-Esto es; Una    Fräse**./extraña...", sep = ".")
+#' input <- c("Pedro y stëven",
+#'            "pedro-y.stëven",
+#'            "pëtêr y stëven  _-")
+#' clean_labels(input)
+#' # No transliterar palabras no latinas
+#' clean_labels(input, transformation = "Latin-ASCII")
+#' # proteger símbolos útiles
+#' clean_labels(c("energía > 9000", "energía < 9000"), protect = "><")
+#' # si solo deseas limpiar acentos, transformar a minúsculas y transliterar,
+#' # puedes especificar "[:punct:][:space:]" para protect:
+#' clean_labels(input, protect = "[:punct:][:space:]")
+#' # transliterar adecuadamente las diéresis alemanas
+#' if (stringi::stri_info()$ICU.system) {
+#'   # Esto solo será verdadero si tienes instalada la versión correcta de ICU
+#'
+#'   clean_labels("'é', 'ê' y 'è' se convierten en 'e', 'ö' se convierte en
+#'                'oe', etc.",
+#'                transformation = "Any-Latin; de-ASCII; Latin-ASCII")
+#' }
+#'}
+#' @note El código original fue escrito por los autores de \pkg{epitrix}.
+#' Consulta \url{https://CRAN.R-project.org/package=epitrix} para más detalles.
+#' @keywords internal
 clean_labels <- function(x, sep = "_",
                          transformation = "Any-Latin; Latin-ASCII",
                          protect = "") {
