@@ -356,7 +356,7 @@ clean_labels <- function(x, sep = "_",
 #' @export
 limpiar_encabezado <- function(data_event) {
   validar_data_event(data_event)
-  names(data_event) <- epitrix::clean_labels(names(data_event))
+  names(data_event) <- clean_labels(names(data_event))
   return(data_event)
 }
 
