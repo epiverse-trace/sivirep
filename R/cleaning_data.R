@@ -266,6 +266,75 @@ format_cod_geo <- function(cod_geo, etiqueta, digitos, tam) {
   return(cod_format)
 }
 
+#' Estandarizar etiquetas
+#' @description
+#' Código tomado de la función `epitrix::clean_labels()`.
+#' La función `clean_labels()` de \pkg{epitrix} se reutiliza con
+#' permiso y está lincenciada bajo MIT al igual que \pkg{epitrix}.
+#' \pkg{epitrix} está en CRAN.
+#' @param x Un vector de etiquetas, normalmente proporcionado como caracteres.
+#' @param sep Una cadena de caracteres utilizada como separador, con un valor
+#' predeterminado de '_'.
+#' @param transformation Una cadena que se pasa a
+#' `stringi::stri_trans_general()` para la conversión. Por defecto es
+#' "Any-Latin; Latin-ASCII", lo que convierte cualquier carácter no latino a
+#' caracteres latinos y luego convierte todos los caracteres acentuados a
+#' caracteres ASCII. Consulta `stringi::stri_trans_list()` para una lista
+#' completa de opciones.
+#' @param protect Una cadena de caracteres que define la puntuación que se debe
+#' proteger. Esto ayuda a evitar que se eliminen símbolos significativos
+#' como > y <.
+#' @md
+#' @note Debido a diferencias entre el motor de transliteración subyacente
+#' (ICU), las transformaciones predeterminadas no transliterarán correctamente
+#' las diéresis alemanas (umlaute). Puedes agregarlas especificando "de-ASCII"
+#' en la cadena `transformation` después de "Any-Latin".
+#' @examples
+#' \dontrun{
+#' clean_labels("-_-Esto es; Una    Fräse**./extraña...")
+#' clean_labels("-_-Esto es; Una    Fräse**./extraña...", sep = ".")
+#' input <- c("Pedro y stëven",
+#'            "pedro-y.stëven",
+#'            "pëtêr y stëven  _-")
+#' clean_labels(input)
+#' # No transliterar palabras no latinas
+#' clean_labels(input, transformation = "Latin-ASCII")
+#' # proteger símbolos útiles
+#' clean_labels(c("energía > 9000", "energía < 9000"), protect = "><")
+#' # si solo deseas limpiar acentos, transformar a minúsculas y transliterar,
+#' # puedes especificar "[:punct:][:space:]" para protect:
+#' clean_labels(input, protect = "[:punct:][:space:]")
+#'}
+#' @note El código original fue escrito por los autores de \pkg{epitrix}.
+#' Consulta \url{https://CRAN.R-project.org/package=epitrix} para más detalles.
+#' @keywords internal
+clean_labels <- function(x, sep = "_",
+                         transformation = "Any-Latin; Latin-ASCII",
+                         protect = "") {
+  x <- as.character(x)
+  ## Sobre el procesamiento de la entrada:
+  ## - conversión a minúsculas
+  ## - reemplazo de caracteres acentuados por sus equivalentes más cercanos
+  ## - reemplazo de signos de puntuación y espacios que no estén en la lista
+  ##   protegida con sep de forma cuidadosa
+  ## - eliminación de separadores al inicio y al final
+  sep <- gsub("([.*?])", "\\\\\\1", sep)
+  out <- tolower(x)
+  out <- stringi::stri_trans_general(out, id = transformation)
+  # Búsqueda anticipada negativa para caracteres alfanuméricos y cualquier
+  # símbolo protegido
+  to_protect <- sprintf("(?![a-z0-9%s])", paste(protect, collapse = ""))
+  # Si la búsqueda anticipada negativa no encuentra lo que está buscando,
+  # entonces realiza el reemplazo.
+  to_replace <- sprintf("%s[[:punct:][:space:]]+?", to_protect)
+  # Función principal
+  out <- gsub(to_replace, sep, out, perl = TRUE)
+  out <- gsub(paste0("(", sep, ")+"), sep, out, perl = TRUE)
+  out <- sub(paste0("^", sep), "", out, perl = TRUE)
+  out <- sub(paste0(sep, "$"), "", out, perl = TRUE)
+  return(out)
+}
+
 #' @title Limpiar las etiquetas del encabezado
 #' @description Función que limpia las etiquetas del encabezado de los
 #' datos de una enfermedad o evento.
@@ -279,7 +348,7 @@ format_cod_geo <- function(cod_geo, etiqueta, digitos, tam) {
 #' @export
 limpiar_encabezado <- function(data_event) {
   validar_data_event(data_event)
-  names(data_event) <- epitrix::clean_labels(names(data_event))
+  names(data_event) <- clean_labels(names(data_event))
   return(data_event)
 }
 

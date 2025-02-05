@@ -231,7 +231,7 @@ obtener_info_depts <- function(dpto = NULL, mpio = NULL) {
   }
   list_dptos <- unique(data_geo[[col_dpto]])
   dpto_busqueda <- tolower(dpto_busqueda)
-  dpto_busqueda <- epitrix::clean_labels(dpto_busqueda)
+  dpto_busqueda <- clean_labels(dpto_busqueda)
   list_specific <-
     list_dptos[stringr::str_detect(list_dptos, dpto_busqueda)]
   if (length(list_specific) > 1) {
@@ -269,7 +269,7 @@ obtener_info_depts <- function(dpto = NULL, mpio = NULL) {
       mpio_busqueda <- paste0(dpto_busqueda, mpio_busqueda)
     }
     mpio_busqueda <- tolower(mpio_busqueda)
-    mpio_busqueda <- epitrix::clean_labels(mpio_busqueda)
+    mpio_busqueda <- clean_labels(mpio_busqueda)
     data_dpto <-
       data_dpto[which(stringr::str_detect(
         data_dpto[[col_mpio]],
