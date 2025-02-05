@@ -8,37 +8,37 @@ por semana epidemiológica y número de casos."><meta property="og:image" conten
 
   gtag('config', 'G-XZ471458FQ');
 </script></head><body>
-    <a href="#main" class="visually-hidden-focusable">Ir al contenido</a>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
     <nav class="navbar navbar-expand-lg fixed-top " aria-label="Site navigation"><div class="container">
     <a href="https://epiverse-trace.github.io/" class="external-link"><img src="https://epiverse-trace.github.io/blueprints/logo_white.svg" id="logo" alt="Epiverse-TRACE"></a>
     <a class="navbar-brand me-2" href="../index.html">sivirep</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Versión publicada">1.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.0.1</small>
 
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Cambiar la navegación">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../articles/sivirep.html">Primeros pasos</a></li>
-<li class="active nav-item"><a class="nav-link" href="../reference/index.html">Índice</a></li>
+      <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../articles/sivirep.html">Get started</a></li>
+<li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-art-culos" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Artículos</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-art-culos"><li><a class="dropdown-item" href="../articles/automated_report.html">Plantilla Reporte automatizado</a></li>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/automated_report.html">Plantilla Reporte automatizado</a></li>
     <li><a class="dropdown-item" href="../articles/custom_analysis.html">Análisis personalizados</a></li>
     <li><a class="dropdown-item" href="../articles/resources.html">Recursos</a></li>
   </ul></li>
-<li class="nav-item"><a class="nav-link" href="../news/index.html">Registro de cambios</a></li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
- <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Buscar" data-search-index="../search.json"></form></li>
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
 <li class="nav-item"><a class="external-link nav-link" href="https://github.com/epiverse-trace/sivirep/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
 <li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-lightswitch" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-label="Interruptor de color"><span class="fa fa-sun"></span></button>
-  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-lightswitch"><li><button class="dropdown-item" data-bs-theme-value="light"><span class="fa fa-sun"></span> Claro</button></li>
-    <li><button class="dropdown-item" data-bs-theme-value="dark"><span class="fa fa-moon"></span> Oscuro</button></li>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-lightswitch" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-label="Light switch"><span class="fa fa-sun"></span></button>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-lightswitch"><li><button class="dropdown-item" data-bs-theme-value="light"><span class="fa fa-sun"></span> Light</button></li>
+    <li><button class="dropdown-item" data-bs-theme-value="dark"><span class="fa fa-moon"></span> Dark</button></li>
     <li><button class="dropdown-item" data-bs-theme-value="auto"><span class="fa fa-adjust"></span> Auto</button></li>
   </ul></li>
       </ul></div>
@@ -49,7 +49,7 @@ por semana epidemiológica y número de casos."><meta property="og:image" conten
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.svg" class="logo" alt=""><h1>Agrupar por semana epidemiológica y casos</h1>
-      <small class="dont-index">Código: <a href="https://github.com/epiverse-trace/sivirep/blob/v1.0.1/R/checking_data.R" class="external-link"><code>R/checking_data.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/epiverse-trace/sivirep/blob/main/R/checking_data.R" class="external-link"><code>R/checking_data.R</code></a></small>
       <div class="d-none name"><code>agrupar_semanaepi.Rd</code></div>
     </div>
 
@@ -59,12 +59,12 @@ por semana epidemiológica y número de casos.</p>
     </div>
 
     <div class="section level2">
-    <h2 id="ref-usage">Uso<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
+    <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">agrupar_semanaepi</span><span class="op">(</span><span class="va">data_event</span>, col_semanaepi <span class="op">=</span> <span class="st">"semana"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
-    <h2 id="argumentos">Argumentos<a class="anchor" aria-label="anchor" href="#argumentos"></a></h2>
+    <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
 
 
 <dl><dt id="arg-data-event">data_event<a class="anchor" aria-label="anchor" href="#arg-data-event"></a></dt>
@@ -80,13 +80,13 @@ su valor por defecto es `"semana"`.</p></dd>
 
 </dl></div>
     <div class="section level2">
-    <h2 id="valor">Valor<a class="anchor" aria-label="anchor" href="#valor"></a></h2>
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>Un `data.frame` con los datos de una enfermedad o
 evento agrupados por semana epidemiológica y número de casos.</p>
     </div>
 
     <div class="section level2">
-    <h2 id="ref-examples">Ejemplos<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">dengue2020</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">data_limpia</span> <span class="op">&lt;-</span> <span class="fu"><a href="limpiar_data_sivigila.html">limpiar_data_sivigila</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">dengue2020</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">agrupar_semanaepi</span><span class="op">(</span></span></span>
@@ -109,16 +109,16 @@ evento agrupados por semana epidemiológica y número de casos.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 43 more rows</span></span>
 </code></pre></div>
     </div>
-  </main><aside class="col-md-3"><nav id="toc" aria-label="Índice de contenidos"><h2>En esta página</h2>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Desarrollado por Geraldine Gómez-Millán, Zulma M. Cucunubá, Jennifer A. Mendez-Romero, Claudia Huguett-Aragón, International Development Research Center (IDRC).</p>
+  <p>Developed by Geraldine Gómez-Millán, Zulma M. Cucunubá, Jennifer A. Mendez-Romero, Claudia Huguett-Aragón, International Development Research Center (IDRC).</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Sitio creado con <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.9000.</p>
 </div>
 
     </footer></div>
