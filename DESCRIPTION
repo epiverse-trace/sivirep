@@ -47,7 +47,6 @@ RoxygenNote: 7.3.2
 Imports: 
     config,
     dplyr,
-    stringi,
     ggplot2,
     httr2,
     kableExtra,
@@ -56,6 +55,7 @@ Imports:
     sf,
     showtext,
     stats,
+    stringi,
     stringr,
     sysfonts,
     tools,
