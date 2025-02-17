@@ -307,7 +307,7 @@ format_cod_geo <- function(cod_geo, etiqueta, digitos, tam) {
 #'}
 #' @note El código original fue escrito por los autores de \pkg{epitrix}.
 #' Consulta \url{https://CRAN.R-project.org/package=epitrix} para más detalles.
-#' @keywords internal
+#' @noRd
 clean_labels <- function(x, sep = "_",
                          transformation = "Any-Latin; Latin-ASCII",
                          protect = "") {
