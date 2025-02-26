@@ -19,29 +19,33 @@ realizar_peticion_http <- function(url) {
                          request_timeout)),
     httr2_failure = function(e) {
       stop(
-        "No se pudo conectar al servidor de SIVIGILA para descargar los datos")
+        "No se pudo conectar al servidor de SIVIGILA para descargar los datos",
+        call. = FALSE)
     },
     httr2_error = function(e) {
       stop(
-        "Error al conectarse al servidor de SIVIGILA para descargar los datos")
+        "Error al conectarse al servidor de SIVIGILA para descargar los datos",
+        call. = FALSE)
     },
     httr2_http_404 = function(e) {
       stop(
-        "El dato no existe en los servidores de SIVIGILA")
+        "El dato no existe en los servidores de SIVIGILA", call. = FALSE)
     },
     httr2_http = function(e) {
       stop(
-        "Error al conectarse al servidor de SIVIGILA para descargar los datos")
+        "Error al conectarse al servidor de SIVIGILA para descargar los datos",
+        call. = FALSE)
     },
     error = function(e) {
       if (grepl("Timeout", e$message, fixed = TRUE)) {
        stop(
-        "No se pudo conectar al servidor de SIVIGILA para descargar los datos")
+        "No se pudo conectar al servidor de SIVIGILA para descargar los datos",
+        call. = FALSE)
       } else {
-        stop("Ha ocurrido un error inesperado ", parent = e)
+        stop("Ha ocurrido un error inesperado", parent = e, call. = FALSE)
       }
     }
-  ))
+  )
 }
 
 #' @title Importar datos geográficos de Colombia
@@ -263,7 +267,8 @@ import_sep_data <- function(ruta_data = NULL,
     obtener_ruta_dir(ruta_dir = ruta_dir, cache = cache,
                      mensaje_error = "los datos de la enfermedad o evento")
   if (!dir.exists(ruta_dir)) {
-    stop("La ruta ingresada en el parametro ruta_dir no existe")
+    stop("La ruta ingresada en el parametro ruta_dir no existe",
+         call. = FALSE)
   }
   if (!is.null(ruta_data)) {
     ini_nomb_archivo <-
