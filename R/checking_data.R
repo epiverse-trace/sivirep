@@ -1005,18 +1005,16 @@ calcular_incidencia <- function(data_incidencia = NULL,
     } else if (is.null(sex)) {
       data_agrupada <- data_agrupada[data_agrupada[[nomb_cols[1]]] == dpto, ]
     }
-  } else {
-    if (poblacion == "proyecciones") {
+  } else if (poblacion == "proyecciones") {
       poblacion_incidencia <-
         dplyr::filter(
           data_incidencia,
           .data$area_geografica == "Total",
           .data$ano == year
         )
-    } else {
-      total_poblacion <-
-        sum(poblacion_incidencia[[paste0("poblacion_riesgo_", year)]])
-    }
+  } else {
+    total_poblacion <-
+      sum(poblacion_incidencia[[paste0("poblacion_riesgo_", year)]])
   }
   if (!is.null(sex)) {
     if (sex == "F") {
