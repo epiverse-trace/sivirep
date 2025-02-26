@@ -53,5 +53,5 @@ obtener_ruta_data_event_year <- function(nombre_event, year) {
     ruta_base,
     ruta_archivo, ruta_archivo_params
   )
-  return(ruta_descarga_archivo)
+  ruta_descarga_archivo
 }
