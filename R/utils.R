@@ -239,7 +239,7 @@ obtener_info_depts <- function(dpto = NULL, mpio = NULL) {
       "Dos o mas departamentos coinciden con el nombre o ",
       "codigo ingresado: ",
       dpto, " se tomara el valor de la primera coincidencia ",
-      "encontrada"
+      "encontrada", call. = FALSE
     )
     data_dpto <- dplyr::filter(
       data_geo,
@@ -287,7 +287,7 @@ obtener_info_depts <- function(dpto = NULL, mpio = NULL) {
         "Dos o mas municipios coinciden con el nombre o ",
         "codigo ingresado: ",
         mpio, " se tomara el valor de la primera coincidencia ",
-        "encontrada"
+        "encontrada", call. = FALSE
       )
       data_dpto <- data_dpto[1, ]
     }
@@ -539,7 +539,7 @@ obtener_dpto_mpio <- function(data_agrupada, nomb_cols,
     if (nrow(dept_data) == 0) {
       warning(
         "El departamento o municipio ingresado no existe, ",
-        "dpto: ", dpto, " , mpio: ", mpio
+        "dpto: ", dpto, " , mpio: ", mpio, call. = FALSE
       )
     }
     dept_data <- dept_data[1, ]
@@ -659,7 +659,7 @@ obtener_year <- function(data_event) {
     stop(
       "Los datos del evento o enfermedad no contienen la variable ",
       "o columna ano. Por favor indique el valor en el parametro year ",
-      "para ejecutar la funcion"
+      "para ejecutar la funcion", call. = FALSE
     )
   }
   year <- unique(data_event[[nomb_col]][!is.na(data_event[[nomb_col]])])
@@ -881,7 +881,7 @@ obtener_ruta_dir <- function(ruta_dir = NULL,
     creado <- dir.create(ruta_dir, recursive = TRUE)
     if (!creado) {
       stop("Por favor indique en el parametro ruta_dir la ruta donde
-             desea almacenar ", mensaje_error)
+             desea almacenar ", mensaje_error, call. = FALSE)
     }
   }
   return(ruta_dir)
