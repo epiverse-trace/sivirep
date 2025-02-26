@@ -303,7 +303,7 @@ obtener_info_depts <- function(dpto = NULL, mpio = NULL) {
 #' @export
 obtener_dptos <- function() {
   dptos <- obtener_val_config(llave = "departments")
-  return(dptos)
+  dptos
 }
 
 #' @title Obtener el nombre de un departamento de Colombia
@@ -352,7 +352,7 @@ obtener_nombre_dpto <- function(data_geo, cod_dpto) {
     .data$codigo_departamento %in% cod_dpto
   )
   data_dpto <- data_dpto[1, ]
-  return(data_dpto$nombre_departamento)
+  data_dpto$nombre_departamento
 }
 
 #' @title Obtener el nombre de un municipio de Colombia
@@ -415,7 +415,7 @@ obtener_nombre_mpio <- function(data_geo, cod_dpto, cod_mpio) {
     .data$codigo_municipio %in% cod_mpio
   )
   data_mpio <- data_mpio[1, ]
-  return(data_mpio$nombre_municipio)
+  data_mpio$nombre_municipio
 }
 
 #' @title Obtener los eventos relacionados
@@ -472,7 +472,7 @@ obtener_eventos_relacionados <- function(nombre_event, years) {
     }
     grupo_events <- dplyr::bind_rows(grupo_events)
   }
-  return(grupo_events)
+  grupo_events
 }
 
 #' @title Obtener las condiciones para calcular la incidencia de una
@@ -510,7 +510,7 @@ obtener_cond_inciden_event <- function(cod_eve) {
     return(aux_event)
   }
   vals_event[["coeficiente"]] <- as.integer(vals_event[["coeficiente"]])
-  return(vals_event)
+  vals_event
 }
 
 #' @title Obtener código de un departamento y municipio
@@ -670,7 +670,7 @@ obtener_year <- function(data_event) {
             parametro year" =
       length(year) == 1
   )
-  return(year)
+  year
 }
 
 #' @title Obtener el párrafo de la distribución de casos por sexo
@@ -771,7 +771,7 @@ obtener_text_sex <- function(data_agrupada,
     text = text_sex, mayor = sexo_mayor,
     menor = sexo_menor
   )
-  return(text_values)
+  text_values
 }
 
 #' @title Obtener valor del archivo de configuración
@@ -793,7 +793,7 @@ obtener_val_config <- function(llave) {
       ),
     llave
   )
-  return(valor)
+  valor
 }
 
 #' @title Obtener la configuración del mapa
@@ -854,7 +854,7 @@ obtener_config_map <- function(data_agrupada, dpto, mpio,
     dpto = dpto, mpio = mpio,
     poligono = polygon_seleccionado
   )
-  return(config_map)
+  config_map
 }
 
 #' @title Obtener la ruta del directorio donde se almacenarán
