@@ -473,10 +473,12 @@ import_pob_riesgo <- function(event, year,
     warning("Para el ", year, " la poblacion a riesgo no esta disponible.",
             " Los ", etiqueta_year, " disponibles para la enfermedad o ",
             "evento son: ",
-            toString(years_disponibles))
+            toString(years_disponibles),
+            call. = FALSE)
   } else {
     warning("Para ", event, " no hay poblacion a riesgo disponible de ",
-            "ningun year")
+            "ningun year",
+            call. = FALSE)
   }
   return(pob_riesgo_event)
 }
