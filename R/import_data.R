@@ -508,10 +508,9 @@ import_shape_map <- function(ruta_dir = NULL,
   carpeta_base <- obtener_val_config("map_shape_folder")
   ruta_shape <- file.path(ruta_dir, carpeta_base,
                           obtener_val_config("map_shape_file"))
-  if (file.exists(ruta_shape)) {
-    shp <- sf::st_read(dsn = ruta_shape, quiet = TRUE)
-  } else {
-    stop("No es posible obtener el Shapefile del mapa")
+  if (!file.exists(ruta_shape)) {
+    stop("No es posible obtener el Shapefile del mapa",
+         call. = FALSE)
   }
   shp <- sf::st_read(dsn = ruta_shape, quiet = TRUE)
   return(shp)
