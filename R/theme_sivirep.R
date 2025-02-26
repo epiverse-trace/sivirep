@@ -24,7 +24,7 @@ tema_sivirep <- function() {
       plot.subtitle = ggplot2::element_text(face = "bold",
                                             hjust = 0.5)
     )
-  return(tema)
+  tema
 }
 
 #' @title Obtener la estética de una escala para un gráfico de \pkg{sivirep}
