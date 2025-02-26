@@ -45,7 +45,7 @@ estandarizar_geo_cods <- function(data_event) {
       }
     }
   }
-  return(data_event)
+  data_event
 }
 
 #' @title Convertir edad a años
@@ -177,7 +177,7 @@ remove_val_nin <- function(data_event, nomb_col) {
     is.nan(data_event[[nomb_col]]) |
     is.infinite(data_event[[nomb_col]])
   data_event_del <- data_event[!del_rows]
-  return(data_event_del)
+  data_event_del
 }
 
 #' @title Eliminar fechas mayores que el valor de comparación
@@ -256,14 +256,15 @@ format_cod_geo <- function(cod_geo, etiqueta, digitos, tam) {
     if (nchar(cod_geo) > tam) {
       stop(
         "El codigo del ", etiqueta,
-        " debe tener maximo ", tam, " digitos"
+        " debe tener maximo ", tam, " digitos",
+        call. = FALSE
       )
     }
     if (nchar(cod_format) == tam - 1) {
       cod_format <- paste0("0", cod_format)
     }
   }
-  return(cod_format)
+  cod_format
 }
 
 #' Estandarizar etiquetas
@@ -349,7 +350,7 @@ clean_labels <- function(x, sep = "_",
 limpiar_encabezado <- function(data_event) {
   validar_data_event(data_event)
   names(data_event) <- clean_labels(names(data_event))
-  return(data_event)
+  data_event
 }
 
 #' @title Limpiar fechas de los datos de una enfermedad o evento
