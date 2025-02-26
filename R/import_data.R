@@ -13,7 +13,7 @@
 #' @noRd
 realizar_peticion_http <- function(url) {
   request_timeout <- obtener_val_config("request_timeout")
-  return(tryCatch(
+  tryCatch(
     httr2::req_perform(
       httr2::req_timeout(httr2::request(url),
                          request_timeout)),
@@ -142,7 +142,7 @@ list_events <- function() {
                             aa = years_events)
   list_events <- list_events[order(list_events$enfermedad,
                                    decreasing = FALSE), ]
-  return(list_events)
+  list_events
 }
 
 #' @title Importar los datos de una enfermedad o evento por año
@@ -506,5 +506,6 @@ import_shape_map <- function(ruta_dir = NULL,
   } else {
     stop("No es posible obtener el Shapefile del mapa")
   }
+  shp <- sf::st_read(dsn = ruta_shape, quiet = TRUE)
   return(shp)
 }
