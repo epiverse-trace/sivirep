@@ -21,5 +21,7 @@ del mapa.
 }
 \description{
 Función que importa el Shapefile del mapa de Colombia.
+
+Esta función requiere acceso a Internet.
 }
 \keyword{internal}

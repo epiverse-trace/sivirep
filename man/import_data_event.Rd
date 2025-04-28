@@ -29,6 +29,8 @@ seleccionado desde los microdatos del SIVIGILA.
 \description{
 Función que importa los datos de una enfermedad o evento por
 año desde los microdatos del SIVIGILA.
+
+Esta función requiere acceso a Internet.
 }
 \examples{
 \donttest{

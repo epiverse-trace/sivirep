@@ -39,8 +39,8 @@ Other contributors:
   \item Lady Flórez-Tapiero [contributor]
   \item Verónica Tangarife-Arredondo [contributor]
   \item Gerard Alarcon [contributor]
-  \item International Development Research Center (IDRC) [funder]
-  \item Pontificia Universidad Javeriana [copyright holder]
+  \item International Development Research Center (IDRC) (0445x0472) [funder]
+  \item Pontificia Universidad Javeriana (03etyjw28) [copyright holder]
 }
 
 }

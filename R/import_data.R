@@ -51,9 +51,13 @@ realizar_peticion_http <- function(url) {
 #' @title Importar datos geográficos de Colombia
 #' @description Función que importa los nombres y códigos de
 #' los departamentos y municipios de Colombia a través de una URL.
+#'
+#' Esta función requiere acceso a Internet.
+#'
 #' @param descargar Un `logical` (`TRUE` o `FALSE`) que indica si los
-#' datos deben descargarse desde la API de datos abiertos de Colombia;
-#' su valor por defecto es `FALSE`.
+#' datos deben descargarse desde la API de datos abiertos de Colombia.
+#' Su valor por defecto es `FALSE`, ya que sivirep ya incluye una copia 
+#' local de dichos datos.
 #' @return Un `data.frame` con los nombres y códigos de los departamentos
 #' y municipios de Colombia.
 #' @examples
@@ -153,6 +157,9 @@ list_events <- function() {
 #' desde los microdatos del SIVIGILA
 #' @description Función que importa los datos de una enfermedad o evento por
 #' año desde los microdatos del SIVIGILA.
+#'
+#' Esta función requiere acceso a Internet.
+#'
 #' @param nombre_event Un `character` (cadena de caracteres) con el nombre de
 #' la enfermedad o evento.
 #' @param years Un `numeric` (numérico) con el año o años deseado(s) para
@@ -305,6 +312,9 @@ import_sep_data <- function(ruta_data = NULL,
 #' @description Función que importa la población a riesgo de un evento o
 #' enfermedad o las proyecciones poblacionales DANE desde el año 2005 hasta
 #' el 2035.
+#'
+#' Esta función requiere acceso a Internet.
+#'
 #' @param poblacion Un `character` (cadena de caracteres) con el tipo de
 #' población que se desea importar. Puede ser `"riesgo"` para la población
 #' a riesgo del evento o `"proyecciones"` para las proyecciones poblacionales
@@ -360,6 +370,9 @@ import_pob_incidencia <- function(
 #' @title Importar las proyecciones DANE del año 2005 hasta el 2035
 #' @description Función que importa las proyecciones poblacionales
 #' DANE desde el año 2005 hasta el 2035.
+#'
+#' Esta función requiere acceso a Internet.
+#'
 #' @param year Un `numeric` (numérico) con el año de las proyecciones
 #' poblacionales DANE que desea importar.
 #' @inheritParams import_pob_incidencia
@@ -407,6 +420,9 @@ import_pob_proyecciones <- function(year,
 #' @title Importar la población a riesgo de un evento o enfermedad
 #' @description Función que importa la población a riesgo de un evento
 #'o enfermedad para un año específico.
+#'
+#' Esta función requiere acceso a Internet.
+#'
 #' @param event Un `character` (cadena de caracteres) o un `numeric` (numérico)
 #' con el nombre o código de la enfermedad o evento.
 #' @param year Un `numeric` (numérico) con el año deseado de la población a
@@ -485,6 +501,9 @@ import_pob_riesgo <- function(event, year,
 
 #' @title Importar el Shapefile del mapa de Colombia
 #' @description Función que importa el Shapefile del mapa de Colombia.
+#'
+#' Esta función requiere acceso a Internet.
+#'
 #' @param ruta_dir Un `character` (cadena de caracteres) que contiene la
 #' ruta del directorio donde se almacenará el Shapefile del mapa de
 #' Colombia. Su valor por defecto es `NULL`.
