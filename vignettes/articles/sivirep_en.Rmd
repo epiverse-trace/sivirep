@@ -156,4 +156,4 @@ The report you will obtain by using the `sivirep` template is shown here:
 
 If you want to generate the report in PDF format, you must install LaTeX. You can install it following the instructions found in the [R Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html).
 
-To customize the report, you can review the following document: [Customized Analysis](articles/custom_analyses_en.html).
+To customize the report, you can review the following document: [Customized Analysis](https://epiverse-trace.github.io/sivirep/articles/custom_analyses_en.html).

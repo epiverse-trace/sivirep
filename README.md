@@ -18,7 +18,7 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 status](https://www.r-pkg.org/badges/version/sivirep)](https://CRAN.R-project.org/package=sivirep)
 <!-- badges: end -->
 
-[For English version, open this link](articles/sivirep_en.html)
+[For English version, open this link](https://epiverse-trace.github.io/sivirep/articles/sivirep_en.html)
 
 ***sivirep*** es desarrollado por la [Pontificia Universidad
 Javeriana](https://www.javeriana.edu.co/inicio) como parte de la
@@ -191,4 +191,4 @@ instalarlo siguiendo las instrucciones que se encuentran en [R Markdown
 Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html).
 
 Para personalizar el reporte, puedes revisar el siguiente documento:
-[Análisis Personalizados](articles/custom_analysis.html).
+[Análisis Personalizados](https://epiverse-trace.github.io/sivirep/articles/custom_analysis.html).
