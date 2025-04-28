@@ -1,0 +1,159 @@
+---
+title: "README (English version)"
+---
+
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/",
+  include = TRUE,
+  error = FALSE,
+  warning = FALSE,
+  message = FALSE
+)
+```
+
+```{r setup_package, include = FALSE}
+library(sivirep)
+```
+
+## *sivirep*: Automated generation of reports from epidemiological surveillance databases <img src="man/figures/logo.svg" align="right" width="120"/>
+
+
+<!-- badges: start -->
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/license/mit)
+[![R-CMD-check](https://github.com/epiverse-trace/sivirep/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/epiverse-trace/sivirep/actions/workflows/R-CMD-check.yaml)
+[![Codecov test coverage](https://codecov.io/gh/epiverse-trace/sivirep/branch/main/graph/badge.svg)](https://app.codecov.io/gh/epiverse-trace/sivirep?branch=main)
+[![lifecycle-maturing](https://raw.githubusercontent.com/reconverse/reconverse.github.io/master/images/badge-maturing.svg)](https://www.reconverse.org/lifecycle.html#maturing)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![CRAN status](https://www.r-pkg.org/badges/version/sivirep)](https://CRAN.R-project.org/package=sivirep)
+<!-- badges: end -->
+
+***sivirep*** is developed by the [Pontificia Universidad Javeriana](https://www.javeriana.edu.co/inicio) as part of the [Epiverse](https://data.org/initiatives/epiverse/) initiative.
+
+The current version of *sivirep* 1.0.0 provides functions for data manipulation and the generation of automated reports based on individualized case databases from SIVIGILA, which is Colombia’s official epidemiological surveillance system.
+
+## Disclaimer
+
+The use of this library, as well as the data, generated reports, and other derivative products, is under the sole responsibility of the user. Neither the authors of the library, nor the Pontificia Universidad Javeriana, nor the information source assume any responsibility for the results obtained or the use made of these products.
+
+## Motivation
+
+Latin America has made progress in the quality of its notification and epidemiological surveillance systems. Particularly, Colombia has improved over the years the quality, accessibility, and transparency of its official epidemiological surveillance system, SIVIGILA.  
+This system is regulated by the National Institute of Health of Colombia and operated by thousands of healthcare workers in local health departments, hospitals, and primary data-generating units.
+
+However, challenges still exist, especially at the local level, regarding the timeliness and quality of epidemiological analysis and reporting. These tasks may require a large amount of manual work due to limitations in data analysis training, the time investment needed, technology, and internet access quality in some regions of Colombia.
+
+The objective of `sivirep` is to provide a set of tools to:
+
+1. Download, preprocess, and prepare SIVIGILA data for further analysis.
+2. Generate automated epidemiological reports adaptable to context.
+3. Provide feedback about the surveillance system to the data provider.
+
+## Potential users
+
+- Public health and field epidemiology professionals using the SIVIGILA data source at a local level.
+- Students in the health and epidemiology fields.
+- Researchers and data analysts at national and international levels.
+
+## Future versions
+
+Future versions of `sivirep` could include:
+
+- Interaction with other data sources in Colombia.
+- Other epidemiological surveillance systems in Latin America.
+
+## Contributions
+
+Contributions are welcome via [pull requests](https://github.com/epiverse-trace/sivirep/pulls).
+
+Package contributors include:
+
+**Authors**: [Geraldine Gómez-Millán](https://github.com/GeraldineGomez), [Zulma M. Cucunubá](https://github.com/zmcucunuba), Jennifer A. Mendez-Romero, and [Claudia Huguett-Aragón](https://github.com/chuguett)
+
+**Contributors**:  
+[Hugo Gruson](https://github.com/Bisaloo), [Juanita Romero-Garcés](https://github.com/juanitaromerog), [Jaime A. Pavlich-Mariscal](https://github.com/jpavlich), [Andrés Moreno](https://github.com/andresmore), [Miguel Gámez](https://github.com/megamezl), [Laura Gómez-Bermeo](https://github.com/lgbermeo), Johan Calderón, Lady Flórez-Tapiero, Verónica Tangarife-Arredondo, and Gerard Alarcon.
+
+## Code of Conduct
+
+Please note that the `sivirep` project is released with a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).  
+By contributing to this project, you agree to abide by its terms.
+
+## Installation
+
+You can install `sivirep` from CRAN using:
+
+```{r}
+install.packages("sivirep")
+```
+
+If you want to install the development version of `sivirep` from GitHub, you can use the following command:
+
+```{r inst-sivirep, eval = FALSE}
+install.packages("pak")
+pak::pak("epiverse-trace/sivirep")
+```
+
+Alternatively, you can also use:
+
+
+```{r isnt-opt-r, eval = FALSE}
+install.packages("remotes")
+remotes::install_github("epiverse-trace/sivirep")
+```
+
+```{r inst-opt, eval = FALSE}
+install.packages("sivirep", repos = c("https://epiverse-trace.r-universe.dev", "https://cloud.r-project.org"))
+```
+
+## Quick start
+
+You can start by importing the package after installation with:
+
+```{r import-sivirep, eval = FALSE}
+library(sivirep)
+```
+
+You can check the available diseases and years for free download using the commands:
+
+```{r list-events-ms, eval = FALSE}
+lista_eventos <- list_events()
+knitr::kable(lista_eventos)
+```
+
+`r paste0("<blockquote style=", '"color: #333; cursor:pointer;"', "><details><summary>🦠<b>Listado de enfermedades (haz clic para ver)</b></summary><br>")`
+
+```{r list-events-rs, echo = FALSE}
+lista_eventos <- NULL
+tryCatch({
+  lista_eventos <- list_events()
+  knitr::kable(lista_eventos,
+             col.names = c("Codigo", "Enfermedad", "Año"),
+             row.names = FALSE, align = "l")
+}, error = function(e) {
+  lista_eventos <- NULL
+})
+```
+
+`r if (is.null(lista_eventos)) { paste0("<ul><li><a class=", '"external-link"',  " href=", '"https://epiverse-trace.github.io/sivirep/articles/resources.html#enfermedades-y-a%C3%B1os-disponibles-para-su-descarga"', ">Enfermedades</a></li></ul>")}`
+
+`r paste0("</details></blockquote>")`
+
+## Automated report
+
+Currently, `sivirep` provides a report template called `Reporte Evento {sivirep}`, which accepts the following input parameters: disease name, year, country name, department name (optional), and municipality name (optional) to download data from the SIVIGILA source.
+
+To use the report template, you can follow these steps:
+
+> 🎥 [How to generate a report with sivirep?](https://youtu.be/wsgXQKEeg8I)
+
+The report you will obtain by using the `sivirep` template is shown here:
+
+> 🎥 [sivirep report](https://youtu.be/NRUNwVrs4io)
+
+If you want to generate the report in PDF format, you must install LaTeX. You can install it following the instructions found in the [R Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html).
+
+To customize the report, you can review the following document: [Customized Analysis](articles/custom_analyses_en.html).

@@ -18,6 +18,8 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 status](https://www.r-pkg.org/badges/version/sivirep)](https://CRAN.R-project.org/package=sivirep)
 <!-- badges: end -->
 
+[For English version, open this link](README_en.html)
+
 ***sivirep*** es desarrollado por la [Pontificia Universidad
 Javeriana](https://www.javeriana.edu.co/inicio) como parte de la
 iniciativa [Epiverse](https://data.org/initiatives/epiverse/).
@@ -187,3 +189,6 @@ El reporte que obtendrás al utilizar la plantilla de `sivirep` es este:
 Si deseas generar el reporte en formato PDF debes instalar LateX. Puedes
 instalarlo siguiendo las instrucciones que se encuentran en [R Markdown
 Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html).
+
+Para personalizar el reporte, puedes revisar el siguiente documento:
+[Análisis Personalizados](articles/custom_analysis.html).
