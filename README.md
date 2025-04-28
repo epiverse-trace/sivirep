@@ -18,7 +18,7 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 status](https://www.r-pkg.org/badges/version/sivirep)](https://CRAN.R-project.org/package=sivirep)
 <!-- badges: end -->
 
-[For English version, open this link](README_en.html)
+[For English version, open this link](articles/sivirep_en.html)
 
 ***sivirep*** es desarrollado por la [Pontificia Universidad
 Javeriana](https://www.javeriana.edu.co/inicio) como parte de la
