@@ -208,11 +208,11 @@ import_data_event <- function(nombre_event,
     for (event in grupo_events$enfermedad) {
       pos_event <- which(eventos_disponibles$enfermedad
                          == event)
-      if (length(pos_event) > 0 &&
-          !stringr::str_detect(
-            eventos_disponibles[pos_event, ]$aa,
-        as.character(year)
-      )) {
+      validation_year <-
+        stringr::str_detect(eventos_disponibles[pos_event, ]$aa,
+                            as.character(year))
+      if (identical(pos_event, integer(0)) ||
+          identical(validation_year, logical(0)) || !validation_year) {
         warning("El year: ", year,
                 " de la enfermedad o evento: ",
                 event,
