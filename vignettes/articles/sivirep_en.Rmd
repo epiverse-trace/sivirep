@@ -133,12 +133,15 @@ tryCatch({
 
 Currently, `sivirep` provides a report template called  
 `Reporte Evento {sivirep}`, which takes the following input parameters:  
-- the name of the disease  
-- the year  
-- the country  
-- the name of the department *(optional)*  
-- the name of the municipality *(optional)*
-- cache data *(checkbox - optional)*: Choose whether the downloaded data for the   event and incidence should be stored in the user's session cache to avoid re-downloading it when generating the report again with the same inputs.
+-   Name of the disease  
+-   Year  
+-   Country  
+-   Name of the department *(optional)*  
+-   Name of the municipality *(optional)*
+-   Cache data *(checkbox - optional)*: choose whether the downloaded data for 
+    the event and incidence should be stored in the user's session cache to 
+    avoid re-downloading it when generating the report again with the same 
+    inputs.
 
 These parameters are used to download data from the SIVIGILA source.
 
