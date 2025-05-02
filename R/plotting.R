@@ -151,7 +151,7 @@ plot_map <- function(data_agrupada,
   } else {
     stop("Debe ingresar el nombre de la columna que contiene
           los codigos de los departamentos o municipios en el
-          parametro col_codigos")
+          parametro col_codigos", call. = FALSE)
   }
   polygon_seleccionado <- config_map$poligono
   data_agrupada <- dplyr::group_by(
