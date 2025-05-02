@@ -446,6 +446,9 @@ obtener_eventos_relacionados <- function(nombre_event, years) {
     list_events_relacionados,
     stringr::str_to_title
   )
+  validar_grupo_events(grupo_events = grupo_events,
+                       nombre_event = nombre_event,
+                       nombre_event_estandar = nombre_event_estandar)
   if (length(list_events_relacionados) > 0) {
     events_relacionados <- list_events_relacionados[[nombre_event]]
     for (year in years) {
