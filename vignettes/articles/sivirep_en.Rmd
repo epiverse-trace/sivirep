@@ -78,7 +78,7 @@ Contributors to the project include:
 [Miguel Gámez](https://github.com/megamezl), [Laura Gómez-Bermeo](https://github.com/lgbermeo), Johan Calderón, Lady Flórez-Tapiero, 
 Verónica Tangarife-Arredondo y Gerard Alarcon
 
-## Code of Conduct
+## Code of conduct
 
 Please note that the linelist project is released with a [Contributor
 Code of 
