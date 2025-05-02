@@ -203,6 +203,34 @@ remove_error_fecha <- function(data_event,
   return(data_event_del)
 }
 
+#' @title Eliminar columnas erróneas de los datos del evento o enfermedad
+#' @description Función que elimina las columnas erróneas de los datos
+#' del evento o enfermedad al importarlos desde el API del SIVIGILA.
+#' @param data_event Un `data.frame` que contiene los datos de una enfermedad
+#' o evento.
+#' @return Un `data.frame` con las columnas correctas de los datos del evento o
+#' enfermedad.
+#' @keywords internal
+remove_cols <- function(data_event) {
+  nombre_cols <- names(data_event)
+  indice_cols_eve <- which(stringr::str_detect(nombre_cols,
+                                               stringr::fixed("cod_eve_")))
+  cols_remover <- obtener_val_config("cols_remover")
+  if (length(indice_cols_eve) != 0) {
+    names(data_event)[indice_cols_eve[1]] <- "cod_eve"
+    indice_cols_eve[1] <- indice_cols_eve[-1]
+    data_event <-
+      data_event[, -indice_cols_eve]
+    nombre_cols <- names(data_event)
+  }
+  indices_cols_remov <- which(nombre_cols %in% cols_remover)
+  if (length(indices_cols_remov) != 0) {
+    nombre_cols <- nombre_cols[-indices_cols_remov]
+  }
+  data_event <- data_event[, nombre_cols]
+  data_event
+}
+
 #' @title Formatear fechas
 #' @description Función que da un formato específico a una fecha.
 #' @param data_event Un `data.frame` que contiene los datos
