@@ -5,8 +5,31 @@ template:
 development:
   mode: auto
 lang: es
+
+navbar:
+  structure:
+    left:  [intro, report, english, reference, news]
+    right: [search, github, lightswitch]
+  components:
+    english:
+      text: Get started (EN)
+      menu:
+      - text: Quick start
+        href: articles/sivirep_en.html
+      - text: Custom Analysis
+        href: articles/custom_analysis_en.html
+    report:
+      text: Generar reportes
+      menu:
+      - text: Plantilla Reporte automatizado
+        href: articles/automated_report.html
+      - text: Análisis personalizados
+        href: articles/custom_analysis.html
+      - text: Recursos
+        href: articles/resources.html
+
 reference:
-- title: Importacion de datos
+- title: Importación de datos
   contents: 
     - contains("import")
     - contains("list_events")
