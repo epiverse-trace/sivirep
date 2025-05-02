@@ -136,7 +136,7 @@ entrada:
 -   País  
 -   Nombre del departamento *(opcional)*  
 -   Nombre del municipio *(opcional)*
--   Datos en caché *(casilla de verificación - opcional)*: elige si los datos 
+-   Datos en caché *(casilla de chequeo - opcional)*: elige si los datos 
     descargados para el evento y la incidencia deben almacenarse en la caché de 
     la sesión del usuario para evitar volver a descargarlos al generar el 
     informe nuevamente con las mismas entradas.
