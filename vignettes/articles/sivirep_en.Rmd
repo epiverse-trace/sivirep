@@ -129,7 +129,7 @@ tryCatch({
 
 `r paste0("</details></blockquote>")`
 
-## Automated Report
+## Automated report
 
 Currently, `sivirep` provides a report template called  
 `Reporte Evento {sivirep}`, which takes the following input parameters:
@@ -139,7 +139,7 @@ Currently, `sivirep` provides a report template called
 -   Country  
 -   Name of the department *(optional)*  
 -   Name of the municipality *(optional)*
--   Cache data *(checkbox - optional)*: choose whether the downloaded data for 
+-   Cache data *(checkbox - optional)* : choose whether the downloaded data for 
     the event and incidence should be stored in the user's session cache to 
     avoid re-downloading it when generating the report again with the same 
     inputs.
@@ -157,12 +157,11 @@ The report generated using the `sivirep` template looks like this:
 If you want to generate the report in PDF format, you need to install LaTeX.  
 You can install it by following the instructions in the [R Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html).
 
-## Custom Analysis
+## Custom analysis
 
 `sivirep` offers a suite of functions that can be used in different scenarios —  
 from downloading data to creating custom analyses or building full 
 pipelines.
 
 To explore the available functions and examples of their suage, please visit the 
-[Custom analysis](https://epiverse-trace.github.io/sivirep/articles/custom_analysis_en.html) 
-page.
+[Custom analysis](https://epiverse-trace.github.io/sivirep/articles/custom_analysis_en.html)page.

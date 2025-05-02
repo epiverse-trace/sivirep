@@ -16,12 +16,12 @@ navbar:
       menu:
       - text: Quick start
         href: articles/sivirep_en.html
-      - text: Custom Analysis
+      - text: Custom analysis
         href: articles/custom_analysis_en.html
     report:
       text: Generar reportes
       menu:
-      - text: Plantilla Reporte automatizado
+      - text: Plantilla reporte automatizado
         href: articles/automated_report.html
       - text: Análisis personalizados
         href: articles/custom_analysis.html
