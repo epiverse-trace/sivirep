@@ -91,8 +91,6 @@ This patch release fixes the following items::
     
 -   Rename the report template `Reporte Basico` to `Reporte Evento`
 
-<<<<<<< Updated upstream
-=======
 # sivirep 1.0.2
 
 This patch release includes the following improvements and fixes:
@@ -114,4 +112,3 @@ This patch release includes the following improvements and fixes:
     
 -   Created English-language articles introducing to `Custom Analysis` workflow 
     and an overview of `sivirep` package.
->>>>>>> Stashed changes
