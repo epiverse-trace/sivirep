@@ -42,15 +42,22 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item"><a class="nav-link" href="../articles/sivirep.html">Get started</a></li>
-<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="active nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../articles/automated_report.html">Plantilla Reporte automatizado</a></li>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-generar-reportes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Generar reportes</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-generar-reportes">
+<li><a class="dropdown-item" href="../articles/automated_report.html">Plantilla reporte automatizado</a></li>
     <li><a class="dropdown-item" href="../articles/custom_analysis.html">Análisis personalizados</a></li>
     <li><a class="dropdown-item" href="../articles/resources.html">Recursos</a></li>
   </ul>
 </li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-get-started-en-" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Get started (EN)</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-get-started-en-">
+<li><a class="dropdown-item" href="../articles/sivirep_en.html">Quick start</a></li>
+    <li><a class="dropdown-item" href="../articles/custom_analysis_en.html">Custom analysis</a></li>
+  </ul>
+</li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul>
 <ul class="navbar-nav">
@@ -120,19 +127,28 @@ permite la importación de datos desde la fuente de SIVIGILA utilizando
 un formato parametrizado basado en la enfermedad y el año.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data_event</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/import_data_event.html">import_data_event</a></span><span class="op">(</span></span>
-<span>  year <span class="op">=</span> <span class="fl">2020</span>,</span>
 <span>  nombre_event <span class="op">=</span> <span class="st">"Dengue"</span>,</span>
+<span>  years <span class="op">=</span> <span class="fl">2020</span>,</span>
 <span>  cache <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <blockquote>
-<p>💡 <strong>Tip</strong>: Evita retrasos en el tiempo al importar los
-datos</p>
-<p><code>sivirep</code> está diseñado para ayudar con el acceso a la
-fuente de SIVIGILA. Este proceso de descarga de información puede tomar
-unos minutos dependiendo del tamaño del conjunto de datos. Para evitar
-descargar los mismos datos repetidamente, puedes utilizar
-<code>cache = TRUE</code> en la función <code>import_data_event</code>.
-Esta opción está configurada de forma predeterminada.</p>
+<p>💡 <strong>Tip 1 - Evita retrasos de tiempo al importar
+datos</strong> <br><code>sivirep</code> está diseñado para ayudar con
+el acceso a la fuente SIVIGILA. El proceso de descarga de información
+sobre enfermedades puede tomar varios minutos dependiendo del tamaño del
+conjunto de datos. Para evitar volver a descargar los mismos datos cada
+vez, puedes utilizar el parámetro <code>cache = TRUE</code> en la
+función <code>import_data_event</code>.</p>
+</blockquote>
+<blockquote>
+<p>💡 <strong>Tip 2 - Descarga datos de enfermedades para múltiples
+años</strong> <br> Con la función <code>import_data_event</code>, es
+posible descargar datos para múltiples años. Por ejemplo, si deseas
+descargar datos de 3 años de una enfermedad en particular, puedes usar
+el parámetro <code>year</code> de la siguiente manera:
+<code>import_data_event(data_event = "dengue", years = c(2021, 2019, 2018), cache = TRUE)</code>
+También puedes especificar años no consecutivos:
+<code>import_data_event(data_event = "dengue", years = c(2024, 2018, 2013), cache = TRUE)</code></p>
 </blockquote>
 </div>
 <div class="section level3">
@@ -152,23 +168,33 @@ de datos, entre otras tareas, como eliminar fechas improbables, limpiar
 códigos de geolocalización y estandarizar los nombres de las columnas y
 las categorías de edad.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">data_event</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/limpiar_data_sivigila.html">limpiar_data_sivigila</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_event</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">data_event_limpia</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/limpiar_data_sivigila.html">limpiar_data_sivigila</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_event</span><span class="op">)</span></span></code></pre></div>
 <p>Las funciones de limpieza dentro de
 <code>limpiar_data_sivigila</code> se han recopilado y creado en base a
-la experiencia de epidemiólogos de campo. Estas pueden incluir funciones
-internas como:</p>
+la experiencia de epidemiólogos de campo.</p>
+<p>Estas pueden incluir funciones internas como:</p>
 <ul>
-<li><p><code>limpiar_encabezado</code>: función que limpia y estandariza
-los nombres de las columnas de los datos de lista de casos de SIVIGILA
-basándose en el diccionario de datos de SIVIGILA.</p></li>
-<li><p><code>limpiar_edad_event</code>: función que limpia las edades de
-los datos de lista de casos de SIVIGILA.</p></li>
-<li><p><code>limpiar_fecha_event</code>: función que limpia las fechas
-de los datos de enfermedades.</p></li>
+<li>
+<code>limpiar_columnas_event</code>: función que limpia y
+estandariza los nombres de columnas de los datos del SIVIGILA.</li>
+<li>
+<code>limpiar_edad_event</code>: función que limpia y estandariza
+las edades a años, según la clasificación del INS.</li>
+<li>
+<code>limpiar_val_atipic</code>: función que limpia valores atípicos
+de los datos de enfermedades.</li>
+<li>
+<code>limpiar_fecha_event</code>: función que limpia y estandariza
+fechas de los datos de enfermedades.</li>
+<li>
+<code>estandarizar_geo_cods</code>: función que estandariza los
+códigos geográficos, según la codificación DIVIPOLA.</li>
+<li>
+<code>convert_edad</code>: función que convierte edades a años según
+las unidades de medida del SIVIGILA.</li>
 </ul>
-<p>El usuario puede utilizar estas funciones individualmente o
-simplemente utilizar la función envolvente genérica
-<code>limpiar_data_sivigila</code>.</p>
+<p>Puedes utilizar estas funciones individualmente o simplemente usar la
+función genérica de limpieza.</p>
 </div>
 <div class="section level3">
 <h3 id="filtrar-casos">3. Filtrar casos<a class="anchor" aria-label="anchor" href="#filtrar-casos"></a>
@@ -180,7 +206,7 @@ nivel subnacional, seleccionando casos específicos basados en la
 ubicación geográfica.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data_event_filtrada</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geo_filtro.html">geo_filtro</a></span><span class="op">(</span></span>
-<span>  data_event <span class="op">=</span> <span class="va">data_event</span>,</span>
+<span>  data_event <span class="op">=</span> <span class="va">data_event_limpia</span>,</span>
 <span>  dpto <span class="op">=</span> <span class="st">"Choco"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -201,8 +227,7 @@ síntomas, es necesario agrupar los datos por estas variables.
 llamada <code>agrupar_fecha_inisintomas</code>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">casos_ini_sintomas</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/agrupar_fecha_inisintomas.html">agrupar_fecha_inisintomas</a></span><span class="op">(</span></span>
-<span>  data_event <span class="op">=</span></span>
-<span>    <span class="va">data_event</span></span>
+<span>  data_event <span class="op">=</span> <span class="va">data_event_limpia</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <blockquote>
 <p>💡 <strong>Tip</strong>: Obtén los primeros n meses con más casos</p>
@@ -238,7 +263,7 @@ automáticamente los porcentajes por sexo después del proceso de
 limpieza.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">casos_sex</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/agrupar_sex.html">agrupar_sex</a></span><span class="op">(</span></span>
-<span>  data_event <span class="op">=</span> <span class="va">data_event</span>,</span>
+<span>  data_event <span class="op">=</span> <span class="va">data_event_limpia</span>,</span>
 <span>  porcentaje <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>Además, <code>sivirep</code> cuenta con una función para generar el
@@ -250,7 +275,7 @@ gráfico por esta variable llamada <code>plot_sex</code>:</p>
 generar utilizando la función <code>agrupar_sex_semanaepi</code>
 proporcionada por <code>sivirep</code>.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">casos_sex_semanaepi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/agrupar_sex_semanaepi.html">agrupar_sex_semanaepi</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_event</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">casos_sex_semanaepi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/agrupar_sex_semanaepi.html">agrupar_sex_semanaepi</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_event_limpia</span><span class="op">)</span></span></code></pre></div>
 <p>La función de visualización correspondiente es
 <code>plot_sex_semanaepi</code>, que <code>sivirep</code> proporciona
 para mostrar la distribución de casos por sexo y semana
@@ -274,7 +299,7 @@ por grupos de edad. De forma predeterminada, esta función produce rangos
 de edad con intervalos de 10 años. Además, los usuarios pueden
 personalizar un rango de edad diferente.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">casos_edad</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/agrupar_edad.html">agrupar_edad</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_event</span>, interval_edad <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">casos_edad</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/agrupar_edad.html">agrupar_edad</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_event_limpia</span>, interval_edad <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
 <p>La función de visualización correspondiente es
 <code>plot_edad</code>.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
@@ -291,7 +316,7 @@ número de casos y los porcentajes correspondientes. Además, permite
 personalizar el intervalo de edad.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">casos_edad_sex</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/agrupar_edad_sex.html">agrupar_edad_sex</a></span><span class="op">(</span></span>
-<span>  data_event <span class="op">=</span> <span class="va">data_event</span>,</span>
+<span>  data_event <span class="op">=</span> <span class="va">data_event_limpia</span>,</span>
 <span>  interval_edad <span class="op">=</span> <span class="fl">10</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>La función de visualización correspondiente es
@@ -307,31 +332,90 @@ personalizar el intervalo de edad.</p>
 identificar áreas con una alta concentración de casos, agrupaciones de
 enfermedades y factores de riesgo ambientales o sociales.</p>
 <p>En Colombia, existen 32 unidades geográficas administrativas (adm1)
-llamadas departamentos. <code>sivirep</code> proporciona una función
-llamada <code>agrupar_mpio</code> que permite obtener un data.frame de
-casos agrupados por departamento o municipio.</p>
+llamadas departamentos.</p>
+<p><code>sivirep</code> proporciona una función llamada
+<code>agrupar_mpio</code> que te permite obtener datos de enfermedades
+agrupados por municipios de un departamento específico</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">dist_esp_dept</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/agrupar_mpio.html">agrupar_mpio</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="va">dist_esp_mpio</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/agrupar_mpio.html">agrupar_mpio</a></span><span class="op">(</span></span>
 <span>  data_event <span class="op">=</span> <span class="va">data_event_filtrada</span>,</span>
 <span>  dpto <span class="op">=</span> <span class="st">"Choco"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
+<p>También existe una función para obtener la distribución de casos en
+todos los departamentos de Colombia, llamada
+<code>agrupar_dpto</code>:</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dist_esp_dpto</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/agrupar_dpto.html">agrupar_dpto</a></span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_event_limpia</span><span class="op">)</span></span></code></pre></div>
 <p>Actualmente, con la función llamada <code>plot_map</code>, el usuario
 puede generar un mapa estático de Colombia que muestra la distribución
 de casos por departamentos y municipios.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mapa</span></span></code></pre></div>
-<p><img src="custom_analysis_files/figure-html/mapa-1.png" width="960"></p>
 <blockquote>
-<p>💡 <strong>Tip</strong>: Obtener la fila con mayor número de
-casos</p>
-<p>Al construir una sección del reporte o analizar estos datos, puede
-ser útil saber cuál es la variable que tiene la mayoría de los casos. En
+<p>💡 <strong>Tip - Evita retrasos al generar el mapa</strong> <br> Es
+necesario descargar los archivos shapefiles de Colombia para generar el
+mapa. Para evitar volver a descargarlos cada vez que lo quieras generar,
+puedes utilizar el parámetro <code>cache = TRUE</code> en la función
+<code>plot_map</code>.</p>
+</blockquote>
+<blockquote>
+<p>💡 <strong>Tip</strong>: Obtener la fila con mayor número de casos Al
+construir una sección del reporte o analizar estos datos, puede ser
+útil<br>
+saber cuál es la variable que tiene la mayoría de los casos. En
 <code>sivirep</code>, puedes utilizar la función
-<code>obtener_fila_mas_casos</code> para obtener esta información. Esta
-función funciona con cualquier conjunto de datos que contenga una
-columna llamada <code>"casos"</code> en cualquier nivel de
+<code>obtener_fila_mas_casos</code> para obtener esta<br>
+información. Esta función funciona con cualquier conjunto de datos
+que<br>
+contenga una columna llamada <code>"casos"</code> en cualquier nivel de
 agregación.</p>
 </blockquote>
+</div>
+<div class="section level3">
+<h3 id="incidencia">7. Incidencia<a class="anchor" aria-label="anchor" href="#incidencia"></a>
+</h3>
+<p>Con <code>sivirep</code>, puedes calcular tasas de incidencia por
+geografía o sexo utilizando las proyecciones poblacionales del DANE o la
+población a riesgo, dependiendo de la enfermedad y la disponibilidad de
+los datos.</p>
+<blockquote>
+<p>📑 <strong>Nota:</strong> <code>sivirep</code> no incluye datos de
+población a riesgo para todos los eventos o enfermedades. Sin embargo,
+si tienes esta información, puedes proporcionarla usando el parámetro
+<code>data_incidencia</code> en cada función.</p>
+</blockquote>
+<div class="section level4">
+<h4 id="incidencia-por-geografía">7.1 Incidencia por geografía<a class="anchor" aria-label="anchor" href="#incidencia-por-geograf%C3%ADa"></a>
+</h4>
+<p>Puedes calcular la incidencia por los departamentos de Colombia o por
+los municipios de un departamento específico, utilizando la función
+<code>calcular_incidencia_geo</code>:</p>
+<div class="section level5">
+<h5 id="mapa-de-incidencia-por-geografía">7.1.1 Mapa de incidencia por geografía<a class="anchor" aria-label="anchor" href="#mapa-de-incidencia-por-geograf%C3%ADa"></a>
+</h5>
+<p>Con la función <code>plot_map</code> puedes visualizar y generar un
+mapa con las incidencias a nivel naciona, para un departamento o
+municipio específico, dependiendo de tus parámetros y los cálculos
+realizados.</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mapa</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_map.html">plot_map</a></span><span class="op">(</span>data_agrupada <span class="op">=</span> <span class="va">incidencia_muns</span><span class="op">$</span><span class="va">data_incidencia</span>,</span>
+<span>                 ruta_dir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">mapa</span></span></code></pre></div>
+<p><img src="custom_analysis_files/figure-html/plot-map-incidence-1.png" width="672"></p>
+</div>
+</div>
+<div class="section level4">
+<h4 id="incidencia-por-sexo">7.2 Incidencia por sexo<a class="anchor" aria-label="anchor" href="#incidencia-por-sexo"></a>
+</h4>
+<p><code>sivirep</code> proporciona una función llamada
+<code>calcular_incidencia_sex</code> que te permite calcular la
+incidencia por sexo a nivel nacional (Colombia), o para un departamento
+o municipio específico.</p>
+</div>
+<div class="section level4">
+<h4 id="incidencia-total-en-el-país">7.3 Incidencia total en el país<a class="anchor" aria-label="anchor" href="#incidencia-total-en-el-pa%C3%ADs"></a>
+</h4>
+<p>La función <code>calcular_incidencia</code> te permite calcular la
+incidencia para todo el país:</p>
+</div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
@@ -344,7 +428,7 @@ agregación.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.9000. Theme provided by <a href="https://github.com/epiverse-trace/epiversetheme" class="external-link">epiversetheme</a> 0.1.0.</p>
 </div>
 
     </footer>
