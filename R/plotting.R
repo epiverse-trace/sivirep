@@ -151,7 +151,7 @@ plot_map <- function(data_agrupada,
   } else {
     stop("Debe ingresar el nombre de la columna que contiene
           los codigos de los departamentos o municipios en el
-          parametro col_codigos", call. = FALSE)
+          parametro col_codigos")
   }
   polygon_seleccionado <- config_map$poligono
   data_agrupada <- dplyr::group_by(
@@ -306,13 +306,14 @@ plot_fecha_inisintomas <- function(data_agrupada,
       )
     ) +
     {
-      if (tipo == "tendencia")
+      if (tipo == "tendencia") {
         ggplot2::geom_line(
           linewidth = 1,
           color = "#FDDA0D"
         )
-      else
+      } else {
         ggplot2::geom_col(alpha = 0.9)
+      }
     } +
     ggplot2::labs(
       x = etiqueta_x,
@@ -330,7 +331,7 @@ plot_fecha_inisintomas <- function(data_agrupada,
       legend.direction = "horizontal"
     ) +
     {
-      if (uni_marca != "semana")
+      if (uni_marca != "semana") {
         ggplot2::scale_x_date(
           date_breaks = paste0(
             "1 ",
@@ -338,12 +339,13 @@ plot_fecha_inisintomas <- function(data_agrupada,
           ),
           date_labels = "%b"
         )
-      else
+      } else {
         ggplot2::scale_x_continuous(breaks = seq(
           1,
           53,
           1
         ))
+      }
     } +
     ggplot2::theme(axis.text.x = ggplot2::element_text(
       angle = 90,
@@ -424,7 +426,7 @@ plot_sex <- function(data_agrupada,
       caption = fuente_data
     ) +
     {
-      if (porcentaje)
+      if (porcentaje) {
         ggplot2::geom_text(
           ggplot2::aes(
             label =
@@ -439,12 +441,13 @@ plot_sex <- function(data_agrupada,
           color = "white",
           hjust = 0.5
         )
-     else
+      } else {
         ggplot2::geom_text(ggplot2::aes(label = .data[[col_distribucion]]),
           vjust = 1.5,
           color = "white",
           hjust = 0.5
         )
+      }
     } +
     obtener_estetica_escala(escala = num_sexos, nombre = "Sexo") +
     tema_sivirep() +
@@ -521,8 +524,9 @@ plot_sex_semanaepi <- function(data_agrupada,
       caption = fuente_data
     ) +
     {
-       if (max_casos < 6)
+      if (max_casos < 6) {
         ggplot2::scale_y_continuous(breaks = seq(0, max_casos, 1))
+      }
     } +
     ggplot2::scale_x_continuous(breaks = seq(1, max_semana, 1)) +
     obtener_estetica_escala(escala = num_sexos, nombre = "Sexo") +
