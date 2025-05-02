@@ -69,6 +69,7 @@ Esta acción descargará los datos deseados y también proporcionará la plantil
 
 ![](https://raw.githubusercontent.com/epiverse-trace/sivirep/main/inst/images/edit_rmarkdown.png){.rmarkdown-img align="center" style="margin-left: 2.8em; margin-top: 0.8em; margin-bottom: 0.8em;" width="560"}
 
-> ⚠️ Si deseas generar el reporte en formato PDF debes              instalar LateX. Puedes instalarlo siguiendo las instrucciones     que se encuentran en [R Markdown          Cookbook.](https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html)
+> ⚠️ Si deseas generar el reporte en formato PDF debes instalar LateX. 
+Puedes instalarlo siguiendo las instrucciones que se encuentran en [R Markdown          Cookbook.](https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html)
 
 Para obtener más detalles sobre plantillas y reportes genéricos de R Markdown, por favor consulta [R Markdown templates](https://rstudio.github.io/rstudio-extensions/rmarkdown_templates.html).
