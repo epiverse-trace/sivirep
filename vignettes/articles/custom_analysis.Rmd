@@ -300,10 +300,61 @@ mapa
   información. Esta función funciona con cualquier conjunto de datos que  
   contenga una columna llamada `"casos"` en cualquier nivel de agregación.
 
+### 7. Incidencia
+
+Con `sivirep`, puedes calcular tasas de incidencia por geografía o sexo 
+utilizando las proyecciones poblacionales del DANE o la población a riesgo, 
+dependiendo de la enfermedad y la disponibilidad de los datos.
+
+> 📑 **Nota:** `sivirep` no incluye datos de población a riesgo para todos los 
+  eventos o enfermedades. Sin embargo, si tienes esta información, puedes 
+  proporcionarla usando el parámetro `data_incidencia` en cada función.
+
+#### 7.1 Incidencia por geografía
+
+Puedes calcular la incidencia por los departamentos de Colombia o por los 
+municipios de un departamento específico, utilizando la función 
+`calcular_incidencia_geo`:
+
+```{r incidence-muns, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE}
+incidencia_muns <-
+     calcular_incidencia_geo(data_agrupada = dist_esp_mpio,
+                             ruta_dir = tempdir())
+```
+
+##### 7.1.1 Mapa de incidencia por geografía
+
+Con la función `plot_map` puedes visualizar y generar un mapa con las 
+incidencias a nivel naciona, para un departamento o municipio específico, 
+dependiendo de tus parámetros y los cálculos realizados.
+
+```{r plot-map-incidence, fig.height = 7, fig.width = 7}
+mapa <- plot_map(data_agrupada = incidencia_muns$data_incidencia,
+                 ruta_dir = tempdir())
 mapa
 ```
 
-> 💡 **Tip**: Obtener la fila con mayor número de casos
->
-> Al construir una sección del reporte o analizar estos datos, puede ser útil saber   cuál es la variable que tiene la mayoría de los casos. En `sivirep`, puedes
-  utilizar la función `obtener_fila_mas_casos` para obtener esta información. Esta    función funciona con cualquier conjunto de datos que contenga una columna llamada   `"casos"` en cualquier nivel de agregación.
+#### 7.2 Incidencia por sexo
+
+`sivirep` proporciona una función llamada `calcular_incidencia_sex` que te 
+permite calcular la incidencia por sexo a nivel nacional (Colombia), o para un 
+departamento o municipio específico.
+
+```{r incidence-sex, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE}
+incidencia_sex <-  calcular_incidencia_sex(
+   data_agrupada = casos_sex,
+   dpto = "Choco",
+   ruta_dir = tempdir()
+ )
+```
+
+#### 7.3 Incidencia total en el país
+
+La función `calcular_incidencia` te permite calcular la incidencia para todo 
+el país:
+
+```{r total-incidence, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE}
+incidencia_total <-
+     calcular_incidencia(data_agrupada = data_event_limpia,
+                         ruta_dir = tempdir())
+```
