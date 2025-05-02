@@ -95,7 +95,7 @@ This patch release fixes the following items:
 
 This patch release includes the following improvements and fixes:
 
--   Updated and added new `lintr` validations to ensure consistent code quality
+-   Updated and added new `lintr` validations to ensure consistent code quality.
 
 -   Fixed pattern matching in `import_data_event` function and validations; 
     added a reference to `list_events` in the documentation.
@@ -103,3 +103,12 @@ This patch release includes the following improvements and fixes:
 -   Added a handler on `Report template skeleton` to display warning or errors  
     from `import_data_event` function during report rendering, based on input
     parameter.
+    
+-   Added a reference to the `Analisis Personalizados` article in `REAMDE` file 
+    and `Getting Started` guide.
+
+-   Included a note highlighting the requirement of an Internet connection on  
+    the firs use in all functions that import or download data.
+    
+-   Created English-language articles introducing to `Custom Analysis` workflow 
+    and an overview of `sivirep` package.
