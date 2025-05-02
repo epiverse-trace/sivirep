@@ -81,7 +81,7 @@ The report template `Reporte Evento` now includes five new sections called:
 
 # sivirep 1.0.1
 
-This patch release fixes the following items::
+This patch release fixes the following items:
 
 -   `es_ES` was replaced with `es-ES` in the `DESCRIPTION` file.
   
@@ -91,3 +91,15 @@ This patch release fixes the following items::
     
 -   Rename the report template `Reporte Basico` to `Reporte Evento`
 
+# sivirep 1.0.2
+
+This patch release includes the following improvements and fixes:
+
+-   Updated and added new `lintr` validations to ensure consistent code quality
+
+-   Fixed pattern matching in `import_data_event` function and validations; 
+    added a reference to `list_events` in the documentation.
+
+-   Added a handler on `Report template skeleton` to display warning or errors  
+    from `import_data_event` function during report rendering, based on input
+    parameter.
