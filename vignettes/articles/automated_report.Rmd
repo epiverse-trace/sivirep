@@ -1,5 +1,5 @@
 ---
-title: "Plantilla Reporte automatizado"
+title: "Plantilla reporte automatizado"
 editor_options:
   markdown:
     wrap: 72
