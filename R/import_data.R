@@ -194,7 +194,6 @@ import_data_event <- function(nombre_event,
             = is.logical(cache))
   data_event <- list()
   nombre_event <- stringr::str_to_title(nombre_event)
-  cols_remover <- obtener_val_config("cols_remover")
   grupo_events <- obtener_eventos_relacionados(nombre_event, years)
   eventos_disponibles <- list_events()
   if (toupper(nombre_event) == "MALARIA") {
@@ -230,21 +229,8 @@ import_data_event <- function(nombre_event,
       if ("fec_def" %in% names(data_import)) {
         data_import$fec_def <- as.character(data_import$fec_def)
       }
-      nombre_cols <- names(data_import)
-      indice_cols_eve <- which(stringr::str_detect(nombre_cols,
-                                                  stringr::fixed("cod_eve_")))
-      if (length(indice_cols_eve) != 0) {
-        names(data_import)[indice_cols_eve[1]] <- "cod_eve"
-        indice_cols_eve[1] <- indice_cols_eve[-1]
-        data_import <-
-          data_import[, -indice_cols_eve]
-        nombre_cols <- names(data_import)
-      }
-      indices_cols_remov <- which(nombre_cols %in% cols_remover)
-      if (length(indices_cols_remov) != 0) {
-        nombre_cols <- nombre_cols[-indices_cols_remov]
-      }
-      data_event <- c(data_event, list(data_import[, nombre_cols]))
+      data_import <- remove_cols(data_event = data_import)
+      data_event <- c(data_event, list(data_import))
     }
   }
   data_event <- dplyr::bind_rows(data_event)
