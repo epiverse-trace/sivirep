@@ -430,13 +430,15 @@ obtener_nombre_mpio <- function(data_geo, cod_dpto, cod_mpio) {
 #' @keywords internal
 obtener_eventos_relacionados <- function(nombre_event, years) {
   list_events <- list_events()
+  nombre_event_estandar <- clean_labels(nombre_event)
+  list_events$enfermedad_estandarizada <- clean_labels(list_events$enfermedad)
   grupo_events <-
     list_events[which(stringr::str_detect(
-      list_events$enfermedad,
+      list_events$enfermedad_estandarizada,
       gsub("([()])", "\\\\\\1", substr(
-        nombre_event,
+        nombre_event_estandar,
         1,
-        nchar(nombre_event) - 1
+        nchar(nombre_event_estandar) - 1
       ))
     )), ]
   list_events_relacionados <- obtener_val_config(llave = "related_diseases")
