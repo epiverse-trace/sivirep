@@ -9,7 +9,7 @@ import_geo_cods(descargar = FALSE)
 \arguments{
 \item{descargar}{Un `logical` (`TRUE` o `FALSE`) que indica si los
 datos deben descargarse desde la API de datos abiertos de Colombia.
-Su valor por defecto es `FALSE`, ya que sivirep ya incluye una copia 
+Su valor por defecto es `FALSE`, ya que sivirep ya incluye una copia
 local de dichos datos.}
 }
 \value{
