@@ -3,12 +3,13 @@ pkgdown: 2.1.2.9000
 pkgdown_sha: 99457e7fa7f36696ae743b06aca59c0fdd97a7d6
 articles:
   articles/automated_report: automated_report.html
+  articles/custom_analyses_en: custom_analyses_en.html
   articles/custom_analysis_en: custom_analysis_en.html
   articles/custom_analysis: custom_analysis.html
   articles/resources: resources.html
   articles/sivirep_en: sivirep_en.html
   sivirep: sivirep.html
-last_built: 2025-05-02T23:33Z
+last_built: 2025-05-03T00:09Z
 urls:
   reference: https://epiverse-trace.github.io/sivirep/reference
   article: https://epiverse-trace.github.io/sivirep/articles
