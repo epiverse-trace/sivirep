@@ -56,7 +56,7 @@ realizar_peticion_http <- function(url) {
 #'
 #' @param descargar Un `logical` (`TRUE` o `FALSE`) que indica si los
 #' datos deben descargarse desde la API de datos abiertos de Colombia.
-#' Su valor por defecto es `FALSE`, ya que sivirep ya incluye una copia 
+#' Su valor por defecto es `FALSE`, ya que sivirep ya incluye una copia
 #' local de dichos datos.
 #' @return Un `data.frame` con los nombres y códigos de los departamentos
 #' y municipios de Colombia.
@@ -84,9 +84,9 @@ import_geo_cods <- function(descargar = FALSE) {
 #' su descarga desde los microdatos del SIVIGILA
 #' @description Función que obtiene las enfermedades y los años
 #' disponibles para su descarga desde los microdatos del SIVIGILA.
-#' 
+#'
 #' Esta función requiere acceso a Internet.
-#' 
+#'
 #' @return Una `list` con las enfermedades y los años disponibles
 #' para su descarga desde los microdatos del SIVIGILA.
 #' @examples
