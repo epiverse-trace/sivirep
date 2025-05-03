@@ -29,7 +29,7 @@ library(sivirep)
 
 ## Descripción
 
-La versión actual de *sivirep* 0.0.2 proporciona funciones para la manipulación de datos y la generación de reportes automatizados basados en las bases de datos individualizadas de casos de SIVIGILA, el sistema oficial de vigilancia epidemiológica de Colombia.
+La versión actual de *sivirep* proporciona funciones para la manipulación de datos y la generación de reportes automatizados basados en las bases de datos individualizadas de casos de SIVIGILA, el sistema oficial de vigilancia epidemiológica de Colombia.
 
 ## Exclusión de responsabilidad
 
@@ -49,9 +49,10 @@ El objetivo de `sivirep` es proporcionar un conjunto de herramientas para:
 
 ## Potenciales usuarios
 
-- Profesionales de salud pública y de epidemiología de campo que utilizan la fuente de datos de SIVIGILA a nivel local.
-- Estudiantes del área de la salud y epidemiología.
-- Investigadores y analistas de datos a nivel nacional e internacional.
+-   Profesionales de salud pública y de epidemiología de campo que utilizan la 
+    fuente de datos de SIVIGILA a nivel local.
+-   Estudiantes del área de la salud y epidemiología.
+-   Investigadores y analistas de datos a nivel nacional e internacional.
 
 ## Versiones futuras
 
@@ -128,9 +129,17 @@ tryCatch({
 
 Actualmente, `sivirep` proporciona una plantilla de reporte llamada
 `Reporte Evento {sivirep}`, la cual recibe los siguientes parámetros de
-entrada: el nombre de la enfermedad, el año, el país, el nombre del departamento
-(opcional) y el nombre del municipio (opcional) para descargar los datos de
-la fuente de SIVIGILA.
+entrada:
+
+-   Nombre de la enfermedad  
+-   Año  
+-   País  
+-   Nombre del departamento *(opcional)*  
+-   Nombre del municipio *(opcional)*
+-   Datos en caché *(casilla de chequeo - opcional)*: elige si los datos 
+    descargados para el evento y la incidencia deben almacenarse en la caché de 
+    la sesión del usuario para evitar volver a descargarlos al generar el 
+    informe nuevamente con las mismas entradas.
 
 Para hacer uso de la plantilla del reporte puedes seguir los
 siguientes pasos:
@@ -143,3 +152,12 @@ El reporte que obtendrás al utilizar la plantilla de `sivirep` es este:
 
 Si deseas generar el reporte en formato PDF debes instalar LateX. Puedes instalarlo siguiendo las instrucciones que se
 encuentran en [R Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html).
+
+## Análisis personalizados
+
+`sivirep` ofrece un conjunto de funciones que pueden utilizarse en distintos 
+escenarios: desde la descarga de datos hasta la creación de análisis 
+personalizados o la construcción de flujos de trabajo completos.
+
+Para explorar las funciones disponibles y ejemplos de su uso, 
+visita la página de [Análisis personalizados](https://epiverse-trace.github.io/sivirep/articles/custom_analysis.html).
