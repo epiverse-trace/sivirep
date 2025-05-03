@@ -103,7 +103,9 @@ remotes::install_github("epiverse-trace/sivirep")
 ```
 
 ```{r inst-opt, eval = FALSE}
-install.packages("sivirep", repos = c("https://epiverse-trace.r-universe.dev", "https://cloud.r-project.org"))
+install.packages("sivirep",
+                 repos = c("https://epiverse-trace.r-universe.dev",
+                           "https://cloud.r-project.org"))
 ```
 
 ## Quick start
