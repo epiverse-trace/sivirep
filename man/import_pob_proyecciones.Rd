@@ -24,6 +24,8 @@ Un `data.frame` con las proyecciones poblacionales DANE.
 \description{
 Función que importa las proyecciones poblacionales
 DANE desde el año 2005 hasta el 2035.
+
+Esta función requiere acceso a Internet.
 }
 \examples{
 \donttest{

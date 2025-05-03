@@ -232,3 +232,29 @@ validar_data_incidencia <- function(data_incidencia) {
       nrow(data_incidencia) > 0
   )
 }
+
+#' @title Validar parámetro `grupo_events`
+#' @description Función que realiza las validaciones correspondientes
+#' del parámetro `grupo_events`.
+#' @param grupo_events Un `data.frame` que contiene los eventos relacionados o
+#' subtipos de una enfermedad o evento.
+#' @param nombre_event Un `character` (cadena de caracteres) que contiene el
+#' nombre del evento o la enfermedad.
+#' @param nombre_event_estandar Un `character` (cadena de caracteres) que
+#' contiene el nombre del evento o la enfermedad estandarizado.
+#' @return \value{None}
+#' @noRd
+validar_grupo_events <- function(grupo_events,
+                                 nombre_event,
+                                 nombre_event_estandar) {
+  diff_length_name <- abs(nchar(grupo_events$enfermedad_estandarizada[1]) -
+                            nchar(nombre_event_estandar))
+  if (is.null(grupo_events) || nrow(grupo_events) == 0 ||
+      diff_length_name > 4) {
+    stop("\033[31mLa enfermedad o evento relacionado: ",
+         nombre_event,
+         " no esta disponible para su descarga\033[0m",
+         call. = FALSE
+    )
+  }
+}

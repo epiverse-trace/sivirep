@@ -239,10 +239,23 @@ ruta_dir <- NULL
 if (!params$cache) {
   ruta_dir <- tempdir()
 }
-data_event <- import_data_event(nombre_event = params$nombre_evento,
-                                years = params$year,
-                                cache = params$cache,
-                                ruta_dir = ruta_dir)
+
+mensaje_warning <- NULL
+data_event <- data.frame()
+withCallingHandlers({
+  data_event <- import_data_event(nombre_event = params$nombre_evento,
+                      years = params$year,
+                      cache = params$cache,
+                      ruta_dir = ruta_dir)
+}, warning = function(w) {
+  if (is.null(mensaje_warning)) {
+    mensaje_warning <- conditionMessage(w)
+    if (nrow(data_event) < 1) {
+     stop("\033[31m", mensaje_warning, "\033[0m", call. = FALSE)
+    }
+  }
+})
+
 mostrar_sex <- stringr::str_detect(tolower(params$nombre_evento),
                                    stringr::fixed("materna"))
 etiqueta_geo <- "municipios"

@@ -29,6 +29,13 @@ seleccionado desde los microdatos del SIVIGILA.
 \description{
 Función que importa los datos de una enfermedad o evento por
 año desde los microdatos del SIVIGILA.
+
+Esta función requiere acceso a Internet.
+}
+\details{
+Para ver la lista de valores aceptados para el parámetro `nombre_event`,
+ejecuta la función [`list_events()`]. Se recomienda consultar esta
+lista para evitar errores por nombres de enfermedades o eventos no válidos.
 }
 \examples{
 \donttest{

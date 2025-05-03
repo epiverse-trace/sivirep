@@ -51,9 +51,13 @@ realizar_peticion_http <- function(url) {
 #' @title Importar datos geográficos de Colombia
 #' @description Función que importa los nombres y códigos de
 #' los departamentos y municipios de Colombia a través de una URL.
+#'
+#' Esta función requiere acceso a Internet.
+#'
 #' @param descargar Un `logical` (`TRUE` o `FALSE`) que indica si los
-#' datos deben descargarse desde la API de datos abiertos de Colombia;
-#' su valor por defecto es `FALSE`.
+#' datos deben descargarse desde la API de datos abiertos de Colombia.
+#' Su valor por defecto es `FALSE`, ya que sivirep ya incluye una copia
+#' local de dichos datos.
 #' @return Un `data.frame` con los nombres y códigos de los departamentos
 #' y municipios de Colombia.
 #' @examples
@@ -80,6 +84,9 @@ import_geo_cods <- function(descargar = FALSE) {
 #' su descarga desde los microdatos del SIVIGILA
 #' @description Función que obtiene las enfermedades y los años
 #' disponibles para su descarga desde los microdatos del SIVIGILA.
+#'
+#' Esta función requiere acceso a Internet.
+#'
 #' @return Una `list` con las enfermedades y los años disponibles
 #' para su descarga desde los microdatos del SIVIGILA.
 #' @examples
@@ -153,6 +160,9 @@ list_events <- function() {
 #' desde los microdatos del SIVIGILA
 #' @description Función que importa los datos de una enfermedad o evento por
 #' año desde los microdatos del SIVIGILA.
+#'
+#' Esta función requiere acceso a Internet.
+#'
 #' @param nombre_event Un `character` (cadena de caracteres) con el nombre de
 #' la enfermedad o evento.
 #' @param years Un `numeric` (numérico) con el año o años deseado(s) para
@@ -165,6 +175,10 @@ list_events <- function() {
 #' es `FALSE`.
 #' @return Un `data.frame` con los datos del año de la enfermedad o evento
 #' seleccionado desde los microdatos del SIVIGILA.
+#' @details
+#' Para ver la lista de valores aceptados para el parámetro `nombre_event`,
+#' ejecuta la función [`list_events()`]. Se recomienda consultar esta
+#' lista para evitar errores por nombres de enfermedades o eventos no válidos.
 #' @examples
 #' \donttest{
 #' if (interactive()) {
@@ -194,7 +208,6 @@ import_data_event <- function(nombre_event,
             = is.logical(cache))
   data_event <- list()
   nombre_event <- stringr::str_to_title(nombre_event)
-  cols_remover <- obtener_val_config("cols_remover")
   grupo_events <- obtener_eventos_relacionados(nombre_event, years)
   eventos_disponibles <- list_events()
   if (toupper(nombre_event) == "MALARIA") {
@@ -208,11 +221,11 @@ import_data_event <- function(nombre_event,
     for (event in grupo_events$enfermedad) {
       pos_event <- which(eventos_disponibles$enfermedad
                          == event)
-      if (length(pos_event) > 0 &&
-          !stringr::str_detect(
-            eventos_disponibles[pos_event, ]$aa,
-        as.character(year)
-      )) {
+      validation_year <-
+        stringr::str_detect(eventos_disponibles[pos_event, ]$aa,
+                            as.character(year))
+      if (identical(pos_event, integer(0)) ||
+          identical(validation_year, logical(0)) || !validation_year) {
         warning("El year: ", year,
                 " de la enfermedad o evento: ",
                 event,
@@ -230,21 +243,8 @@ import_data_event <- function(nombre_event,
       if ("fec_def" %in% names(data_import)) {
         data_import$fec_def <- as.character(data_import$fec_def)
       }
-      nombre_cols <- names(data_import)
-      indice_cols_eve <- which(stringr::str_detect(nombre_cols,
-                                                  stringr::fixed("cod_eve_")))
-      if (length(indice_cols_eve) != 0) {
-        names(data_import)[indice_cols_eve[1]] <- "cod_eve"
-        indice_cols_eve[1] <- indice_cols_eve[-1]
-        data_import <-
-          data_import[, -indice_cols_eve]
-        nombre_cols <- names(data_import)
-      }
-      indices_cols_remov <- which(nombre_cols %in% cols_remover)
-      if (length(indices_cols_remov) != 0) {
-        nombre_cols <- nombre_cols[-indices_cols_remov]
-      }
-      data_event <- c(data_event, list(data_import[, nombre_cols]))
+      data_import <- remove_cols(data_event = data_import)
+      data_event <- c(data_event, list(data_import))
     }
   }
   data_event <- dplyr::bind_rows(data_event)
@@ -305,6 +305,9 @@ import_sep_data <- function(ruta_data = NULL,
 #' @description Función que importa la población a riesgo de un evento o
 #' enfermedad o las proyecciones poblacionales DANE desde el año 2005 hasta
 #' el 2035.
+#'
+#' Esta función requiere acceso a Internet.
+#'
 #' @param poblacion Un `character` (cadena de caracteres) con el tipo de
 #' población que se desea importar. Puede ser `"riesgo"` para la población
 #' a riesgo del evento o `"proyecciones"` para las proyecciones poblacionales
@@ -360,6 +363,9 @@ import_pob_incidencia <- function(
 #' @title Importar las proyecciones DANE del año 2005 hasta el 2035
 #' @description Función que importa las proyecciones poblacionales
 #' DANE desde el año 2005 hasta el 2035.
+#'
+#' Esta función requiere acceso a Internet.
+#'
 #' @param year Un `numeric` (numérico) con el año de las proyecciones
 #' poblacionales DANE que desea importar.
 #' @inheritParams import_pob_incidencia
@@ -407,6 +413,9 @@ import_pob_proyecciones <- function(year,
 #' @title Importar la población a riesgo de un evento o enfermedad
 #' @description Función que importa la población a riesgo de un evento
 #'o enfermedad para un año específico.
+#'
+#' Esta función requiere acceso a Internet.
+#'
 #' @param event Un `character` (cadena de caracteres) o un `numeric` (numérico)
 #' con el nombre o código de la enfermedad o evento.
 #' @param year Un `numeric` (numérico) con el año deseado de la población a
@@ -485,6 +494,9 @@ import_pob_riesgo <- function(event, year,
 
 #' @title Importar el Shapefile del mapa de Colombia
 #' @description Función que importa el Shapefile del mapa de Colombia.
+#'
+#' Esta función requiere acceso a Internet.
+#'
 #' @param ruta_dir Un `character` (cadena de caracteres) que contiene la
 #' ruta del directorio donde se almacenará el Shapefile del mapa de
 #' Colombia. Su valor por defecto es `NULL`.

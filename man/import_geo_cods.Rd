@@ -8,8 +8,9 @@ import_geo_cods(descargar = FALSE)
 }
 \arguments{
 \item{descargar}{Un `logical` (`TRUE` o `FALSE`) que indica si los
-datos deben descargarse desde la API de datos abiertos de Colombia;
-su valor por defecto es `FALSE`.}
+datos deben descargarse desde la API de datos abiertos de Colombia.
+Su valor por defecto es `FALSE`, ya que sivirep ya incluye una copia
+local de dichos datos.}
 }
 \value{
 Un `data.frame` con los nombres y códigos de los departamentos
@@ -18,6 +19,8 @@ y municipios de Colombia.
 \description{
 Función que importa los nombres y códigos de
 los departamentos y municipios de Colombia a través de una URL.
+
+Esta función requiere acceso a Internet.
 }
 \examples{
 \donttest{

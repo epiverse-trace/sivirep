@@ -14,6 +14,8 @@ para su descarga desde los microdatos del SIVIGILA.
 \description{
 Función que obtiene las enfermedades y los años
 disponibles para su descarga desde los microdatos del SIVIGILA.
+
+Esta función requiere acceso a Internet.
 }
 \examples{
 \donttest{

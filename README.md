@@ -18,6 +18,9 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 status](https://www.r-pkg.org/badges/version/sivirep)](https://CRAN.R-project.org/package=sivirep)
 <!-- badges: end -->
 
+[For English version, open this
+link](https://epiverse-trace.github.io/sivirep/articles/sivirep_en.html)
+
 ***sivirep*** es desarrollado por la [Pontificia Universidad
 Javeriana](https://www.javeriana.edu.co/inicio) como parte de la
 iniciativa [Epiverse](https://data.org/initiatives/epiverse/).
@@ -187,3 +190,14 @@ El reporte que obtendrás al utilizar la plantilla de `sivirep` es este:
 Si deseas generar el reporte en formato PDF debes instalar LateX. Puedes
 instalarlo siguiendo las instrucciones que se encuentran en [R Markdown
 Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html).
+
+## Análisis personalizados
+
+`sivirep` ofrece un conjunto de funciones que pueden utilizarse en
+distintos escenarios: desde la descarga de datos hasta la creación de
+análisis personalizados o la construcción de flujos de trabajo
+completos.
+
+Para explorar las funciones disponibles y ejemplos de su uso, visita la
+página de [Análisis
+personalizados](https://epiverse-trace.github.io/sivirep/articles/custom_analysis.html).

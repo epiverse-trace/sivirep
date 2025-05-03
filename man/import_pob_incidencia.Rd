@@ -41,6 +41,8 @@ poblacionales DANE.
 Función que importa la población a riesgo de un evento o
 enfermedad o las proyecciones poblacionales DANE desde el año 2005 hasta
 el 2035.
+
+Esta función requiere acceso a Internet.
 }
 \examples{
  \donttest{
