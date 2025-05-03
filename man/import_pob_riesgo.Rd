@@ -27,6 +27,8 @@ Un `data.frame` con la población a riesgo de un año específico.
 \description{
 Función que importa la población a riesgo de un evento
 o enfermedad para un año específico.
+
+Esta función requiere acceso a Internet.
 }
 \examples{
 \donttest{

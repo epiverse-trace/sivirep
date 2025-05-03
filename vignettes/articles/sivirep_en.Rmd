@@ -94,6 +94,20 @@ install.packages("pak")
 pak::pak("epiverse-trace/sivirep")
 ```
 
+Alternatively, you can also use:
+
+
+```{r isnt-opt-r, eval = FALSE}
+install.packages("remotes")
+remotes::install_github("epiverse-trace/sivirep")
+```
+
+```{r inst-opt, eval = FALSE}
+install.packages("sivirep",
+                 repos = c("https://epiverse-trace.r-universe.dev",
+                           "https://cloud.r-project.org"))
+```
+
 ## Quick start
 
 You can start by importing the package after installation is complete using the 
@@ -103,12 +117,11 @@ following command:
 library(sivirep)
 ```
 
-You can check the diseases and years available for free download using the 
-following command:
+You can check the available diseases and years for free download using the commands:
 
 ```{r list-events-ms, eval = FALSE}
-list_events <- list_events()
-knitr::kable(list_events)
+lista_eventos <- list_events()
+knitr::kable(lista_eventos)
 ```
 
 `r paste0("<blockquote style=", '"color: #333; cursor:pointer;"', "><details><summary>🦠<b>Listado de enfermedades (haz clic para ver)</b></summary><br>")`
