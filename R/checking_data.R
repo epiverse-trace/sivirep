@@ -25,6 +25,7 @@ geo_filtro <- function(data_event, dpto = NULL, mpio = NULL) {
   data_dept_filt <- data.frame()
   dept_data <- data.frame()
   cols_ocurren <- NULL
+  msj_error <- "No hay información disponible para el "
   if (!is.null(dpto)) {
     dept_data <- obtener_info_depts(dpto, mpio)
     stopifnot(
@@ -39,6 +40,10 @@ geo_filtro <- function(data_event, dpto = NULL, mpio = NULL) {
         data_event,
         data_event[[cols_ocurren[1]]] %in% dept_data$codigo_departamento
       )
+    if (nrow(data_dept_filt) < 1) {
+      msj_error <- paste0(msj_error, "departamento: ", dpto)
+      stop("\033[31m", msj_error, "\033[0m", call. = FALSE)
+    }
   }
   if (!is.null(mpio)) {
     stopifnot(
@@ -53,6 +58,10 @@ geo_filtro <- function(data_event, dpto = NULL, mpio = NULL) {
         data_dept_filt[[cols_ocurren[3]]] %in%
           as.character(dept_data$codigo_municipio)
       )
+    if (nrow(data_dept_filt) < 1) {
+      msj_error <- paste0(msj_error, "municipio: ", mpio)
+      stop("\033[31m", msj_error, "\033[0m", , call. = FALSE)
+    }
   }
   return(data_dept_filt)
 }
