@@ -44,7 +44,7 @@ geo_filtro <- function(data_event, dpto = NULL, mpio = NULL) {
         data_event[[cols_ocurren[1]]] %in% dept_data$codigo_departamento
       )
     if (nrow(data_dept_filt) < 1) {
-      warning(msj_error, "departamento: ", dpto)
+      warning(msj_error, "departamento: ", dpto, call. = FALSE)
     }
   }
   if (!is.null(mpio)) {
@@ -61,7 +61,7 @@ geo_filtro <- function(data_event, dpto = NULL, mpio = NULL) {
           as.character(dept_data$codigo_municipio)
       )
     if (nrow(data_dept_filt) < 1) {
-      warning(msj_error, "municipio: ", mpio)
+      warning(msj_error, "municipio: ", mpio, call. = FALSE)
     }
   }
   return(data_dept_filt)
