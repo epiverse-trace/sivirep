@@ -24,6 +24,11 @@ departamentos y municipios seleccionados.
 Función que filtra los datos de una enfermedad o evento por
 departamentos y municipios.
 }
+\details{
+Para ver la lista de valores aceptados para los parámetros `dpto` y `mpio`,
+ejecuta la función [`import_geo_cods()`]. Se recomienda consultar esta
+lista para evitar errores por nombres no válidos.
+}
 \examples{
 data(dengue2020)
 data_limpia <- limpiar_data_sivigila(data_event = dengue2020)
@@ -33,7 +38,4 @@ geo_filtro(data_event = data_limpia, dpto = "05")
 geo_filtro(data_event = data_limpia, dpto = "05", mpio = "05001")
 geo_filtro(data_event = data_limpia, dpto = 05, mpio = 05001)
 geo_filtro(data_event = data_limpia, dpto = 05, mpio = 001)
-\donttest{
-geo_filtro(data_event = data_limpia, dpto = "bogota dc", mpio = "bogota dc")
-}
 }
