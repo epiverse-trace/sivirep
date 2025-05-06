@@ -33,5 +33,7 @@ geo_filtro(data_event = data_limpia, dpto = "05")
 geo_filtro(data_event = data_limpia, dpto = "05", mpio = "05001")
 geo_filtro(data_event = data_limpia, dpto = 05, mpio = 05001)
 geo_filtro(data_event = data_limpia, dpto = 05, mpio = 001)
+\donttest{
 geo_filtro(data_event = data_limpia, dpto = "bogota dc", mpio = "bogota dc")
+}
 }
