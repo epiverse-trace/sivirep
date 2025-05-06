@@ -18,7 +18,9 @@
 #' geo_filtro(data_event = data_limpia, dpto = "05", mpio = "05001")
 #' geo_filtro(data_event = data_limpia, dpto = 05, mpio = 05001)
 #' geo_filtro(data_event = data_limpia, dpto = 05, mpio = 001)
+#' \donttest{
 #' geo_filtro(data_event = data_limpia, dpto = "bogota dc", mpio = "bogota dc")
+#' }
 #' @export
 geo_filtro <- function(data_event, dpto = NULL, mpio = NULL) {
   validar_data_event(data_event)
