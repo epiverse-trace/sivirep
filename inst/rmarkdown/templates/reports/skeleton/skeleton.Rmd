@@ -280,21 +280,29 @@ data_limpia <- limpiar_data_sivigila(data_event)
 ```{r filtrar-data, include = FALSE}
 data_event_filtrada <- data_limpia
 if (params$departamento != "") {
-data_event_filtrada <- geo_filtro(data_event = data_limpia,
-                                  dpto = params$departamento)
-text_init_geo <- paste0(", en el departamento del ",
-                        params$departamento)
+  withCallingHandlers({
+    data_event_filtrada <- geo_filtro(data_event = data_limpia,
+                                      dpto = params$departamento)
+  }, warning = function(w) {
+    stop("\033[31m", conditionMessage(w), "\033[0m", call. = FALSE)
+  })
+  text_init_geo <- paste0(", en el departamento del ",
+                          params$departamento)
   if (params$municipio != "") {
+    withCallingHandlers({
+    data_event_filtrada <- geo_filtro(data_event = data_event_filtrada,
+                                      dpto = params$departamento,
+                                      mpio = params$municipio)
+    }, warning = function(w) {
+      stop("\033[31m", conditionMessage(w), "\033[0m", call. = FALSE)
+    })
     text_init_geo <- paste0(", en el municipio del ",
                             params$municipio)
-    data_event_filtrada <- geo_filtro(data_event = data_event_filtrada,
-                                  dpto = params$departamento,
-                                  mpio = params$municipio)
   }
-text_intro_geo <- paste0(text_init_geo,
-                         " se reportaron ",
-                         nrow(data_event_filtrada),
-                         " casos.")
+  text_intro_geo <- paste0(text_init_geo,
+                           " se reportaron ",
+                           nrow(data_event_filtrada),
+                           " casos.")
 }
 ```
 
