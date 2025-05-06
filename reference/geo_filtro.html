@@ -92,6 +92,12 @@ es `NULL`.</p></dd>
     <p>Un `data.frame` con los datos filtrados con la enfermedad,
 departamentos y municipios seleccionados.</p>
     </div>
+    <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p>Para ver la lista de valores aceptados para los parámetros `dpto` y `mpio`,
+ejecuta la función [`import_geo_cods()`]. Se recomienda consultar esta
+lista para evitar errores por nombres no válidos.</p>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
@@ -203,15 +209,6 @@ departamentos y municipios seleccionados.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gp_desplaz &lt;chr&gt;, gp_migrant &lt;chr&gt;, gp_carcela &lt;chr&gt;, gp_gestan &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   sem_ges &lt;lgl&gt;, gp_indigen &lt;chr&gt;, gp_pobicfb &lt;chr&gt;, gp_mad_com &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gp_desmovi &lt;chr&gt;, gp_psiquia &lt;chr&gt;, gp_vic_vio &lt;chr&gt;, gp_otros &lt;chr&gt;, …</span></span>
-<span class="r-in"><span><span class="fu">geo_filtro</span><span class="op">(</span>data_event <span class="op">=</span> <span class="va">data_limpia</span>, dpto <span class="op">=</span> <span class="st">"bogota dc"</span>, mpio <span class="op">=</span> <span class="st">"bogota dc"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 0 × 73</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 73 variables: consecutive &lt;chr&gt;, cod_eve &lt;chr&gt;, fec_not &lt;date&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   semana &lt;chr&gt;, ano &lt;chr&gt;, cod_pre &lt;chr&gt;, cod_sub &lt;chr&gt;, edad &lt;dbl&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   uni_med &lt;dbl&gt;, nacionalidad &lt;chr&gt;, nombre_nacionalidad &lt;chr&gt;, sexo &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   cod_pais_o &lt;chr&gt;, cod_dpto_o &lt;chr&gt;, cod_mun_o &lt;chr&gt;, area &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ocupacion &lt;chr&gt;, tip_ss &lt;chr&gt;, cod_ase &lt;chr&gt;, per_etn &lt;chr&gt;, gru_pob &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   nom_grupo &lt;lgl&gt;, estrato &lt;chr&gt;, gp_discapa &lt;chr&gt;, gp_desplaz &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   gp_migrant &lt;chr&gt;, gp_carcela &lt;chr&gt;, gp_gestan &lt;chr&gt;, sem_ges &lt;lgl&gt;, …</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
