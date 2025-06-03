@@ -1,7 +1,7 @@
 Package: sivirep
 Title: Data Wrangling and Automated Reports from 'SIVIGILA' Source
 Type: Package
-Version: 1.0.1
+Version: 1.0.2
 Authors@R: 
   c(
     person(given = "Geraldine", family = "Gómez-Millán", email = "geralidine.gomez@javeriana.edu.co", role = c("aut", "cre", "ctb"),
