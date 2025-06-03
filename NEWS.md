@@ -101,8 +101,8 @@ This patch release includes the following improvements and fixes:
     added a reference to `list_events` in the documentation.
 
 -   Added a handler on `Report template skeleton` to display warning or errors  
-    from `import_data_event` function during report rendering, based on input
-    parameter.
+    from `import_data_event` and `geo_filtro` functions during report rendering, 
+    based on input parameters.
     
 -   Added a reference to the `Analisis Personalizados` article in `REAMDE` file 
     and `Getting Started` guide.
@@ -112,3 +112,6 @@ This patch release includes the following improvements and fixes:
     
 -   Created English-language articles introducing to `Custom Analysis` workflow 
     and an overview of `sivirep` package.
+
+-   Added warning messages in `geo_filtro` when there is no data for a specific
+    municipality or department, and included a reference to `import_geo_cods`.
