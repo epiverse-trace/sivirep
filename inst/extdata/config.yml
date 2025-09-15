@@ -196,8 +196,12 @@ default:
     event: "Desnutrición Aguda En Menores De 5 Años"
   - cod_eve: 230
     event: "Difteria"
+  - cod_eve: 290
+    event: "Encefalitis Equina Venezolana En Humanos"
   - cod_eve: 345
     event: "Esi - Irag (Vigilancia Centinela)"
+  - cod_eve: 346
+    event: "Ira Por Virus Nuevo"
   - cod_eve: 349
     event: "Eta Colectivo"
   - cod_eve: 298
@@ -234,6 +238,8 @@ default:
     event: "Intoxicación Por Plaguicidas"
   - cod_eve: 400
     event: "Intoxicación Por Solventes"
+  - cod_eve: 414
+    event: "Intoxicación Por Sustancias Psicoactivas"
   - cod_eve: 420
     event: "Leishmaniasis Cutánea"
   - cod_eve: 430
