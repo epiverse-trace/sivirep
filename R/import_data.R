@@ -1,3 +1,6 @@
+library(httr2)
+library(readxl)
+
 #' @title Realizar petición HTTP
 #' @description Función que gestiona las peticiones HTTP a la API del
 #' SIVIGILA.
@@ -66,6 +69,7 @@ realizar_peticion_http <- function(url) {
 #' }
 #' @export
 import_geo_cods <- function(descargar = FALSE) {
+  # TODO Simplificar y remover restricciones y datos quemados en config.yml
   stopifnot("El parametro descargar debe ser un booleano"
             = is.logical(descargar))
   if (descargar) {
@@ -139,15 +143,37 @@ list_events <- function() {
   nomb_events <- c(stringr::str_to_title(nomb_events),
                    unlist(nomb_events_ad))
   years_events <- c(years_events, unlist(years_ad))
-  eventos <- obtener_val_config("list_diseases")
+  list_diseases_url <- obtener_val_config("list_diseases_url")
   cod_events <- NULL
-  for (nomb in nomb_events) {
-    for (event in eventos) {
-      if (stringr::str_equal(nomb, event$event)) {
-        cod_events <- c(cod_events, event$cod_eve)
-      }
-    }
-  }
+  # for (nomb in nomb_events) {
+  #   for (event in eventos) {
+  #     if (stringr::str_equal(nomb, event$event)) {
+  #       cod_events <- c(cod_events, event$cod_eve)
+  #     }
+  #   }
+  # }
+
+
+  # Create a temporary file path with appropriate extension
+  temp_file <- tempfile(fileext = ".xlsx")
+
+  # Create the request
+  req <- request(list_diseases_url)
+
+  # Download and save the file to the temporary path
+  req_perform(req, path = temp_file)
+
+  # Read from raw vector using a raw connection
+  list_diseases_df <- read_excel(temp_file)
+ 
+  # for (nomb in nomb_events) {
+  #   for (event in eventos) {
+  #     if (stringr::str_equal(nomb, event$event)) {
+  #       cod_events <- c(cod_events, event$cod_eve)
+  #     }
+  #   }
+  # }
+
   list_events <- data.frame(codigo = cod_events,
                             enfermedad = nomb_events,
                             aa = years_events)
