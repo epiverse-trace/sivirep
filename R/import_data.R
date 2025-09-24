@@ -101,85 +101,41 @@ import_geo_cods <- function(descargar = FALSE) {
 #' }
 #' @export
 list_events <- function() {
-  ruta_consulta_event_year <-
-    obtener_val_config("query_diseases_by_year_path")
-  conten_consulta_event_year <-
-    realizar_peticion_http(ruta_consulta_event_year)
-  conten_consulta_event_year <- httr2::resp_body_xml(conten_consulta_event_year)
-  children <- xml2::xml_children(conten_consulta_event_year)
-  children <-  xml2::xml_children(children)
-  children <-  xml2::xml_children(children)
-  children <-  xml2::xml_children(children)
-  text_children <- xml2::xml_text(children)
+ruta_consulta_event_year <-
+  obtener_val_config("query_diseases_by_year_path")
+conten_consulta_event_year <-
+  realizar_peticion_http(ruta_consulta_event_year)
+conten_consulta_event_year <- httr2::resp_body_xml(conten_consulta_event_year)
 
-  i <- 2
-  nomb_events <- NULL
-  years_events <- NULL
-  children <- children[-base::seq(3, length(children), 3)]
-  text_children <- text_children[-base::seq(3, length(text_children), 3)]
-  while (i < base::length(children)) {
-    event <- xml2::xml_text(children[i])
-    nomb_events <- c(nomb_events, event)
-    events <- base::which(text_children == event)
-    years <- events - 1
-    years_events <-
-      c(years_events,
-        base::toString(base::sort(text_children[years],
-                                  decreasing = FALSE)))
-    children <- children[-years]
-    text_children <- text_children[-(events - 1)]
-    children <- children[-base::which(text_children == event)]
-    text_children <- text_children[-base::which(text_children == event)]
-    i <- i + 2
-  }
-  events_adicionales <- obtener_val_config("additional_diseases")
-  nomb_events_ad <- list()
-  years_ad <- list()
-  for (adicional in events_adicionales) {
-    nomb_events_ad[[length(nomb_events_ad) + 1]] <- adicional$event
-    years_ad[[length(years_ad) + 1]] <- toString(seq(adicional$start_year,
-              adicional$final_year))
-  }
-  nomb_events <- c(stringr::str_to_title(nomb_events),
-                   unlist(nomb_events_ad))
-  years_events <- c(years_events, unlist(years_ad))
-  list_diseases_url <- obtener_val_config("list_diseases_url")
-  cod_events <- NULL
-  # for (nomb in nomb_events) {
-  #   for (event in eventos) {
-  #     if (stringr::str_equal(nomb, event$event)) {
-  #       cod_events <- c(cod_events, event$cod_eve)
-  #     }
-  #   }
-  # }
+# Define namespaces including the default one with a prefix (e.g., "atom")
+ns <- c(
+  atom = "http://www.w3.org/2005/Atom",
+  d = "http://schemas.microsoft.com/ado/2007/08/dataservices",
+  m = "http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+)
 
+# Extract all <entry> elements using XPath with the namespace
+cod_evento <- xml2::xml_text( xml2::xml_find_all(
+    conten_consulta_event_year, "//atom:entry//m:properties/d:CodigoEvento", ns))
 
-  # Create a temporary file path with appropriate extension
-  temp_file <- tempfile(fileext = ".xlsx")
+nom_evento <- xml2::xml_text(xml2::xml_find_all(
+    conten_consulta_event_year, "//atom:entry//m:properties/d:NombreEvento", ns))
 
-  # Create the request
-  req <- request(list_diseases_url)
+anno_evento <- xml2::xml_text(xml2::xml_find_all(
+    conten_consulta_event_year, "//atom:entry//m:properties/d:A_x00f1_o", ns))
 
-  # Download and save the file to the temporary path
-  req_perform(req, path = temp_file)
-
-  # Read from raw vector using a raw connection
-  list_diseases_df <- read_excel(temp_file)
- 
-  # for (nomb in nomb_events) {
-  #   for (event in eventos) {
-  #     if (stringr::str_equal(nomb, event$event)) {
-  #       cod_events <- c(cod_events, event$cod_eve)
-  #     }
-  #   }
-  # }
-
-  list_events <- data.frame(codigo = cod_events,
-                            enfermedad = nomb_events,
-                            aa = years_events)
-  list_events <- list_events[order(list_events$enfermedad,
+lista_eventos <- data.frame(codigo = cod_evento,
+                          enfermedad = nom_evento,
+                          aa = anno_evento)
+lista_eventos <- lista_eventos[order(lista_eventos$enfermedad, lista_eventos$aa,
                                    decreasing = FALSE), ]
-  list_events
+
+lista_eventos <- lista_eventos %>%
+  group_by(codigo, enfermedad) %>%
+  summarize(aa = paste(aa, collapse = ", "), .groups = "drop")
+
+
+  lista_eventos
 }
 
 #' @title Importar los datos de una enfermedad o evento por año
