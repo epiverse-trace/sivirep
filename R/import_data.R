@@ -1,5 +1,5 @@
 library(httr2)
-library(readxl)
+library(dplyr)
 
 #' @title Realizar petición HTTP
 #' @description Función que gestiona las peticiones HTTP a la API del
@@ -115,24 +115,29 @@ ns <- c(
 )
 
 # Extract all <entry> elements using XPath with the namespace
-cod_evento <- xml2::xml_text( xml2::xml_find_all(
-    conten_consulta_event_year, "//atom:entry//m:properties/d:CodigoEvento", ns))
+utils::globalVariables(c("codigo", "enfermedad", "aa"))
+
+cod_evento <- xml2::xml_text(xml2::xml_find_all(
+    conten_consulta_event_year, "//atom:entry/m:properties/d:CodigoEvento", ns))
 
 nom_evento <- xml2::xml_text(xml2::xml_find_all(
-    conten_consulta_event_year, "//atom:entry//m:properties/d:NombreEvento", ns))
+    conten_consulta_event_year, "//atom:entry/m:properties/d:NombreEvento", ns))
 
 anno_evento <- xml2::xml_text(xml2::xml_find_all(
-    conten_consulta_event_year, "//atom:entry//m:properties/d:A_x00f1_o", ns))
+    conten_consulta_event_year, "//atom:entry/m:properties/d:A_x00f1_o", ns))
 
-lista_eventos <- data.frame(codigo = cod_evento,
-                          enfermedad = nom_evento,
-                          aa = anno_evento)
-lista_eventos <- lista_eventos[order(lista_eventos$enfermedad, lista_eventos$aa,
-                                   decreasing = FALSE), ]
+lista_eventos <- data.frame(
+  codigo = cod_evento,
+  enfermedad = nom_evento,
+  aa = anno_evento
+)
+lista_eventos <- lista_eventos[
+  order(lista_eventos$enfermedad, lista_eventos$aa, decreasing = FALSE),
+]
 
 lista_eventos <- lista_eventos %>%
   group_by(codigo, enfermedad) %>%
-  summarize(aa = paste(aa, collapse = ", "), .groups = "drop")
+  summarize(aa = toString(aa), .groups = "drop")
 
 
   lista_eventos
@@ -363,7 +368,7 @@ import_pob_incidencia <- function(
 import_pob_proyecciones <- function(year,
                                     ruta_dir = NULL,
                                     cache = FALSE) {
-  ruta_proyecciones <- obtener_val_config("projections_population")
+  ruta_proyecciones <-  ("projections_population")
   years_disp <- seq(ruta_proyecciones$start_year,
                     ruta_proyecciones$final_year)
   if (!year %in% years_disp) {
