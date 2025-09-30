@@ -136,8 +136,8 @@ lista_eventos <- lista_eventos[
 ]
 
 lista_eventos <- lista_eventos %>%
-  group_by(codigo, enfermedad) %>%
-  summarize(aa = toString(aa), .groups = "drop")
+  group_by(.data$codigo, .data$enfermedad) %>%
+  summarize(aa = toString(.data$aa), .groups = "drop")
 
 
   lista_eventos
