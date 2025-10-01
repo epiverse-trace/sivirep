@@ -115,14 +115,30 @@ ns <- c(
 )
 
 
-cod_evento <- xml2::xml_text(xml2::xml_find_all(
-    conten_consulta_event_year, "//atom:entry//m:properties/d:CodigoEvento", ns))
+cod_evento <- xml2::xml_text(
+  xml2::xml_find_all(
+    conten_consulta_event_year,
+    "//atom:entry//m:properties/d:CodigoEvento",
+    ns
+  )
+)
 
-nom_evento <- xml2::xml_text(xml2::xml_find_all(
-    conten_consulta_event_year, "//atom:entry//m:properties/d:NombreEvento", ns))
+nom_evento <- xml2::xml_text(
+  xml2::xml_find_all(
+    conten_consulta_event_year,
+    "//atom:entry//m:properties/d:NombreEvento",
+    ns
+  )
+)
 
-anno_evento <- xml2::xml_text(xml2::xml_find_all(
-    conten_consulta_event_year, "//atom:entry//m:properties/d:A_x00f1_o", ns))
+anno_evento <- xml2::xml_text(
+  xml2::xml_find_all(
+    conten_consulta_event_year,
+    "//atom:entry//m:properties/d:A_x00f1_o",
+    ns
+  )
+)
+
 
 lista_eventos <- data.frame(
   codigo = cod_evento,
