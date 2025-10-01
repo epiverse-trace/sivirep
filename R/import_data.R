@@ -114,17 +114,15 @@ ns <- c(
   m = "http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
 )
 
-# Extract all <entry> elements using XPath with the namespace
-utils::globalVariables(c("codigo", "enfermedad", "aa"))
 
 cod_evento <- xml2::xml_text(xml2::xml_find_all(
-    conten_consulta_event_year, "//atom:entry/m:properties/d:CodigoEvento", ns))
+    conten_consulta_event_year, "//atom:entry//m:properties/d:CodigoEvento", ns))
 
 nom_evento <- xml2::xml_text(xml2::xml_find_all(
-    conten_consulta_event_year, "//atom:entry/m:properties/d:NombreEvento", ns))
+    conten_consulta_event_year, "//atom:entry//m:properties/d:NombreEvento", ns))
 
 anno_evento <- xml2::xml_text(xml2::xml_find_all(
-    conten_consulta_event_year, "//atom:entry/m:properties/d:A_x00f1_o", ns))
+    conten_consulta_event_year, "//atom:entry//m:properties/d:A_x00f1_o", ns))
 
 lista_eventos <- data.frame(
   codigo = cod_evento,
@@ -368,7 +366,7 @@ import_pob_incidencia <- function(
 import_pob_proyecciones <- function(year,
                                     ruta_dir = NULL,
                                     cache = FALSE) {
-  ruta_proyecciones <-  ("projections_population")
+  ruta_proyecciones <- obtener_val_config("projections_population")
   years_disp <- seq(ruta_proyecciones$start_year,
                     ruta_proyecciones$final_year)
   if (!year %in% years_disp) {
