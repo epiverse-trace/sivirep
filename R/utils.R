@@ -428,13 +428,12 @@ obtener_nombre_mpio <- function(data_geo, cod_dpto, cod_mpio) {
 #' @return Un `array` con los eventos relacionados por año desde
 #' los microdatos de SIVIGILA.
 #' @keywords internal
-obtener_eventos_relacionados <- function(nombre_event, years) {
-  list_events <- list_events()
+obtener_eventos_relacionados <- function(nombre_event, years, eventos_disponibles) {
   nombre_event_estandar <- clean_labels(nombre_event)
-  list_events$enfermedad_estandarizada <- clean_labels(list_events$enfermedad)
+  eventos_disponibles$enfermedad_estandarizada <- clean_labels(eventos_disponibles$enfermedad)
   grupo_events <-
-    list_events[which(stringr::str_detect(
-      list_events$enfermedad_estandarizada,
+    eventos_disponibles[which(stringr::str_detect(
+      eventos_disponibles$enfermedad_estandarizada,
       gsub("([()])", "\\\\\\1", substr(
         nombre_event_estandar,
         1,
@@ -454,7 +453,7 @@ obtener_eventos_relacionados <- function(nombre_event, years) {
     for (year in years) {
       for (event in events_relacionados) {
         grupo_events_relacionados <-
-          list_events[which(list_events$enfermedad == event), ]
+          eventos_disponibles[which(eventos_disponibles$enfermedad == event), ]
         if (is.null(grupo_events) || nrow(grupo_events) == 0) {
           warning("La enfermedad o evento relacionado: ",
             event,
