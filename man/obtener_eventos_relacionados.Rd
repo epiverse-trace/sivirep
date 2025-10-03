@@ -4,7 +4,7 @@
 \alias{obtener_eventos_relacionados}
 \title{Obtener los eventos relacionados}
 \usage{
-obtener_eventos_relacionados(nombre_event, years)
+obtener_eventos_relacionados(nombre_event, years, eventos_disponibles)
 }
 \arguments{
 \item{nombre_event}{Un `character` (cadena de caracteres) con el
