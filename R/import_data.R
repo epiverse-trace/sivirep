@@ -210,7 +210,8 @@ import_data_event <- function(nombre_event,
   data_event <- list()
   nombre_event <- stringr::str_to_title(nombre_event)
   eventos_disponibles <- list_events()
-  grupo_events <- obtener_eventos_relacionados(nombre_event, years, eventos_disponibles)
+  grupo_events <- obtener_eventos_relacionados(
+    nombre_event, years, eventos_disponibles)
   if (toupper(nombre_event) == "MALARIA") {
     grupo_events <-
       grupo_events[-which(grupo_events$enfermedad == nombre_event), ]

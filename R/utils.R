@@ -239,7 +239,8 @@ obtener_info_depts <- function(dpto = NULL, mpio = NULL) {
       "Dos o mas departamentos coinciden con el nombre o ",
       "codigo ingresado: ",
       dpto, " se tomara el valor de la primera coincidencia ",
-      "encontrada", call. = FALSE
+      "encontrada",
+      call. = FALSE
     )
     data_dpto <- dplyr::filter(
       data_geo,
@@ -287,7 +288,8 @@ obtener_info_depts <- function(dpto = NULL, mpio = NULL) {
         "Dos o mas municipios coinciden con el nombre o ",
         "codigo ingresado: ",
         mpio, " se tomara el valor de la primera coincidencia ",
-        "encontrada", call. = FALSE
+        "encontrada",
+        call. = FALSE
       )
       data_dpto <- data_dpto[1, ]
     }
@@ -428,9 +430,12 @@ obtener_nombre_mpio <- function(data_geo, cod_dpto, cod_mpio) {
 #' @return Un `array` con los eventos relacionados por año desde
 #' los microdatos de SIVIGILA.
 #' @keywords internal
-obtener_eventos_relacionados <- function(nombre_event, years, eventos_disponibles) {
+obtener_eventos_relacionados <- function(
+    nombre_event, years, eventos_disponibles) {
   nombre_event_estandar <- clean_labels(nombre_event)
-  eventos_disponibles$enfermedad_estandarizada <- clean_labels(eventos_disponibles$enfermedad)
+  eventos_disponibles$enfermedad_estandarizada <- clean_labels(
+    eventos_disponibles$enfermedad
+  )
   grupo_events <-
     eventos_disponibles[which(stringr::str_detect(
       eventos_disponibles$enfermedad_estandarizada,
@@ -445,9 +450,11 @@ obtener_eventos_relacionados <- function(nombre_event, years, eventos_disponible
     list_events_relacionados,
     stringr::str_to_title
   )
-  validar_grupo_events(grupo_events = grupo_events,
-                       nombre_event = nombre_event,
-                       nombre_event_estandar = nombre_event_estandar)
+  validar_grupo_events(
+    grupo_events = grupo_events,
+    nombre_event = nombre_event,
+    nombre_event_estandar = nombre_event_estandar
+  )
   if (length(list_events_relacionados) > 0) {
     events_relacionados <- list_events_relacionados[[nombre_event]]
     for (year in years) {
@@ -462,14 +469,15 @@ obtener_eventos_relacionados <- function(nombre_event, years, eventos_disponible
           )
         } else if (stringr::str_detect(
           grupo_events_relacionados$aa,
-          as.character(year))) {
+          as.character(year)
+        )) {
           grupo_events <- c(grupo_events, list(grupo_events_relacionados))
         } else {
           warning("El year: ", year,
-                  " de la enfermedad o evento relacionado: ",
-                  event,
-                  " no esta disponible para su descarga",
-                  call. = FALSE
+            " de la enfermedad o evento relacionado: ",
+            event,
+            " no esta disponible para su descarga",
+            call. = FALSE
           )
         }
       }
@@ -543,7 +551,8 @@ obtener_dpto_mpio <- function(data_agrupada, nomb_cols,
     if (nrow(dept_data) == 0) {
       warning(
         "El departamento o municipio ingresado no existe, ",
-        "dpto: ", dpto, " , mpio: ", mpio, call. = FALSE
+        "dpto: ", dpto, " , mpio: ", mpio,
+        call. = FALSE
       )
     }
     dept_data <- dept_data[1, ]
@@ -663,7 +672,8 @@ obtener_year <- function(data_event) {
     stop(
       "Los datos del evento o enfermedad no contienen la variable ",
       "o columna ano. Por favor indique el valor en el parametro year ",
-      "para ejecutar la funcion", call. = FALSE
+      "para ejecutar la funcion",
+      call. = FALSE
     )
   }
   year <- unique(data_event[[nomb_col]][!is.na(data_event[[nomb_col]])])
