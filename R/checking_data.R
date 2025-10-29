@@ -524,7 +524,6 @@ agrupar_dpto <- function(data_event,
   data_event_cods_dpto <- data_event
   if (length(col_dpto) == 1) {
     nomb_cols <- obtener_tip_ocurren_geo(data_event_cods_dpto[["cod_eve"]][1])
-    nomb_cols <- nomb_cols[1:2]
   } else {
     nomb_cols <- col_dpto
   }
