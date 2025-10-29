@@ -90,11 +90,13 @@ editor_options:
 ---
 
 ```{r configuracion, echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
-knitr::opts_chunk$set(include = TRUE,
-                      echo = FALSE,
-                      error = FALSE,
-                      warning = FALSE,
-                      message = FALSE)
+knitr::opts_chunk$set(
+  include = TRUE,
+  echo = FALSE,
+  error = FALSE,
+  warning = FALSE,
+  message = FALSE
+)
 knitr::opts_knit$set(eval.after = "fig.cap")
 library(sivirep)
 sysfonts::font_add_google("Montserrat", "Montserrat")
@@ -104,16 +106,20 @@ showtext::showtext_auto()
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,600i,900,900i" rel="stylesheet">
 
 ```{r titulo, include = FALSE, echo = FALSE}
-titulo <- paste0("Reporte Automatizado para ",
-                 stringr::str_to_title(params$nombre_evento), " ",
-                 params$departamento, " - Colombia",
-                 ", ", params$year)
+titulo <- paste0(
+  "Reporte Automatizado para ",
+  stringr::str_to_title(params$nombre_evento), " ",
+  params$departamento, " - Colombia",
+  ", ", params$year
+)
 if (params$municipio != "") {
-  titulo <- paste0("Reporte Automatizado para ",
-                 stringr::str_to_title(params$nombre_evento), " ",
-                 params$municipio, ", ",
-                 params$departamento, " - Colombia",
-                 ", ", params$year)
+  titulo <- paste0(
+    "Reporte Automatizado para ",
+    stringr::str_to_title(params$nombre_evento), " ",
+    params$municipio, ", ",
+    params$departamento, " - Colombia",
+    ", ", params$year
+  )
 }
 fuente <- "Fuente SIVIGILA, Datos libres"
 ```
@@ -242,22 +248,29 @@ if (!params$cache) {
 
 mensaje_warning <- NULL
 data_event <- data.frame()
-withCallingHandlers({
-  data_event <- import_data_event(nombre_event = params$nombre_evento,
-                      years = params$year,
-                      cache = params$cache,
-                      ruta_dir = ruta_dir)
-}, warning = function(w) {
-  if (is.null(mensaje_warning)) {
-    mensaje_warning <- conditionMessage(w)
-    if (nrow(data_event) < 1) {
-     stop("\033[31m", mensaje_warning, "\033[0m", call. = FALSE)
+withCallingHandlers(
+  {
+    data_event <- import_data_event(
+      nombre_event = params$nombre_evento,
+      years = params$year,
+      cache = params$cache,
+      ruta_dir = ruta_dir
+    )
+  },
+  warning = function(w) {
+    if (is.null(mensaje_warning)) {
+      mensaje_warning <- conditionMessage(w)
+      if (nrow(data_event) < 1) {
+        stop("\033[31m", mensaje_warning, "\033[0m", call. = FALSE)
+      }
     }
   }
-})
+)
 
-mostrar_sex <- stringr::str_detect(tolower(params$nombre_evento),
-                                   stringr::fixed("materna"))
+mostrar_sex <- stringr::str_detect(
+  tolower(params$nombre_evento),
+  stringr::fixed("materna")
+)
 etiqueta_geo <- "municipios"
 text_intro_geo <- "."
 text_fig_geo <- paste0("municipio - ", params$departamento)
@@ -280,29 +293,45 @@ data_limpia <- limpiar_data_sivigila(data_event)
 ```{r filtrar-data, include = FALSE}
 data_event_filtrada <- data_limpia
 if (params$departamento != "") {
-  withCallingHandlers({
-    data_event_filtrada <- geo_filtro(data_event = data_limpia,
-                                      dpto = params$departamento)
-  }, warning = function(w) {
-    stop("\033[31m", conditionMessage(w), "\033[0m", call. = FALSE)
-  })
-  text_init_geo <- paste0(", en el departamento del ",
-                          params$departamento)
-  if (params$municipio != "") {
-    withCallingHandlers({
-    data_event_filtrada <- geo_filtro(data_event = data_event_filtrada,
-                                      dpto = params$departamento,
-                                      mpio = params$municipio)
-    }, warning = function(w) {
+  withCallingHandlers(
+    {
+      data_event_filtrada <- geo_filtro(
+        data_event = data_limpia,
+        dpto = params$departamento
+      )
+    },
+    warning = function(w) {
       stop("\033[31m", conditionMessage(w), "\033[0m", call. = FALSE)
-    })
-    text_init_geo <- paste0(", en el municipio del ",
-                            params$municipio)
+    }
+  )
+  text_init_geo <- paste0(
+    ", en el departamento del ",
+    params$departamento
+  )
+  if (params$municipio != "") {
+    withCallingHandlers(
+      {
+        data_event_filtrada <- geo_filtro(
+          data_event = data_event_filtrada,
+          dpto = params$departamento,
+          mpio = params$municipio
+        )
+      },
+      warning = function(w) {
+        stop("\033[31m", conditionMessage(w), "\033[0m", call. = FALSE)
+      }
+    )
+    text_init_geo <- paste0(
+      ", en el municipio del ",
+      params$municipio
+    )
   }
-  text_intro_geo <- paste0(text_init_geo,
-                           " se reportaron ",
-                           nrow(data_event_filtrada),
-                           " casos.")
+  text_intro_geo <- paste0(
+    text_init_geo,
+    " se reportaron ",
+    nrow(data_event_filtrada),
+    " casos."
+  )
 }
 ```
 
@@ -318,26 +347,62 @@ En este reporte se presenta el comportamiento del `r stringr::str_to_title(param
 La distribución de casos por tipo es la siguiente:
 
 ```{r casos-totales, echo = FALSE, error = FALSE, fig.height = 5, fig.width = 10, warning = FALSE, include = TRUE, message = FALSE, fig.pos = "H"} 
-total_casos_eventos <- agrupar_eventos(data_event = data_event_filtrada,
-                                       col_event = "cod_eve")
+total_casos_eventos <- agrupar_eventos(
+  data_event = data_event_filtrada,
+  col_event = "cod_eve"
+)
 plot_tabla_tipos_event(total_casos_eventos)
 ```
 
 Durante el período comprendido entre el año `r (params$year - 4)` y `r params$year`, se observó la siguiente distribución de casos:
 
 ```{r casos-years, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE}
+cols <- c(
+  "cod_eve",
+  "fec_not",
+  "semana",
+  "edad",
+  "uni_med",
+  "nacionalidad",
+  "nombre_nacionalidad",
+  "sexo",
+  "cod_pais_o",
+  "cod_dpto_o",
+  "cod_mun_o",
+  "area",
+  "per_etn",
+  "tip_cas",
+  "ano",
+  "ini_sin",
+  "pais_ocurrencia",
+  "nombre_evento",
+  "departamento_ocurrencia",
+  "municipio_ocurrencia",
+  "pais_residencia",
+  "departamento_residencia",
+  "municipio_residencia",
+  "departamento_notificacion",
+  "municipio_notificacion"
+)
+
 data_event_years <-
-  import_data_event(nombre_event = params$nombre_evento,
-                    years = seq(params$year - 4,
-                                params$year - 1),
-                    cache = params$cache,
-                    ruta_dir = ruta_dir)
-data_event_years <- rbind(data_event, data_event_years)
+  import_data_event(
+    nombre_event = params$nombre_evento,
+    years = seq(
+      params$year - 4,
+      params$year - 1
+    ),
+    cache = params$cache,
+    ruta_dir = ruta_dir
+  )
+data_event_years <- rbind(data_event[, cols], data_event_years[, cols])
 data_years_limpia <- limpiar_data_sivigila(data_event_years)
 data_years_filtrada <- data_years_limpia
 if (params$departamento != "") {
-data_years_filtrada <- geo_filtro(data_event = data_years_limpia,
-                                  dpto = params$departamento)
+  data_years_filtrada <- geo_filtro(
+    data_event = data_years_limpia,
+    dpto = params$departamento
+  )
 }
 casos_years <- agrupar_years(data_event = data_years_filtrada)
 years_text <- length(unique(casos_years[["ano"]]))
@@ -365,8 +430,10 @@ plot_tipo_caso(casos_tip_cas)
 Durante el período comprendido entre el año `r (params$year - 5)` y `r params$year`, se observó la siguiente distribución por clasificacion:
 
 ```{r casos-tip-cas-years, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE}
-casos_tip_cas_years <- agrupar_tipo_caso(data_event = data_years_filtrada,
-                                         cols_tipo = c("tip_cas", "ano"))
+casos_tip_cas_years <- agrupar_tipo_caso(
+  data_event = data_years_filtrada,
+  cols_tipo = c("tip_cas", "ano")
+)
 ```
 
 ```{r grafica-casos-tip-cas-years, fig.height = gr_tip_cas_years_al, fig.width = gr_tip_cas_years_an, fig.align = 'center', fig.cap = paste0("Distribución de casos en los últimos ",  years_text, " años - ", text_ext_geo)}
@@ -376,11 +443,15 @@ plot_tipo_caso_years(casos_tip_cas_years)
 `r if (params$temporal_distribution) {"# Distribución temporal de los casos"}`
 
 ```{r casos-inicio-sintomas, include = FALSE}
-casos_iniciosin_dia <- agrupar_fecha_inisintomas(data_event =
-                                                   data_event_filtrada)
-mes_mayor_casos <- obtener_meses_mas_casos(data_event =
-                                             casos_iniciosin_dia,
-                                           col_fechas = "ini_sin")
+casos_iniciosin_dia <- agrupar_fecha_inisintomas(
+  data_event =
+    data_event_filtrada
+)
+mes_mayor_casos <- obtener_meses_mas_casos(
+  data_event =
+    casos_iniciosin_dia,
+  col_fechas = "ini_sin"
+)
 ```
 
 `r if (params$temporal_distribution) {paste0("Los casos se distribuyen a lo largo de los meses de enero a diciembre de ", params$year, " teniendo mayor número en el mes de ", mes_mayor_casos, " por fecha de inicio de síntomas (Ver Figura 4).")}`
@@ -388,15 +459,17 @@ mes_mayor_casos <- obtener_meses_mas_casos(data_event =
 \newpage
 
 ```{r grafica-casos-inicio-sintomas, fig.height = gr_ini_sin_al, fig.width = gr_ini_sin_an, fig.align = 'center', fig.cap = paste0("Distribución de casos por fecha de inicio de sintomas - ", text_ext_geo), include = params$temporal_distribution, eval = params$temporal_distribution}
-plot_fecha_inisintomas(data_agrupada = casos_iniciosin_dia,
-                       uni_marca = "semanaepi")
+plot_fecha_inisintomas(
+  data_agrupada = casos_iniciosin_dia,
+  uni_marca = "semanaepi"
+)
 ```
 
 `r if (params$epi_sex_distribution) {"# Distribución de casos por sexo y semana epidemiológica"}`
 
 ```{r casos-sex, include = FALSE}
 casos_sex <- agrupar_sex(data_event = data_event_filtrada)
-vals_sex <- obtener_text_sex(casos_sex, params$year,  4)
+vals_sex <- obtener_text_sex(casos_sex, params$year, 4)
 ```
 
 `r if (params$epi_sex_distribution && !mostrar_sex) {vals_sex$text}`
@@ -435,8 +508,10 @@ plot_edad(data_agrupada = casos_edad)
 `r if(params$age_sex_distribution && !mostrar_sex) {"# Distribución de casos por edad y sexo"}`
 
 ```{r casos-edad-sex, fig.height = gr_edad_sex_al, fig.width = gr_edad_sex_an, fig.align = 'center', fig.cap =  paste0("Distribución de casos por edad y sexo - ", text_ext_geo), include = params$age_sex_distribution && !mostrar_sex}
-casos_edad_sex <- agrupar_edad_sex(data_event = data_event_filtrada,
-                                   interval_edad = 10)
+casos_edad_sex <- agrupar_edad_sex(
+  data_event = data_event_filtrada,
+  interval_edad = 10
+)
 plot_edad_sex(data_agrupada = casos_edad_sex)
 ```
 
@@ -448,19 +523,24 @@ plot_edad_sex(data_agrupada = casos_edad_sex)
 cod_event <- unique(data_event_filtrada[["cod_eve"]])[1]
 geo_ocurrencia <- obtener_tip_ocurren_geo(nombre_event = cod_event)
 if (params$departamento != "") {
-  dist_espacial <- agrupar_mpio(data_event = data_event_filtrada,
-                                   dpto = params$departamento)
+  dist_espacial <- agrupar_mpio(
+    data_event = data_event_filtrada,
+    dpto = params$departamento
+  )
   col_geo <- geo_ocurrencia[4]
 } else {
   dist_espacial <- agrupar_dpto(data_event = data_event_filtrada)
   col_geo <- geo_ocurrencia[2]
 }
 dist_espacial <- dist_espacial[order(dist_espacial$casos), ]
-espacial_mayor_casos <- obtener_fila_mas_casos(data_event =
-                                                 dist_espacial)
+espacial_mayor_casos <- obtener_fila_mas_casos(
+  data_event =
+    dist_espacial
+)
 altura_fig_espacial <- 15
 if (isTRUE(length(unique(
-  dist_espacial[[col_geo]])) < 15)) {
+  dist_espacial[[col_geo]]
+)) < 15)) {
   altura_fig_espacial <- 10
 }
 if (knitr::is_html_output()) {
@@ -485,14 +565,17 @@ text_mapa_casos <- "por municipios"
 dist_espacial_casos <- dist_espacial
 if (params$departamento == "" && params$municipio == "") {
   dist_espacial_casos <- agrupar_dpto(data_event_filtrada,
-                                col_dpto = geo_ocurrencia[1:4])
+    col_dpto = geo_ocurrencia[1:4]
+  )
 } else {
   text_mapa_casos <- ""
 }
-mapa <- plot_map(data_agrupada = dist_espacial_casos,
-                 col_distribucion = "casos",
-                 cache = params$cache,
-                 ruta_dir = ruta_dir)
+mapa <- plot_map(
+  data_agrupada = dist_espacial_casos,
+  col_distribucion = "casos",
+  cache = params$cache,
+  ruta_dir = ruta_dir
+)
 ```
 
 ```{r mapa-casos, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, cache = FALSE, results = FALSE, comment = FALSE, fig.height = gr_mapa_al, fig.width = gr_mapa_an, fig.align = 'center', fig.cap = paste0("Distribución espacial de casos ", text_mapa_casos , " - ", text_ext_geo), include = params$spatial_distribution}
@@ -535,10 +618,12 @@ plot_per_etn(data_agrupada = casos_per_etn)
 # Incidencia
 
 ```{r incidencia-total, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
-incidencia_total <- calcular_incidencia(data_agrupada =
-                                         dist_espacial,
-                                        cache = params$cache,
-                                        ruta_dir = ruta_dir)
+incidencia_total <- calcular_incidencia(
+  data_agrupada =
+    dist_espacial,
+  cache = params$cache,
+  ruta_dir = ruta_dir
+)
 cond_incidencia <-
   obtener_cond_inciden_event(cod_eve = dist_espacial$cod_eve[1])
 ```
@@ -560,13 +645,17 @@ if (params$departamento != "") {
   nomb_dpto <- params$departamento
 }
 incidencias_sex <-
-  calcular_incidencia_sex(data_agrupada = casos_sex,
-                          dpto = nomb_dpto,
-                          cache = params$cache,
-                          ruta_dir = ruta_dir)
-incidencia_mayor_sex <- obtener_fila_mas_casos(data_event =
-                                                incidencias_sex$data_incidencia,
-                                               nomb_col = "incidencia ")
+  calcular_incidencia_sex(
+    data_agrupada = casos_sex,
+    dpto = nomb_dpto,
+    cache = params$cache,
+    ruta_dir = ruta_dir
+  )
+incidencia_mayor_sex <- obtener_fila_mas_casos(
+  data_event =
+    incidencias_sex$data_incidencia,
+  nomb_col = "incidencia "
+)
 ```
 
 ```{r text-pop-incidencia-sex}
@@ -583,17 +672,21 @@ plot_tabla_incidencia_sex(incidencias_sex$data_incidencia)
 ```
 
 ```{r grafica-incidencia-sex, fig.height = gr_sex_incid_al, fig.width = gr_sex_incid_an, fig.align = 'center', fig.cap = paste0("Incidencia por sexo - ", text_ext_geo), include = params$epi_sex_distribution}
-plot_sex(data_agrupada = incidencias_sex$data_incidencia,
-         col_distribucion = "incidencia",
-         porcentaje = FALSE)
+plot_sex(
+  data_agrupada = incidencias_sex$data_incidencia,
+  col_distribucion = "incidencia",
+  porcentaje = FALSE
+)
 ```
 
 ```{r incidencia-geo, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
 incidencias_geo <-
-  calcular_incidencia_geo(data_agrupada =
-                            dist_espacial,
-                          cache = params$cache,
-                          ruta_dir = ruta_dir)
+  calcular_incidencia_geo(
+    data_agrupada =
+      dist_espacial,
+    cache = params$cache,
+    ruta_dir = ruta_dir
+  )
 ```
 
 ```{r text-pop-incidencia-geo}
@@ -618,19 +711,24 @@ plot_tabla_incidencia_geo(incidencias_geo$data_incidencia)
 text_mapa_inciden <- "por municipio"
 if (params$departamento == "" && params$municipio == "") {
   dist_espacial_mpios <- agrupar_dpto(data_event_filtrada,
-                                      col_dpto = geo_ocurrencia[1:4])
+    col_dpto = geo_ocurrencia[1:4]
+  )
   incidencias_geo <-
-  calcular_incidencia_geo(data_agrupada =
-                            dist_espacial_mpios,
-                          cache = params$cache,
-                          ruta_dir = ruta_dir)
+    calcular_incidencia_geo(
+      data_agrupada =
+        dist_espacial_mpios,
+      cache = params$cache,
+      ruta_dir = ruta_dir
+    )
 }
 if (params$municipio != "") {
   text_mapa_inciden <- ""
 }
-mapa <- plot_map(data_agrupada = incidencias_geo$data_incidencia,
-                 cache = params$cache,
-                 ruta_dir = ruta_dir)
+mapa <- plot_map(
+  data_agrupada = incidencias_geo$data_incidencia,
+  cache = params$cache,
+  ruta_dir = ruta_dir
+)
 ```
 
 ```{r mapa-incidencias, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE, cache = FALSE, results = FALSE, comment = FALSE, fig.height = gr_map_incid_al, fig.width = gr_map_incid_an, fig.align = 'center', fig.cap = paste0("Incidencia según distribución geográfica ", text_mapa_inciden, " - ", text_ext_geo), include = params$spatial_distribution}
@@ -639,16 +737,18 @@ mapa
 
 ```{r conclusiones, echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE, cache = FALSE, results = FALSE, comment = FALSE}
 text_geo <- params$pais
-if (params$spatial_distribution && params$departamento != ""
-    && params$municipio == "") {
+if (params$spatial_distribution && params$departamento != "" &&
+  params$municipio == "") {
   text_geo <- paste0("el departamento de ", params$departamento)
 } else if (params$municipio != "") {
-    text_geo <- paste0("el municipio de ", params$municipio)
+  text_geo <- paste0("el municipio de ", params$municipio)
 }
-text_casos_totales <- paste0("*   Los casos totales reportados de ",
-                             stringr::str_to_title(params$nombre_evento),
-                             " en ", text_geo, " en el año ", params$year,
-                             " fueron ", nrow(data_event_filtrada))
+text_casos_totales <- paste0(
+  "*   Los casos totales reportados de ",
+  stringr::str_to_title(params$nombre_evento),
+  " en ", text_geo, " en el año ", params$year,
+  " fueron ", nrow(data_event_filtrada)
+)
 ```
 
 \newpage
