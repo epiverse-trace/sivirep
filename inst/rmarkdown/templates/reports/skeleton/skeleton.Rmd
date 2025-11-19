@@ -106,6 +106,9 @@ showtext::showtext_auto()
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,600i,900,900i" rel="stylesheet">
 
 ```{r titulo, include = FALSE, echo = FALSE}
+# TODO Poner aquí todas las variables que correspondan a texto que se muestre en diferentes
+# partes del reporte
+
 titulo <- paste0(
   "Reporte Automatizado para ",
   stringr::str_to_title(params$nombre_evento), " ",
@@ -247,6 +250,9 @@ if (!params$cache) {
 }
 
 mensaje_warning <- NULL
+
+# TODO Mover esto a una celda exclusivamente para inicializar datos
+# Esta celda debe ir antes que la celda que inicializa las variables de textos
 data_event <- data.frame()
 withCallingHandlers(
   {
@@ -267,6 +273,7 @@ withCallingHandlers(
   }
 )
 
+# TODO Mover a celda de textos
 mostrar_sex <- stringr::str_detect(
   tolower(params$nombre_evento),
   stringr::fixed("materna")
@@ -291,6 +298,7 @@ data_limpia <- limpiar_data_sivigila(data_event)
 ```
 
 ```{r filtrar-data, include = FALSE}
+# TODO Mover a celda de inicialización de datos y poner en una función
 data_event_filtrada <- data_limpia
 if (params$departamento != "") {
   withCallingHandlers(
@@ -304,6 +312,7 @@ if (params$departamento != "") {
       stop("\033[31m", conditionMessage(w), "\033[0m", call. = FALSE)
     }
   )
+# TODO Todas estas variables de texto juntarlas en el mismo lugar de e
   text_init_geo <- paste0(
     ", en el departamento del ",
     params$departamento
@@ -347,6 +356,7 @@ En este reporte se presenta el comportamiento del `r stringr::str_to_title(param
 La distribución de casos por tipo es la siguiente:
 
 ```{r casos-totales, echo = FALSE, error = FALSE, fig.height = 5, fig.width = 10, warning = FALSE, include = TRUE, message = FALSE, fig.pos = "H"} 
+# TODO Mover a una función
 total_casos_eventos <- agrupar_eventos(
   data_event = data_event_filtrada,
   col_event = "cod_eve"
@@ -357,6 +367,8 @@ plot_tabla_tipos_event(total_casos_eventos)
 Durante el período comprendido entre el año `r (params$year - 4)` y `r params$year`, se observó la siguiente distribución de casos:
 
 ```{r casos-years, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE}
+# TODO Mover a una función, mover al bloque de inicialización de datos
+
 cols <- c(
   "cod_eve",
   "fec_not",
@@ -404,6 +416,9 @@ if (params$departamento != "") {
     dpto = params$departamento
   )
 }
+#############################
+# TODO Mover a una función (incluir siguiente bloque)
+
 casos_years <- agrupar_years(data_event = data_years_filtrada)
 years_text <- length(unique(casos_years[["ano"]]))
 altura_fig_years <- 5
@@ -420,6 +435,8 @@ plot_years(casos_years)
 # Distribución de casos por clasificación
 
 ```{r casos-tip-cas, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE}
+# TODO Mover a una función (incluir siguiente bloque)
+
 casos_tip_cas <- agrupar_tipo_caso(data_event = data_event_filtrada)
 ```
 
@@ -430,6 +447,7 @@ plot_tipo_caso(casos_tip_cas)
 Durante el período comprendido entre el año `r (params$year - 5)` y `r params$year`, se observó la siguiente distribución por clasificacion:
 
 ```{r casos-tip-cas-years, echo = FALSE, error = FALSE, warning = FALSE, include = TRUE, message = FALSE}
+# TODO Mover a una función (incluir siguiente bloque)
 casos_tip_cas_years <- agrupar_tipo_caso(
   data_event = data_years_filtrada,
   cols_tipo = c("tip_cas", "ano")
@@ -443,6 +461,7 @@ plot_tipo_caso_years(casos_tip_cas_years)
 `r if (params$temporal_distribution) {"# Distribución temporal de los casos"}`
 
 ```{r casos-inicio-sintomas, include = FALSE}
+# TODO Mover a una función (incluir siguiente bloque)
 casos_iniciosin_dia <- agrupar_fecha_inisintomas(
   data_event =
     data_event_filtrada
@@ -468,6 +487,7 @@ plot_fecha_inisintomas(
 `r if (params$epi_sex_distribution) {"# Distribución de casos por sexo y semana epidemiológica"}`
 
 ```{r casos-sex, include = FALSE}
+# TODO Mover a sección de inicialización de datos
 casos_sex <- agrupar_sex(data_event = data_event_filtrada)
 vals_sex <- obtener_text_sex(casos_sex, params$year, 4)
 ```
@@ -479,6 +499,7 @@ plot_sex(data_agrupada = casos_sex)
 ```
 
 ```{r casos-semanaepi, include = FALSE}
+# TODO Mover a una función (incluir siguiente bloque)
 casos_sex_semanaepi <- agrupar_sex_semanaepi(data_event = data_event_filtrada)
 ```
 
@@ -493,6 +514,7 @@ plot_sex_semanaepi(data_agrupada = casos_sex_semanaepi)
 `r if (params$age_distribution) {"# Distribución de casos por edad"}`
 
 ```{r casos-edad, include = FALSE}
+# TODO Mover a sección de inicialización de datos
 casos_edad <- agrupar_edad(data_event = data_event_filtrada, interval_edad = 10)
 age_most_cases <- obtener_fila_mas_casos(data_event = casos_edad)
 ```
@@ -508,6 +530,7 @@ plot_edad(data_agrupada = casos_edad)
 `r if(params$age_sex_distribution && !mostrar_sex) {"# Distribución de casos por edad y sexo"}`
 
 ```{r casos-edad-sex, fig.height = gr_edad_sex_al, fig.width = gr_edad_sex_an, fig.align = 'center', fig.cap =  paste0("Distribución de casos por edad y sexo - ", text_ext_geo), include = params$age_sex_distribution && !mostrar_sex}
+# TODO Mover a una función 
 casos_edad_sex <- agrupar_edad_sex(
   data_event = data_event_filtrada,
   interval_edad = 10
@@ -520,6 +543,7 @@ plot_edad_sex(data_agrupada = casos_edad_sex)
 `r if(params$mpio_distribution && params$departamento != "" && params$municipio == "") {"## Distribución de casos por municipio"} else if(params$municipio == "") {"## Distribución de casos por departamento"}`
 
 ```{r casos-geo, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
+# TODO Mover a sección de inicialización de datos y poner en una función
 cod_event <- unique(data_event_filtrada[["cod_eve"]])[1]
 geo_ocurrencia <- obtener_tip_ocurren_geo(nombre_event = cod_event)
 if (params$departamento != "") {
@@ -562,6 +586,7 @@ plot_dptos
 
 ```{r plot-mapa-casos, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
 text_mapa_casos <- "por municipios"
+# TODO Mover a una función
 dist_espacial_casos <- dist_espacial
 if (params$departamento == "" && params$municipio == "") {
   dist_espacial_casos <- agrupar_dpto(data_event_filtrada,
@@ -587,6 +612,7 @@ mapa
 `r if(params$mpio_distribution) {"# Distribución de casos por área  geográfica de ocurrencia"}`
 
 ```{r casos-area,  results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
+# TODO Mover a sección de inicialización de datos. Incluir siguiente celda
 dist_areas_geo <- agrupar_area_geo(data_event = data_event_filtrada)
 ```
 
@@ -596,6 +622,7 @@ plot_areas_geo
 ```
 
 ```{r casos-top-area,  results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, eval = params$areas_distribution && params$municipio == "", message = FALSE}
+# TODO Mover a sección de inicialización de datos. Incluir siguiente celda
 dist_top_areas_geo <- agrupar_top_area_geo(data_event = data_event_filtrada)
 ```
 
@@ -611,6 +638,7 @@ plot_top_areas_geo
 \newpage
 
 ```{r casos-per-etn, fig.height = gr_per_etn_al, fig.width = gr_per_etn_an, fig.align = 'center', fig.cap = paste0("Distribución de casos por pertenencia étnica - ", text_ext_geo), include = params$age_sex_distribution}
+# TODO Mover a sección de inicialización de datos
 casos_per_etn <- agrupar_per_etn(data_event = data_event_filtrada)
 plot_per_etn(data_agrupada = casos_per_etn)
 ```
@@ -644,6 +672,7 @@ nomb_dpto <- NULL
 if (params$departamento != "") {
   nomb_dpto <- params$departamento
 }
+# TODO Mover a seccion inicialización de datos
 incidencias_sex <-
   calcular_incidencia_sex(
     data_agrupada = casos_sex,
@@ -651,6 +680,8 @@ incidencias_sex <-
     cache = params$cache,
     ruta_dir = ruta_dir
   )
+
+# TODO Revisar si se puede quitar
 incidencia_mayor_sex <- obtener_fila_mas_casos(
   data_event =
     incidencias_sex$data_incidencia,
@@ -709,6 +740,7 @@ plot_tabla_incidencia_geo(incidencias_geo$data_incidencia)
 
 ```{r plot-mapa-incidencias, results='hide', echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE}
 text_mapa_inciden <- "por municipio"
+# TODO Mover a una función, incluir siguiente celda
 if (params$departamento == "" && params$municipio == "") {
   dist_espacial_mpios <- agrupar_dpto(data_event_filtrada,
     col_dpto = geo_ocurrencia[1:4]
@@ -736,6 +768,7 @@ mapa
 ```
 
 ```{r conclusiones, echo = FALSE, error = FALSE, warning = FALSE, include = FALSE, message = FALSE, cache = FALSE, results = FALSE, comment = FALSE}
+# TODO Mover a función
 text_geo <- params$pais
 if (params$spatial_distribution && params$departamento != "" &&
   params$municipio == "") {
