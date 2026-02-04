@@ -110,15 +110,10 @@ Contribuyentes](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.htm
 Al contribuir a este proyecto, aceptas cumplir con sus términos.
 
 ## Instalación
+Por ahora `sivirep` no es posible instalarlo desde CRAN.
 
-Puedes instalar `sivirep` desde CRAN utilizando:
-
-``` r
-install.packages("sivirep")
-```
-
-Si deseas instalar la versión de desarrollo de `sivirep` desde GitHub
-puedes hacerlos con el siguiente comando:
+Para instalar la versión estable de `sivirep` desde GitHub
+puedes hacerlo con el siguiente comando:
 
 ``` r
 install.packages("pak")
