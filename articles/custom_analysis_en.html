@@ -239,7 +239,7 @@ shown below:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_fecha_inisintomas.html">plot_fecha_inisintomas</a></span><span class="op">(</span>data_agrupada <span class="op">=</span> <span class="va">cases_onset_symptoms</span>,</span>
 <span>                       uni_marca <span class="op">=</span> <span class="st">"semanaepi"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="custom_analysis_en_files/figure-html/plot-symptom-onset-1.png" width="576"></p>
+<p><img src="custom_analysis_en_files/figure-html/plot-symptom-onset-1.png" class="r-plt" alt="" width="576"></p>
 </div>
 </div>
 <div class="section level3">
@@ -261,7 +261,7 @@ percentages by sex automatically after the cleaning process.</p>
 <code>plot_sex</code>to plot this distribution:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_sex.html">plot_sex</a></span><span class="op">(</span>data_agrupada <span class="op">=</span> <span class="va">cases_sex</span><span class="op">)</span></span></code></pre></div>
-<p><img src="custom_analysis_en_files/figure-html/plot-sex-1.png" width="672"></p>
+<p><img src="custom_analysis_en_files/figure-html/plot-sex-1.png" class="r-plt" alt="" width="672"></p>
 <p>To generate the distribution of cases by sex and epidemiological
 week, you can use the <code>agrupar_sex_semanaepi</code> function
 provided by <code>sivirep</code>:</p>
@@ -271,7 +271,7 @@ provided by <code>sivirep</code>:</p>
 <code>sivirep</code> is <code>plot_sex_semanaepi</code>:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_sex_semanaepi.html">plot_sex_semanaepi</a></span><span class="op">(</span>data_agrupada <span class="op">=</span> <span class="va">cases_sex_epiweek</span><span class="op">)</span></span></code></pre></div>
-<p><img src="custom_analysis_en_files/figure-html/plot-semanaepi-1.png" width="672"></p>
+<p><img src="custom_analysis_en_files/figure-html/plot-semanaepi-1.png" class="r-plt" alt="" width="672"></p>
 </div>
 <div class="section level3">
 <h3 id="age-variable">5.2. Age variable<a class="anchor" aria-label="anchor" href="#age-variable"></a>
@@ -291,7 +291,7 @@ years. Users can customise different age ranges.</p>
 <p>The corresponding plot function is <code>plot_edad</code>:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_edad.html">plot_edad</a></span><span class="op">(</span>data_agrupada <span class="op">=</span> <span class="va">cases_age</span><span class="op">)</span></span></code></pre></div>
-<p><img src="custom_analysis_en_files/figure-html/plot-age-1.png" width="576"></p>
+<p><img src="custom_analysis_en_files/figure-html/plot-age-1.png" class="r-plt" alt="" width="576"></p>
 </div>
 <div class="section level3">
 <h3 id="age-and-sex-simultaneously">5.3. Age and sex simultaneously<a class="anchor" aria-label="anchor" href="#age-and-sex-simultaneously"></a>
@@ -308,7 +308,7 @@ their percentages. Also, the age interval can be customised.</p>
 corresponding distribution is <code>plot_edad_sex</code>:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_edad_sex.html">plot_edad_sex</a></span><span class="op">(</span>data_agrupada <span class="op">=</span> <span class="va">cases_age_sex</span><span class="op">)</span></span></code></pre></div>
-<p><img src="custom_analysis_en_files/figure-html/plot-age-sex-1.png" width="576"></p>
+<p><img src="custom_analysis_en_files/figure-html/plot-age-sex-1.png" class="r-plt" alt="" width="576"></p>
 </div>
 <div class="section level3">
 <h3 id="spatial-distribution-of-cases">6. Spatial distribution of cases<a class="anchor" aria-label="anchor" href="#spatial-distribution-of-cases"></a>
@@ -344,7 +344,7 @@ function.</p>
 <span>                col_distribucion <span class="op">=</span> <span class="st">"casos"</span>,</span>
 <span>                ruta_dir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">map</span></span></code></pre></div>
-<p><img src="custom_analysis_en_files/figure-html/plot-map-1.png" width="672"></p>
+<p><img src="custom_analysis_en_files/figure-html/plot-map-1.png" class="r-plt" alt="" width="672"></p>
 <blockquote>
 <p>💡 <strong>Tip - Get the row with most cases</strong> <br> When
 building a report section or analysing this data it can be helpful to
@@ -382,7 +382,7 @@ calculations.</p>
 <code class="sourceCode R"><span><span class="va">map</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_map.html">plot_map</a></span><span class="op">(</span>data_agrupada <span class="op">=</span> <span class="va">incidence_muns</span><span class="op">$</span><span class="va">data_incidencia</span>,</span>
 <span>         ruta_dir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">map</span></span></code></pre></div>
-<p><img src="custom_analysis_en_files/figure-html/plot-map-incidence-1.png" width="672"></p>
+<p><img src="custom_analysis_en_files/figure-html/plot-map-incidence-1.png" class="r-plt" alt="" width="672"></p>
 </div>
 </div>
 <div class="section level4">
@@ -411,7 +411,7 @@ incidence for the entire country:</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.9000. Theme provided by <a href="https://github.com/epiverse-trace/epiversetheme" class="external-link">epiversetheme</a> 0.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.9000. Theme provided by <a href="https://github.com/epiverse-trace/epiversetheme" class="external-link">epiversetheme</a> 0.1.0.</p>
 </div>
 
     </footer>

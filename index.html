@@ -144,28 +144,26 @@
 <div class="section level2">
 <h2 id="instalación">Instalación<a class="anchor" aria-label="anchor" href="#instalaci%C3%B3n"></a>
 </h2>
-<p>Puedes instalar <code>sivirep</code> desde CRAN utilizando:</p>
+<p>Por ahora <code>sivirep</code> no es posible instalarlo desde CRAN.</p>
+<p>Para instalar la versión estable de <code>sivirep</code> desde GitHub puedes hacerlo con el siguiente comando:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"sivirep"</span><span class="op">)</span></span></code></pre></div>
-<p>Si deseas instalar la versión de desarrollo de <code>sivirep</code> desde GitHub puedes hacerlos con el siguiente comando:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"pak"</span><span class="op">)</span></span>
 <span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"epiverse-trace/sivirep"</span><span class="op">)</span></span></code></pre></div>
 <p>También, puedes utilizar cualquiera de estas dos opciones:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"epiverse-trace/sivirep"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"sivirep"</span>, repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"https://epiverse-trace.r-universe.dev"</span>, <span class="st">"https://cloud.r-project.org"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="inicio-rápido">Inicio rápido<a class="anchor" aria-label="anchor" href="#inicio-r%C3%A1pido"></a>
 </h2>
 <p>Puedes iniciar importando el paquete después de finalizada su instalación con el siguiente comando:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://epiverse-trace.github.io/sivirep/">sivirep</a></span><span class="op">)</span></span></code></pre></div>
 <p>Puedes revisar las enfermedades y los años disponibles para su descarga de forma libre utilizando los comandos:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lista_eventos</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/list_events.html">list_events</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">lista_eventos</span><span class="op">)</span></span></code></pre></div>
 <blockquote style="color: #333; cursor:pointer;">
@@ -258,7 +256,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.9000. Theme provided by <a href="https://github.com/epiverse-trace/epiversetheme" class="external-link">epiversetheme</a> 0.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.9000. Theme provided by <a href="https://github.com/epiverse-trace/epiversetheme" class="external-link">epiversetheme</a> 0.1.0.</p>
 </div>
 
     </footer>

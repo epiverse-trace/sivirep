@@ -1,0 +1,36 @@
+# Obtener la ruta del directorio donde se almacenarán los datos del evento o enfermedad
+
+Función que obtiene la ruta del directorio donde se almacenarán los
+datos del evento o enfermedad.
+
+## Usage
+
+``` r
+obtener_ruta_dir(ruta_dir = NULL, cache = FALSE, mensaje_error)
+```
+
+## Arguments
+
+- ruta_dir:
+
+  Un \`character\` (cadena de caracteres) que contiene la ruta del
+  directorio donde se almacenarán los datos del evento o enfermedad. Su
+  valor por defecto es \`NULL\`.
+
+- cache:
+
+  Un \`logical\` (\`TRUE\` o \`FALSE\`) que indica si los datos
+  descargados deben ser almacenados en caché. Su valor por defecto es
+  \`FALSE\`.
+
+- mensaje_error:
+
+  Un \`character\` (cadena de caracteres) con el mensaje de error que se
+  debe mostrar en caso de que no se encuentre la dirección del
+  directorio especificada en el parámetro\`ruta_dir\` o no sea posible
+  crear o almacenar los datos en el directorio de caché de \`sivirep\`.
+
+## Value
+
+Un \`character\` (cadena de caracteres) con la ruta del directorio donde
+se almacenarán los datos del evento o enfermedad.

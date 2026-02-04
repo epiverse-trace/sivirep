@@ -1,0 +1,347 @@
+## *sivirep*: Generación automatizada de reportes a partir de bases de datos de vigilancia epidemiológica ![](reference/figures/logo.svg)
+
+[For English version, open this
+link](https://epiverse-trace.github.io/sivirep/articles/sivirep_en.html)
+
+***sivirep*** es desarrollado por la [Pontificia Universidad
+Javeriana](https://www.javeriana.edu.co/inicio) como parte de la
+iniciativa [Epiverse](https://data.org/initiatives/epiverse/).
+
+La versión actual de *sivirep* 1.0.0 proporciona funciones para la
+manipulación de datos y la generación de reportes automatizados basados
+en las bases de datos individualizadas de casos de SIVIGILA, que es el
+sistema oficial de vigilancia epidemiológica de Colombia.
+
+## Exclusión de responsabilidad
+
+El uso de esta librería, así como de los datos, reportes generados y
+otros productos derivados de la misma, se realiza bajo la
+responsabilidad exclusiva del usuario. Ni los autores de la librería, ni
+la Pontificia Universidad Javeriana, ni la fuente de información asumen
+responsabilidad alguna por los resultados obtenidos o el uso que se haga
+de dichos productos.
+
+## Motivación
+
+América Latina ha progresado en la calidad de sus sistemas de
+notificación y vigilancia epidemiológica. En particular, Colombia ha
+mejorado a lo largo de los años la calidad, la accesibilidad y la
+transparencia de su sistema oficial de vigilancia epidemiológica,
+SIVIGILA. Este sistema está regulado por el Instituto Nacional de Salud
+de Colombia y es operado por miles de trabajadores de la salud en las
+secretarías de salud locales, hospitales y unidades primarias
+generadoras de datos.
+
+Sin embargo, todavía existen desafíos, especialmente a nivel local, en
+cuanto a la oportunidad y la calidad del análisis epidemiológico y de
+los informes epidemiológicos. Estas tareas pueden requerir una gran
+cantidad de trabajo manual debido a limitaciones en el entrenamiento
+para el análisis de datos, el tiempo que se requiere invertir, la
+tecnología y la calidad del acceso a internet en algunas regiones de
+Colombia.
+
+El objetivo de `sivirep` es proporcionar un conjunto de herramientas
+para:
+
+1.  Descargar, preprocesar y preparar los datos de SIVIGILA para su
+    posterior análisis.
+2.  Generar informes epidemiológicos automatizados adaptables al
+    contexto.
+3.  Proporcionar retroalimentación sobre el sistema de vigilancia al
+    proveedor de la fuente de datos.
+
+## Potenciales usuarios
+
+- Profesionales de salud pública y de epidemiología de campo que
+  utilizan la fuente de datos de SIVIGILA a nivel local.
+- Estudiantes del área de la salud y epidemiología.
+- Investigadores y analistas de datos a nivel nacional e internacional.
+
+## Versiones futuras
+
+Las versiones futuras de `sivirep` podrían incluir:
+
+- Interacción con otras fuentes de datos en Colombia.
+- Otros sistemas de vigilancia epidemiológica en América Latina.
+
+## Contribuciones
+
+Las contribuciones son bienvenidas via [pull
+requests](https://github.com/epiverse-trace/sivirep/pulls).
+
+Los contribuyentes al paquete incluyen:
+
+**Autores**: [Geraldine
+Gómez-Millán](https://github.com/GeraldineGomez), [Zulma M.
+Cucunubá](https://github.com/zmcucunuba), Jennifer A. Mendez-Romero y
+[Claudia Huguett-Aragón](https://github.com/chuguett)
+
+**Contribuyentes**: [Hugo Gruson](https://github.com/Bisaloo), [Juanita
+Romero-Garcés](https://github.com/juanitaromerog), [Jaime A.
+Pavlich-Mariscal](https://github.com/jpavlich), [Andrés
+Moreno](https://github.com/andresmore), [Miguel
+Gámez](https://github.com/megamezl), [Laura
+Gómez-Bermeo](https://github.com/lgbermeo), Johan Calderón, Lady
+Flórez-Tapiero, Verónica Tangarife-Arredondo y Gerard Alarcon
+
+## Código de conducta
+
+Por favor, ten en cuenta que el proyecto `sivirep` se publica con un
+[Código de Conducta para
+Contribuyentes](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).
+Al contribuir a este proyecto, aceptas cumplir con sus términos.
+
+## Instalación
+
+Por ahora `sivirep` no es posible instalarlo desde CRAN.
+
+Para instalar la versión estable de `sivirep` desde GitHub puedes
+hacerlo con el siguiente comando:
+
+``` r
+install.packages("pak")
+pak::pak("epiverse-trace/sivirep")
+```
+
+También, puedes utilizar cualquiera de estas dos opciones:
+
+``` r
+install.packages("remotes")
+remotes::install_github("epiverse-trace/sivirep")
+```
+
+``` r
+install.packages("sivirep", repos = c("https://epiverse-trace.r-universe.dev", "https://cloud.r-project.org"))
+```
+
+## Inicio rápido
+
+Puedes iniciar importando el paquete después de finalizada su
+instalación con el siguiente comando:
+
+``` r
+library(sivirep)
+```
+
+Puedes revisar las enfermedades y los años disponibles para su descarga
+de forma libre utilizando los comandos:
+
+``` r
+lista_eventos <- list_events()
+knitr::kable(lista_eventos)
+```
+
+> 🦠**Listado de enfermedades (haz clic para ver)**
+>
+>   
+>
+> - [Enfermedades](https://epiverse-trace.github.io/sivirep/articles/resources.html#enfermedades-y-a%C3%B1os-disponibles-para-su-descarga)
+
+## Reporte automatizado
+
+Actualmente, `sivirep` provee una plantilla de reporte llamada
+`Reporte Evento {sivirep}`, la cual recibe los siguientes parámetros de
+entrada: el nombre de la enfermedad, el año, el nombre del país, el
+nombre del departamento (opcional) y el nombre del municipio (opcional)
+para descargar los datos de la fuente de SIVIGILA.
+
+Para hacer uso de la plantilla del reporte puedes seguir los siguientes
+pasos:
+
+> 🎥 [¿Cómo generar un reporte con
+> sivirep?](https://youtu.be/wsgXQKEeg8I)
+
+El reporte que obtendrás al utilizar la plantilla de `sivirep` es este:
+
+> 🎥 [Reporte sivirep](https://youtu.be/NRUNwVrs4io)
+
+Si deseas generar el reporte en formato PDF debes instalar LateX. Puedes
+instalarlo siguiendo las instrucciones que se encuentran en [R Markdown
+Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html).
+
+## Análisis personalizados
+
+`sivirep` ofrece un conjunto de funciones que pueden utilizarse en
+distintos escenarios: desde la descarga de datos hasta la creación de
+análisis personalizados o la construcción de flujos de trabajo
+completos.
+
+Para explorar las funciones disponibles y ejemplos de su uso, visita la
+página de [Análisis
+personalizados](https://epiverse-trace.github.io/sivirep/articles/custom_analysis.html).
+
+# Package index
+
+## Importación de datos
+
+- [`import_data_event()`](https://epiverse-trace.github.io/sivirep/reference/import_data_event.md)
+  : Importar los datos de una enfermedad o evento por año desde los
+  microdatos del SIVIGILA
+- [`import_geo_cods()`](https://epiverse-trace.github.io/sivirep/reference/import_geo_cods.md)
+  : Importar datos geográficos de Colombia
+- [`import_pob_incidencia()`](https://epiverse-trace.github.io/sivirep/reference/import_pob_incidencia.md)
+  : Importar la población para efectuar el cálculo de la incidencia
+- [`import_pob_proyecciones()`](https://epiverse-trace.github.io/sivirep/reference/import_pob_proyecciones.md)
+  : Importar las proyecciones DANE del año 2005 hasta el 2035
+- [`import_pob_riesgo()`](https://epiverse-trace.github.io/sivirep/reference/import_pob_riesgo.md)
+  : Importar la población a riesgo de un evento o enfermedad
+- [`list_events()`](https://epiverse-trace.github.io/sivirep/reference/list_events.md)
+  : Importar enfermedades y años disponibles para su descarga desde los
+  microdatos del SIVIGILA
+
+## Limpieza de datos
+
+- [`limpiar_data_sivigila()`](https://epiverse-trace.github.io/sivirep/reference/limpiar_data_sivigila.md)
+  : Limpiar datos de SIVIGILA
+- [`limpiar_edad_event()`](https://epiverse-trace.github.io/sivirep/reference/limpiar_edad_event.md)
+  : Limpiar las edades de los datos de una enfermedad o evento
+- [`limpiar_encabezado()`](https://epiverse-trace.github.io/sivirep/reference/limpiar_encabezado.md)
+  : Limpiar las etiquetas del encabezado
+- [`limpiar_fecha_event()`](https://epiverse-trace.github.io/sivirep/reference/limpiar_fecha_event.md)
+  : Limpiar fechas de los datos de una enfermedad o evento
+- [`limpiar_val_atipic()`](https://epiverse-trace.github.io/sivirep/reference/limpiar_val_atipic.md)
+  : Limpiar los valores atípicos de los datos
+- [`estandarizar_geo_cods()`](https://epiverse-trace.github.io/sivirep/reference/estandarizar_geo_cods.md)
+  : Estandarizar códigos geográficos de los datos de una enfermedad o
+  evento
+- [`convert_edad()`](https://epiverse-trace.github.io/sivirep/reference/convert_edad.md)
+  : Convertir edad a años
+
+## Distribuciones y agrupaciones por variable
+
+- [`agrupar_area_geo()`](https://epiverse-trace.github.io/sivirep/reference/agrupar_area_geo.md)
+  : Agrupar por área geográfica
+- [`agrupar_cols_casos()`](https://epiverse-trace.github.io/sivirep/reference/agrupar_cols_casos.md)
+  : Agrupar por columnas y casos
+- [`agrupar_dpto()`](https://epiverse-trace.github.io/sivirep/reference/agrupar_dpto.md)
+  : Agrupar por departamento y casos
+- [`agrupar_edad()`](https://epiverse-trace.github.io/sivirep/reference/agrupar_edad.md)
+  : Agrupar por edad y casos
+- [`agrupar_edad_sex()`](https://epiverse-trace.github.io/sivirep/reference/agrupar_edad_sex.md)
+  : Agrupar por edades, sexo y casos
+- [`agrupar_eventos()`](https://epiverse-trace.github.io/sivirep/reference/agrupar_eventos.md)
+  : Agrupar por tipo de enfermedad o evento
+- [`agrupar_fecha_inisintomas()`](https://epiverse-trace.github.io/sivirep/reference/agrupar_fecha_inisintomas.md)
+  : Agrupar por fecha de inicio de síntomas y casos
+- [`agrupar_mpio()`](https://epiverse-trace.github.io/sivirep/reference/agrupar_mpio.md)
+  : Agrupar por municipios y casos
+- [`agrupar_per_etn()`](https://epiverse-trace.github.io/sivirep/reference/agrupar_per_etn.md)
+  : Agrupar por la pertenencia étnica
+- [`agrupar_rango_edad()`](https://epiverse-trace.github.io/sivirep/reference/agrupar_rango_edad.md)
+  : Agrupar por rango de edad y casos
+- [`agrupar_semanaepi()`](https://epiverse-trace.github.io/sivirep/reference/agrupar_semanaepi.md)
+  : Agrupar por semana epidemiológica y casos
+- [`agrupar_sex()`](https://epiverse-trace.github.io/sivirep/reference/agrupar_sex.md)
+  : Agrupar por sexo y casos
+- [`agrupar_sex_semanaepi()`](https://epiverse-trace.github.io/sivirep/reference/agrupar_sex_semanaepi.md)
+  : Agrupar por sexo, semana epidemiológica y casos
+- [`agrupar_tipo_caso()`](https://epiverse-trace.github.io/sivirep/reference/agrupar_tipo_caso.md)
+  : Agrupar por la clasificación inicial del caso
+- [`agrupar_top_area_geo()`](https://epiverse-trace.github.io/sivirep/reference/agrupar_top_area_geo.md)
+  : Agrupar por área geográfica a nivel departamental o municipal
+- [`agrupar_years()`](https://epiverse-trace.github.io/sivirep/reference/agrupar_years.md)
+  : Agrupar por años de una enfermedad o evento
+- [`geo_filtro()`](https://epiverse-trace.github.io/sivirep/reference/geo_filtro.md)
+  : Filtrar por departamentos y municipios
+
+## Cálculo de la incidencia
+
+- [`calcular_incidencia()`](https://epiverse-trace.github.io/sivirep/reference/calcular_incidencia.md)
+  : Calcular incidencia
+- [`calcular_incidencia_geo()`](https://epiverse-trace.github.io/sivirep/reference/calcular_incidencia_geo.md)
+  : Calcular incidencia según distribución geográfica
+- [`calcular_incidencia_sex()`](https://epiverse-trace.github.io/sivirep/reference/calcular_incidencia_sex.md)
+  : Calcular incidencia por sexo
+
+## Generación de gráficas, mapas y tablas
+
+- [`plot_area_geo()`](https://epiverse-trace.github.io/sivirep/reference/plot_area_geo.md)
+  : Generar gráfico de distribución de casos por área geográfica
+- [`plot_dptos()`](https://epiverse-trace.github.io/sivirep/reference/plot_dptos.md)
+  : Generar gráfico de distribución de casos por departamentos
+- [`plot_edad()`](https://epiverse-trace.github.io/sivirep/reference/plot_edad.md)
+  : Generar gráfico de distribución de casos por edad
+- [`plot_edad_sex()`](https://epiverse-trace.github.io/sivirep/reference/plot_edad_sex.md)
+  : Generar gráfico de distribución de casos por edad y sexo
+- [`plot_fecha_inisintomas()`](https://epiverse-trace.github.io/sivirep/reference/plot_fecha_inisintomas.md)
+  : Generar gráfico de distribución de casos por fecha de inicio de
+  síntomas
+- [`plot_map()`](https://epiverse-trace.github.io/sivirep/reference/plot_map.md)
+  : Generar mapa
+- [`plot_mpios()`](https://epiverse-trace.github.io/sivirep/reference/plot_mpios.md)
+  : Generar gráfico de distribución de casos por municipios
+- [`plot_per_etn()`](https://epiverse-trace.github.io/sivirep/reference/plot_per_etn.md)
+  : Generar gráfico de distribución de casos por pertenencia étnica
+- [`plot_sex()`](https://epiverse-trace.github.io/sivirep/reference/plot_sex.md)
+  : Generar gráfico de distribución de casos por sexo
+- [`plot_sex_semanaepi()`](https://epiverse-trace.github.io/sivirep/reference/plot_sex_semanaepi.md)
+  : Generar gráfico de distribución de casos por sexo y semana
+  epidemiológica
+- [`plot_tabla_incidencia_geo()`](https://epiverse-trace.github.io/sivirep/reference/plot_tabla_incidencia_geo.md)
+  : Generar tabla con la incidencia
+- [`plot_tabla_incidencia_sex()`](https://epiverse-trace.github.io/sivirep/reference/plot_tabla_incidencia_sex.md)
+  : Generar tabla con la incidencia por sexo
+- [`plot_tabla_tipos_event()`](https://epiverse-trace.github.io/sivirep/reference/plot_tabla_tipos_event.md)
+  : Generar tabla con la distribución de casos por tipo de enfermedad o
+  evento
+- [`plot_tipo_caso()`](https://epiverse-trace.github.io/sivirep/reference/plot_tipo_caso.md)
+  : Generar gráfico de distribución de casos por la clasificación
+  inicial del caso
+- [`plot_tipo_caso_years()`](https://epiverse-trace.github.io/sivirep/reference/plot_tipo_caso_years.md)
+  : Generar gráfico de distribución de casos por la clasificación
+  inicial del caso y los años seleccionados
+- [`plot_top_area_geo()`](https://epiverse-trace.github.io/sivirep/reference/plot_top_area_geo.md)
+  : Generar gráfico de distribución de casos por área geográfica a nivel
+  departamental o municipal
+- [`plot_years()`](https://epiverse-trace.github.io/sivirep/reference/plot_years.md)
+  : Generar gráfico de distribución de casos por año
+
+## Utilidades
+
+- [`obtener_cond_inciden_event()`](https://epiverse-trace.github.io/sivirep/reference/obtener_cond_inciden_event.md)
+  : Obtener las condiciones para calcular la incidencia de una
+  enfermedad o evento
+- [`obtener_dptos()`](https://epiverse-trace.github.io/sivirep/reference/obtener_dptos.md)
+  : Obtener departamentos de Colombia
+- [`obtener_fila_mas_casos()`](https://epiverse-trace.github.io/sivirep/reference/obtener_fila_mas_casos.md)
+  : Obtener la fila con mayor número de casos
+- [`obtener_info_depts()`](https://epiverse-trace.github.io/sivirep/reference/obtener_info_depts.md)
+  : Obtener información geográfica de los datos de la enfermedad o
+  evento
+- [`obtener_meses_mas_casos()`](https://epiverse-trace.github.io/sivirep/reference/obtener_meses_mas_casos.md)
+  : Obtener los meses con mayor número de casos
+- [`obtener_nombre_dpto()`](https://epiverse-trace.github.io/sivirep/reference/obtener_nombre_dpto.md)
+  : Obtener el nombre de un departamento de Colombia
+- [`obtener_nombre_mpio()`](https://epiverse-trace.github.io/sivirep/reference/obtener_nombre_mpio.md)
+  : Obtener el nombre de un municipio de Colombia
+- [`obtener_text_sex()`](https://epiverse-trace.github.io/sivirep/reference/obtener_text_sex.md)
+  : Obtener el párrafo de la distribución de casos por sexo
+- [`obtener_tip_ocurren_geo()`](https://epiverse-trace.github.io/sivirep/reference/obtener_tip_ocurren_geo.md)
+  : Obtener columnas de ocurrencia geográfica de los datos de la
+  enfermedad o evento
+- [`obtener_val_config()`](https://epiverse-trace.github.io/sivirep/reference/obtener_val_config.md)
+  : Obtener valor del archivo de configuración
+
+## Datos del paquete
+
+- [`dengue2020`](https://epiverse-trace.github.io/sivirep/reference/dengue2020.md)
+  : Datos Dengue 2020 del SIVIGILA en sivirep
+- [`divipoladata`](https://epiverse-trace.github.io/sivirep/reference/divipoladata.md)
+  : Códigos e información geografica del DIVIPOLA en sivirep
+
+# Articles
+
+### All vignettes
+
+- [Plantilla reporte
+  automatizado](https://epiverse-trace.github.io/sivirep/articles/automated_report.md):
+- [Customized
+  Analyses](https://epiverse-trace.github.io/sivirep/articles/custom_analyses_en.md):
+- [Custom
+  analysis](https://epiverse-trace.github.io/sivirep/articles/custom_analysis_en.md):
+- [Análisis
+  personalizados](https://epiverse-trace.github.io/sivirep/articles/custom_analysis.md):
+- [Recursos](https://epiverse-trace.github.io/sivirep/articles/resources.md):
+- [Get
+  started](https://epiverse-trace.github.io/sivirep/articles/sivirep_en.md):
+- [sivirep](https://epiverse-trace.github.io/sivirep/articles/sivirep.md):
