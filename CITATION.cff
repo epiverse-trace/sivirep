@@ -8,7 +8,7 @@ message: 'To cite package "sivirep" in publications use:'
 type: software
 license: MIT
 title: 'sivirep: Data Wrangling and Automated Reports from ''SIVIGILA'' Source'
-version: 1.0.1
+version: 1.0.2
 doi: 10.32614/CRAN.package.sivirep
 abstract: Data wrangling, pre-processing, and generating automated reports from Colombia's
   epidemiological surveillance system, 'SIVIGILA' <https://portalsivigila.ins.gov.co/>.
@@ -229,13 +229,8 @@ references:
   authors:
   - family-names: Gagolewski
     given-names: Marek
+    email: marek@gagolewski.com
     orcid: https://orcid.org/0000-0003-0637-6028
-  - family-names: Tartanus
-    given-names: Bartek
-  - family-names: Unicode
-    given-names: others;
-  - name: Inc.
-  - name: others
   year: '2025'
   doi: 10.32614/CRAN.package.stringi
 - type: software
@@ -287,16 +282,16 @@ references:
   title: xml2
   abstract: 'xml2: Parse XML'
   notes: Imports
-  url: https://xml2.r-lib.org/
+  url: https://xml2.r-lib.org
   repository: https://CRAN.R-project.org/package=xml2
   authors:
   - family-names: Wickham
     given-names: Hadley
-    email: hadley@posit.co
   - family-names: Hester
     given-names: Jim
   - family-names: Ooms
     given-names: Jeroen
+    email: jeroenooms@gmail.com
   year: '2025'
   doi: 10.32614/CRAN.package.xml2
 - type: software
